@@ -48,10 +48,41 @@ type HDInsightOnDemandLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &HDInsightOnDemandLinkedServiceTypeProperties{}
 
 func (s *HDInsightOnDemandLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias HDInsightOnDemandLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AdditionalLinkedServiceNames *[]LinkedServiceReference `json:"additionalLinkedServiceNames,omitempty"`
+		ClusterNamePrefix            *string                   `json:"clusterNamePrefix,omitempty"`
+		ClusterResourceGroup         string                    `json:"clusterResourceGroup"`
+		ClusterSize                  int64                     `json:"clusterSize"`
+		ClusterSshUserName           *string                   `json:"clusterSshUserName,omitempty"`
+		ClusterType                  *string                   `json:"clusterType,omitempty"`
+		ClusterUserName              *string                   `json:"clusterUserName,omitempty"`
+		CoreConfiguration            *interface{}              `json:"coreConfiguration,omitempty"`
+		Credential                   *CredentialReference      `json:"credential,omitempty"`
+		DataNodeSize                 *interface{}              `json:"dataNodeSize,omitempty"`
+		EncryptedCredential          *string                   `json:"encryptedCredential,omitempty"`
+		HBaseConfiguration           *interface{}              `json:"hBaseConfiguration,omitempty"`
+		HcatalogLinkedServiceName    *LinkedServiceReference   `json:"hcatalogLinkedServiceName,omitempty"`
+		HdfsConfiguration            *interface{}              `json:"hdfsConfiguration,omitempty"`
+		HeadNodeSize                 *interface{}              `json:"headNodeSize,omitempty"`
+		HiveConfiguration            *interface{}              `json:"hiveConfiguration,omitempty"`
+		HostSubscriptionId           string                    `json:"hostSubscriptionId"`
+		LinkedServiceName            LinkedServiceReference    `json:"linkedServiceName"`
+		MapReduceConfiguration       *interface{}              `json:"mapReduceConfiguration,omitempty"`
+		OozieConfiguration           *interface{}              `json:"oozieConfiguration,omitempty"`
+		ScriptActions                *[]ScriptAction           `json:"scriptActions,omitempty"`
+		ServicePrincipalId           *string                   `json:"servicePrincipalId,omitempty"`
+		SparkVersion                 *string                   `json:"sparkVersion,omitempty"`
+		StormConfiguration           *interface{}              `json:"stormConfiguration,omitempty"`
+		SubnetName                   *string                   `json:"subnetName,omitempty"`
+		Tenant                       string                    `json:"tenant"`
+		TimeToLive                   string                    `json:"timeToLive"`
+		Version                      string                    `json:"version"`
+		VirtualNetworkId             *string                   `json:"virtualNetworkId,omitempty"`
+		YarnConfiguration            *interface{}              `json:"yarnConfiguration,omitempty"`
+		ZookeeperNodeSize            *interface{}              `json:"zookeeperNodeSize,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into HDInsightOnDemandLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalLinkedServiceNames = decoded.AdditionalLinkedServiceNames
@@ -114,5 +145,6 @@ func (s *HDInsightOnDemandLinkedServiceTypeProperties) UnmarshalJSON(bytes []byt
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

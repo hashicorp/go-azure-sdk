@@ -17,10 +17,12 @@ type NotificationSetting struct {
 var _ json.Unmarshaler = &NotificationSetting{}
 
 func (s *NotificationSetting) UnmarshalJSON(bytes []byte) error {
-	type alias NotificationSetting
-	var decoded alias
+	var decoded struct {
+		EmailOn *[]EmailNotificationEnableType `json:"emailOn,omitempty"`
+		Emails  *[]string                      `json:"emails,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NotificationSetting: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EmailOn = decoded.EmailOn
@@ -47,5 +49,6 @@ func (s *NotificationSetting) UnmarshalJSON(bytes []byte) error {
 		}
 		s.WebHooks = &output
 	}
+
 	return nil
 }

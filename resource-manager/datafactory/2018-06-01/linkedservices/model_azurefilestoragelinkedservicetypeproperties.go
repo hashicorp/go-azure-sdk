@@ -26,10 +26,21 @@ type AzureFileStorageLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureFileStorageLinkedServiceTypeProperties{}
 
 func (s *AzureFileStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureFileStorageLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccountKey          *AzureKeyVaultSecretReference `json:"accountKey,omitempty"`
+		ConnectionString    *string                       `json:"connectionString,omitempty"`
+		Credential          *CredentialReference          `json:"credential,omitempty"`
+		EncryptedCredential *string                       `json:"encryptedCredential,omitempty"`
+		FileShare           *string                       `json:"fileShare,omitempty"`
+		Host                *string                       `json:"host,omitempty"`
+		SasToken            *AzureKeyVaultSecretReference `json:"sasToken,omitempty"`
+		SasUri              *string                       `json:"sasUri,omitempty"`
+		ServiceEndpoint     *string                       `json:"serviceEndpoint,omitempty"`
+		Snapshot            *string                       `json:"snapshot,omitempty"`
+		UserId              *string                       `json:"userId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureFileStorageLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountKey = decoded.AccountKey
@@ -56,5 +67,6 @@ func (s *AzureFileStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

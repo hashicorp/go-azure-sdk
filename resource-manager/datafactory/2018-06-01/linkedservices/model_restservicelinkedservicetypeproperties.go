@@ -35,10 +35,26 @@ type RestServiceLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &RestServiceLinkedServiceTypeProperties{}
 
 func (s *RestServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias RestServiceLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AadResourceId                     *string                       `json:"aadResourceId,omitempty"`
+		AuthHeaders                       *interface{}                  `json:"authHeaders,omitempty"`
+		AuthenticationType                RestServiceAuthenticationType `json:"authenticationType"`
+		AzureCloudType                    *string                       `json:"azureCloudType,omitempty"`
+		ClientId                          *string                       `json:"clientId,omitempty"`
+		Credential                        *CredentialReference          `json:"credential,omitempty"`
+		EnableServerCertificateValidation *bool                         `json:"enableServerCertificateValidation,omitempty"`
+		EncryptedCredential               *string                       `json:"encryptedCredential,omitempty"`
+		Resource                          *string                       `json:"resource,omitempty"`
+		Scope                             *string                       `json:"scope,omitempty"`
+		ServicePrincipalCredentialType    *string                       `json:"servicePrincipalCredentialType,omitempty"`
+		ServicePrincipalId                *string                       `json:"servicePrincipalId,omitempty"`
+		Tenant                            *string                       `json:"tenant,omitempty"`
+		TokenEndpoint                     *string                       `json:"tokenEndpoint,omitempty"`
+		Url                               string                        `json:"url"`
+		UserName                          *string                       `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RestServiceLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AadResourceId = decoded.AadResourceId
@@ -102,5 +118,6 @@ func (s *RestServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

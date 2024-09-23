@@ -48,9 +48,9 @@ func UnmarshalLimitJsonObjectImplementation(input []byte) (LimitJsonObject, erro
 		return nil, fmt.Errorf("unmarshaling LimitJsonObject into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["limitObjectType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["limitObjectType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "LimitValue") {

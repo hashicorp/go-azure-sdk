@@ -28,5 +28,6 @@ func (s *IcebergDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Location = impl
 	}
+
 	return nil
 }

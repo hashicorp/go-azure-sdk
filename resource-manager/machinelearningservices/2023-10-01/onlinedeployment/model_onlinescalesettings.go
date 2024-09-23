@@ -48,9 +48,9 @@ func UnmarshalOnlineScaleSettingsImplementation(input []byte) (OnlineScaleSettin
 		return nil, fmt.Errorf("unmarshaling OnlineScaleSettings into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["scaleType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["scaleType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Default") {

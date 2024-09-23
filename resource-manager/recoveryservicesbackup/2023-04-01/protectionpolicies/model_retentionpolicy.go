@@ -48,9 +48,9 @@ func UnmarshalRetentionPolicyImplementation(input []byte) (RetentionPolicy, erro
 		return nil, fmt.Errorf("unmarshaling RetentionPolicy into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["retentionPolicyType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["retentionPolicyType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "LongTermRetentionPolicy") {

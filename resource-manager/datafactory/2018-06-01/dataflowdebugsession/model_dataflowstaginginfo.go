@@ -16,10 +16,11 @@ type DataFlowStagingInfo struct {
 var _ json.Unmarshaler = &DataFlowStagingInfo{}
 
 func (s *DataFlowStagingInfo) UnmarshalJSON(bytes []byte) error {
-	type alias DataFlowStagingInfo
-	var decoded alias
+	var decoded struct {
+		FolderPath *string `json:"folderPath,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DataFlowStagingInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FolderPath = decoded.FolderPath
@@ -36,5 +37,6 @@ func (s *DataFlowStagingInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LinkedService = impl
 	}
+
 	return nil
 }

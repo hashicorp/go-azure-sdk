@@ -88,10 +88,32 @@ func (o *AlertProperties) SetTimeGeneratedUtcAsTime(input time.Time) {
 var _ json.Unmarshaler = &AlertProperties{}
 
 func (s *AlertProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AlertProperties
-	var decoded alias
+	var decoded struct {
+		AlertDisplayName     *string              `json:"alertDisplayName,omitempty"`
+		AlertType            *string              `json:"alertType,omitempty"`
+		AlertUri             *string              `json:"alertUri,omitempty"`
+		CompromisedEntity    *string              `json:"compromisedEntity,omitempty"`
+		CorrelationKey       *string              `json:"correlationKey,omitempty"`
+		Description          *string              `json:"description,omitempty"`
+		EndTimeUtc           *string              `json:"endTimeUtc,omitempty"`
+		Entities             *[]AlertEntity       `json:"entities,omitempty"`
+		ExtendedLinks        *[]map[string]string `json:"extendedLinks,omitempty"`
+		ExtendedProperties   *map[string]string   `json:"extendedProperties,omitempty"`
+		Intent               *Intent              `json:"intent,omitempty"`
+		IsIncident           *bool                `json:"isIncident,omitempty"`
+		ProcessingEndTimeUtc *string              `json:"processingEndTimeUtc,omitempty"`
+		ProductComponentName *string              `json:"productComponentName,omitempty"`
+		ProductName          *string              `json:"productName,omitempty"`
+		RemediationSteps     *[]string            `json:"remediationSteps,omitempty"`
+		Severity             *AlertSeverity       `json:"severity,omitempty"`
+		StartTimeUtc         *string              `json:"startTimeUtc,omitempty"`
+		Status               *AlertStatus         `json:"status,omitempty"`
+		SystemAlertId        *string              `json:"systemAlertId,omitempty"`
+		TimeGeneratedUtc     *string              `json:"timeGeneratedUtc,omitempty"`
+		VendorName           *string              `json:"vendorName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AlertProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AlertDisplayName = decoded.AlertDisplayName
@@ -138,5 +160,6 @@ func (s *AlertProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ResourceIdentifiers = &output
 	}
+
 	return nil
 }

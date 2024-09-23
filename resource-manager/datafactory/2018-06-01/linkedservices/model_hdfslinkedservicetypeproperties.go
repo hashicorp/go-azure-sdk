@@ -19,10 +19,14 @@ type HdfsLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &HdfsLinkedServiceTypeProperties{}
 
 func (s *HdfsLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias HdfsLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType  *string `json:"authenticationType,omitempty"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		Url                 string  `json:"url"`
+		UserName            *string `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into HdfsLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -42,5 +46,6 @@ func (s *HdfsLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

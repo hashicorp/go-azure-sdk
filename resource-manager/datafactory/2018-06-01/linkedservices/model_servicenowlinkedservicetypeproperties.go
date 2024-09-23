@@ -24,10 +24,18 @@ type ServiceNowLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &ServiceNowLinkedServiceTypeProperties{}
 
 func (s *ServiceNowLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ServiceNowLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType    ServiceNowAuthenticationType `json:"authenticationType"`
+		ClientId              *string                      `json:"clientId,omitempty"`
+		EncryptedCredential   *string                      `json:"encryptedCredential,omitempty"`
+		Endpoint              string                       `json:"endpoint"`
+		UseEncryptedEndpoints *bool                        `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool                        `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool                        `json:"usePeerVerification,omitempty"`
+		Username              *string                      `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ServiceNowLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -59,5 +67,6 @@ func (s *ServiceNowLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

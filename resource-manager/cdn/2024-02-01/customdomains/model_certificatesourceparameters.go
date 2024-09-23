@@ -48,9 +48,9 @@ func UnmarshalCertificateSourceParametersImplementation(input []byte) (Certifica
 		return nil, fmt.Errorf("unmarshaling CertificateSourceParameters into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["typeName"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["typeName"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "CdnCertificateSourceParameters") {

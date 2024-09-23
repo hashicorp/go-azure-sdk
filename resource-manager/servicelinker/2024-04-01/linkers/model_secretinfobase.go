@@ -48,9 +48,9 @@ func UnmarshalSecretInfoBaseImplementation(input []byte) (SecretInfoBase, error)
 		return nil, fmt.Errorf("unmarshaling SecretInfoBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["secretType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["secretType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "keyVaultSecretReference") {

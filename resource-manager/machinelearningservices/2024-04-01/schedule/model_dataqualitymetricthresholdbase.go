@@ -49,9 +49,9 @@ func UnmarshalDataQualityMetricThresholdBaseImplementation(input []byte) (DataQu
 		return nil, fmt.Errorf("unmarshaling DataQualityMetricThresholdBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["dataType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["dataType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Categorical") {

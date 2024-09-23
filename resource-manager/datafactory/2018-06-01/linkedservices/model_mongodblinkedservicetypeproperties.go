@@ -24,10 +24,19 @@ type MongoDbLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &MongoDbLinkedServiceTypeProperties{}
 
 func (s *MongoDbLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias MongoDbLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AllowSelfSignedServerCert *bool                      `json:"allowSelfSignedServerCert,omitempty"`
+		AuthSource                *string                    `json:"authSource,omitempty"`
+		AuthenticationType        *MongoDbAuthenticationType `json:"authenticationType,omitempty"`
+		DatabaseName              string                     `json:"databaseName"`
+		EnableSsl                 *bool                      `json:"enableSsl,omitempty"`
+		EncryptedCredential       *string                    `json:"encryptedCredential,omitempty"`
+		Port                      *int64                     `json:"port,omitempty"`
+		Server                    string                     `json:"server"`
+		Username                  *string                    `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MongoDbLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowSelfSignedServerCert = decoded.AllowSelfSignedServerCert
@@ -52,5 +61,6 @@ func (s *MongoDbLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

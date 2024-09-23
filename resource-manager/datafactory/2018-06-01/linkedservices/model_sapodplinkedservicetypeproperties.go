@@ -32,10 +32,27 @@ type SapOdpLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &SapOdpLinkedServiceTypeProperties{}
 
 func (s *SapOdpLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SapOdpLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ClientId             *string `json:"clientId,omitempty"`
+		EncryptedCredential  *string `json:"encryptedCredential,omitempty"`
+		Language             *string `json:"language,omitempty"`
+		LogonGroup           *string `json:"logonGroup,omitempty"`
+		MessageServer        *string `json:"messageServer,omitempty"`
+		MessageServerService *string `json:"messageServerService,omitempty"`
+		Server               *string `json:"server,omitempty"`
+		SncLibraryPath       *string `json:"sncLibraryPath,omitempty"`
+		SncMode              *string `json:"sncMode,omitempty"`
+		SncMyName            *string `json:"sncMyName,omitempty"`
+		SncPartnerName       *string `json:"sncPartnerName,omitempty"`
+		SncQop               *string `json:"sncQop,omitempty"`
+		SubscriberName       *string `json:"subscriberName,omitempty"`
+		SystemId             *string `json:"systemId,omitempty"`
+		SystemNumber         *string `json:"systemNumber,omitempty"`
+		UserName             *string `json:"userName,omitempty"`
+		X509CertificatePath  *string `json:"x509CertificatePath,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SapOdpLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClientId = decoded.ClientId
@@ -68,5 +85,6 @@ func (s *SapOdpLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

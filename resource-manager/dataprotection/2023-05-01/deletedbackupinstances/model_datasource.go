@@ -22,10 +22,17 @@ type Datasource struct {
 var _ json.Unmarshaler = &Datasource{}
 
 func (s *Datasource) UnmarshalJSON(bytes []byte) error {
-	type alias Datasource
-	var decoded alias
+	var decoded struct {
+		DatasourceType   *string `json:"datasourceType,omitempty"`
+		ObjectType       *string `json:"objectType,omitempty"`
+		ResourceID       string  `json:"resourceID"`
+		ResourceLocation *string `json:"resourceLocation,omitempty"`
+		ResourceName     *string `json:"resourceName,omitempty"`
+		ResourceType     *string `json:"resourceType,omitempty"`
+		ResourceUri      *string `json:"resourceUri,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Datasource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DatasourceType = decoded.DatasourceType
@@ -48,5 +55,6 @@ func (s *Datasource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ResourceProperties = impl
 	}
+
 	return nil
 }

@@ -66,9 +66,9 @@ func UnmarshalProtectedItemImplementation(input []byte) (ProtectedItem, error) {
 		return nil, fmt.Errorf("unmarshaling ProtectedItem into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["protectedItemType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["protectedItemType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureFileShareProtectedItem") {

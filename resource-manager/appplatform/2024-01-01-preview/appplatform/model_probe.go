@@ -21,10 +21,16 @@ type Probe struct {
 var _ json.Unmarshaler = &Probe{}
 
 func (s *Probe) UnmarshalJSON(bytes []byte) error {
-	type alias Probe
-	var decoded alias
+	var decoded struct {
+		DisableProbe        bool   `json:"disableProbe"`
+		FailureThreshold    *int64 `json:"failureThreshold,omitempty"`
+		InitialDelaySeconds *int64 `json:"initialDelaySeconds,omitempty"`
+		PeriodSeconds       *int64 `json:"periodSeconds,omitempty"`
+		SuccessThreshold    *int64 `json:"successThreshold,omitempty"`
+		TimeoutSeconds      *int64 `json:"timeoutSeconds,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Probe: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisableProbe = decoded.DisableProbe
@@ -46,5 +52,6 @@ func (s *Probe) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProbeAction = impl
 	}
+
 	return nil
 }

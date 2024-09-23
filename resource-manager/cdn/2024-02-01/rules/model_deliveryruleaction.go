@@ -48,9 +48,9 @@ func UnmarshalDeliveryRuleActionImplementation(input []byte) (DeliveryRuleAction
 		return nil, fmt.Errorf("unmarshaling DeliveryRuleAction into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["name"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["name"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "CacheExpiration") {

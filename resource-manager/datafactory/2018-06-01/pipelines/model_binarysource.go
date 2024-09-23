@@ -61,14 +61,20 @@ func (s BinarySource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BinarySource{}
 
 func (s *BinarySource) UnmarshalJSON(bytes []byte) error {
-	type alias BinarySource
-	var decoded alias
+	var decoded struct {
+		FormatSettings           *BinaryReadSettings `json:"formatSettings,omitempty"`
+		DisableMetricsCollection *bool               `json:"disableMetricsCollection,omitempty"`
+		MaxConcurrentConnections *int64              `json:"maxConcurrentConnections,omitempty"`
+		SourceRetryCount         *int64              `json:"sourceRetryCount,omitempty"`
+		SourceRetryWait          *string             `json:"sourceRetryWait,omitempty"`
+		Type                     string              `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BinarySource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.DisableMetricsCollection = decoded.DisableMetricsCollection
 	s.FormatSettings = decoded.FormatSettings
+	s.DisableMetricsCollection = decoded.DisableMetricsCollection
 	s.MaxConcurrentConnections = decoded.MaxConcurrentConnections
 	s.SourceRetryCount = decoded.SourceRetryCount
 	s.SourceRetryWait = decoded.SourceRetryWait
@@ -86,5 +92,6 @@ func (s *BinarySource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StoreSettings = impl
 	}
+
 	return nil
 }

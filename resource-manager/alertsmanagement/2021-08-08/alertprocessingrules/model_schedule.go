@@ -18,10 +18,13 @@ type Schedule struct {
 var _ json.Unmarshaler = &Schedule{}
 
 func (s *Schedule) UnmarshalJSON(bytes []byte) error {
-	type alias Schedule
-	var decoded alias
+	var decoded struct {
+		EffectiveFrom  *string `json:"effectiveFrom,omitempty"`
+		EffectiveUntil *string `json:"effectiveUntil,omitempty"`
+		TimeZone       *string `json:"timeZone,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Schedule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EffectiveFrom = decoded.EffectiveFrom
@@ -49,5 +52,6 @@ func (s *Schedule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Recurrences = &output
 	}
+
 	return nil
 }

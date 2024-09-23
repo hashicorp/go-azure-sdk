@@ -20,10 +20,15 @@ type AzureDatabricksDetltaLakeLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureDatabricksDetltaLakeLinkedServiceTypeProperties{}
 
 func (s *AzureDatabricksDetltaLakeLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureDatabricksDetltaLakeLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ClusterId           *string              `json:"clusterId,omitempty"`
+		Credential          *CredentialReference `json:"credential,omitempty"`
+		Domain              string               `json:"domain"`
+		EncryptedCredential *string              `json:"encryptedCredential,omitempty"`
+		WorkspaceResourceId *string              `json:"workspaceResourceId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureDatabricksDetltaLakeLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClusterId = decoded.ClusterId
@@ -44,5 +49,6 @@ func (s *AzureDatabricksDetltaLakeLinkedServiceTypeProperties) UnmarshalJSON(byt
 		}
 		s.AccessToken = impl
 	}
+
 	return nil
 }

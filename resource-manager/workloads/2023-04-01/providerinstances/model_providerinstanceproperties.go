@@ -17,10 +17,12 @@ type ProviderInstanceProperties struct {
 var _ json.Unmarshaler = &ProviderInstanceProperties{}
 
 func (s *ProviderInstanceProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ProviderInstanceProperties
-	var decoded alias
+	var decoded struct {
+		Errors            *Error                            `json:"errors,omitempty"`
+		ProvisioningState *WorkloadMonitorProvisioningState `json:"provisioningState,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ProviderInstanceProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Errors = decoded.Errors
@@ -38,5 +40,6 @@ func (s *ProviderInstanceProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSettings = impl
 	}
+
 	return nil
 }

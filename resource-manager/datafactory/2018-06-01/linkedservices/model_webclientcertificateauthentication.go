@@ -55,10 +55,12 @@ func (s WebClientCertificateAuthentication) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WebClientCertificateAuthentication{}
 
 func (s *WebClientCertificateAuthentication) UnmarshalJSON(bytes []byte) error {
-	type alias WebClientCertificateAuthentication
-	var decoded alias
+	var decoded struct {
+		AuthenticationType WebAuthenticationType `json:"authenticationType"`
+		Url                string                `json:"url"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WebClientCertificateAuthentication: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -84,5 +86,6 @@ func (s *WebClientCertificateAuthentication) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Pfx = impl
 	}
+
 	return nil
 }

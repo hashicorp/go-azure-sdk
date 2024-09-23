@@ -17,10 +17,12 @@ type ApplicationGroupProperties struct {
 var _ json.Unmarshaler = &ApplicationGroupProperties{}
 
 func (s *ApplicationGroupProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ApplicationGroupProperties
-	var decoded alias
+	var decoded struct {
+		ClientAppGroupIdentifier string `json:"clientAppGroupIdentifier"`
+		IsEnabled                *bool  `json:"isEnabled,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ApplicationGroupProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClientAppGroupIdentifier = decoded.ClientAppGroupIdentifier
@@ -47,5 +49,6 @@ func (s *ApplicationGroupProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Policies = &output
 	}
+
 	return nil
 }

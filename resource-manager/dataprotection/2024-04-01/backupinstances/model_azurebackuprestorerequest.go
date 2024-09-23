@@ -46,10 +46,15 @@ func (s RawAzureBackupRestoreRequestImpl) AzureBackupRestoreRequest() BaseAzureB
 var _ json.Unmarshaler = &BaseAzureBackupRestoreRequestImpl{}
 
 func (s *BaseAzureBackupRestoreRequestImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseAzureBackupRestoreRequestImpl
-	var decoded alias
+	var decoded struct {
+		IdentityDetails                *IdentityDetails    `json:"identityDetails,omitempty"`
+		ObjectType                     string              `json:"objectType"`
+		ResourceGuardOperationRequests *[]string           `json:"resourceGuardOperationRequests,omitempty"`
+		SourceDataStoreType            SourceDataStoreType `json:"sourceDataStoreType"`
+		SourceResourceId               *string             `json:"sourceResourceId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseAzureBackupRestoreRequestImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.IdentityDetails = decoded.IdentityDetails
@@ -70,6 +75,7 @@ func (s *BaseAzureBackupRestoreRequestImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RestoreTargetInfo = impl
 	}
+
 	return nil
 }
 
@@ -83,9 +89,9 @@ func UnmarshalAzureBackupRestoreRequestImplementation(input []byte) (AzureBackup
 		return nil, fmt.Errorf("unmarshaling AzureBackupRestoreRequest into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["objectType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureBackupRecoveryPointBasedRestoreRequest") {

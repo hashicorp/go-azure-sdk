@@ -28,5 +28,6 @@ func (s *AlertsMetaData) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

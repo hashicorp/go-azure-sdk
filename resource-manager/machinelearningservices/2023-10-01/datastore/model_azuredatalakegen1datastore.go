@@ -65,20 +65,29 @@ func (s AzureDataLakeGen1Datastore) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AzureDataLakeGen1Datastore{}
 
 func (s *AzureDataLakeGen1Datastore) UnmarshalJSON(bytes []byte) error {
-	type alias AzureDataLakeGen1Datastore
-	var decoded alias
+	var decoded struct {
+		ResourceGroup                 *string                        `json:"resourceGroup,omitempty"`
+		ServiceDataAccessAuthIdentity *ServiceDataAccessAuthIdentity `json:"serviceDataAccessAuthIdentity,omitempty"`
+		StoreName                     string                         `json:"storeName"`
+		SubscriptionId                *string                        `json:"subscriptionId,omitempty"`
+		DatastoreType                 DatastoreType                  `json:"datastoreType"`
+		Description                   *string                        `json:"description,omitempty"`
+		IsDefault                     *bool                          `json:"isDefault,omitempty"`
+		Properties                    *map[string]string             `json:"properties,omitempty"`
+		Tags                          *map[string]string             `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureDataLakeGen1Datastore: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.DatastoreType = decoded.DatastoreType
-	s.Description = decoded.Description
-	s.IsDefault = decoded.IsDefault
-	s.Properties = decoded.Properties
 	s.ResourceGroup = decoded.ResourceGroup
 	s.ServiceDataAccessAuthIdentity = decoded.ServiceDataAccessAuthIdentity
 	s.StoreName = decoded.StoreName
 	s.SubscriptionId = decoded.SubscriptionId
+	s.DatastoreType = decoded.DatastoreType
+	s.Description = decoded.Description
+	s.IsDefault = decoded.IsDefault
+	s.Properties = decoded.Properties
 	s.Tags = decoded.Tags
 
 	var temp map[string]json.RawMessage
@@ -93,5 +102,6 @@ func (s *AzureDataLakeGen1Datastore) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Credentials = impl
 	}
+
 	return nil
 }

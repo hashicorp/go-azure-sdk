@@ -17,10 +17,11 @@ type IfConditionActivityTypeProperties struct {
 var _ json.Unmarshaler = &IfConditionActivityTypeProperties{}
 
 func (s *IfConditionActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias IfConditionActivityTypeProperties
-	var decoded alias
+	var decoded struct {
+		Expression Expression `json:"expression"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IfConditionActivityTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Expression = decoded.Expression
@@ -63,5 +64,6 @@ func (s *IfConditionActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IfTrueActivities = &output
 	}
+
 	return nil
 }

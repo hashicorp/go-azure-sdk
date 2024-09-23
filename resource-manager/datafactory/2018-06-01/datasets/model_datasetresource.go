@@ -19,10 +19,14 @@ type DatasetResource struct {
 var _ json.Unmarshaler = &DatasetResource{}
 
 func (s *DatasetResource) UnmarshalJSON(bytes []byte) error {
-	type alias DatasetResource
-	var decoded alias
+	var decoded struct {
+		Etag *string `json:"etag,omitempty"`
+		Id   *string `json:"id,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Type *string `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DatasetResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Etag = decoded.Etag
@@ -42,5 +46,6 @@ func (s *DatasetResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

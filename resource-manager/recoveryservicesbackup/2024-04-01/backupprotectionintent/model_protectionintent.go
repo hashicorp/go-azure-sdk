@@ -53,9 +53,9 @@ func UnmarshalProtectionIntentImplementation(input []byte) (ProtectionIntent, er
 		return nil, fmt.Errorf("unmarshaling ProtectionIntent into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["protectionIntentItemType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["protectionIntentItemType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "RecoveryServiceVaultItem") {

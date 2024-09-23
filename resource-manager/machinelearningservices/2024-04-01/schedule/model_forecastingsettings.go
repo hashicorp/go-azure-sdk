@@ -27,10 +27,19 @@ type ForecastingSettings struct {
 var _ json.Unmarshaler = &ForecastingSettings{}
 
 func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
-	type alias ForecastingSettings
-	var decoded alias
+	var decoded struct {
+		CountryOrRegionForHolidays *string                           `json:"countryOrRegionForHolidays,omitempty"`
+		CvStepSize                 *int64                            `json:"cvStepSize,omitempty"`
+		FeatureLags                *FeatureLags                      `json:"featureLags,omitempty"`
+		Frequency                  *string                           `json:"frequency,omitempty"`
+		ShortSeriesHandlingConfig  *ShortSeriesHandlingConfiguration `json:"shortSeriesHandlingConfig,omitempty"`
+		TargetAggregateFunction    *TargetAggregationFunction        `json:"targetAggregateFunction,omitempty"`
+		TimeColumnName             *string                           `json:"timeColumnName,omitempty"`
+		TimeSeriesIdColumnNames    *[]string                         `json:"timeSeriesIdColumnNames,omitempty"`
+		UseStl                     *UseStl                           `json:"useStl,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ForecastingSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CountryOrRegionForHolidays = decoded.CountryOrRegionForHolidays
@@ -79,5 +88,6 @@ func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TargetRollingWindowSize = impl
 	}
+
 	return nil
 }

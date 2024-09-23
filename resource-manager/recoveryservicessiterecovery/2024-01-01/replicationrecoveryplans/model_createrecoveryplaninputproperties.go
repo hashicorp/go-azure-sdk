@@ -19,10 +19,14 @@ type CreateRecoveryPlanInputProperties struct {
 var _ json.Unmarshaler = &CreateRecoveryPlanInputProperties{}
 
 func (s *CreateRecoveryPlanInputProperties) UnmarshalJSON(bytes []byte) error {
-	type alias CreateRecoveryPlanInputProperties
-	var decoded alias
+	var decoded struct {
+		FailoverDeploymentModel *FailoverDeploymentModel `json:"failoverDeploymentModel,omitempty"`
+		Groups                  []RecoveryPlanGroup      `json:"groups"`
+		PrimaryFabricId         string                   `json:"primaryFabricId"`
+		RecoveryFabricId        string                   `json:"recoveryFabricId"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CreateRecoveryPlanInputProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FailoverDeploymentModel = decoded.FailoverDeploymentModel
@@ -51,5 +55,6 @@ func (s *CreateRecoveryPlanInputProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificInput = &output
 	}
+
 	return nil
 }

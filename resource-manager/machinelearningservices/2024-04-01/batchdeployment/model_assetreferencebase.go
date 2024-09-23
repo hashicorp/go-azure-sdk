@@ -48,9 +48,9 @@ func UnmarshalAssetReferenceBaseImplementation(input []byte) (AssetReferenceBase
 		return nil, fmt.Errorf("unmarshaling AssetReferenceBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["referenceType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["referenceType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "DataPath") {

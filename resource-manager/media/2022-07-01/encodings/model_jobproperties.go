@@ -75,10 +75,18 @@ func (o *JobProperties) SetStartTimeAsTime(input time.Time) {
 var _ json.Unmarshaler = &JobProperties{}
 
 func (s *JobProperties) UnmarshalJSON(bytes []byte) error {
-	type alias JobProperties
-	var decoded alias
+	var decoded struct {
+		CorrelationData *map[string]string `json:"correlationData,omitempty"`
+		Created         *string            `json:"created,omitempty"`
+		Description     *string            `json:"description,omitempty"`
+		EndTime         *string            `json:"endTime,omitempty"`
+		LastModified    *string            `json:"lastModified,omitempty"`
+		Priority        *Priority          `json:"priority,omitempty"`
+		StartTime       *string            `json:"startTime,omitempty"`
+		State           *JobState          `json:"state,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JobProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CorrelationData = decoded.CorrelationData
@@ -119,5 +127,6 @@ func (s *JobProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Outputs = output
 	}
+
 	return nil
 }

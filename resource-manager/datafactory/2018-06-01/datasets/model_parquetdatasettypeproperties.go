@@ -16,10 +16,11 @@ type ParquetDatasetTypeProperties struct {
 var _ json.Unmarshaler = &ParquetDatasetTypeProperties{}
 
 func (s *ParquetDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ParquetDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		CompressionCodec *string `json:"compressionCodec,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ParquetDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CompressionCodec = decoded.CompressionCodec
@@ -36,5 +37,6 @@ func (s *ParquetDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Location = impl
 	}
+
 	return nil
 }

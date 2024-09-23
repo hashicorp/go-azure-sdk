@@ -18,10 +18,13 @@ type SqlAlwaysEncryptedProperties struct {
 var _ json.Unmarshaler = &SqlAlwaysEncryptedProperties{}
 
 func (s *SqlAlwaysEncryptedProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SqlAlwaysEncryptedProperties
-	var decoded alias
+	var decoded struct {
+		AlwaysEncryptedAkvAuthType SqlAlwaysEncryptedAkvAuthType `json:"alwaysEncryptedAkvAuthType"`
+		Credential                 *CredentialReference          `json:"credential,omitempty"`
+		ServicePrincipalId         *string                       `json:"servicePrincipalId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SqlAlwaysEncryptedProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AlwaysEncryptedAkvAuthType = decoded.AlwaysEncryptedAkvAuthType
@@ -40,5 +43,6 @@ func (s *SqlAlwaysEncryptedProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

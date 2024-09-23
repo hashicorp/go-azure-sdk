@@ -62,15 +62,22 @@ func (s DelimitedTextSource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DelimitedTextSource{}
 
 func (s *DelimitedTextSource) UnmarshalJSON(bytes []byte) error {
-	type alias DelimitedTextSource
-	var decoded alias
+	var decoded struct {
+		AdditionalColumns        *interface{}               `json:"additionalColumns,omitempty"`
+		FormatSettings           *DelimitedTextReadSettings `json:"formatSettings,omitempty"`
+		DisableMetricsCollection *bool                      `json:"disableMetricsCollection,omitempty"`
+		MaxConcurrentConnections *int64                     `json:"maxConcurrentConnections,omitempty"`
+		SourceRetryCount         *int64                     `json:"sourceRetryCount,omitempty"`
+		SourceRetryWait          *string                    `json:"sourceRetryWait,omitempty"`
+		Type                     string                     `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DelimitedTextSource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalColumns = decoded.AdditionalColumns
-	s.DisableMetricsCollection = decoded.DisableMetricsCollection
 	s.FormatSettings = decoded.FormatSettings
+	s.DisableMetricsCollection = decoded.DisableMetricsCollection
 	s.MaxConcurrentConnections = decoded.MaxConcurrentConnections
 	s.SourceRetryCount = decoded.SourceRetryCount
 	s.SourceRetryWait = decoded.SourceRetryWait
@@ -88,5 +95,6 @@ func (s *DelimitedTextSource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StoreSettings = impl
 	}
+
 	return nil
 }

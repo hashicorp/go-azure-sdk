@@ -18,10 +18,13 @@ type PlacementPolicy struct {
 var _ json.Unmarshaler = &PlacementPolicy{}
 
 func (s *PlacementPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias PlacementPolicy
-	var decoded alias
+	var decoded struct {
+		Id   *string `json:"id,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Type *string `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlacementPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -40,5 +43,6 @@ func (s *PlacementPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

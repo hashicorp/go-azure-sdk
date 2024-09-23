@@ -16,10 +16,11 @@ type BackupAndExportRequest struct {
 var _ json.Unmarshaler = &BackupAndExportRequest{}
 
 func (s *BackupAndExportRequest) UnmarshalJSON(bytes []byte) error {
-	type alias BackupAndExportRequest
-	var decoded alias
+	var decoded struct {
+		BackupSettings BackupSettings `json:"backupSettings"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BackupAndExportRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BackupSettings = decoded.BackupSettings
@@ -36,5 +37,6 @@ func (s *BackupAndExportRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TargetDetails = impl
 	}
+
 	return nil
 }

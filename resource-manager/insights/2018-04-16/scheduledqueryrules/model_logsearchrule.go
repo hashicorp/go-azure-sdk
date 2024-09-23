@@ -40,10 +40,20 @@ func (o *LogSearchRule) SetLastUpdatedTimeAsTime(input time.Time) {
 var _ json.Unmarshaler = &LogSearchRule{}
 
 func (s *LogSearchRule) UnmarshalJSON(bytes []byte) error {
-	type alias LogSearchRule
-	var decoded alias
+	var decoded struct {
+		AutoMitigate             *bool              `json:"autoMitigate,omitempty"`
+		CreatedWithApiVersion    *string            `json:"createdWithApiVersion,omitempty"`
+		Description              *string            `json:"description,omitempty"`
+		DisplayName              *string            `json:"displayName,omitempty"`
+		Enabled                  *Enabled           `json:"enabled,omitempty"`
+		IsLegacyLogAnalyticsRule *bool              `json:"isLegacyLogAnalyticsRule,omitempty"`
+		LastUpdatedTime          *string            `json:"lastUpdatedTime,omitempty"`
+		ProvisioningState        *ProvisioningState `json:"provisioningState,omitempty"`
+		Schedule                 *Schedule          `json:"schedule,omitempty"`
+		Source                   Source             `json:"source"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into LogSearchRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AutoMitigate = decoded.AutoMitigate
@@ -69,5 +79,6 @@ func (s *LogSearchRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Action = impl
 	}
+
 	return nil
 }

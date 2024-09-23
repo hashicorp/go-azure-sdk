@@ -48,9 +48,9 @@ func UnmarshalAdditionalDataImplementation(input []byte) (AdditionalData, error)
 		return nil, fmt.Errorf("unmarshaling AdditionalData into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["assessedResourceType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["assessedResourceType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "ContainerRegistryVulnerability") {

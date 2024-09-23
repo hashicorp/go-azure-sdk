@@ -49,9 +49,9 @@ func UnmarshalWebLinkedServiceTypePropertiesImplementation(input []byte) (WebLin
 		return nil, fmt.Errorf("unmarshaling WebLinkedServiceTypeProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["authenticationType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["authenticationType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Anonymous") {

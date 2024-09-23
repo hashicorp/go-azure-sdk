@@ -20,10 +20,15 @@ type QueryResponse struct {
 var _ json.Unmarshaler = &QueryResponse{}
 
 func (s *QueryResponse) UnmarshalJSON(bytes []byte) error {
-	type alias QueryResponse
-	var decoded alias
+	var decoded struct {
+		Count           int64           `json:"count"`
+		Data            interface{}     `json:"data"`
+		ResultTruncated ResultTruncated `json:"resultTruncated"`
+		SkipToken       *string         `json:"$skipToken,omitempty"`
+		TotalRecords    int64           `json:"totalRecords"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into QueryResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Count = decoded.Count
@@ -53,5 +58,6 @@ func (s *QueryResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Facets = &output
 	}
+
 	return nil
 }

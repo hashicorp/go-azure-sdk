@@ -17,10 +17,12 @@ type RecoveryPlanUnplannedFailoverInputProperties struct {
 var _ json.Unmarshaler = &RecoveryPlanUnplannedFailoverInputProperties{}
 
 func (s *RecoveryPlanUnplannedFailoverInputProperties) UnmarshalJSON(bytes []byte) error {
-	type alias RecoveryPlanUnplannedFailoverInputProperties
-	var decoded alias
+	var decoded struct {
+		FailoverDirection    PossibleOperationsDirections `json:"failoverDirection"`
+		SourceSiteOperations SourceSiteOperations         `json:"sourceSiteOperations"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RecoveryPlanUnplannedFailoverInputProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FailoverDirection = decoded.FailoverDirection
@@ -47,5 +49,6 @@ func (s *RecoveryPlanUnplannedFailoverInputProperties) UnmarshalJSON(bytes []byt
 		}
 		s.ProviderSpecificDetails = &output
 	}
+
 	return nil
 }

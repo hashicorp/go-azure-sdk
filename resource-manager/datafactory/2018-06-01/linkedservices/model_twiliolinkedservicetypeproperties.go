@@ -16,10 +16,11 @@ type TwilioLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &TwilioLinkedServiceTypeProperties{}
 
 func (s *TwilioLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias TwilioLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		UserName string `json:"userName"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TwilioLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.UserName = decoded.UserName
@@ -36,5 +37,6 @@ func (s *TwilioLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

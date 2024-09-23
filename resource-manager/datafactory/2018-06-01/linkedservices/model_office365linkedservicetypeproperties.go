@@ -19,10 +19,14 @@ type Office365LinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &Office365LinkedServiceTypeProperties{}
 
 func (s *Office365LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias Office365LinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential      *string `json:"encryptedCredential,omitempty"`
+		Office365TenantId        string  `json:"office365TenantId"`
+		ServicePrincipalId       string  `json:"servicePrincipalId"`
+		ServicePrincipalTenantId string  `json:"servicePrincipalTenantId"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Office365LinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -42,5 +46,6 @@ func (s *Office365LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

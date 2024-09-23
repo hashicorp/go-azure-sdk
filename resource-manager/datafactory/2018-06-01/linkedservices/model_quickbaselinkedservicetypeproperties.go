@@ -17,10 +17,12 @@ type QuickbaseLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &QuickbaseLinkedServiceTypeProperties{}
 
 func (s *QuickbaseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias QuickbaseLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		Url                 string  `json:"url"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into QuickbaseLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -38,5 +40,6 @@ func (s *QuickbaseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error
 		}
 		s.UserToken = impl
 	}
+
 	return nil
 }

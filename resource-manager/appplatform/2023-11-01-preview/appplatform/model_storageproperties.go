@@ -48,9 +48,9 @@ func UnmarshalStoragePropertiesImplementation(input []byte) (StorageProperties, 
 		return nil, fmt.Errorf("unmarshaling StorageProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["storageType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["storageType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "StorageAccount") {

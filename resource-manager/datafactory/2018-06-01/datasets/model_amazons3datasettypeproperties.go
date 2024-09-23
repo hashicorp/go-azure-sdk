@@ -22,10 +22,17 @@ type AmazonS3DatasetTypeProperties struct {
 var _ json.Unmarshaler = &AmazonS3DatasetTypeProperties{}
 
 func (s *AmazonS3DatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AmazonS3DatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		BucketName            string              `json:"bucketName"`
+		Compression           *DatasetCompression `json:"compression,omitempty"`
+		Key                   *string             `json:"key,omitempty"`
+		ModifiedDatetimeEnd   *string             `json:"modifiedDatetimeEnd,omitempty"`
+		ModifiedDatetimeStart *string             `json:"modifiedDatetimeStart,omitempty"`
+		Prefix                *string             `json:"prefix,omitempty"`
+		Version               *string             `json:"version,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AmazonS3DatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BucketName = decoded.BucketName
@@ -48,5 +55,6 @@ func (s *AmazonS3DatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Format = impl
 	}
+
 	return nil
 }

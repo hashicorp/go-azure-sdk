@@ -20,10 +20,15 @@ type SalesforceV2LinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &SalesforceV2LinkedServiceTypeProperties{}
 
 func (s *SalesforceV2LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SalesforceV2LinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ApiVersion          *string `json:"apiVersion,omitempty"`
+		AuthenticationType  *string `json:"authenticationType,omitempty"`
+		ClientId            *string `json:"clientId,omitempty"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		EnvironmentUrl      *string `json:"environmentUrl,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SalesforceV2LinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApiVersion = decoded.ApiVersion
@@ -44,5 +49,6 @@ func (s *SalesforceV2LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) er
 		}
 		s.ClientSecret = impl
 	}
+
 	return nil
 }

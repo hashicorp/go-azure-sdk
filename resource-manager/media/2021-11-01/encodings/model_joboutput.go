@@ -48,10 +48,17 @@ func (s RawJobOutputImpl) JobOutput() BaseJobOutputImpl {
 var _ json.Unmarshaler = &BaseJobOutputImpl{}
 
 func (s *BaseJobOutputImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseJobOutputImpl
-	var decoded alias
+	var decoded struct {
+		EndTime   *string   `json:"endTime,omitempty"`
+		Error     *JobError `json:"error,omitempty"`
+		Label     *string   `json:"label,omitempty"`
+		OdataType string    `json:"@odata.type"`
+		Progress  *int64    `json:"progress,omitempty"`
+		StartTime *string   `json:"startTime,omitempty"`
+		State     *JobState `json:"state,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseJobOutputImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EndTime = decoded.EndTime
@@ -74,6 +81,7 @@ func (s *BaseJobOutputImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PresetOverride = impl
 	}
+
 	return nil
 }
 
@@ -87,9 +95,9 @@ func UnmarshalJobOutputImplementation(input []byte) (JobOutput, error) {
 		return nil, fmt.Errorf("unmarshaling JobOutput into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#Microsoft.Media.JobOutputAsset") {

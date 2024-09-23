@@ -51,9 +51,9 @@ func UnmarshalRunRequestImplementation(input []byte) (RunRequest, error) {
 		return nil, fmt.Errorf("unmarshaling RunRequest into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "DockerBuildRequest") {

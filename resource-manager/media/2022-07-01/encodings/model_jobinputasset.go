@@ -57,10 +57,14 @@ func (s JobInputAsset) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JobInputAsset{}
 
 func (s *JobInputAsset) UnmarshalJSON(bytes []byte) error {
-	type alias JobInputAsset
-	var decoded alias
+	var decoded struct {
+		AssetName string    `json:"assetName"`
+		Files     *[]string `json:"files,omitempty"`
+		Label     *string   `json:"label,omitempty"`
+		OdataType string    `json:"@odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JobInputAsset: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssetName = decoded.AssetName
@@ -105,5 +109,6 @@ func (s *JobInputAsset) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Start = impl
 	}
+
 	return nil
 }

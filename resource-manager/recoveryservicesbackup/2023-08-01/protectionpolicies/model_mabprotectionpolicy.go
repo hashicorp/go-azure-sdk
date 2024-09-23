@@ -57,10 +57,13 @@ func (s MabProtectionPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MabProtectionPolicy{}
 
 func (s *MabProtectionPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias MabProtectionPolicy
-	var decoded alias
+	var decoded struct {
+		BackupManagementType           string    `json:"backupManagementType"`
+		ProtectedItemsCount            *int64    `json:"protectedItemsCount,omitempty"`
+		ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MabProtectionPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BackupManagementType = decoded.BackupManagementType
@@ -87,5 +90,6 @@ func (s *MabProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SchedulePolicy = impl
 	}
+
 	return nil
 }

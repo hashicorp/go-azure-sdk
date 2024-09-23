@@ -48,9 +48,9 @@ func UnmarshalLinkedIntegrationRuntimeTypeImplementation(input []byte) (LinkedIn
 		return nil, fmt.Errorf("unmarshaling LinkedIntegrationRuntimeType into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["authorizationType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["authorizationType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Key") {

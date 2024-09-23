@@ -54,10 +54,12 @@ func (s StandardEncoderPreset) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &StandardEncoderPreset{}
 
 func (s *StandardEncoderPreset) UnmarshalJSON(bytes []byte) error {
-	type alias StandardEncoderPreset
-	var decoded alias
+	var decoded struct {
+		Filters   *Filters `json:"filters,omitempty"`
+		OdataType string   `json:"@odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into StandardEncoderPreset: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Filters = decoded.Filters
@@ -101,5 +103,6 @@ func (s *StandardEncoderPreset) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Formats = output
 	}
+
 	return nil
 }

@@ -20,10 +20,15 @@ type EventSubscriptionFilter struct {
 var _ json.Unmarshaler = &EventSubscriptionFilter{}
 
 func (s *EventSubscriptionFilter) UnmarshalJSON(bytes []byte) error {
-	type alias EventSubscriptionFilter
-	var decoded alias
+	var decoded struct {
+		EnableAdvancedFilteringOnArrays *bool     `json:"enableAdvancedFilteringOnArrays,omitempty"`
+		IncludedEventTypes              *[]string `json:"includedEventTypes,omitempty"`
+		IsSubjectCaseSensitive          *bool     `json:"isSubjectCaseSensitive,omitempty"`
+		SubjectBeginsWith               *string   `json:"subjectBeginsWith,omitempty"`
+		SubjectEndsWith                 *string   `json:"subjectEndsWith,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EventSubscriptionFilter: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EnableAdvancedFilteringOnArrays = decoded.EnableAdvancedFilteringOnArrays
@@ -53,5 +58,6 @@ func (s *EventSubscriptionFilter) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AdvancedFilters = &output
 	}
+
 	return nil
 }

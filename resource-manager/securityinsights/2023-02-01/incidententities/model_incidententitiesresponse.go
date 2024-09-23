@@ -16,10 +16,11 @@ type IncidentEntitiesResponse struct {
 var _ json.Unmarshaler = &IncidentEntitiesResponse{}
 
 func (s *IncidentEntitiesResponse) UnmarshalJSON(bytes []byte) error {
-	type alias IncidentEntitiesResponse
-	var decoded alias
+	var decoded struct {
+		MetaData *[]IncidentEntitiesResultsMetadata `json:"metaData,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IncidentEntitiesResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.MetaData = decoded.MetaData
@@ -45,5 +46,6 @@ func (s *IncidentEntitiesResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Entities = &output
 	}
+
 	return nil
 }

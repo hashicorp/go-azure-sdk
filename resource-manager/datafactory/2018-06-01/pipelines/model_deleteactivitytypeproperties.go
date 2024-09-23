@@ -20,10 +20,15 @@ type DeleteActivityTypeProperties struct {
 var _ json.Unmarshaler = &DeleteActivityTypeProperties{}
 
 func (s *DeleteActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias DeleteActivityTypeProperties
-	var decoded alias
+	var decoded struct {
+		Dataset                  DatasetReference    `json:"dataset"`
+		EnableLogging            *bool               `json:"enableLogging,omitempty"`
+		LogStorageSettings       *LogStorageSettings `json:"logStorageSettings,omitempty"`
+		MaxConcurrentConnections *int64              `json:"maxConcurrentConnections,omitempty"`
+		Recursive                *bool               `json:"recursive,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeleteActivityTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Dataset = decoded.Dataset
@@ -44,5 +49,6 @@ func (s *DeleteActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StoreSettings = impl
 	}
+
 	return nil
 }

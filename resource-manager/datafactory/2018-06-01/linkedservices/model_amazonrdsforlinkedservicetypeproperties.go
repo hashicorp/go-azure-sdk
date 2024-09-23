@@ -17,10 +17,12 @@ type AmazonRdsForLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AmazonRdsForLinkedServiceTypeProperties{}
 
 func (s *AmazonRdsForLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AmazonRdsForLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ConnectionString    string  `json:"connectionString"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AmazonRdsForLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ConnectionString = decoded.ConnectionString
@@ -38,5 +40,6 @@ func (s *AmazonRdsForLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) er
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

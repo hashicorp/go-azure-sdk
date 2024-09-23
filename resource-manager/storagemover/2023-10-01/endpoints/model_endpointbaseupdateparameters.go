@@ -28,5 +28,6 @@ func (s *EndpointBaseUpdateParameters) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

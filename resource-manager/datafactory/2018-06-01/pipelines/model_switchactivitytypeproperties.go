@@ -17,10 +17,12 @@ type SwitchActivityTypeProperties struct {
 var _ json.Unmarshaler = &SwitchActivityTypeProperties{}
 
 func (s *SwitchActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SwitchActivityTypeProperties
-	var decoded alias
+	var decoded struct {
+		Cases *[]SwitchCase `json:"cases,omitempty"`
+		On    Expression    `json:"on"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SwitchActivityTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Cases = decoded.Cases
@@ -47,5 +49,6 @@ func (s *SwitchActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DefaultActivities = &output
 	}
+
 	return nil
 }

@@ -48,9 +48,9 @@ func UnmarshalResumeReplicationProviderSpecificInputImplementation(input []byte)
 		return nil, fmt.Errorf("unmarshaling ResumeReplicationProviderSpecificInput into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["instanceType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["instanceType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "VMwareCbt") {

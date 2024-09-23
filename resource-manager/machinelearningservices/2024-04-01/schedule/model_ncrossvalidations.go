@@ -48,9 +48,9 @@ func UnmarshalNCrossValidationsImplementation(input []byte) (NCrossValidations, 
 		return nil, fmt.Errorf("unmarshaling NCrossValidations into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["mode"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["mode"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Auto") {

@@ -46,10 +46,17 @@ func (o *TumblingWindowTriggerTypeProperties) SetStartTimeAsTime(input time.Time
 var _ json.Unmarshaler = &TumblingWindowTriggerTypeProperties{}
 
 func (s *TumblingWindowTriggerTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias TumblingWindowTriggerTypeProperties
-	var decoded alias
+	var decoded struct {
+		Delay          *string                 `json:"delay,omitempty"`
+		EndTime        *string                 `json:"endTime,omitempty"`
+		Frequency      TumblingWindowFrequency `json:"frequency"`
+		Interval       int64                   `json:"interval"`
+		MaxConcurrency int64                   `json:"maxConcurrency"`
+		RetryPolicy    *RetryPolicy            `json:"retryPolicy,omitempty"`
+		StartTime      string                  `json:"startTime"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TumblingWindowTriggerTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Delay = decoded.Delay
@@ -81,5 +88,6 @@ func (s *TumblingWindowTriggerTypeProperties) UnmarshalJSON(bytes []byte) error 
 		}
 		s.DependsOn = &output
 	}
+
 	return nil
 }

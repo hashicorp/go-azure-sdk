@@ -82,12 +82,33 @@ func (s SweepJob) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SweepJob{}
 
 func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
-	type alias SweepJob
-	var decoded alias
+	var decoded struct {
+		Limits         *SweepJobLimits        `json:"limits,omitempty"`
+		Objective      Objective              `json:"objective"`
+		QueueSettings  *QueueSettings         `json:"queueSettings,omitempty"`
+		SearchSpace    interface{}            `json:"searchSpace"`
+		Trial          TrialComponent         `json:"trial"`
+		ComponentId    *string                `json:"componentId,omitempty"`
+		ComputeId      *string                `json:"computeId,omitempty"`
+		Description    *string                `json:"description,omitempty"`
+		DisplayName    *string                `json:"displayName,omitempty"`
+		ExperimentName *string                `json:"experimentName,omitempty"`
+		IsArchived     *bool                  `json:"isArchived,omitempty"`
+		JobType        JobType                `json:"jobType"`
+		Properties     *map[string]string     `json:"properties,omitempty"`
+		Services       *map[string]JobService `json:"services,omitempty"`
+		Status         *JobStatus             `json:"status,omitempty"`
+		Tags           *map[string]string     `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SweepJob: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Limits = decoded.Limits
+	s.Objective = decoded.Objective
+	s.QueueSettings = decoded.QueueSettings
+	s.SearchSpace = decoded.SearchSpace
+	s.Trial = decoded.Trial
 	s.ComponentId = decoded.ComponentId
 	s.ComputeId = decoded.ComputeId
 	s.Description = decoded.Description
@@ -95,15 +116,10 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 	s.ExperimentName = decoded.ExperimentName
 	s.IsArchived = decoded.IsArchived
 	s.JobType = decoded.JobType
-	s.Limits = decoded.Limits
-	s.Objective = decoded.Objective
 	s.Properties = decoded.Properties
-	s.QueueSettings = decoded.QueueSettings
-	s.SearchSpace = decoded.SearchSpace
 	s.Services = decoded.Services
 	s.Status = decoded.Status
 	s.Tags = decoded.Tags
-	s.Trial = decoded.Trial
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -167,5 +183,6 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SamplingAlgorithm = impl
 	}
+
 	return nil
 }

@@ -56,17 +56,22 @@ func (s XmlReadSettings) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &XmlReadSettings{}
 
 func (s *XmlReadSettings) UnmarshalJSON(bytes []byte) error {
-	type alias XmlReadSettings
-	var decoded alias
+	var decoded struct {
+		DetectDataType    *bool              `json:"detectDataType,omitempty"`
+		NamespacePrefixes *map[string]string `json:"namespacePrefixes,omitempty"`
+		Namespaces        *bool              `json:"namespaces,omitempty"`
+		ValidationMode    *string            `json:"validationMode,omitempty"`
+		Type              string             `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into XmlReadSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DetectDataType = decoded.DetectDataType
 	s.NamespacePrefixes = decoded.NamespacePrefixes
 	s.Namespaces = decoded.Namespaces
-	s.Type = decoded.Type
 	s.ValidationMode = decoded.ValidationMode
+	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -80,5 +85,6 @@ func (s *XmlReadSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CompressionProperties = impl
 	}
+
 	return nil
 }

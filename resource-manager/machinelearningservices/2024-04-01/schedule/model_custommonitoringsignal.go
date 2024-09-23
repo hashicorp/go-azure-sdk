@@ -59,10 +59,15 @@ func (s CustomMonitoringSignal) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CustomMonitoringSignal{}
 
 func (s *CustomMonitoringSignal) UnmarshalJSON(bytes []byte) error {
-	type alias CustomMonitoringSignal
-	var decoded alias
+	var decoded struct {
+		ComponentId       string                        `json:"componentId"`
+		MetricThresholds  []CustomMetricThreshold       `json:"metricThresholds"`
+		NotificationTypes *[]MonitoringNotificationType `json:"notificationTypes,omitempty"`
+		Properties        *map[string]string            `json:"properties,omitempty"`
+		SignalType        MonitoringSignalType          `json:"signalType"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CustomMonitoringSignal: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ComponentId = decoded.ComponentId
@@ -109,5 +114,6 @@ func (s *CustomMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Inputs = &output
 	}
+
 	return nil
 }

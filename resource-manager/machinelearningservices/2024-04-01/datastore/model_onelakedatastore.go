@@ -65,19 +65,27 @@ func (s OneLakeDatastore) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OneLakeDatastore{}
 
 func (s *OneLakeDatastore) UnmarshalJSON(bytes []byte) error {
-	type alias OneLakeDatastore
-	var decoded alias
+	var decoded struct {
+		Endpoint                      *string                        `json:"endpoint,omitempty"`
+		OneLakeWorkspaceName          string                         `json:"oneLakeWorkspaceName"`
+		ServiceDataAccessAuthIdentity *ServiceDataAccessAuthIdentity `json:"serviceDataAccessAuthIdentity,omitempty"`
+		DatastoreType                 DatastoreType                  `json:"datastoreType"`
+		Description                   *string                        `json:"description,omitempty"`
+		IsDefault                     *bool                          `json:"isDefault,omitempty"`
+		Properties                    *map[string]string             `json:"properties,omitempty"`
+		Tags                          *map[string]string             `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OneLakeDatastore: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Endpoint = decoded.Endpoint
+	s.OneLakeWorkspaceName = decoded.OneLakeWorkspaceName
+	s.ServiceDataAccessAuthIdentity = decoded.ServiceDataAccessAuthIdentity
 	s.DatastoreType = decoded.DatastoreType
 	s.Description = decoded.Description
-	s.Endpoint = decoded.Endpoint
 	s.IsDefault = decoded.IsDefault
-	s.OneLakeWorkspaceName = decoded.OneLakeWorkspaceName
 	s.Properties = decoded.Properties
-	s.ServiceDataAccessAuthIdentity = decoded.ServiceDataAccessAuthIdentity
 	s.Tags = decoded.Tags
 
 	var temp map[string]json.RawMessage
@@ -100,5 +108,6 @@ func (s *OneLakeDatastore) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Credentials = impl
 	}
+
 	return nil
 }

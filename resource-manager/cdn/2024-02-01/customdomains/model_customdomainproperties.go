@@ -21,10 +21,16 @@ type CustomDomainProperties struct {
 var _ json.Unmarshaler = &CustomDomainProperties{}
 
 func (s *CustomDomainProperties) UnmarshalJSON(bytes []byte) error {
-	type alias CustomDomainProperties
-	var decoded alias
+	var decoded struct {
+		CustomHTTPSProvisioningState    *CustomHTTPSProvisioningState    `json:"customHttpsProvisioningState,omitempty"`
+		CustomHTTPSProvisioningSubstate *CustomHTTPSProvisioningSubstate `json:"customHttpsProvisioningSubstate,omitempty"`
+		HostName                        string                           `json:"hostName"`
+		ProvisioningState               *CustomHTTPSProvisioningState    `json:"provisioningState,omitempty"`
+		ResourceState                   *CustomDomainResourceState       `json:"resourceState,omitempty"`
+		ValidationData                  *string                          `json:"validationData,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CustomDomainProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CustomHTTPSProvisioningState = decoded.CustomHTTPSProvisioningState
@@ -46,5 +52,6 @@ func (s *CustomDomainProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CustomHTTPSParameters = impl
 	}
+
 	return nil
 }

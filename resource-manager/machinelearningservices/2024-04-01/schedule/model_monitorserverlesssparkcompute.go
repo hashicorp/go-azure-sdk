@@ -54,15 +54,18 @@ func (s MonitorServerlessSparkCompute) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MonitorServerlessSparkCompute{}
 
 func (s *MonitorServerlessSparkCompute) UnmarshalJSON(bytes []byte) error {
-	type alias MonitorServerlessSparkCompute
-	var decoded alias
+	var decoded struct {
+		InstanceType   string             `json:"instanceType"`
+		RuntimeVersion string             `json:"runtimeVersion"`
+		ComputeType    MonitorComputeType `json:"computeType"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MonitorServerlessSparkCompute: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ComputeType = decoded.ComputeType
 	s.InstanceType = decoded.InstanceType
 	s.RuntimeVersion = decoded.RuntimeVersion
+	s.ComputeType = decoded.ComputeType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -76,5 +79,6 @@ func (s *MonitorServerlessSparkCompute) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ComputeIdentity = impl
 	}
+
 	return nil
 }

@@ -52,9 +52,9 @@ func UnmarshalMonitoringInputDataBaseImplementation(input []byte) (MonitoringInp
 		return nil, fmt.Errorf("unmarshaling MonitoringInputDataBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["inputDataType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["inputDataType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Fixed") {

@@ -48,9 +48,9 @@ func UnmarshalAutomationRuleConditionImplementation(input []byte) (AutomationRul
 		return nil, fmt.Errorf("unmarshaling AutomationRuleCondition into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["conditionType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["conditionType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "PropertyArrayChanged") {

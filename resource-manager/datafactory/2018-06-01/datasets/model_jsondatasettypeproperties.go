@@ -17,10 +17,12 @@ type JsonDatasetTypeProperties struct {
 var _ json.Unmarshaler = &JsonDatasetTypeProperties{}
 
 func (s *JsonDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias JsonDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		Compression  *DatasetCompression `json:"compression,omitempty"`
+		EncodingName *string             `json:"encodingName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JsonDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Compression = decoded.Compression
@@ -38,5 +40,6 @@ func (s *JsonDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Location = impl
 	}
+
 	return nil
 }

@@ -48,9 +48,9 @@ func UnmarshalMonitoringFeatureFilterBaseImplementation(input []byte) (Monitorin
 		return nil, fmt.Errorf("unmarshaling MonitoringFeatureFilterBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["filterType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["filterType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AllFeatures") {

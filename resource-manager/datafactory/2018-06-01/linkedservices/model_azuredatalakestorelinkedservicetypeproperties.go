@@ -24,10 +24,19 @@ type AzureDataLakeStoreLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureDataLakeStoreLinkedServiceTypeProperties{}
 
 func (s *AzureDataLakeStoreLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureDataLakeStoreLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccountName         *string              `json:"accountName,omitempty"`
+		AzureCloudType      *string              `json:"azureCloudType,omitempty"`
+		Credential          *CredentialReference `json:"credential,omitempty"`
+		DataLakeStoreUri    string               `json:"dataLakeStoreUri"`
+		EncryptedCredential *string              `json:"encryptedCredential,omitempty"`
+		ResourceGroupName   *string              `json:"resourceGroupName,omitempty"`
+		ServicePrincipalId  *string              `json:"servicePrincipalId,omitempty"`
+		SubscriptionId      *string              `json:"subscriptionId,omitempty"`
+		Tenant              *string              `json:"tenant,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureDataLakeStoreLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountName = decoded.AccountName
@@ -52,5 +61,6 @@ func (s *AzureDataLakeStoreLinkedServiceTypeProperties) UnmarshalJSON(bytes []by
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

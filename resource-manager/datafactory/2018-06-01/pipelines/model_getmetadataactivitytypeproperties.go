@@ -18,10 +18,12 @@ type GetMetadataActivityTypeProperties struct {
 var _ json.Unmarshaler = &GetMetadataActivityTypeProperties{}
 
 func (s *GetMetadataActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias GetMetadataActivityTypeProperties
-	var decoded alias
+	var decoded struct {
+		Dataset   DatasetReference `json:"dataset"`
+		FieldList *[]string        `json:"fieldList,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GetMetadataActivityTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Dataset = decoded.Dataset
@@ -47,5 +49,6 @@ func (s *GetMetadataActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StoreSettings = impl
 	}
+
 	return nil
 }

@@ -55,15 +55,18 @@ func (s WebBasicAuthentication) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WebBasicAuthentication{}
 
 func (s *WebBasicAuthentication) UnmarshalJSON(bytes []byte) error {
-	type alias WebBasicAuthentication
-	var decoded alias
+	var decoded struct {
+		Username           string                `json:"username"`
+		AuthenticationType WebAuthenticationType `json:"authenticationType"`
+		Url                string                `json:"url"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WebBasicAuthentication: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Username = decoded.Username
 	s.AuthenticationType = decoded.AuthenticationType
 	s.Url = decoded.Url
-	s.Username = decoded.Username
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -77,5 +80,6 @@ func (s *WebBasicAuthentication) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

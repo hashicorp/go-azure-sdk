@@ -21,10 +21,16 @@ type FileShareDatasetTypeProperties struct {
 var _ json.Unmarshaler = &FileShareDatasetTypeProperties{}
 
 func (s *FileShareDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias FileShareDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		Compression           *DatasetCompression `json:"compression,omitempty"`
+		FileFilter            *string             `json:"fileFilter,omitempty"`
+		FileName              *string             `json:"fileName,omitempty"`
+		FolderPath            *string             `json:"folderPath,omitempty"`
+		ModifiedDatetimeEnd   *string             `json:"modifiedDatetimeEnd,omitempty"`
+		ModifiedDatetimeStart *string             `json:"modifiedDatetimeStart,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into FileShareDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Compression = decoded.Compression
@@ -46,5 +52,6 @@ func (s *FileShareDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Format = impl
 	}
+
 	return nil
 }

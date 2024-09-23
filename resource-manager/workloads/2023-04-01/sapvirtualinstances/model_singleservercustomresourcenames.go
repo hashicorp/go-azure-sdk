@@ -48,9 +48,9 @@ func UnmarshalSingleServerCustomResourceNamesImplementation(input []byte) (Singl
 		return nil, fmt.Errorf("unmarshaling SingleServerCustomResourceNames into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["namingPatternType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["namingPatternType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "FullResourceName") {

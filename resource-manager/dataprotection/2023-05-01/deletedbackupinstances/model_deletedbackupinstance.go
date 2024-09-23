@@ -27,10 +27,22 @@ type DeletedBackupInstance struct {
 var _ json.Unmarshaler = &DeletedBackupInstance{}
 
 func (s *DeletedBackupInstance) UnmarshalJSON(bytes []byte) error {
-	type alias DeletedBackupInstance
-	var decoded alias
+	var decoded struct {
+		CurrentProtectionState *CurrentProtectionState  `json:"currentProtectionState,omitempty"`
+		DataSourceInfo         Datasource               `json:"dataSourceInfo"`
+		DataSourceSetInfo      *DatasourceSet           `json:"dataSourceSetInfo,omitempty"`
+		DeletionInfo           *DeletionInfo            `json:"deletionInfo,omitempty"`
+		FriendlyName           *string                  `json:"friendlyName,omitempty"`
+		IdentityDetails        *IdentityDetails         `json:"identityDetails,omitempty"`
+		ObjectType             string                   `json:"objectType"`
+		PolicyInfo             PolicyInfo               `json:"policyInfo"`
+		ProtectionErrorDetails *UserFacingError         `json:"protectionErrorDetails,omitempty"`
+		ProtectionStatus       *ProtectionStatusDetails `json:"protectionStatus,omitempty"`
+		ProvisioningState      *string                  `json:"provisioningState,omitempty"`
+		ValidationType         *ValidationType          `json:"validationType,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeletedBackupInstance: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CurrentProtectionState = decoded.CurrentProtectionState
@@ -58,5 +70,6 @@ func (s *DeletedBackupInstance) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DatasourceAuthCredentials = impl
 	}
+
 	return nil
 }

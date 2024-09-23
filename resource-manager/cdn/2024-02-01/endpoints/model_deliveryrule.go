@@ -18,10 +18,12 @@ type DeliveryRule struct {
 var _ json.Unmarshaler = &DeliveryRule{}
 
 func (s *DeliveryRule) UnmarshalJSON(bytes []byte) error {
-	type alias DeliveryRule
-	var decoded alias
+	var decoded struct {
+		Name  *string `json:"name,omitempty"`
+		Order int64   `json:"order"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeliveryRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Name = decoded.Name
@@ -65,5 +67,6 @@ func (s *DeliveryRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Conditions = &output
 	}
+
 	return nil
 }

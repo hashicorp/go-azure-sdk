@@ -55,15 +55,18 @@ func (s LocationThresholdRuleCondition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &LocationThresholdRuleCondition{}
 
 func (s *LocationThresholdRuleCondition) UnmarshalJSON(bytes []byte) error {
-	type alias LocationThresholdRuleCondition
-	var decoded alias
+	var decoded struct {
+		FailedLocationCount int64   `json:"failedLocationCount"`
+		WindowSize          *string `json:"windowSize,omitempty"`
+		OdataType           string  `json:"odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into LocationThresholdRuleCondition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FailedLocationCount = decoded.FailedLocationCount
-	s.OdataType = decoded.OdataType
 	s.WindowSize = decoded.WindowSize
+	s.OdataType = decoded.OdataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -77,5 +80,6 @@ func (s *LocationThresholdRuleCondition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DataSource = impl
 	}
+
 	return nil
 }

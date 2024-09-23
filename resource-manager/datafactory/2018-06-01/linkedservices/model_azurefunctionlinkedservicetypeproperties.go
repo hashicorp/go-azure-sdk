@@ -20,10 +20,15 @@ type AzureFunctionLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureFunctionLinkedServiceTypeProperties{}
 
 func (s *AzureFunctionLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureFunctionLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		Authentication      *string              `json:"authentication,omitempty"`
+		Credential          *CredentialReference `json:"credential,omitempty"`
+		EncryptedCredential *string              `json:"encryptedCredential,omitempty"`
+		FunctionAppUrl      string               `json:"functionAppUrl"`
+		ResourceId          *string              `json:"resourceId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureFunctionLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Authentication = decoded.Authentication
@@ -44,5 +49,6 @@ func (s *AzureFunctionLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) e
 		}
 		s.FunctionKey = impl
 	}
+
 	return nil
 }

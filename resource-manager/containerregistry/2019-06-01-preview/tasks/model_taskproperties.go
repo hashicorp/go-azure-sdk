@@ -41,10 +41,21 @@ func (o *TaskProperties) SetCreationDateAsTime(input time.Time) {
 var _ json.Unmarshaler = &TaskProperties{}
 
 func (s *TaskProperties) UnmarshalJSON(bytes []byte) error {
-	type alias TaskProperties
-	var decoded alias
+	var decoded struct {
+		AgentConfiguration *AgentProperties    `json:"agentConfiguration,omitempty"`
+		AgentPoolName      *string             `json:"agentPoolName,omitempty"`
+		CreationDate       *string             `json:"creationDate,omitempty"`
+		Credentials        *Credentials        `json:"credentials,omitempty"`
+		IsSystemTask       *bool               `json:"isSystemTask,omitempty"`
+		LogTemplate        *string             `json:"logTemplate,omitempty"`
+		Platform           *PlatformProperties `json:"platform,omitempty"`
+		ProvisioningState  *ProvisioningState  `json:"provisioningState,omitempty"`
+		Status             *TaskStatus         `json:"status,omitempty"`
+		Timeout            *int64              `json:"timeout,omitempty"`
+		Trigger            *TriggerProperties  `json:"trigger,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TaskProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AgentConfiguration = decoded.AgentConfiguration
@@ -71,5 +82,6 @@ func (s *TaskProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Step = impl
 	}
+
 	return nil
 }

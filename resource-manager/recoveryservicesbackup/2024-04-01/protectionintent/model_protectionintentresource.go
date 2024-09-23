@@ -21,10 +21,16 @@ type ProtectionIntentResource struct {
 var _ json.Unmarshaler = &ProtectionIntentResource{}
 
 func (s *ProtectionIntentResource) UnmarshalJSON(bytes []byte) error {
-	type alias ProtectionIntentResource
-	var decoded alias
+	var decoded struct {
+		ETag     *string            `json:"eTag,omitempty"`
+		Id       *string            `json:"id,omitempty"`
+		Location *string            `json:"location,omitempty"`
+		Name     *string            `json:"name,omitempty"`
+		Tags     *map[string]string `json:"tags,omitempty"`
+		Type     *string            `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ProtectionIntentResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ETag = decoded.ETag
@@ -46,5 +52,6 @@ func (s *ProtectionIntentResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

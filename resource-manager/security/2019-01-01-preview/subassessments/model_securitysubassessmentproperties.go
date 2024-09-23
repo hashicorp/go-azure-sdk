@@ -39,10 +39,19 @@ func (o *SecuritySubAssessmentProperties) SetTimeGeneratedAsTime(input time.Time
 var _ json.Unmarshaler = &SecuritySubAssessmentProperties{}
 
 func (s *SecuritySubAssessmentProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SecuritySubAssessmentProperties
-	var decoded alias
+	var decoded struct {
+		Category        *string              `json:"category,omitempty"`
+		Description     *string              `json:"description,omitempty"`
+		DisplayName     *string              `json:"displayName,omitempty"`
+		Id              *string              `json:"id,omitempty"`
+		Impact          *string              `json:"impact,omitempty"`
+		Remediation     *string              `json:"remediation,omitempty"`
+		ResourceDetails *ResourceDetails     `json:"resourceDetails,omitempty"`
+		Status          *SubAssessmentStatus `json:"status,omitempty"`
+		TimeGenerated   *string              `json:"timeGenerated,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecuritySubAssessmentProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Category = decoded.Category
@@ -67,5 +76,6 @@ func (s *SecuritySubAssessmentProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AdditionalData = impl
 	}
+
 	return nil
 }

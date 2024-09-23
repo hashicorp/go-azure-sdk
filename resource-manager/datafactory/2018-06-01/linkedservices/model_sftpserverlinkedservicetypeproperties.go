@@ -25,10 +25,18 @@ type SftpServerLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &SftpServerLinkedServiceTypeProperties{}
 
 func (s *SftpServerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SftpServerLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType    *SftpAuthenticationType `json:"authenticationType,omitempty"`
+		EncryptedCredential   *string                 `json:"encryptedCredential,omitempty"`
+		Host                  string                  `json:"host"`
+		HostKeyFingerprint    *string                 `json:"hostKeyFingerprint,omitempty"`
+		Port                  *int64                  `json:"port,omitempty"`
+		PrivateKeyPath        *string                 `json:"privateKeyPath,omitempty"`
+		SkipHostKeyValidation *bool                   `json:"skipHostKeyValidation,omitempty"`
+		UserName              *string                 `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SftpServerLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -68,5 +76,6 @@ func (s *SftpServerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 		}
 		s.PrivateKeyContent = impl
 	}
+
 	return nil
 }

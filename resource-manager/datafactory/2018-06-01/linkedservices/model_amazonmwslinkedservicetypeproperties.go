@@ -24,10 +24,18 @@ type AmazonMWSLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AmazonMWSLinkedServiceTypeProperties{}
 
 func (s *AmazonMWSLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AmazonMWSLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccessKeyId           string  `json:"accessKeyId"`
+		EncryptedCredential   *string `json:"encryptedCredential,omitempty"`
+		Endpoint              string  `json:"endpoint"`
+		MarketplaceID         string  `json:"marketplaceID"`
+		SellerID              string  `json:"sellerID"`
+		UseEncryptedEndpoints *bool   `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool   `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool   `json:"usePeerVerification,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AmazonMWSLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessKeyId = decoded.AccessKeyId
@@ -59,5 +67,6 @@ func (s *AmazonMWSLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error
 		}
 		s.SecretKey = impl
 	}
+
 	return nil
 }

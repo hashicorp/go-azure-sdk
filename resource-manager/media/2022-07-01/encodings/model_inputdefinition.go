@@ -42,10 +42,11 @@ func (s RawInputDefinitionImpl) InputDefinition() BaseInputDefinitionImpl {
 var _ json.Unmarshaler = &BaseInputDefinitionImpl{}
 
 func (s *BaseInputDefinitionImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseInputDefinitionImpl
-	var decoded alias
+	var decoded struct {
+		OdataType string `json:"@odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseInputDefinitionImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.OdataType = decoded.OdataType
@@ -71,6 +72,7 @@ func (s *BaseInputDefinitionImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IncludedTracks = &output
 	}
+
 	return nil
 }
 
@@ -84,9 +86,9 @@ func UnmarshalInputDefinitionImplementation(input []byte) (InputDefinition, erro
 		return nil, fmt.Errorf("unmarshaling InputDefinition into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#Microsoft.Media.FromAllInputFile") {

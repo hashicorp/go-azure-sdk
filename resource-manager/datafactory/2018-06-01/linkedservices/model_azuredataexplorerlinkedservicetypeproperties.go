@@ -20,10 +20,15 @@ type AzureDataExplorerLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureDataExplorerLinkedServiceTypeProperties{}
 
 func (s *AzureDataExplorerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureDataExplorerLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		Credential         *CredentialReference `json:"credential,omitempty"`
+		Database           string               `json:"database"`
+		Endpoint           string               `json:"endpoint"`
+		ServicePrincipalId *string              `json:"servicePrincipalId,omitempty"`
+		Tenant             *string              `json:"tenant,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureDataExplorerLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Credential = decoded.Credential
@@ -44,5 +49,6 @@ func (s *AzureDataExplorerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byt
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

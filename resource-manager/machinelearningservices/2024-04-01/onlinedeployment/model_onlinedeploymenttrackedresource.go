@@ -27,10 +27,19 @@ type OnlineDeploymentTrackedResource struct {
 var _ json.Unmarshaler = &OnlineDeploymentTrackedResource{}
 
 func (s *OnlineDeploymentTrackedResource) UnmarshalJSON(bytes []byte) error {
-	type alias OnlineDeploymentTrackedResource
-	var decoded alias
+	var decoded struct {
+		Id         *string                                  `json:"id,omitempty"`
+		Identity   *identity.LegacySystemAndUserAssignedMap `json:"identity,omitempty"`
+		Kind       *string                                  `json:"kind,omitempty"`
+		Location   string                                   `json:"location"`
+		Name       *string                                  `json:"name,omitempty"`
+		Sku        *Sku                                     `json:"sku,omitempty"`
+		SystemData *systemdata.SystemData                   `json:"systemData,omitempty"`
+		Tags       *map[string]string                       `json:"tags,omitempty"`
+		Type       *string                                  `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OnlineDeploymentTrackedResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -55,5 +64,6 @@ func (s *OnlineDeploymentTrackedResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

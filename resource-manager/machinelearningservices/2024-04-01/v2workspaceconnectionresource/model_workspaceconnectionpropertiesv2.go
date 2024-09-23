@@ -58,9 +58,9 @@ func UnmarshalWorkspaceConnectionPropertiesV2Implementation(input []byte) (Works
 		return nil, fmt.Errorf("unmarshaling WorkspaceConnectionPropertiesV2 into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["authType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["authType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AAD") {

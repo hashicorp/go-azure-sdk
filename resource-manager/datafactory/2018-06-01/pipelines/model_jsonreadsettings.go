@@ -52,10 +52,11 @@ func (s JsonReadSettings) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JsonReadSettings{}
 
 func (s *JsonReadSettings) UnmarshalJSON(bytes []byte) error {
-	type alias JsonReadSettings
-	var decoded alias
+	var decoded struct {
+		Type string `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JsonReadSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Type = decoded.Type
@@ -72,5 +73,6 @@ func (s *JsonReadSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CompressionProperties = impl
 	}
+
 	return nil
 }

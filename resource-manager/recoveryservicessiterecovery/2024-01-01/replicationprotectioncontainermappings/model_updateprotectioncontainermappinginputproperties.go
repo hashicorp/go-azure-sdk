@@ -28,5 +28,6 @@ func (s *UpdateProtectionContainerMappingInputProperties) UnmarshalJSON(bytes []
 		}
 		s.ProviderSpecificInput = impl
 	}
+
 	return nil
 }

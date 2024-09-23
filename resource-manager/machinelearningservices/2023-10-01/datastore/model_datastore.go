@@ -46,10 +46,15 @@ func (s RawDatastoreImpl) Datastore() BaseDatastoreImpl {
 var _ json.Unmarshaler = &BaseDatastoreImpl{}
 
 func (s *BaseDatastoreImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseDatastoreImpl
-	var decoded alias
+	var decoded struct {
+		DatastoreType DatastoreType      `json:"datastoreType"`
+		Description   *string            `json:"description,omitempty"`
+		IsDefault     *bool              `json:"isDefault,omitempty"`
+		Properties    *map[string]string `json:"properties,omitempty"`
+		Tags          *map[string]string `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseDatastoreImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DatastoreType = decoded.DatastoreType
@@ -70,6 +75,7 @@ func (s *BaseDatastoreImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Credentials = impl
 	}
+
 	return nil
 }
 
@@ -83,9 +89,9 @@ func UnmarshalDatastoreImplementation(input []byte) (Datastore, error) {
 		return nil, fmt.Errorf("unmarshaling Datastore into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["datastoreType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["datastoreType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureBlob") {

@@ -21,10 +21,16 @@ type QuotaProperties struct {
 var _ json.Unmarshaler = &QuotaProperties{}
 
 func (s *QuotaProperties) UnmarshalJSON(bytes []byte) error {
-	type alias QuotaProperties
-	var decoded alias
+	var decoded struct {
+		IsQuotaApplicable *bool         `json:"isQuotaApplicable,omitempty"`
+		Name              *ResourceName `json:"name,omitempty"`
+		Properties        *interface{}  `json:"properties,omitempty"`
+		QuotaPeriod       *string       `json:"quotaPeriod,omitempty"`
+		ResourceType      *string       `json:"resourceType,omitempty"`
+		Unit              *string       `json:"unit,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into QuotaProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.IsQuotaApplicable = decoded.IsQuotaApplicable
@@ -46,5 +52,6 @@ func (s *QuotaProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Limit = impl
 	}
+
 	return nil
 }

@@ -22,10 +22,17 @@ type JiraLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &JiraLinkedServiceTypeProperties{}
 
 func (s *JiraLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias JiraLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential   *string `json:"encryptedCredential,omitempty"`
+		Host                  string  `json:"host"`
+		Port                  *int64  `json:"port,omitempty"`
+		UseEncryptedEndpoints *bool   `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool   `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool   `json:"usePeerVerification,omitempty"`
+		Username              string  `json:"username"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JiraLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -48,5 +55,6 @@ func (s *JiraLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

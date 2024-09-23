@@ -49,9 +49,9 @@ func UnmarshalDataStoreParametersImplementation(input []byte) (DataStoreParamete
 		return nil, fmt.Errorf("unmarshaling DataStoreParameters into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["objectType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureOperationalStoreParameters") {

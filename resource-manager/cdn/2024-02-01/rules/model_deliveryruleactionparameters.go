@@ -48,9 +48,9 @@ func UnmarshalDeliveryRuleActionParametersImplementation(input []byte) (Delivery
 		return nil, fmt.Errorf("unmarshaling DeliveryRuleActionParameters into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["typeName"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["typeName"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "DeliveryRuleCacheExpirationActionParameters") {

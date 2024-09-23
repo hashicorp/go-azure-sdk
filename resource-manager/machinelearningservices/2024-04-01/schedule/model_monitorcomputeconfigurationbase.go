@@ -48,9 +48,9 @@ func UnmarshalMonitorComputeConfigurationBaseImplementation(input []byte) (Monit
 		return nil, fmt.Errorf("unmarshaling MonitorComputeConfigurationBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["computeType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["computeType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "ServerlessSpark") {

@@ -48,9 +48,9 @@ func UnmarshalSAPSizingRecommendationResultImplementation(input []byte) (SAPSizi
 		return nil, fmt.Errorf("unmarshaling SAPSizingRecommendationResult into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["deploymentType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["deploymentType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "SingleServer") {

@@ -17,10 +17,12 @@ type SSISAccessCredential struct {
 var _ json.Unmarshaler = &SSISAccessCredential{}
 
 func (s *SSISAccessCredential) UnmarshalJSON(bytes []byte) error {
-	type alias SSISAccessCredential
-	var decoded alias
+	var decoded struct {
+		Domain   string `json:"domain"`
+		UserName string `json:"userName"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SSISAccessCredential: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Domain = decoded.Domain
@@ -38,5 +40,6 @@ func (s *SSISAccessCredential) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

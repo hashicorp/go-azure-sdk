@@ -20,10 +20,15 @@ type LinkedService struct {
 var _ json.Unmarshaler = &LinkedService{}
 
 func (s *LinkedService) UnmarshalJSON(bytes []byte) error {
-	type alias LinkedService
-	var decoded alias
+	var decoded struct {
+		Annotations *[]interface{}                     `json:"annotations,omitempty"`
+		Description *string                            `json:"description,omitempty"`
+		Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
+		Type        string                             `json:"type"`
+		Version     *string                            `json:"version,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into LinkedService: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Annotations = decoded.Annotations
@@ -44,5 +49,6 @@ func (s *LinkedService) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ConnectVia = impl
 	}
+
 	return nil
 }

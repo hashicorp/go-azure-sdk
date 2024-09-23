@@ -49,9 +49,9 @@ func UnmarshalWebhookImplementation(input []byte) (Webhook, error) {
 		return nil, fmt.Errorf("unmarshaling Webhook into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["webhookType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["webhookType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureDevOps") {

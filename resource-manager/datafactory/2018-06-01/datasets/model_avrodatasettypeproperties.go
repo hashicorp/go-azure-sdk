@@ -17,10 +17,12 @@ type AvroDatasetTypeProperties struct {
 var _ json.Unmarshaler = &AvroDatasetTypeProperties{}
 
 func (s *AvroDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AvroDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		AvroCompressionCodec *string `json:"avroCompressionCodec,omitempty"`
+		AvroCompressionLevel *int64  `json:"avroCompressionLevel,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AvroDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AvroCompressionCodec = decoded.AvroCompressionCodec
@@ -38,5 +40,6 @@ func (s *AvroDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Location = impl
 	}
+
 	return nil
 }

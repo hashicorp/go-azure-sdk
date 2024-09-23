@@ -26,10 +26,20 @@ type GoogleBigQueryLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &GoogleBigQueryLinkedServiceTypeProperties{}
 
 func (s *GoogleBigQueryLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias GoogleBigQueryLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AdditionalProjects      *string                          `json:"additionalProjects,omitempty"`
+		AuthenticationType      GoogleBigQueryAuthenticationType `json:"authenticationType"`
+		ClientId                *string                          `json:"clientId,omitempty"`
+		Email                   *string                          `json:"email,omitempty"`
+		EncryptedCredential     *string                          `json:"encryptedCredential,omitempty"`
+		KeyFilePath             *string                          `json:"keyFilePath,omitempty"`
+		Project                 string                           `json:"project"`
+		RequestGoogleDriveScope *bool                            `json:"requestGoogleDriveScope,omitempty"`
+		TrustedCertPath         *string                          `json:"trustedCertPath,omitempty"`
+		UseSystemTrustStore     *bool                            `json:"useSystemTrustStore,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GoogleBigQueryLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalProjects = decoded.AdditionalProjects
@@ -63,5 +73,6 @@ func (s *GoogleBigQueryLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) 
 		}
 		s.RefreshToken = impl
 	}
+
 	return nil
 }

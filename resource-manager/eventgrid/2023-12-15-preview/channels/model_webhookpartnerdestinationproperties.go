@@ -17,10 +17,12 @@ type WebhookPartnerDestinationProperties struct {
 var _ json.Unmarshaler = &WebhookPartnerDestinationProperties{}
 
 func (s *WebhookPartnerDestinationProperties) UnmarshalJSON(bytes []byte) error {
-	type alias WebhookPartnerDestinationProperties
-	var decoded alias
+	var decoded struct {
+		EndpointBaseUrl *string `json:"endpointBaseUrl,omitempty"`
+		EndpointUrl     *string `json:"endpointUrl,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WebhookPartnerDestinationProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EndpointBaseUrl = decoded.EndpointBaseUrl
@@ -38,5 +40,6 @@ func (s *WebhookPartnerDestinationProperties) UnmarshalJSON(bytes []byte) error 
 		}
 		s.ClientAuthentication = impl
 	}
+
 	return nil
 }

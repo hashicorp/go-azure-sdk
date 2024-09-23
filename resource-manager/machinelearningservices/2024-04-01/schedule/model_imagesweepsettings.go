@@ -16,10 +16,11 @@ type ImageSweepSettings struct {
 var _ json.Unmarshaler = &ImageSweepSettings{}
 
 func (s *ImageSweepSettings) UnmarshalJSON(bytes []byte) error {
-	type alias ImageSweepSettings
-	var decoded alias
+	var decoded struct {
+		SamplingAlgorithm SamplingAlgorithmType `json:"samplingAlgorithm"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ImageSweepSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.SamplingAlgorithm = decoded.SamplingAlgorithm
@@ -36,5 +37,6 @@ func (s *ImageSweepSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.EarlyTermination = impl
 	}
+
 	return nil
 }

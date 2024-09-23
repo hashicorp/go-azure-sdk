@@ -50,9 +50,9 @@ func UnmarshalCustomDomainHTTPSParametersImplementation(input []byte) (CustomDom
 		return nil, fmt.Errorf("unmarshaling CustomDomainHTTPSParameters into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["certificateSource"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["certificateSource"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Cdn") {

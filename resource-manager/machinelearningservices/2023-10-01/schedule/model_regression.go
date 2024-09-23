@@ -68,26 +68,40 @@ func (s Regression) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Regression{}
 
 func (s *Regression) UnmarshalJSON(bytes []byte) error {
-	type alias Regression
-	var decoded alias
+	var decoded struct {
+		CvSplitColumnNames    *[]string                           `json:"cvSplitColumnNames,omitempty"`
+		FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
+		LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
+		PrimaryMetric         *RegressionPrimaryMetrics           `json:"primaryMetric,omitempty"`
+		TestData              *MLTableJobInput                    `json:"testData,omitempty"`
+		TestDataSize          *float64                            `json:"testDataSize,omitempty"`
+		TrainingSettings      *RegressionTrainingSettings         `json:"trainingSettings,omitempty"`
+		ValidationData        *MLTableJobInput                    `json:"validationData,omitempty"`
+		ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
+		WeightColumnName      *string                             `json:"weightColumnName,omitempty"`
+		LogVerbosity          *LogVerbosity                       `json:"logVerbosity,omitempty"`
+		TargetColumnName      *string                             `json:"targetColumnName,omitempty"`
+		TaskType              TaskType                            `json:"taskType"`
+		TrainingData          MLTableJobInput                     `json:"trainingData"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Regression: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CvSplitColumnNames = decoded.CvSplitColumnNames
 	s.FeaturizationSettings = decoded.FeaturizationSettings
 	s.LimitSettings = decoded.LimitSettings
-	s.LogVerbosity = decoded.LogVerbosity
 	s.PrimaryMetric = decoded.PrimaryMetric
-	s.TargetColumnName = decoded.TargetColumnName
-	s.TaskType = decoded.TaskType
 	s.TestData = decoded.TestData
 	s.TestDataSize = decoded.TestDataSize
-	s.TrainingData = decoded.TrainingData
 	s.TrainingSettings = decoded.TrainingSettings
 	s.ValidationData = decoded.ValidationData
 	s.ValidationDataSize = decoded.ValidationDataSize
 	s.WeightColumnName = decoded.WeightColumnName
+	s.LogVerbosity = decoded.LogVerbosity
+	s.TargetColumnName = decoded.TargetColumnName
+	s.TaskType = decoded.TaskType
+	s.TrainingData = decoded.TrainingData
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -101,5 +115,6 @@ func (s *Regression) UnmarshalJSON(bytes []byte) error {
 		}
 		s.NCrossValidations = impl
 	}
+
 	return nil
 }

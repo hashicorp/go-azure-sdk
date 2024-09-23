@@ -17,10 +17,12 @@ type ClusterUnplannedFailoverInputProperties struct {
 var _ json.Unmarshaler = &ClusterUnplannedFailoverInputProperties{}
 
 func (s *ClusterUnplannedFailoverInputProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ClusterUnplannedFailoverInputProperties
-	var decoded alias
+	var decoded struct {
+		FailoverDirection    *string `json:"failoverDirection,omitempty"`
+		SourceSiteOperations *string `json:"sourceSiteOperations,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ClusterUnplannedFailoverInputProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FailoverDirection = decoded.FailoverDirection
@@ -38,5 +40,6 @@ func (s *ClusterUnplannedFailoverInputProperties) UnmarshalJSON(bytes []byte) er
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

@@ -48,9 +48,9 @@ func UnmarshalMaintenanceScheduleConfigurationImplementation(input []byte) (Main
 		return nil, fmt.Errorf("unmarshaling MaintenanceScheduleConfiguration into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["frequency"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["frequency"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Weekly") {

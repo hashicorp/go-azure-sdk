@@ -80,29 +80,46 @@ func (s StatefulServiceProperties) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &StatefulServiceProperties{}
 
 func (s *StatefulServiceProperties) UnmarshalJSON(bytes []byte) error {
-	type alias StatefulServiceProperties
-	var decoded alias
+	var decoded struct {
+		HasPersistedState            *bool                         `json:"hasPersistedState,omitempty"`
+		MinReplicaSetSize            *int64                        `json:"minReplicaSetSize,omitempty"`
+		QuorumLossWaitDuration       *string                       `json:"quorumLossWaitDuration,omitempty"`
+		ReplicaRestartWaitDuration   *string                       `json:"replicaRestartWaitDuration,omitempty"`
+		ServicePlacementTimeLimit    *string                       `json:"servicePlacementTimeLimit,omitempty"`
+		StandByReplicaKeepDuration   *string                       `json:"standByReplicaKeepDuration,omitempty"`
+		TargetReplicaSetSize         *int64                        `json:"targetReplicaSetSize,omitempty"`
+		CorrelationScheme            *[]ServiceCorrelation         `json:"correlationScheme,omitempty"`
+		DefaultMoveCost              *MoveCost                     `json:"defaultMoveCost,omitempty"`
+		PlacementConstraints         *string                       `json:"placementConstraints,omitempty"`
+		ProvisioningState            *string                       `json:"provisioningState,omitempty"`
+		ScalingPolicies              *[]ScalingPolicy              `json:"scalingPolicies,omitempty"`
+		ServiceDnsName               *string                       `json:"serviceDnsName,omitempty"`
+		ServiceKind                  ServiceKind                   `json:"serviceKind"`
+		ServiceLoadMetrics           *[]ServiceLoadMetric          `json:"serviceLoadMetrics,omitempty"`
+		ServicePackageActivationMode *ServicePackageActivationMode `json:"servicePackageActivationMode,omitempty"`
+		ServiceTypeName              string                        `json:"serviceTypeName"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into StatefulServiceProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CorrelationScheme = decoded.CorrelationScheme
-	s.DefaultMoveCost = decoded.DefaultMoveCost
 	s.HasPersistedState = decoded.HasPersistedState
 	s.MinReplicaSetSize = decoded.MinReplicaSetSize
-	s.PlacementConstraints = decoded.PlacementConstraints
-	s.ProvisioningState = decoded.ProvisioningState
 	s.QuorumLossWaitDuration = decoded.QuorumLossWaitDuration
 	s.ReplicaRestartWaitDuration = decoded.ReplicaRestartWaitDuration
+	s.ServicePlacementTimeLimit = decoded.ServicePlacementTimeLimit
+	s.StandByReplicaKeepDuration = decoded.StandByReplicaKeepDuration
+	s.TargetReplicaSetSize = decoded.TargetReplicaSetSize
+	s.CorrelationScheme = decoded.CorrelationScheme
+	s.DefaultMoveCost = decoded.DefaultMoveCost
+	s.PlacementConstraints = decoded.PlacementConstraints
+	s.ProvisioningState = decoded.ProvisioningState
 	s.ScalingPolicies = decoded.ScalingPolicies
 	s.ServiceDnsName = decoded.ServiceDnsName
 	s.ServiceKind = decoded.ServiceKind
 	s.ServiceLoadMetrics = decoded.ServiceLoadMetrics
 	s.ServicePackageActivationMode = decoded.ServicePackageActivationMode
-	s.ServicePlacementTimeLimit = decoded.ServicePlacementTimeLimit
 	s.ServiceTypeName = decoded.ServiceTypeName
-	s.StandByReplicaKeepDuration = decoded.StandByReplicaKeepDuration
-	s.TargetReplicaSetSize = decoded.TargetReplicaSetSize
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -133,5 +150,6 @@ func (s *StatefulServiceProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ServicePlacementPolicies = &output
 	}
+
 	return nil
 }

@@ -66,9 +66,9 @@ func UnmarshalModernReservationRecommendationPropertiesImplementation(input []by
 		return nil, fmt.Errorf("unmarshaling ModernReservationRecommendationProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["scope"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["scope"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Shared") {

@@ -20,10 +20,15 @@ type TrialComponent struct {
 var _ json.Unmarshaler = &TrialComponent{}
 
 func (s *TrialComponent) UnmarshalJSON(bytes []byte) error {
-	type alias TrialComponent
-	var decoded alias
+	var decoded struct {
+		CodeId               *string                   `json:"codeId,omitempty"`
+		Command              string                    `json:"command"`
+		EnvironmentId        string                    `json:"environmentId"`
+		EnvironmentVariables *map[string]string        `json:"environmentVariables,omitempty"`
+		Resources            *JobResourceConfiguration `json:"resources,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TrialComponent: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CodeId = decoded.CodeId
@@ -44,5 +49,6 @@ func (s *TrialComponent) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Distribution = impl
 	}
+
 	return nil
 }

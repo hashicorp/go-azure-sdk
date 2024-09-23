@@ -21,10 +21,16 @@ type SubRequest struct {
 var _ json.Unmarshaler = &SubRequest{}
 
 func (s *SubRequest) UnmarshalJSON(bytes []byte) error {
-	type alias SubRequest
-	var decoded alias
+	var decoded struct {
+		Message           *string            `json:"message,omitempty"`
+		Name              *ResourceName      `json:"name,omitempty"`
+		ProvisioningState *QuotaRequestState `json:"provisioningState,omitempty"`
+		ResourceType      *string            `json:"resourceType,omitempty"`
+		SubRequestId      *string            `json:"subRequestId,omitempty"`
+		Unit              *string            `json:"unit,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SubRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Message = decoded.Message
@@ -46,5 +52,6 @@ func (s *SubRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Limit = impl
 	}
+
 	return nil
 }

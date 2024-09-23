@@ -17,10 +17,11 @@ type AppFiguresLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AppFiguresLinkedServiceTypeProperties{}
 
 func (s *AppFiguresLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AppFiguresLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		UserName string `json:"userName"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AppFiguresLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.UserName = decoded.UserName
@@ -45,5 +46,6 @@ func (s *AppFiguresLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

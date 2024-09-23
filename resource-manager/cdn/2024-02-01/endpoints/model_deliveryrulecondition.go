@@ -48,9 +48,9 @@ func UnmarshalDeliveryRuleConditionImplementation(input []byte) (DeliveryRuleCon
 		return nil, fmt.Errorf("unmarshaling DeliveryRuleCondition into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["name"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["name"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "ClientPort") {

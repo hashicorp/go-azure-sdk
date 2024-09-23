@@ -20,10 +20,15 @@ type SapBWLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &SapBWLinkedServiceTypeProperties{}
 
 func (s *SapBWLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SapBWLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ClientId            string  `json:"clientId"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		Server              string  `json:"server"`
+		SystemNumber        string  `json:"systemNumber"`
+		UserName            *string `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SapBWLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClientId = decoded.ClientId
@@ -44,5 +49,6 @@ func (s *SapBWLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

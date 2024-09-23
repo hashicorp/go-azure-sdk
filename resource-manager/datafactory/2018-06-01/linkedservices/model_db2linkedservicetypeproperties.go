@@ -23,10 +23,18 @@ type Db2LinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &Db2LinkedServiceTypeProperties{}
 
 func (s *Db2LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias Db2LinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType    *Db2AuthenticationType `json:"authenticationType,omitempty"`
+		CertificateCommonName *string                `json:"certificateCommonName,omitempty"`
+		ConnectionString      *string                `json:"connectionString,omitempty"`
+		Database              *string                `json:"database,omitempty"`
+		EncryptedCredential   *string                `json:"encryptedCredential,omitempty"`
+		PackageCollection     *string                `json:"packageCollection,omitempty"`
+		Server                *string                `json:"server,omitempty"`
+		Username              *string                `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Db2LinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -50,5 +58,6 @@ func (s *Db2LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

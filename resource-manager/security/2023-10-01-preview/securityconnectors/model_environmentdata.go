@@ -48,9 +48,9 @@ func UnmarshalEnvironmentDataImplementation(input []byte) (EnvironmentData, erro
 		return nil, fmt.Errorf("unmarshaling EnvironmentData into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["environmentType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["environmentType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AwsAccount") {

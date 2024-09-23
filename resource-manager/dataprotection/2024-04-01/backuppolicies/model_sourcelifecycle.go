@@ -17,10 +17,12 @@ type SourceLifeCycle struct {
 var _ json.Unmarshaler = &SourceLifeCycle{}
 
 func (s *SourceLifeCycle) UnmarshalJSON(bytes []byte) error {
-	type alias SourceLifeCycle
-	var decoded alias
+	var decoded struct {
+		SourceDataStore             DataStoreInfoBase    `json:"sourceDataStore"`
+		TargetDataStoreCopySettings *[]TargetCopySetting `json:"targetDataStoreCopySettings,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SourceLifeCycle: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.SourceDataStore = decoded.SourceDataStore
@@ -38,5 +40,6 @@ func (s *SourceLifeCycle) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DeleteAfter = impl
 	}
+
 	return nil
 }

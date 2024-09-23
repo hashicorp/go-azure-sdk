@@ -48,9 +48,9 @@ func UnmarshalCredentialsImplementation(input []byte) (Credentials, error) {
 		return nil, fmt.Errorf("unmarshaling Credentials into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureKeyVaultSmb") {

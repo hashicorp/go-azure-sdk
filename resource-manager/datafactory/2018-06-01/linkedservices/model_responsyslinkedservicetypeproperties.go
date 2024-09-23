@@ -21,10 +21,16 @@ type ResponsysLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &ResponsysLinkedServiceTypeProperties{}
 
 func (s *ResponsysLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ResponsysLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ClientId              string  `json:"clientId"`
+		EncryptedCredential   *string `json:"encryptedCredential,omitempty"`
+		Endpoint              string  `json:"endpoint"`
+		UseEncryptedEndpoints *bool   `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool   `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool   `json:"usePeerVerification,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ResponsysLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClientId = decoded.ClientId
@@ -46,5 +52,6 @@ func (s *ResponsysLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error
 		}
 		s.ClientSecret = impl
 	}
+
 	return nil
 }

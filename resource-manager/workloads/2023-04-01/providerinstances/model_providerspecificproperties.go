@@ -48,9 +48,9 @@ func UnmarshalProviderSpecificPropertiesImplementation(input []byte) (ProviderSp
 		return nil, fmt.Errorf("unmarshaling ProviderSpecificProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["providerType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["providerType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Db2") {

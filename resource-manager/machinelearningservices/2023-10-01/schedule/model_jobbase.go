@@ -52,10 +52,21 @@ func (s RawJobBaseImpl) JobBase() BaseJobBaseImpl {
 var _ json.Unmarshaler = &BaseJobBaseImpl{}
 
 func (s *BaseJobBaseImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseJobBaseImpl
-	var decoded alias
+	var decoded struct {
+		ComponentId    *string                `json:"componentId,omitempty"`
+		ComputeId      *string                `json:"computeId,omitempty"`
+		Description    *string                `json:"description,omitempty"`
+		DisplayName    *string                `json:"displayName,omitempty"`
+		ExperimentName *string                `json:"experimentName,omitempty"`
+		IsArchived     *bool                  `json:"isArchived,omitempty"`
+		JobType        JobType                `json:"jobType"`
+		Properties     *map[string]string     `json:"properties,omitempty"`
+		Services       *map[string]JobService `json:"services,omitempty"`
+		Status         *JobStatus             `json:"status,omitempty"`
+		Tags           *map[string]string     `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseJobBaseImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ComponentId = decoded.ComponentId
@@ -82,6 +93,7 @@ func (s *BaseJobBaseImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Identity = impl
 	}
+
 	return nil
 }
 
@@ -95,9 +107,9 @@ func UnmarshalJobBaseImplementation(input []byte) (JobBase, error) {
 		return nil, fmt.Errorf("unmarshaling JobBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["jobType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["jobType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AutoML") {

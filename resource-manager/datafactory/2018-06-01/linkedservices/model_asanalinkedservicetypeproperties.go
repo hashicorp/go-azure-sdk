@@ -16,10 +16,11 @@ type AsanaLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AsanaLinkedServiceTypeProperties{}
 
 func (s *AsanaLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AsanaLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AsanaLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -36,5 +37,6 @@ func (s *AsanaLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ApiToken = impl
 	}
+
 	return nil
 }

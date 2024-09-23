@@ -23,10 +23,18 @@ type Pipeline struct {
 var _ json.Unmarshaler = &Pipeline{}
 
 func (s *Pipeline) UnmarshalJSON(bytes []byte) error {
-	type alias Pipeline
-	var decoded alias
+	var decoded struct {
+		Annotations   *[]interface{}                     `json:"annotations,omitempty"`
+		Concurrency   *int64                             `json:"concurrency,omitempty"`
+		Description   *string                            `json:"description,omitempty"`
+		Folder        *PipelineFolder                    `json:"folder,omitempty"`
+		Parameters    *map[string]ParameterSpecification `json:"parameters,omitempty"`
+		Policy        *PipelinePolicy                    `json:"policy,omitempty"`
+		RunDimensions *map[string]string                 `json:"runDimensions,omitempty"`
+		Variables     *map[string]VariableSpecification  `json:"variables,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Pipeline: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Annotations = decoded.Annotations
@@ -59,5 +67,6 @@ func (s *Pipeline) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Activities = &output
 	}
+
 	return nil
 }

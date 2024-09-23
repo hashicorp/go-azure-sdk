@@ -17,10 +17,12 @@ type GetBlobReferenceForConsumptionDto struct {
 var _ json.Unmarshaler = &GetBlobReferenceForConsumptionDto{}
 
 func (s *GetBlobReferenceForConsumptionDto) UnmarshalJSON(bytes []byte) error {
-	type alias GetBlobReferenceForConsumptionDto
-	var decoded alias
+	var decoded struct {
+		BlobUri             *string `json:"blobUri,omitempty"`
+		StorageAccountArmId *string `json:"storageAccountArmId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GetBlobReferenceForConsumptionDto: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BlobUri = decoded.BlobUri
@@ -38,5 +40,6 @@ func (s *GetBlobReferenceForConsumptionDto) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Credential = impl
 	}
+
 	return nil
 }

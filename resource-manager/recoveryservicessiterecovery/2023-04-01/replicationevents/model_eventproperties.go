@@ -40,10 +40,19 @@ func (o *EventProperties) SetTimeOfOccurrenceAsTime(input time.Time) {
 var _ json.Unmarshaler = &EventProperties{}
 
 func (s *EventProperties) UnmarshalJSON(bytes []byte) error {
-	type alias EventProperties
-	var decoded alias
+	var decoded struct {
+		AffectedObjectCorrelationId *string        `json:"affectedObjectCorrelationId,omitempty"`
+		AffectedObjectFriendlyName  *string        `json:"affectedObjectFriendlyName,omitempty"`
+		Description                 *string        `json:"description,omitempty"`
+		EventCode                   *string        `json:"eventCode,omitempty"`
+		EventType                   *string        `json:"eventType,omitempty"`
+		FabricId                    *string        `json:"fabricId,omitempty"`
+		HealthErrors                *[]HealthError `json:"healthErrors,omitempty"`
+		Severity                    *string        `json:"severity,omitempty"`
+		TimeOfOccurrence            *string        `json:"timeOfOccurrence,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EventProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AffectedObjectCorrelationId = decoded.AffectedObjectCorrelationId
@@ -76,5 +85,6 @@ func (s *EventProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

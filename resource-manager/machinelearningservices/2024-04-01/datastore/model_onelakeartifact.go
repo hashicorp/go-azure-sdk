@@ -49,9 +49,9 @@ func UnmarshalOneLakeArtifactImplementation(input []byte) (OneLakeArtifact, erro
 		return nil, fmt.Errorf("unmarshaling OneLakeArtifact into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["artifactType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["artifactType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "LakeHouse") {

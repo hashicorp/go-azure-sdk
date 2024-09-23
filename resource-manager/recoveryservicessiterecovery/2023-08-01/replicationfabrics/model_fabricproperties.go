@@ -22,10 +22,17 @@ type FabricProperties struct {
 var _ json.Unmarshaler = &FabricProperties{}
 
 func (s *FabricProperties) UnmarshalJSON(bytes []byte) error {
-	type alias FabricProperties
-	var decoded alias
+	var decoded struct {
+		BcdrState                 *string            `json:"bcdrState,omitempty"`
+		EncryptionDetails         *EncryptionDetails `json:"encryptionDetails,omitempty"`
+		FriendlyName              *string            `json:"friendlyName,omitempty"`
+		Health                    *string            `json:"health,omitempty"`
+		HealthErrorDetails        *[]HealthError     `json:"healthErrorDetails,omitempty"`
+		InternalIdentifier        *string            `json:"internalIdentifier,omitempty"`
+		RolloverEncryptionDetails *EncryptionDetails `json:"rolloverEncryptionDetails,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into FabricProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BcdrState = decoded.BcdrState
@@ -48,5 +55,6 @@ func (s *FabricProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CustomDetails = impl
 	}
+
 	return nil
 }

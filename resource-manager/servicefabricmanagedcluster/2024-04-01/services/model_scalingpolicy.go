@@ -37,5 +37,6 @@ func (s *ScalingPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ScalingTrigger = impl
 	}
+
 	return nil
 }

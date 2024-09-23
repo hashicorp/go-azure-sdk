@@ -59,19 +59,26 @@ func (s SingleServerConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SingleServerConfiguration{}
 
 func (s *SingleServerConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias SingleServerConfiguration
-	var decoded alias
+	var decoded struct {
+		DatabaseType                *SAPDatabaseType            `json:"databaseType,omitempty"`
+		DbDiskConfiguration         *DiskConfiguration          `json:"dbDiskConfiguration,omitempty"`
+		NetworkConfiguration        *NetworkConfiguration       `json:"networkConfiguration,omitempty"`
+		SubnetId                    string                      `json:"subnetId"`
+		VirtualMachineConfiguration VirtualMachineConfiguration `json:"virtualMachineConfiguration"`
+		AppResourceGroup            string                      `json:"appResourceGroup"`
+		DeploymentType              SAPDeploymentType           `json:"deploymentType"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SingleServerConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.AppResourceGroup = decoded.AppResourceGroup
 	s.DatabaseType = decoded.DatabaseType
 	s.DbDiskConfiguration = decoded.DbDiskConfiguration
-	s.DeploymentType = decoded.DeploymentType
 	s.NetworkConfiguration = decoded.NetworkConfiguration
 	s.SubnetId = decoded.SubnetId
 	s.VirtualMachineConfiguration = decoded.VirtualMachineConfiguration
+	s.AppResourceGroup = decoded.AppResourceGroup
+	s.DeploymentType = decoded.DeploymentType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -85,5 +92,6 @@ func (s *SingleServerConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CustomResourceNames = impl
 	}
+
 	return nil
 }

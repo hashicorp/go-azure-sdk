@@ -21,10 +21,16 @@ type AzureBlobDatasetTypeProperties struct {
 var _ json.Unmarshaler = &AzureBlobDatasetTypeProperties{}
 
 func (s *AzureBlobDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureBlobDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		Compression           *DatasetCompression `json:"compression,omitempty"`
+		FileName              *string             `json:"fileName,omitempty"`
+		FolderPath            *string             `json:"folderPath,omitempty"`
+		ModifiedDatetimeEnd   *string             `json:"modifiedDatetimeEnd,omitempty"`
+		ModifiedDatetimeStart *string             `json:"modifiedDatetimeStart,omitempty"`
+		TableRootLocation     *string             `json:"tableRootLocation,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureBlobDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Compression = decoded.Compression
@@ -46,5 +52,6 @@ func (s *AzureBlobDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Format = impl
 	}
+
 	return nil
 }

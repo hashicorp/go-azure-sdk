@@ -33,10 +33,28 @@ type AzureDatabricksLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureDatabricksLinkedServiceTypeProperties{}
 
 func (s *AzureDatabricksLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureDatabricksLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		Authentication              *string              `json:"authentication,omitempty"`
+		Credential                  *CredentialReference `json:"credential,omitempty"`
+		Domain                      string               `json:"domain"`
+		EncryptedCredential         *string              `json:"encryptedCredential,omitempty"`
+		ExistingClusterId           *string              `json:"existingClusterId,omitempty"`
+		InstancePoolId              *string              `json:"instancePoolId,omitempty"`
+		NewClusterCustomTags        *map[string]string   `json:"newClusterCustomTags,omitempty"`
+		NewClusterDriverNodeType    *string              `json:"newClusterDriverNodeType,omitempty"`
+		NewClusterEnableElasticDisk *bool                `json:"newClusterEnableElasticDisk,omitempty"`
+		NewClusterInitScripts       *[]string            `json:"newClusterInitScripts,omitempty"`
+		NewClusterLogDestination    *string              `json:"newClusterLogDestination,omitempty"`
+		NewClusterNodeType          *string              `json:"newClusterNodeType,omitempty"`
+		NewClusterNumOfWorker       *string              `json:"newClusterNumOfWorker,omitempty"`
+		NewClusterSparkConf         *map[string]string   `json:"newClusterSparkConf,omitempty"`
+		NewClusterSparkEnvVars      *map[string]string   `json:"newClusterSparkEnvVars,omitempty"`
+		NewClusterVersion           *string              `json:"newClusterVersion,omitempty"`
+		PolicyId                    *string              `json:"policyId,omitempty"`
+		WorkspaceResourceId         *string              `json:"workspaceResourceId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureDatabricksLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Authentication = decoded.Authentication
@@ -70,5 +88,6 @@ func (s *AzureDatabricksLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte)
 		}
 		s.AccessToken = impl
 	}
+
 	return nil
 }

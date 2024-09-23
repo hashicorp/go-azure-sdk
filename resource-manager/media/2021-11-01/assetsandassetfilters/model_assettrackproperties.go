@@ -16,10 +16,11 @@ type AssetTrackProperties struct {
 var _ json.Unmarshaler = &AssetTrackProperties{}
 
 func (s *AssetTrackProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AssetTrackProperties
-	var decoded alias
+	var decoded struct {
+		ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AssetTrackProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ProvisioningState = decoded.ProvisioningState
@@ -36,5 +37,6 @@ func (s *AssetTrackProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Track = impl
 	}
+
 	return nil
 }

@@ -28,5 +28,6 @@ func (s *ServiceResourceCreateUpdateParameters) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

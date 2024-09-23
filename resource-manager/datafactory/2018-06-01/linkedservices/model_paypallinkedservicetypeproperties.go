@@ -21,10 +21,16 @@ type PaypalLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &PaypalLinkedServiceTypeProperties{}
 
 func (s *PaypalLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias PaypalLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ClientId              string  `json:"clientId"`
+		EncryptedCredential   *string `json:"encryptedCredential,omitempty"`
+		Host                  string  `json:"host"`
+		UseEncryptedEndpoints *bool   `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool   `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool   `json:"usePeerVerification,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PaypalLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClientId = decoded.ClientId
@@ -46,5 +52,6 @@ func (s *PaypalLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ClientSecret = impl
 	}
+
 	return nil
 }

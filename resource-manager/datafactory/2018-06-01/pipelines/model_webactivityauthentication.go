@@ -21,10 +21,15 @@ type WebActivityAuthentication struct {
 var _ json.Unmarshaler = &WebActivityAuthentication{}
 
 func (s *WebActivityAuthentication) UnmarshalJSON(bytes []byte) error {
-	type alias WebActivityAuthentication
-	var decoded alias
+	var decoded struct {
+		Credential *CredentialReference `json:"credential,omitempty"`
+		Resource   *string              `json:"resource,omitempty"`
+		Type       *string              `json:"type,omitempty"`
+		UserTenant *string              `json:"userTenant,omitempty"`
+		Username   *string              `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WebActivityAuthentication: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Credential = decoded.Credential
@@ -53,5 +58,6 @@ func (s *WebActivityAuthentication) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Pfx = impl
 	}
+
 	return nil
 }

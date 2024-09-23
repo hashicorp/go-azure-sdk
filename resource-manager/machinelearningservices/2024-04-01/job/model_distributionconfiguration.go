@@ -48,9 +48,9 @@ func UnmarshalDistributionConfigurationImplementation(input []byte) (Distributio
 		return nil, fmt.Errorf("unmarshaling DistributionConfiguration into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["distributionType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["distributionType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Mpi") {

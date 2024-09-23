@@ -16,10 +16,11 @@ type IntegrationRuntimeStatusResponse struct {
 var _ json.Unmarshaler = &IntegrationRuntimeStatusResponse{}
 
 func (s *IntegrationRuntimeStatusResponse) UnmarshalJSON(bytes []byte) error {
-	type alias IntegrationRuntimeStatusResponse
-	var decoded alias
+	var decoded struct {
+		Name *string `json:"name,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IntegrationRuntimeStatusResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Name = decoded.Name
@@ -36,5 +37,6 @@ func (s *IntegrationRuntimeStatusResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

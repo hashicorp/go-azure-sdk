@@ -53,10 +53,20 @@ func (o *ASRTask) SetStartTimeAsTime(input time.Time) {
 var _ json.Unmarshaler = &ASRTask{}
 
 func (s *ASRTask) UnmarshalJSON(bytes []byte) error {
-	type alias ASRTask
-	var decoded alias
+	var decoded struct {
+		AllowedActions   *[]string          `json:"allowedActions,omitempty"`
+		EndTime          *string            `json:"endTime,omitempty"`
+		Errors           *[]JobErrorDetails `json:"errors,omitempty"`
+		FriendlyName     *string            `json:"friendlyName,omitempty"`
+		Name             *string            `json:"name,omitempty"`
+		StartTime        *string            `json:"startTime,omitempty"`
+		State            *string            `json:"state,omitempty"`
+		StateDescription *string            `json:"stateDescription,omitempty"`
+		TaskId           *string            `json:"taskId,omitempty"`
+		TaskType         *string            `json:"taskType,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ASRTask: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowedActions = decoded.AllowedActions
@@ -90,5 +100,6 @@ func (s *ASRTask) UnmarshalJSON(bytes []byte) error {
 		}
 		s.GroupTaskCustomDetails = impl
 	}
+
 	return nil
 }

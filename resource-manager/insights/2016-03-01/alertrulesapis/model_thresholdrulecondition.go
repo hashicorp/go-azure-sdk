@@ -57,17 +57,22 @@ func (s ThresholdRuleCondition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ThresholdRuleCondition{}
 
 func (s *ThresholdRuleCondition) UnmarshalJSON(bytes []byte) error {
-	type alias ThresholdRuleCondition
-	var decoded alias
+	var decoded struct {
+		Operator        ConditionOperator        `json:"operator"`
+		Threshold       float64                  `json:"threshold"`
+		TimeAggregation *TimeAggregationOperator `json:"timeAggregation,omitempty"`
+		WindowSize      *string                  `json:"windowSize,omitempty"`
+		OdataType       string                   `json:"odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ThresholdRuleCondition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.OdataType = decoded.OdataType
 	s.Operator = decoded.Operator
 	s.Threshold = decoded.Threshold
 	s.TimeAggregation = decoded.TimeAggregation
 	s.WindowSize = decoded.WindowSize
+	s.OdataType = decoded.OdataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -81,5 +86,6 @@ func (s *ThresholdRuleCondition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DataSource = impl
 	}
+
 	return nil
 }

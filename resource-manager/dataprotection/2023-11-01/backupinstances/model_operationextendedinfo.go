@@ -48,9 +48,9 @@ func UnmarshalOperationExtendedInfoImplementation(input []byte) (OperationExtend
 		return nil, fmt.Errorf("unmarshaling OperationExtendedInfo into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["objectType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "OperationJobExtendedInfo") {

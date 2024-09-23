@@ -80,12 +80,30 @@ func (s PipelineJob) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PipelineJob{}
 
 func (s *PipelineJob) UnmarshalJSON(bytes []byte) error {
-	type alias PipelineJob
-	var decoded alias
+	var decoded struct {
+		Jobs                *map[string]interface{} `json:"jobs,omitempty"`
+		Settings            *interface{}            `json:"settings,omitempty"`
+		SourceJobId         *string                 `json:"sourceJobId,omitempty"`
+		ComponentId         *string                 `json:"componentId,omitempty"`
+		ComputeId           *string                 `json:"computeId,omitempty"`
+		Description         *string                 `json:"description,omitempty"`
+		DisplayName         *string                 `json:"displayName,omitempty"`
+		ExperimentName      *string                 `json:"experimentName,omitempty"`
+		IsArchived          *bool                   `json:"isArchived,omitempty"`
+		JobType             JobType                 `json:"jobType"`
+		NotificationSetting *NotificationSetting    `json:"notificationSetting,omitempty"`
+		Properties          *map[string]string      `json:"properties,omitempty"`
+		Services            *map[string]JobService  `json:"services,omitempty"`
+		Status              *JobStatus              `json:"status,omitempty"`
+		Tags                *map[string]string      `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PipelineJob: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Jobs = decoded.Jobs
+	s.Settings = decoded.Settings
+	s.SourceJobId = decoded.SourceJobId
 	s.ComponentId = decoded.ComponentId
 	s.ComputeId = decoded.ComputeId
 	s.Description = decoded.Description
@@ -93,12 +111,9 @@ func (s *PipelineJob) UnmarshalJSON(bytes []byte) error {
 	s.ExperimentName = decoded.ExperimentName
 	s.IsArchived = decoded.IsArchived
 	s.JobType = decoded.JobType
-	s.Jobs = decoded.Jobs
 	s.NotificationSetting = decoded.NotificationSetting
 	s.Properties = decoded.Properties
 	s.Services = decoded.Services
-	s.Settings = decoded.Settings
-	s.SourceJobId = decoded.SourceJobId
 	s.Status = decoded.Status
 	s.Tags = decoded.Tags
 
@@ -148,5 +163,6 @@ func (s *PipelineJob) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Outputs = &output
 	}
+
 	return nil
 }

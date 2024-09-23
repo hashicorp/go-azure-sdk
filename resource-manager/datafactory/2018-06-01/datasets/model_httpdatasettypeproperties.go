@@ -20,10 +20,15 @@ type HTTPDatasetTypeProperties struct {
 var _ json.Unmarshaler = &HTTPDatasetTypeProperties{}
 
 func (s *HTTPDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias HTTPDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		AdditionalHeaders *string             `json:"additionalHeaders,omitempty"`
+		Compression       *DatasetCompression `json:"compression,omitempty"`
+		RelativeUrl       *string             `json:"relativeUrl,omitempty"`
+		RequestBody       *string             `json:"requestBody,omitempty"`
+		RequestMethod     *string             `json:"requestMethod,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into HTTPDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalHeaders = decoded.AdditionalHeaders
@@ -44,5 +49,6 @@ func (s *HTTPDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Format = impl
 	}
+
 	return nil
 }

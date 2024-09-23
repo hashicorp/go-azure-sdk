@@ -16,10 +16,11 @@ type DeliveryWithResourceIdentity struct {
 var _ json.Unmarshaler = &DeliveryWithResourceIdentity{}
 
 func (s *DeliveryWithResourceIdentity) UnmarshalJSON(bytes []byte) error {
-	type alias DeliveryWithResourceIdentity
-	var decoded alias
+	var decoded struct {
+		Identity *EventSubscriptionIdentity `json:"identity,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeliveryWithResourceIdentity: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Identity = decoded.Identity
@@ -36,5 +37,6 @@ func (s *DeliveryWithResourceIdentity) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Destination = impl
 	}
+
 	return nil
 }

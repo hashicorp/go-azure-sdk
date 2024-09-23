@@ -26,10 +26,21 @@ type BackupInstance struct {
 var _ json.Unmarshaler = &BackupInstance{}
 
 func (s *BackupInstance) UnmarshalJSON(bytes []byte) error {
-	type alias BackupInstance
-	var decoded alias
+	var decoded struct {
+		CurrentProtectionState *CurrentProtectionState  `json:"currentProtectionState,omitempty"`
+		DataSourceInfo         Datasource               `json:"dataSourceInfo"`
+		DataSourceSetInfo      *DatasourceSet           `json:"dataSourceSetInfo,omitempty"`
+		FriendlyName           *string                  `json:"friendlyName,omitempty"`
+		IdentityDetails        *IdentityDetails         `json:"identityDetails,omitempty"`
+		ObjectType             string                   `json:"objectType"`
+		PolicyInfo             PolicyInfo               `json:"policyInfo"`
+		ProtectionErrorDetails *UserFacingError         `json:"protectionErrorDetails,omitempty"`
+		ProtectionStatus       *ProtectionStatusDetails `json:"protectionStatus,omitempty"`
+		ProvisioningState      *string                  `json:"provisioningState,omitempty"`
+		ValidationType         *ValidationType          `json:"validationType,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BackupInstance: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CurrentProtectionState = decoded.CurrentProtectionState
@@ -56,5 +67,6 @@ func (s *BackupInstance) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DatasourceAuthCredentials = impl
 	}
+
 	return nil
 }

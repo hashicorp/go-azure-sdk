@@ -30,10 +30,22 @@ type GoogleAdWordsLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &GoogleAdWordsLinkedServiceTypeProperties{}
 
 func (s *GoogleAdWordsLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias GoogleAdWordsLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType     *GoogleAdWordsAuthenticationType `json:"authenticationType,omitempty"`
+		ClientCustomerID       *string                          `json:"clientCustomerID,omitempty"`
+		ClientId               *string                          `json:"clientId,omitempty"`
+		ConnectionProperties   *interface{}                     `json:"connectionProperties,omitempty"`
+		Email                  *string                          `json:"email,omitempty"`
+		EncryptedCredential    *string                          `json:"encryptedCredential,omitempty"`
+		GoogleAdsApiVersion    *string                          `json:"googleAdsApiVersion,omitempty"`
+		KeyFilePath            *string                          `json:"keyFilePath,omitempty"`
+		LoginCustomerID        *string                          `json:"loginCustomerID,omitempty"`
+		SupportLegacyDataTypes *bool                            `json:"supportLegacyDataTypes,omitempty"`
+		TrustedCertPath        *string                          `json:"trustedCertPath,omitempty"`
+		UseSystemTrustStore    *bool                            `json:"useSystemTrustStore,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GoogleAdWordsLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -85,5 +97,6 @@ func (s *GoogleAdWordsLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) e
 		}
 		s.RefreshToken = impl
 	}
+
 	return nil
 }

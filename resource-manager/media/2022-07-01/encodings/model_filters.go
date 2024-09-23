@@ -20,10 +20,15 @@ type Filters struct {
 var _ json.Unmarshaler = &Filters{}
 
 func (s *Filters) UnmarshalJSON(bytes []byte) error {
-	type alias Filters
-	var decoded alias
+	var decoded struct {
+		Crop        *Rectangle   `json:"crop,omitempty"`
+		Deinterlace *Deinterlace `json:"deinterlace,omitempty"`
+		FadeIn      *Fade        `json:"fadeIn,omitempty"`
+		FadeOut     *Fade        `json:"fadeOut,omitempty"`
+		Rotation    *Rotation    `json:"rotation,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Filters: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Crop = decoded.Crop
@@ -53,5 +58,6 @@ func (s *Filters) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Overlays = &output
 	}
+
 	return nil
 }

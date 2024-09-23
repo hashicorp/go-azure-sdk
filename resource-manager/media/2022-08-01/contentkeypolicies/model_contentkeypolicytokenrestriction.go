@@ -58,18 +58,24 @@ func (s ContentKeyPolicyTokenRestriction) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ContentKeyPolicyTokenRestriction{}
 
 func (s *ContentKeyPolicyTokenRestriction) UnmarshalJSON(bytes []byte) error {
-	type alias ContentKeyPolicyTokenRestriction
-	var decoded alias
+	var decoded struct {
+		Audience                       string                               `json:"audience"`
+		Issuer                         string                               `json:"issuer"`
+		OpenIdConnectDiscoveryDocument *string                              `json:"openIdConnectDiscoveryDocument,omitempty"`
+		RequiredClaims                 *[]ContentKeyPolicyTokenClaim        `json:"requiredClaims,omitempty"`
+		RestrictionTokenType           ContentKeyPolicyRestrictionTokenType `json:"restrictionTokenType"`
+		OdataType                      string                               `json:"@odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ContentKeyPolicyTokenRestriction: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Audience = decoded.Audience
 	s.Issuer = decoded.Issuer
-	s.OdataType = decoded.OdataType
 	s.OpenIdConnectDiscoveryDocument = decoded.OpenIdConnectDiscoveryDocument
 	s.RequiredClaims = decoded.RequiredClaims
 	s.RestrictionTokenType = decoded.RestrictionTokenType
+	s.OdataType = decoded.OdataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -100,5 +106,6 @@ func (s *ContentKeyPolicyTokenRestriction) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PrimaryVerificationKey = impl
 	}
+
 	return nil
 }

@@ -50,9 +50,9 @@ func UnmarshalEarlyTerminationPolicyImplementation(input []byte) (EarlyTerminati
 		return nil, fmt.Errorf("unmarshaling EarlyTerminationPolicy into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["policyType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["policyType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Bandit") {

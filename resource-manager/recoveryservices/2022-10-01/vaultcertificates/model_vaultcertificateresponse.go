@@ -18,10 +18,13 @@ type VaultCertificateResponse struct {
 var _ json.Unmarshaler = &VaultCertificateResponse{}
 
 func (s *VaultCertificateResponse) UnmarshalJSON(bytes []byte) error {
-	type alias VaultCertificateResponse
-	var decoded alias
+	var decoded struct {
+		Id   *string `json:"id,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Type *string `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VaultCertificateResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -40,5 +43,6 @@ func (s *VaultCertificateResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

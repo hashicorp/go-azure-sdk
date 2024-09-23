@@ -22,10 +22,17 @@ type Dataset struct {
 var _ json.Unmarshaler = &Dataset{}
 
 func (s *Dataset) UnmarshalJSON(bytes []byte) error {
-	type alias Dataset
-	var decoded alias
+	var decoded struct {
+		Annotations *[]interface{}                     `json:"annotations,omitempty"`
+		Description *string                            `json:"description,omitempty"`
+		Folder      *DatasetFolder                     `json:"folder,omitempty"`
+		Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
+		Schema      *interface{}                       `json:"schema,omitempty"`
+		Structure   *interface{}                       `json:"structure,omitempty"`
+		Type        string                             `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Dataset: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Annotations = decoded.Annotations
@@ -48,5 +55,6 @@ func (s *Dataset) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LinkedServiceName = impl
 	}
+
 	return nil
 }

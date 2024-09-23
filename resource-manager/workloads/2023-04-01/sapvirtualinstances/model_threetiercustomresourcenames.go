@@ -48,9 +48,9 @@ func UnmarshalThreeTierCustomResourceNamesImplementation(input []byte) (ThreeTie
 		return nil, fmt.Errorf("unmarshaling ThreeTierCustomResourceNames into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["namingPatternType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["namingPatternType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "FullResourceName") {

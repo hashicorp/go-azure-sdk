@@ -18,10 +18,13 @@ type SapCloudForCustomerLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &SapCloudForCustomerLinkedServiceTypeProperties{}
 
 func (s *SapCloudForCustomerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SapCloudForCustomerLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		Url                 string  `json:"url"`
+		Username            *string `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SapCloudForCustomerLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -40,5 +43,6 @@ func (s *SapCloudForCustomerLinkedServiceTypeProperties) UnmarshalJSON(bytes []b
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

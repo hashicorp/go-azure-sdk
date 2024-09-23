@@ -16,10 +16,11 @@ type RoutingEnrichments struct {
 var _ json.Unmarshaler = &RoutingEnrichments{}
 
 func (s *RoutingEnrichments) UnmarshalJSON(bytes []byte) error {
-	type alias RoutingEnrichments
-	var decoded alias
+	var decoded struct {
+		Dynamic *[]DynamicRoutingEnrichment `json:"dynamic,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RoutingEnrichments: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Dynamic = decoded.Dynamic
@@ -45,5 +46,6 @@ func (s *RoutingEnrichments) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Static = &output
 	}
+
 	return nil
 }

@@ -21,10 +21,16 @@ type JobService struct {
 var _ json.Unmarshaler = &JobService{}
 
 func (s *JobService) UnmarshalJSON(bytes []byte) error {
-	type alias JobService
-	var decoded alias
+	var decoded struct {
+		Endpoint       *string            `json:"endpoint,omitempty"`
+		ErrorMessage   *string            `json:"errorMessage,omitempty"`
+		JobServiceType *string            `json:"jobServiceType,omitempty"`
+		Port           *int64             `json:"port,omitempty"`
+		Properties     *map[string]string `json:"properties,omitempty"`
+		Status         *string            `json:"status,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JobService: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Endpoint = decoded.Endpoint
@@ -46,5 +52,6 @@ func (s *JobService) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Nodes = impl
 	}
+
 	return nil
 }

@@ -19,10 +19,13 @@ type RuleUpdatePropertiesParameters struct {
 var _ json.Unmarshaler = &RuleUpdatePropertiesParameters{}
 
 func (s *RuleUpdatePropertiesParameters) UnmarshalJSON(bytes []byte) error {
-	type alias RuleUpdatePropertiesParameters
-	var decoded alias
+	var decoded struct {
+		MatchProcessingBehavior *MatchProcessingBehavior `json:"matchProcessingBehavior,omitempty"`
+		Order                   *int64                   `json:"order,omitempty"`
+		RuleSetName             *string                  `json:"ruleSetName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RuleUpdatePropertiesParameters: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.MatchProcessingBehavior = decoded.MatchProcessingBehavior
@@ -67,5 +70,6 @@ func (s *RuleUpdatePropertiesParameters) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Conditions = &output
 	}
+
 	return nil
 }
