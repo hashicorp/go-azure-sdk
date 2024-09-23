@@ -1,0 +1,26 @@
+package permissionsanalyticgcppermissionscreepindexdistribution
+
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PermissionsAnalyticGcpPermissionsCreepIndexDistributionClient struct {
+	Client *msgraph.Client
+}
+
+func NewPermissionsAnalyticGcpPermissionsCreepIndexDistributionClientWithBaseURI(sdkApi sdkEnv.Api) (*PermissionsAnalyticGcpPermissionsCreepIndexDistributionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "permissionsanalyticgcppermissionscreepindexdistribution", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PermissionsAnalyticGcpPermissionsCreepIndexDistributionClient: %+v", err)
+	}
+
+	return &PermissionsAnalyticGcpPermissionsCreepIndexDistributionClient{
+		Client: client,
+	}, nil
+}

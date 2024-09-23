@@ -1,0 +1,82 @@
+package joinedteamoperation
+
+import (
+	"context"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UpdateJoinedTeamOperationOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+}
+
+type UpdateJoinedTeamOperationOperationOptions struct {
+	Metadata  *odata.Metadata
+	RetryFunc client.RequestRetryFunc
+}
+
+func DefaultUpdateJoinedTeamOperationOperationOptions() UpdateJoinedTeamOperationOperationOptions {
+	return UpdateJoinedTeamOperationOperationOptions{}
+}
+
+func (o UpdateJoinedTeamOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// UpdateJoinedTeamOperation - Update the navigation property operations in me
+func (c JoinedTeamOperationClient) UpdateJoinedTeamOperation(ctx context.Context, id stable.MeJoinedTeamIdOperationId, input stable.TeamsAsyncOperation, options UpdateJoinedTeamOperationOperationOptions) (result UpdateJoinedTeamOperationOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusNoContent,
+		},
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
+		RetryFunc:     options.RetryFunc,
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	if err = req.Marshal(input); err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.Execute(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	return
+}
