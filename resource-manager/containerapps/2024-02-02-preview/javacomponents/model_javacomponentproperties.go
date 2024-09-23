@@ -51,9 +51,9 @@ func UnmarshalJavaComponentPropertiesImplementation(input []byte) (JavaComponent
 		return nil, fmt.Errorf("unmarshaling JavaComponentProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["componentType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["componentType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Nacos") {

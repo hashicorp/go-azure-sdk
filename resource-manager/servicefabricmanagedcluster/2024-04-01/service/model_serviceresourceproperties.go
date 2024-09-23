@@ -52,10 +52,20 @@ func (s RawServiceResourcePropertiesImpl) ServiceResourceProperties() BaseServic
 var _ json.Unmarshaler = &BaseServiceResourcePropertiesImpl{}
 
 func (s *BaseServiceResourcePropertiesImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseServiceResourcePropertiesImpl
-	var decoded alias
+	var decoded struct {
+		CorrelationScheme            *[]ServiceCorrelation         `json:"correlationScheme,omitempty"`
+		DefaultMoveCost              *MoveCost                     `json:"defaultMoveCost,omitempty"`
+		PlacementConstraints         *string                       `json:"placementConstraints,omitempty"`
+		ProvisioningState            *string                       `json:"provisioningState,omitempty"`
+		ScalingPolicies              *[]ScalingPolicy              `json:"scalingPolicies,omitempty"`
+		ServiceDnsName               *string                       `json:"serviceDnsName,omitempty"`
+		ServiceKind                  ServiceKind                   `json:"serviceKind"`
+		ServiceLoadMetrics           *[]ServiceLoadMetric          `json:"serviceLoadMetrics,omitempty"`
+		ServicePackageActivationMode *ServicePackageActivationMode `json:"servicePackageActivationMode,omitempty"`
+		ServiceTypeName              string                        `json:"serviceTypeName"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseServiceResourcePropertiesImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CorrelationScheme = decoded.CorrelationScheme
@@ -98,6 +108,7 @@ func (s *BaseServiceResourcePropertiesImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ServicePlacementPolicies = &output
 	}
+
 	return nil
 }
 
@@ -111,9 +122,9 @@ func UnmarshalServiceResourcePropertiesImplementation(input []byte) (ServiceReso
 		return nil, fmt.Errorf("unmarshaling ServiceResourceProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["serviceKind"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["serviceKind"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Stateful") {

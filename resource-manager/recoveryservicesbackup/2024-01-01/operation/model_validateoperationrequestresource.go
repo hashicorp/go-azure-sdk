@@ -16,10 +16,11 @@ type ValidateOperationRequestResource struct {
 var _ json.Unmarshaler = &ValidateOperationRequestResource{}
 
 func (s *ValidateOperationRequestResource) UnmarshalJSON(bytes []byte) error {
-	type alias ValidateOperationRequestResource
-	var decoded alias
+	var decoded struct {
+		Id string `json:"id"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ValidateOperationRequestResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -36,5 +37,6 @@ func (s *ValidateOperationRequestResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

@@ -46,10 +46,40 @@ type AzureSqlDatabaseLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureSqlDatabaseLinkedServiceTypeProperties{}
 
 func (s *AzureSqlDatabaseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureSqlDatabaseLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AlwaysEncryptedSettings        *SqlAlwaysEncryptedProperties       `json:"alwaysEncryptedSettings,omitempty"`
+		ApplicationIntent              *string                             `json:"applicationIntent,omitempty"`
+		AuthenticationType             *AzureSqlDatabaseAuthenticationType `json:"authenticationType,omitempty"`
+		AzureCloudType                 *string                             `json:"azureCloudType,omitempty"`
+		CommandTimeout                 *int64                              `json:"commandTimeout,omitempty"`
+		ConnectRetryCount              *int64                              `json:"connectRetryCount,omitempty"`
+		ConnectRetryInterval           *int64                              `json:"connectRetryInterval,omitempty"`
+		ConnectTimeout                 *int64                              `json:"connectTimeout,omitempty"`
+		ConnectionString               *string                             `json:"connectionString,omitempty"`
+		Credential                     *CredentialReference                `json:"credential,omitempty"`
+		Database                       *string                             `json:"database,omitempty"`
+		Encrypt                        *string                             `json:"encrypt,omitempty"`
+		EncryptedCredential            *string                             `json:"encryptedCredential,omitempty"`
+		FailoverPartner                *string                             `json:"failoverPartner,omitempty"`
+		HostNameInCertificate          *string                             `json:"hostNameInCertificate,omitempty"`
+		IntegratedSecurity             *bool                               `json:"integratedSecurity,omitempty"`
+		LoadBalanceTimeout             *int64                              `json:"loadBalanceTimeout,omitempty"`
+		MaxPoolSize                    *int64                              `json:"maxPoolSize,omitempty"`
+		MinPoolSize                    *int64                              `json:"minPoolSize,omitempty"`
+		MultiSubnetFailover            *bool                               `json:"multiSubnetFailover,omitempty"`
+		MultipleActiveResultSets       *bool                               `json:"multipleActiveResultSets,omitempty"`
+		PacketSize                     *int64                              `json:"packetSize,omitempty"`
+		Password                       *AzureKeyVaultSecretReference       `json:"password,omitempty"`
+		Pooling                        *bool                               `json:"pooling,omitempty"`
+		Server                         *string                             `json:"server,omitempty"`
+		ServicePrincipalCredentialType *string                             `json:"servicePrincipalCredentialType,omitempty"`
+		ServicePrincipalId             *string                             `json:"servicePrincipalId,omitempty"`
+		Tenant                         *string                             `json:"tenant,omitempty"`
+		TrustServerCertificate         *bool                               `json:"trustServerCertificate,omitempty"`
+		UserName                       *string                             `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureSqlDatabaseLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AlwaysEncryptedSettings = decoded.AlwaysEncryptedSettings
@@ -103,5 +133,6 @@ func (s *AzureSqlDatabaseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

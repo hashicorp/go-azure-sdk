@@ -26,10 +26,20 @@ type CosmosDbLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &CosmosDbLinkedServiceTypeProperties{}
 
 func (s *CosmosDbLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias CosmosDbLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccountEndpoint                *string                 `json:"accountEndpoint,omitempty"`
+		AzureCloudType                 *string                 `json:"azureCloudType,omitempty"`
+		ConnectionMode                 *CosmosDbConnectionMode `json:"connectionMode,omitempty"`
+		ConnectionString               *string                 `json:"connectionString,omitempty"`
+		Credential                     *CredentialReference    `json:"credential,omitempty"`
+		Database                       *string                 `json:"database,omitempty"`
+		EncryptedCredential            *string                 `json:"encryptedCredential,omitempty"`
+		ServicePrincipalCredentialType *string                 `json:"servicePrincipalCredentialType,omitempty"`
+		ServicePrincipalId             *string                 `json:"servicePrincipalId,omitempty"`
+		Tenant                         *string                 `json:"tenant,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CosmosDbLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountEndpoint = decoded.AccountEndpoint
@@ -63,5 +73,6 @@ func (s *CosmosDbLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error 
 		}
 		s.ServicePrincipalCredential = impl
 	}
+
 	return nil
 }

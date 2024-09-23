@@ -48,9 +48,9 @@ func UnmarshalRecoveryVirtualNetworkCustomDetailsImplementation(input []byte) (R
 		return nil, fmt.Errorf("unmarshaling RecoveryVirtualNetworkCustomDetails into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["resourceType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["resourceType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Existing") {

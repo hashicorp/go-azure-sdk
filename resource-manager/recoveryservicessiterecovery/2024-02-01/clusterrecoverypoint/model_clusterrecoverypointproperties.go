@@ -32,10 +32,12 @@ func (o *ClusterRecoveryPointProperties) SetRecoveryPointTimeAsTime(input time.T
 var _ json.Unmarshaler = &ClusterRecoveryPointProperties{}
 
 func (s *ClusterRecoveryPointProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ClusterRecoveryPointProperties
-	var decoded alias
+	var decoded struct {
+		RecoveryPointTime *string                   `json:"recoveryPointTime,omitempty"`
+		RecoveryPointType *ClusterRecoveryPointType `json:"recoveryPointType,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ClusterRecoveryPointProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.RecoveryPointTime = decoded.RecoveryPointTime
@@ -53,5 +55,6 @@ func (s *ClusterRecoveryPointProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

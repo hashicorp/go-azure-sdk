@@ -21,10 +21,16 @@ type MarketoLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &MarketoLinkedServiceTypeProperties{}
 
 func (s *MarketoLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias MarketoLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ClientId              string  `json:"clientId"`
+		EncryptedCredential   *string `json:"encryptedCredential,omitempty"`
+		Endpoint              string  `json:"endpoint"`
+		UseEncryptedEndpoints *bool   `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool   `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool   `json:"usePeerVerification,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MarketoLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClientId = decoded.ClientId
@@ -46,5 +52,6 @@ func (s *MarketoLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ClientSecret = impl
 	}
+
 	return nil
 }

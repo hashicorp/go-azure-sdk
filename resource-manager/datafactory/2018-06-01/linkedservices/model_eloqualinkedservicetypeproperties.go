@@ -21,10 +21,16 @@ type EloquaLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &EloquaLinkedServiceTypeProperties{}
 
 func (s *EloquaLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias EloquaLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential   *string `json:"encryptedCredential,omitempty"`
+		Endpoint              string  `json:"endpoint"`
+		UseEncryptedEndpoints *bool   `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool   `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool   `json:"usePeerVerification,omitempty"`
+		Username              string  `json:"username"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EloquaLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -46,5 +52,6 @@ func (s *EloquaLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

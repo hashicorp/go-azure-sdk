@@ -48,9 +48,9 @@ func UnmarshalOSConfigurationImplementation(input []byte) (OSConfiguration, erro
 		return nil, fmt.Errorf("unmarshaling OSConfiguration into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["osType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["osType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Linux") {

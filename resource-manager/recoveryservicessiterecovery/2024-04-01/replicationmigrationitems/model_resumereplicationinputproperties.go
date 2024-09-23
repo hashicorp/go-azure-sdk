@@ -28,5 +28,6 @@ func (s *ResumeReplicationInputProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

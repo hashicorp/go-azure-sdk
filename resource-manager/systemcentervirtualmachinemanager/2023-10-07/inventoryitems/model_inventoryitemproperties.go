@@ -52,9 +52,9 @@ func UnmarshalInventoryItemPropertiesImplementation(input []byte) (InventoryItem
 		return nil, fmt.Errorf("unmarshaling InventoryItemProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["inventoryType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["inventoryType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Cloud") {

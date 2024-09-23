@@ -48,9 +48,9 @@ func UnmarshalPendingUploadCredentialDtoImplementation(input []byte) (PendingUpl
 		return nil, fmt.Errorf("unmarshaling PendingUploadCredentialDto into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["credentialType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["credentialType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "SAS") {

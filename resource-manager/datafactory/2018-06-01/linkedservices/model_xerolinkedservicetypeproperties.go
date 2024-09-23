@@ -22,10 +22,16 @@ type XeroLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &XeroLinkedServiceTypeProperties{}
 
 func (s *XeroLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias XeroLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
+		EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
+		Host                  *string      `json:"host,omitempty"`
+		UseEncryptedEndpoints *bool        `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool        `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool        `json:"usePeerVerification,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into XeroLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ConnectionProperties = decoded.ConnectionProperties
@@ -55,5 +61,6 @@ func (s *XeroLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PrivateKey = impl
 	}
+
 	return nil
 }

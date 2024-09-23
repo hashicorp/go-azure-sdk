@@ -27,10 +27,21 @@ type CommonDataServiceForAppsLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &CommonDataServiceForAppsLinkedServiceTypeProperties{}
 
 func (s *CommonDataServiceForAppsLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias CommonDataServiceForAppsLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType             string  `json:"authenticationType"`
+		DeploymentType                 string  `json:"deploymentType"`
+		Domain                         *string `json:"domain,omitempty"`
+		EncryptedCredential            *string `json:"encryptedCredential,omitempty"`
+		HostName                       *string `json:"hostName,omitempty"`
+		OrganizationName               *string `json:"organizationName,omitempty"`
+		Port                           *int64  `json:"port,omitempty"`
+		ServicePrincipalCredentialType *string `json:"servicePrincipalCredentialType,omitempty"`
+		ServicePrincipalId             *string `json:"servicePrincipalId,omitempty"`
+		ServiceUri                     *string `json:"serviceUri,omitempty"`
+		Username                       *string `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CommonDataServiceForAppsLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -65,5 +76,6 @@ func (s *CommonDataServiceForAppsLinkedServiceTypeProperties) UnmarshalJSON(byte
 		}
 		s.ServicePrincipalCredential = impl
 	}
+
 	return nil
 }

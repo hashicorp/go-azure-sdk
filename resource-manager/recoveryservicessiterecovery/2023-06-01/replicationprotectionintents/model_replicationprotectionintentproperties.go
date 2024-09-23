@@ -20,10 +20,15 @@ type ReplicationProtectionIntentProperties struct {
 var _ json.Unmarshaler = &ReplicationProtectionIntentProperties{}
 
 func (s *ReplicationProtectionIntentProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ReplicationProtectionIntentProperties
-	var decoded alias
+	var decoded struct {
+		CreationTimeUTC *string `json:"creationTimeUTC,omitempty"`
+		FriendlyName    *string `json:"friendlyName,omitempty"`
+		IsActive        *bool   `json:"isActive,omitempty"`
+		JobId           *string `json:"jobId,omitempty"`
+		JobState        *string `json:"jobState,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ReplicationProtectionIntentProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreationTimeUTC = decoded.CreationTimeUTC
@@ -44,5 +49,6 @@ func (s *ReplicationProtectionIntentProperties) UnmarshalJSON(bytes []byte) erro
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

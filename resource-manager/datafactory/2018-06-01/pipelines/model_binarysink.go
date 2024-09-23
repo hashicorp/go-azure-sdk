@@ -64,10 +64,17 @@ func (s BinarySink) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BinarySink{}
 
 func (s *BinarySink) UnmarshalJSON(bytes []byte) error {
-	type alias BinarySink
-	var decoded alias
+	var decoded struct {
+		DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
+		MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
+		SinkRetryCount           *int64  `json:"sinkRetryCount,omitempty"`
+		SinkRetryWait            *string `json:"sinkRetryWait,omitempty"`
+		Type                     string  `json:"type"`
+		WriteBatchSize           *int64  `json:"writeBatchSize,omitempty"`
+		WriteBatchTimeout        *string `json:"writeBatchTimeout,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BinarySink: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisableMetricsCollection = decoded.DisableMetricsCollection
@@ -90,5 +97,6 @@ func (s *BinarySink) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StoreSettings = impl
 	}
+
 	return nil
 }

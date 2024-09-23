@@ -37,5 +37,6 @@ func (s *EventListener) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Filter = impl
 	}
+
 	return nil
 }

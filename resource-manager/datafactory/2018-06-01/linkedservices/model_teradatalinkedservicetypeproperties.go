@@ -20,10 +20,15 @@ type TeradataLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &TeradataLinkedServiceTypeProperties{}
 
 func (s *TeradataLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias TeradataLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType  *TeradataAuthenticationType `json:"authenticationType,omitempty"`
+		ConnectionString    *string                     `json:"connectionString,omitempty"`
+		EncryptedCredential *string                     `json:"encryptedCredential,omitempty"`
+		Server              *string                     `json:"server,omitempty"`
+		Username            *string                     `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeradataLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -44,5 +49,6 @@ func (s *TeradataLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error 
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

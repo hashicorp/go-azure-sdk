@@ -18,10 +18,13 @@ type TestFailoverInputProperties struct {
 var _ json.Unmarshaler = &TestFailoverInputProperties{}
 
 func (s *TestFailoverInputProperties) UnmarshalJSON(bytes []byte) error {
-	type alias TestFailoverInputProperties
-	var decoded alias
+	var decoded struct {
+		FailoverDirection *string `json:"failoverDirection,omitempty"`
+		NetworkId         *string `json:"networkId,omitempty"`
+		NetworkType       *string `json:"networkType,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TestFailoverInputProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FailoverDirection = decoded.FailoverDirection
@@ -40,5 +43,6 @@ func (s *TestFailoverInputProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

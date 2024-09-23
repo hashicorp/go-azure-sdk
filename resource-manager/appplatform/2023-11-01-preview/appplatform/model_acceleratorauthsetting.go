@@ -48,9 +48,9 @@ func UnmarshalAcceleratorAuthSettingImplementation(input []byte) (AcceleratorAut
 		return nil, fmt.Errorf("unmarshaling AcceleratorAuthSetting into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["authType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["authType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "BasicAuth") {

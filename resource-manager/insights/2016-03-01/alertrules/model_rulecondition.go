@@ -42,10 +42,11 @@ func (s RawRuleConditionImpl) RuleCondition() BaseRuleConditionImpl {
 var _ json.Unmarshaler = &BaseRuleConditionImpl{}
 
 func (s *BaseRuleConditionImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseRuleConditionImpl
-	var decoded alias
+	var decoded struct {
+		OdataType string `json:"odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseRuleConditionImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.OdataType = decoded.OdataType
@@ -62,6 +63,7 @@ func (s *BaseRuleConditionImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DataSource = impl
 	}
+
 	return nil
 }
 
@@ -75,9 +77,9 @@ func UnmarshalRuleConditionImplementation(input []byte) (RuleCondition, error) {
 		return nil, fmt.Errorf("unmarshaling RuleCondition into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Microsoft.Azure.Management.Insights.Models.LocationThresholdRuleCondition") {

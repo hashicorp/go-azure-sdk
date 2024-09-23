@@ -20,10 +20,14 @@ type MicrosoftAccessLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &MicrosoftAccessLinkedServiceTypeProperties{}
 
 func (s *MicrosoftAccessLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias MicrosoftAccessLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType  *string `json:"authenticationType,omitempty"`
+		ConnectionString    string  `json:"connectionString"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		UserName            *string `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MicrosoftAccessLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -51,5 +55,6 @@ func (s *MicrosoftAccessLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte)
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

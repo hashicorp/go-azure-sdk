@@ -16,10 +16,11 @@ type SmartsheetLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &SmartsheetLinkedServiceTypeProperties{}
 
 func (s *SmartsheetLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SmartsheetLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SmartsheetLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -36,5 +37,6 @@ func (s *SmartsheetLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 		}
 		s.ApiToken = impl
 	}
+
 	return nil
 }

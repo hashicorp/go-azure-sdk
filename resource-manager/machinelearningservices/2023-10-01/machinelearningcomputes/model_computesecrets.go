@@ -48,9 +48,9 @@ func UnmarshalComputeSecretsImplementation(input []byte) (ComputeSecrets, error)
 		return nil, fmt.Errorf("unmarshaling ComputeSecrets into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["computeType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["computeType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AKS") {

@@ -21,10 +21,14 @@ type WorkloadNetworkDhcp struct {
 var _ json.Unmarshaler = &WorkloadNetworkDhcp{}
 
 func (s *WorkloadNetworkDhcp) UnmarshalJSON(bytes []byte) error {
-	type alias WorkloadNetworkDhcp
-	var decoded alias
+	var decoded struct {
+		Id         *string                `json:"id,omitempty"`
+		Name       *string                `json:"name,omitempty"`
+		SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+		Type       *string                `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WorkloadNetworkDhcp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -44,5 +48,6 @@ func (s *WorkloadNetworkDhcp) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

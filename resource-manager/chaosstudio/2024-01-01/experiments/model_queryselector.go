@@ -57,15 +57,19 @@ func (s QuerySelector) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &QuerySelector{}
 
 func (s *QuerySelector) UnmarshalJSON(bytes []byte) error {
-	type alias QuerySelector
-	var decoded alias
+	var decoded struct {
+		QueryString     string       `json:"queryString"`
+		SubscriptionIds []string     `json:"subscriptionIds"`
+		Id              string       `json:"id"`
+		Type            SelectorType `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into QuerySelector: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.QueryString = decoded.QueryString
 	s.SubscriptionIds = decoded.SubscriptionIds
+	s.Id = decoded.Id
 	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
@@ -80,5 +84,6 @@ func (s *QuerySelector) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Filter = impl
 	}
+
 	return nil
 }

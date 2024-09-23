@@ -27,10 +27,19 @@ type SnowflakeLinkedV2ServiceTypeProperties struct {
 var _ json.Unmarshaler = &SnowflakeLinkedV2ServiceTypeProperties{}
 
 func (s *SnowflakeLinkedV2ServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SnowflakeLinkedV2ServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccountIdentifier   string                       `json:"accountIdentifier"`
+		AuthenticationType  *SnowflakeAuthenticationType `json:"authenticationType,omitempty"`
+		ClientId            *string                      `json:"clientId,omitempty"`
+		Database            string                       `json:"database"`
+		EncryptedCredential *string                      `json:"encryptedCredential,omitempty"`
+		Scope               *string                      `json:"scope,omitempty"`
+		TenantId            *string                      `json:"tenantId,omitempty"`
+		User                *string                      `json:"user,omitempty"`
+		Warehouse           string                       `json:"warehouse"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SnowflakeLinkedV2ServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountIdentifier = decoded.AccountIdentifier
@@ -79,5 +88,6 @@ func (s *SnowflakeLinkedV2ServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 		}
 		s.PrivateKeyPassphrase = impl
 	}
+
 	return nil
 }

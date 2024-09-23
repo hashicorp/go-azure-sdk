@@ -55,10 +55,14 @@ func (s JwtAuthentication) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JwtAuthentication{}
 
 func (s *JwtAuthentication) UnmarshalJSON(bytes []byte) error {
-	type alias JwtAuthentication
-	var decoded alias
+	var decoded struct {
+		Audiences *[]string     `json:"audiences,omitempty"`
+		Claims    *[]TokenClaim `json:"claims,omitempty"`
+		Issuers   *[]string     `json:"issuers,omitempty"`
+		Type      string        `json:"@type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JwtAuthentication: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Audiences = decoded.Audiences
@@ -87,5 +91,6 @@ func (s *JwtAuthentication) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Keys = &output
 	}
+
 	return nil
 }

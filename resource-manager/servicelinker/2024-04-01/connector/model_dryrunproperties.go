@@ -18,10 +18,12 @@ type DryrunProperties struct {
 var _ json.Unmarshaler = &DryrunProperties{}
 
 func (s *DryrunProperties) UnmarshalJSON(bytes []byte) error {
-	type alias DryrunProperties
-	var decoded alias
+	var decoded struct {
+		OperationPreviews *[]DryrunOperationPreview `json:"operationPreviews,omitempty"`
+		ProvisioningState *string                   `json:"provisioningState,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DryrunProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.OperationPreviews = decoded.OperationPreviews
@@ -56,5 +58,6 @@ func (s *DryrunProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PrerequisiteResults = &output
 	}
+
 	return nil
 }

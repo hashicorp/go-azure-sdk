@@ -22,10 +22,15 @@ type SharePointOnlineListLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &SharePointOnlineListLinkedServiceTypeProperties{}
 
 func (s *SharePointOnlineListLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SharePointOnlineListLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential            *string `json:"encryptedCredential,omitempty"`
+		ServicePrincipalCredentialType *string `json:"servicePrincipalCredentialType,omitempty"`
+		ServicePrincipalId             string  `json:"servicePrincipalId"`
+		SiteUrl                        string  `json:"siteUrl"`
+		TenantId                       string  `json:"tenantId"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SharePointOnlineListLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -62,5 +67,6 @@ func (s *SharePointOnlineListLinkedServiceTypeProperties) UnmarshalJSON(bytes []
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

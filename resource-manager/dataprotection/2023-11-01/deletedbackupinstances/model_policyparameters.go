@@ -55,5 +55,6 @@ func (s *PolicyParameters) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DataStoreParametersList = &output
 	}
+
 	return nil
 }

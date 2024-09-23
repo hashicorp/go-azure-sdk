@@ -16,10 +16,11 @@ type SwitchCase struct {
 var _ json.Unmarshaler = &SwitchCase{}
 
 func (s *SwitchCase) UnmarshalJSON(bytes []byte) error {
-	type alias SwitchCase
-	var decoded alias
+	var decoded struct {
+		Value *string `json:"value,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SwitchCase: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Value = decoded.Value
@@ -45,5 +46,6 @@ func (s *SwitchCase) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Activities = &output
 	}
+
 	return nil
 }

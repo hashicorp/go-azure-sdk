@@ -18,10 +18,13 @@ type GoogleCloudStorageLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &GoogleCloudStorageLinkedServiceTypeProperties{}
 
 func (s *GoogleCloudStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias GoogleCloudStorageLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccessKeyId         *string `json:"accessKeyId,omitempty"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		ServiceUrl          *string `json:"serviceUrl,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GoogleCloudStorageLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessKeyId = decoded.AccessKeyId
@@ -40,5 +43,6 @@ func (s *GoogleCloudStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []by
 		}
 		s.SecretAccessKey = impl
 	}
+
 	return nil
 }

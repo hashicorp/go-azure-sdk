@@ -28,5 +28,6 @@ func (s *StorageConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TransportFileShareConfiguration = impl
 	}
+
 	return nil
 }

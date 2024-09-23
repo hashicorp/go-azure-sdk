@@ -16,10 +16,11 @@ type OrcDatasetTypeProperties struct {
 var _ json.Unmarshaler = &OrcDatasetTypeProperties{}
 
 func (s *OrcDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias OrcDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		OrcCompressionCodec *string `json:"orcCompressionCodec,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OrcDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.OrcCompressionCodec = decoded.OrcCompressionCodec
@@ -36,5 +37,6 @@ func (s *OrcDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Location = impl
 	}
+
 	return nil
 }

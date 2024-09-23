@@ -28,5 +28,6 @@ func (s *SelfHostedIntegrationRuntimeTypeProperties) UnmarshalJSON(bytes []byte)
 		}
 		s.LinkedInfo = impl
 	}
+
 	return nil
 }

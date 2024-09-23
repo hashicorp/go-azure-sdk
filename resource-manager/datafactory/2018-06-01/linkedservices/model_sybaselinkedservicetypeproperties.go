@@ -21,10 +21,16 @@ type SybaseLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &SybaseLinkedServiceTypeProperties{}
 
 func (s *SybaseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SybaseLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType  *SybaseAuthenticationType `json:"authenticationType,omitempty"`
+		Database            string                    `json:"database"`
+		EncryptedCredential *string                   `json:"encryptedCredential,omitempty"`
+		Schema              *string                   `json:"schema,omitempty"`
+		Server              string                    `json:"server"`
+		Username            *string                   `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SybaseLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -46,5 +52,6 @@ func (s *SybaseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

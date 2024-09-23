@@ -56,10 +56,13 @@ func (s JobInputClip) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JobInputClip{}
 
 func (s *JobInputClip) UnmarshalJSON(bytes []byte) error {
-	type alias JobInputClip
-	var decoded alias
+	var decoded struct {
+		Files     *[]string `json:"files,omitempty"`
+		Label     *string   `json:"label,omitempty"`
+		OdataType string    `json:"@odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JobInputClip: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Files = decoded.Files
@@ -103,5 +106,6 @@ func (s *JobInputClip) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Start = impl
 	}
+
 	return nil
 }

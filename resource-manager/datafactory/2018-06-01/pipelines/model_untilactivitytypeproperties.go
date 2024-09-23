@@ -17,10 +17,12 @@ type UntilActivityTypeProperties struct {
 var _ json.Unmarshaler = &UntilActivityTypeProperties{}
 
 func (s *UntilActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias UntilActivityTypeProperties
-	var decoded alias
+	var decoded struct {
+		Expression Expression `json:"expression"`
+		Timeout    *string    `json:"timeout,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UntilActivityTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Expression = decoded.Expression
@@ -47,5 +49,6 @@ func (s *UntilActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Activities = output
 	}
+
 	return nil
 }

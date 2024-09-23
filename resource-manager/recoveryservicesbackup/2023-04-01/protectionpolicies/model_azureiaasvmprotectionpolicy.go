@@ -62,20 +62,28 @@ func (s AzureIaaSVMProtectionPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AzureIaaSVMProtectionPolicy{}
 
 func (s *AzureIaaSVMProtectionPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias AzureIaaSVMProtectionPolicy
-	var decoded alias
+	var decoded struct {
+		InstantRPDetails               *InstantRPAdditionalDetails `json:"instantRPDetails,omitempty"`
+		InstantRpRetentionRangeInDays  *int64                      `json:"instantRpRetentionRangeInDays,omitempty"`
+		PolicyType                     *IAASVMPolicyType           `json:"policyType,omitempty"`
+		TieringPolicy                  *map[string]TieringPolicy   `json:"tieringPolicy,omitempty"`
+		TimeZone                       *string                     `json:"timeZone,omitempty"`
+		BackupManagementType           string                      `json:"backupManagementType"`
+		ProtectedItemsCount            *int64                      `json:"protectedItemsCount,omitempty"`
+		ResourceGuardOperationRequests *[]string                   `json:"resourceGuardOperationRequests,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureIaaSVMProtectionPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.BackupManagementType = decoded.BackupManagementType
 	s.InstantRPDetails = decoded.InstantRPDetails
 	s.InstantRpRetentionRangeInDays = decoded.InstantRpRetentionRangeInDays
 	s.PolicyType = decoded.PolicyType
-	s.ProtectedItemsCount = decoded.ProtectedItemsCount
-	s.ResourceGuardOperationRequests = decoded.ResourceGuardOperationRequests
 	s.TieringPolicy = decoded.TieringPolicy
 	s.TimeZone = decoded.TimeZone
+	s.BackupManagementType = decoded.BackupManagementType
+	s.ProtectedItemsCount = decoded.ProtectedItemsCount
+	s.ResourceGuardOperationRequests = decoded.ResourceGuardOperationRequests
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -97,5 +105,6 @@ func (s *AzureIaaSVMProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SchedulePolicy = impl
 	}
+
 	return nil
 }

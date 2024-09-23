@@ -48,9 +48,9 @@ func UnmarshalInputSchemaMappingImplementation(input []byte) (InputSchemaMapping
 		return nil, fmt.Errorf("unmarshaling InputSchemaMapping into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["inputSchemaMappingType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["inputSchemaMappingType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Json") {

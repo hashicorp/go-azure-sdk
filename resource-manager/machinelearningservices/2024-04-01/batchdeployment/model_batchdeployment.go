@@ -31,10 +31,25 @@ type BatchDeployment struct {
 var _ json.Unmarshaler = &BatchDeployment{}
 
 func (s *BatchDeployment) UnmarshalJSON(bytes []byte) error {
-	type alias BatchDeployment
-	var decoded alias
+	var decoded struct {
+		CodeConfiguration         *CodeConfiguration           `json:"codeConfiguration,omitempty"`
+		Compute                   *string                      `json:"compute,omitempty"`
+		Description               *string                      `json:"description,omitempty"`
+		EnvironmentId             *string                      `json:"environmentId,omitempty"`
+		EnvironmentVariables      *map[string]string           `json:"environmentVariables,omitempty"`
+		ErrorThreshold            *int64                       `json:"errorThreshold,omitempty"`
+		LoggingLevel              *BatchLoggingLevel           `json:"loggingLevel,omitempty"`
+		MaxConcurrencyPerInstance *int64                       `json:"maxConcurrencyPerInstance,omitempty"`
+		MiniBatchSize             *int64                       `json:"miniBatchSize,omitempty"`
+		OutputAction              *BatchOutputAction           `json:"outputAction,omitempty"`
+		OutputFileName            *string                      `json:"outputFileName,omitempty"`
+		Properties                *map[string]string           `json:"properties,omitempty"`
+		ProvisioningState         *DeploymentProvisioningState `json:"provisioningState,omitempty"`
+		Resources                 *ResourceConfiguration       `json:"resources,omitempty"`
+		RetrySettings             *BatchRetrySettings          `json:"retrySettings,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BatchDeployment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CodeConfiguration = decoded.CodeConfiguration
@@ -73,5 +88,6 @@ func (s *BatchDeployment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Model = impl
 	}
+
 	return nil
 }

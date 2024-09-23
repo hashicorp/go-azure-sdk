@@ -56,9 +56,9 @@ func UnmarshalActionRulePropertiesImplementation(input []byte) (ActionRuleProper
 		return nil, fmt.Errorf("unmarshaling ActionRuleProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "ActionGroup") {

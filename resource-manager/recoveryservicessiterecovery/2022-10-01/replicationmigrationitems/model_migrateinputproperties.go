@@ -28,5 +28,6 @@ func (s *MigrateInputProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

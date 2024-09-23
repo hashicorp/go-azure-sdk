@@ -66,10 +66,18 @@ func (s LegacyReservationRecommendation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &LegacyReservationRecommendation{}
 
 func (s *LegacyReservationRecommendation) UnmarshalJSON(bytes []byte) error {
-	type alias LegacyReservationRecommendation
-	var decoded alias
+	var decoded struct {
+		Etag     *string                       `json:"etag,omitempty"`
+		Id       *string                       `json:"id,omitempty"`
+		Kind     ReservationRecommendationKind `json:"kind"`
+		Location *string                       `json:"location,omitempty"`
+		Name     *string                       `json:"name,omitempty"`
+		Sku      *string                       `json:"sku,omitempty"`
+		Tags     *map[string]string            `json:"tags,omitempty"`
+		Type     *string                       `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into LegacyReservationRecommendation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Etag = decoded.Etag
@@ -93,5 +101,6 @@ func (s *LegacyReservationRecommendation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

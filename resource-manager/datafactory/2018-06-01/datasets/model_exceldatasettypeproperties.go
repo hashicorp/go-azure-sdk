@@ -21,10 +21,16 @@ type ExcelDatasetTypeProperties struct {
 var _ json.Unmarshaler = &ExcelDatasetTypeProperties{}
 
 func (s *ExcelDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ExcelDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		Compression      *DatasetCompression `json:"compression,omitempty"`
+		FirstRowAsHeader *bool               `json:"firstRowAsHeader,omitempty"`
+		NullValue        *string             `json:"nullValue,omitempty"`
+		Range            *string             `json:"range,omitempty"`
+		SheetIndex       *int64              `json:"sheetIndex,omitempty"`
+		SheetName        *string             `json:"sheetName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExcelDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Compression = decoded.Compression
@@ -46,5 +52,6 @@ func (s *ExcelDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Location = impl
 	}
+
 	return nil
 }

@@ -21,10 +21,15 @@ type RuleProperties struct {
 var _ json.Unmarshaler = &RuleProperties{}
 
 func (s *RuleProperties) UnmarshalJSON(bytes []byte) error {
-	type alias RuleProperties
-	var decoded alias
+	var decoded struct {
+		DeploymentStatus        *DeploymentStatus        `json:"deploymentStatus,omitempty"`
+		MatchProcessingBehavior *MatchProcessingBehavior `json:"matchProcessingBehavior,omitempty"`
+		Order                   *int64                   `json:"order,omitempty"`
+		ProvisioningState       *AfdProvisioningState    `json:"provisioningState,omitempty"`
+		RuleSetName             *string                  `json:"ruleSetName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RuleProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DeploymentStatus = decoded.DeploymentStatus
@@ -71,5 +76,6 @@ func (s *RuleProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Conditions = &output
 	}
+
 	return nil
 }

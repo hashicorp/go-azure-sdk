@@ -49,9 +49,9 @@ func UnmarshalJobLimitsImplementation(input []byte) (JobLimits, error) {
 		return nil, fmt.Errorf("unmarshaling JobLimits into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["jobLimitsType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["jobLimitsType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Command") {

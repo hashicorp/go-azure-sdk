@@ -48,9 +48,9 @@ func UnmarshalPartitionSchemeDescriptionImplementation(input []byte) (PartitionS
 		return nil, fmt.Errorf("unmarshaling PartitionSchemeDescription into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["partitionScheme"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["partitionScheme"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Named") {

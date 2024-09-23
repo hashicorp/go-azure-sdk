@@ -20,10 +20,14 @@ type AmazonS3LinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AmazonS3LinkedServiceTypeProperties{}
 
 func (s *AmazonS3LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AmazonS3LinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccessKeyId         *string `json:"accessKeyId,omitempty"`
+		AuthenticationType  *string `json:"authenticationType,omitempty"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		ServiceUrl          *string `json:"serviceUrl,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AmazonS3LinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessKeyId = decoded.AccessKeyId
@@ -51,5 +55,6 @@ func (s *AmazonS3LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error 
 		}
 		s.SessionToken = impl
 	}
+
 	return nil
 }

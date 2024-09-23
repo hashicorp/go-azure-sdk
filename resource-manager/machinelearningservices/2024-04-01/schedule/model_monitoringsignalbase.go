@@ -50,9 +50,9 @@ func UnmarshalMonitoringSignalBaseImplementation(input []byte) (MonitoringSignal
 		return nil, fmt.Errorf("unmarshaling MonitoringSignalBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["signalType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["signalType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Custom") {

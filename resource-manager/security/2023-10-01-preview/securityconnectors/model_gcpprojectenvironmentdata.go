@@ -54,15 +54,18 @@ func (s GcpProjectEnvironmentData) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &GcpProjectEnvironmentData{}
 
 func (s *GcpProjectEnvironmentData) UnmarshalJSON(bytes []byte) error {
-	type alias GcpProjectEnvironmentData
-	var decoded alias
+	var decoded struct {
+		ProjectDetails  *GcpProjectDetails `json:"projectDetails,omitempty"`
+		ScanInterval    *int64             `json:"scanInterval,omitempty"`
+		EnvironmentType EnvironmentType    `json:"environmentType"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GcpProjectEnvironmentData: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.EnvironmentType = decoded.EnvironmentType
 	s.ProjectDetails = decoded.ProjectDetails
 	s.ScanInterval = decoded.ScanInterval
+	s.EnvironmentType = decoded.EnvironmentType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -76,5 +79,6 @@ func (s *GcpProjectEnvironmentData) UnmarshalJSON(bytes []byte) error {
 		}
 		s.OrganizationalData = impl
 	}
+
 	return nil
 }

@@ -84,27 +84,45 @@ func (s CommandJob) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CommandJob{}
 
 func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
-	type alias CommandJob
-	var decoded alias
+	var decoded struct {
+		CodeId               *string                   `json:"codeId,omitempty"`
+		Command              string                    `json:"command"`
+		EnvironmentId        string                    `json:"environmentId"`
+		EnvironmentVariables *map[string]string        `json:"environmentVariables,omitempty"`
+		Parameters           *interface{}              `json:"parameters,omitempty"`
+		QueueSettings        *QueueSettings            `json:"queueSettings,omitempty"`
+		Resources            *JobResourceConfiguration `json:"resources,omitempty"`
+		ComponentId          *string                   `json:"componentId,omitempty"`
+		ComputeId            *string                   `json:"computeId,omitempty"`
+		Description          *string                   `json:"description,omitempty"`
+		DisplayName          *string                   `json:"displayName,omitempty"`
+		ExperimentName       *string                   `json:"experimentName,omitempty"`
+		IsArchived           *bool                     `json:"isArchived,omitempty"`
+		JobType              JobType                   `json:"jobType"`
+		Properties           *map[string]string        `json:"properties,omitempty"`
+		Services             *map[string]JobService    `json:"services,omitempty"`
+		Status               *JobStatus                `json:"status,omitempty"`
+		Tags                 *map[string]string        `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CommandJob: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CodeId = decoded.CodeId
 	s.Command = decoded.Command
+	s.EnvironmentId = decoded.EnvironmentId
+	s.EnvironmentVariables = decoded.EnvironmentVariables
+	s.Parameters = decoded.Parameters
+	s.QueueSettings = decoded.QueueSettings
+	s.Resources = decoded.Resources
 	s.ComponentId = decoded.ComponentId
 	s.ComputeId = decoded.ComputeId
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.EnvironmentId = decoded.EnvironmentId
-	s.EnvironmentVariables = decoded.EnvironmentVariables
 	s.ExperimentName = decoded.ExperimentName
 	s.IsArchived = decoded.IsArchived
 	s.JobType = decoded.JobType
-	s.Parameters = decoded.Parameters
 	s.Properties = decoded.Properties
-	s.QueueSettings = decoded.QueueSettings
-	s.Resources = decoded.Resources
 	s.Services = decoded.Services
 	s.Status = decoded.Status
 	s.Tags = decoded.Tags
@@ -171,5 +189,6 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Outputs = &output
 	}
+
 	return nil
 }

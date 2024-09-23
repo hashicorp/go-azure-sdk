@@ -23,10 +23,18 @@ type HTTPLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &HTTPLinkedServiceTypeProperties{}
 
 func (s *HTTPLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias HTTPLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthHeaders                       *map[string]string      `json:"authHeaders,omitempty"`
+		AuthenticationType                *HTTPAuthenticationType `json:"authenticationType,omitempty"`
+		CertThumbprint                    *string                 `json:"certThumbprint,omitempty"`
+		EmbeddedCertData                  *string                 `json:"embeddedCertData,omitempty"`
+		EnableServerCertificateValidation *bool                   `json:"enableServerCertificateValidation,omitempty"`
+		EncryptedCredential               *string                 `json:"encryptedCredential,omitempty"`
+		Url                               string                  `json:"url"`
+		UserName                          *string                 `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into HTTPLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthHeaders = decoded.AuthHeaders
@@ -50,5 +58,6 @@ func (s *HTTPLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

@@ -48,9 +48,9 @@ func UnmarshalAwsOrganizationalDataImplementation(input []byte) (AwsOrganization
 		return nil, fmt.Errorf("unmarshaling AwsOrganizationalData into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["organizationMembershipType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["organizationMembershipType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Organization") {

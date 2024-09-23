@@ -28,10 +28,20 @@ type ODataLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &ODataLinkedServiceTypeProperties{}
 
 func (s *ODataLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ODataLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AadResourceId                     *string                                 `json:"aadResourceId,omitempty"`
+		AadServicePrincipalCredentialType *ODataAadServicePrincipalCredentialType `json:"aadServicePrincipalCredentialType,omitempty"`
+		AuthHeaders                       *map[string]string                      `json:"authHeaders,omitempty"`
+		AuthenticationType                *ODataAuthenticationType                `json:"authenticationType,omitempty"`
+		AzureCloudType                    *string                                 `json:"azureCloudType,omitempty"`
+		EncryptedCredential               *string                                 `json:"encryptedCredential,omitempty"`
+		ServicePrincipalId                *string                                 `json:"servicePrincipalId,omitempty"`
+		Tenant                            *string                                 `json:"tenant,omitempty"`
+		Url                               string                                  `json:"url"`
+		UserName                          *string                                 `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ODataLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AadResourceId = decoded.AadResourceId
@@ -81,5 +91,6 @@ func (s *ODataLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

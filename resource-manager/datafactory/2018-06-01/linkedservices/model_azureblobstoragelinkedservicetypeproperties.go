@@ -28,10 +28,23 @@ type AzureBlobStorageLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureBlobStorageLinkedServiceTypeProperties{}
 
 func (s *AzureBlobStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureBlobStorageLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccountKey          *AzureKeyVaultSecretReference   `json:"accountKey,omitempty"`
+		AccountKind         *string                         `json:"accountKind,omitempty"`
+		AuthenticationType  *AzureStorageAuthenticationType `json:"authenticationType,omitempty"`
+		AzureCloudType      *string                         `json:"azureCloudType,omitempty"`
+		ConnectionString    *string                         `json:"connectionString,omitempty"`
+		ContainerUri        *string                         `json:"containerUri,omitempty"`
+		Credential          *CredentialReference            `json:"credential,omitempty"`
+		EncryptedCredential *string                         `json:"encryptedCredential,omitempty"`
+		SasToken            *AzureKeyVaultSecretReference   `json:"sasToken,omitempty"`
+		SasUri              *string                         `json:"sasUri,omitempty"`
+		ServiceEndpoint     *string                         `json:"serviceEndpoint,omitempty"`
+		ServicePrincipalId  *string                         `json:"servicePrincipalId,omitempty"`
+		Tenant              *string                         `json:"tenant,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureBlobStorageLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountKey = decoded.AccountKey
@@ -60,5 +73,6 @@ func (s *AzureBlobStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

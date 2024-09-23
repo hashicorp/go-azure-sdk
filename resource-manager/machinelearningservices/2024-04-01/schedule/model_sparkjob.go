@@ -89,32 +89,55 @@ func (s SparkJob) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SparkJob{}
 
 func (s *SparkJob) UnmarshalJSON(bytes []byte) error {
-	type alias SparkJob
-	var decoded alias
+	var decoded struct {
+		Archives             *[]string                   `json:"archives,omitempty"`
+		Args                 *string                     `json:"args,omitempty"`
+		CodeId               string                      `json:"codeId"`
+		Conf                 *map[string]string          `json:"conf,omitempty"`
+		EnvironmentId        *string                     `json:"environmentId,omitempty"`
+		EnvironmentVariables *map[string]string          `json:"environmentVariables,omitempty"`
+		Files                *[]string                   `json:"files,omitempty"`
+		Jars                 *[]string                   `json:"jars,omitempty"`
+		PyFiles              *[]string                   `json:"pyFiles,omitempty"`
+		QueueSettings        *QueueSettings              `json:"queueSettings,omitempty"`
+		Resources            *SparkResourceConfiguration `json:"resources,omitempty"`
+		ComponentId          *string                     `json:"componentId,omitempty"`
+		ComputeId            *string                     `json:"computeId,omitempty"`
+		Description          *string                     `json:"description,omitempty"`
+		DisplayName          *string                     `json:"displayName,omitempty"`
+		ExperimentName       *string                     `json:"experimentName,omitempty"`
+		IsArchived           *bool                       `json:"isArchived,omitempty"`
+		JobType              JobType                     `json:"jobType"`
+		NotificationSetting  *NotificationSetting        `json:"notificationSetting,omitempty"`
+		Properties           *map[string]string          `json:"properties,omitempty"`
+		Services             *map[string]JobService      `json:"services,omitempty"`
+		Status               *JobStatus                  `json:"status,omitempty"`
+		Tags                 *map[string]string          `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SparkJob: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Archives = decoded.Archives
 	s.Args = decoded.Args
 	s.CodeId = decoded.CodeId
-	s.ComponentId = decoded.ComponentId
-	s.ComputeId = decoded.ComputeId
 	s.Conf = decoded.Conf
-	s.Description = decoded.Description
-	s.DisplayName = decoded.DisplayName
 	s.EnvironmentId = decoded.EnvironmentId
 	s.EnvironmentVariables = decoded.EnvironmentVariables
-	s.ExperimentName = decoded.ExperimentName
 	s.Files = decoded.Files
-	s.IsArchived = decoded.IsArchived
 	s.Jars = decoded.Jars
-	s.JobType = decoded.JobType
-	s.NotificationSetting = decoded.NotificationSetting
-	s.Properties = decoded.Properties
 	s.PyFiles = decoded.PyFiles
 	s.QueueSettings = decoded.QueueSettings
 	s.Resources = decoded.Resources
+	s.ComponentId = decoded.ComponentId
+	s.ComputeId = decoded.ComputeId
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.ExperimentName = decoded.ExperimentName
+	s.IsArchived = decoded.IsArchived
+	s.JobType = decoded.JobType
+	s.NotificationSetting = decoded.NotificationSetting
+	s.Properties = decoded.Properties
 	s.Services = decoded.Services
 	s.Status = decoded.Status
 	s.Tags = decoded.Tags
@@ -173,5 +196,6 @@ func (s *SparkJob) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Outputs = &output
 	}
+
 	return nil
 }

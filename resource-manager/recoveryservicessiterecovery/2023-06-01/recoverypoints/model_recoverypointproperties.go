@@ -32,10 +32,12 @@ func (o *RecoveryPointProperties) SetRecoveryPointTimeAsTime(input time.Time) {
 var _ json.Unmarshaler = &RecoveryPointProperties{}
 
 func (s *RecoveryPointProperties) UnmarshalJSON(bytes []byte) error {
-	type alias RecoveryPointProperties
-	var decoded alias
+	var decoded struct {
+		RecoveryPointTime *string `json:"recoveryPointTime,omitempty"`
+		RecoveryPointType *string `json:"recoveryPointType,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RecoveryPointProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.RecoveryPointTime = decoded.RecoveryPointTime
@@ -53,5 +55,6 @@ func (s *RecoveryPointProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

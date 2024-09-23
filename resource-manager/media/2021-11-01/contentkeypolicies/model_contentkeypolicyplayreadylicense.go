@@ -51,10 +51,19 @@ func (o *ContentKeyPolicyPlayReadyLicense) SetExpirationDateAsTime(input time.Ti
 var _ json.Unmarshaler = &ContentKeyPolicyPlayReadyLicense{}
 
 func (s *ContentKeyPolicyPlayReadyLicense) UnmarshalJSON(bytes []byte) error {
-	type alias ContentKeyPolicyPlayReadyLicense
-	var decoded alias
+	var decoded struct {
+		AllowTestDevices       bool                                 `json:"allowTestDevices"`
+		BeginDate              *string                              `json:"beginDate,omitempty"`
+		ContentType            ContentKeyPolicyPlayReadyContentType `json:"contentType"`
+		ExpirationDate         *string                              `json:"expirationDate,omitempty"`
+		GracePeriod            *string                              `json:"gracePeriod,omitempty"`
+		LicenseType            ContentKeyPolicyPlayReadyLicenseType `json:"licenseType"`
+		PlayRight              *ContentKeyPolicyPlayReadyPlayRight  `json:"playRight,omitempty"`
+		RelativeBeginDate      *string                              `json:"relativeBeginDate,omitempty"`
+		RelativeExpirationDate *string                              `json:"relativeExpirationDate,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ContentKeyPolicyPlayReadyLicense: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowTestDevices = decoded.AllowTestDevices
@@ -79,5 +88,6 @@ func (s *ContentKeyPolicyPlayReadyLicense) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ContentKeyLocation = impl
 	}
+
 	return nil
 }

@@ -18,10 +18,12 @@ type ContentKeyPolicyOption struct {
 var _ json.Unmarshaler = &ContentKeyPolicyOption{}
 
 func (s *ContentKeyPolicyOption) UnmarshalJSON(bytes []byte) error {
-	type alias ContentKeyPolicyOption
-	var decoded alias
+	var decoded struct {
+		Name           *string `json:"name,omitempty"`
+		PolicyOptionId *string `json:"policyOptionId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ContentKeyPolicyOption: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Name = decoded.Name
@@ -47,5 +49,6 @@ func (s *ContentKeyPolicyOption) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Restriction = impl
 	}
+
 	return nil
 }

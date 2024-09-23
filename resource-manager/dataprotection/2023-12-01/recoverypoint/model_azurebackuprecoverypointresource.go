@@ -21,10 +21,14 @@ type AzureBackupRecoveryPointResource struct {
 var _ json.Unmarshaler = &AzureBackupRecoveryPointResource{}
 
 func (s *AzureBackupRecoveryPointResource) UnmarshalJSON(bytes []byte) error {
-	type alias AzureBackupRecoveryPointResource
-	var decoded alias
+	var decoded struct {
+		Id         *string                `json:"id,omitempty"`
+		Name       *string                `json:"name,omitempty"`
+		SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+		Type       *string                `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureBackupRecoveryPointResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -44,5 +48,6 @@ func (s *AzureBackupRecoveryPointResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

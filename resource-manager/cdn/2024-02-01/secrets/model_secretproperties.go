@@ -18,10 +18,13 @@ type SecretProperties struct {
 var _ json.Unmarshaler = &SecretProperties{}
 
 func (s *SecretProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SecretProperties
-	var decoded alias
+	var decoded struct {
+		DeploymentStatus  *DeploymentStatus     `json:"deploymentStatus,omitempty"`
+		ProfileName       *string               `json:"profileName,omitempty"`
+		ProvisioningState *AfdProvisioningState `json:"provisioningState,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecretProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DeploymentStatus = decoded.DeploymentStatus
@@ -40,5 +43,6 @@ func (s *SecretProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Parameters = impl
 	}
+
 	return nil
 }

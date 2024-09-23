@@ -16,10 +16,11 @@ type ContainerRegistryProperties struct {
 var _ json.Unmarshaler = &ContainerRegistryProperties{}
 
 func (s *ContainerRegistryProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ContainerRegistryProperties
-	var decoded alias
+	var decoded struct {
+		ProvisioningState *ContainerRegistryProvisioningState `json:"provisioningState,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ContainerRegistryProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ProvisioningState = decoded.ProvisioningState
@@ -36,5 +37,6 @@ func (s *ContainerRegistryProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Credentials = impl
 	}
+
 	return nil
 }

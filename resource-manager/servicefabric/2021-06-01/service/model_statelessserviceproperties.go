@@ -73,16 +73,28 @@ func (s StatelessServiceProperties) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &StatelessServiceProperties{}
 
 func (s *StatelessServiceProperties) UnmarshalJSON(bytes []byte) error {
-	type alias StatelessServiceProperties
-	var decoded alias
+	var decoded struct {
+		InstanceCloseDelayDuration   *string                              `json:"instanceCloseDelayDuration,omitempty"`
+		InstanceCount                *int64                               `json:"instanceCount,omitempty"`
+		CorrelationScheme            *[]ServiceCorrelationDescription     `json:"correlationScheme,omitempty"`
+		DefaultMoveCost              *MoveCost                            `json:"defaultMoveCost,omitempty"`
+		PlacementConstraints         *string                              `json:"placementConstraints,omitempty"`
+		ProvisioningState            *string                              `json:"provisioningState,omitempty"`
+		ServiceDnsName               *string                              `json:"serviceDnsName,omitempty"`
+		ServiceKind                  ServiceKind                          `json:"serviceKind"`
+		ServiceLoadMetrics           *[]ServiceLoadMetricDescription      `json:"serviceLoadMetrics,omitempty"`
+		ServicePackageActivationMode *ArmServicePackageActivationMode     `json:"servicePackageActivationMode,omitempty"`
+		ServicePlacementPolicies     *[]ServicePlacementPolicyDescription `json:"servicePlacementPolicies,omitempty"`
+		ServiceTypeName              *string                              `json:"serviceTypeName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into StatelessServiceProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CorrelationScheme = decoded.CorrelationScheme
-	s.DefaultMoveCost = decoded.DefaultMoveCost
 	s.InstanceCloseDelayDuration = decoded.InstanceCloseDelayDuration
 	s.InstanceCount = decoded.InstanceCount
+	s.CorrelationScheme = decoded.CorrelationScheme
+	s.DefaultMoveCost = decoded.DefaultMoveCost
 	s.PlacementConstraints = decoded.PlacementConstraints
 	s.ProvisioningState = decoded.ProvisioningState
 	s.ServiceDnsName = decoded.ServiceDnsName
@@ -104,5 +116,6 @@ func (s *StatelessServiceProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PartitionDescription = impl
 	}
+
 	return nil
 }

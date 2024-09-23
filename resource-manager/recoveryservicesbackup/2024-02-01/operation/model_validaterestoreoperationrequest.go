@@ -52,10 +52,11 @@ func (s ValidateRestoreOperationRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ValidateRestoreOperationRequest{}
 
 func (s *ValidateRestoreOperationRequest) UnmarshalJSON(bytes []byte) error {
-	type alias ValidateRestoreOperationRequest
-	var decoded alias
+	var decoded struct {
+		ObjectType string `json:"objectType"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ValidateRestoreOperationRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ObjectType = decoded.ObjectType
@@ -72,5 +73,6 @@ func (s *ValidateRestoreOperationRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RestoreRequest = impl
 	}
+
 	return nil
 }

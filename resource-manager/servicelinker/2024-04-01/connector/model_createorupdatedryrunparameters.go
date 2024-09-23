@@ -60,13 +60,20 @@ func (s CreateOrUpdateDryrunParameters) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CreateOrUpdateDryrunParameters{}
 
 func (s *CreateOrUpdateDryrunParameters) UnmarshalJSON(bytes []byte) error {
-	type alias CreateOrUpdateDryrunParameters
-	var decoded alias
+	var decoded struct {
+		ClientType            *ClientType            `json:"clientType,omitempty"`
+		ConfigurationInfo     *ConfigurationInfo     `json:"configurationInfo,omitempty"`
+		ProvisioningState     *string                `json:"provisioningState,omitempty"`
+		PublicNetworkSolution *PublicNetworkSolution `json:"publicNetworkSolution,omitempty"`
+		Scope                 *string                `json:"scope,omitempty"`
+		SecretStore           *SecretStore           `json:"secretStore,omitempty"`
+		VNetSolution          *VNetSolution          `json:"vNetSolution,omitempty"`
+		ActionName            DryrunActionName       `json:"actionName"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CreateOrUpdateDryrunParameters: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ActionName = decoded.ActionName
 	s.ClientType = decoded.ClientType
 	s.ConfigurationInfo = decoded.ConfigurationInfo
 	s.ProvisioningState = decoded.ProvisioningState
@@ -74,6 +81,7 @@ func (s *CreateOrUpdateDryrunParameters) UnmarshalJSON(bytes []byte) error {
 	s.Scope = decoded.Scope
 	s.SecretStore = decoded.SecretStore
 	s.VNetSolution = decoded.VNetSolution
+	s.ActionName = decoded.ActionName
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -95,5 +103,6 @@ func (s *CreateOrUpdateDryrunParameters) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TargetService = impl
 	}
+
 	return nil
 }

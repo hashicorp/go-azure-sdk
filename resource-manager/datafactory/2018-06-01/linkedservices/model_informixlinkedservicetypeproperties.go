@@ -20,10 +20,14 @@ type InformixLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &InformixLinkedServiceTypeProperties{}
 
 func (s *InformixLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias InformixLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AuthenticationType  *string `json:"authenticationType,omitempty"`
+		ConnectionString    string  `json:"connectionString"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		UserName            *string `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into InformixLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
@@ -51,5 +55,6 @@ func (s *InformixLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error 
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

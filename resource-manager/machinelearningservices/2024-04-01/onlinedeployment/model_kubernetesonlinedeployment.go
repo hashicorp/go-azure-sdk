@@ -84,15 +84,32 @@ func (s KubernetesOnlineDeployment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &KubernetesOnlineDeployment{}
 
 func (s *KubernetesOnlineDeployment) UnmarshalJSON(bytes []byte) error {
-	type alias KubernetesOnlineDeployment
-	var decoded alias
+	var decoded struct {
+		ContainerResourceRequirements *ContainerResourceRequirements `json:"containerResourceRequirements,omitempty"`
+		AppInsightsEnabled            *bool                          `json:"appInsightsEnabled,omitempty"`
+		CodeConfiguration             *CodeConfiguration             `json:"codeConfiguration,omitempty"`
+		DataCollector                 *DataCollector                 `json:"dataCollector,omitempty"`
+		Description                   *string                        `json:"description,omitempty"`
+		EgressPublicNetworkAccess     *EgressPublicNetworkAccessType `json:"egressPublicNetworkAccess,omitempty"`
+		EndpointComputeType           EndpointComputeType            `json:"endpointComputeType"`
+		EnvironmentId                 *string                        `json:"environmentId,omitempty"`
+		EnvironmentVariables          *map[string]string             `json:"environmentVariables,omitempty"`
+		InstanceType                  *string                        `json:"instanceType,omitempty"`
+		LivenessProbe                 *ProbeSettings                 `json:"livenessProbe,omitempty"`
+		Model                         *string                        `json:"model,omitempty"`
+		ModelMountPath                *string                        `json:"modelMountPath,omitempty"`
+		Properties                    *map[string]string             `json:"properties,omitempty"`
+		ProvisioningState             *DeploymentProvisioningState   `json:"provisioningState,omitempty"`
+		ReadinessProbe                *ProbeSettings                 `json:"readinessProbe,omitempty"`
+		RequestSettings               *OnlineRequestSettings         `json:"requestSettings,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into KubernetesOnlineDeployment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.ContainerResourceRequirements = decoded.ContainerResourceRequirements
 	s.AppInsightsEnabled = decoded.AppInsightsEnabled
 	s.CodeConfiguration = decoded.CodeConfiguration
-	s.ContainerResourceRequirements = decoded.ContainerResourceRequirements
 	s.DataCollector = decoded.DataCollector
 	s.Description = decoded.Description
 	s.EgressPublicNetworkAccess = decoded.EgressPublicNetworkAccess
@@ -120,5 +137,6 @@ func (s *KubernetesOnlineDeployment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ScaleSettings = impl
 	}
+
 	return nil
 }

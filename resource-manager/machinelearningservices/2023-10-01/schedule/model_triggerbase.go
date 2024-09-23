@@ -51,9 +51,9 @@ func UnmarshalTriggerBaseImplementation(input []byte) (TriggerBase, error) {
 		return nil, fmt.Errorf("unmarshaling TriggerBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["triggerType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["triggerType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Cron") {

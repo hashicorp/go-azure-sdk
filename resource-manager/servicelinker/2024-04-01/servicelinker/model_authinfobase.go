@@ -49,9 +49,9 @@ func UnmarshalAuthInfoBaseImplementation(input []byte) (AuthInfoBase, error) {
 		return nil, fmt.Errorf("unmarshaling AuthInfoBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["authType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["authType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "accessKey") {

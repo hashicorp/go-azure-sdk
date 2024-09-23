@@ -20,10 +20,15 @@ type AmazonRedshiftLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AmazonRedshiftLinkedServiceTypeProperties{}
 
 func (s *AmazonRedshiftLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AmazonRedshiftLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		Database            string  `json:"database"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		Port                *int64  `json:"port,omitempty"`
+		Server              string  `json:"server"`
+		Username            *string `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AmazonRedshiftLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Database = decoded.Database
@@ -44,5 +49,6 @@ func (s *AmazonRedshiftLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) 
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

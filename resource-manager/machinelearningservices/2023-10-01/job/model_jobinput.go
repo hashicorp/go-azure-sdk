@@ -49,9 +49,9 @@ func UnmarshalJobInputImplementation(input []byte) (JobInput, error) {
 		return nil, fmt.Errorf("unmarshaling JobInput into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["jobInputType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["jobInputType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "custom_model") {

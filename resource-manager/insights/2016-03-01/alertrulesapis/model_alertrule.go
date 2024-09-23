@@ -37,10 +37,15 @@ func (o *AlertRule) SetLastUpdatedTimeAsTime(input time.Time) {
 var _ json.Unmarshaler = &AlertRule{}
 
 func (s *AlertRule) UnmarshalJSON(bytes []byte) error {
-	type alias AlertRule
-	var decoded alias
+	var decoded struct {
+		Description       *string `json:"description,omitempty"`
+		IsEnabled         bool    `json:"isEnabled"`
+		LastUpdatedTime   *string `json:"lastUpdatedTime,omitempty"`
+		Name              string  `json:"name"`
+		ProvisioningState *string `json:"provisioningState,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AlertRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
@@ -86,5 +91,6 @@ func (s *AlertRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Condition = impl
 	}
+
 	return nil
 }

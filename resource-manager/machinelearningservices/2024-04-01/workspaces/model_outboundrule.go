@@ -50,9 +50,9 @@ func UnmarshalOutboundRuleImplementation(input []byte) (OutboundRule, error) {
 		return nil, fmt.Errorf("unmarshaling OutboundRule into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "FQDN") {

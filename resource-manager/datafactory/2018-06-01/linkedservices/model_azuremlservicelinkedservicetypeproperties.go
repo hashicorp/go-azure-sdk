@@ -22,10 +22,17 @@ type AzureMLServiceLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureMLServiceLinkedServiceTypeProperties{}
 
 func (s *AzureMLServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureMLServiceLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		Authentication      *string `json:"authentication,omitempty"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		MlWorkspaceName     string  `json:"mlWorkspaceName"`
+		ResourceGroupName   string  `json:"resourceGroupName"`
+		ServicePrincipalId  *string `json:"servicePrincipalId,omitempty"`
+		SubscriptionId      string  `json:"subscriptionId"`
+		Tenant              *string `json:"tenant,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureMLServiceLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Authentication = decoded.Authentication
@@ -48,5 +55,6 @@ func (s *AzureMLServiceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) 
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

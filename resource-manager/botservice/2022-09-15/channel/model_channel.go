@@ -51,9 +51,9 @@ func UnmarshalChannelImplementation(input []byte) (Channel, error) {
 		return nil, fmt.Errorf("unmarshaling Channel into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["channelName"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["channelName"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AcsChatChannel") {

@@ -71,10 +71,39 @@ func (o *ReplicationProtectionClusterProperties) SetLastSuccessfulTestFailoverTi
 var _ json.Unmarshaler = &ReplicationProtectionClusterProperties{}
 
 func (s *ReplicationProtectionClusterProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ReplicationProtectionClusterProperties
-	var decoded alias
+	var decoded struct {
+		ActiveLocation                          *string                              `json:"activeLocation,omitempty"`
+		AgentClusterId                          *string                              `json:"agentClusterId,omitempty"`
+		AllowedOperations                       *[]string                            `json:"allowedOperations,omitempty"`
+		AreAllClusterNodesRegistered            *bool                                `json:"areAllClusterNodesRegistered,omitempty"`
+		ClusterFqdn                             *string                              `json:"clusterFqdn,omitempty"`
+		ClusterNodeFqdns                        *[]string                            `json:"clusterNodeFqdns,omitempty"`
+		ClusterProtectedItemIds                 *[]string                            `json:"clusterProtectedItemIds,omitempty"`
+		ClusterRegisteredNodes                  *[]RegisteredClusterNodes            `json:"clusterRegisteredNodes,omitempty"`
+		CurrentScenario                         *CurrentScenarioDetails              `json:"currentScenario,omitempty"`
+		HealthErrors                            *[]HealthError                       `json:"healthErrors,omitempty"`
+		LastSuccessfulFailoverTime              *string                              `json:"lastSuccessfulFailoverTime,omitempty"`
+		LastSuccessfulTestFailoverTime          *string                              `json:"lastSuccessfulTestFailoverTime,omitempty"`
+		PolicyFriendlyName                      *string                              `json:"policyFriendlyName,omitempty"`
+		PolicyId                                *string                              `json:"policyId,omitempty"`
+		PrimaryFabricFriendlyName               *string                              `json:"primaryFabricFriendlyName,omitempty"`
+		PrimaryFabricProvider                   *string                              `json:"primaryFabricProvider,omitempty"`
+		PrimaryProtectionContainerFriendlyName  *string                              `json:"primaryProtectionContainerFriendlyName,omitempty"`
+		ProtectionClusterType                   *string                              `json:"protectionClusterType,omitempty"`
+		ProtectionState                         *string                              `json:"protectionState,omitempty"`
+		ProtectionStateDescription              *string                              `json:"protectionStateDescription,omitempty"`
+		ProvisioningState                       *string                              `json:"provisioningState,omitempty"`
+		RecoveryContainerId                     *string                              `json:"recoveryContainerId,omitempty"`
+		RecoveryFabricFriendlyName              *string                              `json:"recoveryFabricFriendlyName,omitempty"`
+		RecoveryFabricId                        *string                              `json:"recoveryFabricId,omitempty"`
+		RecoveryProtectionContainerFriendlyName *string                              `json:"recoveryProtectionContainerFriendlyName,omitempty"`
+		ReplicationHealth                       *string                              `json:"replicationHealth,omitempty"`
+		SharedDiskProperties                    *SharedDiskReplicationItemProperties `json:"sharedDiskProperties,omitempty"`
+		TestFailoverState                       *string                              `json:"testFailoverState,omitempty"`
+		TestFailoverStateDescription            *string                              `json:"testFailoverStateDescription,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ReplicationProtectionClusterProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActiveLocation = decoded.ActiveLocation
@@ -119,5 +148,6 @@ func (s *ReplicationProtectionClusterProperties) UnmarshalJSON(bytes []byte) err
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

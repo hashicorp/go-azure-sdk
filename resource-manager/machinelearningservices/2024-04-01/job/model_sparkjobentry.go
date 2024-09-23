@@ -48,9 +48,9 @@ func UnmarshalSparkJobEntryImplementation(input []byte) (SparkJobEntry, error) {
 		return nil, fmt.Errorf("unmarshaling SparkJobEntry into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["sparkJobEntryType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["sparkJobEntryType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "SparkJobPythonEntry") {

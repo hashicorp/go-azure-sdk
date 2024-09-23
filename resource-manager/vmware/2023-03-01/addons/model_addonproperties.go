@@ -49,9 +49,9 @@ func UnmarshalAddonPropertiesImplementation(input []byte) (AddonProperties, erro
 		return nil, fmt.Errorf("unmarshaling AddonProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["addonType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["addonType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Arc") {

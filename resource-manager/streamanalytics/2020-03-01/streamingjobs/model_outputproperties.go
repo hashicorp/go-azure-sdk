@@ -20,10 +20,14 @@ type OutputProperties struct {
 var _ json.Unmarshaler = &OutputProperties{}
 
 func (s *OutputProperties) UnmarshalJSON(bytes []byte) error {
-	type alias OutputProperties
-	var decoded alias
+	var decoded struct {
+		Diagnostics *Diagnostics `json:"diagnostics,omitempty"`
+		Etag        *string      `json:"etag,omitempty"`
+		SizeWindow  *int64       `json:"sizeWindow,omitempty"`
+		TimeWindow  *string      `json:"timeWindow,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OutputProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Diagnostics = decoded.Diagnostics
@@ -51,5 +55,6 @@ func (s *OutputProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Serialization = impl
 	}
+
 	return nil
 }

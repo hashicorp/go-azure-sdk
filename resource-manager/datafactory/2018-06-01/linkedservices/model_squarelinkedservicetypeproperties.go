@@ -23,10 +23,18 @@ type SquareLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &SquareLinkedServiceTypeProperties{}
 
 func (s *SquareLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SquareLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ClientId              *string      `json:"clientId,omitempty"`
+		ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
+		EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
+		Host                  *string      `json:"host,omitempty"`
+		RedirectUri           *string      `json:"redirectUri,omitempty"`
+		UseEncryptedEndpoints *bool        `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool        `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool        `json:"usePeerVerification,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SquareLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClientId = decoded.ClientId
@@ -50,5 +58,6 @@ func (s *SquareLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ClientSecret = impl
 	}
+
 	return nil
 }

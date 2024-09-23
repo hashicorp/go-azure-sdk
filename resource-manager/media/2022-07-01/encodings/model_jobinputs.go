@@ -52,10 +52,11 @@ func (s JobInputs) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JobInputs{}
 
 func (s *JobInputs) UnmarshalJSON(bytes []byte) error {
-	type alias JobInputs
-	var decoded alias
+	var decoded struct {
+		OdataType string `json:"@odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JobInputs: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.OdataType = decoded.OdataType
@@ -81,5 +82,6 @@ func (s *JobInputs) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Inputs = &output
 	}
+
 	return nil
 }

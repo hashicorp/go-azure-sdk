@@ -62,10 +62,16 @@ func (s WebLinkedService) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WebLinkedService{}
 
 func (s *WebLinkedService) UnmarshalJSON(bytes []byte) error {
-	type alias WebLinkedService
-	var decoded alias
+	var decoded struct {
+		Annotations *[]interface{}                     `json:"annotations,omitempty"`
+		ConnectVia  *IntegrationRuntimeReference       `json:"connectVia,omitempty"`
+		Description *string                            `json:"description,omitempty"`
+		Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
+		Type        string                             `json:"type"`
+		Version     *string                            `json:"version,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WebLinkedService: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Annotations = decoded.Annotations
@@ -87,5 +93,6 @@ func (s *WebLinkedService) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TypeProperties = impl
 	}
+
 	return nil
 }

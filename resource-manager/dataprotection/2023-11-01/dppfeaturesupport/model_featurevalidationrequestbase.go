@@ -48,9 +48,9 @@ func UnmarshalFeatureValidationRequestBaseImplementation(input []byte) (FeatureV
 		return nil, fmt.Errorf("unmarshaling FeatureValidationRequestBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["objectType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "FeatureValidationRequest") {

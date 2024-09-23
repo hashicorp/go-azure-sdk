@@ -48,9 +48,9 @@ func UnmarshalPartnerClientAuthenticationImplementation(input []byte) (PartnerCl
 		return nil, fmt.Errorf("unmarshaling PartnerClientAuthentication into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["clientAuthenticationType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["clientAuthenticationType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureAD") {

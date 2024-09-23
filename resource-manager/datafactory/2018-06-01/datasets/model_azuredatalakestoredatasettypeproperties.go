@@ -18,10 +18,13 @@ type AzureDataLakeStoreDatasetTypeProperties struct {
 var _ json.Unmarshaler = &AzureDataLakeStoreDatasetTypeProperties{}
 
 func (s *AzureDataLakeStoreDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureDataLakeStoreDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		Compression *DatasetCompression `json:"compression,omitempty"`
+		FileName    *string             `json:"fileName,omitempty"`
+		FolderPath  *string             `json:"folderPath,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureDataLakeStoreDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Compression = decoded.Compression
@@ -40,5 +43,6 @@ func (s *AzureDataLakeStoreDatasetTypeProperties) UnmarshalJSON(bytes []byte) er
 		}
 		s.Format = impl
 	}
+
 	return nil
 }

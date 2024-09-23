@@ -21,10 +21,16 @@ type AzureBatchLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureBatchLinkedServiceTypeProperties{}
 
 func (s *AzureBatchLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureBatchLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccountName         string                 `json:"accountName"`
+		BatchUri            string                 `json:"batchUri"`
+		Credential          *CredentialReference   `json:"credential,omitempty"`
+		EncryptedCredential *string                `json:"encryptedCredential,omitempty"`
+		LinkedServiceName   LinkedServiceReference `json:"linkedServiceName"`
+		PoolName            string                 `json:"poolName"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureBatchLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountName = decoded.AccountName
@@ -46,5 +52,6 @@ func (s *AzureBatchLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 		}
 		s.AccessKey = impl
 	}
+
 	return nil
 }

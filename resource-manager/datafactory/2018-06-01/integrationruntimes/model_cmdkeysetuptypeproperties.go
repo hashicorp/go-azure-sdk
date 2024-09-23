@@ -17,10 +17,12 @@ type CmdkeySetupTypeProperties struct {
 var _ json.Unmarshaler = &CmdkeySetupTypeProperties{}
 
 func (s *CmdkeySetupTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias CmdkeySetupTypeProperties
-	var decoded alias
+	var decoded struct {
+		TargetName string `json:"targetName"`
+		UserName   string `json:"userName"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CmdkeySetupTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.TargetName = decoded.TargetName
@@ -38,5 +40,6 @@ func (s *CmdkeySetupTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

@@ -47,9 +47,9 @@ func UnmarshalAlertsMetaDataPropertiesImplementation(input []byte) (AlertsMetaDa
 		return nil, fmt.Errorf("unmarshaling AlertsMetaDataProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["metadataIdentifier"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["metadataIdentifier"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	var parent BaseAlertsMetaDataPropertiesImpl

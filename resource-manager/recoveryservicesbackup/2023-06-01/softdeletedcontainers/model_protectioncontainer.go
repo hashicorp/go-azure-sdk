@@ -53,9 +53,9 @@ func UnmarshalProtectionContainerImplementation(input []byte) (ProtectionContain
 		return nil, fmt.Errorf("unmarshaling ProtectionContainer into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["containerType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["containerType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureBackupServerContainer") {

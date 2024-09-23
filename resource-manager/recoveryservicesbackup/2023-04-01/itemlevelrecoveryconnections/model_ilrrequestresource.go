@@ -21,10 +21,16 @@ type ILRRequestResource struct {
 var _ json.Unmarshaler = &ILRRequestResource{}
 
 func (s *ILRRequestResource) UnmarshalJSON(bytes []byte) error {
-	type alias ILRRequestResource
-	var decoded alias
+	var decoded struct {
+		ETag     *string            `json:"eTag,omitempty"`
+		Id       *string            `json:"id,omitempty"`
+		Location *string            `json:"location,omitempty"`
+		Name     *string            `json:"name,omitempty"`
+		Tags     *map[string]string `json:"tags,omitempty"`
+		Type     *string            `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ILRRequestResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ETag = decoded.ETag
@@ -46,5 +52,6 @@ func (s *ILRRequestResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

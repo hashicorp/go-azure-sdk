@@ -52,10 +52,11 @@ func (s ParquetReadSettings) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ParquetReadSettings{}
 
 func (s *ParquetReadSettings) UnmarshalJSON(bytes []byte) error {
-	type alias ParquetReadSettings
-	var decoded alias
+	var decoded struct {
+		Type string `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ParquetReadSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Type = decoded.Type
@@ -72,5 +73,6 @@ func (s *ParquetReadSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CompressionProperties = impl
 	}
+
 	return nil
 }

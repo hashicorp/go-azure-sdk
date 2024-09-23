@@ -61,10 +61,16 @@ func (s ExcelSource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ExcelSource{}
 
 func (s *ExcelSource) UnmarshalJSON(bytes []byte) error {
-	type alias ExcelSource
-	var decoded alias
+	var decoded struct {
+		AdditionalColumns        *interface{} `json:"additionalColumns,omitempty"`
+		DisableMetricsCollection *bool        `json:"disableMetricsCollection,omitempty"`
+		MaxConcurrentConnections *int64       `json:"maxConcurrentConnections,omitempty"`
+		SourceRetryCount         *int64       `json:"sourceRetryCount,omitempty"`
+		SourceRetryWait          *string      `json:"sourceRetryWait,omitempty"`
+		Type                     string       `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExcelSource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalColumns = decoded.AdditionalColumns
@@ -86,5 +92,6 @@ func (s *ExcelSource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StoreSettings = impl
 	}
+
 	return nil
 }

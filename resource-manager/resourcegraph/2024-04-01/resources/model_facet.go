@@ -49,9 +49,9 @@ func UnmarshalFacetImplementation(input []byte) (Facet, error) {
 		return nil, fmt.Errorf("unmarshaling Facet into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["resultType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["resultType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "FacetError") {

@@ -59,10 +59,14 @@ func (s PredictionDriftMonitoringSignal) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PredictionDriftMonitoringSignal{}
 
 func (s *PredictionDriftMonitoringSignal) UnmarshalJSON(bytes []byte) error {
-	type alias PredictionDriftMonitoringSignal
-	var decoded alias
+	var decoded struct {
+		FeatureDataTypeOverride *map[string]MonitoringFeatureDataType `json:"featureDataTypeOverride,omitempty"`
+		NotificationTypes       *[]MonitoringNotificationType         `json:"notificationTypes,omitempty"`
+		Properties              *map[string]string                    `json:"properties,omitempty"`
+		SignalType              MonitoringSignalType                  `json:"signalType"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PredictionDriftMonitoringSignal: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FeatureDataTypeOverride = decoded.FeatureDataTypeOverride
@@ -107,5 +111,6 @@ func (s *PredictionDriftMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ReferenceData = impl
 	}
+
 	return nil
 }

@@ -22,10 +22,16 @@ type Schedule struct {
 var _ json.Unmarshaler = &Schedule{}
 
 func (s *Schedule) UnmarshalJSON(bytes []byte) error {
-	type alias Schedule
-	var decoded alias
+	var decoded struct {
+		Description       *string                     `json:"description,omitempty"`
+		DisplayName       *string                     `json:"displayName,omitempty"`
+		IsEnabled         *bool                       `json:"isEnabled,omitempty"`
+		Properties        *map[string]string          `json:"properties,omitempty"`
+		ProvisioningState *ScheduleProvisioningStatus `json:"provisioningState,omitempty"`
+		Tags              *map[string]string          `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Schedule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
@@ -55,5 +61,6 @@ func (s *Schedule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Trigger = impl
 	}
+
 	return nil
 }

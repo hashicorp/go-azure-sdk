@@ -22,10 +22,17 @@ type SSISPackageLocationTypeProperties struct {
 var _ json.Unmarshaler = &SSISPackageLocationTypeProperties{}
 
 func (s *SSISPackageLocationTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SSISPackageLocationTypeProperties
-	var decoded alias
+	var decoded struct {
+		AccessCredential              *SSISAccessCredential `json:"accessCredential,omitempty"`
+		ChildPackages                 *[]SSISChildPackage   `json:"childPackages,omitempty"`
+		ConfigurationAccessCredential *SSISAccessCredential `json:"configurationAccessCredential,omitempty"`
+		ConfigurationPath             *string               `json:"configurationPath,omitempty"`
+		PackageContent                *string               `json:"packageContent,omitempty"`
+		PackageLastModifiedDate       *string               `json:"packageLastModifiedDate,omitempty"`
+		PackageName                   *string               `json:"packageName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SSISPackageLocationTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessCredential = decoded.AccessCredential
@@ -48,5 +55,6 @@ func (s *SSISPackageLocationTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PackagePassword = impl
 	}
+
 	return nil
 }

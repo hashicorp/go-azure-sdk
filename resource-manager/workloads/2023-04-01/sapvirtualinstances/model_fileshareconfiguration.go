@@ -48,9 +48,9 @@ func UnmarshalFileShareConfigurationImplementation(input []byte) (FileShareConfi
 		return nil, fmt.Errorf("unmarshaling FileShareConfiguration into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["configurationType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["configurationType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "CreateAndMount") {

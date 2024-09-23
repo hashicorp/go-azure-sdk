@@ -62,15 +62,22 @@ func (s ParquetSource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ParquetSource{}
 
 func (s *ParquetSource) UnmarshalJSON(bytes []byte) error {
-	type alias ParquetSource
-	var decoded alias
+	var decoded struct {
+		AdditionalColumns        *interface{}         `json:"additionalColumns,omitempty"`
+		FormatSettings           *ParquetReadSettings `json:"formatSettings,omitempty"`
+		DisableMetricsCollection *bool                `json:"disableMetricsCollection,omitempty"`
+		MaxConcurrentConnections *int64               `json:"maxConcurrentConnections,omitempty"`
+		SourceRetryCount         *int64               `json:"sourceRetryCount,omitempty"`
+		SourceRetryWait          *string              `json:"sourceRetryWait,omitempty"`
+		Type                     string               `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ParquetSource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalColumns = decoded.AdditionalColumns
-	s.DisableMetricsCollection = decoded.DisableMetricsCollection
 	s.FormatSettings = decoded.FormatSettings
+	s.DisableMetricsCollection = decoded.DisableMetricsCollection
 	s.MaxConcurrentConnections = decoded.MaxConcurrentConnections
 	s.SourceRetryCount = decoded.SourceRetryCount
 	s.SourceRetryWait = decoded.SourceRetryWait
@@ -88,5 +95,6 @@ func (s *ParquetSource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StoreSettings = impl
 	}
+
 	return nil
 }

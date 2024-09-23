@@ -49,9 +49,9 @@ func UnmarshalCloudOfferingImplementation(input []byte) (CloudOffering, error) {
 		return nil, fmt.Errorf("unmarshaling CloudOffering into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["offeringType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["offeringType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "CspmMonitorAws") {

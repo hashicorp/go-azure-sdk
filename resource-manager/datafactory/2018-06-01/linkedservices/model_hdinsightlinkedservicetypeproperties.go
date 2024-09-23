@@ -22,10 +22,17 @@ type HDInsightLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &HDInsightLinkedServiceTypeProperties{}
 
 func (s *HDInsightLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias HDInsightLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ClusterUri                string                  `json:"clusterUri"`
+		EncryptedCredential       *string                 `json:"encryptedCredential,omitempty"`
+		FileSystem                *string                 `json:"fileSystem,omitempty"`
+		HcatalogLinkedServiceName *LinkedServiceReference `json:"hcatalogLinkedServiceName,omitempty"`
+		IsEspEnabled              *bool                   `json:"isEspEnabled,omitempty"`
+		LinkedServiceName         *LinkedServiceReference `json:"linkedServiceName,omitempty"`
+		UserName                  *string                 `json:"userName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into HDInsightLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClusterUri = decoded.ClusterUri
@@ -48,5 +55,6 @@ func (s *HDInsightLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

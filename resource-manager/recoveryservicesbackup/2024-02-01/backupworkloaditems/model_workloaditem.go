@@ -52,9 +52,9 @@ func UnmarshalWorkloadItemImplementation(input []byte) (WorkloadItem, error) {
 		return nil, fmt.Errorf("unmarshaling WorkloadItem into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["workloadItemType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["workloadItemType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureVmWorkloadItem") {

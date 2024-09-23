@@ -20,10 +20,15 @@ type ActionRule struct {
 var _ json.Unmarshaler = &ActionRule{}
 
 func (s *ActionRule) UnmarshalJSON(bytes []byte) error {
-	type alias ActionRule
-	var decoded alias
+	var decoded struct {
+		Id       *string            `json:"id,omitempty"`
+		Location string             `json:"location"`
+		Name     *string            `json:"name,omitempty"`
+		Tags     *map[string]string `json:"tags,omitempty"`
+		Type     *string            `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ActionRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -44,5 +49,6 @@ func (s *ActionRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Properties = impl
 	}
+
 	return nil
 }

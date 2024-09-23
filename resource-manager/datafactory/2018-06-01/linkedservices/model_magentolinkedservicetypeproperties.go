@@ -20,10 +20,15 @@ type MagentoLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &MagentoLinkedServiceTypeProperties{}
 
 func (s *MagentoLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias MagentoLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential   *string `json:"encryptedCredential,omitempty"`
+		Host                  string  `json:"host"`
+		UseEncryptedEndpoints *bool   `json:"useEncryptedEndpoints,omitempty"`
+		UseHostVerification   *bool   `json:"useHostVerification,omitempty"`
+		UsePeerVerification   *bool   `json:"usePeerVerification,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MagentoLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -44,5 +49,6 @@ func (s *MagentoLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AccessToken = impl
 	}
+
 	return nil
 }

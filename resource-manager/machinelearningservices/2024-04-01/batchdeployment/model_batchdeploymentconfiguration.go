@@ -48,9 +48,9 @@ func UnmarshalBatchDeploymentConfigurationImplementation(input []byte) (BatchDep
 		return nil, fmt.Errorf("unmarshaling BatchDeploymentConfiguration into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["deploymentConfigurationType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["deploymentConfigurationType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "PipelineComponent") {

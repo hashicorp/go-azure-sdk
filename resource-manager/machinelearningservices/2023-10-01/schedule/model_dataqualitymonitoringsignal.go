@@ -61,10 +61,15 @@ func (s DataQualityMonitoringSignal) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DataQualityMonitoringSignal{}
 
 func (s *DataQualityMonitoringSignal) UnmarshalJSON(bytes []byte) error {
-	type alias DataQualityMonitoringSignal
-	var decoded alias
+	var decoded struct {
+		FeatureDataTypeOverride   *map[string]MonitoringFeatureDataType `json:"featureDataTypeOverride,omitempty"`
+		FeatureImportanceSettings *FeatureImportanceSettings            `json:"featureImportanceSettings,omitempty"`
+		NotificationTypes         *[]MonitoringNotificationType         `json:"notificationTypes,omitempty"`
+		Properties                *map[string]string                    `json:"properties,omitempty"`
+		SignalType                MonitoringSignalType                  `json:"signalType"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DataQualityMonitoringSignal: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FeatureDataTypeOverride = decoded.FeatureDataTypeOverride
@@ -118,5 +123,6 @@ func (s *DataQualityMonitoringSignal) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ReferenceData = impl
 	}
+
 	return nil
 }

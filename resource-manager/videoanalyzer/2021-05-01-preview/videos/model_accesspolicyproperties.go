@@ -16,10 +16,11 @@ type AccessPolicyProperties struct {
 var _ json.Unmarshaler = &AccessPolicyProperties{}
 
 func (s *AccessPolicyProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPolicyProperties
-	var decoded alias
+	var decoded struct {
+		Role *AccessPolicyRole `json:"role,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPolicyProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Role = decoded.Role
@@ -36,5 +37,6 @@ func (s *AccessPolicyProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Authentication = impl
 	}
+
 	return nil
 }

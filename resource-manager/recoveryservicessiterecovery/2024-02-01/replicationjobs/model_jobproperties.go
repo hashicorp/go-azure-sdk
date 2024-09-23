@@ -55,10 +55,23 @@ func (o *JobProperties) SetStartTimeAsTime(input time.Time) {
 var _ json.Unmarshaler = &JobProperties{}
 
 func (s *JobProperties) UnmarshalJSON(bytes []byte) error {
-	type alias JobProperties
-	var decoded alias
+	var decoded struct {
+		ActivityId         *string            `json:"activityId,omitempty"`
+		AllowedActions     *[]string          `json:"allowedActions,omitempty"`
+		EndTime            *string            `json:"endTime,omitempty"`
+		Errors             *[]JobErrorDetails `json:"errors,omitempty"`
+		FriendlyName       *string            `json:"friendlyName,omitempty"`
+		ScenarioName       *string            `json:"scenarioName,omitempty"`
+		StartTime          *string            `json:"startTime,omitempty"`
+		State              *string            `json:"state,omitempty"`
+		StateDescription   *string            `json:"stateDescription,omitempty"`
+		TargetInstanceType *string            `json:"targetInstanceType,omitempty"`
+		TargetObjectId     *string            `json:"targetObjectId,omitempty"`
+		TargetObjectName   *string            `json:"targetObjectName,omitempty"`
+		Tasks              *[]ASRTask         `json:"tasks,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JobProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActivityId = decoded.ActivityId
@@ -87,5 +100,6 @@ func (s *JobProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CustomDetails = impl
 	}
+
 	return nil
 }

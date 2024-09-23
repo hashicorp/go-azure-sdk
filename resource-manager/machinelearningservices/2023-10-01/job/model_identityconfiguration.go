@@ -48,9 +48,9 @@ func UnmarshalIdentityConfigurationImplementation(input []byte) (IdentityConfigu
 		return nil, fmt.Errorf("unmarshaling IdentityConfiguration into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["identityType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["identityType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AMLToken") {

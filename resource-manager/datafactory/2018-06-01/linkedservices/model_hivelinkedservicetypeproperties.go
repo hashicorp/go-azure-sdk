@@ -31,10 +31,26 @@ type HiveLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &HiveLinkedServiceTypeProperties{}
 
 func (s *HiveLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias HiveLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AllowHostNameCNMismatch   *bool                        `json:"allowHostNameCNMismatch,omitempty"`
+		AllowSelfSignedServerCert *bool                        `json:"allowSelfSignedServerCert,omitempty"`
+		AuthenticationType        HiveAuthenticationType       `json:"authenticationType"`
+		EnableSsl                 *bool                        `json:"enableSsl,omitempty"`
+		EncryptedCredential       *string                      `json:"encryptedCredential,omitempty"`
+		HTTPPath                  *string                      `json:"httpPath,omitempty"`
+		Host                      string                       `json:"host"`
+		Port                      *int64                       `json:"port,omitempty"`
+		ServerType                *HiveServerType              `json:"serverType,omitempty"`
+		ServiceDiscoveryMode      *bool                        `json:"serviceDiscoveryMode,omitempty"`
+		ThriftTransportProtocol   *HiveThriftTransportProtocol `json:"thriftTransportProtocol,omitempty"`
+		TrustedCertPath           *string                      `json:"trustedCertPath,omitempty"`
+		UseNativeQuery            *bool                        `json:"useNativeQuery,omitempty"`
+		UseSystemTrustStore       *bool                        `json:"useSystemTrustStore,omitempty"`
+		Username                  *string                      `json:"username,omitempty"`
+		ZooKeeperNameSpace        *string                      `json:"zooKeeperNameSpace,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into HiveLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowHostNameCNMismatch = decoded.AllowHostNameCNMismatch
@@ -66,5 +82,6 @@ func (s *HiveLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

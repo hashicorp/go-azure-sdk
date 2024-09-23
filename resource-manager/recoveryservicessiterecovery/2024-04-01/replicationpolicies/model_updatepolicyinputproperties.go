@@ -28,5 +28,6 @@ func (s *UpdatePolicyInputProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ReplicationProviderSettings = impl
 	}
+
 	return nil
 }

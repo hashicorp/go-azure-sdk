@@ -16,10 +16,11 @@ type SelfHostedIntegrationRuntimeTypeProperties struct {
 var _ json.Unmarshaler = &SelfHostedIntegrationRuntimeTypeProperties{}
 
 func (s *SelfHostedIntegrationRuntimeTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias SelfHostedIntegrationRuntimeTypeProperties
-	var decoded alias
+	var decoded struct {
+		SelfContainedInteractiveAuthoringEnabled *bool `json:"selfContainedInteractiveAuthoringEnabled,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SelfHostedIntegrationRuntimeTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.SelfContainedInteractiveAuthoringEnabled = decoded.SelfContainedInteractiveAuthoringEnabled
@@ -36,5 +37,6 @@ func (s *SelfHostedIntegrationRuntimeTypeProperties) UnmarshalJSON(bytes []byte)
 		}
 		s.LinkedInfo = impl
 	}
+
 	return nil
 }

@@ -16,10 +16,11 @@ type VaultRetentionPolicy struct {
 var _ json.Unmarshaler = &VaultRetentionPolicy{}
 
 func (s *VaultRetentionPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias VaultRetentionPolicy
-	var decoded alias
+	var decoded struct {
+		SnapshotRetentionInDays int64 `json:"snapshotRetentionInDays"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VaultRetentionPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.SnapshotRetentionInDays = decoded.SnapshotRetentionInDays
@@ -36,5 +37,6 @@ func (s *VaultRetentionPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.VaultRetention = impl
 	}
+
 	return nil
 }

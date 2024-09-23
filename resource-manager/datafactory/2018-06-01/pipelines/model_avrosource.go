@@ -61,10 +61,16 @@ func (s AvroSource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AvroSource{}
 
 func (s *AvroSource) UnmarshalJSON(bytes []byte) error {
-	type alias AvroSource
-	var decoded alias
+	var decoded struct {
+		AdditionalColumns        *interface{} `json:"additionalColumns,omitempty"`
+		DisableMetricsCollection *bool        `json:"disableMetricsCollection,omitempty"`
+		MaxConcurrentConnections *int64       `json:"maxConcurrentConnections,omitempty"`
+		SourceRetryCount         *int64       `json:"sourceRetryCount,omitempty"`
+		SourceRetryWait          *string      `json:"sourceRetryWait,omitempty"`
+		Type                     string       `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AvroSource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalColumns = decoded.AdditionalColumns
@@ -86,5 +92,6 @@ func (s *AvroSource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StoreSettings = impl
 	}
+
 	return nil
 }

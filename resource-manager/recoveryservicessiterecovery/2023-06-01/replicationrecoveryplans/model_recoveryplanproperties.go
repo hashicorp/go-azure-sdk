@@ -69,10 +69,25 @@ func (o *RecoveryPlanProperties) SetLastUnplannedFailoverTimeAsTime(input time.T
 var _ json.Unmarshaler = &RecoveryPlanProperties{}
 
 func (s *RecoveryPlanProperties) UnmarshalJSON(bytes []byte) error {
-	type alias RecoveryPlanProperties
-	var decoded alias
+	var decoded struct {
+		AllowedOperations                *[]string               `json:"allowedOperations,omitempty"`
+		CurrentScenario                  *CurrentScenarioDetails `json:"currentScenario,omitempty"`
+		CurrentScenarioStatus            *string                 `json:"currentScenarioStatus,omitempty"`
+		CurrentScenarioStatusDescription *string                 `json:"currentScenarioStatusDescription,omitempty"`
+		FailoverDeploymentModel          *string                 `json:"failoverDeploymentModel,omitempty"`
+		FriendlyName                     *string                 `json:"friendlyName,omitempty"`
+		Groups                           *[]RecoveryPlanGroup    `json:"groups,omitempty"`
+		LastPlannedFailoverTime          *string                 `json:"lastPlannedFailoverTime,omitempty"`
+		LastTestFailoverTime             *string                 `json:"lastTestFailoverTime,omitempty"`
+		LastUnplannedFailoverTime        *string                 `json:"lastUnplannedFailoverTime,omitempty"`
+		PrimaryFabricFriendlyName        *string                 `json:"primaryFabricFriendlyName,omitempty"`
+		PrimaryFabricId                  *string                 `json:"primaryFabricId,omitempty"`
+		RecoveryFabricFriendlyName       *string                 `json:"recoveryFabricFriendlyName,omitempty"`
+		RecoveryFabricId                 *string                 `json:"recoveryFabricId,omitempty"`
+		ReplicationProviders             *[]string               `json:"replicationProviders,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RecoveryPlanProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowedOperations = decoded.AllowedOperations
@@ -112,5 +127,6 @@ func (s *RecoveryPlanProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificDetails = &output
 	}
+
 	return nil
 }

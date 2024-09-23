@@ -61,10 +61,29 @@ func (o *MigrationItemProperties) SetLastTestMigrationTimeAsTime(input time.Time
 var _ json.Unmarshaler = &MigrationItemProperties{}
 
 func (s *MigrationItemProperties) UnmarshalJSON(bytes []byte) error {
-	type alias MigrationItemProperties
-	var decoded alias
+	var decoded struct {
+		AllowedOperations           *[]MigrationItemOperation    `json:"allowedOperations,omitempty"`
+		CriticalJobHistory          *[]CriticalJobHistoryDetails `json:"criticalJobHistory,omitempty"`
+		CurrentJob                  *CurrentJobDetails           `json:"currentJob,omitempty"`
+		EventCorrelationId          *string                      `json:"eventCorrelationId,omitempty"`
+		Health                      *ProtectionHealth            `json:"health,omitempty"`
+		HealthErrors                *[]HealthError               `json:"healthErrors,omitempty"`
+		LastMigrationStatus         *string                      `json:"lastMigrationStatus,omitempty"`
+		LastMigrationTime           *string                      `json:"lastMigrationTime,omitempty"`
+		LastTestMigrationStatus     *string                      `json:"lastTestMigrationStatus,omitempty"`
+		LastTestMigrationTime       *string                      `json:"lastTestMigrationTime,omitempty"`
+		MachineName                 *string                      `json:"machineName,omitempty"`
+		MigrationState              *MigrationState              `json:"migrationState,omitempty"`
+		MigrationStateDescription   *string                      `json:"migrationStateDescription,omitempty"`
+		PolicyFriendlyName          *string                      `json:"policyFriendlyName,omitempty"`
+		PolicyId                    *string                      `json:"policyId,omitempty"`
+		RecoveryServicesProviderId  *string                      `json:"recoveryServicesProviderId,omitempty"`
+		ReplicationStatus           *string                      `json:"replicationStatus,omitempty"`
+		TestMigrateState            *TestMigrationState          `json:"testMigrateState,omitempty"`
+		TestMigrateStateDescription *string                      `json:"testMigrateStateDescription,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MigrationItemProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowedOperations = decoded.AllowedOperations
@@ -99,5 +118,6 @@ func (s *MigrationItemProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

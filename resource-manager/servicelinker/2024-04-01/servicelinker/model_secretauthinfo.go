@@ -55,15 +55,18 @@ func (s SecretAuthInfo) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecretAuthInfo{}
 
 func (s *SecretAuthInfo) UnmarshalJSON(bytes []byte) error {
-	type alias SecretAuthInfo
-	var decoded alias
+	var decoded struct {
+		Name     *string   `json:"name,omitempty"`
+		AuthMode *AuthMode `json:"authMode,omitempty"`
+		AuthType AuthType  `json:"authType"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecretAuthInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Name = decoded.Name
 	s.AuthMode = decoded.AuthMode
 	s.AuthType = decoded.AuthType
-	s.Name = decoded.Name
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -77,5 +80,6 @@ func (s *SecretAuthInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SecretInfo = impl
 	}
+
 	return nil
 }

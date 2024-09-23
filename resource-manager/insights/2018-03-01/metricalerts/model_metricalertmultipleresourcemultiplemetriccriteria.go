@@ -52,10 +52,11 @@ func (s MetricAlertMultipleResourceMultipleMetricCriteria) MarshalJSON() ([]byte
 var _ json.Unmarshaler = &MetricAlertMultipleResourceMultipleMetricCriteria{}
 
 func (s *MetricAlertMultipleResourceMultipleMetricCriteria) UnmarshalJSON(bytes []byte) error {
-	type alias MetricAlertMultipleResourceMultipleMetricCriteria
-	var decoded alias
+	var decoded struct {
+		OdataType Odatatype `json:"odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MetricAlertMultipleResourceMultipleMetricCriteria: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.OdataType = decoded.OdataType
@@ -81,5 +82,6 @@ func (s *MetricAlertMultipleResourceMultipleMetricCriteria) UnmarshalJSON(bytes 
 		}
 		s.AllOf = &output
 	}
+
 	return nil
 }

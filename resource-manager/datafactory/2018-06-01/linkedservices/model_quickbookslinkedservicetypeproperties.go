@@ -23,10 +23,16 @@ type QuickBooksLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &QuickBooksLinkedServiceTypeProperties{}
 
 func (s *QuickBooksLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias QuickBooksLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		CompanyId             *string      `json:"companyId,omitempty"`
+		ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
+		ConsumerKey           *string      `json:"consumerKey,omitempty"`
+		EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
+		Endpoint              *string      `json:"endpoint,omitempty"`
+		UseEncryptedEndpoints *bool        `json:"useEncryptedEndpoints,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into QuickBooksLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CompanyId = decoded.CompanyId
@@ -64,5 +70,6 @@ func (s *QuickBooksLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 		}
 		s.ConsumerSecret = impl
 	}
+
 	return nil
 }

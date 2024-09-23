@@ -57,10 +57,14 @@ func (s JobInputHTTP) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JobInputHTTP{}
 
 func (s *JobInputHTTP) UnmarshalJSON(bytes []byte) error {
-	type alias JobInputHTTP
-	var decoded alias
+	var decoded struct {
+		BaseUri   *string   `json:"baseUri,omitempty"`
+		Files     *[]string `json:"files,omitempty"`
+		Label     *string   `json:"label,omitempty"`
+		OdataType string    `json:"@odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JobInputHTTP: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BaseUri = decoded.BaseUri
@@ -105,5 +109,6 @@ func (s *JobInputHTTP) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Start = impl
 	}
+
 	return nil
 }

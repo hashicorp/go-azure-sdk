@@ -52,10 +52,11 @@ func (s JobScheduleAction) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JobScheduleAction{}
 
 func (s *JobScheduleAction) UnmarshalJSON(bytes []byte) error {
-	type alias JobScheduleAction
-	var decoded alias
+	var decoded struct {
+		ActionType ScheduleActionType `json:"actionType"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JobScheduleAction: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActionType = decoded.ActionType
@@ -72,5 +73,6 @@ func (s *JobScheduleAction) UnmarshalJSON(bytes []byte) error {
 		}
 		s.JobDefinition = impl
 	}
+
 	return nil
 }

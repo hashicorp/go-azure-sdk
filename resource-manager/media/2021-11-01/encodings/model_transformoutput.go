@@ -17,10 +17,12 @@ type TransformOutput struct {
 var _ json.Unmarshaler = &TransformOutput{}
 
 func (s *TransformOutput) UnmarshalJSON(bytes []byte) error {
-	type alias TransformOutput
-	var decoded alias
+	var decoded struct {
+		OnError          *OnErrorType `json:"onError,omitempty"`
+		RelativePriority *Priority    `json:"relativePriority,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TransformOutput: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.OnError = decoded.OnError
@@ -38,5 +40,6 @@ func (s *TransformOutput) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Preset = impl
 	}
+
 	return nil
 }

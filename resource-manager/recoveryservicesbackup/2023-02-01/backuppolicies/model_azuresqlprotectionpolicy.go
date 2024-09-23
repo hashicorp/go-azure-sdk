@@ -56,10 +56,13 @@ func (s AzureSqlProtectionPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AzureSqlProtectionPolicy{}
 
 func (s *AzureSqlProtectionPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias AzureSqlProtectionPolicy
-	var decoded alias
+	var decoded struct {
+		BackupManagementType           string    `json:"backupManagementType"`
+		ProtectedItemsCount            *int64    `json:"protectedItemsCount,omitempty"`
+		ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureSqlProtectionPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BackupManagementType = decoded.BackupManagementType
@@ -78,5 +81,6 @@ func (s *AzureSqlProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RetentionPolicy = impl
 	}
+
 	return nil
 }

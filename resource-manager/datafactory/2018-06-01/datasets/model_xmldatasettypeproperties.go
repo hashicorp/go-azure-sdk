@@ -18,10 +18,13 @@ type XmlDatasetTypeProperties struct {
 var _ json.Unmarshaler = &XmlDatasetTypeProperties{}
 
 func (s *XmlDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias XmlDatasetTypeProperties
-	var decoded alias
+	var decoded struct {
+		Compression  *DatasetCompression `json:"compression,omitempty"`
+		EncodingName *string             `json:"encodingName,omitempty"`
+		NullValue    *string             `json:"nullValue,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into XmlDatasetTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Compression = decoded.Compression
@@ -40,5 +43,6 @@ func (s *XmlDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Location = impl
 	}
+
 	return nil
 }

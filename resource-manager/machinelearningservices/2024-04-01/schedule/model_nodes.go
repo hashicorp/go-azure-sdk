@@ -48,9 +48,9 @@ func UnmarshalNodesImplementation(input []byte) (Nodes, error) {
 		return nil, fmt.Errorf("unmarshaling Nodes into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["nodesValueType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["nodesValueType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "All") {

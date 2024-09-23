@@ -68,23 +68,35 @@ func (s AzureBlobDatastore) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AzureBlobDatastore{}
 
 func (s *AzureBlobDatastore) UnmarshalJSON(bytes []byte) error {
-	type alias AzureBlobDatastore
-	var decoded alias
+	var decoded struct {
+		AccountName                   *string                        `json:"accountName,omitempty"`
+		ContainerName                 *string                        `json:"containerName,omitempty"`
+		Endpoint                      *string                        `json:"endpoint,omitempty"`
+		Protocol                      *string                        `json:"protocol,omitempty"`
+		ResourceGroup                 *string                        `json:"resourceGroup,omitempty"`
+		ServiceDataAccessAuthIdentity *ServiceDataAccessAuthIdentity `json:"serviceDataAccessAuthIdentity,omitempty"`
+		SubscriptionId                *string                        `json:"subscriptionId,omitempty"`
+		DatastoreType                 DatastoreType                  `json:"datastoreType"`
+		Description                   *string                        `json:"description,omitempty"`
+		IsDefault                     *bool                          `json:"isDefault,omitempty"`
+		Properties                    *map[string]string             `json:"properties,omitempty"`
+		Tags                          *map[string]string             `json:"tags,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureBlobDatastore: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountName = decoded.AccountName
 	s.ContainerName = decoded.ContainerName
-	s.DatastoreType = decoded.DatastoreType
-	s.Description = decoded.Description
 	s.Endpoint = decoded.Endpoint
-	s.IsDefault = decoded.IsDefault
-	s.Properties = decoded.Properties
 	s.Protocol = decoded.Protocol
 	s.ResourceGroup = decoded.ResourceGroup
 	s.ServiceDataAccessAuthIdentity = decoded.ServiceDataAccessAuthIdentity
 	s.SubscriptionId = decoded.SubscriptionId
+	s.DatastoreType = decoded.DatastoreType
+	s.Description = decoded.Description
+	s.IsDefault = decoded.IsDefault
+	s.Properties = decoded.Properties
 	s.Tags = decoded.Tags
 
 	var temp map[string]json.RawMessage
@@ -99,5 +111,6 @@ func (s *AzureBlobDatastore) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Credentials = impl
 	}
+
 	return nil
 }

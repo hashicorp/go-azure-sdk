@@ -48,9 +48,9 @@ func UnmarshalDryrunParametersImplementation(input []byte) (DryrunParameters, er
 		return nil, fmt.Errorf("unmarshaling DryrunParameters into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["actionName"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["actionName"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "createOrUpdate") {

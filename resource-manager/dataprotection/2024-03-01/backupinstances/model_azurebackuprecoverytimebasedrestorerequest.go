@@ -60,15 +60,20 @@ func (s AzureBackupRecoveryTimeBasedRestoreRequest) MarshalJSON() ([]byte, error
 var _ json.Unmarshaler = &AzureBackupRecoveryTimeBasedRestoreRequest{}
 
 func (s *AzureBackupRecoveryTimeBasedRestoreRequest) UnmarshalJSON(bytes []byte) error {
-	type alias AzureBackupRecoveryTimeBasedRestoreRequest
-	var decoded alias
+	var decoded struct {
+		RecoveryPointTime   string              `json:"recoveryPointTime"`
+		IdentityDetails     *IdentityDetails    `json:"identityDetails,omitempty"`
+		ObjectType          string              `json:"objectType"`
+		SourceDataStoreType SourceDataStoreType `json:"sourceDataStoreType"`
+		SourceResourceId    *string             `json:"sourceResourceId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureBackupRecoveryTimeBasedRestoreRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.RecoveryPointTime = decoded.RecoveryPointTime
 	s.IdentityDetails = decoded.IdentityDetails
 	s.ObjectType = decoded.ObjectType
-	s.RecoveryPointTime = decoded.RecoveryPointTime
 	s.SourceDataStoreType = decoded.SourceDataStoreType
 	s.SourceResourceId = decoded.SourceResourceId
 
@@ -84,5 +89,6 @@ func (s *AzureBackupRecoveryTimeBasedRestoreRequest) UnmarshalJSON(bytes []byte)
 		}
 		s.RestoreTargetInfo = impl
 	}
+
 	return nil
 }

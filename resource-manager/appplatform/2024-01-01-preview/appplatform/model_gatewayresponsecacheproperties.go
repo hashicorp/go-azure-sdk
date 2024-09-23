@@ -48,9 +48,9 @@ func UnmarshalGatewayResponseCachePropertiesImplementation(input []byte) (Gatewa
 		return nil, fmt.Errorf("unmarshaling GatewayResponseCacheProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["responseCacheType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["responseCacheType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "LocalCachePerInstance") {

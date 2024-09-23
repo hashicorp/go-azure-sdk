@@ -25,10 +25,20 @@ type ImpalaLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &ImpalaLinkedServiceTypeProperties{}
 
 func (s *ImpalaLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ImpalaLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AllowHostNameCNMismatch   *bool                    `json:"allowHostNameCNMismatch,omitempty"`
+		AllowSelfSignedServerCert *bool                    `json:"allowSelfSignedServerCert,omitempty"`
+		AuthenticationType        ImpalaAuthenticationType `json:"authenticationType"`
+		EnableSsl                 *bool                    `json:"enableSsl,omitempty"`
+		EncryptedCredential       *string                  `json:"encryptedCredential,omitempty"`
+		Host                      string                   `json:"host"`
+		Port                      *int64                   `json:"port,omitempty"`
+		TrustedCertPath           *string                  `json:"trustedCertPath,omitempty"`
+		UseSystemTrustStore       *bool                    `json:"useSystemTrustStore,omitempty"`
+		Username                  *string                  `json:"username,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ImpalaLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowHostNameCNMismatch = decoded.AllowHostNameCNMismatch
@@ -54,5 +64,6 @@ func (s *ImpalaLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

@@ -18,10 +18,13 @@ type ForEachActivityTypeProperties struct {
 var _ json.Unmarshaler = &ForEachActivityTypeProperties{}
 
 func (s *ForEachActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias ForEachActivityTypeProperties
-	var decoded alias
+	var decoded struct {
+		BatchCount   *int64     `json:"batchCount,omitempty"`
+		IsSequential *bool      `json:"isSequential,omitempty"`
+		Items        Expression `json:"items"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ForEachActivityTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BatchCount = decoded.BatchCount
@@ -49,5 +52,6 @@ func (s *ForEachActivityTypeProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Activities = output
 	}
+
 	return nil
 }

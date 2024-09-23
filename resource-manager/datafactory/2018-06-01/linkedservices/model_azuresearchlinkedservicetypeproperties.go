@@ -17,10 +17,12 @@ type AzureSearchLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &AzureSearchLinkedServiceTypeProperties{}
 
 func (s *AzureSearchLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias AzureSearchLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		Url                 string  `json:"url"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureSearchLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -38,5 +40,6 @@ func (s *AzureSearchLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) err
 		}
 		s.Key = impl
 	}
+
 	return nil
 }

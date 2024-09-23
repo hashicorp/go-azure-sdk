@@ -48,9 +48,9 @@ func UnmarshalAuthCredentialsImplementation(input []byte) (AuthCredentials, erro
 		return nil, fmt.Errorf("unmarshaling AuthCredentials into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["objectType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "SecretStoreBasedAuthCredentials") {

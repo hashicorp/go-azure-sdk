@@ -65,14 +65,22 @@ func (s ParquetSink) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ParquetSink{}
 
 func (s *ParquetSink) UnmarshalJSON(bytes []byte) error {
-	type alias ParquetSink
-	var decoded alias
+	var decoded struct {
+		FormatSettings           *ParquetWriteSettings `json:"formatSettings,omitempty"`
+		DisableMetricsCollection *bool                 `json:"disableMetricsCollection,omitempty"`
+		MaxConcurrentConnections *int64                `json:"maxConcurrentConnections,omitempty"`
+		SinkRetryCount           *int64                `json:"sinkRetryCount,omitempty"`
+		SinkRetryWait            *string               `json:"sinkRetryWait,omitempty"`
+		Type                     string                `json:"type"`
+		WriteBatchSize           *int64                `json:"writeBatchSize,omitempty"`
+		WriteBatchTimeout        *string               `json:"writeBatchTimeout,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ParquetSink: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.DisableMetricsCollection = decoded.DisableMetricsCollection
 	s.FormatSettings = decoded.FormatSettings
+	s.DisableMetricsCollection = decoded.DisableMetricsCollection
 	s.MaxConcurrentConnections = decoded.MaxConcurrentConnections
 	s.SinkRetryCount = decoded.SinkRetryCount
 	s.SinkRetryWait = decoded.SinkRetryWait
@@ -92,5 +100,6 @@ func (s *ParquetSink) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StoreSettings = impl
 	}
+
 	return nil
 }

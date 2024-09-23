@@ -16,10 +16,11 @@ type EnableMigrationInputProperties struct {
 var _ json.Unmarshaler = &EnableMigrationInputProperties{}
 
 func (s *EnableMigrationInputProperties) UnmarshalJSON(bytes []byte) error {
-	type alias EnableMigrationInputProperties
-	var decoded alias
+	var decoded struct {
+		PolicyId string `json:"policyId"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EnableMigrationInputProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.PolicyId = decoded.PolicyId
@@ -36,5 +37,6 @@ func (s *EnableMigrationInputProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProviderSpecificDetails = impl
 	}
+
 	return nil
 }

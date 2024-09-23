@@ -20,10 +20,15 @@ type DynamicsAXLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &DynamicsAXLinkedServiceTypeProperties{}
 
 func (s *DynamicsAXLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias DynamicsAXLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		AadResourceId       string  `json:"aadResourceId"`
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		ServicePrincipalId  string  `json:"servicePrincipalId"`
+		Tenant              string  `json:"tenant"`
+		Url                 string  `json:"url"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DynamicsAXLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AadResourceId = decoded.AadResourceId
@@ -44,5 +49,6 @@ func (s *DynamicsAXLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

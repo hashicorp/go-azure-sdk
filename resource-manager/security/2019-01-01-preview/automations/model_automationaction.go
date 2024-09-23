@@ -48,9 +48,9 @@ func UnmarshalAutomationActionImplementation(input []byte) (AutomationAction, er
 		return nil, fmt.Errorf("unmarshaling AutomationAction into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["actionType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["actionType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "EventHub") {

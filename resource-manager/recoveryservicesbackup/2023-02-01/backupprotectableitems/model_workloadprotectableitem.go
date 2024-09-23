@@ -52,9 +52,9 @@ func UnmarshalWorkloadProtectableItemImplementation(input []byte) (WorkloadProte
 		return nil, fmt.Errorf("unmarshaling WorkloadProtectableItem into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["protectableItemType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["protectableItemType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "AzureFileShare") {

@@ -23,10 +23,17 @@ type WarehouseLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &WarehouseLinkedServiceTypeProperties{}
 
 func (s *WarehouseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias WarehouseLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		ArtifactId                     string  `json:"artifactId"`
+		EncryptedCredential            *string `json:"encryptedCredential,omitempty"`
+		Endpoint                       string  `json:"endpoint"`
+		ServicePrincipalCredentialType *string `json:"servicePrincipalCredentialType,omitempty"`
+		ServicePrincipalId             *string `json:"servicePrincipalId,omitempty"`
+		Tenant                         *string `json:"tenant,omitempty"`
+		WorkspaceId                    *string `json:"workspaceId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WarehouseLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ArtifactId = decoded.ArtifactId
@@ -57,5 +64,6 @@ func (s *WarehouseLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error
 		}
 		s.ServicePrincipalKey = impl
 	}
+
 	return nil
 }

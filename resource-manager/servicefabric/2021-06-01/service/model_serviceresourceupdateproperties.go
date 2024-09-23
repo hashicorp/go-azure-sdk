@@ -53,9 +53,9 @@ func UnmarshalServiceResourceUpdatePropertiesImplementation(input []byte) (Servi
 		return nil, fmt.Errorf("unmarshaling ServiceResourceUpdateProperties into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["serviceKind"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["serviceKind"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Stateful") {

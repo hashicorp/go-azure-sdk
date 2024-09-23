@@ -28,5 +28,6 @@ func (s *SecurityPolicyUpdateProperties) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Parameters = impl
 	}
+
 	return nil
 }

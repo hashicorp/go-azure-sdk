@@ -16,10 +16,11 @@ type CustomPersistentDiskResource struct {
 var _ json.Unmarshaler = &CustomPersistentDiskResource{}
 
 func (s *CustomPersistentDiskResource) UnmarshalJSON(bytes []byte) error {
-	type alias CustomPersistentDiskResource
-	var decoded alias
+	var decoded struct {
+		StorageId string `json:"storageId"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CustomPersistentDiskResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.StorageId = decoded.StorageId
@@ -36,5 +37,6 @@ func (s *CustomPersistentDiskResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CustomPersistentDiskProperties = impl
 	}
+
 	return nil
 }

@@ -16,10 +16,11 @@ type EntityTimelineResponse struct {
 var _ json.Unmarshaler = &EntityTimelineResponse{}
 
 func (s *EntityTimelineResponse) UnmarshalJSON(bytes []byte) error {
-	type alias EntityTimelineResponse
-	var decoded alias
+	var decoded struct {
+		MetaData *TimelineResultsMetadata `json:"metaData,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EntityTimelineResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.MetaData = decoded.MetaData
@@ -45,5 +46,6 @@ func (s *EntityTimelineResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

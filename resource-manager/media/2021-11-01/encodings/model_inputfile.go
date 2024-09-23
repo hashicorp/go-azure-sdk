@@ -54,10 +54,12 @@ func (s InputFile) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &InputFile{}
 
 func (s *InputFile) UnmarshalJSON(bytes []byte) error {
-	type alias InputFile
-	var decoded alias
+	var decoded struct {
+		Filename  *string `json:"filename,omitempty"`
+		OdataType string  `json:"@odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into InputFile: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Filename = decoded.Filename
@@ -84,5 +86,6 @@ func (s *InputFile) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IncludedTracks = &output
 	}
+
 	return nil
 }

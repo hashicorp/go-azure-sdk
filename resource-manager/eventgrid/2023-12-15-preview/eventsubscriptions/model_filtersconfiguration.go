@@ -16,10 +16,11 @@ type FiltersConfiguration struct {
 var _ json.Unmarshaler = &FiltersConfiguration{}
 
 func (s *FiltersConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias FiltersConfiguration
-	var decoded alias
+	var decoded struct {
+		IncludedEventTypes *[]string `json:"includedEventTypes,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into FiltersConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.IncludedEventTypes = decoded.IncludedEventTypes
@@ -45,5 +46,6 @@ func (s *FiltersConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Filters = &output
 	}
+
 	return nil
 }

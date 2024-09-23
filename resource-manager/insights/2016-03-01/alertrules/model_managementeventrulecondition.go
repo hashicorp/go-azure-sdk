@@ -54,10 +54,12 @@ func (s ManagementEventRuleCondition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ManagementEventRuleCondition{}
 
 func (s *ManagementEventRuleCondition) UnmarshalJSON(bytes []byte) error {
-	type alias ManagementEventRuleCondition
-	var decoded alias
+	var decoded struct {
+		Aggregation *ManagementEventAggregationCondition `json:"aggregation,omitempty"`
+		OdataType   string                               `json:"odata.type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ManagementEventRuleCondition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Aggregation = decoded.Aggregation
@@ -75,5 +77,6 @@ func (s *ManagementEventRuleCondition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DataSource = impl
 	}
+
 	return nil
 }

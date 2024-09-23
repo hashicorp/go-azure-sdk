@@ -53,10 +53,12 @@ func (s DelimitedTextReadSettings) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DelimitedTextReadSettings{}
 
 func (s *DelimitedTextReadSettings) UnmarshalJSON(bytes []byte) error {
-	type alias DelimitedTextReadSettings
-	var decoded alias
+	var decoded struct {
+		SkipLineCount *int64 `json:"skipLineCount,omitempty"`
+		Type          string `json:"type"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DelimitedTextReadSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.SkipLineCount = decoded.SkipLineCount
@@ -74,5 +76,6 @@ func (s *DelimitedTextReadSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CompressionProperties = impl
 	}
+
 	return nil
 }

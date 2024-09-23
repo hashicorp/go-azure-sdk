@@ -18,10 +18,13 @@ type FileServerLinkedServiceTypeProperties struct {
 var _ json.Unmarshaler = &FileServerLinkedServiceTypeProperties{}
 
 func (s *FileServerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
-	type alias FileServerLinkedServiceTypeProperties
-	var decoded alias
+	var decoded struct {
+		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
+		Host                string  `json:"host"`
+		UserId              *string `json:"userId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into FileServerLinkedServiceTypeProperties: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EncryptedCredential = decoded.EncryptedCredential
@@ -40,5 +43,6 @@ func (s *FileServerLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Password = impl
 	}
+
 	return nil
 }

@@ -48,9 +48,9 @@ func UnmarshalSamplingAlgorithmImplementation(input []byte) (SamplingAlgorithm, 
 		return nil, fmt.Errorf("unmarshaling SamplingAlgorithm into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["samplingAlgorithmType"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["samplingAlgorithmType"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "Bayesian") {
