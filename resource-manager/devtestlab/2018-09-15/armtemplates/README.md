@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := armtemplates.NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName")
+id := armtemplates.NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
 
 // alternatively `client.List(ctx, id, armtemplates.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, armtemplates.DefaultListOperationOptions())

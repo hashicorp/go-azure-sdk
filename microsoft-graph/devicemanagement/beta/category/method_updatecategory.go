@@ -51,7 +51,9 @@ func (c CategoryClient) UpdateCategory(ctx context.Context, id beta.DeviceManage
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
 		OptionsObject: options,

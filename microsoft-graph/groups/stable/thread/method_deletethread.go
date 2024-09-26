@@ -56,6 +56,7 @@ func (c ThreadClient) DeleteThread(ctx context.Context, id stable.GroupIdThreadI
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

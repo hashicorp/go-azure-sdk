@@ -51,7 +51,10 @@ func (c ManagerClient) SetManagerRef(ctx context.Context, input beta.ReferenceUp
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
+			http.StatusCreated,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
 		OptionsObject: options,

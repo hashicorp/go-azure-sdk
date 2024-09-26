@@ -56,6 +56,7 @@ func (c MessageClient) RemoveMessageValue(ctx context.Context, id stable.MeMessa
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

@@ -54,7 +54,10 @@ func (c OnlineMeetingAlternativeRecordingClient) SetOnlineMeetingAlternativeReco
 	opts := client.RequestOptions{
 		ContentType: options.ContentType,
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
+			http.StatusCreated,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
 		OptionsObject: options,

@@ -56,6 +56,7 @@ func (c ApprovalClient) DeleteApproval(ctx context.Context, id beta.UserIdApprov
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

@@ -51,7 +51,9 @@ func (c ExtensionClient) UpdateExtension(ctx context.Context, id stable.MeExtens
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
 		OptionsObject: options,

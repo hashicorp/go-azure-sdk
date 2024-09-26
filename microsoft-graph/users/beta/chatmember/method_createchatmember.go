@@ -54,7 +54,10 @@ func (c ChatMemberClient) CreateChatMember(ctx context.Context, id beta.UserIdCh
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusCreated,
+			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,

@@ -54,6 +54,9 @@ func (c MailFolderClient) CopyMailFolder(ctx context.Context, id beta.UserIdMail
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
+			http.StatusCreated,
+			http.StatusNoContent,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,

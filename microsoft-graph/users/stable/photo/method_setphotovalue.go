@@ -54,7 +54,10 @@ func (c PhotoClient) SetPhotoValue(ctx context.Context, id stable.UserIdPhotoId,
 	opts := client.RequestOptions{
 		ContentType: options.ContentType,
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
+			http.StatusCreated,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
 		OptionsObject: options,

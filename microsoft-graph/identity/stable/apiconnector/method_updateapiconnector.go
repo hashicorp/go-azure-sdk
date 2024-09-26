@@ -51,7 +51,9 @@ func (c ApiConnectorClient) UpdateApiConnector(ctx context.Context, id stable.Id
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
 		OptionsObject: options,

@@ -123,7 +123,7 @@ func (id PolicySetId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
 		resourceids.UserSpecifiedSegment("labName", "labName"),
 		resourceids.StaticSegment("staticPolicySets", "policySets", "policySets"),
-		resourceids.UserSpecifiedSegment("policySetName", "policySetName"),
+		resourceids.UserSpecifiedSegment("policySetName", "name"),
 	}
 }
 

@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hybrididentitymetadata.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := hybrididentitymetadata.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName")
 
 // alternatively `client.ListByMachines(ctx, id)` can be used to do batched pagination
 items, err := client.ListByMachinesComplete(ctx, id)

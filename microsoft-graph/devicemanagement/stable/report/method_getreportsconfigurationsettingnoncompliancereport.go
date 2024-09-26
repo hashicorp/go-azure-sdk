@@ -52,6 +52,9 @@ func (c ReportClient) GetReportsConfigurationSettingNonComplianceReport(ctx cont
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
+			http.StatusCreated,
+			http.StatusNoContent,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,

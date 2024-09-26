@@ -51,7 +51,9 @@ func (c DomainClient) UpdateDomain(ctx context.Context, id beta.DomainId, input 
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
 		OptionsObject: options,

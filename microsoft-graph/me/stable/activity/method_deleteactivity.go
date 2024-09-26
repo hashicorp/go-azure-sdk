@@ -56,6 +56,7 @@ func (c ActivityClient) DeleteActivity(ctx context.Context, id stable.MeActivity
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

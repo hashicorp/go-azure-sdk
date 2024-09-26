@@ -115,7 +115,7 @@ func (id CertificateOrderId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCertificateRegistration", "Microsoft.CertificateRegistration", "Microsoft.CertificateRegistration"),
 		resourceids.StaticSegment("staticCertificateOrders", "certificateOrders", "certificateOrders"),
-		resourceids.UserSpecifiedSegment("certificateOrderName", "certificateOrderName"),
+		resourceids.UserSpecifiedSegment("certificateOrderName", "name"),
 	}
 }
 

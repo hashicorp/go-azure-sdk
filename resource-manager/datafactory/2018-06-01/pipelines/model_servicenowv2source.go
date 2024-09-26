@@ -13,6 +13,7 @@ var _ CopySource = ServiceNowV2Source{}
 type ServiceNowV2Source struct {
 	AdditionalColumns *interface{}  `json:"additionalColumns,omitempty"`
 	Expression        *ExpressionV2 `json:"expression,omitempty"`
+	PageSize          *int64        `json:"pageSize,omitempty"`
 	QueryTimeout      *string       `json:"queryTimeout,omitempty"`
 
 	// Fields inherited from CopySource

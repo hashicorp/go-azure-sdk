@@ -56,6 +56,7 @@ func (c ChatTabClient) DeleteChatTab(ctx context.Context, id beta.MeChatIdTabId,
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

@@ -55,7 +55,10 @@ func (c OnenotePageClient) CreateOnenotePage(ctx context.Context, input stable.O
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusCreated,
+			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,

@@ -51,7 +51,9 @@ func (c OnlineMeetingAttendanceReportClient) UpdateOnlineMeetingAttendanceReport
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
 		OptionsObject: options,

@@ -55,6 +55,7 @@ func (c InsightClient) DeleteInsight(ctx context.Context, options DeleteInsightO
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

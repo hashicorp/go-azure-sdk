@@ -56,6 +56,7 @@ func (c TeamClient) DeleteTeam(ctx context.Context, id stable.GroupId, options D
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

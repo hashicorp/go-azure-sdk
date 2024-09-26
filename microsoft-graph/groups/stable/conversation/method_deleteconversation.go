@@ -56,6 +56,7 @@ func (c ConversationClient) DeleteConversation(ctx context.Context, id stable.Gr
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

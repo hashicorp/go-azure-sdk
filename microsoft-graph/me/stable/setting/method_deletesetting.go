@@ -55,6 +55,7 @@ func (c SettingClient) DeleteSetting(ctx context.Context, options DeleteSettingO
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := aad.NewRediID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cacheName")
+id := aad.NewRediID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
 
 // alternatively `client.AccessPolicyAssignmentList(ctx, id)` can be used to do batched pagination
 items, err := client.AccessPolicyAssignmentListComplete(ctx, id)
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := aad.NewRediID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cacheName")
+id := aad.NewRediID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
 
 // alternatively `client.AccessPolicyList(ctx, id)` can be used to do batched pagination
 items, err := client.AccessPolicyListComplete(ctx, id)

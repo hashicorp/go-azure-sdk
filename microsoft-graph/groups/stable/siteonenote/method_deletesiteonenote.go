@@ -56,6 +56,7 @@ func (c SiteOnenoteClient) DeleteSiteOnenote(ctx context.Context, id stable.Grou
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

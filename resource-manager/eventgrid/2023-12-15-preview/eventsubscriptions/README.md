@@ -242,7 +242,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName")
+id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainTopicName")
 
 // alternatively `client.DomainTopicEventSubscriptionsList(ctx, id, eventsubscriptions.DefaultDomainTopicEventSubscriptionsListOperationOptions())` can be used to do batched pagination
 items, err := client.DomainTopicEventSubscriptionsListComplete(ctx, id, eventsubscriptions.DefaultDomainTopicEventSubscriptionsListOperationOptions())
@@ -324,7 +324,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName")
+id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainTopicName")
 
 // alternatively `client.ListByDomainTopic(ctx, id, eventsubscriptions.DefaultListByDomainTopicOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDomainTopicComplete(ctx, id, eventsubscriptions.DefaultListByDomainTopicOperationOptions())

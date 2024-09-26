@@ -56,6 +56,7 @@ func (c DriveClient) DeleteDrive(ctx context.Context, id beta.GroupIdDriveId, op
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
