@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := feature.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := feature.NewLocationID("12345678-1234-9876-4563-123456789012", "locations")
 
 payload := feature.BatchFeatureRequest{
 	// ...

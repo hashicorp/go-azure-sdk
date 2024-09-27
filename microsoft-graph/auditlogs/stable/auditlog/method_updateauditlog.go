@@ -51,7 +51,9 @@ func (c AuditLogClient) UpdateAuditLog(ctx context.Context, input stable.AuditLo
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
 		OptionsObject: options,

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := machineextensionsupgrade.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := machineextensionsupgrade.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName")
 
 payload := machineextensionsupgrade.MachineExtensionUpgrade{
 	// ...

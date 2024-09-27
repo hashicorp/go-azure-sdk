@@ -56,6 +56,7 @@ func (c ContactFolderClient) DeleteContactFolder(ctx context.Context, id stable.
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

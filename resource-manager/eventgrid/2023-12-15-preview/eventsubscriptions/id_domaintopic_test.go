@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DomainTopicId{}
 
 func TestNewDomainTopicID(t *testing.T) {
-	id := NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName")
+	id := NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainTopicName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewDomainTopicID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'DomainName'", id.DomainName, "domainName")
 	}
 
-	if id.TopicName != "topicName" {
-		t.Fatalf("Expected %q but got %q for Segment 'TopicName'", id.TopicName, "topicName")
+	if id.TopicName != "domainTopicName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TopicName'", id.TopicName, "domainTopicName")
 	}
 }
 
 func TestFormatDomainTopicID(t *testing.T) {
-	actual := NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName"
+	actual := NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainTopicName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/domainTopicName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseDomainTopicID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/domainTopicName",
 			Expected: &DomainTopicId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				DomainName:        "domainName",
-				TopicName:         "topicName",
+				TopicName:         "domainTopicName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/domainTopicName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseDomainTopicIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/domainTopicName",
 			Expected: &DomainTopicId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				DomainName:        "domainName",
-				TopicName:         "topicName",
+				TopicName:         "domainTopicName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/topicName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventGrid/domains/domainName/topics/domainTopicName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE/tOpIcS/tOpIcNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE/tOpIcS/dOmAiNtOpIcNaMe",
 			Expected: &DomainTopicId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				DomainName:        "dOmAiNnAmE",
-				TopicName:         "tOpIcNaMe",
+				TopicName:         "dOmAiNtOpIcNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE/tOpIcS/tOpIcNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtGrId/dOmAiNs/dOmAiNnAmE/tOpIcS/dOmAiNtOpIcNaMe/extra",
 			Error: true,
 		},
 	}

@@ -51,7 +51,9 @@ func (c SignInClient) UpdateSignIn(ctx context.Context, id stable.AuditLogSignIn
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
 		OptionsObject: options,

@@ -59,6 +59,7 @@ func (c DeletedItemClient) DeleteDeletedItem(ctx context.Context, id stable.Dire
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

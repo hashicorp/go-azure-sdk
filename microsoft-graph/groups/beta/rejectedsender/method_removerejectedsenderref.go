@@ -57,6 +57,7 @@ func (c RejectedSenderClient) RemoveRejectedSenderRef(ctx context.Context, id be
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

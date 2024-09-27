@@ -53,7 +53,10 @@ func (c B2xUserFlowApiConnectorConfigurationPostFederationSignupClient) SetB2xUs
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
+			http.StatusCreated,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
 		OptionsObject: options,

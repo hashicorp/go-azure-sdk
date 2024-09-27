@@ -56,6 +56,7 @@ func (c PlannerClient) DeletePlanner(ctx context.Context, id stable.UserId, opti
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

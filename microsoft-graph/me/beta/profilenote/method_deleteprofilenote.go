@@ -56,6 +56,7 @@ func (c ProfileNoteClient) DeleteProfileNote(ctx context.Context, id beta.MeProf
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

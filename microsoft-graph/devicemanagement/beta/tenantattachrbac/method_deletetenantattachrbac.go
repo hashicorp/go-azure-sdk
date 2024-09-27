@@ -55,6 +55,7 @@ func (c TenantAttachRBACClient) DeleteTenantAttachRBAC(ctx context.Context, opti
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

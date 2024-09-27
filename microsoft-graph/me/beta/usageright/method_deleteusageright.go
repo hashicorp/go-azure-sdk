@@ -56,6 +56,7 @@ func (c UsageRightClient) DeleteUsageRight(ctx context.Context, id beta.MeUsageR
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

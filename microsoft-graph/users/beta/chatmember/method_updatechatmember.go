@@ -51,7 +51,9 @@ func (c ChatMemberClient) UpdateChatMember(ctx context.Context, id beta.UserIdCh
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
 		OptionsObject: options,

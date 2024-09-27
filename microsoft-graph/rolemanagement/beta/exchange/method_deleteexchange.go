@@ -55,6 +55,7 @@ func (c ExchangeClient) DeleteExchange(ctx context.Context, options DeleteExchan
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

@@ -52,7 +52,10 @@ func (c TeamScheduleClient) SetTeamSchedule(ctx context.Context, id stable.Group
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
+			http.StatusCreated,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPut,
 		OptionsObject: options,

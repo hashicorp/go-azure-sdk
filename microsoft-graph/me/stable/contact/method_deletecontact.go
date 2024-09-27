@@ -56,6 +56,7 @@ func (c ContactClient) DeleteContact(ctx context.Context, id stable.MeContactId,
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

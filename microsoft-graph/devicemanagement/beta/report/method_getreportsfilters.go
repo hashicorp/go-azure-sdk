@@ -51,6 +51,9 @@ func (c ReportClient) GetReportsFilters(ctx context.Context, input GetReportsFil
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
+			http.StatusCreated,
+			http.StatusNoContent,
 			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPost,

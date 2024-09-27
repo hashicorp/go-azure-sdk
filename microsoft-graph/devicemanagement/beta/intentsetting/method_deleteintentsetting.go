@@ -56,6 +56,7 @@ func (c IntentSettingClient) DeleteIntentSetting(ctx context.Context, id beta.De
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

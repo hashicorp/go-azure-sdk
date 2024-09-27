@@ -51,7 +51,9 @@ func (c ScopedRoleMemberClient) UpdateScopedRoleMember(ctx context.Context, id b
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodPatch,
 		OptionsObject: options,

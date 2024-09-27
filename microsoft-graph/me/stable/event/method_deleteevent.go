@@ -57,6 +57,7 @@ func (c EventClient) DeleteEvent(ctx context.Context, id stable.MeEventId, optio
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

@@ -57,6 +57,7 @@ func (c DeviceManagementScriptUserRunStateDeviceRunStateClient) DeleteDeviceMana
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

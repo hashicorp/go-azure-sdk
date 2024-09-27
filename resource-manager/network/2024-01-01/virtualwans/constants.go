@@ -1084,7 +1084,6 @@ const (
 	PfsGroupECPThreeEightFour   PfsGroup = "ECP384"
 	PfsGroupECPTwoFiveSix       PfsGroup = "ECP256"
 	PfsGroupNone                PfsGroup = "None"
-	PfsGroupPFSMM               PfsGroup = "PFSMM"
 	PfsGroupPFSOne              PfsGroup = "PFS1"
 	PfsGroupPFSOneFour          PfsGroup = "PFS14"
 	PfsGroupPFSTwo              PfsGroup = "PFS2"
@@ -1097,7 +1096,6 @@ func PossibleValuesForPfsGroup() []string {
 		string(PfsGroupECPThreeEightFour),
 		string(PfsGroupECPTwoFiveSix),
 		string(PfsGroupNone),
-		string(PfsGroupPFSMM),
 		string(PfsGroupPFSOne),
 		string(PfsGroupPFSOneFour),
 		string(PfsGroupPFSTwo),
@@ -1124,7 +1122,6 @@ func parsePfsGroup(input string) (*PfsGroup, error) {
 		"ecp384":  PfsGroupECPThreeEightFour,
 		"ecp256":  PfsGroupECPTwoFiveSix,
 		"none":    PfsGroupNone,
-		"pfsmm":   PfsGroupPFSMM,
 		"pfs1":    PfsGroupPFSOne,
 		"pfs14":   PfsGroupPFSOneFour,
 		"pfs2":    PfsGroupPFSTwo,

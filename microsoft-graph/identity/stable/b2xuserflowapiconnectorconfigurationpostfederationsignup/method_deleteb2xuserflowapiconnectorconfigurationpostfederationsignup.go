@@ -57,6 +57,7 @@ func (c B2xUserFlowApiConnectorConfigurationPostFederationSignupClient) DeleteB2
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

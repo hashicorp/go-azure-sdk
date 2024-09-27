@@ -56,6 +56,7 @@ func (c CloudPCClient) DeleteCloudPC(ctx context.Context, id beta.MeCloudPCId, o
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

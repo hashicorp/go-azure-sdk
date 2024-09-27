@@ -57,6 +57,7 @@ func (c B2xUserFlowLanguageDefaultPageClient) RemoveB2xUserFlowLanguageDefaultPa
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

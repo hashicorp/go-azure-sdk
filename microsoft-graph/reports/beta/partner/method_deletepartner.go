@@ -55,6 +55,7 @@ func (c PartnerClient) DeletePartner(ctx context.Context, options DeletePartnerO
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := machinenetworkprofile.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := machinenetworkprofile.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName")
 
 read, err := client.NetworkProfileGet(ctx, id)
 if err != nil {

@@ -115,7 +115,7 @@ func (id MachineId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticMachines", "machines", "machines"),
-		resourceids.UserSpecifiedSegment("machineName", "name"),
+		resourceids.UserSpecifiedSegment("machineName", "machineName"),
 	}
 }
 

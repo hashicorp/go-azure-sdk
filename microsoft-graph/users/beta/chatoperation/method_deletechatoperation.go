@@ -56,6 +56,7 @@ func (c ChatOperationClient) DeleteChatOperation(ctx context.Context, id beta.Us
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
