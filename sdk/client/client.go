@@ -780,8 +780,8 @@ func extendedRetryPolicy(resp *http.Response, err error) (bool, error) {
 	// connection
 	tcpDialTimeoutRe := regexp.MustCompile(`dial tcp .*: i/o timeout`)
 
-	// A regular expression to match complete packet loss
-	completePacketLossRe := regexp.MustCompile(`EOF$`)
+	// A regular expression to match complete packet loss - see comment below on packet-loss scenarios
+	// completePacketLossRe := regexp.MustCompile(`EOF$`)
 
 	if err != nil {
 		var v *url.Error
@@ -810,12 +810,14 @@ func extendedRetryPolicy(resp *http.Response, err error) (bool, error) {
 				return false, v
 			}
 
-			if completePacketLossRe.MatchString(v.Error()) {
-				return false, v
-			}
+			// TODO - Need to investigate how to deal with total packet-loss situations that doesn't break LRO retries.
+			// Such as Temporary Proxy outage, or recoverable disruption to network traffic (e.g. bgp events etc)
+			// if completePacketLossRe.MatchString(v.Error()) {
+			//	return false, v
+			// }
 
 			var certificateVerificationError *tls.CertificateVerificationError
-			if ok := errors.As(v.Err, &certificateVerificationError); !ok {
+			if ok := errors.As(v.Err, &certificateVerificationError); ok {
 				return false, v
 			}
 		}
