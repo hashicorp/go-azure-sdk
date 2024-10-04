@@ -123,7 +123,7 @@ func (id RoleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
 		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
 		resourceids.StaticSegment("staticRoles", "roles", "roles"),
-		resourceids.UserSpecifiedSegment("roleName", "roleName"),
+		resourceids.UserSpecifiedSegment("roleName", "name"),
 	}
 }
 

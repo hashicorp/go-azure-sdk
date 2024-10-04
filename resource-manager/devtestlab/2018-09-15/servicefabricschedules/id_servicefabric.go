@@ -131,7 +131,7 @@ func (id ServiceFabricId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticUsers", "users", "users"),
 		resourceids.UserSpecifiedSegment("userName", "userName"),
 		resourceids.StaticSegment("staticServiceFabrics", "serviceFabrics", "serviceFabrics"),
-		resourceids.UserSpecifiedSegment("serviceFabricName", "serviceFabricName"),
+		resourceids.UserSpecifiedSegment("serviceFabricName", "name"),
 	}
 }
 

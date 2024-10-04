@@ -148,7 +148,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachines.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName")
+id := virtualmachines.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
 
 // alternatively `client.List(ctx, id, virtualmachines.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, virtualmachines.DefaultListOperationOptions())
