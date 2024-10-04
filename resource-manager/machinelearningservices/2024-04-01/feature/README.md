@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := feature.NewFeatureSetVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "featuresetName", "featuresetVersion")
+id := feature.NewFeatureSetVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
 
 // alternatively `client.List(ctx, id, feature.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, feature.DefaultListOperationOptions())

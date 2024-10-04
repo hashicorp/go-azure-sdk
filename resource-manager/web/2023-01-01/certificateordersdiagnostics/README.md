@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := certificateordersdiagnostics.NewCertificateOrderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := certificateordersdiagnostics.NewCertificateOrderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "certificateOrderName")
 
 // alternatively `client.ListAppServiceCertificateOrderDetectorResponse(ctx, id)` can be used to do batched pagination
 items, err := client.ListAppServiceCertificateOrderDetectorResponseComplete(ctx, id)
