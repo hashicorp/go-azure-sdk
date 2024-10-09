@@ -10,5 +10,5 @@ type DataTypeProperties struct {
 	State                  *DataTypeState     `json:"state,omitempty"`
 	StateReason            *string            `json:"stateReason,omitempty"`
 	StorageOutputRetention *int64             `json:"storageOutputRetention,omitempty"`
-	VisualizationUrl       *string            `json:"visualizationUrl,omitempty"`
+	VisualizationURL       *string            `json:"visualizationUrl,omitempty"`
 }

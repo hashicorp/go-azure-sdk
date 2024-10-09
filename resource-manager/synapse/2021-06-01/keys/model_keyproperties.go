@@ -5,5 +5,5 @@ package keys
 
 type KeyProperties struct {
 	IsActiveCMK *bool   `json:"isActiveCMK,omitempty"`
-	KeyVaultUrl *string `json:"keyVaultUrl,omitempty"`
+	KeyVaultURL *string `json:"keyVaultUrl,omitempty"`
 }

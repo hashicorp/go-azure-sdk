@@ -4,7 +4,7 @@ package applicationtypeversion
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplicationTypeVersionResourceProperties struct {
-	AppPackageUrl        string             `json:"appPackageUrl"`
+	AppPackageURL        string             `json:"appPackageUrl"`
 	DefaultParameterList *map[string]string `json:"defaultParameterList,omitempty"`
 	ProvisioningState    *string            `json:"provisioningState,omitempty"`
 }

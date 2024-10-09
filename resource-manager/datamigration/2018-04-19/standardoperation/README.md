@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
+id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName")
 
 payload := standardoperation.Project{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
+id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName")
 
 read, err := client.ProjectsDelete(ctx, id, standardoperation.DefaultProjectsDeleteOperationOptions())
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
+id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName")
 
 read, err := client.ProjectsGet(ctx, id)
 if err != nil {
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 // alternatively `client.ProjectsListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ProjectsListByResourceGroupComplete(ctx, id)
@@ -95,7 +95,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
+id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName")
 
 payload := standardoperation.Project{
 	// ...
@@ -133,7 +133,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := standardoperation.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := standardoperation.NameAvailabilityRequest{
 	// ...
@@ -154,7 +154,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 payload := standardoperation.DataMigrationService{
 	// ...
@@ -171,7 +171,7 @@ if err := client.ServicesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 if err := client.ServicesDeleteThenPoll(ctx, id, standardoperation.DefaultServicesDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -183,7 +183,7 @@ if err := client.ServicesDeleteThenPoll(ctx, id, standardoperation.DefaultServic
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 read, err := client.ServicesGet(ctx, id)
 if err != nil {
@@ -216,7 +216,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "groupName")
+id := standardoperation.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "resourceGroupName")
 
 // alternatively `client.ServicesListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ServicesListByResourceGroupComplete(ctx, id)
@@ -233,7 +233,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 // alternatively `client.ServicesListSkus(ctx, id)` can be used to do batched pagination
 items, err := client.ServicesListSkusComplete(ctx, id)
@@ -250,7 +250,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := standardoperation.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 payload := standardoperation.DataMigrationService{
 	// ...
@@ -267,7 +267,7 @@ if err := client.ServicesUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
+id := standardoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName", "taskName")
 
 payload := standardoperation.ProjectTask{
 	// ...
@@ -288,7 +288,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
+id := standardoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName", "taskName")
 
 read, err := client.TasksDelete(ctx, id, standardoperation.DefaultTasksDeleteOperationOptions())
 if err != nil {
@@ -304,7 +304,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
+id := standardoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName", "taskName")
 
 read, err := client.TasksGet(ctx, id, standardoperation.DefaultTasksGetOperationOptions())
 if err != nil {
@@ -320,7 +320,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
+id := standardoperation.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName")
 
 // alternatively `client.TasksList(ctx, id, standardoperation.DefaultTasksListOperationOptions())` can be used to do batched pagination
 items, err := client.TasksListComplete(ctx, id, standardoperation.DefaultTasksListOperationOptions())
@@ -337,7 +337,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
+id := standardoperation.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName", "taskName")
 
 payload := standardoperation.ProjectTask{
 	// ...
@@ -358,7 +358,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := standardoperation.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := standardoperation.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.UsagesList(ctx, id)` can be used to do batched pagination
 items, err := client.UsagesListComplete(ctx, id)

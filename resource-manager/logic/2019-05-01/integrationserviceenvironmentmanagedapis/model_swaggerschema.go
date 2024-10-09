@@ -16,7 +16,7 @@ type SwaggerSchema struct {
 	Items                    *SwaggerSchema                  `json:"items,omitempty"`
 	MaxProperties            *int64                          `json:"maxProperties,omitempty"`
 	MinProperties            *int64                          `json:"minProperties,omitempty"`
-	NotificationUrlExtension *bool                           `json:"notificationUrlExtension,omitempty"`
+	NotificationURLExtension *bool                           `json:"notificationUrlExtension,omitempty"`
 	Properties               *map[string]SwaggerSchema       `json:"properties,omitempty"`
 	ReadOnly                 *bool                           `json:"readOnly,omitempty"`
 	Ref                      *string                         `json:"ref,omitempty"`

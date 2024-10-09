@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dataflows.NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataFlowName")
+id := dataflows.NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataflowName")
 
 payload := dataflows.DataFlowResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataflows.NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataFlowName")
+id := dataflows.NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataflowName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataflows.NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataFlowName")
+id := dataflows.NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataflowName")
 
 read, err := client.Get(ctx, id, dataflows.DefaultGetOperationOptions())
 if err != nil {

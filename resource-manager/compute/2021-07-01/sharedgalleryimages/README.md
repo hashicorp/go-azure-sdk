@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sharedgalleryimages.NewImageID("12345678-1234-9876-4563-123456789012", "location", "galleryUniqueName", "galleryImageName")
+id := sharedgalleryimages.NewSharedGalleryImageID("12345678-1234-9876-4563-123456789012", "locationName", "sharedGalleryName", "imageName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sharedgalleryimages.NewSharedGalleryID("12345678-1234-9876-4563-123456789012", "location", "galleryUniqueName")
+id := sharedgalleryimages.NewSharedGalleryID("12345678-1234-9876-4563-123456789012", "locationName", "sharedGalleryName")
 
 // alternatively `client.List(ctx, id, sharedgalleryimages.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, sharedgalleryimages.DefaultListOperationOptions())

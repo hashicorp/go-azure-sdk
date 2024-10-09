@@ -22,6 +22,6 @@ type EndpointProperties struct {
 	ProvisioningState                *EndpointProvisioningState                                          `json:"provisioningState,omitempty"`
 	QueryStringCachingBehavior       *QueryStringCachingBehavior                                         `json:"queryStringCachingBehavior,omitempty"`
 	ResourceState                    *EndpointResourceState                                              `json:"resourceState,omitempty"`
-	UrlSigningKeys                   *[]UrlSigningKey                                                    `json:"urlSigningKeys,omitempty"`
+	UrlSigningKeys                   *[]URLSigningKey                                                    `json:"urlSigningKeys,omitempty"`
 	WebApplicationFirewallPolicyLink *EndpointPropertiesUpdateParametersWebApplicationFirewallPolicyLink `json:"webApplicationFirewallPolicyLink,omitempty"`
 }

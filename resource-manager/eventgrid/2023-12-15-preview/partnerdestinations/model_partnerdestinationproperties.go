@@ -11,7 +11,7 @@ import (
 
 type PartnerDestinationProperties struct {
 	ActivationState                 *PartnerDestinationActivationState   `json:"activationState,omitempty"`
-	EndpointBaseUrl                 *string                              `json:"endpointBaseUrl,omitempty"`
+	EndpointBaseURL                 *string                              `json:"endpointBaseUrl,omitempty"`
 	EndpointServiceContext          *string                              `json:"endpointServiceContext,omitempty"`
 	ExpirationTimeIfNotActivatedUtc *string                              `json:"expirationTimeIfNotActivatedUtc,omitempty"`
 	MessageForActivation            *string                              `json:"messageForActivation,omitempty"`

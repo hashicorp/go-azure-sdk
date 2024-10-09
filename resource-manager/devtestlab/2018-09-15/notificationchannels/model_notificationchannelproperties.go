@@ -17,7 +17,7 @@ type NotificationChannelProperties struct {
 	NotificationLocale *string  `json:"notificationLocale,omitempty"`
 	ProvisioningState  *string  `json:"provisioningState,omitempty"`
 	UniqueIdentifier   *string  `json:"uniqueIdentifier,omitempty"`
-	WebHookUrl         *string  `json:"webHookUrl,omitempty"`
+	WebHookURL         *string  `json:"webHookUrl,omitempty"`
 }
 
 func (o *NotificationChannelProperties) GetCreatedDateAsTime() (*time.Time, error) {

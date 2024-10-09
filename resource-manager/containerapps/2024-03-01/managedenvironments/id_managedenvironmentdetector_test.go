@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ManagedEnvironmentDetectorId{}
 
 func TestNewManagedEnvironmentDetectorID(t *testing.T) {
-	id := NewManagedEnvironmentDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "detectorName")
+	id := NewManagedEnvironmentDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "detectorName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewManagedEnvironmentDetectorID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagedEnvironmentName != "environmentName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedEnvironmentName'", id.ManagedEnvironmentName, "environmentName")
+	if id.ManagedEnvironmentName != "managedEnvironmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedEnvironmentName'", id.ManagedEnvironmentName, "managedEnvironmentName")
 	}
 
 	if id.DetectorName != "detectorName" {
@@ -32,8 +32,8 @@ func TestNewManagedEnvironmentDetectorID(t *testing.T) {
 }
 
 func TestFormatManagedEnvironmentDetectorID(t *testing.T) {
-	actual := NewManagedEnvironmentDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "detectorName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/detectors/detectorName"
+	actual := NewManagedEnvironmentDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "detectorName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/detectors/detectorName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseManagedEnvironmentDetectorID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/detectors",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/detectors",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/detectors/detectorName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/detectors/detectorName",
 			Expected: &ManagedEnvironmentDetectorId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ManagedEnvironmentName: "environmentName",
+				ManagedEnvironmentName: "managedEnvironmentName",
 				DetectorName:           "detectorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/detectors/detectorName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/detectors/detectorName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseManagedEnvironmentDetectorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/detectors",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/detectors",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe/dEtEcToRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTnAmE/dEtEcToRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/detectors/detectorName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/detectors/detectorName",
 			Expected: &ManagedEnvironmentDetectorId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ManagedEnvironmentName: "environmentName",
+				ManagedEnvironmentName: "managedEnvironmentName",
 				DetectorName:           "detectorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/detectors/detectorName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/detectors/detectorName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe/dEtEcToRs/dEtEcToRnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTnAmE/dEtEcToRs/dEtEcToRnAmE",
 			Expected: &ManagedEnvironmentDetectorId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagedEnvironmentName: "eNvIrOnMeNtNaMe",
+				ManagedEnvironmentName: "mAnAgEdEnViRoNmEnTnAmE",
 				DetectorName:           "dEtEcToRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe/dEtEcToRs/dEtEcToRnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTnAmE/dEtEcToRs/dEtEcToRnAmE/extra",
 			Error: true,
 		},
 	}

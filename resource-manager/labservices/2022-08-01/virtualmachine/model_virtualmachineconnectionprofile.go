@@ -8,7 +8,7 @@ type VirtualMachineConnectionProfile struct {
 	NonAdminUsername *string `json:"nonAdminUsername,omitempty"`
 	PrivateIPAddress *string `json:"privateIpAddress,omitempty"`
 	RdpAuthority     *string `json:"rdpAuthority,omitempty"`
-	RdpInBrowserUrl  *string `json:"rdpInBrowserUrl,omitempty"`
+	RdpInBrowserURL  *string `json:"rdpInBrowserUrl,omitempty"`
 	SshAuthority     *string `json:"sshAuthority,omitempty"`
-	SshInBrowserUrl  *string `json:"sshInBrowserUrl,omitempty"`
+	SshInBrowserURL  *string `json:"sshInBrowserUrl,omitempty"`
 }

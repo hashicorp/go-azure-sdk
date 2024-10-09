@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := armtemplates.NewArmTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName", "name")
+id := armtemplates.NewArmTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName", "armTemplateName")
 
 read, err := client.Get(ctx, id, armtemplates.DefaultGetOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := armtemplates.NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := armtemplates.NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName")
 
 // alternatively `client.List(ctx, id, armtemplates.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, armtemplates.DefaultListOperationOptions())

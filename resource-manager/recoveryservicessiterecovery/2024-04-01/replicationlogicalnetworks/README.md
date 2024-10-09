@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationlogicalnetworks.NewReplicationLogicalNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "logicalNetworkName")
+id := replicationlogicalnetworks.NewReplicationLogicalNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationLogicalNetworkName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationlogicalnetworks.NewReplicationFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName")
+id := replicationlogicalnetworks.NewReplicationFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName")
 
 // alternatively `client.ListByReplicationFabrics(ctx, id)` can be used to do batched pagination
 items, err := client.ListByReplicationFabricsComplete(ctx, id)

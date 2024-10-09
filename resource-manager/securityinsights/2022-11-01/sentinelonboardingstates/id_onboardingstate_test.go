@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OnboardingStateId{}
 
 func TestNewOnboardingStateID(t *testing.T) {
-	id := NewOnboardingStateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sentinelOnboardingStateName")
+	id := NewOnboardingStateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "onboardingStateName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewOnboardingStateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.OnboardingStateName != "sentinelOnboardingStateName" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnboardingStateName'", id.OnboardingStateName, "sentinelOnboardingStateName")
+	if id.OnboardingStateName != "onboardingStateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnboardingStateName'", id.OnboardingStateName, "onboardingStateName")
 	}
 }
 
 func TestFormatOnboardingStateID(t *testing.T) {
-	actual := NewOnboardingStateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sentinelOnboardingStateName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateName"
+	actual := NewOnboardingStateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "onboardingStateName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -107,17 +107,17 @@ func TestParseOnboardingStateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateName",
 			Expected: &OnboardingStateId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
 				WorkspaceName:       "workspaceName",
-				OnboardingStateName: "sentinelOnboardingStateName",
+				OnboardingStateName: "onboardingStateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateName/extra",
 			Error: true,
 		},
 	}
@@ -278,32 +278,32 @@ func TestParseOnboardingStateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateName",
 			Expected: &OnboardingStateId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
 				WorkspaceName:       "workspaceName",
-				OnboardingStateName: "sentinelOnboardingStateName",
+				OnboardingStateName: "onboardingStateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/oNbOaRdInGsTaTeS/sEnTiNeLoNbOaRdInGsTaTeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/oNbOaRdInGsTaTeS/oNbOaRdInGsTaTeNaMe",
 			Expected: &OnboardingStateId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:       "wOrKsPaCeNaMe",
-				OnboardingStateName: "sEnTiNeLoNbOaRdInGsTaTeNaMe",
+				OnboardingStateName: "oNbOaRdInGsTaTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/oNbOaRdInGsTaTeS/sEnTiNeLoNbOaRdInGsTaTeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/oNbOaRdInGsTaTeS/oNbOaRdInGsTaTeNaMe/extra",
 			Error: true,
 		},
 	}

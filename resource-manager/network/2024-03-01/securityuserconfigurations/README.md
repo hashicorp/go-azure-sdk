@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := securityuserconfigurations.NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+id := securityuserconfigurations.NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityUserConfigurationName")
 
 payload := securityuserconfigurations.SecurityUserConfiguration{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := securityuserconfigurations.NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+id := securityuserconfigurations.NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityUserConfigurationName")
 
 if err := client.DeleteThenPoll(ctx, id, securityuserconfigurations.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -57,7 +57,7 @@ if err := client.DeleteThenPoll(ctx, id, securityuserconfigurations.DefaultDelet
 
 ```go
 ctx := context.TODO()
-id := securityuserconfigurations.NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+id := securityuserconfigurations.NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityUserConfigurationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

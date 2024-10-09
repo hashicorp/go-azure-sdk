@@ -123,7 +123,7 @@ func (id OpenAIIntegrationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticMonitors", "monitors", "monitors"),
 		resourceids.UserSpecifiedSegment("monitorName", "monitorName"),
 		resourceids.StaticSegment("staticOpenAIIntegrations", "openAIIntegrations", "openAIIntegrations"),
-		resourceids.UserSpecifiedSegment("openAIIntegrationName", "integrationName"),
+		resourceids.UserSpecifiedSegment("openAIIntegrationName", "openAIIntegrationName"),
 	}
 }
 

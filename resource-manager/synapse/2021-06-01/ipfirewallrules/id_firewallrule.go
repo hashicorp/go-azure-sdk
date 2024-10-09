@@ -123,7 +123,7 @@ func (id FirewallRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticFirewallRules", "firewallRules", "firewallRules"),
-		resourceids.UserSpecifiedSegment("firewallRuleName", "ruleName"),
+		resourceids.UserSpecifiedSegment("firewallRuleName", "firewallRuleName"),
 	}
 }
 

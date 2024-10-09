@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SingleSignOnConfigurationId{}
 
 func TestNewSingleSignOnConfigurationID(t *testing.T) {
-	id := NewSingleSignOnConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "configurationName")
+	id := NewSingleSignOnConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "singleSignOnConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewSingleSignOnConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 
-	if id.SingleSignOnConfigurationName != "configurationName" {
-		t.Fatalf("Expected %q but got %q for Segment 'SingleSignOnConfigurationName'", id.SingleSignOnConfigurationName, "configurationName")
+	if id.SingleSignOnConfigurationName != "singleSignOnConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SingleSignOnConfigurationName'", id.SingleSignOnConfigurationName, "singleSignOnConfigurationName")
 	}
 }
 
 func TestFormatSingleSignOnConfigurationID(t *testing.T) {
-	actual := NewSingleSignOnConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "configurationName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/configurationName"
+	actual := NewSingleSignOnConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "singleSignOnConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/singleSignOnConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseSingleSignOnConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/singleSignOnConfigurationName",
 			Expected: &SingleSignOnConfigurationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
 				MonitorName:                   "monitorName",
-				SingleSignOnConfigurationName: "configurationName",
+				SingleSignOnConfigurationName: "singleSignOnConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/configurationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/singleSignOnConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseSingleSignOnConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/singleSignOnConfigurationName",
 			Expected: &SingleSignOnConfigurationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
 				MonitorName:                   "monitorName",
-				SingleSignOnConfigurationName: "configurationName",
+				SingleSignOnConfigurationName: "singleSignOnConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/configurationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/singleSignOnConfigurations/singleSignOnConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/sInGlEsIgNoNcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/sInGlEsIgNoNcOnFiGuRaTiOnS/sInGlEsIgNoNcOnFiGuRaTiOnNaMe",
 			Expected: &SingleSignOnConfigurationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
 				MonitorName:                   "mOnItOrNaMe",
-				SingleSignOnConfigurationName: "cOnFiGuRaTiOnNaMe",
+				SingleSignOnConfigurationName: "sInGlEsIgNoNcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/sInGlEsIgNoNcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/sInGlEsIgNoNcOnFiGuRaTiOnS/sInGlEsIgNoNcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

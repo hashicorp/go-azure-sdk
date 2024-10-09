@@ -115,7 +115,7 @@ func (id KubeEnvironmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticKubeEnvironments", "kubeEnvironments", "kubeEnvironments"),
-		resourceids.UserSpecifiedSegment("kubeEnvironmentName", "name"),
+		resourceids.UserSpecifiedSegment("kubeEnvironmentName", "kubeEnvironmentName"),
 	}
 }
 

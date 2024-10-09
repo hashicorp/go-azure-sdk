@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DataMaskingPolicyRuleId{}
 
 func TestNewDataMaskingPolicyRuleID(t *testing.T) {
-	id := NewDataMaskingPolicyRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "dataMaskingRuleName")
+	id := NewDataMaskingPolicyRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "ruleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewDataMaskingPolicyRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseName")
 	}
 
-	if id.RuleName != "dataMaskingRuleName" {
-		t.Fatalf("Expected %q but got %q for Segment 'RuleName'", id.RuleName, "dataMaskingRuleName")
+	if id.RuleName != "ruleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RuleName'", id.RuleName, "ruleName")
 	}
 }
 
 func TestFormatDataMaskingPolicyRuleID(t *testing.T) {
-	actual := NewDataMaskingPolicyRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "dataMaskingRuleName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/dataMaskingRuleName"
+	actual := NewDataMaskingPolicyRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName", "ruleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/ruleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -121,18 +121,18 @@ func TestParseDataMaskingPolicyRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/dataMaskingRuleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/ruleName",
 			Expected: &DataMaskingPolicyRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServerName:        "serverName",
 				DatabaseName:      "databaseName",
-				RuleName:          "dataMaskingRuleName",
+				RuleName:          "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/dataMaskingRuleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/ruleName/extra",
 			Error: true,
 		},
 	}
@@ -317,34 +317,34 @@ func TestParseDataMaskingPolicyRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/dataMaskingRuleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/ruleName",
 			Expected: &DataMaskingPolicyRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServerName:        "serverName",
 				DatabaseName:      "databaseName",
-				RuleName:          "dataMaskingRuleName",
+				RuleName:          "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/dataMaskingRuleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/databases/databaseName/dataMaskingPolicies/default/rules/ruleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/dAtAmAsKiNgPoLiCiEs/dEfAuLt/rUlEs/dAtAmAsKiNgRuLeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/dAtAmAsKiNgPoLiCiEs/dEfAuLt/rUlEs/rUlEnAmE",
 			Expected: &DataMaskingPolicyRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ServerName:        "sErVeRnAmE",
 				DatabaseName:      "dAtAbAsEnAmE",
-				RuleName:          "dAtAmAsKiNgRuLeNaMe",
+				RuleName:          "rUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/dAtAmAsKiNgPoLiCiEs/dEfAuLt/rUlEs/dAtAmAsKiNgRuLeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/dAtAbAsEs/dAtAbAsEnAmE/dAtAmAsKiNgPoLiCiEs/dEfAuLt/rUlEs/rUlEnAmE/extra",
 			Error: true,
 		},
 	}

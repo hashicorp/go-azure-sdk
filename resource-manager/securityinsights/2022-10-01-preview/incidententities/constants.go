@@ -106,6 +106,53 @@ func parseAlertStatus(input string) (*AlertStatus, error) {
 	return &out, nil
 }
 
+type AntispamMailDirection string
+
+const (
+	AntispamMailDirectionInbound  AntispamMailDirection = "Inbound"
+	AntispamMailDirectionIntraorg AntispamMailDirection = "Intraorg"
+	AntispamMailDirectionOutbound AntispamMailDirection = "Outbound"
+	AntispamMailDirectionUnknown  AntispamMailDirection = "Unknown"
+)
+
+func PossibleValuesForAntispamMailDirection() []string {
+	return []string{
+		string(AntispamMailDirectionInbound),
+		string(AntispamMailDirectionIntraorg),
+		string(AntispamMailDirectionOutbound),
+		string(AntispamMailDirectionUnknown),
+	}
+}
+
+func (s *AntispamMailDirection) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAntispamMailDirection(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseAntispamMailDirection(input string) (*AntispamMailDirection, error) {
+	vals := map[string]AntispamMailDirection{
+		"inbound":  AntispamMailDirectionInbound,
+		"intraorg": AntispamMailDirectionIntraorg,
+		"outbound": AntispamMailDirectionOutbound,
+		"unknown":  AntispamMailDirectionUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AntispamMailDirection(input)
+	return &out, nil
+}
+
 type AttackTactic string
 
 const (
@@ -283,6 +330,209 @@ func parseConfidenceScoreStatus(input string) (*ConfidenceScoreStatus, error) {
 	return &out, nil
 }
 
+type DeliveryAction string
+
+const (
+	DeliveryActionBlocked         DeliveryAction = "Blocked"
+	DeliveryActionDelivered       DeliveryAction = "Delivered"
+	DeliveryActionDeliveredAsSpam DeliveryAction = "DeliveredAsSpam"
+	DeliveryActionReplaced        DeliveryAction = "Replaced"
+	DeliveryActionUnknown         DeliveryAction = "Unknown"
+)
+
+func PossibleValuesForDeliveryAction() []string {
+	return []string{
+		string(DeliveryActionBlocked),
+		string(DeliveryActionDelivered),
+		string(DeliveryActionDeliveredAsSpam),
+		string(DeliveryActionReplaced),
+		string(DeliveryActionUnknown),
+	}
+}
+
+func (s *DeliveryAction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDeliveryAction(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseDeliveryAction(input string) (*DeliveryAction, error) {
+	vals := map[string]DeliveryAction{
+		"blocked":         DeliveryActionBlocked,
+		"delivered":       DeliveryActionDelivered,
+		"deliveredasspam": DeliveryActionDeliveredAsSpam,
+		"replaced":        DeliveryActionReplaced,
+		"unknown":         DeliveryActionUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeliveryAction(input)
+	return &out, nil
+}
+
+type DeliveryLocation string
+
+const (
+	DeliveryLocationDeletedFolder DeliveryLocation = "DeletedFolder"
+	DeliveryLocationDropped       DeliveryLocation = "Dropped"
+	DeliveryLocationExternal      DeliveryLocation = "External"
+	DeliveryLocationFailed        DeliveryLocation = "Failed"
+	DeliveryLocationForwarded     DeliveryLocation = "Forwarded"
+	DeliveryLocationInbox         DeliveryLocation = "Inbox"
+	DeliveryLocationJunkFolder    DeliveryLocation = "JunkFolder"
+	DeliveryLocationQuarantine    DeliveryLocation = "Quarantine"
+	DeliveryLocationUnknown       DeliveryLocation = "Unknown"
+)
+
+func PossibleValuesForDeliveryLocation() []string {
+	return []string{
+		string(DeliveryLocationDeletedFolder),
+		string(DeliveryLocationDropped),
+		string(DeliveryLocationExternal),
+		string(DeliveryLocationFailed),
+		string(DeliveryLocationForwarded),
+		string(DeliveryLocationInbox),
+		string(DeliveryLocationJunkFolder),
+		string(DeliveryLocationQuarantine),
+		string(DeliveryLocationUnknown),
+	}
+}
+
+func (s *DeliveryLocation) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDeliveryLocation(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseDeliveryLocation(input string) (*DeliveryLocation, error) {
+	vals := map[string]DeliveryLocation{
+		"deletedfolder": DeliveryLocationDeletedFolder,
+		"dropped":       DeliveryLocationDropped,
+		"external":      DeliveryLocationExternal,
+		"failed":        DeliveryLocationFailed,
+		"forwarded":     DeliveryLocationForwarded,
+		"inbox":         DeliveryLocationInbox,
+		"junkfolder":    DeliveryLocationJunkFolder,
+		"quarantine":    DeliveryLocationQuarantine,
+		"unknown":       DeliveryLocationUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeliveryLocation(input)
+	return &out, nil
+}
+
+type DeviceImportance string
+
+const (
+	DeviceImportanceHigh    DeviceImportance = "High"
+	DeviceImportanceLow     DeviceImportance = "Low"
+	DeviceImportanceNormal  DeviceImportance = "Normal"
+	DeviceImportanceUnknown DeviceImportance = "Unknown"
+)
+
+func PossibleValuesForDeviceImportance() []string {
+	return []string{
+		string(DeviceImportanceHigh),
+		string(DeviceImportanceLow),
+		string(DeviceImportanceNormal),
+		string(DeviceImportanceUnknown),
+	}
+}
+
+func (s *DeviceImportance) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDeviceImportance(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseDeviceImportance(input string) (*DeviceImportance, error) {
+	vals := map[string]DeviceImportance{
+		"high":    DeviceImportanceHigh,
+		"low":     DeviceImportanceLow,
+		"normal":  DeviceImportanceNormal,
+		"unknown": DeviceImportanceUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceImportance(input)
+	return &out, nil
+}
+
+type ElevationToken string
+
+const (
+	ElevationTokenDefault ElevationToken = "Default"
+	ElevationTokenFull    ElevationToken = "Full"
+	ElevationTokenLimited ElevationToken = "Limited"
+)
+
+func PossibleValuesForElevationToken() []string {
+	return []string{
+		string(ElevationTokenDefault),
+		string(ElevationTokenFull),
+		string(ElevationTokenLimited),
+	}
+}
+
+func (s *ElevationToken) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseElevationToken(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseElevationToken(input string) (*ElevationToken, error) {
+	vals := map[string]ElevationToken{
+		"default": ElevationTokenDefault,
+		"full":    ElevationTokenFull,
+		"limited": ElevationTokenLimited,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ElevationToken(input)
+	return &out, nil
+}
+
 type EntityKind string
 
 const (
@@ -307,7 +557,7 @@ const (
 	EntityKindSecurityAlert    EntityKind = "SecurityAlert"
 	EntityKindSecurityGroup    EntityKind = "SecurityGroup"
 	EntityKindSubmissionMail   EntityKind = "SubmissionMail"
-	EntityKindUrl              EntityKind = "Url"
+	EntityKindURL              EntityKind = "Url"
 )
 
 func PossibleValuesForEntityKind() []string {
@@ -333,7 +583,7 @@ func PossibleValuesForEntityKind() []string {
 		string(EntityKindSecurityAlert),
 		string(EntityKindSecurityGroup),
 		string(EntityKindSubmissionMail),
-		string(EntityKindUrl),
+		string(EntityKindURL),
 	}
 }
 
@@ -373,7 +623,7 @@ func parseEntityKind(input string) (*EntityKind, error) {
 		"securityalert":    EntityKindSecurityAlert,
 		"securitygroup":    EntityKindSecurityGroup,
 		"submissionmail":   EntityKindSubmissionMail,
-		"url":              EntityKindUrl,
+		"url":              EntityKindURL,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -381,6 +631,56 @@ func parseEntityKind(input string) (*EntityKind, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := EntityKind(input)
+	return &out, nil
+}
+
+type FileHashAlgorithm string
+
+const (
+	FileHashAlgorithmMDFive          FileHashAlgorithm = "MD5"
+	FileHashAlgorithmSHAOne          FileHashAlgorithm = "SHA1"
+	FileHashAlgorithmSHATwoFiveSix   FileHashAlgorithm = "SHA256"
+	FileHashAlgorithmSHATwoFiveSixAC FileHashAlgorithm = "SHA256AC"
+	FileHashAlgorithmUnknown         FileHashAlgorithm = "Unknown"
+)
+
+func PossibleValuesForFileHashAlgorithm() []string {
+	return []string{
+		string(FileHashAlgorithmMDFive),
+		string(FileHashAlgorithmSHAOne),
+		string(FileHashAlgorithmSHATwoFiveSix),
+		string(FileHashAlgorithmSHATwoFiveSixAC),
+		string(FileHashAlgorithmUnknown),
+	}
+}
+
+func (s *FileHashAlgorithm) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFileHashAlgorithm(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseFileHashAlgorithm(input string) (*FileHashAlgorithm, error) {
+	vals := map[string]FileHashAlgorithm{
+		"md5":      FileHashAlgorithmMDFive,
+		"sha1":     FileHashAlgorithmSHAOne,
+		"sha256":   FileHashAlgorithmSHATwoFiveSix,
+		"sha256ac": FileHashAlgorithmSHATwoFiveSixAC,
+		"unknown":  FileHashAlgorithmUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FileHashAlgorithm(input)
 	return &out, nil
 }
 
@@ -505,5 +805,179 @@ func parseKillChainIntent(input string) (*KillChainIntent, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := KillChainIntent(input)
+	return &out, nil
+}
+
+type OSFamily string
+
+const (
+	OSFamilyAndroid OSFamily = "Android"
+	OSFamilyIOS     OSFamily = "IOS"
+	OSFamilyLinux   OSFamily = "Linux"
+	OSFamilyUnknown OSFamily = "Unknown"
+	OSFamilyWindows OSFamily = "Windows"
+)
+
+func PossibleValuesForOSFamily() []string {
+	return []string{
+		string(OSFamilyAndroid),
+		string(OSFamilyIOS),
+		string(OSFamilyLinux),
+		string(OSFamilyUnknown),
+		string(OSFamilyWindows),
+	}
+}
+
+func (s *OSFamily) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOSFamily(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseOSFamily(input string) (*OSFamily, error) {
+	vals := map[string]OSFamily{
+		"android": OSFamilyAndroid,
+		"ios":     OSFamilyIOS,
+		"linux":   OSFamilyLinux,
+		"unknown": OSFamilyUnknown,
+		"windows": OSFamilyWindows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OSFamily(input)
+	return &out, nil
+}
+
+type RegistryHive string
+
+const (
+	RegistryHiveHKEYA                        RegistryHive = "HKEY_A"
+	RegistryHiveHKEYCLASSESROOT              RegistryHive = "HKEY_CLASSES_ROOT"
+	RegistryHiveHKEYCURRENTCONFIG            RegistryHive = "HKEY_CURRENT_CONFIG"
+	RegistryHiveHKEYCURRENTUSER              RegistryHive = "HKEY_CURRENT_USER"
+	RegistryHiveHKEYCURRENTUSERLOCALSETTINGS RegistryHive = "HKEY_CURRENT_USER_LOCAL_SETTINGS"
+	RegistryHiveHKEYLOCALMACHINE             RegistryHive = "HKEY_LOCAL_MACHINE"
+	RegistryHiveHKEYPERFORMANCEDATA          RegistryHive = "HKEY_PERFORMANCE_DATA"
+	RegistryHiveHKEYPERFORMANCENLSTEXT       RegistryHive = "HKEY_PERFORMANCE_NLSTEXT"
+	RegistryHiveHKEYPERFORMANCETEXT          RegistryHive = "HKEY_PERFORMANCE_TEXT"
+	RegistryHiveHKEYUSERS                    RegistryHive = "HKEY_USERS"
+)
+
+func PossibleValuesForRegistryHive() []string {
+	return []string{
+		string(RegistryHiveHKEYA),
+		string(RegistryHiveHKEYCLASSESROOT),
+		string(RegistryHiveHKEYCURRENTCONFIG),
+		string(RegistryHiveHKEYCURRENTUSER),
+		string(RegistryHiveHKEYCURRENTUSERLOCALSETTINGS),
+		string(RegistryHiveHKEYLOCALMACHINE),
+		string(RegistryHiveHKEYPERFORMANCEDATA),
+		string(RegistryHiveHKEYPERFORMANCENLSTEXT),
+		string(RegistryHiveHKEYPERFORMANCETEXT),
+		string(RegistryHiveHKEYUSERS),
+	}
+}
+
+func (s *RegistryHive) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRegistryHive(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseRegistryHive(input string) (*RegistryHive, error) {
+	vals := map[string]RegistryHive{
+		"hkey_a":                           RegistryHiveHKEYA,
+		"hkey_classes_root":                RegistryHiveHKEYCLASSESROOT,
+		"hkey_current_config":              RegistryHiveHKEYCURRENTCONFIG,
+		"hkey_current_user":                RegistryHiveHKEYCURRENTUSER,
+		"hkey_current_user_local_settings": RegistryHiveHKEYCURRENTUSERLOCALSETTINGS,
+		"hkey_local_machine":               RegistryHiveHKEYLOCALMACHINE,
+		"hkey_performance_data":            RegistryHiveHKEYPERFORMANCEDATA,
+		"hkey_performance_nlstext":         RegistryHiveHKEYPERFORMANCENLSTEXT,
+		"hkey_performance_text":            RegistryHiveHKEYPERFORMANCETEXT,
+		"hkey_users":                       RegistryHiveHKEYUSERS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RegistryHive(input)
+	return &out, nil
+}
+
+type RegistryValueKind string
+
+const (
+	RegistryValueKindBinary       RegistryValueKind = "Binary"
+	RegistryValueKindDWord        RegistryValueKind = "DWord"
+	RegistryValueKindExpandString RegistryValueKind = "ExpandString"
+	RegistryValueKindMultiString  RegistryValueKind = "MultiString"
+	RegistryValueKindNone         RegistryValueKind = "None"
+	RegistryValueKindQWord        RegistryValueKind = "QWord"
+	RegistryValueKindString       RegistryValueKind = "String"
+	RegistryValueKindUnknown      RegistryValueKind = "Unknown"
+)
+
+func PossibleValuesForRegistryValueKind() []string {
+	return []string{
+		string(RegistryValueKindBinary),
+		string(RegistryValueKindDWord),
+		string(RegistryValueKindExpandString),
+		string(RegistryValueKindMultiString),
+		string(RegistryValueKindNone),
+		string(RegistryValueKindQWord),
+		string(RegistryValueKindString),
+		string(RegistryValueKindUnknown),
+	}
+}
+
+func (s *RegistryValueKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRegistryValueKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseRegistryValueKind(input string) (*RegistryValueKind, error) {
+	vals := map[string]RegistryValueKind{
+		"binary":       RegistryValueKindBinary,
+		"dword":        RegistryValueKindDWord,
+		"expandstring": RegistryValueKindExpandString,
+		"multistring":  RegistryValueKindMultiString,
+		"none":         RegistryValueKindNone,
+		"qword":        RegistryValueKindQWord,
+		"string":       RegistryValueKindString,
+		"unknown":      RegistryValueKindUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RegistryValueKind(input)
 	return &out, nil
 }

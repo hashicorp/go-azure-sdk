@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AuthorizationServerId{}
 
 func TestNewAuthorizationServerID(t *testing.T) {
-	id := NewAuthorizationServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "authsid")
+	id := NewAuthorizationServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "authorizationServerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewAuthorizationServerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceName")
 	}
 
-	if id.AuthorizationServerName != "authsid" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationServerName'", id.AuthorizationServerName, "authsid")
+	if id.AuthorizationServerName != "authorizationServerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationServerName'", id.AuthorizationServerName, "authorizationServerName")
 	}
 }
 
 func TestFormatAuthorizationServerID(t *testing.T) {
-	actual := NewAuthorizationServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "authsid").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authsid"
+	actual := NewAuthorizationServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "authorizationServerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authorizationServerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseAuthorizationServerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authsid",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authorizationServerName",
 			Expected: &AuthorizationServerId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				ServiceName:             "serviceName",
-				AuthorizationServerName: "authsid",
+				AuthorizationServerName: "authorizationServerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authsid/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authorizationServerName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseAuthorizationServerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authsid",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authorizationServerName",
 			Expected: &AuthorizationServerId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				ServiceName:             "serviceName",
-				AuthorizationServerName: "authsid",
+				AuthorizationServerName: "authorizationServerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authsid/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/authorizationServers/authorizationServerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/aUtHoRiZaTiOnSeRvErS/aUtHsId",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/aUtHoRiZaTiOnSeRvErS/aUtHoRiZaTiOnSeRvErNaMe",
 			Expected: &AuthorizationServerId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:             "sErViCeNaMe",
-				AuthorizationServerName: "aUtHsId",
+				AuthorizationServerName: "aUtHoRiZaTiOnSeRvErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/aUtHoRiZaTiOnSeRvErS/aUtHsId/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/aUtHoRiZaTiOnSeRvErS/aUtHoRiZaTiOnSeRvErNaMe/extra",
 			Error: true,
 		},
 	}

@@ -131,7 +131,7 @@ func (id VirtualMachineScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
 		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineName"),
 		resourceids.StaticSegment("staticSchedules", "schedules", "schedules"),
-		resourceids.UserSpecifiedSegment("scheduleName", "name"),
+		resourceids.UserSpecifiedSegment("scheduleName", "scheduleName"),
 	}
 }
 

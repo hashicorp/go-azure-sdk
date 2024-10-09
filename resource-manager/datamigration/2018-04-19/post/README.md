@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := post.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := post.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := post.NameAvailabilityRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 read, err := client.ServicesCheckStatus(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 payload := post.NameAvailabilityRequest{
 	// ...
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 if err := client.ServicesStartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -94,7 +94,7 @@ if err := client.ServicesStartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := post.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 if err := client.ServicesStopThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -106,7 +106,7 @@ if err := client.ServicesStopThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := post.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
+id := post.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName", "taskName")
 
 read, err := client.TasksCancel(ctx, id)
 if err != nil {

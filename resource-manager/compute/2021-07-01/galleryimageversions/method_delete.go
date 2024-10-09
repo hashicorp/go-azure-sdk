@@ -21,7 +21,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c GalleryImageVersionsClient) Delete(ctx context.Context, id ImageVersionId) (result DeleteOperationResponse, err error) {
+func (c GalleryImageVersionsClient) Delete(ctx context.Context, id GalleryImageVersionId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -57,7 +57,7 @@ func (c GalleryImageVersionsClient) Delete(ctx context.Context, id ImageVersionI
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c GalleryImageVersionsClient) DeleteThenPoll(ctx context.Context, id ImageVersionId) error {
+func (c GalleryImageVersionsClient) DeleteThenPoll(ctx context.Context, id GalleryImageVersionId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)

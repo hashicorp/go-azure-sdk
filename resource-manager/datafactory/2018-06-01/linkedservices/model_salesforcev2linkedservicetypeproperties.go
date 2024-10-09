@@ -14,7 +14,7 @@ type SalesforceV2LinkedServiceTypeProperties struct {
 	ClientId            *string    `json:"clientId,omitempty"`
 	ClientSecret        SecretBase `json:"clientSecret"`
 	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
-	EnvironmentUrl      *string    `json:"environmentUrl,omitempty"`
+	EnvironmentURL      *string    `json:"environmentUrl,omitempty"`
 }
 
 var _ json.Unmarshaler = &SalesforceV2LinkedServiceTypeProperties{}
@@ -25,7 +25,7 @@ func (s *SalesforceV2LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) er
 		AuthenticationType  *string `json:"authenticationType,omitempty"`
 		ClientId            *string `json:"clientId,omitempty"`
 		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
-		EnvironmentUrl      *string `json:"environmentUrl,omitempty"`
+		EnvironmentURL      *string `json:"environmentUrl,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
@@ -35,7 +35,7 @@ func (s *SalesforceV2LinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) er
 	s.AuthenticationType = decoded.AuthenticationType
 	s.ClientId = decoded.ClientId
 	s.EncryptedCredential = decoded.EncryptedCredential
-	s.EnvironmentUrl = decoded.EnvironmentUrl
+	s.EnvironmentURL = decoded.EnvironmentURL
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

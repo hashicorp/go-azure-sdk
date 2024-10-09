@@ -12,14 +12,14 @@ import (
 var _ resourceids.ResourceId = &AlertId{}
 
 func TestNewAlertID(t *testing.T) {
-	id := NewAlertID("12345678-1234-9876-4563-123456789012", "ascLocation", "alertName")
+	id := NewAlertID("12345678-1234-9876-4563-123456789012", "locationName", "alertName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "ascLocation" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "ascLocation")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
 	if id.AlertName != "alertName" {
@@ -28,8 +28,8 @@ func TestNewAlertID(t *testing.T) {
 }
 
 func TestFormatAlertID(t *testing.T) {
-	actual := NewAlertID("12345678-1234-9876-4563-123456789012", "ascLocation", "alertName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/ascLocation/alerts/alertName"
+	actual := NewAlertID("12345678-1234-9876-4563-123456789012", "locationName", "alertName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/locationName/alerts/alertName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseAlertID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/ascLocation",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/ascLocation/alerts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/locationName/alerts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/ascLocation/alerts/alertName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/locationName/alerts/alertName",
 			Expected: &AlertId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "ascLocation",
+				LocationName:   "locationName",
 				AlertName:      "alertName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/ascLocation/alerts/alertName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/locationName/alerts/alertName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseAlertIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/ascLocation",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/ascLocation/alerts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/locationName/alerts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn/aLeRtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNnAmE/aLeRtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/ascLocation/alerts/alertName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/locationName/alerts/alertName",
 			Expected: &AlertId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "ascLocation",
+				LocationName:   "locationName",
 				AlertName:      "alertName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/ascLocation/alerts/alertName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Security/locations/locationName/alerts/alertName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn/aLeRtS/aLeRtNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNnAmE/aLeRtS/aLeRtNaMe",
 			Expected: &AlertId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				LocationName:   "aScLoCaTiOn",
+				LocationName:   "lOcAtIoNnAmE",
 				AlertName:      "aLeRtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn/aLeRtS/aLeRtNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNnAmE/aLeRtS/aLeRtNaMe/extra",
 			Error: true,
 		},
 	}

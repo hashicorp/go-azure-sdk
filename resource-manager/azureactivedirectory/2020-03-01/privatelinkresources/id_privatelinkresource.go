@@ -121,9 +121,9 @@ func (id PrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAADIAM", "Microsoft.AADIAM", "Microsoft.AADIAM"),
 		resourceids.StaticSegment("staticPrivateLinkForAzureAd", "privateLinkForAzureAd", "privateLinkForAzureAd"),
-		resourceids.UserSpecifiedSegment("privateLinkForAzureAdName", "policyName"),
+		resourceids.UserSpecifiedSegment("privateLinkForAzureAdName", "privateLinkForAzureAdName"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
-		resourceids.UserSpecifiedSegment("privateLinkResourceName", "groupName"),
+		resourceids.UserSpecifiedSegment("privateLinkResourceName", "privateLinkResourceName"),
 	}
 }
 

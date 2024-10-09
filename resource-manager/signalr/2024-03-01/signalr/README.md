@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := signalr.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := signalr.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := signalr.NameAvailabilityParameters{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 payload := signalr.SignalRResource{
 	// ...
@@ -63,7 +63,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "certificateName")
+id := signalr.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "customCertificateName")
 
 payload := signalr.CustomCertificate{
 	// ...
@@ -80,7 +80,7 @@ if err := client.CustomCertificatesCreateOrUpdateThenPoll(ctx, id, payload); err
 
 ```go
 ctx := context.TODO()
-id := signalr.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "certificateName")
+id := signalr.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "customCertificateName")
 
 read, err := client.CustomCertificatesDelete(ctx, id)
 if err != nil {
@@ -96,7 +96,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "certificateName")
+id := signalr.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "customCertificateName")
 
 read, err := client.CustomCertificatesGet(ctx, id)
 if err != nil {
@@ -112,7 +112,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 // alternatively `client.CustomCertificatesList(ctx, id)` can be used to do batched pagination
 items, err := client.CustomCertificatesListComplete(ctx, id)
@@ -129,7 +129,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "name")
+id := signalr.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "customDomainName")
 
 payload := signalr.CustomDomain{
 	// ...
@@ -146,7 +146,7 @@ if err := client.CustomDomainsCreateOrUpdateThenPoll(ctx, id, payload); err != n
 
 ```go
 ctx := context.TODO()
-id := signalr.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "name")
+id := signalr.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "customDomainName")
 
 if err := client.CustomDomainsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -158,7 +158,7 @@ if err := client.CustomDomainsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "name")
+id := signalr.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "customDomainName")
 
 read, err := client.CustomDomainsGet(ctx, id)
 if err != nil {
@@ -174,7 +174,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 // alternatively `client.CustomDomainsList(ctx, id)` can be used to do batched pagination
 items, err := client.CustomDomainsListComplete(ctx, id)
@@ -191,7 +191,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -203,7 +203,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -253,7 +253,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 read, err := client.ListKeys(ctx, id)
 if err != nil {
@@ -269,7 +269,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "replicaName")
 
 // alternatively `client.ListReplicaSkus(ctx, id)` can be used to do batched pagination
 items, err := client.ListReplicaSkusComplete(ctx, id)
@@ -286,7 +286,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 // alternatively `client.ListSkus(ctx, id)` can be used to do batched pagination
 items, err := client.ListSkusComplete(ctx, id)
@@ -303,7 +303,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "privateEndpointConnectionName")
+id := signalr.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "privateEndpointConnectionName")
 
 if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -315,7 +315,7 @@ if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "privateEndpointConnectionName")
+id := signalr.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "privateEndpointConnectionName")
 
 read, err := client.PrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
@@ -331,7 +331,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 // alternatively `client.PrivateEndpointConnectionsList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateEndpointConnectionsListComplete(ctx, id)
@@ -348,7 +348,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "privateEndpointConnectionName")
+id := signalr.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "privateEndpointConnectionName")
 
 payload := signalr.PrivateEndpointConnection{
 	// ...
@@ -369,7 +369,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 // alternatively `client.PrivateLinkResourcesList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateLinkResourcesListComplete(ctx, id)
@@ -386,7 +386,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 payload := signalr.RegenerateKeyParameters{
 	// ...
@@ -403,7 +403,7 @@ if err := client.RegenerateKeyThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName", "sharedPrivateLinkResourceName")
+id := signalr.NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "replicaName", "sharedPrivateLinkResourceName")
 
 payload := signalr.SharedPrivateLinkResource{
 	// ...
@@ -420,7 +420,7 @@ if err := client.ReplicaSharedPrivateLinkResourcesCreateOrUpdateThenPoll(ctx, id
 
 ```go
 ctx := context.TODO()
-id := signalr.NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName", "sharedPrivateLinkResourceName")
+id := signalr.NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "replicaName", "sharedPrivateLinkResourceName")
 
 read, err := client.ReplicaSharedPrivateLinkResourcesGet(ctx, id)
 if err != nil {
@@ -436,7 +436,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "replicaName")
 
 // alternatively `client.ReplicaSharedPrivateLinkResourcesList(ctx, id)` can be used to do batched pagination
 items, err := client.ReplicaSharedPrivateLinkResourcesListComplete(ctx, id)
@@ -453,7 +453,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "replicaName")
 
 payload := signalr.Replica{
 	// ...
@@ -470,7 +470,7 @@ if err := client.ReplicasCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "replicaName")
 
 read, err := client.ReplicasDelete(ctx, id)
 if err != nil {
@@ -486,7 +486,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "replicaName")
 
 read, err := client.ReplicasGet(ctx, id)
 if err != nil {
@@ -502,7 +502,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 // alternatively `client.ReplicasList(ctx, id)` can be used to do batched pagination
 items, err := client.ReplicasListComplete(ctx, id)
@@ -519,7 +519,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "replicaName")
 
 if err := client.ReplicasRestartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -531,7 +531,7 @@ if err := client.ReplicasRestartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := signalr.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "replicaName")
 
 payload := signalr.Replica{
 	// ...
@@ -548,7 +548,7 @@ if err := client.ReplicasUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 if err := client.RestartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -560,7 +560,7 @@ if err := client.RestartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "sharedPrivateLinkResourceName")
+id := signalr.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "sharedPrivateLinkResourceName")
 
 payload := signalr.SharedPrivateLinkResource{
 	// ...
@@ -577,7 +577,7 @@ if err := client.SharedPrivateLinkResourcesCreateOrUpdateThenPoll(ctx, id, paylo
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "sharedPrivateLinkResourceName")
+id := signalr.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "sharedPrivateLinkResourceName")
 
 if err := client.SharedPrivateLinkResourcesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -589,7 +589,7 @@ if err := client.SharedPrivateLinkResourcesDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "sharedPrivateLinkResourceName")
+id := signalr.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName", "sharedPrivateLinkResourceName")
 
 read, err := client.SharedPrivateLinkResourcesGet(ctx, id)
 if err != nil {
@@ -605,7 +605,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 // alternatively `client.SharedPrivateLinkResourcesList(ctx, id)` can be used to do batched pagination
 items, err := client.SharedPrivateLinkResourcesListComplete(ctx, id)
@@ -622,7 +622,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRName")
 
 payload := signalr.SignalRResource{
 	// ...
@@ -639,7 +639,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := signalr.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := signalr.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.UsagesList(ctx, id)` can be used to do batched pagination
 items, err := client.UsagesListComplete(ctx, id)

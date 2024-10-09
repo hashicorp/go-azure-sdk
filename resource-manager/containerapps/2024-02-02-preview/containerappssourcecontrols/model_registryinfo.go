@@ -5,6 +5,6 @@ package containerappssourcecontrols
 
 type RegistryInfo struct {
 	RegistryPassword *string `json:"registryPassword,omitempty"`
-	RegistryUrl      *string `json:"registryUrl,omitempty"`
+	RegistryURL      *string `json:"registryUrl,omitempty"`
 	RegistryUserName *string `json:"registryUserName,omitempty"`
 }

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OnlineEndpointId{}
 
 func TestNewOnlineEndpointID(t *testing.T) {
-	id := NewOnlineEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName")
+	id := NewOnlineEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "onlineEndpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewOnlineEndpointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.OnlineEndpointName != "endpointName" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnlineEndpointName'", id.OnlineEndpointName, "endpointName")
+	if id.OnlineEndpointName != "onlineEndpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnlineEndpointName'", id.OnlineEndpointName, "onlineEndpointName")
 	}
 }
 
 func TestFormatOnlineEndpointID(t *testing.T) {
-	actual := NewOnlineEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/endpointName"
+	actual := NewOnlineEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "onlineEndpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/onlineEndpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseOnlineEndpointID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/onlineEndpointName",
 			Expected: &OnlineEndpointId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				WorkspaceName:      "workspaceName",
-				OnlineEndpointName: "endpointName",
+				OnlineEndpointName: "onlineEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/endpointName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/onlineEndpointName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseOnlineEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/onlineEndpointName",
 			Expected: &OnlineEndpointId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				WorkspaceName:      "workspaceName",
-				OnlineEndpointName: "endpointName",
+				OnlineEndpointName: "onlineEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/endpointName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/onlineEndpoints/onlineEndpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/oNlInEeNdPoInTs/eNdPoInTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/oNlInEeNdPoInTs/oNlInEeNdPoInTnAmE",
 			Expected: &OnlineEndpointId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:      "wOrKsPaCeNaMe",
-				OnlineEndpointName: "eNdPoInTnAmE",
+				OnlineEndpointName: "oNlInEeNdPoInTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/oNlInEeNdPoInTs/eNdPoInTnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/oNlInEeNdPoInTs/oNlInEeNdPoInTnAmE/extra",
 			Error: true,
 		},
 	}

@@ -182,25 +182,25 @@ func UnmarshalDeliveryRuleConditionParametersImplementation(input []byte) (Deliv
 	}
 
 	if strings.EqualFold(value, "DeliveryRuleUrlFileExtensionMatchConditionParameters") {
-		var out UrlFileExtensionMatchConditionParameters
+		var out URLFileExtensionMatchConditionParameters
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into UrlFileExtensionMatchConditionParameters: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into URLFileExtensionMatchConditionParameters: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "DeliveryRuleUrlFilenameConditionParameters") {
-		var out UrlFileNameMatchConditionParameters
+		var out URLFileNameMatchConditionParameters
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into UrlFileNameMatchConditionParameters: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into URLFileNameMatchConditionParameters: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "DeliveryRuleUrlPathMatchConditionParameters") {
-		var out UrlPathMatchConditionParameters
+		var out URLPathMatchConditionParameters
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into UrlPathMatchConditionParameters: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into URLPathMatchConditionParameters: %+v", err)
 		}
 		return out, nil
 	}

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privatelinkresource.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "privateLinkResourceName")
+id := privatelinkresource.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountName", "privateLinkResourceName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privatelinkresource.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
+id := privatelinkresource.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountName")
 
 // alternatively `client.ListByBatchAccount(ctx, id, privatelinkresource.DefaultListByBatchAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBatchAccountComplete(ctx, id, privatelinkresource.DefaultListByBatchAccountOperationOptions())

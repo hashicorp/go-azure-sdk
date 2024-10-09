@@ -64,7 +64,7 @@ func (p *ListCustomPager) NextPageLink() *odata.Link {
 }
 
 // List ...
-func (c SharedGalleryImageVersionsClient) List(ctx context.Context, id ImageId, options ListOperationOptions) (result ListOperationResponse, err error) {
+func (c SharedGalleryImageVersionsClient) List(ctx context.Context, id SharedGalleryImageId, options ListOperationOptions) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -104,12 +104,12 @@ func (c SharedGalleryImageVersionsClient) List(ctx context.Context, id ImageId, 
 }
 
 // ListComplete retrieves all the results into a single object
-func (c SharedGalleryImageVersionsClient) ListComplete(ctx context.Context, id ImageId, options ListOperationOptions) (ListCompleteResult, error) {
+func (c SharedGalleryImageVersionsClient) ListComplete(ctx context.Context, id SharedGalleryImageId, options ListOperationOptions) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, options, SharedGalleryImageVersionOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c SharedGalleryImageVersionsClient) ListCompleteMatchingPredicate(ctx context.Context, id ImageId, options ListOperationOptions, predicate SharedGalleryImageVersionOperationPredicate) (result ListCompleteResult, err error) {
+func (c SharedGalleryImageVersionsClient) ListCompleteMatchingPredicate(ctx context.Context, id SharedGalleryImageId, options ListOperationOptions, predicate SharedGalleryImageVersionOperationPredicate) (result ListCompleteResult, err error) {
 	items := make([]SharedGalleryImageVersion, 0)
 
 	resp, err := c.List(ctx, id, options)

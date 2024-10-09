@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ModuleObjectDataTypeId{}
 
 func TestNewModuleObjectDataTypeID(t *testing.T) {
-	id := NewModuleObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "moduleName", "typeName")
+	id := NewModuleObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "moduleName", "objectDataTypeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewModuleObjectDataTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ModuleName'", id.ModuleName, "moduleName")
 	}
 
-	if id.ObjectDataTypeName != "typeName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ObjectDataTypeName'", id.ObjectDataTypeName, "typeName")
+	if id.ObjectDataTypeName != "objectDataTypeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ObjectDataTypeName'", id.ObjectDataTypeName, "objectDataTypeName")
 	}
 }
 
 func TestFormatModuleObjectDataTypeID(t *testing.T) {
-	actual := NewModuleObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "moduleName", "typeName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/typeName"
+	actual := NewModuleObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountName", "moduleName", "objectDataTypeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/objectDataTypeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseModuleObjectDataTypeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/typeName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/objectDataTypeName",
 			Expected: &ModuleObjectDataTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountName",
 				ModuleName:            "moduleName",
-				ObjectDataTypeName:    "typeName",
+				ObjectDataTypeName:    "objectDataTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/typeName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/objectDataTypeName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseModuleObjectDataTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/typeName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/objectDataTypeName",
 			Expected: &ModuleObjectDataTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountName",
 				ModuleName:            "moduleName",
-				ObjectDataTypeName:    "typeName",
+				ObjectDataTypeName:    "objectDataTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/typeName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountName/modules/moduleName/objectDataTypes/objectDataTypeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/mOdUlEs/mOdUlEnAmE/oBjEcTdAtAtYpEs/tYpEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/mOdUlEs/mOdUlEnAmE/oBjEcTdAtAtYpEs/oBjEcTdAtAtYpEnAmE",
 			Expected: &ModuleObjectDataTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				AutomationAccountName: "aUtOmAtIoNaCcOuNtNaMe",
 				ModuleName:            "mOdUlEnAmE",
-				ObjectDataTypeName:    "tYpEnAmE",
+				ObjectDataTypeName:    "oBjEcTdAtAtYpEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/mOdUlEs/mOdUlEnAmE/oBjEcTdAtAtYpEs/tYpEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtNaMe/mOdUlEs/mOdUlEnAmE/oBjEcTdAtAtYpEs/oBjEcTdAtAtYpEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -5,6 +5,6 @@ package recoverypointsrecommendedformove
 
 type BEKDetails struct {
 	SecretData    *string `json:"secretData,omitempty"`
-	SecretUrl     *string `json:"secretUrl,omitempty"`
+	SecretURL     *string `json:"secretUrl,omitempty"`
 	SecretVaultId *string `json:"secretVaultId,omitempty"`
 }

@@ -2,6 +2,7 @@ package integrationruntimeobjectmetadata
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -63,13 +64,24 @@ func (c IntegrationRuntimeObjectMetadataClient) Get(ctx context.Context, id Inte
 	}
 
 	var values struct {
-		Values *[]SsisObjectMetadata `json:"value"`
+		Values *[]json.RawMessage `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
-	result.Model = values.Values
+	temp := make([]SsisObjectMetadata, 0)
+	if values.Values != nil {
+		for i, v := range *values.Values {
+			val, err := UnmarshalSsisObjectMetadataImplementation(v)
+			if err != nil {
+				err = fmt.Errorf("unmarshalling item %d for SsisObjectMetadata (%q): %+v", i, v, err)
+				return result, err
+			}
+			temp = append(temp, val)
+		}
+	}
+	result.Model = &temp
 
 	return
 }

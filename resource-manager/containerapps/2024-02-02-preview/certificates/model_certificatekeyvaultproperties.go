@@ -5,5 +5,5 @@ package certificates
 
 type CertificateKeyVaultProperties struct {
 	Identity    *string `json:"identity,omitempty"`
-	KeyVaultUrl *string `json:"keyVaultUrl,omitempty"`
+	KeyVaultURL *string `json:"keyVaultUrl,omitempty"`
 }

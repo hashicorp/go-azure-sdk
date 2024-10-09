@@ -121,7 +121,7 @@ func (id HostingEnvironmentDetectorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticHostingEnvironments", "hostingEnvironments", "hostingEnvironments"),
-		resourceids.UserSpecifiedSegment("hostingEnvironmentName", "name"),
+		resourceids.UserSpecifiedSegment("hostingEnvironmentName", "hostingEnvironmentName"),
 		resourceids.StaticSegment("staticDetectors", "detectors", "detectors"),
 		resourceids.UserSpecifiedSegment("detectorName", "detectorName"),
 	}

@@ -3,6 +3,7 @@ package alertsmanagements
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -50,6 +51,14 @@ func UnmarshalAlertsMetaDataPropertiesImplementation(input []byte) (AlertsMetaDa
 	var value string
 	if v, ok := temp["metadataIdentifier"]; ok {
 		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "MonitorServiceList") {
+		var out MonitorServiceList
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MonitorServiceList: %+v", err)
+		}
+		return out, nil
 	}
 
 	var parent BaseAlertsMetaDataPropertiesImpl

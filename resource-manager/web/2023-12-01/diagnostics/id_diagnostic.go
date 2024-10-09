@@ -123,7 +123,7 @@ func (id DiagnosticId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticSites", "sites", "sites"),
 		resourceids.UserSpecifiedSegment("siteName", "siteName"),
 		resourceids.StaticSegment("staticDiagnostics", "diagnostics", "diagnostics"),
-		resourceids.UserSpecifiedSegment("diagnosticName", "diagnosticCategory"),
+		resourceids.UserSpecifiedSegment("diagnosticName", "diagnosticName"),
 	}
 }
 

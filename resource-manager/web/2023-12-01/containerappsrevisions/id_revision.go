@@ -123,7 +123,7 @@ func (id RevisionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticContainerApps", "containerApps", "containerApps"),
 		resourceids.UserSpecifiedSegment("containerAppName", "containerAppName"),
 		resourceids.StaticSegment("staticRevisions", "revisions", "revisions"),
-		resourceids.UserSpecifiedSegment("revisionName", "name"),
+		resourceids.UserSpecifiedSegment("revisionName", "revisionName"),
 	}
 }
 

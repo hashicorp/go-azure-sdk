@@ -12,8 +12,8 @@ type WebHookEventSubscriptionDestinationProperties struct {
 	AzureActiveDirectoryApplicationIdOrUri *string                     `json:"azureActiveDirectoryApplicationIdOrUri,omitempty"`
 	AzureActiveDirectoryTenantId           *string                     `json:"azureActiveDirectoryTenantId,omitempty"`
 	DeliveryAttributeMappings              *[]DeliveryAttributeMapping `json:"deliveryAttributeMappings,omitempty"`
-	EndpointBaseUrl                        *string                     `json:"endpointBaseUrl,omitempty"`
-	EndpointUrl                            *string                     `json:"endpointUrl,omitempty"`
+	EndpointBaseURL                        *string                     `json:"endpointBaseUrl,omitempty"`
+	EndpointURL                            *string                     `json:"endpointUrl,omitempty"`
 	MaxEventsPerBatch                      *int64                      `json:"maxEventsPerBatch,omitempty"`
 	MinimumTlsVersionAllowed               *TlsVersion                 `json:"minimumTlsVersionAllowed,omitempty"`
 	PreferredBatchSizeInKilobytes          *int64                      `json:"preferredBatchSizeInKilobytes,omitempty"`
@@ -25,8 +25,8 @@ func (s *WebHookEventSubscriptionDestinationProperties) UnmarshalJSON(bytes []by
 	var decoded struct {
 		AzureActiveDirectoryApplicationIdOrUri *string     `json:"azureActiveDirectoryApplicationIdOrUri,omitempty"`
 		AzureActiveDirectoryTenantId           *string     `json:"azureActiveDirectoryTenantId,omitempty"`
-		EndpointBaseUrl                        *string     `json:"endpointBaseUrl,omitempty"`
-		EndpointUrl                            *string     `json:"endpointUrl,omitempty"`
+		EndpointBaseURL                        *string     `json:"endpointBaseUrl,omitempty"`
+		EndpointURL                            *string     `json:"endpointUrl,omitempty"`
 		MaxEventsPerBatch                      *int64      `json:"maxEventsPerBatch,omitempty"`
 		MinimumTlsVersionAllowed               *TlsVersion `json:"minimumTlsVersionAllowed,omitempty"`
 		PreferredBatchSizeInKilobytes          *int64      `json:"preferredBatchSizeInKilobytes,omitempty"`
@@ -37,8 +37,8 @@ func (s *WebHookEventSubscriptionDestinationProperties) UnmarshalJSON(bytes []by
 
 	s.AzureActiveDirectoryApplicationIdOrUri = decoded.AzureActiveDirectoryApplicationIdOrUri
 	s.AzureActiveDirectoryTenantId = decoded.AzureActiveDirectoryTenantId
-	s.EndpointBaseUrl = decoded.EndpointBaseUrl
-	s.EndpointUrl = decoded.EndpointUrl
+	s.EndpointBaseURL = decoded.EndpointBaseURL
+	s.EndpointURL = decoded.EndpointURL
 	s.MaxEventsPerBatch = decoded.MaxEventsPerBatch
 	s.MinimumTlsVersionAllowed = decoded.MinimumTlsVersionAllowed
 	s.PreferredBatchSizeInKilobytes = decoded.PreferredBatchSizeInKilobytes

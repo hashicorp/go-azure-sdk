@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &GalleryImageId{}
 
 func TestNewGalleryImageID(t *testing.T) {
-	id := NewGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryName", "galleryImageName")
+	id := NewGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryName", "imageName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewGalleryImageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'GalleryName'", id.GalleryName, "galleryName")
 	}
 
-	if id.ImageName != "galleryImageName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ImageName'", id.ImageName, "galleryImageName")
+	if id.ImageName != "imageName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ImageName'", id.ImageName, "imageName")
 	}
 }
 
 func TestFormatGalleryImageID(t *testing.T) {
-	actual := NewGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryName", "galleryImageName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/galleryImageName"
+	actual := NewGalleryImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryName", "imageName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/imageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseGalleryImageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/galleryImageName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/imageName",
 			Expected: &GalleryImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				GalleryName:       "galleryName",
-				ImageName:         "galleryImageName",
+				ImageName:         "imageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/galleryImageName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/imageName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseGalleryImageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/galleryImageName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/imageName",
 			Expected: &GalleryImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				GalleryName:       "galleryName",
-				ImageName:         "galleryImageName",
+				ImageName:         "imageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/galleryImageName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryName/images/imageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyNaMe/iMaGeS/gAlLeRyImAgEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyNaMe/iMaGeS/iMaGeNaMe",
 			Expected: &GalleryImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				GalleryName:       "gAlLeRyNaMe",
-				ImageName:         "gAlLeRyImAgEnAmE",
+				ImageName:         "iMaGeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyNaMe/iMaGeS/gAlLeRyImAgEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyNaMe/iMaGeS/iMaGeNaMe/extra",
 			Error: true,
 		},
 	}

@@ -109,7 +109,7 @@ func (id CostAllocationRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCostManagement", "Microsoft.CostManagement", "Microsoft.CostManagement"),
 		resourceids.StaticSegment("staticCostAllocationRules", "costAllocationRules", "costAllocationRules"),
-		resourceids.UserSpecifiedSegment("costAllocationRuleName", "ruleName"),
+		resourceids.UserSpecifiedSegment("costAllocationRuleName", "costAllocationRuleName"),
 	}
 }
 

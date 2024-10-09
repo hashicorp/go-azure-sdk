@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MemberId{}
 
 func TestNewMemberID(t *testing.T) {
-	id := NewMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName", "fleetMemberName")
+	id := NewMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName", "memberName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewMemberID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'FleetName'", id.FleetName, "fleetName")
 	}
 
-	if id.MemberName != "fleetMemberName" {
-		t.Fatalf("Expected %q but got %q for Segment 'MemberName'", id.MemberName, "fleetMemberName")
+	if id.MemberName != "memberName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MemberName'", id.MemberName, "memberName")
 	}
 }
 
 func TestFormatMemberID(t *testing.T) {
-	actual := NewMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName", "fleetMemberName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/fleetMemberName"
+	actual := NewMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName", "memberName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/memberName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseMemberID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/fleetMemberName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/memberName",
 			Expected: &MemberId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				FleetName:         "fleetName",
-				MemberName:        "fleetMemberName",
+				MemberName:        "memberName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/fleetMemberName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/memberName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseMemberIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/fleetMemberName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/memberName",
 			Expected: &MemberId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				FleetName:         "fleetName",
-				MemberName:        "fleetMemberName",
+				MemberName:        "memberName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/fleetMemberName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetName/members/memberName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtNaMe/mEmBeRs/fLeEtMeMbErNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtNaMe/mEmBeRs/mEmBeRnAmE",
 			Expected: &MemberId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				FleetName:         "fLeEtNaMe",
-				MemberName:        "fLeEtMeMbErNaMe",
+				MemberName:        "mEmBeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtNaMe/mEmBeRs/fLeEtMeMbErNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtNaMe/mEmBeRs/mEmBeRnAmE/extra",
 			Error: true,
 		},
 	}

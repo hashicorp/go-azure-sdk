@@ -5,6 +5,6 @@ package replicationmigrationitems
 
 type ManagedRunCommandScriptInput struct {
 	ScriptParameters string `json:"scriptParameters"`
-	ScriptUrl        string `json:"scriptUrl"`
+	ScriptURL        string `json:"scriptUrl"`
 	StepName         string `json:"stepName"`
 }

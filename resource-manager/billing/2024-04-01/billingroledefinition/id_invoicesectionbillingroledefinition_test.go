@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &InvoiceSectionBillingRoleDefinitionId{}
 
 func TestNewInvoiceSectionBillingRoleDefinitionID(t *testing.T) {
-	id := NewInvoiceSectionBillingRoleDefinitionID("billingAccountName", "billingProfileName", "invoiceSectionName", "roleDefinitionName")
+	id := NewInvoiceSectionBillingRoleDefinitionID("billingAccountName", "billingProfileName", "invoiceSectionName", "billingRoleDefinitionName")
 
 	if id.BillingAccountName != "billingAccountName" {
 		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
@@ -26,14 +26,14 @@ func TestNewInvoiceSectionBillingRoleDefinitionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'InvoiceSectionName'", id.InvoiceSectionName, "invoiceSectionName")
 	}
 
-	if id.BillingRoleDefinitionName != "roleDefinitionName" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingRoleDefinitionName'", id.BillingRoleDefinitionName, "roleDefinitionName")
+	if id.BillingRoleDefinitionName != "billingRoleDefinitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingRoleDefinitionName'", id.BillingRoleDefinitionName, "billingRoleDefinitionName")
 	}
 }
 
 func TestFormatInvoiceSectionBillingRoleDefinitionID(t *testing.T) {
-	actual := NewInvoiceSectionBillingRoleDefinitionID("billingAccountName", "billingProfileName", "invoiceSectionName", "roleDefinitionName").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/roleDefinitionName"
+	actual := NewInvoiceSectionBillingRoleDefinitionID("billingAccountName", "billingProfileName", "invoiceSectionName", "billingRoleDefinitionName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/billingRoleDefinitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseInvoiceSectionBillingRoleDefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/roleDefinitionName",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/billingRoleDefinitionName",
 			Expected: &InvoiceSectionBillingRoleDefinitionId{
 				BillingAccountName:        "billingAccountName",
 				BillingProfileName:        "billingProfileName",
 				InvoiceSectionName:        "invoiceSectionName",
-				BillingRoleDefinitionName: "roleDefinitionName",
+				BillingRoleDefinitionName: "billingRoleDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/roleDefinitionName/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/billingRoleDefinitionName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseInvoiceSectionBillingRoleDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/roleDefinitionName",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/billingRoleDefinitionName",
 			Expected: &InvoiceSectionBillingRoleDefinitionId{
 				BillingAccountName:        "billingAccountName",
 				BillingProfileName:        "billingProfileName",
 				InvoiceSectionName:        "invoiceSectionName",
-				BillingRoleDefinitionName: "roleDefinitionName",
+				BillingRoleDefinitionName: "billingRoleDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/roleDefinitionName/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/invoiceSections/invoiceSectionName/billingRoleDefinitions/billingRoleDefinitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE/iNvOiCeSeCtIoNs/iNvOiCeSeCtIoNnAmE/bIlLiNgRoLeDeFiNiTiOnS/rOlEdEfInItIoNnAmE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE/iNvOiCeSeCtIoNs/iNvOiCeSeCtIoNnAmE/bIlLiNgRoLeDeFiNiTiOnS/bIlLiNgRoLeDeFiNiTiOnNaMe",
 			Expected: &InvoiceSectionBillingRoleDefinitionId{
 				BillingAccountName:        "bIlLiNgAcCoUnTnAmE",
 				BillingProfileName:        "bIlLiNgPrOfIlEnAmE",
 				InvoiceSectionName:        "iNvOiCeSeCtIoNnAmE",
-				BillingRoleDefinitionName: "rOlEdEfInItIoNnAmE",
+				BillingRoleDefinitionName: "bIlLiNgRoLeDeFiNiTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE/iNvOiCeSeCtIoNs/iNvOiCeSeCtIoNnAmE/bIlLiNgRoLeDeFiNiTiOnS/rOlEdEfInItIoNnAmE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE/iNvOiCeSeCtIoNs/iNvOiCeSeCtIoNnAmE/bIlLiNgRoLeDeFiNiTiOnS/bIlLiNgRoLeDeFiNiTiOnNaMe/extra",
 			Error: true,
 		},
 	}

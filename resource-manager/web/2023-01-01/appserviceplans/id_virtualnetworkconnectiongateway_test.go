@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkConnectionGatewayId{}
 
 func TestNewVirtualNetworkConnectionGatewayID(t *testing.T) {
-	id := NewVirtualNetworkConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "vnetName", "gatewayName")
+	id := NewVirtualNetworkConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmName", "virtualNetworkConnectionName", "gatewayName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,12 +22,12 @@ func TestNewVirtualNetworkConnectionGatewayID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerFarmName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerFarmName'", id.ServerFarmName, "name")
+	if id.ServerFarmName != "serverFarmName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerFarmName'", id.ServerFarmName, "serverFarmName")
 	}
 
-	if id.VirtualNetworkConnectionName != "vnetName" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkConnectionName'", id.VirtualNetworkConnectionName, "vnetName")
+	if id.VirtualNetworkConnectionName != "virtualNetworkConnectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkConnectionName'", id.VirtualNetworkConnectionName, "virtualNetworkConnectionName")
 	}
 
 	if id.GatewayName != "gatewayName" {
@@ -36,8 +36,8 @@ func TestNewVirtualNetworkConnectionGatewayID(t *testing.T) {
 }
 
 func TestFormatVirtualNetworkConnectionGatewayID(t *testing.T) {
-	actual := NewVirtualNetworkConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "vnetName", "gatewayName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections/vnetName/gateways/gatewayName"
+	actual := NewVirtualNetworkConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmName", "virtualNetworkConnectionName", "gatewayName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections/virtualNetworkConnectionName/gateways/gatewayName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseVirtualNetworkConnectionGatewayID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections/vnetName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections/virtualNetworkConnectionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections/vnetName/gateways",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections/virtualNetworkConnectionName/gateways",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections/vnetName/gateways/gatewayName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections/virtualNetworkConnectionName/gateways/gatewayName",
 			Expected: &VirtualNetworkConnectionGatewayId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				ServerFarmName:               "name",
-				VirtualNetworkConnectionName: "vnetName",
+				ServerFarmName:               "serverFarmName",
+				VirtualNetworkConnectionName: "virtualNetworkConnectionName",
 				GatewayName:                  "gatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections/vnetName/gateways/gatewayName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections/virtualNetworkConnectionName/gateways/gatewayName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseVirtualNetworkConnectionGatewayIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/vIrTuAlNeTwOrKcOnNeCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/vIrTuAlNeTwOrKcOnNeCtIoNs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections/vnetName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections/virtualNetworkConnectionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vNeTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vIrTuAlNeTwOrKcOnNeCtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections/vnetName/gateways",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections/virtualNetworkConnectionName/gateways",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vNeTnAmE/gAtEwAyS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vIrTuAlNeTwOrKcOnNeCtIoNnAmE/gAtEwAyS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections/vnetName/gateways/gatewayName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections/virtualNetworkConnectionName/gateways/gatewayName",
 			Expected: &VirtualNetworkConnectionGatewayId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "example-resource-group",
-				ServerFarmName:               "name",
-				VirtualNetworkConnectionName: "vnetName",
+				ServerFarmName:               "serverFarmName",
+				VirtualNetworkConnectionName: "virtualNetworkConnectionName",
 				GatewayName:                  "gatewayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/virtualNetworkConnections/vnetName/gateways/gatewayName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/virtualNetworkConnections/virtualNetworkConnectionName/gateways/gatewayName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vNeTnAmE/gAtEwAyS/gAtEwAyNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vIrTuAlNeTwOrKcOnNeCtIoNnAmE/gAtEwAyS/gAtEwAyNaMe",
 			Expected: &VirtualNetworkConnectionGatewayId{
 				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerFarmName:               "nAmE",
-				VirtualNetworkConnectionName: "vNeTnAmE",
+				ServerFarmName:               "sErVeRfArMnAmE",
+				VirtualNetworkConnectionName: "vIrTuAlNeTwOrKcOnNeCtIoNnAmE",
 				GatewayName:                  "gAtEwAyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vNeTnAmE/gAtEwAyS/gAtEwAyNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/vIrTuAlNeTwOrKcOnNeCtIoNs/vIrTuAlNeTwOrKcOnNeCtIoNnAmE/gAtEwAyS/gAtEwAyNaMe/extra",
 			Error: true,
 		},
 	}

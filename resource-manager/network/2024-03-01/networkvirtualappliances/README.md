@@ -70,7 +70,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkvirtualappliances.NewInboundSecurityRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "ruleCollectionName")
+id := networkvirtualappliances.NewInboundSecurityRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "inboundSecurityRuleName")
 
 payload := networkvirtualappliances.InboundSecurityRule{
 	// ...
@@ -87,7 +87,7 @@ if err := client.InboundSecurityRuleCreateOrUpdateThenPoll(ctx, id, payload); er
 
 ```go
 ctx := context.TODO()
-id := networkvirtualappliances.NewInboundSecurityRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "ruleCollectionName")
+id := networkvirtualappliances.NewInboundSecurityRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "inboundSecurityRuleName")
 
 read, err := client.InboundSecurityRuleGet(ctx, id)
 if err != nil {

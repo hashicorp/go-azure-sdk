@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := usages.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := usages.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ListBySubscription(ctx, id, usages.DefaultListBySubscriptionOperationOptions())` can be used to do batched pagination
 items, err := client.ListBySubscriptionComplete(ctx, id, usages.DefaultListBySubscriptionOperationOptions())
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := usages.NewUsageID("12345678-1234-9876-4563-123456789012", "location", "skuName")
+id := usages.NewUsageID("12345678-1234-9876-4563-123456789012", "locationName", "usageName")
 
 read, err := client.UsageBySubscriptionSku(ctx, id, usages.DefaultUsageBySubscriptionSkuOperationOptions())
 if err != nil {

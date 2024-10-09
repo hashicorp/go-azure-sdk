@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := managementgroupdiagnosticsettings.NewProviders2DiagnosticSettingID("managementGroupId", "name")
+id := managementgroupdiagnosticsettings.NewProviders2DiagnosticSettingID("managementGroupId", "diagnosticSettingName")
 
 payload := managementgroupdiagnosticsettings.ManagementGroupDiagnosticSettingsResource{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementgroupdiagnosticsettings.NewProviders2DiagnosticSettingID("managementGroupId", "name")
+id := managementgroupdiagnosticsettings.NewProviders2DiagnosticSettingID("managementGroupId", "diagnosticSettingName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementgroupdiagnosticsettings.NewProviders2DiagnosticSettingID("managementGroupId", "name")
+id := managementgroupdiagnosticsettings.NewProviders2DiagnosticSettingID("managementGroupId", "diagnosticSettingName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

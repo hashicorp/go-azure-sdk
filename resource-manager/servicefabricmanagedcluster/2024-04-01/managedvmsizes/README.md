@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := managedvmsizes.NewManagedUnsupportedVMSizeID("12345678-1234-9876-4563-123456789012", "location", "vmSize")
+id := managedvmsizes.NewManagedUnsupportedVMSizeID("12345678-1234-9876-4563-123456789012", "locationName", "managedUnsupportedVMSizeName")
 
 read, err := client.ManagedUnsupportedVMSizesGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedvmsizes.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := managedvmsizes.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ManagedUnsupportedVMSizesList(ctx, id)` can be used to do batched pagination
 items, err := client.ManagedUnsupportedVMSizesListComplete(ctx, id)

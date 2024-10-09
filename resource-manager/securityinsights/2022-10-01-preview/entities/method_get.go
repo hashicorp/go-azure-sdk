@@ -2,6 +2,7 @@ package entities
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -14,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Entity
+	Model        Entity
 }
 
 // Get ...
@@ -43,11 +44,15 @@ func (c EntitiesClient) Get(ctx context.Context, id EntityId) (result GetOperati
 		return
 	}
 
-	var model Entity
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var respObj json.RawMessage
+	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
+	model, err := UnmarshalEntityImplementation(respObj)
+	if err != nil {
+		return
+	}
+	result.Model = model
 
 	return
 }

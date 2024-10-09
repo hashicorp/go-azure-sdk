@@ -11,7 +11,7 @@ import (
 var _ DatasetLocation = HTTPServerLocation{}
 
 type HTTPServerLocation struct {
-	RelativeUrl *string `json:"relativeUrl,omitempty"`
+	RelativeURL *string `json:"relativeUrl,omitempty"`
 
 	// Fields inherited from DatasetLocation
 

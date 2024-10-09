@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &WcfRelayAuthorizationRuleId{}
 
 func TestNewWcfRelayAuthorizationRuleID(t *testing.T) {
-	id := NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName", "authorizationRuleName")
+	id := NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName", "authorizationRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,8 +26,8 @@ func TestNewWcfRelayAuthorizationRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.WcfRelayName != "relayName" {
-		t.Fatalf("Expected %q but got %q for Segment 'WcfRelayName'", id.WcfRelayName, "relayName")
+	if id.WcfRelayName != "wcfRelayName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WcfRelayName'", id.WcfRelayName, "wcfRelayName")
 	}
 
 	if id.AuthorizationRuleName != "authorizationRuleName" {
@@ -36,8 +36,8 @@ func TestNewWcfRelayAuthorizationRuleID(t *testing.T) {
 }
 
 func TestFormatWcfRelayAuthorizationRuleID(t *testing.T) {
-	actual := NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName", "authorizationRuleName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/relayName/authorizationRules/authorizationRuleName"
+	actual := NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName", "authorizationRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/wcfRelayName/authorizationRules/authorizationRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -101,28 +101,28 @@ func TestParseWcfRelayAuthorizationRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/relayName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/wcfRelayName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/relayName/authorizationRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/wcfRelayName/authorizationRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/relayName/authorizationRules/authorizationRuleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/wcfRelayName/authorizationRules/authorizationRuleName",
 			Expected: &WcfRelayAuthorizationRuleId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				NamespaceName:         "namespaceName",
-				WcfRelayName:          "relayName",
+				WcfRelayName:          "wcfRelayName",
 				AuthorizationRuleName: "authorizationRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/relayName/authorizationRules/authorizationRuleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/wcfRelayName/authorizationRules/authorizationRuleName/extra",
 			Error: true,
 		},
 	}
@@ -267,54 +267,54 @@ func TestParseWcfRelayAuthorizationRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/relayName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/wcfRelayName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeNaMe/wCfReLaYs/rElAyNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeNaMe/wCfReLaYs/wCfReLaYnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/relayName/authorizationRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/wcfRelayName/authorizationRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeNaMe/wCfReLaYs/rElAyNaMe/aUtHoRiZaTiOnRuLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeNaMe/wCfReLaYs/wCfReLaYnAmE/aUtHoRiZaTiOnRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/relayName/authorizationRules/authorizationRuleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/wcfRelayName/authorizationRules/authorizationRuleName",
 			Expected: &WcfRelayAuthorizationRuleId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				NamespaceName:         "namespaceName",
-				WcfRelayName:          "relayName",
+				WcfRelayName:          "wcfRelayName",
 				AuthorizationRuleName: "authorizationRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/relayName/authorizationRules/authorizationRuleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceName/wcfRelays/wcfRelayName/authorizationRules/authorizationRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeNaMe/wCfReLaYs/rElAyNaMe/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeNaMe/wCfReLaYs/wCfReLaYnAmE/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeNaMe",
 			Expected: &WcfRelayAuthorizationRuleId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				NamespaceName:         "nAmEsPaCeNaMe",
-				WcfRelayName:          "rElAyNaMe",
+				WcfRelayName:          "wCfReLaYnAmE",
 				AuthorizationRuleName: "aUtHoRiZaTiOnRuLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeNaMe/wCfReLaYs/rElAyNaMe/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeNaMe/wCfReLaYs/wCfReLaYnAmE/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeNaMe/extra",
 			Error: true,
 		},
 	}

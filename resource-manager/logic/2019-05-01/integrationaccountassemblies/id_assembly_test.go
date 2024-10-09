@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AssemblyId{}
 
 func TestNewAssemblyID(t *testing.T) {
-	id := NewAssemblyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountName", "assemblyArtifactName")
+	id := NewAssemblyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountName", "assemblyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewAssemblyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'IntegrationAccountName'", id.IntegrationAccountName, "integrationAccountName")
 	}
 
-	if id.AssemblyName != "assemblyArtifactName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssemblyName'", id.AssemblyName, "assemblyArtifactName")
+	if id.AssemblyName != "assemblyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssemblyName'", id.AssemblyName, "assemblyName")
 	}
 }
 
 func TestFormatAssemblyID(t *testing.T) {
-	actual := NewAssemblyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountName", "assemblyArtifactName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyArtifactName"
+	actual := NewAssemblyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountName", "assemblyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseAssemblyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyArtifactName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyName",
 			Expected: &AssemblyId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				IntegrationAccountName: "integrationAccountName",
-				AssemblyName:           "assemblyArtifactName",
+				AssemblyName:           "assemblyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyArtifactName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseAssemblyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyArtifactName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyName",
 			Expected: &AssemblyId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				IntegrationAccountName: "integrationAccountName",
-				AssemblyName:           "assemblyArtifactName",
+				AssemblyName:           "assemblyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyArtifactName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountName/assemblies/assemblyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/aSsEmBlIeS/aSsEmBlYaRtIfAcTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/aSsEmBlIeS/aSsEmBlYnAmE",
 			Expected: &AssemblyId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
 				IntegrationAccountName: "iNtEgRaTiOnAcCoUnTnAmE",
-				AssemblyName:           "aSsEmBlYaRtIfAcTnAmE",
+				AssemblyName:           "aSsEmBlYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/aSsEmBlIeS/aSsEmBlYaRtIfAcTnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTnAmE/aSsEmBlIeS/aSsEmBlYnAmE/extra",
 			Error: true,
 		},
 	}

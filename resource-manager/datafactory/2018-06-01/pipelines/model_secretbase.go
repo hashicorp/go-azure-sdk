@@ -53,6 +53,14 @@ func UnmarshalSecretBaseImplementation(input []byte) (SecretBase, error) {
 		value = fmt.Sprintf("%v", v)
 	}
 
+	if strings.EqualFold(value, "AzureKeyVaultSecret") {
+		var out AzureKeyVaultSecretReference
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureKeyVaultSecretReference: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "SecureString") {
 		var out SecureString
 		if err := json.Unmarshal(input, &out); err != nil {

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &LongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupId{}
 
 func TestNewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID(t *testing.T) {
-	id := NewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "managedInstanceName", "databaseName", "backupName")
+	id := NewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionManagedInstanceName", "longTermRetentionDatabaseName", "longTermRetentionManagedInstanceBackupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,22 +26,22 @@ func TestNewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID(t 
 		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.LongTermRetentionManagedInstanceName != "managedInstanceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionManagedInstanceName'", id.LongTermRetentionManagedInstanceName, "managedInstanceName")
+	if id.LongTermRetentionManagedInstanceName != "longTermRetentionManagedInstanceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionManagedInstanceName'", id.LongTermRetentionManagedInstanceName, "longTermRetentionManagedInstanceName")
 	}
 
-	if id.LongTermRetentionDatabaseName != "databaseName" {
-		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionDatabaseName'", id.LongTermRetentionDatabaseName, "databaseName")
+	if id.LongTermRetentionDatabaseName != "longTermRetentionDatabaseName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionDatabaseName'", id.LongTermRetentionDatabaseName, "longTermRetentionDatabaseName")
 	}
 
-	if id.LongTermRetentionManagedInstanceBackupName != "backupName" {
-		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionManagedInstanceBackupName'", id.LongTermRetentionManagedInstanceBackupName, "backupName")
+	if id.LongTermRetentionManagedInstanceBackupName != "longTermRetentionManagedInstanceBackupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LongTermRetentionManagedInstanceBackupName'", id.LongTermRetentionManagedInstanceBackupName, "longTermRetentionManagedInstanceBackupName")
 	}
 }
 
 func TestFormatLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID(t *testing.T) {
-	actual := NewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "managedInstanceName", "databaseName", "backupName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases/databaseName/longTermRetentionManagedInstanceBackups/backupName"
+	actual := NewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionManagedInstanceName", "longTermRetentionDatabaseName", "longTermRetentionManagedInstanceBackupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases/longTermRetentionDatabaseName/longTermRetentionManagedInstanceBackups/longTermRetentionManagedInstanceBackupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -105,39 +105,39 @@ func TestParseLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID(
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases/databaseName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases/longTermRetentionDatabaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases/databaseName/longTermRetentionManagedInstanceBackups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases/longTermRetentionDatabaseName/longTermRetentionManagedInstanceBackups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases/databaseName/longTermRetentionManagedInstanceBackups/backupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases/longTermRetentionDatabaseName/longTermRetentionManagedInstanceBackups/longTermRetentionManagedInstanceBackupName",
 			Expected: &LongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupId{
 				SubscriptionId:                             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                          "example-resource-group",
 				LocationName:                               "locationName",
-				LongTermRetentionManagedInstanceName:       "managedInstanceName",
-				LongTermRetentionDatabaseName:              "databaseName",
-				LongTermRetentionManagedInstanceBackupName: "backupName",
+				LongTermRetentionManagedInstanceName:       "longTermRetentionManagedInstanceName",
+				LongTermRetentionDatabaseName:              "longTermRetentionDatabaseName",
+				LongTermRetentionManagedInstanceBackupName: "longTermRetentionManagedInstanceBackupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases/databaseName/longTermRetentionManagedInstanceBackups/backupName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases/longTermRetentionDatabaseName/longTermRetentionManagedInstanceBackups/longTermRetentionManagedInstanceBackupName/extra",
 			Error: true,
 		},
 	}
@@ -286,76 +286,76 @@ func TestParseLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupIDI
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/mAnAgEdInStAnCeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/mAnAgEdInStAnCeNaMe/lOnGtErMrEtEnTiOnDaTaBaSeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEnAmE/lOnGtErMrEtEnTiOnDaTaBaSeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases/databaseName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases/longTermRetentionDatabaseName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/mAnAgEdInStAnCeNaMe/lOnGtErMrEtEnTiOnDaTaBaSeS/dAtAbAsEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEnAmE/lOnGtErMrEtEnTiOnDaTaBaSeS/lOnGtErMrEtEnTiOnDaTaBaSeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases/databaseName/longTermRetentionManagedInstanceBackups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases/longTermRetentionDatabaseName/longTermRetentionManagedInstanceBackups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/mAnAgEdInStAnCeNaMe/lOnGtErMrEtEnTiOnDaTaBaSeS/dAtAbAsEnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEbAcKuPs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEnAmE/lOnGtErMrEtEnTiOnDaTaBaSeS/lOnGtErMrEtEnTiOnDaTaBaSeNaMe/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEbAcKuPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases/databaseName/longTermRetentionManagedInstanceBackups/backupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases/longTermRetentionDatabaseName/longTermRetentionManagedInstanceBackups/longTermRetentionManagedInstanceBackupName",
 			Expected: &LongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupId{
 				SubscriptionId:                             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                          "example-resource-group",
 				LocationName:                               "locationName",
-				LongTermRetentionManagedInstanceName:       "managedInstanceName",
-				LongTermRetentionDatabaseName:              "databaseName",
-				LongTermRetentionManagedInstanceBackupName: "backupName",
+				LongTermRetentionManagedInstanceName:       "longTermRetentionManagedInstanceName",
+				LongTermRetentionDatabaseName:              "longTermRetentionDatabaseName",
+				LongTermRetentionManagedInstanceBackupName: "longTermRetentionManagedInstanceBackupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/managedInstanceName/longTermRetentionDatabases/databaseName/longTermRetentionManagedInstanceBackups/backupName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/locations/locationName/longTermRetentionManagedInstances/longTermRetentionManagedInstanceName/longTermRetentionDatabases/longTermRetentionDatabaseName/longTermRetentionManagedInstanceBackups/longTermRetentionManagedInstanceBackupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/mAnAgEdInStAnCeNaMe/lOnGtErMrEtEnTiOnDaTaBaSeS/dAtAbAsEnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEbAcKuPs/bAcKuPnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEnAmE/lOnGtErMrEtEnTiOnDaTaBaSeS/lOnGtErMrEtEnTiOnDaTaBaSeNaMe/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEbAcKuPs/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEbAcKuPnAmE",
 			Expected: &LongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupId{
 				SubscriptionId:                             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                          "eXaMpLe-rEsOuRcE-GrOuP",
 				LocationName:                               "lOcAtIoNnAmE",
-				LongTermRetentionManagedInstanceName:       "mAnAgEdInStAnCeNaMe",
-				LongTermRetentionDatabaseName:              "dAtAbAsEnAmE",
-				LongTermRetentionManagedInstanceBackupName: "bAcKuPnAmE",
+				LongTermRetentionManagedInstanceName:       "lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEnAmE",
+				LongTermRetentionDatabaseName:              "lOnGtErMrEtEnTiOnDaTaBaSeNaMe",
+				LongTermRetentionManagedInstanceBackupName: "lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEbAcKuPnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/mAnAgEdInStAnCeNaMe/lOnGtErMrEtEnTiOnDaTaBaSeS/dAtAbAsEnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEbAcKuPs/bAcKuPnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/lOcAtIoNs/lOcAtIoNnAmE/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEs/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEnAmE/lOnGtErMrEtEnTiOnDaTaBaSeS/lOnGtErMrEtEnTiOnDaTaBaSeNaMe/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEbAcKuPs/lOnGtErMrEtEnTiOnMaNaGeDiNsTaNcEbAcKuPnAmE/extra",
 			Error: true,
 		},
 	}

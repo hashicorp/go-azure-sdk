@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SecretId{}
 
 func TestNewSecretID(t *testing.T) {
-	id := NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
+	id := NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "secretName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewSecretID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'UserName'", id.UserName, "userName")
 	}
 
-	if id.SecretName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'SecretName'", id.SecretName, "name")
+	if id.SecretName != "secretName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SecretName'", id.SecretName, "secretName")
 	}
 }
 
 func TestFormatSecretID(t *testing.T) {
-	actual := NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/name"
+	actual := NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "secretName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/secretName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseSecretID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/secretName",
 			Expected: &SecretId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labName",
 				UserName:          "userName",
-				SecretName:        "name",
+				SecretName:        "secretName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/secretName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseSecretIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/secretName",
 			Expected: &SecretId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labName",
 				UserName:          "userName",
-				SecretName:        "name",
+				SecretName:        "secretName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/secrets/secretName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sEcReTs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sEcReTs/sEcReTnAmE",
 			Expected: &SecretId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbNaMe",
 				UserName:          "uSeRnAmE",
-				SecretName:        "nAmE",
+				SecretName:        "sEcReTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sEcReTs/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sEcReTs/sEcReTnAmE/extra",
 			Error: true,
 		},
 	}

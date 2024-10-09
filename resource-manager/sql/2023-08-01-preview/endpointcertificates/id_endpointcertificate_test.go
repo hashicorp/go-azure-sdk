@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &EndpointCertificateId{}
 
 func TestNewEndpointCertificateID(t *testing.T) {
-	id := NewEndpointCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "endpointType")
+	id := NewEndpointCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "endpointCertificateName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewEndpointCertificateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceName")
 	}
 
-	if id.EndpointCertificateName != "endpointType" {
-		t.Fatalf("Expected %q but got %q for Segment 'EndpointCertificateName'", id.EndpointCertificateName, "endpointType")
+	if id.EndpointCertificateName != "endpointCertificateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EndpointCertificateName'", id.EndpointCertificateName, "endpointCertificateName")
 	}
 }
 
 func TestFormatEndpointCertificateID(t *testing.T) {
-	actual := NewEndpointCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "endpointType").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointType"
+	actual := NewEndpointCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "endpointCertificateName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointCertificateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseEndpointCertificateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointType",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointCertificateName",
 			Expected: &EndpointCertificateId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				ManagedInstanceName:     "managedInstanceName",
-				EndpointCertificateName: "endpointType",
+				EndpointCertificateName: "endpointCertificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointType/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointCertificateName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseEndpointCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointType",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointCertificateName",
 			Expected: &EndpointCertificateId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				ManagedInstanceName:     "managedInstanceName",
-				EndpointCertificateName: "endpointType",
+				EndpointCertificateName: "endpointCertificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointType/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/endpointCertificates/endpointCertificateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/eNdPoInTcErTiFiCaTeS/eNdPoInTtYpE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/eNdPoInTcErTiFiCaTeS/eNdPoInTcErTiFiCaTeNaMe",
 			Expected: &EndpointCertificateId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
 				ManagedInstanceName:     "mAnAgEdInStAnCeNaMe",
-				EndpointCertificateName: "eNdPoInTtYpE",
+				EndpointCertificateName: "eNdPoInTcErTiFiCaTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/eNdPoInTcErTiFiCaTeS/eNdPoInTtYpE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/eNdPoInTcErTiFiCaTeS/eNdPoInTcErTiFiCaTeNaMe/extra",
 			Error: true,
 		},
 	}

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "peConnectionName")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteName", "privateEndpointConnectionName")
 
 read, err := client.DeletePrivateEndpointConnection(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "peConnectionName")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteName", "privateEndpointConnectionName")
 
 read, err := client.GetPrivateEndpointConnection(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewMasterSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
+id := privateendpointconnection.NewMasterSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteName")
 
 // alternatively `client.GetPrivateEndpointConnections(ctx, id)` can be used to do batched pagination
 items, err := client.GetPrivateEndpointConnectionsComplete(ctx, id)
@@ -73,7 +73,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "peConnectionName")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "masterSiteName", "privateEndpointConnectionName")
 
 payload := privateendpointconnection.PrivateEndpointConnection{
 	// ...

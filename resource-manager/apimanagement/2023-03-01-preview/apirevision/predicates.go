@@ -10,7 +10,7 @@ type ApiRevisionContractOperationPredicate struct {
 	Description     *string
 	IsCurrent       *bool
 	IsOnline        *bool
-	PrivateUrl      *string
+	PrivateURL      *string
 	UpdatedDateTime *string
 }
 
@@ -40,7 +40,7 @@ func (p ApiRevisionContractOperationPredicate) Matches(input ApiRevisionContract
 		return false
 	}
 
-	if p.PrivateUrl != nil && (input.PrivateUrl == nil || *p.PrivateUrl != *input.PrivateUrl) {
+	if p.PrivateURL != nil && (input.PrivateURL == nil || *p.PrivateURL != *input.PrivateURL) {
 		return false
 	}
 

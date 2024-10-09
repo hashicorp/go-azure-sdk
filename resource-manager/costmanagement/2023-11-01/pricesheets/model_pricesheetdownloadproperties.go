@@ -11,7 +11,7 @@ import (
 
 type PricesheetDownloadProperties struct {
 	DownloadFileProperties *MCAPriceSheetProperties `json:"downloadFileProperties,omitempty"`
-	DownloadUrl            *string                  `json:"downloadUrl,omitempty"`
+	DownloadURL            *string                  `json:"downloadUrl,omitempty"`
 	ExpiryTime             *string                  `json:"expiryTime,omitempty"`
 }
 

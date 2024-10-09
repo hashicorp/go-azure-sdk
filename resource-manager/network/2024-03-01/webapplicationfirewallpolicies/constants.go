@@ -3074,9 +3074,9 @@ const (
 	WebApplicationFirewallTransformLowercase        WebApplicationFirewallTransform = "Lowercase"
 	WebApplicationFirewallTransformRemoveNulls      WebApplicationFirewallTransform = "RemoveNulls"
 	WebApplicationFirewallTransformTrim             WebApplicationFirewallTransform = "Trim"
+	WebApplicationFirewallTransformURLDecode        WebApplicationFirewallTransform = "UrlDecode"
+	WebApplicationFirewallTransformURLEncode        WebApplicationFirewallTransform = "UrlEncode"
 	WebApplicationFirewallTransformUppercase        WebApplicationFirewallTransform = "Uppercase"
-	WebApplicationFirewallTransformUrlDecode        WebApplicationFirewallTransform = "UrlDecode"
-	WebApplicationFirewallTransformUrlEncode        WebApplicationFirewallTransform = "UrlEncode"
 )
 
 func PossibleValuesForWebApplicationFirewallTransform() []string {
@@ -3085,9 +3085,9 @@ func PossibleValuesForWebApplicationFirewallTransform() []string {
 		string(WebApplicationFirewallTransformLowercase),
 		string(WebApplicationFirewallTransformRemoveNulls),
 		string(WebApplicationFirewallTransformTrim),
+		string(WebApplicationFirewallTransformURLDecode),
+		string(WebApplicationFirewallTransformURLEncode),
 		string(WebApplicationFirewallTransformUppercase),
-		string(WebApplicationFirewallTransformUrlDecode),
-		string(WebApplicationFirewallTransformUrlEncode),
 	}
 }
 
@@ -3110,9 +3110,9 @@ func parseWebApplicationFirewallTransform(input string) (*WebApplicationFirewall
 		"lowercase":        WebApplicationFirewallTransformLowercase,
 		"removenulls":      WebApplicationFirewallTransformRemoveNulls,
 		"trim":             WebApplicationFirewallTransformTrim,
+		"urldecode":        WebApplicationFirewallTransformURLDecode,
+		"urlencode":        WebApplicationFirewallTransformURLEncode,
 		"uppercase":        WebApplicationFirewallTransformUppercase,
-		"urldecode":        WebApplicationFirewallTransformUrlDecode,
-		"urlencode":        WebApplicationFirewallTransformUrlEncode,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

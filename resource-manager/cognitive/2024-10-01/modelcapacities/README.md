@@ -42,7 +42,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := modelcapacities.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := modelcapacities.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.LocationBasedModelCapacitiesList(ctx, id, modelcapacities.DefaultLocationBasedModelCapacitiesListOperationOptions())` can be used to do batched pagination
 items, err := client.LocationBasedModelCapacitiesListComplete(ctx, id, modelcapacities.DefaultLocationBasedModelCapacitiesListOperationOptions())

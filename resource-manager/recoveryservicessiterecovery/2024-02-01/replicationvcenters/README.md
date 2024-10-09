@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationvcenters.NewReplicationvCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "vcenterName")
+id := replicationvcenters.NewReplicationvCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationvCenterName")
 
 payload := replicationvcenters.AddVCenterRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationvcenters.NewReplicationvCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "vcenterName")
+id := replicationvcenters.NewReplicationvCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationvCenterName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationvcenters.NewReplicationvCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "vcenterName")
+id := replicationvcenters.NewReplicationvCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationvCenterName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationvcenters.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := replicationvcenters.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationvcenters.NewReplicationFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName")
+id := replicationvcenters.NewReplicationFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName")
 
 // alternatively `client.ListByReplicationFabrics(ctx, id)` can be used to do batched pagination
 items, err := client.ListByReplicationFabricsComplete(ctx, id)
@@ -103,7 +103,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationvcenters.NewReplicationvCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "vcenterName")
+id := replicationvcenters.NewReplicationvCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationvCenterName")
 
 payload := replicationvcenters.UpdateVCenterRequest{
 	// ...

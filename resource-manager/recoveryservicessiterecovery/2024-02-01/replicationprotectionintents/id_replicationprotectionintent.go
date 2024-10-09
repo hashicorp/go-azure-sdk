@@ -121,9 +121,9 @@ func (id ReplicationProtectionIntentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultName"),
 		resourceids.StaticSegment("staticReplicationProtectionIntents", "replicationProtectionIntents", "replicationProtectionIntents"),
-		resourceids.UserSpecifiedSegment("replicationProtectionIntentName", "intentObjectName"),
+		resourceids.UserSpecifiedSegment("replicationProtectionIntentName", "replicationProtectionIntentName"),
 	}
 }
 

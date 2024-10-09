@@ -123,7 +123,7 @@ func (id CustomerBillingRoleDefinitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticCustomers", "customers", "customers"),
 		resourceids.UserSpecifiedSegment("customerName", "customerName"),
 		resourceids.StaticSegment("staticBillingRoleDefinitions", "billingRoleDefinitions", "billingRoleDefinitions"),
-		resourceids.UserSpecifiedSegment("billingRoleDefinitionName", "roleDefinitionName"),
+		resourceids.UserSpecifiedSegment("billingRoleDefinitionName", "billingRoleDefinitionName"),
 	}
 }
 

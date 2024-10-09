@@ -115,7 +115,7 @@ func (id RediId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCache", "Microsoft.Cache", "Microsoft.Cache"),
 		resourceids.StaticSegment("staticRedis", "redis", "redis"),
-		resourceids.UserSpecifiedSegment("redisName", "name"),
+		resourceids.UserSpecifiedSegment("redisName", "redisName"),
 	}
 }
 

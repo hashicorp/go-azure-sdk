@@ -18,7 +18,7 @@ type Client struct {
 	ConfigurationNames *configurationnames.ConfigurationNamesClient
 	Connector          *connector.ConnectorClient
 	Linkers            *linkers.LinkersClient
-	ServiceLinker      *servicelinker.ServiceLinkerClient
+	Servicelinker      *servicelinker.ServicelinkerClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -40,16 +40,16 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(linkersClient.Client)
 
-	serviceLinkerClient, err := servicelinker.NewServiceLinkerClientWithBaseURI(sdkApi)
+	servicelinkerClient, err := servicelinker.NewServicelinkerClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building ServiceLinker client: %+v", err)
+		return nil, fmt.Errorf("building Servicelinker client: %+v", err)
 	}
-	configureFunc(serviceLinkerClient.Client)
+	configureFunc(servicelinkerClient.Client)
 
 	return &Client{
 		ConfigurationNames: configurationNamesClient,
 		Connector:          connectorClient,
 		Linkers:            linkersClient,
-		ServiceLinker:      serviceLinkerClient,
+		Servicelinker:      servicelinkerClient,
 	}, nil
 }

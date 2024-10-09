@@ -6,7 +6,7 @@ package filesystems
 type LiftrBaseStorageFileSystemResourceProperties struct {
 	AdminPassword      string                      `json:"adminPassword"`
 	AvailabilityZone   *string                     `json:"availabilityZone,omitempty"`
-	ClusterLoginUrl    *string                     `json:"clusterLoginUrl,omitempty"`
+	ClusterLoginURL    *string                     `json:"clusterLoginUrl,omitempty"`
 	DelegatedSubnetId  string                      `json:"delegatedSubnetId"`
 	MarketplaceDetails LiftrBaseMarketplaceDetails `json:"marketplaceDetails"`
 	PrivateIPs         *[]string                   `json:"privateIPs,omitempty"`

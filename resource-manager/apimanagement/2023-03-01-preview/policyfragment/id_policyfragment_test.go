@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PolicyFragmentId{}
 
 func TestNewPolicyFragmentID(t *testing.T) {
-	id := NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "id")
+	id := NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "policyFragmentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewPolicyFragmentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceName")
 	}
 
-	if id.PolicyFragmentName != "id" {
-		t.Fatalf("Expected %q but got %q for Segment 'PolicyFragmentName'", id.PolicyFragmentName, "id")
+	if id.PolicyFragmentName != "policyFragmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PolicyFragmentName'", id.PolicyFragmentName, "policyFragmentName")
 	}
 }
 
 func TestFormatPolicyFragmentID(t *testing.T) {
-	actual := NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "id").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/id"
+	actual := NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "policyFragmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/policyFragmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParsePolicyFragmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/id",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/policyFragmentName",
 			Expected: &PolicyFragmentId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				ServiceName:        "serviceName",
-				PolicyFragmentName: "id",
+				PolicyFragmentName: "policyFragmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/id/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/policyFragmentName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParsePolicyFragmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/id",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/policyFragmentName",
 			Expected: &PolicyFragmentId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				ServiceName:        "serviceName",
-				PolicyFragmentName: "id",
+				PolicyFragmentName: "policyFragmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/id/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/policyFragments/policyFragmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/pOlIcYfRaGmEnTs/iD",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/pOlIcYfRaGmEnTs/pOlIcYfRaGmEnTnAmE",
 			Expected: &PolicyFragmentId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:        "sErViCeNaMe",
-				PolicyFragmentName: "iD",
+				PolicyFragmentName: "pOlIcYfRaGmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/pOlIcYfRaGmEnTs/iD/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/pOlIcYfRaGmEnTs/pOlIcYfRaGmEnTnAmE/extra",
 			Error: true,
 		},
 	}

@@ -7,5 +7,5 @@ type SourceControlProperties struct {
 	Branch                    *string                      `json:"branch,omitempty"`
 	GitHubActionConfiguration *GithubActionConfiguration   `json:"githubActionConfiguration,omitempty"`
 	OperationState            *SourceControlOperationState `json:"operationState,omitempty"`
-	RepoUrl                   *string                      `json:"repoUrl,omitempty"`
+	RepoURL                   *string                      `json:"repoUrl,omitempty"`
 }
