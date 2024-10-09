@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &CertificateId{}
 
 func TestNewCertificateID(t *testing.T) {
-	id := NewCertificateID("globalRulestackName", "name")
+	id := NewCertificateID("globalRulestackName", "certificateName")
 
 	if id.GlobalRulestackName != "globalRulestackName" {
 		t.Fatalf("Expected %q but got %q for Segment 'GlobalRulestackName'", id.GlobalRulestackName, "globalRulestackName")
 	}
 
-	if id.CertificateName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'CertificateName'", id.CertificateName, "name")
+	if id.CertificateName != "certificateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CertificateName'", id.CertificateName, "certificateName")
 	}
 }
 
 func TestFormatCertificateID(t *testing.T) {
-	actual := NewCertificateID("globalRulestackName", "name").ID()
-	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/name"
+	actual := NewCertificateID("globalRulestackName", "certificateName").ID()
+	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/certificateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseCertificateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/name",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/certificateName",
 			Expected: &CertificateId{
 				GlobalRulestackName: "globalRulestackName",
-				CertificateName:     "name",
+				CertificateName:     "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/name/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/certificateName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/name",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/certificateName",
 			Expected: &CertificateId{
 				GlobalRulestackName: "globalRulestackName",
-				CertificateName:     "name",
+				CertificateName:     "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/name/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/certificates/certificateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/cErTiFiCaTeS/nAmE",
+			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/cErTiFiCaTeS/cErTiFiCaTeNaMe",
 			Expected: &CertificateId{
 				GlobalRulestackName: "gLoBaLrUlEsTaCkNaMe",
-				CertificateName:     "nAmE",
+				CertificateName:     "cErTiFiCaTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/cErTiFiCaTeS/nAmE/extra",
+			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/cErTiFiCaTeS/cErTiFiCaTeNaMe/extra",
 			Error: true,
 		},
 	}

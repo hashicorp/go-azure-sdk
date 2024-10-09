@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DataStoreId{}
 
 func TestNewDataStoreID(t *testing.T) {
-	id := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
+	id := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDataStoreID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DataStoreName != "datastoreName" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataStoreName'", id.DataStoreName, "datastoreName")
+	if id.DataStoreName != "dataStoreName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataStoreName'", id.DataStoreName, "dataStoreName")
 	}
 }
 
 func TestFormatDataStoreID(t *testing.T) {
-	actual := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName"
+	actual := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDataStoreID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreName",
 			Expected: &DataStoreId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DataStoreName:     "datastoreName",
+				DataStoreName:     "dataStoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreName/extra",
 			Error: true,
 		},
 	}
@@ -209,16 +209,16 @@ func TestParseDataStoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreName",
 			Expected: &DataStoreId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				DataStoreName:     "datastoreName",
+				DataStoreName:     "dataStoreName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/datastoreName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/dataStores/dataStoreName/extra",
 			Error: true,
 		},
 		{

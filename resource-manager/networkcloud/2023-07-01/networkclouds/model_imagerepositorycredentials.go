@@ -5,6 +5,6 @@ package networkclouds
 
 type ImageRepositoryCredentials struct {
 	Password    string `json:"password"`
-	RegistryUrl string `json:"registryUrl"`
+	RegistryURL string `json:"registryUrl"`
 	Username    string `json:"username"`
 }

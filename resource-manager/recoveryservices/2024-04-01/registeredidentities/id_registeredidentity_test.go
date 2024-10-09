@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RegisteredIdentityId{}
 
 func TestNewRegisteredIdentityID(t *testing.T) {
-	id := NewRegisteredIdentityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "identityName")
+	id := NewRegisteredIdentityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "registeredIdentityName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewRegisteredIdentityID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultName")
 	}
 
-	if id.RegisteredIdentityName != "identityName" {
-		t.Fatalf("Expected %q but got %q for Segment 'RegisteredIdentityName'", id.RegisteredIdentityName, "identityName")
+	if id.RegisteredIdentityName != "registeredIdentityName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegisteredIdentityName'", id.RegisteredIdentityName, "registeredIdentityName")
 	}
 }
 
 func TestFormatRegisteredIdentityID(t *testing.T) {
-	actual := NewRegisteredIdentityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "identityName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/identityName"
+	actual := NewRegisteredIdentityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "registeredIdentityName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/registeredIdentityName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseRegisteredIdentityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/identityName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/registeredIdentityName",
 			Expected: &RegisteredIdentityId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				VaultName:              "vaultName",
-				RegisteredIdentityName: "identityName",
+				RegisteredIdentityName: "registeredIdentityName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/identityName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/registeredIdentityName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseRegisteredIdentityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/identityName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/registeredIdentityName",
 			Expected: &RegisteredIdentityId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				VaultName:              "vaultName",
-				RegisteredIdentityName: "identityName",
+				RegisteredIdentityName: "registeredIdentityName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/identityName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/registeredIdentities/registeredIdentityName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/rEgIsTeReDiDeNtItIeS/iDeNtItYnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/rEgIsTeReDiDeNtItIeS/rEgIsTeReDiDeNtItYnAmE",
 			Expected: &RegisteredIdentityId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
 				VaultName:              "vAuLtNaMe",
-				RegisteredIdentityName: "iDeNtItYnAmE",
+				RegisteredIdentityName: "rEgIsTeReDiDeNtItYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/rEgIsTeReDiDeNtItIeS/iDeNtItYnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/rEgIsTeReDiDeNtItIeS/rEgIsTeReDiDeNtItYnAmE/extra",
 			Error: true,
 		},
 	}

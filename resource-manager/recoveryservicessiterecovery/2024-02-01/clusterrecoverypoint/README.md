@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := clusterrecoverypoint.NewReplicationProtectionClusterRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName", "recoveryPointName")
+id := clusterrecoverypoint.NewReplicationProtectionClusterRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName", "recoveryPointName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

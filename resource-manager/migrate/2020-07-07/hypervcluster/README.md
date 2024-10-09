@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := hypervcluster.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
+id := hypervcluster.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteName")
 
 // alternatively `client.GetAllClustersInSite(ctx, id, hypervcluster.DefaultGetAllClustersInSiteOperationOptions())` can be used to do batched pagination
 items, err := client.GetAllClustersInSiteComplete(ctx, id, hypervcluster.DefaultGetAllClustersInSiteOperationOptions())
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := hypervcluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "clusterName")
+id := hypervcluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteName", "clusterName")
 
 read, err := client.GetCluster(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := hypervcluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "clusterName")
+id := hypervcluster.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteName", "clusterName")
 
 payload := hypervcluster.HyperVCluster{
 	// ...

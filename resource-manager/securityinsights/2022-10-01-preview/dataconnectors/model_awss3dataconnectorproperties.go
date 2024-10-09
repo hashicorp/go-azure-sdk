@@ -7,5 +7,5 @@ type AwsS3DataConnectorProperties struct {
 	DataTypes        AwsS3DataConnectorDataTypes `json:"dataTypes"`
 	DestinationTable string                      `json:"destinationTable"`
 	RoleArn          string                      `json:"roleArn"`
-	SqsUrls          []string                    `json:"sqsUrls"`
+	SqsURLs          []string                    `json:"sqsUrls"`
 }

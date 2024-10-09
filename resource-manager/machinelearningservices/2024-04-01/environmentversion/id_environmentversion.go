@@ -129,9 +129,9 @@ func (id EnvironmentVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticEnvironments", "environments", "environments"),
-		resourceids.UserSpecifiedSegment("environmentName", "name"),
+		resourceids.UserSpecifiedSegment("environmentName", "environmentName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "version"),
+		resourceids.UserSpecifiedSegment("versionName", "versionName"),
 	}
 }
 

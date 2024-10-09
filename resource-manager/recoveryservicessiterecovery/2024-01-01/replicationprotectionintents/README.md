@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionintents.NewReplicationProtectionIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "intentObjectName")
+id := replicationprotectionintents.NewReplicationProtectionIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationProtectionIntentName")
 
 payload := replicationprotectionintents.CreateProtectionIntentInput{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionintents.NewReplicationProtectionIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "intentObjectName")
+id := replicationprotectionintents.NewReplicationProtectionIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationProtectionIntentName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionintents.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := replicationprotectionintents.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 // alternatively `client.List(ctx, id, replicationprotectionintents.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, replicationprotectionintents.DefaultListOperationOptions())

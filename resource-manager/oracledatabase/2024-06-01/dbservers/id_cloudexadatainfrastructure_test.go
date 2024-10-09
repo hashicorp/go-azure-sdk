@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CloudExadataInfrastructureId{}
 
 func TestNewCloudExadataInfrastructureID(t *testing.T) {
-	id := NewCloudExadataInfrastructureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudexadatainfrastructurename")
+	id := NewCloudExadataInfrastructureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudExadataInfrastructureName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewCloudExadataInfrastructureID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CloudExadataInfrastructureName != "cloudexadatainfrastructurename" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudExadataInfrastructureName'", id.CloudExadataInfrastructureName, "cloudexadatainfrastructurename")
+	if id.CloudExadataInfrastructureName != "cloudExadataInfrastructureName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudExadataInfrastructureName'", id.CloudExadataInfrastructureName, "cloudExadataInfrastructureName")
 	}
 }
 
 func TestFormatCloudExadataInfrastructureID(t *testing.T) {
-	actual := NewCloudExadataInfrastructureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudexadatainfrastructurename").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudexadatainfrastructurename"
+	actual := NewCloudExadataInfrastructureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudExadataInfrastructureName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudExadataInfrastructureName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseCloudExadataInfrastructureID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudexadatainfrastructurename",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudExadataInfrastructureName",
 			Expected: &CloudExadataInfrastructureId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "example-resource-group",
-				CloudExadataInfrastructureName: "cloudexadatainfrastructurename",
+				CloudExadataInfrastructureName: "cloudExadataInfrastructureName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudexadatainfrastructurename/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudExadataInfrastructureName/extra",
 			Error: true,
 		},
 	}
@@ -209,16 +209,16 @@ func TestParseCloudExadataInfrastructureIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudexadatainfrastructurename",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudExadataInfrastructureName",
 			Expected: &CloudExadataInfrastructureId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "example-resource-group",
-				CloudExadataInfrastructureName: "cloudexadatainfrastructurename",
+				CloudExadataInfrastructureName: "cloudExadataInfrastructureName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudexadatainfrastructurename/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudExadataInfrastructures/cloudExadataInfrastructureName/extra",
 			Error: true,
 		},
 		{

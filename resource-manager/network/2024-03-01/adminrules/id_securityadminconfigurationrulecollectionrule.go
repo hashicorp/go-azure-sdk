@@ -135,7 +135,7 @@ func (id SecurityAdminConfigurationRuleCollectionRuleId) Segments() []resourceid
 		resourceids.StaticSegment("staticNetworkManagers", "networkManagers", "networkManagers"),
 		resourceids.UserSpecifiedSegment("networkManagerName", "networkManagerName"),
 		resourceids.StaticSegment("staticSecurityAdminConfigurations", "securityAdminConfigurations", "securityAdminConfigurations"),
-		resourceids.UserSpecifiedSegment("securityAdminConfigurationName", "configurationName"),
+		resourceids.UserSpecifiedSegment("securityAdminConfigurationName", "securityAdminConfigurationName"),
 		resourceids.StaticSegment("staticRuleCollections", "ruleCollections", "ruleCollections"),
 		resourceids.UserSpecifiedSegment("ruleCollectionName", "ruleCollectionName"),
 		resourceids.StaticSegment("staticRules", "rules", "rules"),

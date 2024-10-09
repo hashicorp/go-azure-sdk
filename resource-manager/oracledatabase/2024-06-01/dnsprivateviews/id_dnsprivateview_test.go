@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DnsPrivateViewId{}
 
 func TestNewDnsPrivateViewID(t *testing.T) {
-	id := NewDnsPrivateViewID("12345678-1234-9876-4563-123456789012", "location", "dnsprivateviewocid")
+	id := NewDnsPrivateViewID("12345678-1234-9876-4563-123456789012", "locationName", "dnsPrivateViewName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "location" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.DnsPrivateViewName != "dnsprivateviewocid" {
-		t.Fatalf("Expected %q but got %q for Segment 'DnsPrivateViewName'", id.DnsPrivateViewName, "dnsprivateviewocid")
+	if id.DnsPrivateViewName != "dnsPrivateViewName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DnsPrivateViewName'", id.DnsPrivateViewName, "dnsPrivateViewName")
 	}
 }
 
 func TestFormatDnsPrivateViewID(t *testing.T) {
-	actual := NewDnsPrivateViewID("12345678-1234-9876-4563-123456789012", "location", "dnsprivateviewocid").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dnsPrivateViews/dnsprivateviewocid"
+	actual := NewDnsPrivateViewID("12345678-1234-9876-4563-123456789012", "locationName", "dnsPrivateViewName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationName/dnsPrivateViews/dnsPrivateViewName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseDnsPrivateViewID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dnsPrivateViews",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationName/dnsPrivateViews",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dnsPrivateViews/dnsprivateviewocid",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationName/dnsPrivateViews/dnsPrivateViewName",
 			Expected: &DnsPrivateViewId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "location",
-				DnsPrivateViewName: "dnsprivateviewocid",
+				LocationName:       "locationName",
+				DnsPrivateViewName: "dnsPrivateViewName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dnsPrivateViews/dnsprivateviewocid/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationName/dnsPrivateViews/dnsPrivateViewName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseDnsPrivateViewIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dnsPrivateViews",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationName/dnsPrivateViews",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/dNsPrIvAtEvIeWs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNnAmE/dNsPrIvAtEvIeWs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dnsPrivateViews/dnsprivateviewocid",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationName/dnsPrivateViews/dnsPrivateViewName",
 			Expected: &DnsPrivateViewId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "location",
-				DnsPrivateViewName: "dnsprivateviewocid",
+				LocationName:       "locationName",
+				DnsPrivateViewName: "dnsPrivateViewName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/location/dnsPrivateViews/dnsprivateviewocid/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Oracle.Database/locations/locationName/dnsPrivateViews/dnsPrivateViewName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/dNsPrIvAtEvIeWs/dNsPrIvAtEvIeWoCiD",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNnAmE/dNsPrIvAtEvIeWs/dNsPrIvAtEvIeWnAmE",
 			Expected: &DnsPrivateViewId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "lOcAtIoN",
-				DnsPrivateViewName: "dNsPrIvAtEvIeWoCiD",
+				LocationName:       "lOcAtIoNnAmE",
+				DnsPrivateViewName: "dNsPrIvAtEvIeWnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoN/dNsPrIvAtEvIeWs/dNsPrIvAtEvIeWoCiD/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/oRaClE.DaTaBaSe/lOcAtIoNs/lOcAtIoNnAmE/dNsPrIvAtEvIeWs/dNsPrIvAtEvIeWnAmE/extra",
 			Error: true,
 		},
 	}

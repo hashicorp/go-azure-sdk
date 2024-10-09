@@ -18,7 +18,7 @@ type AzureDevOpsRepositoryProperties struct {
 	ProvisioningStatusMessage       *string                  `json:"provisioningStatusMessage,omitempty"`
 	ProvisioningStatusUpdateTimeUtc *string                  `json:"provisioningStatusUpdateTimeUtc,omitempty"`
 	RepoId                          *string                  `json:"repoId,omitempty"`
-	RepoUrl                         *string                  `json:"repoUrl,omitempty"`
+	RepoURL                         *string                  `json:"repoUrl,omitempty"`
 	Visibility                      *string                  `json:"visibility,omitempty"`
 }
 

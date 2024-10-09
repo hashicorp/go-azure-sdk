@@ -5,6 +5,6 @@ package recoverypoints
 
 type KEKDetails struct {
 	KeyBackupData *string `json:"keyBackupData,omitempty"`
-	KeyUrl        *string `json:"keyUrl,omitempty"`
+	KeyURL        *string `json:"keyUrl,omitempty"`
 	KeyVaultId    *string `json:"keyVaultId,omitempty"`
 }

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConnectionId{}
 
 func TestNewConnectionID(t *testing.T) {
-	id := NewConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "connectionName")
+	id := NewConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceName", "connectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.BotServiceName != "resourceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'BotServiceName'", id.BotServiceName, "resourceName")
+	if id.BotServiceName != "botServiceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BotServiceName'", id.BotServiceName, "botServiceName")
 	}
 
 	if id.ConnectionName != "connectionName" {
@@ -32,8 +32,8 @@ func TestNewConnectionID(t *testing.T) {
 }
 
 func TestFormatConnectionID(t *testing.T) {
-	actual := NewConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "connectionName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/resourceName/connections/connectionName"
+	actual := NewConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botServiceName", "connectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/botServiceName/connections/connectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/botServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/resourceName/connections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/botServiceName/connections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/resourceName/connections/connectionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/botServiceName/connections/connectionName",
 			Expected: &ConnectionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BotServiceName:    "resourceName",
+				BotServiceName:    "botServiceName",
 				ConnectionName:    "connectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/resourceName/connections/connectionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/botServiceName/connections/connectionName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/botServiceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bOtSeRvIcE/bOtSeRvIcEs/rEsOuRcEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bOtSeRvIcE/bOtSeRvIcEs/bOtSeRvIcEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/resourceName/connections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/botServiceName/connections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bOtSeRvIcE/bOtSeRvIcEs/rEsOuRcEnAmE/cOnNeCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bOtSeRvIcE/bOtSeRvIcEs/bOtSeRvIcEnAmE/cOnNeCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/resourceName/connections/connectionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/botServiceName/connections/connectionName",
 			Expected: &ConnectionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BotServiceName:    "resourceName",
+				BotServiceName:    "botServiceName",
 				ConnectionName:    "connectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/resourceName/connections/connectionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.BotService/botServices/botServiceName/connections/connectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bOtSeRvIcE/bOtSeRvIcEs/rEsOuRcEnAmE/cOnNeCtIoNs/cOnNeCtIoNnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bOtSeRvIcE/bOtSeRvIcEs/bOtSeRvIcEnAmE/cOnNeCtIoNs/cOnNeCtIoNnAmE",
 			Expected: &ConnectionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				BotServiceName:    "rEsOuRcEnAmE",
+				BotServiceName:    "bOtSeRvIcEnAmE",
 				ConnectionName:    "cOnNeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bOtSeRvIcE/bOtSeRvIcEs/rEsOuRcEnAmE/cOnNeCtIoNs/cOnNeCtIoNnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bOtSeRvIcE/bOtSeRvIcEs/bOtSeRvIcEnAmE/cOnNeCtIoNs/cOnNeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

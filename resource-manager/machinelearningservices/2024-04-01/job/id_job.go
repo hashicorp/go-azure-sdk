@@ -123,7 +123,7 @@ func (id JobId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticJobs", "jobs", "jobs"),
-		resourceids.UserSpecifiedSegment("jobName", "id"),
+		resourceids.UserSpecifiedSegment("jobName", "jobName"),
 	}
 }
 

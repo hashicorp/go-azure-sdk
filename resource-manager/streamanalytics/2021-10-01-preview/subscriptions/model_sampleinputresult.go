@@ -6,7 +6,7 @@ package subscriptions
 type SampleInputResult struct {
 	Diagnostics       *[]string                `json:"diagnostics,omitempty"`
 	Error             *ErrorError              `json:"error,omitempty"`
-	EventsDownloadUrl *string                  `json:"eventsDownloadUrl,omitempty"`
+	EventsDownloadURL *string                  `json:"eventsDownloadUrl,omitempty"`
 	LastArrivalTime   *string                  `json:"lastArrivalTime,omitempty"`
 	Status            *SampleInputResultStatus `json:"status,omitempty"`
 }

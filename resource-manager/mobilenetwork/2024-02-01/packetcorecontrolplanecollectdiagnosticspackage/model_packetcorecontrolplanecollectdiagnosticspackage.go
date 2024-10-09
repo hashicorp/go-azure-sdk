@@ -4,5 +4,5 @@ package packetcorecontrolplanecollectdiagnosticspackage
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PacketCoreControlPlaneCollectDiagnosticsPackage struct {
-	StorageAccountBlobUrl string `json:"storageAccountBlobUrl"`
+	StorageAccountBlobURL string `json:"storageAccountBlobUrl"`
 }

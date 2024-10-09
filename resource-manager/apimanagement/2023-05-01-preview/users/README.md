@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `UsersClient.UserGenerateSsoUrl`
+### Example Usage: `UsersClient.UserGenerateSsoURL`
 
 ```go
 ctx := context.TODO()
 id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "userId")
 
-read, err := client.UserGenerateSsoUrl(ctx, id)
+read, err := client.UserGenerateSsoURL(ctx, id)
 if err != nil {
 	// handle the error
 }

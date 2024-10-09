@@ -11,7 +11,7 @@ import (
 
 type EAPricesheetDownloadProperties struct {
 	DownloadFileProperties *EAPriceSheetProperties `json:"downloadFileProperties,omitempty"`
-	DownloadUrl            *string                 `json:"downloadUrl,omitempty"`
+	DownloadURL            *string                 `json:"downloadUrl,omitempty"`
 	ValidTill              *string                 `json:"validTill,omitempty"`
 }
 

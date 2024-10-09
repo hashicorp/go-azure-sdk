@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName")
+id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "jitNetworkAccessPolicyName")
 
 payload := jitnetworkaccesspolicies.JitNetworkAccessPolicy{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName")
+id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "jitNetworkAccessPolicyName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName")
+id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "jitNetworkAccessPolicyName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName")
+id := jitnetworkaccesspolicies.NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "jitNetworkAccessPolicyName")
 
 payload := jitnetworkaccesspolicies.JitNetworkAccessPolicyInitiateRequest{
 	// ...
@@ -116,7 +116,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewLocationID("12345678-1234-9876-4563-123456789012", "ascLocation")
+id := jitnetworkaccesspolicies.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ListByRegion(ctx, id)` can be used to do batched pagination
 items, err := client.ListByRegionComplete(ctx, id)
@@ -150,7 +150,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := jitnetworkaccesspolicies.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation")
+id := jitnetworkaccesspolicies.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName")
 
 // alternatively `client.ListByResourceGroupAndRegion(ctx, id)` can be used to do batched pagination
 items, err := client.ListByResourceGroupAndRegionComplete(ctx, id)

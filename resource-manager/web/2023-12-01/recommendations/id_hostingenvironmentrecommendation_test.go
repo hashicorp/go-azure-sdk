@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HostingEnvironmentRecommendationId{}
 
 func TestNewHostingEnvironmentRecommendationID(t *testing.T) {
-	id := NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "name")
+	id := NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "recommendationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewHostingEnvironmentRecommendationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'HostingEnvironmentName'", id.HostingEnvironmentName, "hostingEnvironmentName")
 	}
 
-	if id.RecommendationName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecommendationName'", id.RecommendationName, "name")
+	if id.RecommendationName != "recommendationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecommendationName'", id.RecommendationName, "recommendationName")
 	}
 }
 
 func TestFormatHostingEnvironmentRecommendationID(t *testing.T) {
-	actual := NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/name"
+	actual := NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "recommendationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/recommendationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseHostingEnvironmentRecommendationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/recommendationName",
 			Expected: &HostingEnvironmentRecommendationId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				HostingEnvironmentName: "hostingEnvironmentName",
-				RecommendationName:     "name",
+				RecommendationName:     "recommendationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/recommendationName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseHostingEnvironmentRecommendationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/recommendationName",
 			Expected: &HostingEnvironmentRecommendationId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				HostingEnvironmentName: "hostingEnvironmentName",
-				RecommendationName:     "name",
+				RecommendationName:     "recommendationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/hostingEnvironments/hostingEnvironmentName/recommendations/recommendationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/hOsTiNgEnViRoNmEnTs/hOsTiNgEnViRoNmEnTnAmE/rEcOmMeNdAtIoNs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/hOsTiNgEnViRoNmEnTs/hOsTiNgEnViRoNmEnTnAmE/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNnAmE",
 			Expected: &HostingEnvironmentRecommendationId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
 				HostingEnvironmentName: "hOsTiNgEnViRoNmEnTnAmE",
-				RecommendationName:     "nAmE",
+				RecommendationName:     "rEcOmMeNdAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/hOsTiNgEnViRoNmEnTs/hOsTiNgEnViRoNmEnTnAmE/rEcOmMeNdAtIoNs/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/hOsTiNgEnViRoNmEnTs/hOsTiNgEnViRoNmEnTnAmE/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

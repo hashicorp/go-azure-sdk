@@ -10,7 +10,7 @@ type DataProductProperties struct {
 	CustomerEncryptionKey               *EncryptionKeyDetails              `json:"customerEncryptionKey,omitempty"`
 	CustomerManagedKeyEncryptionEnabled *ControlState                      `json:"customerManagedKeyEncryptionEnabled,omitempty"`
 	Documentation                       *string                            `json:"documentation,omitempty"`
-	KeyVaultUrl                         *string                            `json:"keyVaultUrl,omitempty"`
+	KeyVaultURL                         *string                            `json:"keyVaultUrl,omitempty"`
 	MajorVersion                        string                             `json:"majorVersion"`
 	ManagedResourceGroupConfiguration   *ManagedResourceGroupConfiguration `json:"managedResourceGroupConfiguration,omitempty"`
 	Networkacls                         *DataProductNetworkAcls            `json:"networkacls,omitempty"`

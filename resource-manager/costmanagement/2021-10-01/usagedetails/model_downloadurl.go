@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DownloadURL struct {
-	DownloadUrl *string `json:"downloadUrl,omitempty"`
+	DownloadURL *string `json:"downloadUrl,omitempty"`
 	ValidTill   *string `json:"validTill,omitempty"`
 }
 

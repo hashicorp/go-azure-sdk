@@ -22,11 +22,11 @@ type ApiCreateOrUpdateProperties struct {
 	Path                             string                                   `json:"path"`
 	Protocols                        *[]Protocol                              `json:"protocols,omitempty"`
 	ProvisioningState                *string                                  `json:"provisioningState,omitempty"`
-	ServiceUrl                       *string                                  `json:"serviceUrl,omitempty"`
+	ServiceURL                       *string                                  `json:"serviceUrl,omitempty"`
 	SourceApiId                      *string                                  `json:"sourceApiId,omitempty"`
 	SubscriptionKeyParameterNames    *SubscriptionKeyParameterNamesContract   `json:"subscriptionKeyParameterNames,omitempty"`
 	SubscriptionRequired             *bool                                    `json:"subscriptionRequired,omitempty"`
-	TermsOfServiceUrl                *string                                  `json:"termsOfServiceUrl,omitempty"`
+	TermsOfServiceURL                *string                                  `json:"termsOfServiceUrl,omitempty"`
 	TranslateRequiredQueryParameters *TranslateRequiredQueryParametersConduct `json:"translateRequiredQueryParameters,omitempty"`
 	Type                             *ApiType                                 `json:"type,omitempty"`
 	Value                            *string                                  `json:"value,omitempty"`

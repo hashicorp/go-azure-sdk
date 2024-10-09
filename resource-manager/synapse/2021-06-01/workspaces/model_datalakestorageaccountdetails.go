@@ -4,7 +4,7 @@ package workspaces
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataLakeStorageAccountDetails struct {
-	AccountUrl                   *string `json:"accountUrl,omitempty"`
+	AccountURL                   *string `json:"accountUrl,omitempty"`
 	CreateManagedPrivateEndpoint *bool   `json:"createManagedPrivateEndpoint,omitempty"`
 	Filesystem                   *string `json:"filesystem,omitempty"`
 	ResourceId                   *string `json:"resourceId,omitempty"`

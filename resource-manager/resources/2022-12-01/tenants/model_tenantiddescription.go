@@ -10,7 +10,7 @@ type TenantIdDescription struct {
 	DisplayName           *string         `json:"displayName,omitempty"`
 	Domains               *[]string       `json:"domains,omitempty"`
 	Id                    *string         `json:"id,omitempty"`
-	TenantBrandingLogoUrl *string         `json:"tenantBrandingLogoUrl,omitempty"`
+	TenantBrandingLogoURL *string         `json:"tenantBrandingLogoUrl,omitempty"`
 	TenantCategory        *TenantCategory `json:"tenantCategory,omitempty"`
 	TenantId              *string         `json:"tenantId,omitempty"`
 	TenantType            *string         `json:"tenantType,omitempty"`

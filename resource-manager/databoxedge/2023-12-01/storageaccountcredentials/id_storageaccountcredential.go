@@ -121,9 +121,9 @@ func (id StorageAccountCredentialId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataBoxEdge", "Microsoft.DataBoxEdge", "Microsoft.DataBoxEdge"),
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
-		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
+		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "dataBoxEdgeDeviceName"),
 		resourceids.StaticSegment("staticStorageAccountCredentials", "storageAccountCredentials", "storageAccountCredentials"),
-		resourceids.UserSpecifiedSegment("storageAccountCredentialName", "name"),
+		resourceids.UserSpecifiedSegment("storageAccountCredentialName", "storageAccountCredentialName"),
 	}
 }
 

@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := vcenters.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName")
+id := vcenters.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName")
 
 payload := vcenters.VCenter{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := vcenters.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName")
+id := vcenters.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName")
 
 if err := client.DeleteThenPoll(ctx, id, vcenters.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id, vcenters.DefaultDeleteOperationOptions(
 
 ```go
 ctx := context.TODO()
-id := vcenters.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName")
+id := vcenters.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vcenters.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName")
+id := vcenters.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName")
 
 payload := vcenters.ResourcePatch{
 	// ...

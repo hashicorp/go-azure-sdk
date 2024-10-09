@@ -115,7 +115,7 @@ func (id PaymentMethodLinkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticBillingProfiles", "billingProfiles", "billingProfiles"),
 		resourceids.UserSpecifiedSegment("billingProfileName", "billingProfileName"),
 		resourceids.StaticSegment("staticPaymentMethodLinks", "paymentMethodLinks", "paymentMethodLinks"),
-		resourceids.UserSpecifiedSegment("paymentMethodLinkName", "paymentMethodName"),
+		resourceids.UserSpecifiedSegment("paymentMethodLinkName", "paymentMethodLinkName"),
 	}
 }
 

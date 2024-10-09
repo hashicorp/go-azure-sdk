@@ -123,7 +123,7 @@ func (id NetworkSecurityPerimeterConfigurationId) Segments() []resourceids.Segme
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
 		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticNetworkSecurityPerimeterConfigurations", "networkSecurityPerimeterConfigurations", "networkSecurityPerimeterConfigurations"),
-		resourceids.UserSpecifiedSegment("networkSecurityPerimeterConfigurationName", "nspConfigName"),
+		resourceids.UserSpecifiedSegment("networkSecurityPerimeterConfigurationName", "networkSecurityPerimeterConfigurationName"),
 	}
 }
 

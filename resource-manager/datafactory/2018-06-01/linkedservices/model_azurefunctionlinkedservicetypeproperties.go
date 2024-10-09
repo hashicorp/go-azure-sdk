@@ -12,7 +12,7 @@ type AzureFunctionLinkedServiceTypeProperties struct {
 	Authentication      *string              `json:"authentication,omitempty"`
 	Credential          *CredentialReference `json:"credential,omitempty"`
 	EncryptedCredential *string              `json:"encryptedCredential,omitempty"`
-	FunctionAppUrl      string               `json:"functionAppUrl"`
+	FunctionAppURL      string               `json:"functionAppUrl"`
 	FunctionKey         SecretBase           `json:"functionKey"`
 	ResourceId          *string              `json:"resourceId,omitempty"`
 }
@@ -24,7 +24,7 @@ func (s *AzureFunctionLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) e
 		Authentication      *string              `json:"authentication,omitempty"`
 		Credential          *CredentialReference `json:"credential,omitempty"`
 		EncryptedCredential *string              `json:"encryptedCredential,omitempty"`
-		FunctionAppUrl      string               `json:"functionAppUrl"`
+		FunctionAppURL      string               `json:"functionAppUrl"`
 		ResourceId          *string              `json:"resourceId,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
@@ -34,7 +34,7 @@ func (s *AzureFunctionLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) e
 	s.Authentication = decoded.Authentication
 	s.Credential = decoded.Credential
 	s.EncryptedCredential = decoded.EncryptedCredential
-	s.FunctionAppUrl = decoded.FunctionAppUrl
+	s.FunctionAppURL = decoded.FunctionAppURL
 	s.ResourceId = decoded.ResourceId
 
 	var temp map[string]json.RawMessage

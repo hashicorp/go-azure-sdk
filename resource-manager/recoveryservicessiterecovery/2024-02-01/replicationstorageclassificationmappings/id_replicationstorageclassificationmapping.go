@@ -133,13 +133,13 @@ func (id ReplicationStorageClassificationMappingId) Segments() []resourceids.Seg
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultName"),
 		resourceids.StaticSegment("staticReplicationFabrics", "replicationFabrics", "replicationFabrics"),
-		resourceids.UserSpecifiedSegment("replicationFabricName", "fabricName"),
+		resourceids.UserSpecifiedSegment("replicationFabricName", "replicationFabricName"),
 		resourceids.StaticSegment("staticReplicationStorageClassifications", "replicationStorageClassifications", "replicationStorageClassifications"),
-		resourceids.UserSpecifiedSegment("replicationStorageClassificationName", "storageClassificationName"),
+		resourceids.UserSpecifiedSegment("replicationStorageClassificationName", "replicationStorageClassificationName"),
 		resourceids.StaticSegment("staticReplicationStorageClassificationMappings", "replicationStorageClassificationMappings", "replicationStorageClassificationMappings"),
-		resourceids.UserSpecifiedSegment("replicationStorageClassificationMappingName", "storageClassificationMappingName"),
+		resourceids.UserSpecifiedSegment("replicationStorageClassificationMappingName", "replicationStorageClassificationMappingName"),
 	}
 }
 

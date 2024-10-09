@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RecommendationId{}
 
 func TestNewRecommendationID(t *testing.T) {
-	id := NewRecommendationID("12345678-1234-9876-4563-123456789012", "name")
+	id := NewRecommendationID("12345678-1234-9876-4563-123456789012", "recommendationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.RecommendationName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecommendationName'", id.RecommendationName, "name")
+	if id.RecommendationName != "recommendationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecommendationName'", id.RecommendationName, "recommendationName")
 	}
 }
 
 func TestFormatRecommendationID(t *testing.T) {
-	actual := NewRecommendationID("12345678-1234-9876-4563-123456789012", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/name"
+	actual := NewRecommendationID("12345678-1234-9876-4563-123456789012", "recommendationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/recommendationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseRecommendationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/recommendationName",
 			Expected: &RecommendationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				RecommendationName: "name",
+				RecommendationName: "recommendationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/recommendationName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseRecommendationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/recommendationName",
 			Expected: &RecommendationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				RecommendationName: "name",
+				RecommendationName: "recommendationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/recommendations/recommendationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/rEcOmMeNdAtIoNs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNnAmE",
 			Expected: &RecommendationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				RecommendationName: "nAmE",
+				RecommendationName: "rEcOmMeNdAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/rEcOmMeNdAtIoNs/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

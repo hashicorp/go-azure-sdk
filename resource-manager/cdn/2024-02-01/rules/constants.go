@@ -318,9 +318,9 @@ const (
 	DeliveryRuleActionNameModifyResponseHeader       DeliveryRuleActionName = "ModifyResponseHeader"
 	DeliveryRuleActionNameOriginGroupOverride        DeliveryRuleActionName = "OriginGroupOverride"
 	DeliveryRuleActionNameRouteConfigurationOverride DeliveryRuleActionName = "RouteConfigurationOverride"
-	DeliveryRuleActionNameUrlRedirect                DeliveryRuleActionName = "UrlRedirect"
-	DeliveryRuleActionNameUrlRewrite                 DeliveryRuleActionName = "UrlRewrite"
-	DeliveryRuleActionNameUrlSigning                 DeliveryRuleActionName = "UrlSigning"
+	DeliveryRuleActionNameURLRedirect                DeliveryRuleActionName = "UrlRedirect"
+	DeliveryRuleActionNameURLRewrite                 DeliveryRuleActionName = "UrlRewrite"
+	DeliveryRuleActionNameURLSigning                 DeliveryRuleActionName = "UrlSigning"
 )
 
 func PossibleValuesForDeliveryRuleActionName() []string {
@@ -331,9 +331,9 @@ func PossibleValuesForDeliveryRuleActionName() []string {
 		string(DeliveryRuleActionNameModifyResponseHeader),
 		string(DeliveryRuleActionNameOriginGroupOverride),
 		string(DeliveryRuleActionNameRouteConfigurationOverride),
-		string(DeliveryRuleActionNameUrlRedirect),
-		string(DeliveryRuleActionNameUrlRewrite),
-		string(DeliveryRuleActionNameUrlSigning),
+		string(DeliveryRuleActionNameURLRedirect),
+		string(DeliveryRuleActionNameURLRewrite),
+		string(DeliveryRuleActionNameURLSigning),
 	}
 }
 
@@ -358,9 +358,9 @@ func parseDeliveryRuleActionName(input string) (*DeliveryRuleActionName, error) 
 		"modifyresponseheader":       DeliveryRuleActionNameModifyResponseHeader,
 		"origingroupoverride":        DeliveryRuleActionNameOriginGroupOverride,
 		"routeconfigurationoverride": DeliveryRuleActionNameRouteConfigurationOverride,
-		"urlredirect":                DeliveryRuleActionNameUrlRedirect,
-		"urlrewrite":                 DeliveryRuleActionNameUrlRewrite,
-		"urlsigning":                 DeliveryRuleActionNameUrlSigning,
+		"urlredirect":                DeliveryRuleActionNameURLRedirect,
+		"urlrewrite":                 DeliveryRuleActionNameURLRewrite,
+		"urlsigning":                 DeliveryRuleActionNameURLSigning,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -379,9 +379,9 @@ const (
 	DeliveryRuleActionParametersTypeDeliveryRuleHeaderActionParameters                      DeliveryRuleActionParametersType = "DeliveryRuleHeaderActionParameters"
 	DeliveryRuleActionParametersTypeDeliveryRuleOriginGroupOverrideActionParameters         DeliveryRuleActionParametersType = "DeliveryRuleOriginGroupOverrideActionParameters"
 	DeliveryRuleActionParametersTypeDeliveryRuleRouteConfigurationOverrideActionParameters  DeliveryRuleActionParametersType = "DeliveryRuleRouteConfigurationOverrideActionParameters"
-	DeliveryRuleActionParametersTypeDeliveryRuleUrlRedirectActionParameters                 DeliveryRuleActionParametersType = "DeliveryRuleUrlRedirectActionParameters"
-	DeliveryRuleActionParametersTypeDeliveryRuleUrlRewriteActionParameters                  DeliveryRuleActionParametersType = "DeliveryRuleUrlRewriteActionParameters"
-	DeliveryRuleActionParametersTypeDeliveryRuleUrlSigningActionParameters                  DeliveryRuleActionParametersType = "DeliveryRuleUrlSigningActionParameters"
+	DeliveryRuleActionParametersTypeDeliveryRuleURLRedirectActionParameters                 DeliveryRuleActionParametersType = "DeliveryRuleUrlRedirectActionParameters"
+	DeliveryRuleActionParametersTypeDeliveryRuleURLRewriteActionParameters                  DeliveryRuleActionParametersType = "DeliveryRuleUrlRewriteActionParameters"
+	DeliveryRuleActionParametersTypeDeliveryRuleURLSigningActionParameters                  DeliveryRuleActionParametersType = "DeliveryRuleUrlSigningActionParameters"
 )
 
 func PossibleValuesForDeliveryRuleActionParametersType() []string {
@@ -391,9 +391,9 @@ func PossibleValuesForDeliveryRuleActionParametersType() []string {
 		string(DeliveryRuleActionParametersTypeDeliveryRuleHeaderActionParameters),
 		string(DeliveryRuleActionParametersTypeDeliveryRuleOriginGroupOverrideActionParameters),
 		string(DeliveryRuleActionParametersTypeDeliveryRuleRouteConfigurationOverrideActionParameters),
-		string(DeliveryRuleActionParametersTypeDeliveryRuleUrlRedirectActionParameters),
-		string(DeliveryRuleActionParametersTypeDeliveryRuleUrlRewriteActionParameters),
-		string(DeliveryRuleActionParametersTypeDeliveryRuleUrlSigningActionParameters),
+		string(DeliveryRuleActionParametersTypeDeliveryRuleURLRedirectActionParameters),
+		string(DeliveryRuleActionParametersTypeDeliveryRuleURLRewriteActionParameters),
+		string(DeliveryRuleActionParametersTypeDeliveryRuleURLSigningActionParameters),
 	}
 }
 
@@ -417,9 +417,9 @@ func parseDeliveryRuleActionParametersType(input string) (*DeliveryRuleActionPar
 		"deliveryruleheaderactionparameters":                      DeliveryRuleActionParametersTypeDeliveryRuleHeaderActionParameters,
 		"deliveryruleorigingroupoverrideactionparameters":         DeliveryRuleActionParametersTypeDeliveryRuleOriginGroupOverrideActionParameters,
 		"deliveryrulerouteconfigurationoverrideactionparameters":  DeliveryRuleActionParametersTypeDeliveryRuleRouteConfigurationOverrideActionParameters,
-		"deliveryruleurlredirectactionparameters":                 DeliveryRuleActionParametersTypeDeliveryRuleUrlRedirectActionParameters,
-		"deliveryruleurlrewriteactionparameters":                  DeliveryRuleActionParametersTypeDeliveryRuleUrlRewriteActionParameters,
-		"deliveryruleurlsigningactionparameters":                  DeliveryRuleActionParametersTypeDeliveryRuleUrlSigningActionParameters,
+		"deliveryruleurlredirectactionparameters":                 DeliveryRuleActionParametersTypeDeliveryRuleURLRedirectActionParameters,
+		"deliveryruleurlrewriteactionparameters":                  DeliveryRuleActionParametersTypeDeliveryRuleURLRewriteActionParameters,
+		"deliveryruleurlsigningactionparameters":                  DeliveryRuleActionParametersTypeDeliveryRuleURLSigningActionParameters,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -449,9 +449,9 @@ const (
 	DeliveryRuleConditionParametersTypeDeliveryRuleServerPortConditionParameters            DeliveryRuleConditionParametersType = "DeliveryRuleServerPortConditionParameters"
 	DeliveryRuleConditionParametersTypeDeliveryRuleSocketAddrConditionParameters            DeliveryRuleConditionParametersType = "DeliveryRuleSocketAddrConditionParameters"
 	DeliveryRuleConditionParametersTypeDeliveryRuleSslProtocolConditionParameters           DeliveryRuleConditionParametersType = "DeliveryRuleSslProtocolConditionParameters"
-	DeliveryRuleConditionParametersTypeDeliveryRuleUrlFileExtensionMatchConditionParameters DeliveryRuleConditionParametersType = "DeliveryRuleUrlFileExtensionMatchConditionParameters"
-	DeliveryRuleConditionParametersTypeDeliveryRuleUrlFilenameConditionParameters           DeliveryRuleConditionParametersType = "DeliveryRuleUrlFilenameConditionParameters"
-	DeliveryRuleConditionParametersTypeDeliveryRuleUrlPathMatchConditionParameters          DeliveryRuleConditionParametersType = "DeliveryRuleUrlPathMatchConditionParameters"
+	DeliveryRuleConditionParametersTypeDeliveryRuleURLFileExtensionMatchConditionParameters DeliveryRuleConditionParametersType = "DeliveryRuleUrlFileExtensionMatchConditionParameters"
+	DeliveryRuleConditionParametersTypeDeliveryRuleURLFilenameConditionParameters           DeliveryRuleConditionParametersType = "DeliveryRuleUrlFilenameConditionParameters"
+	DeliveryRuleConditionParametersTypeDeliveryRuleURLPathMatchConditionParameters          DeliveryRuleConditionParametersType = "DeliveryRuleUrlPathMatchConditionParameters"
 )
 
 func PossibleValuesForDeliveryRuleConditionParametersType() []string {
@@ -472,9 +472,9 @@ func PossibleValuesForDeliveryRuleConditionParametersType() []string {
 		string(DeliveryRuleConditionParametersTypeDeliveryRuleServerPortConditionParameters),
 		string(DeliveryRuleConditionParametersTypeDeliveryRuleSocketAddrConditionParameters),
 		string(DeliveryRuleConditionParametersTypeDeliveryRuleSslProtocolConditionParameters),
-		string(DeliveryRuleConditionParametersTypeDeliveryRuleUrlFileExtensionMatchConditionParameters),
-		string(DeliveryRuleConditionParametersTypeDeliveryRuleUrlFilenameConditionParameters),
-		string(DeliveryRuleConditionParametersTypeDeliveryRuleUrlPathMatchConditionParameters),
+		string(DeliveryRuleConditionParametersTypeDeliveryRuleURLFileExtensionMatchConditionParameters),
+		string(DeliveryRuleConditionParametersTypeDeliveryRuleURLFilenameConditionParameters),
+		string(DeliveryRuleConditionParametersTypeDeliveryRuleURLPathMatchConditionParameters),
 	}
 }
 
@@ -509,9 +509,9 @@ func parseDeliveryRuleConditionParametersType(input string) (*DeliveryRuleCondit
 		"deliveryruleserverportconditionparameters":            DeliveryRuleConditionParametersTypeDeliveryRuleServerPortConditionParameters,
 		"deliveryrulesocketaddrconditionparameters":            DeliveryRuleConditionParametersTypeDeliveryRuleSocketAddrConditionParameters,
 		"deliveryrulesslprotocolconditionparameters":           DeliveryRuleConditionParametersTypeDeliveryRuleSslProtocolConditionParameters,
-		"deliveryruleurlfileextensionmatchconditionparameters": DeliveryRuleConditionParametersTypeDeliveryRuleUrlFileExtensionMatchConditionParameters,
-		"deliveryruleurlfilenameconditionparameters":           DeliveryRuleConditionParametersTypeDeliveryRuleUrlFilenameConditionParameters,
-		"deliveryruleurlpathmatchconditionparameters":          DeliveryRuleConditionParametersTypeDeliveryRuleUrlPathMatchConditionParameters,
+		"deliveryruleurlfileextensionmatchconditionparameters": DeliveryRuleConditionParametersTypeDeliveryRuleURLFileExtensionMatchConditionParameters,
+		"deliveryruleurlfilenameconditionparameters":           DeliveryRuleConditionParametersTypeDeliveryRuleURLFilenameConditionParameters,
+		"deliveryruleurlpathmatchconditionparameters":          DeliveryRuleConditionParametersTypeDeliveryRuleURLPathMatchConditionParameters,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -943,9 +943,9 @@ const (
 	MatchVariableServerPort       MatchVariable = "ServerPort"
 	MatchVariableSocketAddr       MatchVariable = "SocketAddr"
 	MatchVariableSslProtocol      MatchVariable = "SslProtocol"
-	MatchVariableUrlFileExtension MatchVariable = "UrlFileExtension"
-	MatchVariableUrlFileName      MatchVariable = "UrlFileName"
-	MatchVariableUrlPath          MatchVariable = "UrlPath"
+	MatchVariableURLFileExtension MatchVariable = "UrlFileExtension"
+	MatchVariableURLFileName      MatchVariable = "UrlFileName"
+	MatchVariableURLPath          MatchVariable = "UrlPath"
 )
 
 func PossibleValuesForMatchVariable() []string {
@@ -966,9 +966,9 @@ func PossibleValuesForMatchVariable() []string {
 		string(MatchVariableServerPort),
 		string(MatchVariableSocketAddr),
 		string(MatchVariableSslProtocol),
-		string(MatchVariableUrlFileExtension),
-		string(MatchVariableUrlFileName),
-		string(MatchVariableUrlPath),
+		string(MatchVariableURLFileExtension),
+		string(MatchVariableURLFileName),
+		string(MatchVariableURLPath),
 	}
 }
 
@@ -1003,9 +1003,9 @@ func parseMatchVariable(input string) (*MatchVariable, error) {
 		"serverport":       MatchVariableServerPort,
 		"socketaddr":       MatchVariableSocketAddr,
 		"sslprotocol":      MatchVariableSslProtocol,
-		"urlfileextension": MatchVariableUrlFileExtension,
-		"urlfilename":      MatchVariableUrlFileName,
-		"urlpath":          MatchVariableUrlPath,
+		"urlfileextension": MatchVariableURLFileExtension,
+		"urlfilename":      MatchVariableURLFileName,
+		"urlpath":          MatchVariableURLPath,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -2022,9 +2022,9 @@ const (
 	TransformLowercase   Transform = "Lowercase"
 	TransformRemoveNulls Transform = "RemoveNulls"
 	TransformTrim        Transform = "Trim"
+	TransformURLDecode   Transform = "UrlDecode"
+	TransformURLEncode   Transform = "UrlEncode"
 	TransformUppercase   Transform = "Uppercase"
-	TransformUrlDecode   Transform = "UrlDecode"
-	TransformUrlEncode   Transform = "UrlEncode"
 )
 
 func PossibleValuesForTransform() []string {
@@ -2032,9 +2032,9 @@ func PossibleValuesForTransform() []string {
 		string(TransformLowercase),
 		string(TransformRemoveNulls),
 		string(TransformTrim),
+		string(TransformURLDecode),
+		string(TransformURLEncode),
 		string(TransformUppercase),
-		string(TransformUrlDecode),
-		string(TransformUrlEncode),
 	}
 }
 
@@ -2056,9 +2056,9 @@ func parseTransform(input string) (*Transform, error) {
 		"lowercase":   TransformLowercase,
 		"removenulls": TransformRemoveNulls,
 		"trim":        TransformTrim,
+		"urldecode":   TransformURLDecode,
+		"urlencode":   TransformURLEncode,
 		"uppercase":   TransformUppercase,
-		"urldecode":   TransformUrlDecode,
-		"urlencode":   TransformUrlEncode,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -2069,42 +2069,42 @@ func parseTransform(input string) (*Transform, error) {
 	return &out, nil
 }
 
-type UrlFileExtensionOperator string
+type URLFileExtensionOperator string
 
 const (
-	UrlFileExtensionOperatorAny                UrlFileExtensionOperator = "Any"
-	UrlFileExtensionOperatorBeginsWith         UrlFileExtensionOperator = "BeginsWith"
-	UrlFileExtensionOperatorContains           UrlFileExtensionOperator = "Contains"
-	UrlFileExtensionOperatorEndsWith           UrlFileExtensionOperator = "EndsWith"
-	UrlFileExtensionOperatorEqual              UrlFileExtensionOperator = "Equal"
-	UrlFileExtensionOperatorGreaterThan        UrlFileExtensionOperator = "GreaterThan"
-	UrlFileExtensionOperatorGreaterThanOrEqual UrlFileExtensionOperator = "GreaterThanOrEqual"
-	UrlFileExtensionOperatorLessThan           UrlFileExtensionOperator = "LessThan"
-	UrlFileExtensionOperatorLessThanOrEqual    UrlFileExtensionOperator = "LessThanOrEqual"
-	UrlFileExtensionOperatorRegEx              UrlFileExtensionOperator = "RegEx"
+	URLFileExtensionOperatorAny                URLFileExtensionOperator = "Any"
+	URLFileExtensionOperatorBeginsWith         URLFileExtensionOperator = "BeginsWith"
+	URLFileExtensionOperatorContains           URLFileExtensionOperator = "Contains"
+	URLFileExtensionOperatorEndsWith           URLFileExtensionOperator = "EndsWith"
+	URLFileExtensionOperatorEqual              URLFileExtensionOperator = "Equal"
+	URLFileExtensionOperatorGreaterThan        URLFileExtensionOperator = "GreaterThan"
+	URLFileExtensionOperatorGreaterThanOrEqual URLFileExtensionOperator = "GreaterThanOrEqual"
+	URLFileExtensionOperatorLessThan           URLFileExtensionOperator = "LessThan"
+	URLFileExtensionOperatorLessThanOrEqual    URLFileExtensionOperator = "LessThanOrEqual"
+	URLFileExtensionOperatorRegEx              URLFileExtensionOperator = "RegEx"
 )
 
-func PossibleValuesForUrlFileExtensionOperator() []string {
+func PossibleValuesForURLFileExtensionOperator() []string {
 	return []string{
-		string(UrlFileExtensionOperatorAny),
-		string(UrlFileExtensionOperatorBeginsWith),
-		string(UrlFileExtensionOperatorContains),
-		string(UrlFileExtensionOperatorEndsWith),
-		string(UrlFileExtensionOperatorEqual),
-		string(UrlFileExtensionOperatorGreaterThan),
-		string(UrlFileExtensionOperatorGreaterThanOrEqual),
-		string(UrlFileExtensionOperatorLessThan),
-		string(UrlFileExtensionOperatorLessThanOrEqual),
-		string(UrlFileExtensionOperatorRegEx),
+		string(URLFileExtensionOperatorAny),
+		string(URLFileExtensionOperatorBeginsWith),
+		string(URLFileExtensionOperatorContains),
+		string(URLFileExtensionOperatorEndsWith),
+		string(URLFileExtensionOperatorEqual),
+		string(URLFileExtensionOperatorGreaterThan),
+		string(URLFileExtensionOperatorGreaterThanOrEqual),
+		string(URLFileExtensionOperatorLessThan),
+		string(URLFileExtensionOperatorLessThanOrEqual),
+		string(URLFileExtensionOperatorRegEx),
 	}
 }
 
-func (s *UrlFileExtensionOperator) UnmarshalJSON(bytes []byte) error {
+func (s *URLFileExtensionOperator) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseUrlFileExtensionOperator(decoded)
+	out, err := parseURLFileExtensionOperator(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -2112,64 +2112,64 @@ func (s *UrlFileExtensionOperator) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseUrlFileExtensionOperator(input string) (*UrlFileExtensionOperator, error) {
-	vals := map[string]UrlFileExtensionOperator{
-		"any":                UrlFileExtensionOperatorAny,
-		"beginswith":         UrlFileExtensionOperatorBeginsWith,
-		"contains":           UrlFileExtensionOperatorContains,
-		"endswith":           UrlFileExtensionOperatorEndsWith,
-		"equal":              UrlFileExtensionOperatorEqual,
-		"greaterthan":        UrlFileExtensionOperatorGreaterThan,
-		"greaterthanorequal": UrlFileExtensionOperatorGreaterThanOrEqual,
-		"lessthan":           UrlFileExtensionOperatorLessThan,
-		"lessthanorequal":    UrlFileExtensionOperatorLessThanOrEqual,
-		"regex":              UrlFileExtensionOperatorRegEx,
+func parseURLFileExtensionOperator(input string) (*URLFileExtensionOperator, error) {
+	vals := map[string]URLFileExtensionOperator{
+		"any":                URLFileExtensionOperatorAny,
+		"beginswith":         URLFileExtensionOperatorBeginsWith,
+		"contains":           URLFileExtensionOperatorContains,
+		"endswith":           URLFileExtensionOperatorEndsWith,
+		"equal":              URLFileExtensionOperatorEqual,
+		"greaterthan":        URLFileExtensionOperatorGreaterThan,
+		"greaterthanorequal": URLFileExtensionOperatorGreaterThanOrEqual,
+		"lessthan":           URLFileExtensionOperatorLessThan,
+		"lessthanorequal":    URLFileExtensionOperatorLessThanOrEqual,
+		"regex":              URLFileExtensionOperatorRegEx,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := UrlFileExtensionOperator(input)
+	out := URLFileExtensionOperator(input)
 	return &out, nil
 }
 
-type UrlFileNameOperator string
+type URLFileNameOperator string
 
 const (
-	UrlFileNameOperatorAny                UrlFileNameOperator = "Any"
-	UrlFileNameOperatorBeginsWith         UrlFileNameOperator = "BeginsWith"
-	UrlFileNameOperatorContains           UrlFileNameOperator = "Contains"
-	UrlFileNameOperatorEndsWith           UrlFileNameOperator = "EndsWith"
-	UrlFileNameOperatorEqual              UrlFileNameOperator = "Equal"
-	UrlFileNameOperatorGreaterThan        UrlFileNameOperator = "GreaterThan"
-	UrlFileNameOperatorGreaterThanOrEqual UrlFileNameOperator = "GreaterThanOrEqual"
-	UrlFileNameOperatorLessThan           UrlFileNameOperator = "LessThan"
-	UrlFileNameOperatorLessThanOrEqual    UrlFileNameOperator = "LessThanOrEqual"
-	UrlFileNameOperatorRegEx              UrlFileNameOperator = "RegEx"
+	URLFileNameOperatorAny                URLFileNameOperator = "Any"
+	URLFileNameOperatorBeginsWith         URLFileNameOperator = "BeginsWith"
+	URLFileNameOperatorContains           URLFileNameOperator = "Contains"
+	URLFileNameOperatorEndsWith           URLFileNameOperator = "EndsWith"
+	URLFileNameOperatorEqual              URLFileNameOperator = "Equal"
+	URLFileNameOperatorGreaterThan        URLFileNameOperator = "GreaterThan"
+	URLFileNameOperatorGreaterThanOrEqual URLFileNameOperator = "GreaterThanOrEqual"
+	URLFileNameOperatorLessThan           URLFileNameOperator = "LessThan"
+	URLFileNameOperatorLessThanOrEqual    URLFileNameOperator = "LessThanOrEqual"
+	URLFileNameOperatorRegEx              URLFileNameOperator = "RegEx"
 )
 
-func PossibleValuesForUrlFileNameOperator() []string {
+func PossibleValuesForURLFileNameOperator() []string {
 	return []string{
-		string(UrlFileNameOperatorAny),
-		string(UrlFileNameOperatorBeginsWith),
-		string(UrlFileNameOperatorContains),
-		string(UrlFileNameOperatorEndsWith),
-		string(UrlFileNameOperatorEqual),
-		string(UrlFileNameOperatorGreaterThan),
-		string(UrlFileNameOperatorGreaterThanOrEqual),
-		string(UrlFileNameOperatorLessThan),
-		string(UrlFileNameOperatorLessThanOrEqual),
-		string(UrlFileNameOperatorRegEx),
+		string(URLFileNameOperatorAny),
+		string(URLFileNameOperatorBeginsWith),
+		string(URLFileNameOperatorContains),
+		string(URLFileNameOperatorEndsWith),
+		string(URLFileNameOperatorEqual),
+		string(URLFileNameOperatorGreaterThan),
+		string(URLFileNameOperatorGreaterThanOrEqual),
+		string(URLFileNameOperatorLessThan),
+		string(URLFileNameOperatorLessThanOrEqual),
+		string(URLFileNameOperatorRegEx),
 	}
 }
 
-func (s *UrlFileNameOperator) UnmarshalJSON(bytes []byte) error {
+func (s *URLFileNameOperator) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseUrlFileNameOperator(decoded)
+	out, err := parseURLFileNameOperator(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -2177,66 +2177,66 @@ func (s *UrlFileNameOperator) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseUrlFileNameOperator(input string) (*UrlFileNameOperator, error) {
-	vals := map[string]UrlFileNameOperator{
-		"any":                UrlFileNameOperatorAny,
-		"beginswith":         UrlFileNameOperatorBeginsWith,
-		"contains":           UrlFileNameOperatorContains,
-		"endswith":           UrlFileNameOperatorEndsWith,
-		"equal":              UrlFileNameOperatorEqual,
-		"greaterthan":        UrlFileNameOperatorGreaterThan,
-		"greaterthanorequal": UrlFileNameOperatorGreaterThanOrEqual,
-		"lessthan":           UrlFileNameOperatorLessThan,
-		"lessthanorequal":    UrlFileNameOperatorLessThanOrEqual,
-		"regex":              UrlFileNameOperatorRegEx,
+func parseURLFileNameOperator(input string) (*URLFileNameOperator, error) {
+	vals := map[string]URLFileNameOperator{
+		"any":                URLFileNameOperatorAny,
+		"beginswith":         URLFileNameOperatorBeginsWith,
+		"contains":           URLFileNameOperatorContains,
+		"endswith":           URLFileNameOperatorEndsWith,
+		"equal":              URLFileNameOperatorEqual,
+		"greaterthan":        URLFileNameOperatorGreaterThan,
+		"greaterthanorequal": URLFileNameOperatorGreaterThanOrEqual,
+		"lessthan":           URLFileNameOperatorLessThan,
+		"lessthanorequal":    URLFileNameOperatorLessThanOrEqual,
+		"regex":              URLFileNameOperatorRegEx,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := UrlFileNameOperator(input)
+	out := URLFileNameOperator(input)
 	return &out, nil
 }
 
-type UrlPathOperator string
+type URLPathOperator string
 
 const (
-	UrlPathOperatorAny                UrlPathOperator = "Any"
-	UrlPathOperatorBeginsWith         UrlPathOperator = "BeginsWith"
-	UrlPathOperatorContains           UrlPathOperator = "Contains"
-	UrlPathOperatorEndsWith           UrlPathOperator = "EndsWith"
-	UrlPathOperatorEqual              UrlPathOperator = "Equal"
-	UrlPathOperatorGreaterThan        UrlPathOperator = "GreaterThan"
-	UrlPathOperatorGreaterThanOrEqual UrlPathOperator = "GreaterThanOrEqual"
-	UrlPathOperatorLessThan           UrlPathOperator = "LessThan"
-	UrlPathOperatorLessThanOrEqual    UrlPathOperator = "LessThanOrEqual"
-	UrlPathOperatorRegEx              UrlPathOperator = "RegEx"
-	UrlPathOperatorWildcard           UrlPathOperator = "Wildcard"
+	URLPathOperatorAny                URLPathOperator = "Any"
+	URLPathOperatorBeginsWith         URLPathOperator = "BeginsWith"
+	URLPathOperatorContains           URLPathOperator = "Contains"
+	URLPathOperatorEndsWith           URLPathOperator = "EndsWith"
+	URLPathOperatorEqual              URLPathOperator = "Equal"
+	URLPathOperatorGreaterThan        URLPathOperator = "GreaterThan"
+	URLPathOperatorGreaterThanOrEqual URLPathOperator = "GreaterThanOrEqual"
+	URLPathOperatorLessThan           URLPathOperator = "LessThan"
+	URLPathOperatorLessThanOrEqual    URLPathOperator = "LessThanOrEqual"
+	URLPathOperatorRegEx              URLPathOperator = "RegEx"
+	URLPathOperatorWildcard           URLPathOperator = "Wildcard"
 )
 
-func PossibleValuesForUrlPathOperator() []string {
+func PossibleValuesForURLPathOperator() []string {
 	return []string{
-		string(UrlPathOperatorAny),
-		string(UrlPathOperatorBeginsWith),
-		string(UrlPathOperatorContains),
-		string(UrlPathOperatorEndsWith),
-		string(UrlPathOperatorEqual),
-		string(UrlPathOperatorGreaterThan),
-		string(UrlPathOperatorGreaterThanOrEqual),
-		string(UrlPathOperatorLessThan),
-		string(UrlPathOperatorLessThanOrEqual),
-		string(UrlPathOperatorRegEx),
-		string(UrlPathOperatorWildcard),
+		string(URLPathOperatorAny),
+		string(URLPathOperatorBeginsWith),
+		string(URLPathOperatorContains),
+		string(URLPathOperatorEndsWith),
+		string(URLPathOperatorEqual),
+		string(URLPathOperatorGreaterThan),
+		string(URLPathOperatorGreaterThanOrEqual),
+		string(URLPathOperatorLessThan),
+		string(URLPathOperatorLessThanOrEqual),
+		string(URLPathOperatorRegEx),
+		string(URLPathOperatorWildcard),
 	}
 }
 
-func (s *UrlPathOperator) UnmarshalJSON(bytes []byte) error {
+func (s *URLPathOperator) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseUrlPathOperator(decoded)
+	out, err := parseURLPathOperator(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -2244,25 +2244,25 @@ func (s *UrlPathOperator) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseUrlPathOperator(input string) (*UrlPathOperator, error) {
-	vals := map[string]UrlPathOperator{
-		"any":                UrlPathOperatorAny,
-		"beginswith":         UrlPathOperatorBeginsWith,
-		"contains":           UrlPathOperatorContains,
-		"endswith":           UrlPathOperatorEndsWith,
-		"equal":              UrlPathOperatorEqual,
-		"greaterthan":        UrlPathOperatorGreaterThan,
-		"greaterthanorequal": UrlPathOperatorGreaterThanOrEqual,
-		"lessthan":           UrlPathOperatorLessThan,
-		"lessthanorequal":    UrlPathOperatorLessThanOrEqual,
-		"regex":              UrlPathOperatorRegEx,
-		"wildcard":           UrlPathOperatorWildcard,
+func parseURLPathOperator(input string) (*URLPathOperator, error) {
+	vals := map[string]URLPathOperator{
+		"any":                URLPathOperatorAny,
+		"beginswith":         URLPathOperatorBeginsWith,
+		"contains":           URLPathOperatorContains,
+		"endswith":           URLPathOperatorEndsWith,
+		"equal":              URLPathOperatorEqual,
+		"greaterthan":        URLPathOperatorGreaterThan,
+		"greaterthanorequal": URLPathOperatorGreaterThanOrEqual,
+		"lessthan":           URLPathOperatorLessThan,
+		"lessthanorequal":    URLPathOperatorLessThanOrEqual,
+		"regex":              URLPathOperatorRegEx,
+		"wildcard":           URLPathOperatorWildcard,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := UrlPathOperator(input)
+	out := URLPathOperator(input)
 	return &out, nil
 }

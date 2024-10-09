@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DataflowId{}
 
 func TestNewDataflowID(t *testing.T) {
-	id := NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataFlowName")
+	id := NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataflowName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewDataflowID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryName")
 	}
 
-	if id.DataflowName != "dataFlowName" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataflowName'", id.DataflowName, "dataFlowName")
+	if id.DataflowName != "dataflowName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataflowName'", id.DataflowName, "dataflowName")
 	}
 }
 
 func TestFormatDataflowID(t *testing.T) {
-	actual := NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataFlowName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataFlowName"
+	actual := NewDataflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "dataflowName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataflowName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseDataflowID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataFlowName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataflowName",
 			Expected: &DataflowId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				FactoryName:       "factoryName",
-				DataflowName:      "dataFlowName",
+				DataflowName:      "dataflowName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataFlowName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataflowName/extra",
 			Error: true,
 		},
 	}
@@ -248,17 +248,17 @@ func TestParseDataflowIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataFlowName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataflowName",
 			Expected: &DataflowId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				FactoryName:       "factoryName",
-				DataflowName:      "dataFlowName",
+				DataflowName:      "dataflowName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataFlowName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/dataflows/dataflowName/extra",
 			Error: true,
 		},
 		{

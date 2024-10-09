@@ -5,5 +5,5 @@ package authorizationprovider
 
 type AuthorizationProviderOAuth2Settings struct {
 	GrantTypes  *AuthorizationProviderOAuth2GrantTypes `json:"grantTypes,omitempty"`
-	RedirectUrl *string                                `json:"redirectUrl,omitempty"`
+	RedirectURL *string                                `json:"redirectUrl,omitempty"`
 }

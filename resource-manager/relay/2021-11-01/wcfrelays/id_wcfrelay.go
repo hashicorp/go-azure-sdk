@@ -123,7 +123,7 @@ func (id WcfRelayId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
 		resourceids.UserSpecifiedSegment("namespaceName", "namespaceName"),
 		resourceids.StaticSegment("staticWcfRelays", "wcfRelays", "wcfRelays"),
-		resourceids.UserSpecifiedSegment("wcfRelayName", "relayName"),
+		resourceids.UserSpecifiedSegment("wcfRelayName", "wcfRelayName"),
 	}
 }
 

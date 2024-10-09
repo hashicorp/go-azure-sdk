@@ -4,7 +4,7 @@ package clients
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ClientProperties struct {
-	Attributes                      *interface{}                     `json:"attributes,omitempty"`
+	Attributes                      *map[string]interface{}          `json:"attributes,omitempty"`
 	AuthenticationName              *string                          `json:"authenticationName,omitempty"`
 	ClientCertificateAuthentication *ClientCertificateAuthentication `json:"clientCertificateAuthentication,omitempty"`
 	Description                     *string                          `json:"description,omitempty"`

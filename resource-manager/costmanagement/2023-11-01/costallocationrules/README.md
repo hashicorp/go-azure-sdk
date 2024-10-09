@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := costallocationrules.NewCostAllocationRuleID("billingAccountId", "ruleName")
+id := costallocationrules.NewCostAllocationRuleID("billingAccountId", "costAllocationRuleName")
 
 payload := costallocationrules.CostAllocationRuleDefinition{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := costallocationrules.NewCostAllocationRuleID("billingAccountId", "ruleName")
+id := costallocationrules.NewCostAllocationRuleID("billingAccountId", "costAllocationRuleName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := costallocationrules.NewCostAllocationRuleID("billingAccountId", "ruleName")
+id := costallocationrules.NewCostAllocationRuleID("billingAccountId", "costAllocationRuleName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

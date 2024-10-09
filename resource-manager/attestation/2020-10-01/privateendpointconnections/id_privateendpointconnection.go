@@ -121,7 +121,7 @@ func (id PrivateEndpointConnectionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAttestation", "Microsoft.Attestation", "Microsoft.Attestation"),
 		resourceids.StaticSegment("staticAttestationProviders", "attestationProviders", "attestationProviders"),
-		resourceids.UserSpecifiedSegment("attestationProviderName", "providerName"),
+		resourceids.UserSpecifiedSegment("attestationProviderName", "attestationProviderName"),
 		resourceids.StaticSegment("staticPrivateEndpointConnections", "privateEndpointConnections", "privateEndpointConnections"),
 		resourceids.UserSpecifiedSegment("privateEndpointConnectionName", "privateEndpointConnectionName"),
 	}

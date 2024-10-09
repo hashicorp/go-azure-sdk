@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FrontDoorWebApplicationFirewallPolicyId{}
 
 func TestNewFrontDoorWebApplicationFirewallPolicyID(t *testing.T) {
-	id := NewFrontDoorWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyName")
+	id := NewFrontDoorWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorWebApplicationFirewallPolicyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewFrontDoorWebApplicationFirewallPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.FrontDoorWebApplicationFirewallPolicyName != "policyName" {
-		t.Fatalf("Expected %q but got %q for Segment 'FrontDoorWebApplicationFirewallPolicyName'", id.FrontDoorWebApplicationFirewallPolicyName, "policyName")
+	if id.FrontDoorWebApplicationFirewallPolicyName != "frontDoorWebApplicationFirewallPolicyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FrontDoorWebApplicationFirewallPolicyName'", id.FrontDoorWebApplicationFirewallPolicyName, "frontDoorWebApplicationFirewallPolicyName")
 	}
 }
 
 func TestFormatFrontDoorWebApplicationFirewallPolicyID(t *testing.T) {
-	actual := NewFrontDoorWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/policyName"
+	actual := NewFrontDoorWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorWebApplicationFirewallPolicyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/frontDoorWebApplicationFirewallPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseFrontDoorWebApplicationFirewallPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/policyName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/frontDoorWebApplicationFirewallPolicyName",
 			Expected: &FrontDoorWebApplicationFirewallPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FrontDoorWebApplicationFirewallPolicyName: "policyName",
+				FrontDoorWebApplicationFirewallPolicyName: "frontDoorWebApplicationFirewallPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/policyName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/frontDoorWebApplicationFirewallPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseFrontDoorWebApplicationFirewallPolicyIDInsensitively(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/policyName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/frontDoorWebApplicationFirewallPolicyName",
 			Expected: &FrontDoorWebApplicationFirewallPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				FrontDoorWebApplicationFirewallPolicyName: "policyName",
+				FrontDoorWebApplicationFirewallPolicyName: "frontDoorWebApplicationFirewallPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/policyName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/frontDoorWebApplicationFirewallPolicyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrWeBaPpLiCaTiOnFiReWaLlPoLiCiEs/pOlIcYnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrWeBaPpLiCaTiOnFiReWaLlPoLiCiEs/fRoNtDoOrWeBaPpLiCaTiOnFiReWaLlPoLiCyNaMe",
 			Expected: &FrontDoorWebApplicationFirewallPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				FrontDoorWebApplicationFirewallPolicyName: "pOlIcYnAmE",
+				FrontDoorWebApplicationFirewallPolicyName: "fRoNtDoOrWeBaPpLiCaTiOnFiReWaLlPoLiCyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrWeBaPpLiCaTiOnFiReWaLlPoLiCiEs/pOlIcYnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/fRoNtDoOrWeBaPpLiCaTiOnFiReWaLlPoLiCiEs/fRoNtDoOrWeBaPpLiCaTiOnFiReWaLlPoLiCyNaMe/extra",
 			Error: true,
 		},
 	}

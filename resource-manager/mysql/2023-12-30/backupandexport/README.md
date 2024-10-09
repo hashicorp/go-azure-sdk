@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := backupandexport.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
+id := backupandexport.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName")
 
 payload := backupandexport.BackupAndExportRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := backupandexport.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
+id := backupandexport.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName")
 
 read, err := client.ValidateBackup(ctx, id)
 if err != nil {

@@ -78,9 +78,9 @@ func UnmarshalSecretParametersImplementation(input []byte) (SecretParameters, er
 	}
 
 	if strings.EqualFold(value, "UrlSigningKey") {
-		var out UrlSigningKeyParameters
+		var out URLSigningKeyParameters
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into UrlSigningKeyParameters: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into URLSigningKeyParameters: %+v", err)
 		}
 		return out, nil
 	}

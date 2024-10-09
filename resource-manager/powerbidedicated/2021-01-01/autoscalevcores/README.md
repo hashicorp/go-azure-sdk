@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName")
+id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreName")
 
 payload := autoscalevcores.AutoScaleVCore{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName")
+id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName")
+id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreName")
+id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreName")
 
 payload := autoscalevcores.AutoScaleVCoreUpdateParameters{
 	// ...

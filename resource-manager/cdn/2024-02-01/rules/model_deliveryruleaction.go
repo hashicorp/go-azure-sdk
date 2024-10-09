@@ -102,25 +102,25 @@ func UnmarshalDeliveryRuleActionImplementation(input []byte) (DeliveryRuleAction
 	}
 
 	if strings.EqualFold(value, "UrlRedirect") {
-		var out UrlRedirectAction
+		var out URLRedirectAction
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into UrlRedirectAction: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into URLRedirectAction: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "UrlRewrite") {
-		var out UrlRewriteAction
+		var out URLRewriteAction
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into UrlRewriteAction: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into URLRewriteAction: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "UrlSigning") {
-		var out UrlSigningAction
+		var out URLSigningAction
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into UrlSigningAction: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into URLSigningAction: %+v", err)
 		}
 		return out, nil
 	}

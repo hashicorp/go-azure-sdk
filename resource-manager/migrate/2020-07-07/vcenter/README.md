@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := vcenter.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "vcenterName")
+id := vcenter.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteName", "vCenterName")
 
 read, err := client.DeleteVCenter(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vcenter.NewVMwareSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
+id := vcenter.NewVMwareSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteName")
 
 // alternatively `client.GetAllVCentersInSite(ctx, id, vcenter.DefaultGetAllVCentersInSiteOperationOptions())` can be used to do batched pagination
 items, err := client.GetAllVCentersInSiteComplete(ctx, id, vcenter.DefaultGetAllVCentersInSiteOperationOptions())
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vcenter.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "vcenterName")
+id := vcenter.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteName", "vCenterName")
 
 read, err := client.GetVCenter(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vcenter.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "vcenterName")
+id := vcenter.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmwareSiteName", "vCenterName")
 
 payload := vcenter.VCenter{
 	// ...

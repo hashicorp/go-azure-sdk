@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DisasterRecoveryConfigId{}
 
 func TestNewDisasterRecoveryConfigID(t *testing.T) {
-	id := NewDisasterRecoveryConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "alias")
+	id := NewDisasterRecoveryConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "disasterRecoveryConfigName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewDisasterRecoveryConfigID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.DisasterRecoveryConfigName != "alias" {
-		t.Fatalf("Expected %q but got %q for Segment 'DisasterRecoveryConfigName'", id.DisasterRecoveryConfigName, "alias")
+	if id.DisasterRecoveryConfigName != "disasterRecoveryConfigName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DisasterRecoveryConfigName'", id.DisasterRecoveryConfigName, "disasterRecoveryConfigName")
 	}
 }
 
 func TestFormatDisasterRecoveryConfigID(t *testing.T) {
-	actual := NewDisasterRecoveryConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "alias").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/alias"
+	actual := NewDisasterRecoveryConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "disasterRecoveryConfigName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/disasterRecoveryConfigName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseDisasterRecoveryConfigID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/alias",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/disasterRecoveryConfigName",
 			Expected: &DisasterRecoveryConfigId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				NamespaceName:              "namespaceName",
-				DisasterRecoveryConfigName: "alias",
+				DisasterRecoveryConfigName: "disasterRecoveryConfigName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/alias/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/disasterRecoveryConfigName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseDisasterRecoveryConfigIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/alias",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/disasterRecoveryConfigName",
 			Expected: &DisasterRecoveryConfigId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				NamespaceName:              "namespaceName",
-				DisasterRecoveryConfigName: "alias",
+				DisasterRecoveryConfigName: "disasterRecoveryConfigName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/alias/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/disasterRecoveryConfigs/disasterRecoveryConfigName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeNaMe/dIsAsTeRrEcOvErYcOnFiGs/aLiAs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeNaMe/dIsAsTeRrEcOvErYcOnFiGs/dIsAsTeRrEcOvErYcOnFiGnAmE",
 			Expected: &DisasterRecoveryConfigId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
 				NamespaceName:              "nAmEsPaCeNaMe",
-				DisasterRecoveryConfigName: "aLiAs",
+				DisasterRecoveryConfigName: "dIsAsTeRrEcOvErYcOnFiGnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeNaMe/dIsAsTeRrEcOvErYcOnFiGs/aLiAs/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeNaMe/dIsAsTeRrEcOvErYcOnFiGs/dIsAsTeRrEcOvErYcOnFiGnAmE/extra",
 			Error: true,
 		},
 	}

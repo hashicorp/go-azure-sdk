@@ -13,7 +13,7 @@ type CustomApiPropertiesDefinition struct {
 	Description          *string                         `json:"description,omitempty"`
 	DisplayName          *string                         `json:"displayName,omitempty"`
 	IconUri              *string                         `json:"iconUri,omitempty"`
-	RuntimeUrls          *[]string                       `json:"runtimeUrls,omitempty"`
+	RuntimeURLs          *[]string                       `json:"runtimeUrls,omitempty"`
 	Swagger              *interface{}                    `json:"swagger,omitempty"`
 	WsdlDefinition       *WsdlDefinition                 `json:"wsdlDefinition,omitempty"`
 }

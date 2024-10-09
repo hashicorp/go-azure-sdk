@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := hypervrunasaccounts.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName")
+id := hypervrunasaccounts.NewHyperVSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteName")
 
 // alternatively `client.GetAllRunAsAccountsInSite(ctx, id)` can be used to do batched pagination
 items, err := client.GetAllRunAsAccountsInSiteComplete(ctx, id)

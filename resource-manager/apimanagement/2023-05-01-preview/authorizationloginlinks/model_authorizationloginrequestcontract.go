@@ -4,5 +4,5 @@ package authorizationloginlinks
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AuthorizationLoginRequestContract struct {
-	PostLoginRedirectUrl *string `json:"postLoginRedirectUrl,omitempty"`
+	PostLoginRedirectURL *string `json:"postLoginRedirectUrl,omitempty"`
 }

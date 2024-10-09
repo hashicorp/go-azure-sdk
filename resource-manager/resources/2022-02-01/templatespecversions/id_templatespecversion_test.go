@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TemplateSpecVersionId{}
 
 func TestNewTemplateSpecVersionID(t *testing.T) {
-	id := NewTemplateSpecVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "templateSpecName", "templateSpecVersion")
+	id := NewTemplateSpecVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "templateSpecName", "versionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewTemplateSpecVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'TemplateSpecName'", id.TemplateSpecName, "templateSpecName")
 	}
 
-	if id.VersionName != "templateSpecVersion" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "templateSpecVersion")
+	if id.VersionName != "versionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionName")
 	}
 }
 
 func TestFormatTemplateSpecVersionID(t *testing.T) {
-	actual := NewTemplateSpecVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "templateSpecName", "templateSpecVersion").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion"
+	actual := NewTemplateSpecVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "templateSpecName", "versionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/versionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseTemplateSpecVersionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/versionName",
 			Expected: &TemplateSpecVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				TemplateSpecName:  "templateSpecName",
-				VersionName:       "templateSpecVersion",
+				VersionName:       "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/versionName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseTemplateSpecVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/versionName",
 			Expected: &TemplateSpecVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				TemplateSpecName:  "templateSpecName",
-				VersionName:       "templateSpecVersion",
+				VersionName:       "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/templateSpecVersion/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/templateSpecs/templateSpecName/versions/versionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCnAmE/vErSiOnS/tEmPlAtEsPeCvErSiOn",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCnAmE/vErSiOnS/vErSiOnNaMe",
 			Expected: &TemplateSpecVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				TemplateSpecName:  "tEmPlAtEsPeCnAmE",
-				VersionName:       "tEmPlAtEsPeCvErSiOn",
+				VersionName:       "vErSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCnAmE/vErSiOnS/tEmPlAtEsPeCvErSiOn/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/tEmPlAtEsPeCs/tEmPlAtEsPeCnAmE/vErSiOnS/vErSiOnNaMe/extra",
 			Error: true,
 		},
 	}

@@ -11,7 +11,7 @@ type ThreatIntelligenceIndicatorProperties struct {
 	Defanged                   *bool                                     `json:"defanged,omitempty"`
 	Description                *string                                   `json:"description,omitempty"`
 	DisplayName                *string                                   `json:"displayName,omitempty"`
-	Extensions                 *interface{}                              `json:"extensions,omitempty"`
+	Extensions                 *map[string]interface{}                   `json:"extensions,omitempty"`
 	ExternalId                 *string                                   `json:"externalId,omitempty"`
 	ExternalLastUpdatedTimeUtc *string                                   `json:"externalLastUpdatedTimeUtc,omitempty"`
 	ExternalReferences         *[]ThreatIntelligenceExternalReference    `json:"externalReferences,omitempty"`

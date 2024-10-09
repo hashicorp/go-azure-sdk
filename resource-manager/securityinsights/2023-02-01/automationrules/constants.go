@@ -337,7 +337,7 @@ const (
 	AutomationRulePropertyConditionSupportedPropertyProcessId                      AutomationRulePropertyConditionSupportedProperty = "ProcessId"
 	AutomationRulePropertyConditionSupportedPropertyRegistryKey                    AutomationRulePropertyConditionSupportedProperty = "RegistryKey"
 	AutomationRulePropertyConditionSupportedPropertyRegistryValueData              AutomationRulePropertyConditionSupportedProperty = "RegistryValueData"
-	AutomationRulePropertyConditionSupportedPropertyUrl                            AutomationRulePropertyConditionSupportedProperty = "Url"
+	AutomationRulePropertyConditionSupportedPropertyURL                            AutomationRulePropertyConditionSupportedProperty = "Url"
 )
 
 func PossibleValuesForAutomationRulePropertyConditionSupportedProperty() []string {
@@ -397,7 +397,7 @@ func PossibleValuesForAutomationRulePropertyConditionSupportedProperty() []strin
 		string(AutomationRulePropertyConditionSupportedPropertyProcessId),
 		string(AutomationRulePropertyConditionSupportedPropertyRegistryKey),
 		string(AutomationRulePropertyConditionSupportedPropertyRegistryValueData),
-		string(AutomationRulePropertyConditionSupportedPropertyUrl),
+		string(AutomationRulePropertyConditionSupportedPropertyURL),
 	}
 }
 
@@ -471,7 +471,7 @@ func parseAutomationRulePropertyConditionSupportedProperty(input string) (*Autom
 		"processid":                      AutomationRulePropertyConditionSupportedPropertyProcessId,
 		"registrykey":                    AutomationRulePropertyConditionSupportedPropertyRegistryKey,
 		"registryvaluedata":              AutomationRulePropertyConditionSupportedPropertyRegistryValueData,
-		"url":                            AutomationRulePropertyConditionSupportedPropertyUrl,
+		"url":                            AutomationRulePropertyConditionSupportedPropertyURL,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

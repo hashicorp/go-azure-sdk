@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := provideroperationsmetadata.NewProviderOperationID("resourceProviderNamespace")
+id := provideroperationsmetadata.NewProviderOperationID("providerOperationName")
 
 read, err := client.Get(ctx, id, provideroperationsmetadata.DefaultGetOperationOptions())
 if err != nil {

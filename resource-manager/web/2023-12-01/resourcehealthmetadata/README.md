@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourcehealthmetadata.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot")
+id := resourcehealthmetadata.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName")
 
 read, err := client.GetBySiteSlot(ctx, id)
 if err != nil {
@@ -108,7 +108,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourcehealthmetadata.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot")
+id := resourcehealthmetadata.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName")
 
 // alternatively `client.ListBySiteSlot(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySiteSlotComplete(ctx, id)

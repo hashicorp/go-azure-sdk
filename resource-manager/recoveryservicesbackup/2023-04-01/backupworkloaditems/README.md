@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := backupworkloaditems.NewProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "fabricName", "containerName")
+id := backupworkloaditems.NewProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupFabricName", "protectionContainerName")
 
 // alternatively `client.List(ctx, id, backupworkloaditems.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, backupworkloaditems.DefaultListOperationOptions())

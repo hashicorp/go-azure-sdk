@@ -115,7 +115,7 @@ func (id LongTermRetentionManagedInstanceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
 		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticLongTermRetentionManagedInstances", "longTermRetentionManagedInstances", "longTermRetentionManagedInstances"),
-		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "managedInstanceName"),
+		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "longTermRetentionManagedInstanceName"),
 	}
 }
 

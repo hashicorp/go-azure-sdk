@@ -123,7 +123,7 @@ func (id RoutingConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticNetworkManagers", "networkManagers", "networkManagers"),
 		resourceids.UserSpecifiedSegment("networkManagerName", "networkManagerName"),
 		resourceids.StaticSegment("staticRoutingConfigurations", "routingConfigurations", "routingConfigurations"),
-		resourceids.UserSpecifiedSegment("routingConfigurationName", "configurationName"),
+		resourceids.UserSpecifiedSegment("routingConfigurationName", "routingConfigurationName"),
 	}
 }
 

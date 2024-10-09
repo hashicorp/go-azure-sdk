@@ -129,7 +129,7 @@ func (id DeploymentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticBatchEndpoints", "batchEndpoints", "batchEndpoints"),
-		resourceids.UserSpecifiedSegment("batchEndpointName", "endpointName"),
+		resourceids.UserSpecifiedSegment("batchEndpointName", "batchEndpointName"),
 		resourceids.StaticSegment("staticDeployments", "deployments", "deployments"),
 		resourceids.UserSpecifiedSegment("deploymentName", "deploymentName"),
 	}

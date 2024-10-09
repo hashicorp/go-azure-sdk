@@ -113,9 +113,9 @@ func (id ManagedUnsupportedVMSizeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceFabric", "Microsoft.ServiceFabric", "Microsoft.ServiceFabric"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "location"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticManagedUnsupportedVMSizes", "managedUnsupportedVMSizes", "managedUnsupportedVMSizes"),
-		resourceids.UserSpecifiedSegment("managedUnsupportedVMSizeName", "vmSize"),
+		resourceids.UserSpecifiedSegment("managedUnsupportedVMSizeName", "managedUnsupportedVMSizeName"),
 	}
 }
 

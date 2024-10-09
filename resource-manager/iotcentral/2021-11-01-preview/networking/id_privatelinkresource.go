@@ -121,7 +121,7 @@ func (id PrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftIoTCentral", "Microsoft.IoTCentral", "Microsoft.IoTCentral"),
 		resourceids.StaticSegment("staticIotApps", "iotApps", "iotApps"),
-		resourceids.UserSpecifiedSegment("iotAppName", "resourceName"),
+		resourceids.UserSpecifiedSegment("iotAppName", "iotAppName"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
 		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 	}

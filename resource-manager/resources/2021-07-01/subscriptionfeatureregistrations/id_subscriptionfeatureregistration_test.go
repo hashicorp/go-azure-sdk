@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &SubscriptionFeatureRegistrationId{}
 
 func TestNewSubscriptionFeatureRegistrationID(t *testing.T) {
-	id := NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "providerNamespace", "featureName")
+	id := NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderName", "subscriptionFeatureRegistrationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.FeatureProviderName != "providerNamespace" {
-		t.Fatalf("Expected %q but got %q for Segment 'FeatureProviderName'", id.FeatureProviderName, "providerNamespace")
+	if id.FeatureProviderName != "featureProviderName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FeatureProviderName'", id.FeatureProviderName, "featureProviderName")
 	}
 
-	if id.SubscriptionFeatureRegistrationName != "featureName" {
-		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionFeatureRegistrationName'", id.SubscriptionFeatureRegistrationName, "featureName")
+	if id.SubscriptionFeatureRegistrationName != "subscriptionFeatureRegistrationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionFeatureRegistrationName'", id.SubscriptionFeatureRegistrationName, "subscriptionFeatureRegistrationName")
 	}
 }
 
 func TestFormatSubscriptionFeatureRegistrationID(t *testing.T) {
-	actual := NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "providerNamespace", "featureName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/providerNamespace/subscriptionFeatureRegistrations/featureName"
+	actual := NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderName", "subscriptionFeatureRegistrationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/featureProviderName/subscriptionFeatureRegistrations/subscriptionFeatureRegistrationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseSubscriptionFeatureRegistrationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/providerNamespace",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/featureProviderName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/providerNamespace/subscriptionFeatureRegistrations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/featureProviderName/subscriptionFeatureRegistrations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/providerNamespace/subscriptionFeatureRegistrations/featureName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/featureProviderName/subscriptionFeatureRegistrations/subscriptionFeatureRegistrationName",
 			Expected: &SubscriptionFeatureRegistrationId{
 				SubscriptionId:                      "12345678-1234-9876-4563-123456789012",
-				FeatureProviderName:                 "providerNamespace",
-				SubscriptionFeatureRegistrationName: "featureName",
+				FeatureProviderName:                 "featureProviderName",
+				SubscriptionFeatureRegistrationName: "subscriptionFeatureRegistrationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/providerNamespace/subscriptionFeatureRegistrations/featureName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/featureProviderName/subscriptionFeatureRegistrations/subscriptionFeatureRegistrationName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseSubscriptionFeatureRegistrationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/providerNamespace",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/featureProviderName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/fEaTuRePrOvIdErS/pRoViDeRnAmEsPaCe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/fEaTuRePrOvIdErS/fEaTuRePrOvIdErNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/providerNamespace/subscriptionFeatureRegistrations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/featureProviderName/subscriptionFeatureRegistrations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/fEaTuRePrOvIdErS/pRoViDeRnAmEsPaCe/sUbScRiPtIoNfEaTuReReGiStRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/fEaTuRePrOvIdErS/fEaTuRePrOvIdErNaMe/sUbScRiPtIoNfEaTuReReGiStRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/providerNamespace/subscriptionFeatureRegistrations/featureName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/featureProviderName/subscriptionFeatureRegistrations/subscriptionFeatureRegistrationName",
 			Expected: &SubscriptionFeatureRegistrationId{
 				SubscriptionId:                      "12345678-1234-9876-4563-123456789012",
-				FeatureProviderName:                 "providerNamespace",
-				SubscriptionFeatureRegistrationName: "featureName",
+				FeatureProviderName:                 "featureProviderName",
+				SubscriptionFeatureRegistrationName: "subscriptionFeatureRegistrationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/providerNamespace/subscriptionFeatureRegistrations/featureName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/featureProviders/featureProviderName/subscriptionFeatureRegistrations/subscriptionFeatureRegistrationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/fEaTuRePrOvIdErS/pRoViDeRnAmEsPaCe/sUbScRiPtIoNfEaTuReReGiStRaTiOnS/fEaTuReNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/fEaTuRePrOvIdErS/fEaTuRePrOvIdErNaMe/sUbScRiPtIoNfEaTuReReGiStRaTiOnS/sUbScRiPtIoNfEaTuReReGiStRaTiOnNaMe",
 			Expected: &SubscriptionFeatureRegistrationId{
 				SubscriptionId:                      "12345678-1234-9876-4563-123456789012",
-				FeatureProviderName:                 "pRoViDeRnAmEsPaCe",
-				SubscriptionFeatureRegistrationName: "fEaTuReNaMe",
+				FeatureProviderName:                 "fEaTuRePrOvIdErNaMe",
+				SubscriptionFeatureRegistrationName: "sUbScRiPtIoNfEaTuReReGiStRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/fEaTuRePrOvIdErS/pRoViDeRnAmEsPaCe/sUbScRiPtIoNfEaTuReReGiStRaTiOnS/fEaTuReNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/fEaTuRePrOvIdErS/fEaTuRePrOvIdErNaMe/sUbScRiPtIoNfEaTuReReGiStRaTiOnS/sUbScRiPtIoNfEaTuReReGiStRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

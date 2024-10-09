@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := feature.NewFeatureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "featuresetName", "featuresetVersion", "featureName")
+id := feature.NewFeatureID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "featureSetName", "versionName", "featureName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := feature.NewFeatureSetVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := feature.NewFeatureSetVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "featureSetName", "versionName")
 
 // alternatively `client.List(ctx, id, feature.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, feature.DefaultListOperationOptions())

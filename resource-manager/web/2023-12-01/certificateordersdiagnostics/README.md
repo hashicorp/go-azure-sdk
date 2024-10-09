@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := certificateordersdiagnostics.NewDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "certificateOrderName", "detectorName")
+id := certificateordersdiagnostics.NewCertificateOrderDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "certificateOrderName", "detectorName")
 
 read, err := client.GetAppServiceCertificateOrderDetectorResponse(ctx, id, certificateordersdiagnostics.DefaultGetAppServiceCertificateOrderDetectorResponseOperationOptions())
 if err != nil {

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := alertruleincidents.NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName", "incidentName")
+id := alertruleincidents.NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertRuleName", "incidentName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := alertruleincidents.NewAlertRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName")
+id := alertruleincidents.NewAlertRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertRuleName")
 
 read, err := client.ListByAlertRule(ctx, id)
 if err != nil {

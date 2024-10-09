@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptionsaliases.NewBillingSubscriptionAliasID("billingAccountName", "aliasName")
+id := billingsubscriptionsaliases.NewBillingSubscriptionAliasID("billingAccountName", "billingSubscriptionAliasName")
 
 payload := billingsubscriptionsaliases.BillingSubscriptionAlias{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := billingsubscriptionsaliases.NewBillingSubscriptionAliasID("billingAccountName", "aliasName")
+id := billingsubscriptionsaliases.NewBillingSubscriptionAliasID("billingAccountName", "billingSubscriptionAliasName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

@@ -6,7 +6,7 @@ package filesystems
 type FileSystemResourceProperties struct {
 	AdminPassword      string             `json:"adminPassword"`
 	AvailabilityZone   *string            `json:"availabilityZone,omitempty"`
-	ClusterLoginUrl    *string            `json:"clusterLoginUrl,omitempty"`
+	ClusterLoginURL    *string            `json:"clusterLoginUrl,omitempty"`
 	DelegatedSubnetId  string             `json:"delegatedSubnetId"`
 	InitialCapacity    int64              `json:"initialCapacity"`
 	MarketplaceDetails MarketplaceDetails `json:"marketplaceDetails"`

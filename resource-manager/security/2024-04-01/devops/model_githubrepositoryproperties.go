@@ -18,7 +18,7 @@ type GitHubRepositoryProperties struct {
 	RepoFullName                    *string                  `json:"repoFullName,omitempty"`
 	RepoId                          *string                  `json:"repoId,omitempty"`
 	RepoName                        *string                  `json:"repoName,omitempty"`
-	RepoUrl                         *string                  `json:"repoUrl,omitempty"`
+	RepoURL                         *string                  `json:"repoUrl,omitempty"`
 }
 
 func (o *GitHubRepositoryProperties) GetProvisioningStatusUpdateTimeUtcAsTime() (*time.Time, error) {

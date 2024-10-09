@@ -5,8 +5,8 @@ package sourcecontrols
 
 type Repository struct {
 	Branch            *string           `json:"branch,omitempty"`
-	DeploymentLogsUrl *string           `json:"deploymentLogsUrl,omitempty"`
-	DisplayUrl        *string           `json:"displayUrl,omitempty"`
+	DeploymentLogsURL *string           `json:"deploymentLogsUrl,omitempty"`
+	DisplayURL        *string           `json:"displayUrl,omitempty"`
 	PathMapping       *[]ContentPathMap `json:"pathMapping,omitempty"`
 	Url               *string           `json:"url,omitempty"`
 }

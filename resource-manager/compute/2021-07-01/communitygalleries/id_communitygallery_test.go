@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &CommunityGalleryId{}
 
 func TestNewCommunityGalleryID(t *testing.T) {
-	id := NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "location", "publicGalleryName")
+	id := NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "locationName", "communityGalleryName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "location" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.CommunityGalleryName != "publicGalleryName" {
-		t.Fatalf("Expected %q but got %q for Segment 'CommunityGalleryName'", id.CommunityGalleryName, "publicGalleryName")
+	if id.CommunityGalleryName != "communityGalleryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CommunityGalleryName'", id.CommunityGalleryName, "communityGalleryName")
 	}
 }
 
 func TestFormatCommunityGalleryID(t *testing.T) {
-	actual := NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "location", "publicGalleryName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/communityGalleries/publicGalleryName"
+	actual := NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "locationName", "communityGalleryName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/communityGalleries/communityGalleryName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseCommunityGalleryID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/communityGalleries",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/communityGalleries",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/communityGalleries/publicGalleryName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/communityGalleries/communityGalleryName",
 			Expected: &CommunityGalleryId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				LocationName:         "location",
-				CommunityGalleryName: "publicGalleryName",
+				LocationName:         "locationName",
+				CommunityGalleryName: "communityGalleryName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/communityGalleries/publicGalleryName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/communityGalleries/communityGalleryName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseCommunityGalleryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/communityGalleries",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/communityGalleries",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/cOmMuNiTyGaLlErIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/cOmMuNiTyGaLlErIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/communityGalleries/publicGalleryName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/communityGalleries/communityGalleryName",
 			Expected: &CommunityGalleryId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				LocationName:         "location",
-				CommunityGalleryName: "publicGalleryName",
+				LocationName:         "locationName",
+				CommunityGalleryName: "communityGalleryName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/communityGalleries/publicGalleryName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/communityGalleries/communityGalleryName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/cOmMuNiTyGaLlErIeS/pUbLiCgAlLeRyNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/cOmMuNiTyGaLlErIeS/cOmMuNiTyGaLlErYnAmE",
 			Expected: &CommunityGalleryId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				LocationName:         "lOcAtIoN",
-				CommunityGalleryName: "pUbLiCgAlLeRyNaMe",
+				LocationName:         "lOcAtIoNnAmE",
+				CommunityGalleryName: "cOmMuNiTyGaLlErYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/cOmMuNiTyGaLlErIeS/pUbLiCgAlLeRyNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/cOmMuNiTyGaLlErIeS/cOmMuNiTyGaLlErYnAmE/extra",
 			Error: true,
 		},
 	}
