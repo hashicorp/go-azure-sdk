@@ -138,9 +138,6 @@ type managedIdentityConfig struct {
 // clientId and objectId can be left blank when a single managed identity is available
 func newManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint string) (*managedIdentityConfig, error) {
 	endpoint := msiDefaultEndpoint
-	if customManagedIdentityEndpoint != "" {
-		endpoint = customManagedIdentityEndpoint
-	}
 
 	// If MSI_ENDPOINT and MSI_SECRET are present then we are running in Azure APP Service like environment.
 	// In this case, we need to use the MSI_ENDPOINT and newer version of API.
@@ -148,6 +145,10 @@ func newManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint 
 	if os.Getenv("MSI_ENDPOINT") != "" && os.Getenv("MSI_SECRET") != "" {
 		endpoint = os.Getenv("MSI_ENDPOINT")
 		apiVersion = "2019-08-01"
+	}
+
+	if customManagedIdentityEndpoint != "" {
+		endpoint = customManagedIdentityEndpoint
 	}
 
 	return &managedIdentityConfig{
