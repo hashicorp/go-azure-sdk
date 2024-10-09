@@ -5,7 +5,7 @@ package invoice
 
 type InvoiceDocument struct {
 	DocumentNumbers *[]string            `json:"documentNumbers,omitempty"`
-	ExternalUrl     *string              `json:"externalUrl,omitempty"`
+	ExternalURL     *string              `json:"externalUrl,omitempty"`
 	Kind            *InvoiceDocumentType `json:"kind,omitempty"`
 	Name            *string              `json:"name,omitempty"`
 	Source          *DocumentSource      `json:"source,omitempty"`

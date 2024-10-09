@@ -131,7 +131,7 @@ func (id VersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticApplicationTypes", "applicationTypes", "applicationTypes"),
 		resourceids.UserSpecifiedSegment("applicationTypeName", "applicationTypeName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "version"),
+		resourceids.UserSpecifiedSegment("versionName", "versionName"),
 	}
 }
 

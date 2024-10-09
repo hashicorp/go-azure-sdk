@@ -182,25 +182,25 @@ func UnmarshalDeliveryRuleConditionImplementation(input []byte) (DeliveryRuleCon
 	}
 
 	if strings.EqualFold(value, "UrlFileExtension") {
-		var out DeliveryRuleUrlFileExtensionCondition
+		var out DeliveryRuleURLFileExtensionCondition
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into DeliveryRuleUrlFileExtensionCondition: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into DeliveryRuleURLFileExtensionCondition: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "UrlFileName") {
-		var out DeliveryRuleUrlFileNameCondition
+		var out DeliveryRuleURLFileNameCondition
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into DeliveryRuleUrlFileNameCondition: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into DeliveryRuleURLFileNameCondition: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "UrlPath") {
-		var out DeliveryRuleUrlPathCondition
+		var out DeliveryRuleURLPathCondition
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into DeliveryRuleUrlPathCondition: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into DeliveryRuleURLPathCondition: %+v", err)
 		}
 		return out, nil
 	}

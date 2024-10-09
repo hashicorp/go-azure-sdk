@@ -7,12 +7,12 @@ type VirtualMachineScaleSetExtensionProperties struct {
 	AutoUpgradeMinorVersion       *bool                    `json:"autoUpgradeMinorVersion,omitempty"`
 	EnableAutomaticUpgrade        *bool                    `json:"enableAutomaticUpgrade,omitempty"`
 	ForceUpdateTag                *string                  `json:"forceUpdateTag,omitempty"`
-	ProtectedSettings             *interface{}             `json:"protectedSettings,omitempty"`
+	ProtectedSettings             *map[string]interface{}  `json:"protectedSettings,omitempty"`
 	ProtectedSettingsFromKeyVault *KeyVaultSecretReference `json:"protectedSettingsFromKeyVault,omitempty"`
 	ProvisionAfterExtensions      *[]string                `json:"provisionAfterExtensions,omitempty"`
 	ProvisioningState             *string                  `json:"provisioningState,omitempty"`
 	Publisher                     *string                  `json:"publisher,omitempty"`
-	Settings                      *interface{}             `json:"settings,omitempty"`
+	Settings                      *map[string]interface{}  `json:"settings,omitempty"`
 	SuppressFailures              *bool                    `json:"suppressFailures,omitempty"`
 	Type                          *string                  `json:"type,omitempty"`
 	TypeHandlerVersion            *string                  `json:"typeHandlerVersion,omitempty"`

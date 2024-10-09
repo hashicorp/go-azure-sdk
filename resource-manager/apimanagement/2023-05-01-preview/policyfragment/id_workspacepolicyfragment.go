@@ -131,7 +131,7 @@ func (id WorkspacePolicyFragmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceId", "workspaceId"),
 		resourceids.StaticSegment("staticPolicyFragments", "policyFragments", "policyFragments"),
-		resourceids.UserSpecifiedSegment("policyFragmentName", "id"),
+		resourceids.UserSpecifiedSegment("policyFragmentName", "policyFragmentName"),
 	}
 }
 

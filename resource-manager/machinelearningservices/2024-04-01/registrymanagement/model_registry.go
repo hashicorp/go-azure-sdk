@@ -4,7 +4,7 @@ package registrymanagement
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Registry struct {
-	DiscoveryUrl                       *string                              `json:"discoveryUrl,omitempty"`
+	DiscoveryURL                       *string                              `json:"discoveryUrl,omitempty"`
 	IntellectualPropertyPublisher      *string                              `json:"intellectualPropertyPublisher,omitempty"`
 	ManagedResourceGroup               *ArmResourceId                       `json:"managedResourceGroup,omitempty"`
 	MlFlowRegistryUri                  *string                              `json:"mlFlowRegistryUri,omitempty"`

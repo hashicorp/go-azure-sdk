@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &BackupJobId{}
 
 func TestNewBackupJobID(t *testing.T) {
-	id := NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "jobName")
+	id := NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupJobName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewBackupJobID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultName")
 	}
 
-	if id.BackupJobName != "jobName" {
-		t.Fatalf("Expected %q but got %q for Segment 'BackupJobName'", id.BackupJobName, "jobName")
+	if id.BackupJobName != "backupJobName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BackupJobName'", id.BackupJobName, "backupJobName")
 	}
 }
 
 func TestFormatBackupJobID(t *testing.T) {
-	actual := NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "jobName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/jobName"
+	actual := NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupJobName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/backupJobName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseBackupJobID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/jobName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/backupJobName",
 			Expected: &BackupJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultName",
-				BackupJobName:     "jobName",
+				BackupJobName:     "backupJobName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/jobName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/backupJobName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseBackupJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/jobName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/backupJobName",
 			Expected: &BackupJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultName",
-				BackupJobName:     "jobName",
+				BackupJobName:     "backupJobName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/jobName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupJobs/backupJobName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPjObS/jObNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPjObS/bAcKuPjObNaMe",
 			Expected: &BackupJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				VaultName:         "vAuLtNaMe",
-				BackupJobName:     "jObNaMe",
+				BackupJobName:     "bAcKuPjObNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPjObS/jObNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPjObS/bAcKuPjObNaMe/extra",
 			Error: true,
 		},
 	}

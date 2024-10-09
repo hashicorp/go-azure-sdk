@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dppjob.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location")
+id := dppjob.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName")
 
 payload := dppjob.CrossRegionRestoreJobRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dppjob.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location")
+id := dppjob.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName")
 
 payload := dppjob.CrossRegionRestoreJobsRequest{
 	// ...

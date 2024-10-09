@@ -13,8 +13,8 @@ type ApplicationPackageProperties struct {
 	Format             *string       `json:"format,omitempty"`
 	LastActivationTime *string       `json:"lastActivationTime,omitempty"`
 	State              *PackageState `json:"state,omitempty"`
-	StorageUrl         *string       `json:"storageUrl,omitempty"`
-	StorageUrlExpiry   *string       `json:"storageUrlExpiry,omitempty"`
+	StorageURL         *string       `json:"storageUrl,omitempty"`
+	StorageURLExpiry   *string       `json:"storageUrlExpiry,omitempty"`
 }
 
 func (o *ApplicationPackageProperties) GetLastActivationTimeAsTime() (*time.Time, error) {
@@ -29,14 +29,14 @@ func (o *ApplicationPackageProperties) SetLastActivationTimeAsTime(input time.Ti
 	o.LastActivationTime = &formatted
 }
 
-func (o *ApplicationPackageProperties) GetStorageUrlExpiryAsTime() (*time.Time, error) {
-	if o.StorageUrlExpiry == nil {
+func (o *ApplicationPackageProperties) GetStorageURLExpiryAsTime() (*time.Time, error) {
+	if o.StorageURLExpiry == nil {
 		return nil, nil
 	}
-	return dates.ParseAsFormat(o.StorageUrlExpiry, "2006-01-02T15:04:05Z07:00")
+	return dates.ParseAsFormat(o.StorageURLExpiry, "2006-01-02T15:04:05Z07:00")
 }
 
-func (o *ApplicationPackageProperties) SetStorageUrlExpiryAsTime(input time.Time) {
+func (o *ApplicationPackageProperties) SetStorageURLExpiryAsTime(input time.Time) {
 	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.StorageUrlExpiry = &formatted
+	o.StorageURLExpiry = &formatted
 }

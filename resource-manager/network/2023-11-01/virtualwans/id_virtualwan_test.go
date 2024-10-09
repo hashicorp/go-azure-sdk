@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualWANId{}
 
 func TestNewVirtualWANID(t *testing.T) {
-	id := NewVirtualWANID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualWANName")
+	id := NewVirtualWANID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualWanName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVirtualWANID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualWanName != "virtualWANName" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualWanName'", id.VirtualWanName, "virtualWANName")
+	if id.VirtualWanName != "virtualWanName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualWanName'", id.VirtualWanName, "virtualWanName")
 	}
 }
 
 func TestFormatVirtualWANID(t *testing.T) {
-	actual := NewVirtualWANID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualWANName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWANName"
+	actual := NewVirtualWANID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualWanName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWanName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVirtualWANID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWANName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWanName",
 			Expected: &VirtualWANId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VirtualWanName:    "virtualWANName",
+				VirtualWanName:    "virtualWanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWANName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWanName/extra",
 			Error: true,
 		},
 	}
@@ -209,16 +209,16 @@ func TestParseVirtualWANIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWANName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWanName",
 			Expected: &VirtualWANId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VirtualWanName:    "virtualWANName",
+				VirtualWanName:    "virtualWanName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWANName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualWans/virtualWanName/extra",
 			Error: true,
 		},
 		{

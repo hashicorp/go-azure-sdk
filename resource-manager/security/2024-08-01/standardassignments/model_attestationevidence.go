@@ -5,5 +5,5 @@ package standardassignments
 
 type AttestationEvidence struct {
 	Description *string `json:"description,omitempty"`
-	SourceUrl   *string `json:"sourceUrl,omitempty"`
+	SourceURL   *string `json:"sourceUrl,omitempty"`
 }

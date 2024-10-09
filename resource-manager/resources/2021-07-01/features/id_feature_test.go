@@ -12,14 +12,14 @@ import (
 var _ resourceids.ResourceId = &FeatureId{}
 
 func TestNewFeatureID(t *testing.T) {
-	id := NewFeatureID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespace", "featureName")
+	id := NewFeatureID("12345678-1234-9876-4563-123456789012", "providerName", "featureName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ProviderName != "resourceProviderNamespace" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "resourceProviderNamespace")
+	if id.ProviderName != "providerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "providerName")
 	}
 
 	if id.FeatureName != "featureName" {
@@ -28,8 +28,8 @@ func TestNewFeatureID(t *testing.T) {
 }
 
 func TestFormatFeatureID(t *testing.T) {
-	actual := NewFeatureID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespace", "featureName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace/features/featureName"
+	actual := NewFeatureID("12345678-1234-9876-4563-123456789012", "providerName", "featureName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName/features/featureName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseFeatureID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace/features",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName/features",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace/features/featureName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName/features/featureName",
 			Expected: &FeatureId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				ProviderName:   "resourceProviderNamespace",
+				ProviderName:   "providerName",
 				FeatureName:    "featureName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace/features/featureName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName/features/featureName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseFeatureIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/pRoViDeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace/features",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName/features",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe/fEaTuReS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/pRoViDeRnAmE/fEaTuReS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace/features/featureName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName/features/featureName",
 			Expected: &FeatureId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				ProviderName:   "resourceProviderNamespace",
+				ProviderName:   "providerName",
 				FeatureName:    "featureName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace/features/featureName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName/features/featureName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe/fEaTuReS/fEaTuReNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/pRoViDeRnAmE/fEaTuReS/fEaTuReNaMe",
 			Expected: &FeatureId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				ProviderName:   "rEsOuRcEpRoViDeRnAmEsPaCe",
+				ProviderName:   "pRoViDeRnAmE",
 				FeatureName:    "fEaTuReNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe/fEaTuReS/fEaTuReNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/pRoViDeRnAmE/fEaTuReS/fEaTuReNaMe/extra",
 			Error: true,
 		},
 	}

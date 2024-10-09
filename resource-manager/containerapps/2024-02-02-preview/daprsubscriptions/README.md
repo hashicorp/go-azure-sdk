@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := daprsubscriptions.NewDaprSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "name")
+id := daprsubscriptions.NewDaprSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "daprSubscriptionName")
 
 payload := daprsubscriptions.DaprSubscription{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := daprsubscriptions.NewDaprSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "name")
+id := daprsubscriptions.NewDaprSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "daprSubscriptionName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := daprsubscriptions.NewDaprSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "name")
+id := daprsubscriptions.NewDaprSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "daprSubscriptionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := daprsubscriptions.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName")
+id := daprsubscriptions.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NetworkVirtualApplianceConnectionId{}
 
 func TestNewNetworkVirtualApplianceConnectionID(t *testing.T) {
-	id := NewNetworkVirtualApplianceConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "connectionName")
+	id := NewNetworkVirtualApplianceConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "networkVirtualApplianceConnectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewNetworkVirtualApplianceConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NetworkVirtualApplianceName'", id.NetworkVirtualApplianceName, "networkVirtualApplianceName")
 	}
 
-	if id.NetworkVirtualApplianceConnectionName != "connectionName" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkVirtualApplianceConnectionName'", id.NetworkVirtualApplianceConnectionName, "connectionName")
+	if id.NetworkVirtualApplianceConnectionName != "networkVirtualApplianceConnectionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkVirtualApplianceConnectionName'", id.NetworkVirtualApplianceConnectionName, "networkVirtualApplianceConnectionName")
 	}
 }
 
 func TestFormatNetworkVirtualApplianceConnectionID(t *testing.T) {
-	actual := NewNetworkVirtualApplianceConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "connectionName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/connectionName"
+	actual := NewNetworkVirtualApplianceConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "networkVirtualApplianceConnectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/networkVirtualApplianceConnectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseNetworkVirtualApplianceConnectionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/connectionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/networkVirtualApplianceConnectionName",
 			Expected: &NetworkVirtualApplianceConnectionId{
 				SubscriptionId:                        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                     "example-resource-group",
 				NetworkVirtualApplianceName:           "networkVirtualApplianceName",
-				NetworkVirtualApplianceConnectionName: "connectionName",
+				NetworkVirtualApplianceConnectionName: "networkVirtualApplianceConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/connectionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/networkVirtualApplianceConnectionName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseNetworkVirtualApplianceConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/connectionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/networkVirtualApplianceConnectionName",
 			Expected: &NetworkVirtualApplianceConnectionId{
 				SubscriptionId:                        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                     "example-resource-group",
 				NetworkVirtualApplianceName:           "networkVirtualApplianceName",
-				NetworkVirtualApplianceConnectionName: "connectionName",
+				NetworkVirtualApplianceConnectionName: "networkVirtualApplianceConnectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/connectionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/networkVirtualApplianceConnections/networkVirtualApplianceConnectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/nEtWoRkViRtUaLaPpLiAnCeCoNnEcTiOnS/cOnNeCtIoNnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/nEtWoRkViRtUaLaPpLiAnCeCoNnEcTiOnS/nEtWoRkViRtUaLaPpLiAnCeCoNnEcTiOnNaMe",
 			Expected: &NetworkVirtualApplianceConnectionId{
 				SubscriptionId:                        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                     "eXaMpLe-rEsOuRcE-GrOuP",
 				NetworkVirtualApplianceName:           "nEtWoRkViRtUaLaPpLiAnCeNaMe",
-				NetworkVirtualApplianceConnectionName: "cOnNeCtIoNnAmE",
+				NetworkVirtualApplianceConnectionName: "nEtWoRkViRtUaLaPpLiAnCeCoNnEcTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/nEtWoRkViRtUaLaPpLiAnCeCoNnEcTiOnS/cOnNeCtIoNnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/nEtWoRkViRtUaLaPpLiAnCeCoNnEcTiOnS/nEtWoRkViRtUaLaPpLiAnCeCoNnEcTiOnNaMe/extra",
 			Error: true,
 		},
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ProtectionContainerId{}
 
 func TestNewProtectionContainerID(t *testing.T) {
-	id := NewProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "fabricName", "containerName")
+	id := NewProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupFabricName", "protectionContainerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,18 +26,18 @@ func TestNewProtectionContainerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultName")
 	}
 
-	if id.BackupFabricName != "fabricName" {
-		t.Fatalf("Expected %q but got %q for Segment 'BackupFabricName'", id.BackupFabricName, "fabricName")
+	if id.BackupFabricName != "backupFabricName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BackupFabricName'", id.BackupFabricName, "backupFabricName")
 	}
 
-	if id.ProtectionContainerName != "containerName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProtectionContainerName'", id.ProtectionContainerName, "containerName")
+	if id.ProtectionContainerName != "protectionContainerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProtectionContainerName'", id.ProtectionContainerName, "protectionContainerName")
 	}
 }
 
 func TestFormatProtectionContainerID(t *testing.T) {
-	actual := NewProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "fabricName", "containerName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/fabricName/protectionContainers/containerName"
+	actual := NewProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupFabricName", "protectionContainerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/backupFabricName/protectionContainers/protectionContainerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -101,28 +101,28 @@ func TestParseProtectionContainerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/fabricName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/backupFabricName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/fabricName/protectionContainers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/backupFabricName/protectionContainers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/fabricName/protectionContainers/containerName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/backupFabricName/protectionContainers/protectionContainerName",
 			Expected: &ProtectionContainerId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				VaultName:               "vaultName",
-				BackupFabricName:        "fabricName",
-				ProtectionContainerName: "containerName",
+				BackupFabricName:        "backupFabricName",
+				ProtectionContainerName: "protectionContainerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/fabricName/protectionContainers/containerName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/backupFabricName/protectionContainers/protectionContainerName/extra",
 			Error: true,
 		},
 	}
@@ -267,54 +267,54 @@ func TestParseProtectionContainerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/fabricName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/backupFabricName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPfAbRiCs/fAbRiCnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPfAbRiCs/bAcKuPfAbRiCnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/fabricName/protectionContainers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/backupFabricName/protectionContainers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPfAbRiCs/fAbRiCnAmE/pRoTeCtIoNcOnTaInErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPfAbRiCs/bAcKuPfAbRiCnAmE/pRoTeCtIoNcOnTaInErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/fabricName/protectionContainers/containerName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/backupFabricName/protectionContainers/protectionContainerName",
 			Expected: &ProtectionContainerId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				VaultName:               "vaultName",
-				BackupFabricName:        "fabricName",
-				ProtectionContainerName: "containerName",
+				BackupFabricName:        "backupFabricName",
+				ProtectionContainerName: "protectionContainerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/fabricName/protectionContainers/containerName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/backupFabrics/backupFabricName/protectionContainers/protectionContainerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPfAbRiCs/fAbRiCnAmE/pRoTeCtIoNcOnTaInErS/cOnTaInErNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPfAbRiCs/bAcKuPfAbRiCnAmE/pRoTeCtIoNcOnTaInErS/pRoTeCtIoNcOnTaInErNaMe",
 			Expected: &ProtectionContainerId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
 				VaultName:               "vAuLtNaMe",
-				BackupFabricName:        "fAbRiCnAmE",
-				ProtectionContainerName: "cOnTaInErNaMe",
+				BackupFabricName:        "bAcKuPfAbRiCnAmE",
+				ProtectionContainerName: "pRoTeCtIoNcOnTaInErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPfAbRiCs/fAbRiCnAmE/pRoTeCtIoNcOnTaInErS/cOnTaInErNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/bAcKuPfAbRiCs/bAcKuPfAbRiCnAmE/pRoTeCtIoNcOnTaInErS/pRoTeCtIoNcOnTaInErNaMe/extra",
 			Error: true,
 		},
 	}

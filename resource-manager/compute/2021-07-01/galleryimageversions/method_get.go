@@ -47,7 +47,7 @@ func (o GetOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Get ...
-func (c GalleryImageVersionsClient) Get(ctx context.Context, id ImageVersionId, options GetOperationOptions) (result GetOperationResponse, err error) {
+func (c GalleryImageVersionsClient) Get(ctx context.Context, id GalleryImageVersionId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

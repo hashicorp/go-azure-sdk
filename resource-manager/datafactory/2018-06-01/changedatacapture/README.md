@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "adfcdcName")
 
 payload := changedatacapture.ChangeDataCaptureResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "adfcdcName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "adfcdcName")
 
 read, err := client.Get(ctx, id, changedatacapture.DefaultGetOperationOptions())
 if err != nil {
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "adfcdcName")
 
 read, err := client.Start(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "adfcdcName")
 
 read, err := client.Status(ctx, id)
 if err != nil {
@@ -126,7 +126,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
+id := changedatacapture.NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "adfcdcName")
 
 read, err := client.Stop(ctx, id)
 if err != nil {

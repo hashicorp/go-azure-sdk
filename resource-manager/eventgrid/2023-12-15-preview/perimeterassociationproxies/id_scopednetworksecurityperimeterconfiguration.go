@@ -104,7 +104,7 @@ func (id ScopedNetworkSecurityPerimeterConfigurationId) Segments() []resourceids
 	return []resourceids.Segment{
 		resourceids.ScopeSegment("scope", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"),
 		resourceids.StaticSegment("staticNetworkSecurityPerimeterConfigurations", "networkSecurityPerimeterConfigurations", "networkSecurityPerimeterConfigurations"),
-		resourceids.UserSpecifiedSegment("networkSecurityPerimeterConfigurationName", "perimeterGuidassociationName"),
+		resourceids.UserSpecifiedSegment("networkSecurityPerimeterConfigurationName", "networkSecurityPerimeterConfigurationName"),
 	}
 }
 

@@ -121,9 +121,9 @@ func (id ReplicationAlertSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultName"),
 		resourceids.StaticSegment("staticReplicationAlertSettings", "replicationAlertSettings", "replicationAlertSettings"),
-		resourceids.UserSpecifiedSegment("replicationAlertSettingName", "alertSettingName"),
+		resourceids.UserSpecifiedSegment("replicationAlertSettingName", "replicationAlertSettingName"),
 	}
 }
 

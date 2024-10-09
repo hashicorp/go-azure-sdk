@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := routes.NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName", "routeName")
+id := routes.NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName", "routeName")
 
 payload := routes.Route{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := routes.NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName", "routeName")
+id := routes.NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName", "routeName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := routes.NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName", "routeName")
+id := routes.NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName", "routeName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := routes.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName")
+id := routes.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName")
 
 // alternatively `client.ListByEndpoint(ctx, id)` can be used to do batched pagination
 items, err := client.ListByEndpointComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := routes.NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName", "routeName")
+id := routes.NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName", "routeName")
 
 payload := routes.RouteUpdateParameters{
 	// ...

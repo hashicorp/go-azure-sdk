@@ -3,6 +3,7 @@ package backupandexport
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -50,6 +51,14 @@ func UnmarshalBackupStoreDetailsImplementation(input []byte) (BackupStoreDetails
 	var value string
 	if v, ok := temp["objectType"]; ok {
 		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "FullBackupStoreDetails") {
+		var out FullBackupStoreDetails
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FullBackupStoreDetails: %+v", err)
+		}
+		return out, nil
 	}
 
 	var parent BaseBackupStoreDetailsImpl

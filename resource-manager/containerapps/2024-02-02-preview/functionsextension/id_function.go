@@ -133,7 +133,7 @@ func (id FunctionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp2", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticFunctions", "functions", "functions"),
-		resourceids.UserSpecifiedSegment("functionName", "functionAppName"),
+		resourceids.UserSpecifiedSegment("functionName", "functionName"),
 	}
 }
 

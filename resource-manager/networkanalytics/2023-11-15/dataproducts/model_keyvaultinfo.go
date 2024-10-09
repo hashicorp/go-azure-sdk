@@ -4,5 +4,5 @@ package dataproducts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type KeyVaultInfo struct {
-	KeyVaultUrl string `json:"keyVaultUrl"`
+	KeyVaultURL string `json:"keyVaultUrl"`
 }

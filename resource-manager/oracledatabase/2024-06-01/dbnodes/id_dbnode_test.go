@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DbNodeId{}
 
 func TestNewDbNodeID(t *testing.T) {
-	id := NewDbNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudvmclustername", "dbnodeocid")
+	id := NewDbNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudVmClusterName", "dbNodeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDbNodeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CloudVmClusterName != "cloudvmclustername" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudVmClusterName'", id.CloudVmClusterName, "cloudvmclustername")
+	if id.CloudVmClusterName != "cloudVmClusterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudVmClusterName'", id.CloudVmClusterName, "cloudVmClusterName")
 	}
 
-	if id.DbNodeName != "dbnodeocid" {
-		t.Fatalf("Expected %q but got %q for Segment 'DbNodeName'", id.DbNodeName, "dbnodeocid")
+	if id.DbNodeName != "dbNodeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DbNodeName'", id.DbNodeName, "dbNodeName")
 	}
 }
 
 func TestFormatDbNodeID(t *testing.T) {
-	actual := NewDbNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudvmclustername", "dbnodeocid").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/dbNodes/dbnodeocid"
+	actual := NewDbNodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudVmClusterName", "dbNodeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterName/dbNodes/dbNodeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDbNodeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/dbNodes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterName/dbNodes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/dbNodes/dbnodeocid",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterName/dbNodes/dbNodeName",
 			Expected: &DbNodeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				CloudVmClusterName: "cloudvmclustername",
-				DbNodeName:         "dbnodeocid",
+				CloudVmClusterName: "cloudVmClusterName",
+				DbNodeName:         "dbNodeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/dbNodes/dbnodeocid/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterName/dbNodes/dbNodeName/extra",
 			Error: true,
 		},
 	}
@@ -228,7 +228,7 @@ func TestParseDbNodeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterName",
 			Error: true,
 		},
 		{
@@ -238,7 +238,7 @@ func TestParseDbNodeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/dbNodes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterName/dbNodes",
 			Error: true,
 		},
 		{
@@ -248,32 +248,32 @@ func TestParseDbNodeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/dbNodes/dbnodeocid",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterName/dbNodes/dbNodeName",
 			Expected: &DbNodeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				CloudVmClusterName: "cloudvmclustername",
-				DbNodeName:         "dbnodeocid",
+				CloudVmClusterName: "cloudVmClusterName",
+				DbNodeName:         "dbNodeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudvmclustername/dbNodes/dbnodeocid/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Oracle.Database/cloudVmClusters/cloudVmClusterName/dbNodes/dbNodeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRnAmE/dBnOdEs/dBnOdEoCiD",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRnAmE/dBnOdEs/dBnOdEnAmE",
 			Expected: &DbNodeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				CloudVmClusterName: "cLoUdVmClUsTeRnAmE",
-				DbNodeName:         "dBnOdEoCiD",
+				DbNodeName:         "dBnOdEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRnAmE/dBnOdEs/dBnOdEoCiD/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/oRaClE.DaTaBaSe/cLoUdVmClUsTeRs/cLoUdVmClUsTeRnAmE/dBnOdEs/dBnOdEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := servicerunners.NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := servicerunners.NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "serviceRunnerName")
 
 payload := servicerunners.ServiceRunner{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := servicerunners.NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := servicerunners.NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "serviceRunnerName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := servicerunners.NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := servicerunners.NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "serviceRunnerName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

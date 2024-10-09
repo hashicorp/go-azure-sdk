@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HybridConnectionNamespaceRelayId{}
 
 func TestNewHybridConnectionNamespaceRelayID(t *testing.T) {
-	id := NewHybridConnectionNamespaceRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "namespaceName", "relayName")
+	id := NewHybridConnectionNamespaceRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmName", "hybridConnectionNamespaceName", "relayName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,12 +22,12 @@ func TestNewHybridConnectionNamespaceRelayID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerFarmName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerFarmName'", id.ServerFarmName, "name")
+	if id.ServerFarmName != "serverFarmName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerFarmName'", id.ServerFarmName, "serverFarmName")
 	}
 
-	if id.HybridConnectionNamespaceName != "namespaceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'HybridConnectionNamespaceName'", id.HybridConnectionNamespaceName, "namespaceName")
+	if id.HybridConnectionNamespaceName != "hybridConnectionNamespaceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HybridConnectionNamespaceName'", id.HybridConnectionNamespaceName, "hybridConnectionNamespaceName")
 	}
 
 	if id.RelayName != "relayName" {
@@ -36,8 +36,8 @@ func TestNewHybridConnectionNamespaceRelayID(t *testing.T) {
 }
 
 func TestFormatHybridConnectionNamespaceRelayID(t *testing.T) {
-	actual := NewHybridConnectionNamespaceRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "namespaceName", "relayName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces/namespaceName/relays/relayName"
+	actual := NewHybridConnectionNamespaceRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmName", "hybridConnectionNamespaceName", "relayName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces/hybridConnectionNamespaceName/relays/relayName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseHybridConnectionNamespaceRelayID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces/namespaceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces/hybridConnectionNamespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces/namespaceName/relays",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces/hybridConnectionNamespaceName/relays",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces/namespaceName/relays/relayName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces/hybridConnectionNamespaceName/relays/relayName",
 			Expected: &HybridConnectionNamespaceRelayId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ServerFarmName:                "name",
-				HybridConnectionNamespaceName: "namespaceName",
+				ServerFarmName:                "serverFarmName",
+				HybridConnectionNamespaceName: "hybridConnectionNamespaceName",
 				RelayName:                     "relayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces/namespaceName/relays/relayName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces/hybridConnectionNamespaceName/relays/relayName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseHybridConnectionNamespaceRelayIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces/namespaceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces/hybridConnectionNamespaceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS/nAmEsPaCeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS/hYbRiDcOnNeCtIoNnAmEsPaCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces/namespaceName/relays",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces/hybridConnectionNamespaceName/relays",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS/nAmEsPaCeNaMe/rElAyS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS/hYbRiDcOnNeCtIoNnAmEsPaCeNaMe/rElAyS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces/namespaceName/relays/relayName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces/hybridConnectionNamespaceName/relays/relayName",
 			Expected: &HybridConnectionNamespaceRelayId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ServerFarmName:                "name",
-				HybridConnectionNamespaceName: "namespaceName",
+				ServerFarmName:                "serverFarmName",
+				HybridConnectionNamespaceName: "hybridConnectionNamespaceName",
 				RelayName:                     "relayName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/name/hybridConnectionNamespaces/namespaceName/relays/relayName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/serverFarms/serverFarmName/hybridConnectionNamespaces/hybridConnectionNamespaceName/relays/relayName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS/nAmEsPaCeNaMe/rElAyS/rElAyNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS/hYbRiDcOnNeCtIoNnAmEsPaCeNaMe/rElAyS/rElAyNaMe",
 			Expected: &HybridConnectionNamespaceRelayId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerFarmName:                "nAmE",
-				HybridConnectionNamespaceName: "nAmEsPaCeNaMe",
+				ServerFarmName:                "sErVeRfArMnAmE",
+				HybridConnectionNamespaceName: "hYbRiDcOnNeCtIoNnAmEsPaCeNaMe",
 				RelayName:                     "rElAyNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/nAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS/nAmEsPaCeNaMe/rElAyS/rElAyNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sErVeRfArMs/sErVeRfArMnAmE/hYbRiDcOnNeCtIoNnAmEsPaCeS/hYbRiDcOnNeCtIoNnAmEsPaCeNaMe/rElAyS/rElAyNaMe/extra",
 			Error: true,
 		},
 	}

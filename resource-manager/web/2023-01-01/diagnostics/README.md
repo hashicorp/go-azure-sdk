@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticCategory", "analysisName")
+id := diagnostics.NewAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticName", "analysisName")
 
 read, err := client.ExecuteSiteAnalysis(ctx, id, diagnostics.DefaultExecuteSiteAnalysisOperationOptions())
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewDiagnosticAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot", "diagnosticCategory", "analysisName")
+id := diagnostics.NewDiagnosticAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "diagnosticName", "analysisName")
 
 read, err := client.ExecuteSiteAnalysisSlot(ctx, id, diagnostics.DefaultExecuteSiteAnalysisSlotOperationOptions())
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewDiagnosticDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticCategory", "detectorName")
+id := diagnostics.NewDiagnosticDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticName", "detectorName")
 
 read, err := client.ExecuteSiteDetector(ctx, id, diagnostics.DefaultExecuteSiteDetectorOperationOptions())
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSlotDiagnosticDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot", "diagnosticCategory", "detectorName")
+id := diagnostics.NewSlotDiagnosticDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "diagnosticName", "detectorName")
 
 read, err := client.ExecuteSiteDetectorSlot(ctx, id, diagnostics.DefaultExecuteSiteDetectorSlotOperationOptions())
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewHostingEnvironmentDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "detectorName")
+id := diagnostics.NewHostingEnvironmentDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "detectorName")
 
 read, err := client.GetHostingEnvironmentDetectorResponse(ctx, id, diagnostics.DefaultGetHostingEnvironmentDetectorResponseOperationOptions())
 if err != nil {
@@ -105,7 +105,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticCategory", "analysisName")
+id := diagnostics.NewAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticName", "analysisName")
 
 read, err := client.GetSiteAnalysis(ctx, id)
 if err != nil {
@@ -121,7 +121,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewDiagnosticAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot", "diagnosticCategory", "analysisName")
+id := diagnostics.NewDiagnosticAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "diagnosticName", "analysisName")
 
 read, err := client.GetSiteAnalysisSlot(ctx, id)
 if err != nil {
@@ -137,7 +137,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewDiagnosticDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticCategory", "detectorName")
+id := diagnostics.NewDiagnosticDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticName", "detectorName")
 
 read, err := client.GetSiteDetector(ctx, id)
 if err != nil {
@@ -169,7 +169,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSlotDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot", "detectorName")
+id := diagnostics.NewSlotDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "detectorName")
 
 read, err := client.GetSiteDetectorResponseSlot(ctx, id, diagnostics.DefaultGetSiteDetectorResponseSlotOperationOptions())
 if err != nil {
@@ -185,7 +185,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSlotDiagnosticDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot", "diagnosticCategory", "detectorName")
+id := diagnostics.NewSlotDiagnosticDetectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "diagnosticName", "detectorName")
 
 read, err := client.GetSiteDetectorSlot(ctx, id)
 if err != nil {
@@ -201,7 +201,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticCategory")
+id := diagnostics.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticName")
 
 read, err := client.GetSiteDiagnosticCategory(ctx, id)
 if err != nil {
@@ -217,7 +217,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSlotDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot", "diagnosticCategory")
+id := diagnostics.NewSlotDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "diagnosticName")
 
 read, err := client.GetSiteDiagnosticCategorySlot(ctx, id)
 if err != nil {
@@ -250,7 +250,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticCategory")
+id := diagnostics.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticName")
 
 // alternatively `client.ListSiteAnalyses(ctx, id)` can be used to do batched pagination
 items, err := client.ListSiteAnalysesComplete(ctx, id)
@@ -267,7 +267,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSlotDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot", "diagnosticCategory")
+id := diagnostics.NewSlotDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "diagnosticName")
 
 // alternatively `client.ListSiteAnalysesSlot(ctx, id)` can be used to do batched pagination
 items, err := client.ListSiteAnalysesSlotComplete(ctx, id)
@@ -301,7 +301,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot")
+id := diagnostics.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName")
 
 // alternatively `client.ListSiteDetectorResponsesSlot(ctx, id)` can be used to do batched pagination
 items, err := client.ListSiteDetectorResponsesSlotComplete(ctx, id)
@@ -318,7 +318,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticCategory")
+id := diagnostics.NewDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticName")
 
 // alternatively `client.ListSiteDetectors(ctx, id)` can be used to do batched pagination
 items, err := client.ListSiteDetectorsComplete(ctx, id)
@@ -335,7 +335,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSlotDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot", "diagnosticCategory")
+id := diagnostics.NewSlotDiagnosticID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "diagnosticName")
 
 // alternatively `client.ListSiteDetectorsSlot(ctx, id)` can be used to do batched pagination
 items, err := client.ListSiteDetectorsSlotComplete(ctx, id)
@@ -369,7 +369,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slot")
+id := diagnostics.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName")
 
 // alternatively `client.ListSiteDiagnosticCategoriesSlot(ctx, id)` can be used to do batched pagination
 items, err := client.ListSiteDiagnosticCategoriesSlotComplete(ctx, id)

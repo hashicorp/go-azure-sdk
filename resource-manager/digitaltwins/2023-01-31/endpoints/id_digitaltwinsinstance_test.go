@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DigitalTwinsInstanceId{}
 
 func TestNewDigitalTwinsInstanceID(t *testing.T) {
-	id := NewDigitalTwinsInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+	id := NewDigitalTwinsInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "digitalTwinsInstanceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewDigitalTwinsInstanceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DigitalTwinsInstanceName != "resourceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'DigitalTwinsInstanceName'", id.DigitalTwinsInstanceName, "resourceName")
+	if id.DigitalTwinsInstanceName != "digitalTwinsInstanceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DigitalTwinsInstanceName'", id.DigitalTwinsInstanceName, "digitalTwinsInstanceName")
 	}
 }
 
 func TestFormatDigitalTwinsInstanceID(t *testing.T) {
-	actual := NewDigitalTwinsInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName"
+	actual := NewDigitalTwinsInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "digitalTwinsInstanceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseDigitalTwinsInstanceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceName",
 			Expected: &DigitalTwinsInstanceId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DigitalTwinsInstanceName: "resourceName",
+				DigitalTwinsInstanceName: "digitalTwinsInstanceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseDigitalTwinsInstanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceName",
 			Expected: &DigitalTwinsInstanceId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
-				DigitalTwinsInstanceName: "resourceName",
+				DigitalTwinsInstanceName: "digitalTwinsInstanceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEnAmE",
 			Expected: &DigitalTwinsInstanceId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
-				DigitalTwinsInstanceName: "rEsOuRcEnAmE",
+				DigitalTwinsInstanceName: "dIgItAlTwInSiNsTaNcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEnAmE/extra",
 			Error: true,
 		},
 	}

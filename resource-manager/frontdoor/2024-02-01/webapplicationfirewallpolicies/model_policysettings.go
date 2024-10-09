@@ -10,6 +10,6 @@ type PolicySettings struct {
 	JavascriptChallengeExpirationInMinutes *int64                      `json:"javascriptChallengeExpirationInMinutes,omitempty"`
 	LogScrubbing                           *PolicySettingsLogScrubbing `json:"logScrubbing,omitempty"`
 	Mode                                   *PolicyMode                 `json:"mode,omitempty"`
-	RedirectUrl                            *string                     `json:"redirectUrl,omitempty"`
+	RedirectURL                            *string                     `json:"redirectUrl,omitempty"`
 	RequestBodyCheck                       *PolicyRequestBodyCheck     `json:"requestBodyCheck,omitempty"`
 }

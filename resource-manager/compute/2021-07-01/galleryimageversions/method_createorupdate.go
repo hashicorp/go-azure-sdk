@@ -22,7 +22,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c GalleryImageVersionsClient) CreateOrUpdate(ctx context.Context, id ImageVersionId, input GalleryImageVersion) (result CreateOrUpdateOperationResponse, err error) {
+func (c GalleryImageVersionsClient) CreateOrUpdate(ctx context.Context, id GalleryImageVersionId, input GalleryImageVersion) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c GalleryImageVersionsClient) CreateOrUpdate(ctx context.Context, id Image
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c GalleryImageVersionsClient) CreateOrUpdateThenPoll(ctx context.Context, id ImageVersionId, input GalleryImageVersion) error {
+func (c GalleryImageVersionsClient) CreateOrUpdateThenPoll(ctx context.Context, id GalleryImageVersionId, input GalleryImageVersion) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

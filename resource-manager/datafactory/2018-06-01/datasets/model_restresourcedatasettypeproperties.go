@@ -6,7 +6,7 @@ package datasets
 type RestResourceDatasetTypeProperties struct {
 	AdditionalHeaders *map[string]string `json:"additionalHeaders,omitempty"`
 	PaginationRules   *map[string]string `json:"paginationRules,omitempty"`
-	RelativeUrl       *string            `json:"relativeUrl,omitempty"`
+	RelativeURL       *string            `json:"relativeUrl,omitempty"`
 	RequestBody       *string            `json:"requestBody,omitempty"`
 	RequestMethod     *string            `json:"requestMethod,omitempty"`
 }

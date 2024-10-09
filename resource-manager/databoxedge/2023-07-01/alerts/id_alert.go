@@ -121,9 +121,9 @@ func (id AlertId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataBoxEdge", "Microsoft.DataBoxEdge", "Microsoft.DataBoxEdge"),
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
-		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
+		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "dataBoxEdgeDeviceName"),
 		resourceids.StaticSegment("staticAlerts", "alerts", "alerts"),
-		resourceids.UserSpecifiedSegment("alertName", "name"),
+		resourceids.UserSpecifiedSegment("alertName", "alertName"),
 	}
 }
 

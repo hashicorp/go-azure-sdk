@@ -121,9 +121,9 @@ func (id ShareId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataBoxEdge", "Microsoft.DataBoxEdge", "Microsoft.DataBoxEdge"),
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
-		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
+		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "dataBoxEdgeDeviceName"),
 		resourceids.StaticSegment("staticShares", "shares", "shares"),
-		resourceids.UserSpecifiedSegment("shareName", "name"),
+		resourceids.UserSpecifiedSegment("shareName", "shareName"),
 	}
 }
 

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName")
+id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName")
 
 payload := wcfrelays.WcfRelay{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName", "authorizationRuleName")
+id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName", "authorizationRuleName")
 
 payload := wcfrelays.AuthorizationRule{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName")
+id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName", "authorizationRuleName")
+id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName", "authorizationRuleName")
 
 read, err := client.DeleteAuthorizationRule(ctx, id)
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName")
+id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName", "authorizationRuleName")
+id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName", "authorizationRuleName")
 
 read, err := client.GetAuthorizationRule(ctx, id)
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName")
+id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName")
 
 // alternatively `client.ListAuthorizationRules(ctx, id)` can be used to do batched pagination
 items, err := client.ListAuthorizationRulesComplete(ctx, id)
@@ -164,7 +164,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName", "authorizationRuleName")
+id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName", "authorizationRuleName")
 
 read, err := client.ListKeys(ctx, id)
 if err != nil {
@@ -180,7 +180,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "relayName", "authorizationRuleName")
+id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName", "authorizationRuleName")
 
 payload := wcfrelays.RegenerateAccessKeyParameters{
 	// ...

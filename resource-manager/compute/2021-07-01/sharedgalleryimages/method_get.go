@@ -18,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c SharedGalleryImagesClient) Get(ctx context.Context, id ImageId) (result GetOperationResponse, err error) {
+func (c SharedGalleryImagesClient) Get(ctx context.Context, id SharedGalleryImageId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

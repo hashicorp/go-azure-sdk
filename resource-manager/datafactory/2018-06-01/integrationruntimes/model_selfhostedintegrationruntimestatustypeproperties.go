@@ -22,7 +22,7 @@ type SelfHostedIntegrationRuntimeStatusTypeProperties struct {
 	PushedVersion                            *string                                          `json:"pushedVersion,omitempty"`
 	ScheduledUpdateDate                      *string                                          `json:"scheduledUpdateDate,omitempty"`
 	SelfContainedInteractiveAuthoringEnabled *bool                                            `json:"selfContainedInteractiveAuthoringEnabled,omitempty"`
-	ServiceUrls                              *[]string                                        `json:"serviceUrls,omitempty"`
+	ServiceURLs                              *[]string                                        `json:"serviceUrls,omitempty"`
 	TaskQueueId                              *string                                          `json:"taskQueueId,omitempty"`
 	UpdateDelayOffset                        *string                                          `json:"updateDelayOffset,omitempty"`
 	Version                                  *string                                          `json:"version,omitempty"`

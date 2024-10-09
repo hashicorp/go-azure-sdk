@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tags.NewTagValueID("12345678-1234-9876-4563-123456789012", "tagName", "tagValue")
+id := tags.NewTagValueID("12345678-1234-9876-4563-123456789012", "tagName", "tagValueName")
 
 read, err := client.CreateOrUpdateValue(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tags.NewTagValueID("12345678-1234-9876-4563-123456789012", "tagName", "tagValue")
+id := tags.NewTagValueID("12345678-1234-9876-4563-123456789012", "tagName", "tagValueName")
 
 read, err := client.DeleteValue(ctx, id)
 if err != nil {

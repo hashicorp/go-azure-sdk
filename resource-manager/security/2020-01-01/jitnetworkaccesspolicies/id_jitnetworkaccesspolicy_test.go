@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &JitNetworkAccessPolicyId{}
 
 func TestNewJitNetworkAccessPolicyID(t *testing.T) {
-	id := NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName")
+	id := NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "jitNetworkAccessPolicyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewJitNetworkAccessPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LocationName != "ascLocation" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "ascLocation")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
 	if id.JitNetworkAccessPolicyName != "jitNetworkAccessPolicyName" {
@@ -32,8 +32,8 @@ func TestNewJitNetworkAccessPolicyID(t *testing.T) {
 }
 
 func TestFormatJitNetworkAccessPolicyID(t *testing.T) {
-	actual := NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "jitNetworkAccessPolicyName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/jitNetworkAccessPolicies/jitNetworkAccessPolicyName"
+	actual := NewJitNetworkAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "jitNetworkAccessPolicyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationName/jitNetworkAccessPolicies/jitNetworkAccessPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseJitNetworkAccessPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/jitNetworkAccessPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationName/jitNetworkAccessPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/jitNetworkAccessPolicies/jitNetworkAccessPolicyName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationName/jitNetworkAccessPolicies/jitNetworkAccessPolicyName",
 			Expected: &JitNetworkAccessPolicyId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				LocationName:               "ascLocation",
+				LocationName:               "locationName",
 				JitNetworkAccessPolicyName: "jitNetworkAccessPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/jitNetworkAccessPolicies/jitNetworkAccessPolicyName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationName/jitNetworkAccessPolicies/jitNetworkAccessPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseJitNetworkAccessPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/jitNetworkAccessPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationName/jitNetworkAccessPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn/jItNeTwOrKaCcEsSpOlIcIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNnAmE/jItNeTwOrKaCcEsSpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/jitNetworkAccessPolicies/jitNetworkAccessPolicyName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationName/jitNetworkAccessPolicies/jitNetworkAccessPolicyName",
 			Expected: &JitNetworkAccessPolicyId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
-				LocationName:               "ascLocation",
+				LocationName:               "locationName",
 				JitNetworkAccessPolicyName: "jitNetworkAccessPolicyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/ascLocation/jitNetworkAccessPolicies/jitNetworkAccessPolicyName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/locations/locationName/jitNetworkAccessPolicies/jitNetworkAccessPolicyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn/jItNeTwOrKaCcEsSpOlIcIeS/jItNeTwOrKaCcEsSpOlIcYnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNnAmE/jItNeTwOrKaCcEsSpOlIcIeS/jItNeTwOrKaCcEsSpOlIcYnAmE",
 			Expected: &JitNetworkAccessPolicyId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
-				LocationName:               "aScLoCaTiOn",
+				LocationName:               "lOcAtIoNnAmE",
 				JitNetworkAccessPolicyName: "jItNeTwOrKaCcEsSpOlIcYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/aScLoCaTiOn/jItNeTwOrKaCcEsSpOlIcIeS/jItNeTwOrKaCcEsSpOlIcYnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/lOcAtIoNs/lOcAtIoNnAmE/jItNeTwOrKaCcEsSpOlIcIeS/jItNeTwOrKaCcEsSpOlIcYnAmE/extra",
 			Error: true,
 		},
 	}

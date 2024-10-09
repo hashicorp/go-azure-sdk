@@ -7,5 +7,5 @@ type ImportSourceProperties struct {
 	DataDirPath *string                  `json:"dataDirPath,omitempty"`
 	SasToken    *string                  `json:"sasToken,omitempty"`
 	StorageType *ImportSourceStorageType `json:"storageType,omitempty"`
-	StorageUrl  *string                  `json:"storageUrl,omitempty"`
+	StorageURL  *string                  `json:"storageUrl,omitempty"`
 }

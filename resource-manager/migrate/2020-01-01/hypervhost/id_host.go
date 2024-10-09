@@ -121,7 +121,7 @@ func (id HostId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOffAzure", "Microsoft.OffAzure", "Microsoft.OffAzure"),
 		resourceids.StaticSegment("staticHyperVSites", "hyperVSites", "hyperVSites"),
-		resourceids.UserSpecifiedSegment("hyperVSiteName", "siteName"),
+		resourceids.UserSpecifiedSegment("hyperVSiteName", "hyperVSiteName"),
 		resourceids.StaticSegment("staticHosts", "hosts", "hosts"),
 		resourceids.UserSpecifiedSegment("hostName", "hostName"),
 	}

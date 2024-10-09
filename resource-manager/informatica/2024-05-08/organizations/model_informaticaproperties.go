@@ -7,5 +7,5 @@ type InformaticaProperties struct {
 	InformaticaRegion *string `json:"informaticaRegion,omitempty"`
 	OrganizationId    *string `json:"organizationId,omitempty"`
 	OrganizationName  *string `json:"organizationName,omitempty"`
-	SingleSignOnUrl   *string `json:"singleSignOnUrl,omitempty"`
+	SingleSignOnURL   *string `json:"singleSignOnUrl,omitempty"`
 }

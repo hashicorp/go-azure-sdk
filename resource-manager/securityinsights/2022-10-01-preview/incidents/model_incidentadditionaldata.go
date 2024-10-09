@@ -8,7 +8,7 @@ type IncidentAdditionalData struct {
 	AlertsCount         *int64          `json:"alertsCount,omitempty"`
 	BookmarksCount      *int64          `json:"bookmarksCount,omitempty"`
 	CommentsCount       *int64          `json:"commentsCount,omitempty"`
-	ProviderIncidentUrl *string         `json:"providerIncidentUrl,omitempty"`
+	ProviderIncidentURL *string         `json:"providerIncidentUrl,omitempty"`
 	Tactics             *[]AttackTactic `json:"tactics,omitempty"`
 	Techniques          *[]string       `json:"techniques,omitempty"`
 }

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NetworkSecurityPerimeterConfigurationId{}
 
 func TestNewNetworkSecurityPerimeterConfigurationID(t *testing.T) {
-	id := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "nspConfigName")
+	id := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "networkSecurityPerimeterConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewNetworkSecurityPerimeterConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.NetworkSecurityPerimeterConfigurationName != "nspConfigName" {
-		t.Fatalf("Expected %q but got %q for Segment 'NetworkSecurityPerimeterConfigurationName'", id.NetworkSecurityPerimeterConfigurationName, "nspConfigName")
+	if id.NetworkSecurityPerimeterConfigurationName != "networkSecurityPerimeterConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetworkSecurityPerimeterConfigurationName'", id.NetworkSecurityPerimeterConfigurationName, "networkSecurityPerimeterConfigurationName")
 	}
 }
 
 func TestFormatNetworkSecurityPerimeterConfigurationID(t *testing.T) {
-	actual := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "nspConfigName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/nspConfigName"
+	actual := NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "networkSecurityPerimeterConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseNetworkSecurityPerimeterConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/nspConfigName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName",
 			Expected: &NetworkSecurityPerimeterConfigurationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServerName:        "serverName",
-				NetworkSecurityPerimeterConfigurationName: "nspConfigName",
+				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/nspConfigName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseNetworkSecurityPerimeterConfigurationIDInsensitively(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/nspConfigName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName",
 			Expected: &NetworkSecurityPerimeterConfigurationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServerName:        "serverName",
-				NetworkSecurityPerimeterConfigurationName: "nspConfigName",
+				NetworkSecurityPerimeterConfigurationName: "networkSecurityPerimeterConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/nspConfigName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/networkSecurityPerimeterConfigurations/networkSecurityPerimeterConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nSpCoNfIgNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnNaMe",
 			Expected: &NetworkSecurityPerimeterConfigurationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ServerName:        "sErVeRnAmE",
-				NetworkSecurityPerimeterConfigurationName: "nSpCoNfIgNaMe",
+				NetworkSecurityPerimeterConfigurationName: "nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nSpCoNfIgNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnS/nEtWoRkSeCuRiTyPeRiMeTeRcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

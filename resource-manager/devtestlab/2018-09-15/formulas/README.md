@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := formulas.NewFormulaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := formulas.NewFormulaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "formulaName")
 
 payload := formulas.Formula{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := formulas.NewFormulaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := formulas.NewFormulaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "formulaName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := formulas.NewFormulaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := formulas.NewFormulaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "formulaName")
 
 read, err := client.Get(ctx, id, formulas.DefaultGetOperationOptions())
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := formulas.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := formulas.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName")
 
 // alternatively `client.List(ctx, id, formulas.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, formulas.DefaultListOperationOptions())
@@ -90,7 +90,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := formulas.NewFormulaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := formulas.NewFormulaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "formulaName")
 
 payload := formulas.UpdateResource{
 	// ...

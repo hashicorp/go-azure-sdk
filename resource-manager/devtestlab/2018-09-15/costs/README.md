@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := costs.NewCostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := costs.NewCostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "costName")
 
 payload := costs.LabCost{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := costs.NewCostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := costs.NewCostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "costName")
 
 read, err := client.Get(ctx, id, costs.DefaultGetOperationOptions())
 if err != nil {

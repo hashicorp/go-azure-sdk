@@ -15,7 +15,7 @@ type SharePointOnlineListLinkedServiceTypeProperties struct {
 	ServicePrincipalEmbeddedCertPassword SecretBase `json:"servicePrincipalEmbeddedCertPassword"`
 	ServicePrincipalId                   string     `json:"servicePrincipalId"`
 	ServicePrincipalKey                  SecretBase `json:"servicePrincipalKey"`
-	SiteUrl                              string     `json:"siteUrl"`
+	SiteURL                              string     `json:"siteUrl"`
 	TenantId                             string     `json:"tenantId"`
 }
 
@@ -26,7 +26,7 @@ func (s *SharePointOnlineListLinkedServiceTypeProperties) UnmarshalJSON(bytes []
 		EncryptedCredential            *string `json:"encryptedCredential,omitempty"`
 		ServicePrincipalCredentialType *string `json:"servicePrincipalCredentialType,omitempty"`
 		ServicePrincipalId             string  `json:"servicePrincipalId"`
-		SiteUrl                        string  `json:"siteUrl"`
+		SiteURL                        string  `json:"siteUrl"`
 		TenantId                       string  `json:"tenantId"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
@@ -36,7 +36,7 @@ func (s *SharePointOnlineListLinkedServiceTypeProperties) UnmarshalJSON(bytes []
 	s.EncryptedCredential = decoded.EncryptedCredential
 	s.ServicePrincipalCredentialType = decoded.ServicePrincipalCredentialType
 	s.ServicePrincipalId = decoded.ServicePrincipalId
-	s.SiteUrl = decoded.SiteUrl
+	s.SiteURL = decoded.SiteURL
 	s.TenantId = decoded.TenantId
 
 	var temp map[string]json.RawMessage

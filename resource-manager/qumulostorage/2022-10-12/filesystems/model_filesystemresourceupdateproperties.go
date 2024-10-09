@@ -4,7 +4,7 @@ package filesystems
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FileSystemResourceUpdateProperties struct {
-	ClusterLoginUrl    *string             `json:"clusterLoginUrl,omitempty"`
+	ClusterLoginURL    *string             `json:"clusterLoginUrl,omitempty"`
 	DelegatedSubnetId  *string             `json:"delegatedSubnetId,omitempty"`
 	MarketplaceDetails *MarketplaceDetails `json:"marketplaceDetails,omitempty"`
 	PrivateIPs         *[]string           `json:"privateIPs,omitempty"`

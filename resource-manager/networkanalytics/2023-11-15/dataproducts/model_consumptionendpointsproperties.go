@@ -5,9 +5,9 @@ package dataproducts
 
 type ConsumptionEndpointsProperties struct {
 	FileAccessResourceId *string `json:"fileAccessResourceId,omitempty"`
-	FileAccessUrl        *string `json:"fileAccessUrl,omitempty"`
+	FileAccessURL        *string `json:"fileAccessUrl,omitempty"`
 	IngestionResourceId  *string `json:"ingestionResourceId,omitempty"`
-	IngestionUrl         *string `json:"ingestionUrl,omitempty"`
+	IngestionURL         *string `json:"ingestionUrl,omitempty"`
 	QueryResourceId      *string `json:"queryResourceId,omitempty"`
-	QueryUrl             *string `json:"queryUrl,omitempty"`
+	QueryURL             *string `json:"queryUrl,omitempty"`
 }

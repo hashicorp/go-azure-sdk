@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &BackendAddressPoolId{}
 
 func TestNewBackendAddressPoolID(t *testing.T) {
-	id := NewBackendAddressPoolID("12345678-1234-9876-4563-123456789012", "groupName", "loadBalancerName", "backendPoolName")
+	id := NewBackendAddressPoolID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "loadBalancerName", "backendAddressPoolName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ResourceGroupName != "groupName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "groupName")
+	if id.ResourceGroupName != "resourceGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "resourceGroupName")
 	}
 
 	if id.LoadBalancerName != "loadBalancerName" {
 		t.Fatalf("Expected %q but got %q for Segment 'LoadBalancerName'", id.LoadBalancerName, "loadBalancerName")
 	}
 
-	if id.BackendAddressPoolName != "backendPoolName" {
-		t.Fatalf("Expected %q but got %q for Segment 'BackendAddressPoolName'", id.BackendAddressPoolName, "backendPoolName")
+	if id.BackendAddressPoolName != "backendAddressPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BackendAddressPoolName'", id.BackendAddressPoolName, "backendAddressPoolName")
 	}
 }
 
 func TestFormatBackendAddressPoolID(t *testing.T) {
-	actual := NewBackendAddressPoolID("12345678-1234-9876-4563-123456789012", "groupName", "loadBalancerName", "backendPoolName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendPoolName"
+	actual := NewBackendAddressPoolID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "loadBalancerName", "backendAddressPoolName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendAddressPoolName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -67,47 +67,47 @@ func TestParseBackendAddressPoolID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers/loadBalancerName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendPoolName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendAddressPoolName",
 			Expected: &BackendAddressPoolId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:      "groupName",
+				ResourceGroupName:      "resourceGroupName",
 				LoadBalancerName:       "loadBalancerName",
-				BackendAddressPoolName: "backendPoolName",
+				BackendAddressPoolName: "backendAddressPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendPoolName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendAddressPoolName/extra",
 			Error: true,
 		},
 	}
@@ -188,92 +188,92 @@ func TestParseBackendAddressPoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers/loadBalancerName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/bAcKeNdAdDrEsSpOoLs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/bAcKeNdAdDrEsSpOoLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendPoolName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendAddressPoolName",
 			Expected: &BackendAddressPoolId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:      "groupName",
+				ResourceGroupName:      "resourceGroupName",
 				LoadBalancerName:       "loadBalancerName",
-				BackendAddressPoolName: "backendPoolName",
+				BackendAddressPoolName: "backendAddressPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendPoolName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/providers/Microsoft.Network/loadBalancers/loadBalancerName/backendAddressPools/backendAddressPoolName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/bAcKeNdAdDrEsSpOoLs/bAcKeNdPoOlNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/bAcKeNdAdDrEsSpOoLs/bAcKeNdAdDrEsSpOoLnAmE",
 			Expected: &BackendAddressPoolId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:      "gRoUpNaMe",
+				ResourceGroupName:      "rEsOuRcEgRoUpNaMe",
 				LoadBalancerName:       "lOaDbAlAnCeRnAmE",
-				BackendAddressPoolName: "bAcKeNdPoOlNaMe",
+				BackendAddressPoolName: "bAcKeNdAdDrEsSpOoLnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/bAcKeNdAdDrEsSpOoLs/bAcKeNdPoOlNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe/pRoViDeRs/mIcRoSoFt.nEtWoRk/lOaDbAlAnCeRs/lOaDbAlAnCeRnAmE/bAcKeNdAdDrEsSpOoLs/bAcKeNdAdDrEsSpOoLnAmE/extra",
 			Error: true,
 		},
 	}

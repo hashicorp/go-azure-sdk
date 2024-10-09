@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PostRuleId{}
 
 func TestNewPostRuleID(t *testing.T) {
-	id := NewPostRuleID("globalRulestackName", "priority")
+	id := NewPostRuleID("globalRulestackName", "postRuleName")
 
 	if id.GlobalRulestackName != "globalRulestackName" {
 		t.Fatalf("Expected %q but got %q for Segment 'GlobalRulestackName'", id.GlobalRulestackName, "globalRulestackName")
 	}
 
-	if id.PostRuleName != "priority" {
-		t.Fatalf("Expected %q but got %q for Segment 'PostRuleName'", id.PostRuleName, "priority")
+	if id.PostRuleName != "postRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PostRuleName'", id.PostRuleName, "postRuleName")
 	}
 }
 
 func TestFormatPostRuleID(t *testing.T) {
-	actual := NewPostRuleID("globalRulestackName", "priority").ID()
-	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/priority"
+	actual := NewPostRuleID("globalRulestackName", "postRuleName").ID()
+	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/postRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParsePostRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/priority",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/postRuleName",
 			Expected: &PostRuleId{
 				GlobalRulestackName: "globalRulestackName",
-				PostRuleName:        "priority",
+				PostRuleName:        "postRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/priority/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/postRuleName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParsePostRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/priority",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/postRuleName",
 			Expected: &PostRuleId{
 				GlobalRulestackName: "globalRulestackName",
-				PostRuleName:        "priority",
+				PostRuleName:        "postRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/priority/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/postRules/postRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/pOsTrUlEs/pRiOrItY",
+			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/pOsTrUlEs/pOsTrUlEnAmE",
 			Expected: &PostRuleId{
 				GlobalRulestackName: "gLoBaLrUlEsTaCkNaMe",
-				PostRuleName:        "pRiOrItY",
+				PostRuleName:        "pOsTrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/pOsTrUlEs/pRiOrItY/extra",
+			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/pOsTrUlEs/pOsTrUlEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -131,7 +131,7 @@ func (id SenderUsernameId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticDomains", "domains", "domains"),
 		resourceids.UserSpecifiedSegment("domainName", "domainName"),
 		resourceids.StaticSegment("staticSenderUsernames", "senderUsernames", "senderUsernames"),
-		resourceids.UserSpecifiedSegment("senderUsernameName", "senderUsername"),
+		resourceids.UserSpecifiedSegment("senderUsernameName", "senderUsernameName"),
 	}
 }
 

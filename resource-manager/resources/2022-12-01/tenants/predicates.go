@@ -9,7 +9,7 @@ type TenantIdDescriptionOperationPredicate struct {
 	DefaultDomain         *string
 	DisplayName           *string
 	Id                    *string
-	TenantBrandingLogoUrl *string
+	TenantBrandingLogoURL *string
 	TenantId              *string
 	TenantType            *string
 }
@@ -36,7 +36,7 @@ func (p TenantIdDescriptionOperationPredicate) Matches(input TenantIdDescription
 		return false
 	}
 
-	if p.TenantBrandingLogoUrl != nil && (input.TenantBrandingLogoUrl == nil || *p.TenantBrandingLogoUrl != *input.TenantBrandingLogoUrl) {
+	if p.TenantBrandingLogoURL != nil && (input.TenantBrandingLogoURL == nil || *p.TenantBrandingLogoURL != *input.TenantBrandingLogoURL) {
 		return false
 	}
 

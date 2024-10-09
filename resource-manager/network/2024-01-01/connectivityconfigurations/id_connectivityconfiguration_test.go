@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConnectivityConfigurationId{}
 
 func TestNewConnectivityConfigurationID(t *testing.T) {
-	id := NewConnectivityConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+	id := NewConnectivityConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "connectivityConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewConnectivityConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerName'", id.NetworkManagerName, "networkManagerName")
 	}
 
-	if id.ConnectivityConfigurationName != "configurationName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectivityConfigurationName'", id.ConnectivityConfigurationName, "configurationName")
+	if id.ConnectivityConfigurationName != "connectivityConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConnectivityConfigurationName'", id.ConnectivityConfigurationName, "connectivityConfigurationName")
 	}
 }
 
 func TestFormatConnectivityConfigurationID(t *testing.T) {
-	actual := NewConnectivityConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/configurationName"
+	actual := NewConnectivityConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "connectivityConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/connectivityConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseConnectivityConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/connectivityConfigurationName",
 			Expected: &ConnectivityConfigurationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
 				NetworkManagerName:            "networkManagerName",
-				ConnectivityConfigurationName: "configurationName",
+				ConnectivityConfigurationName: "connectivityConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/configurationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/connectivityConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseConnectivityConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/connectivityConfigurationName",
 			Expected: &ConnectivityConfigurationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
 				NetworkManagerName:            "networkManagerName",
-				ConnectivityConfigurationName: "configurationName",
+				ConnectivityConfigurationName: "connectivityConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/configurationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/connectivityConfigurations/connectivityConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/cOnNeCtIvItYcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/cOnNeCtIvItYcOnFiGuRaTiOnS/cOnNeCtIvItYcOnFiGuRaTiOnNaMe",
 			Expected: &ConnectivityConfigurationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
 				NetworkManagerName:            "nEtWoRkMaNaGeRnAmE",
-				ConnectivityConfigurationName: "cOnFiGuRaTiOnNaMe",
+				ConnectivityConfigurationName: "cOnNeCtIvItYcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/cOnNeCtIvItYcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/cOnNeCtIvItYcOnFiGuRaTiOnS/cOnNeCtIvItYcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

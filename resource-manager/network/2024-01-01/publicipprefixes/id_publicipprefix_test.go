@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PublicIPPrefixId{}
 
 func TestNewPublicIPPrefixID(t *testing.T) {
-	id := NewPublicIPPrefixID("12345678-1234-9876-4563-123456789012", "example-resource-group", "publicIpPrefixName")
+	id := NewPublicIPPrefixID("12345678-1234-9876-4563-123456789012", "example-resource-group", "publicIPPrefixName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewPublicIPPrefixID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PublicIPPrefixName != "publicIpPrefixName" {
-		t.Fatalf("Expected %q but got %q for Segment 'PublicIPPrefixName'", id.PublicIPPrefixName, "publicIpPrefixName")
+	if id.PublicIPPrefixName != "publicIPPrefixName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PublicIPPrefixName'", id.PublicIPPrefixName, "publicIPPrefixName")
 	}
 }
 
 func TestFormatPublicIPPrefixID(t *testing.T) {
-	actual := NewPublicIPPrefixID("12345678-1234-9876-4563-123456789012", "example-resource-group", "publicIpPrefixName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIpPrefixName"
+	actual := NewPublicIPPrefixID("12345678-1234-9876-4563-123456789012", "example-resource-group", "publicIPPrefixName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIPPrefixName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParsePublicIPPrefixID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIpPrefixName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIPPrefixName",
 			Expected: &PublicIPPrefixId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				PublicIPPrefixName: "publicIpPrefixName",
+				PublicIPPrefixName: "publicIPPrefixName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIpPrefixName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIPPrefixName/extra",
 			Error: true,
 		},
 	}
@@ -209,16 +209,16 @@ func TestParsePublicIPPrefixIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIpPrefixName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIPPrefixName",
 			Expected: &PublicIPPrefixId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				PublicIPPrefixName: "publicIpPrefixName",
+				PublicIPPrefixName: "publicIPPrefixName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIpPrefixName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/publicIPPrefixes/publicIPPrefixName/extra",
 			Error: true,
 		},
 		{

@@ -12,7 +12,7 @@ type GoogleCloudStorageLinkedServiceTypeProperties struct {
 	AccessKeyId         *string    `json:"accessKeyId,omitempty"`
 	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
 	SecretAccessKey     SecretBase `json:"secretAccessKey"`
-	ServiceUrl          *string    `json:"serviceUrl,omitempty"`
+	ServiceURL          *string    `json:"serviceUrl,omitempty"`
 }
 
 var _ json.Unmarshaler = &GoogleCloudStorageLinkedServiceTypeProperties{}
@@ -21,7 +21,7 @@ func (s *GoogleCloudStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []by
 	var decoded struct {
 		AccessKeyId         *string `json:"accessKeyId,omitempty"`
 		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
-		ServiceUrl          *string `json:"serviceUrl,omitempty"`
+		ServiceURL          *string `json:"serviceUrl,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
@@ -29,7 +29,7 @@ func (s *GoogleCloudStorageLinkedServiceTypeProperties) UnmarshalJSON(bytes []by
 
 	s.AccessKeyId = decoded.AccessKeyId
 	s.EncryptedCredential = decoded.EncryptedCredential
-	s.ServiceUrl = decoded.ServiceUrl
+	s.ServiceURL = decoded.ServiceURL
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

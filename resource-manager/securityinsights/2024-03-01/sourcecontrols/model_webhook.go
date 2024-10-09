@@ -13,7 +13,7 @@ type Webhook struct {
 	RotateWebhookSecret     *bool   `json:"rotateWebhookSecret,omitempty"`
 	WebhookId               *string `json:"webhookId,omitempty"`
 	WebhookSecretUpdateTime *string `json:"webhookSecretUpdateTime,omitempty"`
-	WebhookUrl              *string `json:"webhookUrl,omitempty"`
+	WebhookURL              *string `json:"webhookUrl,omitempty"`
 }
 
 func (o *Webhook) GetWebhookSecretUpdateTimeAsTime() (*time.Time, error) {

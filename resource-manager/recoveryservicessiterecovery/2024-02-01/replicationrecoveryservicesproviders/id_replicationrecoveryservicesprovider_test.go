@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ReplicationRecoveryServicesProviderId{}
 
 func TestNewReplicationRecoveryServicesProviderID(t *testing.T) {
-	id := NewReplicationRecoveryServicesProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "providerName")
+	id := NewReplicationRecoveryServicesProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationRecoveryServicesProviderName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,22 +22,22 @@ func TestNewReplicationRecoveryServicesProviderID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VaultName != "resourceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "resourceName")
+	if id.VaultName != "vaultName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultName")
 	}
 
-	if id.ReplicationFabricName != "fabricName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ReplicationFabricName'", id.ReplicationFabricName, "fabricName")
+	if id.ReplicationFabricName != "replicationFabricName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReplicationFabricName'", id.ReplicationFabricName, "replicationFabricName")
 	}
 
-	if id.ReplicationRecoveryServicesProviderName != "providerName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ReplicationRecoveryServicesProviderName'", id.ReplicationRecoveryServicesProviderName, "providerName")
+	if id.ReplicationRecoveryServicesProviderName != "replicationRecoveryServicesProviderName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReplicationRecoveryServicesProviderName'", id.ReplicationRecoveryServicesProviderName, "replicationRecoveryServicesProviderName")
 	}
 }
 
 func TestFormatReplicationRecoveryServicesProviderID(t *testing.T) {
-	actual := NewReplicationRecoveryServicesProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "providerName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics/fabricName/replicationRecoveryServicesProviders/providerName"
+	actual := NewReplicationRecoveryServicesProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationRecoveryServicesProviderName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics/replicationFabricName/replicationRecoveryServicesProviders/replicationRecoveryServicesProviderName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseReplicationRecoveryServicesProviderID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics/fabricName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics/replicationFabricName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics/fabricName/replicationRecoveryServicesProviders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics/replicationFabricName/replicationRecoveryServicesProviders",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics/fabricName/replicationRecoveryServicesProviders/providerName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics/replicationFabricName/replicationRecoveryServicesProviders/replicationRecoveryServicesProviderName",
 			Expected: &ReplicationRecoveryServicesProviderId{
 				SubscriptionId:                          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                       "example-resource-group",
-				VaultName:                               "resourceName",
-				ReplicationFabricName:                   "fabricName",
-				ReplicationRecoveryServicesProviderName: "providerName",
+				VaultName:                               "vaultName",
+				ReplicationFabricName:                   "replicationFabricName",
+				ReplicationRecoveryServicesProviderName: "replicationRecoveryServicesProviderName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics/fabricName/replicationRecoveryServicesProviders/providerName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics/replicationFabricName/replicationRecoveryServicesProviders/replicationRecoveryServicesProviderName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseReplicationRecoveryServicesProviderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEnAmE/rEpLiCaTiOnFaBrIcS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/rEpLiCaTiOnFaBrIcS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics/fabricName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics/replicationFabricName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEnAmE/rEpLiCaTiOnFaBrIcS/fAbRiCnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/rEpLiCaTiOnFaBrIcS/rEpLiCaTiOnFaBrIcNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics/fabricName/replicationRecoveryServicesProviders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics/replicationFabricName/replicationRecoveryServicesProviders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEnAmE/rEpLiCaTiOnFaBrIcS/fAbRiCnAmE/rEpLiCaTiOnReCoVeRySeRvIcEsPrOvIdErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/rEpLiCaTiOnFaBrIcS/rEpLiCaTiOnFaBrIcNaMe/rEpLiCaTiOnReCoVeRySeRvIcEsPrOvIdErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics/fabricName/replicationRecoveryServicesProviders/providerName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics/replicationFabricName/replicationRecoveryServicesProviders/replicationRecoveryServicesProviderName",
 			Expected: &ReplicationRecoveryServicesProviderId{
 				SubscriptionId:                          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                       "example-resource-group",
-				VaultName:                               "resourceName",
-				ReplicationFabricName:                   "fabricName",
-				ReplicationRecoveryServicesProviderName: "providerName",
+				VaultName:                               "vaultName",
+				ReplicationFabricName:                   "replicationFabricName",
+				ReplicationRecoveryServicesProviderName: "replicationRecoveryServicesProviderName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceName/replicationFabrics/fabricName/replicationRecoveryServicesProviders/providerName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultName/replicationFabrics/replicationFabricName/replicationRecoveryServicesProviders/replicationRecoveryServicesProviderName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEnAmE/rEpLiCaTiOnFaBrIcS/fAbRiCnAmE/rEpLiCaTiOnReCoVeRySeRvIcEsPrOvIdErS/pRoViDeRnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/rEpLiCaTiOnFaBrIcS/rEpLiCaTiOnFaBrIcNaMe/rEpLiCaTiOnReCoVeRySeRvIcEsPrOvIdErS/rEpLiCaTiOnReCoVeRySeRvIcEsPrOvIdErNaMe",
 			Expected: &ReplicationRecoveryServicesProviderId{
 				SubscriptionId:                          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                       "eXaMpLe-rEsOuRcE-GrOuP",
-				VaultName:                               "rEsOuRcEnAmE",
-				ReplicationFabricName:                   "fAbRiCnAmE",
-				ReplicationRecoveryServicesProviderName: "pRoViDeRnAmE",
+				VaultName:                               "vAuLtNaMe",
+				ReplicationFabricName:                   "rEpLiCaTiOnFaBrIcNaMe",
+				ReplicationRecoveryServicesProviderName: "rEpLiCaTiOnReCoVeRySeRvIcEsPrOvIdErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEnAmE/rEpLiCaTiOnFaBrIcS/fAbRiCnAmE/rEpLiCaTiOnReCoVeRySeRvIcEsPrOvIdErS/pRoViDeRnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtNaMe/rEpLiCaTiOnFaBrIcS/rEpLiCaTiOnFaBrIcNaMe/rEpLiCaTiOnReCoVeRySeRvIcEsPrOvIdErS/rEpLiCaTiOnReCoVeRySeRvIcEsPrOvIdErNaMe/extra",
 			Error: true,
 		},
 	}

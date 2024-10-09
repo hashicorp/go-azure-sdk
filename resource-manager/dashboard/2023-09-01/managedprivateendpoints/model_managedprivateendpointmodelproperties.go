@@ -9,7 +9,7 @@ type ManagedPrivateEndpointModelProperties struct {
 	PrivateLinkResourceId       *string                                `json:"privateLinkResourceId,omitempty"`
 	PrivateLinkResourceRegion   *string                                `json:"privateLinkResourceRegion,omitempty"`
 	PrivateLinkServicePrivateIP *string                                `json:"privateLinkServicePrivateIP,omitempty"`
-	PrivateLinkServiceUrl       *string                                `json:"privateLinkServiceUrl,omitempty"`
+	PrivateLinkServiceURL       *string                                `json:"privateLinkServiceUrl,omitempty"`
 	ProvisioningState           *ProvisioningState                     `json:"provisioningState,omitempty"`
 	RequestMessage              *string                                `json:"requestMessage,omitempty"`
 }

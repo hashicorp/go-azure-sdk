@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &BatchEndpointId{}
 
 func TestNewBatchEndpointID(t *testing.T) {
-	id := NewBatchEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName")
+	id := NewBatchEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "batchEndpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewBatchEndpointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.BatchEndpointName != "endpointName" {
-		t.Fatalf("Expected %q but got %q for Segment 'BatchEndpointName'", id.BatchEndpointName, "endpointName")
+	if id.BatchEndpointName != "batchEndpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BatchEndpointName'", id.BatchEndpointName, "batchEndpointName")
 	}
 }
 
 func TestFormatBatchEndpointID(t *testing.T) {
-	actual := NewBatchEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "endpointName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/endpointName"
+	actual := NewBatchEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "batchEndpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/batchEndpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseBatchEndpointID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/batchEndpointName",
 			Expected: &BatchEndpointId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceName",
-				BatchEndpointName: "endpointName",
+				BatchEndpointName: "batchEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/endpointName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/batchEndpointName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseBatchEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/batchEndpointName",
 			Expected: &BatchEndpointId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceName",
-				BatchEndpointName: "endpointName",
+				BatchEndpointName: "batchEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/endpointName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/batchEndpoints/batchEndpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/bAtChEnDpOiNtS/eNdPoInTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/bAtChEnDpOiNtS/bAtChEnDpOiNtNaMe",
 			Expected: &BatchEndpointId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:     "wOrKsPaCeNaMe",
-				BatchEndpointName: "eNdPoInTnAmE",
+				BatchEndpointName: "bAtChEnDpOiNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/bAtChEnDpOiNtS/eNdPoInTnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/bAtChEnDpOiNtS/bAtChEnDpOiNtNaMe/extra",
 			Error: true,
 		},
 	}

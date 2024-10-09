@@ -4,6 +4,6 @@ package linkedservices
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureKeyVaultLinkedServiceTypeProperties struct {
-	BaseUrl    string               `json:"baseUrl"`
+	BaseURL    string               `json:"baseUrl"`
 	Credential *CredentialReference `json:"credential,omitempty"`
 }

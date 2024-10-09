@@ -121,7 +121,7 @@ func (id JitNetworkAccessPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "ascLocation"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticJitNetworkAccessPolicies", "jitNetworkAccessPolicies", "jitNetworkAccessPolicies"),
 		resourceids.UserSpecifiedSegment("jitNetworkAccessPolicyName", "jitNetworkAccessPolicyName"),
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ResourceGroupId{}
 
 func TestNewResourceGroupID(t *testing.T) {
-	id := NewResourceGroupID("12345678-1234-9876-4563-123456789012", "groupName")
+	id := NewResourceGroupID("12345678-1234-9876-4563-123456789012", "resourceGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ResourceGroupName != "groupName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "groupName")
+	if id.ResourceGroupName != "resourceGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "resourceGroupName")
 	}
 }
 
 func TestFormatResourceGroupID(t *testing.T) {
-	actual := NewResourceGroupID("12345678-1234-9876-4563-123456789012", "groupName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName"
+	actual := NewResourceGroupID("12345678-1234-9876-4563-123456789012", "resourceGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,15 +59,15 @@ func TestParseResourceGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName",
 			Expected: &ResourceGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "groupName",
+				ResourceGroupName: "resourceGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/extra",
 			Error: true,
 		},
 	}
@@ -140,28 +140,28 @@ func TestParseResourceGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName",
 			Expected: &ResourceGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "groupName",
+				ResourceGroupName: "resourceGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/groupName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/resourceGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe",
 			Expected: &ResourceGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "gRoUpNaMe",
+				ResourceGroupName: "rEsOuRcEgRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/gRoUpNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/rEsOuRcEgRoUpNaMe/extra",
 			Error: true,
 		},
 	}

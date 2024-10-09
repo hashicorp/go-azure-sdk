@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "id")
+id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "policyFragmentName")
 
 payload := policyfragment.PolicyFragmentContract{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload, policyfragment.Default
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "id")
+id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "policyFragmentName")
 
 read, err := client.Delete(ctx, id, policyfragment.DefaultDeleteOperationOptions())
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "id")
+id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "policyFragmentName")
 
 read, err := client.Get(ctx, id, policyfragment.DefaultGetOperationOptions())
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "id")
+id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "policyFragmentName")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -106,7 +106,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "id")
+id := policyfragment.NewPolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "policyFragmentName")
 
 // alternatively `client.ListReferences(ctx, id, policyfragment.DefaultListReferencesOperationOptions())` can be used to do batched pagination
 items, err := client.ListReferencesComplete(ctx, id, policyfragment.DefaultListReferencesOperationOptions())
@@ -123,7 +123,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "id")
+id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "policyFragmentName")
 
 payload := policyfragment.PolicyFragmentContract{
 	// ...
@@ -140,7 +140,7 @@ if err := client.WorkspacePolicyFragmentCreateOrUpdateThenPoll(ctx, id, payload,
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "id")
+id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "policyFragmentName")
 
 read, err := client.WorkspacePolicyFragmentDelete(ctx, id, policyfragment.DefaultWorkspacePolicyFragmentDeleteOperationOptions())
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "id")
+id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "policyFragmentName")
 
 read, err := client.WorkspacePolicyFragmentGet(ctx, id, policyfragment.DefaultWorkspacePolicyFragmentGetOperationOptions())
 if err != nil {
@@ -172,7 +172,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "id")
+id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "policyFragmentName")
 
 read, err := client.WorkspacePolicyFragmentGetEntityTag(ctx, id)
 if err != nil {
@@ -205,7 +205,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "id")
+id := policyfragment.NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "policyFragmentName")
 
 // alternatively `client.WorkspacePolicyFragmentListReferences(ctx, id, policyfragment.DefaultWorkspacePolicyFragmentListReferencesOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspacePolicyFragmentListReferencesComplete(ctx, id, policyfragment.DefaultWorkspacePolicyFragmentListReferencesOperationOptions())

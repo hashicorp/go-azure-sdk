@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OperationId{}
 
 func TestNewOperationID(t *testing.T) {
-	id := NewOperationID("12345678-1234-9876-4563-123456789012", "locationName", "name")
+	id := NewOperationID("12345678-1234-9876-4563-123456789012", "locationName", "operationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewOperationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.OperationName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationName'", id.OperationName, "name")
+	if id.OperationName != "operationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationName'", id.OperationName, "operationName")
 	}
 }
 
 func TestFormatOperationID(t *testing.T) {
-	actual := NewOperationID("12345678-1234-9876-4563-123456789012", "locationName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name"
+	actual := NewOperationID("12345678-1234-9876-4563-123456789012", "locationName", "operationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/operationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseOperationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/operationName",
 			Expected: &OperationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				LocationName:   "locationName",
-				OperationName:  "name",
+				OperationName:  "operationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/operationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/operationName",
 			Expected: &OperationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				LocationName:   "locationName",
-				OperationName:  "name",
+				OperationName:  "operationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DevTestLab/locations/locationName/operations/operationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNnAmE/oPeRaTiOnS/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNnAmE/oPeRaTiOnS/oPeRaTiOnNaMe",
 			Expected: &OperationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				LocationName:   "lOcAtIoNnAmE",
-				OperationName:  "nAmE",
+				OperationName:  "oPeRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNnAmE/oPeRaTiOnS/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lOcAtIoNs/lOcAtIoNnAmE/oPeRaTiOnS/oPeRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

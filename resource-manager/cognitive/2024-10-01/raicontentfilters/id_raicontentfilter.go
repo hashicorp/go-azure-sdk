@@ -113,9 +113,9 @@ func (id RaiContentFilterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCognitiveServices", "Microsoft.CognitiveServices", "Microsoft.CognitiveServices"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "location"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticRaiContentFilters", "raiContentFilters", "raiContentFilters"),
-		resourceids.UserSpecifiedSegment("raiContentFilterName", "filterName"),
+		resourceids.UserSpecifiedSegment("raiContentFilterName", "raiContentFilterName"),
 	}
 }
 

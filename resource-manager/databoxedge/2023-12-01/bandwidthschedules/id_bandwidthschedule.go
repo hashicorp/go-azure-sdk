@@ -121,9 +121,9 @@ func (id BandwidthScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataBoxEdge", "Microsoft.DataBoxEdge", "Microsoft.DataBoxEdge"),
 		resourceids.StaticSegment("staticDataBoxEdgeDevices", "dataBoxEdgeDevices", "dataBoxEdgeDevices"),
-		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "deviceName"),
+		resourceids.UserSpecifiedSegment("dataBoxEdgeDeviceName", "dataBoxEdgeDeviceName"),
 		resourceids.StaticSegment("staticBandwidthSchedules", "bandwidthSchedules", "bandwidthSchedules"),
-		resourceids.UserSpecifiedSegment("bandwidthScheduleName", "name"),
+		resourceids.UserSpecifiedSegment("bandwidthScheduleName", "bandwidthScheduleName"),
 	}
 }
 

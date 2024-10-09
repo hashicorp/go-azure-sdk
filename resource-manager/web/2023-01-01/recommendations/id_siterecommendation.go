@@ -123,7 +123,7 @@ func (id SiteRecommendationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticSites", "sites", "sites"),
 		resourceids.UserSpecifiedSegment("siteName", "siteName"),
 		resourceids.StaticSegment("staticRecommendations", "recommendations", "recommendations"),
-		resourceids.UserSpecifiedSegment("recommendationName", "name"),
+		resourceids.UserSpecifiedSegment("recommendationName", "recommendationName"),
 	}
 }
 

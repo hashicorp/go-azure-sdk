@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StorageId{}
 
 func TestNewStorageID(t *testing.T) {
-	id := NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "storageName")
+	id := NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "storageName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewStorageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ManagedEnvironmentName != "environmentName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedEnvironmentName'", id.ManagedEnvironmentName, "environmentName")
+	if id.ManagedEnvironmentName != "managedEnvironmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedEnvironmentName'", id.ManagedEnvironmentName, "managedEnvironmentName")
 	}
 
 	if id.StorageName != "storageName" {
@@ -32,8 +32,8 @@ func TestNewStorageID(t *testing.T) {
 }
 
 func TestFormatStorageID(t *testing.T) {
-	actual := NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "storageName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/storages/storageName"
+	actual := NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "storageName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/storages/storageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseStorageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/storages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/storages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/storages/storageName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/storages/storageName",
 			Expected: &StorageId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ManagedEnvironmentName: "environmentName",
+				ManagedEnvironmentName: "managedEnvironmentName",
 				StorageName:            "storageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/storages/storageName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/storages/storageName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseStorageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/storages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/storages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe/sToRaGeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTnAmE/sToRaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/storages/storageName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/storages/storageName",
 			Expected: &StorageId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ManagedEnvironmentName: "environmentName",
+				ManagedEnvironmentName: "managedEnvironmentName",
 				StorageName:            "storageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentName/storages/storageName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentName/storages/storageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe/sToRaGeS/sToRaGeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTnAmE/sToRaGeS/sToRaGeNaMe",
 			Expected: &StorageId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				ManagedEnvironmentName: "eNvIrOnMeNtNaMe",
+				ManagedEnvironmentName: "mAnAgEdEnViRoNmEnTnAmE",
 				StorageName:            "sToRaGeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtNaMe/sToRaGeS/sToRaGeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTnAmE/sToRaGeS/sToRaGeNaMe/extra",
 			Error: true,
 		},
 	}

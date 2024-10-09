@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RoutingConfigurationId{}
 
 func TestNewRoutingConfigurationID(t *testing.T) {
-	id := NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+	id := NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewRoutingConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerName'", id.NetworkManagerName, "networkManagerName")
 	}
 
-	if id.RoutingConfigurationName != "configurationName" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoutingConfigurationName'", id.RoutingConfigurationName, "configurationName")
+	if id.RoutingConfigurationName != "routingConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoutingConfigurationName'", id.RoutingConfigurationName, "routingConfigurationName")
 	}
 }
 
 func TestFormatRoutingConfigurationID(t *testing.T) {
-	actual := NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName"
+	actual := NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseRoutingConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName",
 			Expected: &RoutingConfigurationId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				NetworkManagerName:       "networkManagerName",
-				RoutingConfigurationName: "configurationName",
+				RoutingConfigurationName: "routingConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseRoutingConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName",
 			Expected: &RoutingConfigurationId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				NetworkManagerName:       "networkManagerName",
-				RoutingConfigurationName: "configurationName",
+				RoutingConfigurationName: "routingConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/rOuTiNgCoNfIgUrAtIoNnAmE",
 			Expected: &RoutingConfigurationId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
 				NetworkManagerName:       "nEtWoRkMaNaGeRnAmE",
-				RoutingConfigurationName: "cOnFiGuRaTiOnNaMe",
+				RoutingConfigurationName: "rOuTiNgCoNfIgUrAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/rOuTiNgCoNfIgUrAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

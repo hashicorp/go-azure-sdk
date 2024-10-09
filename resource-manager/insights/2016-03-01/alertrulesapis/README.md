@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := alertrulesapis.NewAlertRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName")
+id := alertrulesapis.NewAlertRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertRuleName")
 
 payload := alertrulesapis.AlertRuleResourcePatch{
 	// ...

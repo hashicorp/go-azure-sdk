@@ -123,7 +123,7 @@ func (id AdfcdcId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticFactories", "factories", "factories"),
 		resourceids.UserSpecifiedSegment("factoryName", "factoryName"),
 		resourceids.StaticSegment("staticAdfcdcs", "adfcdcs", "adfcdcs"),
-		resourceids.UserSpecifiedSegment("adfcdcName", "changeDataCaptureName"),
+		resourceids.UserSpecifiedSegment("adfcdcName", "adfcdcName"),
 	}
 }
 

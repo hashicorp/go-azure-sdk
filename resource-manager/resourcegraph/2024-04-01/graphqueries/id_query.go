@@ -115,7 +115,7 @@ func (id QueryId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftResourceGraph", "Microsoft.ResourceGraph", "Microsoft.ResourceGraph"),
 		resourceids.StaticSegment("staticQueries", "queries", "queries"),
-		resourceids.UserSpecifiedSegment("queryName", "resourceName"),
+		resourceids.UserSpecifiedSegment("queryName", "queryName"),
 	}
 }
 

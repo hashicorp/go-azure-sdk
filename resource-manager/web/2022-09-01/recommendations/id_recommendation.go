@@ -107,7 +107,7 @@ func (id RecommendationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticRecommendations", "recommendations", "recommendations"),
-		resourceids.UserSpecifiedSegment("recommendationName", "name"),
+		resourceids.UserSpecifiedSegment("recommendationName", "recommendationName"),
 	}
 }
 

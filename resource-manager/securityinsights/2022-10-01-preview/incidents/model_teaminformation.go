@@ -12,7 +12,7 @@ import (
 type TeamInformation struct {
 	Description         *string `json:"description,omitempty"`
 	Name                *string `json:"name,omitempty"`
-	PrimaryChannelUrl   *string `json:"primaryChannelUrl,omitempty"`
+	PrimaryChannelURL   *string `json:"primaryChannelUrl,omitempty"`
 	TeamCreationTimeUtc *string `json:"teamCreationTimeUtc,omitempty"`
 	TeamId              *string `json:"teamId,omitempty"`
 }

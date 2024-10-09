@@ -6,6 +6,6 @@ package portalconfig
 type PortalConfigDelegationProperties struct {
 	DelegateRegistration *bool   `json:"delegateRegistration,omitempty"`
 	DelegateSubscription *bool   `json:"delegateSubscription,omitempty"`
-	DelegationUrl        *string `json:"delegationUrl,omitempty"`
+	DelegationURL        *string `json:"delegationUrl,omitempty"`
 	ValidationKey        *string `json:"validationKey,omitempty"`
 }

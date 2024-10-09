@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PreRuleId{}
 
 func TestNewPreRuleID(t *testing.T) {
-	id := NewPreRuleID("globalRulestackName", "priority")
+	id := NewPreRuleID("globalRulestackName", "preRuleName")
 
 	if id.GlobalRulestackName != "globalRulestackName" {
 		t.Fatalf("Expected %q but got %q for Segment 'GlobalRulestackName'", id.GlobalRulestackName, "globalRulestackName")
 	}
 
-	if id.PreRuleName != "priority" {
-		t.Fatalf("Expected %q but got %q for Segment 'PreRuleName'", id.PreRuleName, "priority")
+	if id.PreRuleName != "preRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PreRuleName'", id.PreRuleName, "preRuleName")
 	}
 }
 
 func TestFormatPreRuleID(t *testing.T) {
-	actual := NewPreRuleID("globalRulestackName", "priority").ID()
-	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/priority"
+	actual := NewPreRuleID("globalRulestackName", "preRuleName").ID()
+	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/preRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParsePreRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/priority",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/preRuleName",
 			Expected: &PreRuleId{
 				GlobalRulestackName: "globalRulestackName",
-				PreRuleName:         "priority",
+				PreRuleName:         "preRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/priority/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/preRuleName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParsePreRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/priority",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/preRuleName",
 			Expected: &PreRuleId{
 				GlobalRulestackName: "globalRulestackName",
-				PreRuleName:         "priority",
+				PreRuleName:         "preRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/priority/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/preRules/preRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/pReRuLeS/pRiOrItY",
+			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/pReRuLeS/pReRuLeNaMe",
 			Expected: &PreRuleId{
 				GlobalRulestackName: "gLoBaLrUlEsTaCkNaMe",
-				PreRuleName:         "pRiOrItY",
+				PreRuleName:         "pReRuLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/pReRuLeS/pRiOrItY/extra",
+			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/pReRuLeS/pReRuLeNaMe/extra",
 			Error: true,
 		},
 	}

@@ -123,7 +123,7 @@ func (id RecoverableSqlPoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticRecoverableSqlPools", "recoverableSqlPools", "recoverableSqlPools"),
-		resourceids.UserSpecifiedSegment("recoverableSqlPoolName", "sqlPoolName"),
+		resourceids.UserSpecifiedSegment("recoverableSqlPoolName", "recoverableSqlPoolName"),
 	}
 }
 

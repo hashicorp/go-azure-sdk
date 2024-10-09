@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ExpressRoutePortsLocationId{}
 
 func TestNewExpressRoutePortsLocationID(t *testing.T) {
-	id := NewExpressRoutePortsLocationID("12345678-1234-9876-4563-123456789012", "locationName")
+	id := NewExpressRoutePortsLocationID("12345678-1234-9876-4563-123456789012", "expressRoutePortsLocationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ExpressRoutePortsLocationName != "locationName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExpressRoutePortsLocationName'", id.ExpressRoutePortsLocationName, "locationName")
+	if id.ExpressRoutePortsLocationName != "expressRoutePortsLocationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExpressRoutePortsLocationName'", id.ExpressRoutePortsLocationName, "expressRoutePortsLocationName")
 	}
 }
 
 func TestFormatExpressRoutePortsLocationID(t *testing.T) {
-	actual := NewExpressRoutePortsLocationID("12345678-1234-9876-4563-123456789012", "locationName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/locationName"
+	actual := NewExpressRoutePortsLocationID("12345678-1234-9876-4563-123456789012", "expressRoutePortsLocationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/expressRoutePortsLocationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseExpressRoutePortsLocationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/locationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/expressRoutePortsLocationName",
 			Expected: &ExpressRoutePortsLocationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				ExpressRoutePortsLocationName: "locationName",
+				ExpressRoutePortsLocationName: "expressRoutePortsLocationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/locationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/expressRoutePortsLocationName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseExpressRoutePortsLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/locationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/expressRoutePortsLocationName",
 			Expected: &ExpressRoutePortsLocationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				ExpressRoutePortsLocationName: "locationName",
+				ExpressRoutePortsLocationName: "expressRoutePortsLocationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/locationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/expressRoutePortsLocations/expressRoutePortsLocationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpOrTsLoCaTiOnS/lOcAtIoNnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpOrTsLoCaTiOnS/eXpReSsRoUtEpOrTsLoCaTiOnNaMe",
 			Expected: &ExpressRoutePortsLocationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				ExpressRoutePortsLocationName: "lOcAtIoNnAmE",
+				ExpressRoutePortsLocationName: "eXpReSsRoUtEpOrTsLoCaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpOrTsLoCaTiOnS/lOcAtIoNnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/eXpReSsRoUtEpOrTsLoCaTiOnS/eXpReSsRoUtEpOrTsLoCaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

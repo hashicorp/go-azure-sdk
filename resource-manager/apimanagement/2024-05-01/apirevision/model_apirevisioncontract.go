@@ -16,7 +16,7 @@ type ApiRevisionContract struct {
 	Description     *string `json:"description,omitempty"`
 	IsCurrent       *bool   `json:"isCurrent,omitempty"`
 	IsOnline        *bool   `json:"isOnline,omitempty"`
-	PrivateUrl      *string `json:"privateUrl,omitempty"`
+	PrivateURL      *string `json:"privateUrl,omitempty"`
 	UpdatedDateTime *string `json:"updatedDateTime,omitempty"`
 }
 

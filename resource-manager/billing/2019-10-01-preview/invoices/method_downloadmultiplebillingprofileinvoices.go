@@ -18,7 +18,7 @@ type DownloadMultipleBillingProfileInvoicesOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *DownloadUrl
+	Model        *DownloadURL
 }
 
 // DownloadMultipleBillingProfileInvoices ...

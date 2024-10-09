@@ -3,6 +3,7 @@ package integrationruntime
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -50,6 +51,30 @@ func UnmarshalCustomSetupBaseImplementation(input []byte) (CustomSetupBase, erro
 	var value string
 	if v, ok := temp["type"]; ok {
 		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "CmdkeySetup") {
+		var out CmdkeySetup
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CmdkeySetup: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ComponentSetup") {
+		var out ComponentSetup
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ComponentSetup: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "EnvironmentVariableSetup") {
+		var out EnvironmentVariableSetup
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EnvironmentVariableSetup: %+v", err)
+		}
+		return out, nil
 	}
 
 	var parent BaseCustomSetupBaseImpl

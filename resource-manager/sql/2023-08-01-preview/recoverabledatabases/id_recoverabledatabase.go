@@ -123,7 +123,7 @@ func (id RecoverableDatabaseId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
 		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticRecoverableDatabases", "recoverableDatabases", "recoverableDatabases"),
-		resourceids.UserSpecifiedSegment("recoverableDatabaseName", "databaseName"),
+		resourceids.UserSpecifiedSegment("recoverableDatabaseName", "recoverableDatabaseName"),
 	}
 }
 
