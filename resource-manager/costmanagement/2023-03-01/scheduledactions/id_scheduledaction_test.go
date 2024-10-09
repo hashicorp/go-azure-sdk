@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ScheduledActionId{}
 
 func TestNewScheduledActionID(t *testing.T) {
-	id := NewScheduledActionID("name")
+	id := NewScheduledActionID("scheduledActionName")
 
-	if id.ScheduledActionName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScheduledActionName'", id.ScheduledActionName, "name")
+	if id.ScheduledActionName != "scheduledActionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduledActionName'", id.ScheduledActionName, "scheduledActionName")
 	}
 }
 
 func TestFormatScheduledActionID(t *testing.T) {
-	actual := NewScheduledActionID("name").ID()
-	expected := "/providers/Microsoft.CostManagement/scheduledActions/name"
+	actual := NewScheduledActionID("scheduledActionName").ID()
+	expected := "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseScheduledActionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/scheduledActions/name",
+			Input: "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionName",
 			Expected: &ScheduledActionId{
-				ScheduledActionName: "name",
+				ScheduledActionName: "scheduledActionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/scheduledActions/name/extra",
+			Input: "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseScheduledActionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/scheduledActions/name",
+			Input: "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionName",
 			Expected: &ScheduledActionId{
-				ScheduledActionName: "name",
+				ScheduledActionName: "scheduledActionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/scheduledActions/name/extra",
+			Input: "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/nAmE",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/sChEdUlEdAcTiOnNaMe",
 			Expected: &ScheduledActionId{
-				ScheduledActionName: "nAmE",
+				ScheduledActionName: "sChEdUlEdAcTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/nAmE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/sChEdUlEdAcTiOnNaMe/extra",
 			Error: true,
 		},
 	}

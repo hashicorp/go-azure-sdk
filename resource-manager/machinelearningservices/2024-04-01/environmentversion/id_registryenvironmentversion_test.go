@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RegistryEnvironmentVersionId{}
 
 func TestNewRegistryEnvironmentVersionID(t *testing.T) {
-	id := NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "version")
+	id := NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "versionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewRegistryEnvironmentVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentName'", id.EnvironmentName, "environmentName")
 	}
 
-	if id.VersionName != "version" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "version")
+	if id.VersionName != "versionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionName")
 	}
 }
 
 func TestFormatRegistryEnvironmentVersionID(t *testing.T) {
-	actual := NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "version").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/version"
+	actual := NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "versionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/versionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseRegistryEnvironmentVersionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/version",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/versionName",
 			Expected: &RegistryEnvironmentVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				RegistryName:      "registryName",
 				EnvironmentName:   "environmentName",
-				VersionName:       "version",
+				VersionName:       "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/version/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/versionName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseRegistryEnvironmentVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/version",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/versionName",
 			Expected: &RegistryEnvironmentVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				RegistryName:      "registryName",
 				EnvironmentName:   "environmentName",
-				VersionName:       "version",
+				VersionName:       "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/version/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/registries/registryName/environments/environmentName/versions/versionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/rEgIsTrIeS/rEgIsTrYnAmE/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/vErSiOnS/vErSiOn",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/rEgIsTrIeS/rEgIsTrYnAmE/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/vErSiOnS/vErSiOnNaMe",
 			Expected: &RegistryEnvironmentVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				RegistryName:      "rEgIsTrYnAmE",
 				EnvironmentName:   "eNvIrOnMeNtNaMe",
-				VersionName:       "vErSiOn",
+				VersionName:       "vErSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/rEgIsTrIeS/rEgIsTrYnAmE/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/vErSiOnS/vErSiOn/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/rEgIsTrIeS/rEgIsTrYnAmE/eNvIrOnMeNtS/eNvIrOnMeNtNaMe/vErSiOnS/vErSiOnNaMe/extra",
 			Error: true,
 		},
 	}

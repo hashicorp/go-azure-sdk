@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := networksecurityperimeter.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "networkSecurityPerimeterConfigurationName")
+id := networksecurityperimeter.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountName", "networkSecurityPerimeterConfigurationName")
 
 read, err := client.GetConfiguration(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networksecurityperimeter.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName")
+id := networksecurityperimeter.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountName")
 
 // alternatively `client.ListConfigurations(ctx, id)` can be used to do batched pagination
 items, err := client.ListConfigurationsComplete(ctx, id)
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networksecurityperimeter.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "networkSecurityPerimeterConfigurationName")
+id := networksecurityperimeter.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountName", "networkSecurityPerimeterConfigurationName")
 
 if err := client.ReconcileConfigurationThenPoll(ctx, id); err != nil {
 	// handle the error

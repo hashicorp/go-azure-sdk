@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &AzureWebCategoryId{}
 
 func TestNewAzureWebCategoryID(t *testing.T) {
-	id := NewAzureWebCategoryID("12345678-1234-9876-4563-123456789012", "name")
+	id := NewAzureWebCategoryID("12345678-1234-9876-4563-123456789012", "azureWebCategoryName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.AzureWebCategoryName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'AzureWebCategoryName'", id.AzureWebCategoryName, "name")
+	if id.AzureWebCategoryName != "azureWebCategoryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AzureWebCategoryName'", id.AzureWebCategoryName, "azureWebCategoryName")
 	}
 }
 
 func TestFormatAzureWebCategoryID(t *testing.T) {
-	actual := NewAzureWebCategoryID("12345678-1234-9876-4563-123456789012", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name"
+	actual := NewAzureWebCategoryID("12345678-1234-9876-4563-123456789012", "azureWebCategoryName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseAzureWebCategoryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryName",
 			Expected: &AzureWebCategoryId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				AzureWebCategoryName: "name",
+				AzureWebCategoryName: "azureWebCategoryName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseAzureWebCategoryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryName",
 			Expected: &AzureWebCategoryId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				AzureWebCategoryName: "name",
+				AzureWebCategoryName: "azureWebCategoryName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Network/azureWebCategories/azureWebCategoryName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReWeBcAtEgOrIeS/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReWeBcAtEgOrIeS/aZuReWeBcAtEgOrYnAmE",
 			Expected: &AzureWebCategoryId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				AzureWebCategoryName: "nAmE",
+				AzureWebCategoryName: "aZuReWeBcAtEgOrYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReWeBcAtEgOrIeS/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtWoRk/aZuReWeBcAtEgOrIeS/aZuReWeBcAtEgOrYnAmE/extra",
 			Error: true,
 		},
 	}

@@ -125,7 +125,7 @@ func (id SettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurityInsights", "Microsoft.SecurityInsights", "Microsoft.SecurityInsights"),
 		resourceids.StaticSegment("staticSettings", "settings", "settings"),
-		resourceids.UserSpecifiedSegment("settingName", "settingsName"),
+		resourceids.UserSpecifiedSegment("settingName", "settingName"),
 	}
 }
 

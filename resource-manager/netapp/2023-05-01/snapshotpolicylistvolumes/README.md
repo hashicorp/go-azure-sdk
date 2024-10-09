@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := snapshotpolicylistvolumes.NewSnapshotPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "snapshotPolicyName")
+id := snapshotpolicylistvolumes.NewSnapshotPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountName", "snapshotPolicyName")
 
 read, err := client.SnapshotPoliciesListVolumes(ctx, id)
 if err != nil {

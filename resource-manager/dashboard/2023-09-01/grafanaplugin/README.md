@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := grafanaplugin.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
+id := grafanaplugin.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaName")
 
 // alternatively `client.GrafanaFetchAvailablePlugins(ctx, id)` can be used to do batched pagination
 items, err := client.GrafanaFetchAvailablePluginsComplete(ctx, id)

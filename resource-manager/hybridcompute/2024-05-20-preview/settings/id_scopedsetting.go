@@ -106,7 +106,7 @@ func (id ScopedSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticSettings", "settings", "settings"),
-		resourceids.UserSpecifiedSegment("settingName", "settingsResourceName"),
+		resourceids.UserSpecifiedSegment("settingName", "settingName"),
 	}
 }
 

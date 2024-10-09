@@ -133,7 +133,7 @@ func (id RuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticDataMaskingPolicies", "dataMaskingPolicies", "dataMaskingPolicies"),
 		resourceids.StaticSegment("dataMaskingPolicyName", "default", "default"),
 		resourceids.StaticSegment("staticRules", "rules", "rules"),
-		resourceids.UserSpecifiedSegment("ruleName", "dataMaskingRuleName"),
+		resourceids.UserSpecifiedSegment("ruleName", "ruleName"),
 	}
 }
 

@@ -63,7 +63,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "name")
+id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainOwnershipIdentifierName")
 
 payload := domains.DomainOwnershipIdentifier{
 	// ...
@@ -100,7 +100,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "name")
+id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainOwnershipIdentifierName")
 
 read, err := client.DeleteOwnershipIdentifier(ctx, id)
 if err != nil {
@@ -148,7 +148,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "name")
+id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainOwnershipIdentifierName")
 
 read, err := client.GetOwnershipIdentifier(ctx, id)
 if err != nil {
@@ -290,7 +290,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "name")
+id := domains.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainOwnershipIdentifierName")
 
 payload := domains.DomainOwnershipIdentifier{
 	// ...

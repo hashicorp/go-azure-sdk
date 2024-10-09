@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ServiceFabricScheduleId{}
 
 func TestNewServiceFabricScheduleID(t *testing.T) {
-	id := NewServiceFabricScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "serviceFabricName", "name")
+	id := NewServiceFabricScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "serviceFabricName", "scheduleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -34,14 +34,14 @@ func TestNewServiceFabricScheduleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServiceFabricName'", id.ServiceFabricName, "serviceFabricName")
 	}
 
-	if id.ScheduleName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScheduleName'", id.ScheduleName, "name")
+	if id.ScheduleName != "scheduleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduleName'", id.ScheduleName, "scheduleName")
 	}
 }
 
 func TestFormatServiceFabricScheduleID(t *testing.T) {
-	actual := NewServiceFabricScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "serviceFabricName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/name"
+	actual := NewServiceFabricScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "serviceFabricName", "scheduleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/scheduleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -125,19 +125,19 @@ func TestParseServiceFabricScheduleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/scheduleName",
 			Expected: &ServiceFabricScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labName",
 				UserName:          "userName",
 				ServiceFabricName: "serviceFabricName",
-				ScheduleName:      "name",
+				ScheduleName:      "scheduleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/scheduleName/extra",
 			Error: true,
 		},
 	}
@@ -326,36 +326,36 @@ func TestParseServiceFabricScheduleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/scheduleName",
 			Expected: &ServiceFabricScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labName",
 				UserName:          "userName",
 				ServiceFabricName: "serviceFabricName",
-				ScheduleName:      "name",
+				ScheduleName:      "scheduleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/schedules/scheduleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sErViCeFaBrIcS/sErViCeFaBrIcNaMe/sChEdUlEs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sErViCeFaBrIcS/sErViCeFaBrIcNaMe/sChEdUlEs/sChEdUlEnAmE",
 			Expected: &ServiceFabricScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbNaMe",
 				UserName:          "uSeRnAmE",
 				ServiceFabricName: "sErViCeFaBrIcNaMe",
-				ScheduleName:      "nAmE",
+				ScheduleName:      "sChEdUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sErViCeFaBrIcS/sErViCeFaBrIcNaMe/sChEdUlEs/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sErViCeFaBrIcS/sErViCeFaBrIcNaMe/sChEdUlEs/sChEdUlEnAmE/extra",
 			Error: true,
 		},
 	}

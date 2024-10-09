@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := restorables.NewMongodbDatabaseCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "databaseName", "collectionName")
+id := restorables.NewMongodbDatabaseCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountName", "mongodbDatabaseName", "collectionName")
 
 payload := restorables.ContinuousBackupRestoreLocation{
 	// ...
@@ -42,7 +42,7 @@ if err := client.MongoDBResourcesRetrieveContinuousBackupInformationThenPoll(ctx
 
 ```go
 ctx := context.TODO()
-id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "location", "instanceId")
+id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "locationName", "instanceId")
 
 read, err := client.RestorableDatabaseAccountsGetByLocation(ctx, id)
 if err != nil {
@@ -74,7 +74,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorables.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := restorables.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 read, err := client.RestorableDatabaseAccountsListByLocation(ctx, id)
 if err != nil {
@@ -90,7 +90,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "location", "instanceId")
+id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "locationName", "instanceId")
 
 read, err := client.RestorableMongodbCollectionsList(ctx, id, restorables.DefaultRestorableMongodbCollectionsListOperationOptions())
 if err != nil {
@@ -106,7 +106,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "location", "instanceId")
+id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "locationName", "instanceId")
 
 read, err := client.RestorableMongodbDatabasesList(ctx, id)
 if err != nil {
@@ -122,7 +122,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "location", "instanceId")
+id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "locationName", "instanceId")
 
 read, err := client.RestorableMongodbResourcesList(ctx, id, restorables.DefaultRestorableMongodbResourcesListOperationOptions())
 if err != nil {
@@ -138,7 +138,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "location", "instanceId")
+id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "locationName", "instanceId")
 
 read, err := client.RestorableSqlContainersList(ctx, id, restorables.DefaultRestorableSqlContainersListOperationOptions())
 if err != nil {
@@ -154,7 +154,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "location", "instanceId")
+id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "locationName", "instanceId")
 
 read, err := client.RestorableSqlDatabasesList(ctx, id)
 if err != nil {
@@ -170,7 +170,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "location", "instanceId")
+id := restorables.NewRestorableDatabaseAccountID("12345678-1234-9876-4563-123456789012", "locationName", "instanceId")
 
 read, err := client.RestorableSqlResourcesList(ctx, id, restorables.DefaultRestorableSqlResourcesListOperationOptions())
 if err != nil {
@@ -186,7 +186,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorables.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "databaseName", "containerName")
+id := restorables.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountName", "sqlDatabaseName", "containerName")
 
 payload := restorables.ContinuousBackupRestoreLocation{
 	// ...

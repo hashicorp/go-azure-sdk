@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := consumerinvitation.NewConsumerInvitationID("location", "invitationId")
+id := consumerinvitation.NewConsumerInvitationID("locationName", "invitationId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := consumerinvitation.NewLocationID("location")
+id := consumerinvitation.NewLocationID("locationName")
 
 payload := consumerinvitation.ConsumerInvitation{
 	// ...

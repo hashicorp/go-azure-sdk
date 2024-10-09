@@ -129,7 +129,7 @@ func (id SecurityUserConfigurationRuleCollectionId) Segments() []resourceids.Seg
 		resourceids.StaticSegment("staticNetworkManagers", "networkManagers", "networkManagers"),
 		resourceids.UserSpecifiedSegment("networkManagerName", "networkManagerName"),
 		resourceids.StaticSegment("staticSecurityUserConfigurations", "securityUserConfigurations", "securityUserConfigurations"),
-		resourceids.UserSpecifiedSegment("securityUserConfigurationName", "configurationName"),
+		resourceids.UserSpecifiedSegment("securityUserConfigurationName", "securityUserConfigurationName"),
 		resourceids.StaticSegment("staticRuleCollections", "ruleCollections", "ruleCollections"),
 		resourceids.UserSpecifiedSegment("ruleCollectionName", "ruleCollectionName"),
 	}

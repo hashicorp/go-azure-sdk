@@ -123,7 +123,7 @@ func (id DedicatedSQLMinimalTLSSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticDedicatedSQLMinimalTLSSettings", "dedicatedSQLMinimalTLSSettings", "dedicatedSQLMinimalTLSSettings"),
-		resourceids.UserSpecifiedSegment("dedicatedSQLMinimalTLSSettingName", "dedicatedSQLminimalTlsSettingsName"),
+		resourceids.UserSpecifiedSegment("dedicatedSQLMinimalTLSSettingName", "dedicatedSQLMinimalTLSSettingName"),
 	}
 }
 

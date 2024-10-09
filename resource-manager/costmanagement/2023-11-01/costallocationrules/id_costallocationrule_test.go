@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &CostAllocationRuleId{}
 
 func TestNewCostAllocationRuleID(t *testing.T) {
-	id := NewCostAllocationRuleID("billingAccountId", "ruleName")
+	id := NewCostAllocationRuleID("billingAccountId", "costAllocationRuleName")
 
 	if id.BillingAccountId != "billingAccountId" {
 		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountId'", id.BillingAccountId, "billingAccountId")
 	}
 
-	if id.CostAllocationRuleName != "ruleName" {
-		t.Fatalf("Expected %q but got %q for Segment 'CostAllocationRuleName'", id.CostAllocationRuleName, "ruleName")
+	if id.CostAllocationRuleName != "costAllocationRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CostAllocationRuleName'", id.CostAllocationRuleName, "costAllocationRuleName")
 	}
 }
 
 func TestFormatCostAllocationRuleID(t *testing.T) {
-	actual := NewCostAllocationRuleID("billingAccountId", "ruleName").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName"
+	actual := NewCostAllocationRuleID("billingAccountId", "costAllocationRuleName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -79,15 +79,15 @@ func TestParseCostAllocationRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleName",
 			Expected: &CostAllocationRuleId{
 				BillingAccountId:       "billingAccountId",
-				CostAllocationRuleName: "ruleName",
+				CostAllocationRuleName: "costAllocationRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleName/extra",
 			Error: true,
 		},
 	}
@@ -200,28 +200,28 @@ func TestParseCostAllocationRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleName",
 			Expected: &CostAllocationRuleId{
 				BillingAccountId:       "billingAccountId",
-				CostAllocationRuleName: "ruleName",
+				CostAllocationRuleName: "costAllocationRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/ruleName/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/providers/Microsoft.CostManagement/costAllocationRules/costAllocationRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs/rUlEnAmE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs/cOsTaLlOcAtIoNrUlEnAmE",
 			Expected: &CostAllocationRuleId{
 				BillingAccountId:       "bIlLiNgAcCoUnTiD",
-				CostAllocationRuleName: "rUlEnAmE",
+				CostAllocationRuleName: "cOsTaLlOcAtIoNrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs/rUlEnAmE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/cOsTaLlOcAtIoNrUlEs/cOsTaLlOcAtIoNrUlEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -115,7 +115,7 @@ func (id AlertRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticAlertRules", "alertRules", "alertRules"),
-		resourceids.UserSpecifiedSegment("alertRuleName", "ruleName"),
+		resourceids.UserSpecifiedSegment("alertRuleName", "alertRuleName"),
 	}
 }
 

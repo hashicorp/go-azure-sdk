@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := loganalytics.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := loganalytics.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := loganalytics.RequestRateByIntervalInput{
 	// ...
@@ -41,7 +41,7 @@ if err := client.ExportRequestRateByIntervalThenPoll(ctx, id, payload); err != n
 
 ```go
 ctx := context.TODO()
-id := loganalytics.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := loganalytics.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := loganalytics.LogAnalyticsInputBase{
 	// ...

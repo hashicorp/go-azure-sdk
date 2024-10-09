@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workflows.NewManagementWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName")
+id := workflows.NewManagementWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName")
 
 payload := workflows.RegenerateActionParameter{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workflows.NewManagementWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName")
+id := workflows.NewManagementWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName")
 
 payload := workflows.Workflow{
 	// ...

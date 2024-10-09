@@ -139,7 +139,7 @@ func (id ScopeRepetitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticSites", "sites", "sites"),
-		resourceids.UserSpecifiedSegment("siteName", "name"),
+		resourceids.UserSpecifiedSegment("siteName", "siteName"),
 		resourceids.StaticSegment("staticHostRuntime", "hostRuntime", "hostRuntime"),
 		resourceids.StaticSegment("staticRuntime", "runtime", "runtime"),
 		resourceids.StaticSegment("staticWebHooks", "webHooks", "webHooks"),
@@ -153,7 +153,7 @@ func (id ScopeRepetitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticActions", "actions", "actions"),
 		resourceids.UserSpecifiedSegment("actionName", "actionName"),
 		resourceids.StaticSegment("staticScopeRepetitions", "scopeRepetitions", "scopeRepetitions"),
-		resourceids.UserSpecifiedSegment("scopeRepetitionName", "repetitionName"),
+		resourceids.UserSpecifiedSegment("scopeRepetitionName", "scopeRepetitionName"),
 	}
 }
 

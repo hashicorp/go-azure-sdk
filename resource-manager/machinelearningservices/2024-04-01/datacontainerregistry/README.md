@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name")
+id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "dataName")
 
 payload := datacontainerregistry.DataContainerResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.RegistryDataContainersCreateOrUpdateThenPoll(ctx, id, payload);
 
 ```go
 ctx := context.TODO()
-id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name")
+id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "dataName")
 
 if err := client.RegistryDataContainersDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.RegistryDataContainersDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name")
+id := datacontainerregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "dataName")
 
 read, err := client.RegistryDataContainersGet(ctx, id)
 if err != nil {

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := metadata.NewMetadataID("name")
+id := metadata.NewMetadataID("metadataName")
 
 read, err := client.RecommendationMetadataGet(ctx, id)
 if err != nil {

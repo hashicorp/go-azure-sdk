@@ -123,7 +123,7 @@ func (id EndpointCertificateId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
 		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticEndpointCertificates", "endpointCertificates", "endpointCertificates"),
-		resourceids.UserSpecifiedSegment("endpointCertificateName", "endpointType"),
+		resourceids.UserSpecifiedSegment("endpointCertificateName", "endpointCertificateName"),
 	}
 }
 

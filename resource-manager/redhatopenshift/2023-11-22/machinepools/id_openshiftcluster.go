@@ -115,7 +115,7 @@ func (id OpenShiftClusterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRedHatOpenShift", "Microsoft.RedHatOpenShift", "Microsoft.RedHatOpenShift"),
 		resourceids.StaticSegment("staticOpenShiftCluster", "openShiftCluster", "openShiftCluster"),
-		resourceids.UserSpecifiedSegment("openShiftClusterName", "resourceName"),
+		resourceids.UserSpecifiedSegment("openShiftClusterName", "openShiftClusterName"),
 	}
 }
 

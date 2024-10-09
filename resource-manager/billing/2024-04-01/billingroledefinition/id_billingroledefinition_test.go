@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &BillingRoleDefinitionId{}
 
 func TestNewBillingRoleDefinitionID(t *testing.T) {
-	id := NewBillingRoleDefinitionID("billingAccountName", "roleDefinitionName")
+	id := NewBillingRoleDefinitionID("billingAccountName", "billingRoleDefinitionName")
 
 	if id.BillingAccountName != "billingAccountName" {
 		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.BillingRoleDefinitionName != "roleDefinitionName" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingRoleDefinitionName'", id.BillingRoleDefinitionName, "roleDefinitionName")
+	if id.BillingRoleDefinitionName != "billingRoleDefinitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingRoleDefinitionName'", id.BillingRoleDefinitionName, "billingRoleDefinitionName")
 	}
 }
 
 func TestFormatBillingRoleDefinitionID(t *testing.T) {
-	actual := NewBillingRoleDefinitionID("billingAccountName", "roleDefinitionName").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/roleDefinitionName"
+	actual := NewBillingRoleDefinitionID("billingAccountName", "billingRoleDefinitionName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseBillingRoleDefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/roleDefinitionName",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName",
 			Expected: &BillingRoleDefinitionId{
 				BillingAccountName:        "billingAccountName",
-				BillingRoleDefinitionName: "roleDefinitionName",
+				BillingRoleDefinitionName: "billingRoleDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/roleDefinitionName/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseBillingRoleDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/roleDefinitionName",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName",
 			Expected: &BillingRoleDefinitionId{
 				BillingAccountName:        "billingAccountName",
-				BillingRoleDefinitionName: "roleDefinitionName",
+				BillingRoleDefinitionName: "billingRoleDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/roleDefinitionName/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingRoleDefinitions/billingRoleDefinitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgRoLeDeFiNiTiOnS/rOlEdEfInItIoNnAmE",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgRoLeDeFiNiTiOnS/bIlLiNgRoLeDeFiNiTiOnNaMe",
 			Expected: &BillingRoleDefinitionId{
 				BillingAccountName:        "bIlLiNgAcCoUnTnAmE",
-				BillingRoleDefinitionName: "rOlEdEfInItIoNnAmE",
+				BillingRoleDefinitionName: "bIlLiNgRoLeDeFiNiTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgRoLeDeFiNiTiOnS/rOlEdEfInItIoNnAmE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgRoLeDeFiNiTiOnS/bIlLiNgRoLeDeFiNiTiOnNaMe/extra",
 			Error: true,
 		},
 	}

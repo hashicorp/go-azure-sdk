@@ -129,7 +129,7 @@ func (id RouteId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProfiles", "profiles", "profiles"),
 		resourceids.UserSpecifiedSegment("profileName", "profileName"),
 		resourceids.StaticSegment("staticAfdEndpoints", "afdEndpoints", "afdEndpoints"),
-		resourceids.UserSpecifiedSegment("afdEndpointName", "endpointName"),
+		resourceids.UserSpecifiedSegment("afdEndpointName", "afdEndpointName"),
 		resourceids.StaticSegment("staticRoutes", "routes", "routes"),
 		resourceids.UserSpecifiedSegment("routeName", "routeName"),
 	}

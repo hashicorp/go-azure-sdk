@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageTaskAssignmentName")
+id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "storageTaskAssignmentName")
 
 payload := storagetaskassignments.StorageTaskAssignment{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageTaskAssignmentName")
+id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "storageTaskAssignmentName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageTaskAssignmentName")
+id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "storageTaskAssignmentName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageTaskAssignmentName")
+id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "storageTaskAssignmentName")
 
 // alternatively `client.StorageTaskAssignmentInstancesReportList(ctx, id, storagetaskassignments.DefaultStorageTaskAssignmentInstancesReportListOperationOptions())` can be used to do batched pagination
 items, err := client.StorageTaskAssignmentInstancesReportListComplete(ctx, id, storagetaskassignments.DefaultStorageTaskAssignmentInstancesReportListOperationOptions())
@@ -121,7 +121,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "storageTaskAssignmentName")
+id := storagetaskassignments.NewStorageTaskAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "storageTaskAssignmentName")
 
 payload := storagetaskassignments.StorageTaskAssignmentUpdateParameters{
 	// ...

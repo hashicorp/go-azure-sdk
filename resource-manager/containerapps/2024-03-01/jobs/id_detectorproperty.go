@@ -123,7 +123,7 @@ func (id DetectorPropertyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticJobs", "jobs", "jobs"),
 		resourceids.UserSpecifiedSegment("jobName", "jobName"),
 		resourceids.StaticSegment("staticDetectorProperties", "detectorProperties", "detectorProperties"),
-		resourceids.UserSpecifiedSegment("detectorPropertyName", "apiName"),
+		resourceids.UserSpecifiedSegment("detectorPropertyName", "detectorPropertyName"),
 	}
 }
 

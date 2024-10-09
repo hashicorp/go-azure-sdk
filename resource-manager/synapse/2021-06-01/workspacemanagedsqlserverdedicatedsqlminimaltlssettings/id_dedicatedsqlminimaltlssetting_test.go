@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DedicatedSQLMinimalTLSSettingId{}
 
 func TestNewDedicatedSQLMinimalTLSSettingID(t *testing.T) {
-	id := NewDedicatedSQLMinimalTLSSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dedicatedSQLminimalTlsSettingsName")
+	id := NewDedicatedSQLMinimalTLSSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dedicatedSQLMinimalTLSSettingName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewDedicatedSQLMinimalTLSSettingID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.DedicatedSQLMinimalTLSSettingName != "dedicatedSQLminimalTlsSettingsName" {
-		t.Fatalf("Expected %q but got %q for Segment 'DedicatedSQLMinimalTLSSettingName'", id.DedicatedSQLMinimalTLSSettingName, "dedicatedSQLminimalTlsSettingsName")
+	if id.DedicatedSQLMinimalTLSSettingName != "dedicatedSQLMinimalTLSSettingName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DedicatedSQLMinimalTLSSettingName'", id.DedicatedSQLMinimalTLSSettingName, "dedicatedSQLMinimalTLSSettingName")
 	}
 }
 
 func TestFormatDedicatedSQLMinimalTLSSettingID(t *testing.T) {
-	actual := NewDedicatedSQLMinimalTLSSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dedicatedSQLminimalTlsSettingsName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLminimalTlsSettingsName"
+	actual := NewDedicatedSQLMinimalTLSSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dedicatedSQLMinimalTLSSettingName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLMinimalTLSSettingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseDedicatedSQLMinimalTLSSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLminimalTlsSettingsName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLMinimalTLSSettingName",
 			Expected: &DedicatedSQLMinimalTLSSettingId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                 "example-resource-group",
 				WorkspaceName:                     "workspaceName",
-				DedicatedSQLMinimalTLSSettingName: "dedicatedSQLminimalTlsSettingsName",
+				DedicatedSQLMinimalTLSSettingName: "dedicatedSQLMinimalTLSSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLminimalTlsSettingsName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLMinimalTLSSettingName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseDedicatedSQLMinimalTLSSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLminimalTlsSettingsName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLMinimalTLSSettingName",
 			Expected: &DedicatedSQLMinimalTLSSettingId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                 "example-resource-group",
 				WorkspaceName:                     "workspaceName",
-				DedicatedSQLMinimalTLSSettingName: "dedicatedSQLminimalTlsSettingsName",
+				DedicatedSQLMinimalTLSSettingName: "dedicatedSQLMinimalTLSSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLminimalTlsSettingsName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/dedicatedSQLMinimalTLSSettings/dedicatedSQLMinimalTLSSettingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/dEdIcAtEdSqLmInImAlTlSsEtTiNgS/dEdIcAtEdSqLmInImAlTlSsEtTiNgSnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/dEdIcAtEdSqLmInImAlTlSsEtTiNgS/dEdIcAtEdSqLmInImAlTlSsEtTiNgNaMe",
 			Expected: &DedicatedSQLMinimalTLSSettingId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                 "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:                     "wOrKsPaCeNaMe",
-				DedicatedSQLMinimalTLSSettingName: "dEdIcAtEdSqLmInImAlTlSsEtTiNgSnAmE",
+				DedicatedSQLMinimalTLSSettingName: "dEdIcAtEdSqLmInImAlTlSsEtTiNgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/dEdIcAtEdSqLmInImAlTlSsEtTiNgS/dEdIcAtEdSqLmInImAlTlSsEtTiNgSnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/dEdIcAtEdSqLmInImAlTlSsEtTiNgS/dEdIcAtEdSqLmInImAlTlSsEtTiNgNaMe/extra",
 			Error: true,
 		},
 	}

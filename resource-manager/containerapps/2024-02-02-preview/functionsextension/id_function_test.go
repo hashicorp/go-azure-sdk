@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FunctionId{}
 
 func TestNewFunctionID(t *testing.T) {
-	id := NewFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName", "functionAppName")
+	id := NewFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName", "functionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewFunctionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'RevisionName'", id.RevisionName, "revisionName")
 	}
 
-	if id.FunctionName != "functionAppName" {
-		t.Fatalf("Expected %q but got %q for Segment 'FunctionName'", id.FunctionName, "functionAppName")
+	if id.FunctionName != "functionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FunctionName'", id.FunctionName, "functionName")
 	}
 }
 
 func TestFormatFunctionID(t *testing.T) {
-	actual := NewFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName", "functionAppName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionAppName"
+	actual := NewFunctionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName", "functionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -121,18 +121,18 @@ func TestParseFunctionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionAppName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionName",
 			Expected: &FunctionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ContainerAppName:  "containerAppName",
 				RevisionName:      "revisionName",
-				FunctionName:      "functionAppName",
+				FunctionName:      "functionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionAppName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionName/extra",
 			Error: true,
 		},
 	}
@@ -317,34 +317,34 @@ func TestParseFunctionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionAppName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionName",
 			Expected: &FunctionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ContainerAppName:  "containerAppName",
 				RevisionName:      "revisionName",
-				FunctionName:      "functionAppName",
+				FunctionName:      "functionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionAppName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/containerApps/containerAppName/revisions/revisionName/providers/Microsoft.App/functions/functionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/rEvIsIoNnAmE/pRoViDeRs/mIcRoSoFt.aPp/fUnCtIoNs/fUnCtIoNaPpNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/rEvIsIoNnAmE/pRoViDeRs/mIcRoSoFt.aPp/fUnCtIoNs/fUnCtIoNnAmE",
 			Expected: &FunctionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ContainerAppName:  "cOnTaInErApPnAmE",
 				RevisionName:      "rEvIsIoNnAmE",
-				FunctionName:      "fUnCtIoNaPpNaMe",
+				FunctionName:      "fUnCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/rEvIsIoNnAmE/pRoViDeRs/mIcRoSoFt.aPp/fUnCtIoNs/fUnCtIoNaPpNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/rEvIsIoNnAmE/pRoViDeRs/mIcRoSoFt.aPp/fUnCtIoNs/fUnCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

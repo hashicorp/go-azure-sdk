@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &DeletedAccountId{}
 
 func TestNewDeletedAccountID(t *testing.T) {
-	id := NewDeletedAccountID("12345678-1234-9876-4563-123456789012", "location", "example-resource-group", "accountName")
+	id := NewDeletedAccountID("12345678-1234-9876-4563-123456789012", "locationName", "example-resource-group", "deletedAccountName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "location" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
 	if id.ResourceGroupName != "example-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DeletedAccountName != "accountName" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeletedAccountName'", id.DeletedAccountName, "accountName")
+	if id.DeletedAccountName != "deletedAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedAccountName'", id.DeletedAccountName, "deletedAccountName")
 	}
 }
 
 func TestFormatDeletedAccountID(t *testing.T) {
-	actual := NewDeletedAccountID("12345678-1234-9876-4563-123456789012", "location", "example-resource-group", "accountName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups/example-resource-group/deletedAccounts/accountName"
+	actual := NewDeletedAccountID("12345678-1234-9876-4563-123456789012", "locationName", "example-resource-group", "deletedAccountName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups/example-resource-group/deletedAccounts/deletedAccountName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -77,37 +77,37 @@ func TestParseDeletedAccountID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups/example-resource-group",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups/example-resource-group",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups/example-resource-group/deletedAccounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups/example-resource-group/deletedAccounts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups/example-resource-group/deletedAccounts/accountName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups/example-resource-group/deletedAccounts/deletedAccountName",
 			Expected: &DeletedAccountId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "location",
+				LocationName:       "locationName",
 				ResourceGroupName:  "example-resource-group",
-				DeletedAccountName: "accountName",
+				DeletedAccountName: "deletedAccountName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups/example-resource-group/deletedAccounts/accountName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups/example-resource-group/deletedAccounts/deletedAccountName/extra",
 			Error: true,
 		},
 	}
@@ -208,72 +208,72 @@ func TestParseDeletedAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN/rEsOuRcEgRoUpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE/rEsOuRcEgRoUpS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups/example-resource-group",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups/example-resource-group",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups/example-resource-group/deletedAccounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups/example-resource-group/deletedAccounts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups/example-resource-group/deletedAccounts/accountName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups/example-resource-group/deletedAccounts/deletedAccountName",
 			Expected: &DeletedAccountId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "location",
+				LocationName:       "locationName",
 				ResourceGroupName:  "example-resource-group",
-				DeletedAccountName: "accountName",
+				DeletedAccountName: "deletedAccountName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/resourceGroups/example-resource-group/deletedAccounts/accountName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/resourceGroups/example-resource-group/deletedAccounts/deletedAccountName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs/aCcOuNtNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs/dElEtEdAcCoUnTnAmE",
 			Expected: &DeletedAccountId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "lOcAtIoN",
+				LocationName:       "lOcAtIoNnAmE",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				DeletedAccountName: "aCcOuNtNaMe",
+				DeletedAccountName: "dElEtEdAcCoUnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs/aCcOuNtNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs/dElEtEdAcCoUnTnAmE/extra",
 			Error: true,
 		},
 	}

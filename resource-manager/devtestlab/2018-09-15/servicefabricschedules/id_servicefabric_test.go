@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ServiceFabricId{}
 
 func TestNewServiceFabricID(t *testing.T) {
-	id := NewServiceFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name")
+	id := NewServiceFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "serviceFabricName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewServiceFabricID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'UserName'", id.UserName, "userName")
 	}
 
-	if id.ServiceFabricName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceFabricName'", id.ServiceFabricName, "name")
+	if id.ServiceFabricName != "serviceFabricName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceFabricName'", id.ServiceFabricName, "serviceFabricName")
 	}
 }
 
 func TestFormatServiceFabricID(t *testing.T) {
-	actual := NewServiceFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/name"
+	actual := NewServiceFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "userName", "serviceFabricName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseServiceFabricID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName",
 			Expected: &ServiceFabricId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labName",
 				UserName:          "userName",
-				ServiceFabricName: "name",
+				ServiceFabricName: "serviceFabricName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseServiceFabricIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName",
 			Expected: &ServiceFabricId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labName",
 				UserName:          "userName",
-				ServiceFabricName: "name",
+				ServiceFabricName: "serviceFabricName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/users/userName/serviceFabrics/serviceFabricName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sErViCeFaBrIcS/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sErViCeFaBrIcS/sErViCeFaBrIcNaMe",
 			Expected: &ServiceFabricId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbNaMe",
 				UserName:          "uSeRnAmE",
-				ServiceFabricName: "nAmE",
+				ServiceFabricName: "sErViCeFaBrIcNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sErViCeFaBrIcS/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/uSeRs/uSeRnAmE/sErViCeFaBrIcS/sErViCeFaBrIcNaMe/extra",
 			Error: true,
 		},
 	}

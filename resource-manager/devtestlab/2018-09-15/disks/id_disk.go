@@ -131,7 +131,7 @@ func (id DiskId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticUsers", "users", "users"),
 		resourceids.UserSpecifiedSegment("userName", "userName"),
 		resourceids.StaticSegment("staticDisks", "disks", "disks"),
-		resourceids.UserSpecifiedSegment("diskName", "name"),
+		resourceids.UserSpecifiedSegment("diskName", "diskName"),
 	}
 }
 

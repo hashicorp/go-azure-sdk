@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConsumerGroupId{}
 
 func TestNewConsumerGroupID(t *testing.T) {
-	id := NewConsumerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "eventHubName", "consumerGroupName")
+	id := NewConsumerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "eventhubName", "consumerGroupName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,8 +26,8 @@ func TestNewConsumerGroupID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.EventhubName != "eventHubName" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventhubName'", id.EventhubName, "eventHubName")
+	if id.EventhubName != "eventhubName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventhubName'", id.EventhubName, "eventhubName")
 	}
 
 	if id.ConsumerGroupName != "consumerGroupName" {
@@ -36,8 +36,8 @@ func TestNewConsumerGroupID(t *testing.T) {
 }
 
 func TestFormatConsumerGroupID(t *testing.T) {
-	actual := NewConsumerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "eventHubName", "consumerGroupName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName/consumerGroups/consumerGroupName"
+	actual := NewConsumerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "eventhubName", "consumerGroupName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName/consumerGroups/consumerGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -101,28 +101,28 @@ func TestParseConsumerGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName/consumerGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName/consumerGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName/consumerGroups/consumerGroupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName/consumerGroups/consumerGroupName",
 			Expected: &ConsumerGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				NamespaceName:     "namespaceName",
-				EventhubName:      "eventHubName",
+				EventhubName:      "eventhubName",
 				ConsumerGroupName: "consumerGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName/consumerGroups/consumerGroupName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName/consumerGroups/consumerGroupName/extra",
 			Error: true,
 		},
 	}
@@ -267,7 +267,7 @@ func TestParseConsumerGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName",
 			Error: true,
 		},
 		{
@@ -277,7 +277,7 @@ func TestParseConsumerGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName/consumerGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName/consumerGroups",
 			Error: true,
 		},
 		{
@@ -287,18 +287,18 @@ func TestParseConsumerGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName/consumerGroups/consumerGroupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName/consumerGroups/consumerGroupName",
 			Expected: &ConsumerGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				NamespaceName:     "namespaceName",
-				EventhubName:      "eventHubName",
+				EventhubName:      "eventhubName",
 				ConsumerGroupName: "consumerGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName/consumerGroups/consumerGroupName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName/consumerGroups/consumerGroupName/extra",
 			Error: true,
 		},
 		{

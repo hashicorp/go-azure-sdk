@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &WorkspacePolicyFragmentId{}
 
 func TestNewWorkspacePolicyFragmentID(t *testing.T) {
-	id := NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "id")
+	id := NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "policyFragmentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewWorkspacePolicyFragmentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceId'", id.WorkspaceId, "workspaceId")
 	}
 
-	if id.PolicyFragmentName != "id" {
-		t.Fatalf("Expected %q but got %q for Segment 'PolicyFragmentName'", id.PolicyFragmentName, "id")
+	if id.PolicyFragmentName != "policyFragmentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PolicyFragmentName'", id.PolicyFragmentName, "policyFragmentName")
 	}
 }
 
 func TestFormatWorkspacePolicyFragmentID(t *testing.T) {
-	actual := NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "id").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/id"
+	actual := NewWorkspacePolicyFragmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "policyFragmentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/policyFragmentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseWorkspacePolicyFragmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/id",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/policyFragmentName",
 			Expected: &WorkspacePolicyFragmentId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				ServiceName:        "serviceName",
 				WorkspaceId:        "workspaceId",
-				PolicyFragmentName: "id",
+				PolicyFragmentName: "policyFragmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/id/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/policyFragmentName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseWorkspacePolicyFragmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/id",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/policyFragmentName",
 			Expected: &WorkspacePolicyFragmentId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				ServiceName:        "serviceName",
 				WorkspaceId:        "workspaceId",
-				PolicyFragmentName: "id",
+				PolicyFragmentName: "policyFragmentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/id/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId/policyFragments/policyFragmentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeId/pOlIcYfRaGmEnTs/iD",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeId/pOlIcYfRaGmEnTs/pOlIcYfRaGmEnTnAmE",
 			Expected: &WorkspacePolicyFragmentId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:        "sErViCeNaMe",
 				WorkspaceId:        "wOrKsPaCeId",
-				PolicyFragmentName: "iD",
+				PolicyFragmentName: "pOlIcYfRaGmEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeId/pOlIcYfRaGmEnTs/iD/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/wOrKsPaCeS/wOrKsPaCeId/pOlIcYfRaGmEnTs/pOlIcYfRaGmEnTnAmE/extra",
 			Error: true,
 		},
 	}

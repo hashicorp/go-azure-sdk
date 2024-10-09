@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := paymentmethods.NewPaymentMethodLinkID("billingAccountName", "billingProfileName", "paymentMethodName")
+id := paymentmethods.NewPaymentMethodLinkID("billingAccountName", "billingProfileName", "paymentMethodLinkName")
 
 if err := client.DeleteAtBillingProfileThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -68,7 +68,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := paymentmethods.NewPaymentMethodLinkID("billingAccountName", "billingProfileName", "paymentMethodName")
+id := paymentmethods.NewPaymentMethodLinkID("billingAccountName", "billingProfileName", "paymentMethodLinkName")
 
 read, err := client.GetByBillingProfile(ctx, id)
 if err != nil {

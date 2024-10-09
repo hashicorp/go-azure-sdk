@@ -113,9 +113,9 @@ func (id ManagedClusterVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceFabric", "Microsoft.ServiceFabric", "Microsoft.ServiceFabric"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "location"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticManagedClusterVersions", "managedClusterVersions", "managedClusterVersions"),
-		resourceids.UserSpecifiedSegment("managedClusterVersionName", "clusterVersion"),
+		resourceids.UserSpecifiedSegment("managedClusterVersionName", "managedClusterVersionName"),
 	}
 }
 

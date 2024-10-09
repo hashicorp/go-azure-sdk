@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AllowedEnvironmentTypeId{}
 
 func TestNewAllowedEnvironmentTypeID(t *testing.T) {
-	id := NewAllowedEnvironmentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectName", "environmentTypeName")
+	id := NewAllowedEnvironmentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectName", "allowedEnvironmentTypeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewAllowedEnvironmentTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ProjectName'", id.ProjectName, "projectName")
 	}
 
-	if id.AllowedEnvironmentTypeName != "environmentTypeName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AllowedEnvironmentTypeName'", id.AllowedEnvironmentTypeName, "environmentTypeName")
+	if id.AllowedEnvironmentTypeName != "allowedEnvironmentTypeName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AllowedEnvironmentTypeName'", id.AllowedEnvironmentTypeName, "allowedEnvironmentTypeName")
 	}
 }
 
 func TestFormatAllowedEnvironmentTypeID(t *testing.T) {
-	actual := NewAllowedEnvironmentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectName", "environmentTypeName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/environmentTypeName"
+	actual := NewAllowedEnvironmentTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "projectName", "allowedEnvironmentTypeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/allowedEnvironmentTypeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseAllowedEnvironmentTypeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/environmentTypeName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/allowedEnvironmentTypeName",
 			Expected: &AllowedEnvironmentTypeId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				ProjectName:                "projectName",
-				AllowedEnvironmentTypeName: "environmentTypeName",
+				AllowedEnvironmentTypeName: "allowedEnvironmentTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/environmentTypeName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/allowedEnvironmentTypeName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseAllowedEnvironmentTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/environmentTypeName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/allowedEnvironmentTypeName",
 			Expected: &AllowedEnvironmentTypeId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				ProjectName:                "projectName",
-				AllowedEnvironmentTypeName: "environmentTypeName",
+				AllowedEnvironmentTypeName: "allowedEnvironmentTypeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/environmentTypeName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevCenter/projects/projectName/allowedEnvironmentTypes/allowedEnvironmentTypeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtNaMe/aLlOwEdEnViRoNmEnTtYpEs/eNvIrOnMeNtTyPeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtNaMe/aLlOwEdEnViRoNmEnTtYpEs/aLlOwEdEnViRoNmEnTtYpEnAmE",
 			Expected: &AllowedEnvironmentTypeId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
 				ProjectName:                "pRoJeCtNaMe",
-				AllowedEnvironmentTypeName: "eNvIrOnMeNtTyPeNaMe",
+				AllowedEnvironmentTypeName: "aLlOwEdEnViRoNmEnTtYpEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtNaMe/aLlOwEdEnViRoNmEnTtYpEs/eNvIrOnMeNtTyPeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvCeNtEr/pRoJeCtS/pRoJeCtNaMe/aLlOwEdEnViRoNmEnTtYpEs/aLlOwEdEnViRoNmEnTtYpEnAmE/extra",
 			Error: true,
 		},
 	}

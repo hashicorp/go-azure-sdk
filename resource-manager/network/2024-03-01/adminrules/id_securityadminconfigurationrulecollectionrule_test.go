@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SecurityAdminConfigurationRuleCollectionRuleId{}
 
 func TestNewSecurityAdminConfigurationRuleCollectionRuleID(t *testing.T) {
-	id := NewSecurityAdminConfigurationRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName", "ruleName")
+	id := NewSecurityAdminConfigurationRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityAdminConfigurationName", "ruleCollectionName", "ruleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,8 +26,8 @@ func TestNewSecurityAdminConfigurationRuleCollectionRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerName'", id.NetworkManagerName, "networkManagerName")
 	}
 
-	if id.SecurityAdminConfigurationName != "configurationName" {
-		t.Fatalf("Expected %q but got %q for Segment 'SecurityAdminConfigurationName'", id.SecurityAdminConfigurationName, "configurationName")
+	if id.SecurityAdminConfigurationName != "securityAdminConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SecurityAdminConfigurationName'", id.SecurityAdminConfigurationName, "securityAdminConfigurationName")
 	}
 
 	if id.RuleCollectionName != "ruleCollectionName" {
@@ -40,8 +40,8 @@ func TestNewSecurityAdminConfigurationRuleCollectionRuleID(t *testing.T) {
 }
 
 func TestFormatSecurityAdminConfigurationRuleCollectionRuleID(t *testing.T) {
-	actual := NewSecurityAdminConfigurationRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName", "ruleName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections/ruleCollectionName/rules/ruleName"
+	actual := NewSecurityAdminConfigurationRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityAdminConfigurationName", "ruleCollectionName", "ruleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections/ruleCollectionName/rules/ruleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -105,39 +105,39 @@ func TestParseSecurityAdminConfigurationRuleCollectionRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections/ruleCollectionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections/ruleCollectionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections/ruleCollectionName/rules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections/ruleCollectionName/rules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections/ruleCollectionName/rules/ruleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections/ruleCollectionName/rules/ruleName",
 			Expected: &SecurityAdminConfigurationRuleCollectionRuleId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "example-resource-group",
 				NetworkManagerName:             "networkManagerName",
-				SecurityAdminConfigurationName: "configurationName",
+				SecurityAdminConfigurationName: "securityAdminConfigurationName",
 				RuleCollectionName:             "ruleCollectionName",
 				RuleName:                       "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections/ruleCollectionName/rules/ruleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections/ruleCollectionName/rules/ruleName/extra",
 			Error: true,
 		},
 	}
@@ -286,76 +286,76 @@ func TestParseSecurityAdminConfigurationRuleCollectionRuleIDInsensitively(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/sEcUrItYaDmInCoNfIgUrAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/rUlEcOlLeCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/sEcUrItYaDmInCoNfIgUrAtIoNnAmE/rUlEcOlLeCtIoNs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections/ruleCollectionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections/ruleCollectionName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/sEcUrItYaDmInCoNfIgUrAtIoNnAmE/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections/ruleCollectionName/rules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections/ruleCollectionName/rules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE/rUlEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/sEcUrItYaDmInCoNfIgUrAtIoNnAmE/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE/rUlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections/ruleCollectionName/rules/ruleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections/ruleCollectionName/rules/ruleName",
 			Expected: &SecurityAdminConfigurationRuleCollectionRuleId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "example-resource-group",
 				NetworkManagerName:             "networkManagerName",
-				SecurityAdminConfigurationName: "configurationName",
+				SecurityAdminConfigurationName: "securityAdminConfigurationName",
 				RuleCollectionName:             "ruleCollectionName",
 				RuleName:                       "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/configurationName/ruleCollections/ruleCollectionName/rules/ruleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityAdminConfigurations/securityAdminConfigurationName/ruleCollections/ruleCollectionName/rules/ruleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE/rUlEs/rUlEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/sEcUrItYaDmInCoNfIgUrAtIoNnAmE/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE/rUlEs/rUlEnAmE",
 			Expected: &SecurityAdminConfigurationRuleCollectionRuleId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "eXaMpLe-rEsOuRcE-GrOuP",
 				NetworkManagerName:             "nEtWoRkMaNaGeRnAmE",
-				SecurityAdminConfigurationName: "cOnFiGuRaTiOnNaMe",
+				SecurityAdminConfigurationName: "sEcUrItYaDmInCoNfIgUrAtIoNnAmE",
 				RuleCollectionName:             "rUlEcOlLeCtIoNnAmE",
 				RuleName:                       "rUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE/rUlEs/rUlEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYaDmInCoNfIgUrAtIoNs/sEcUrItYaDmInCoNfIgUrAtIoNnAmE/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE/rUlEs/rUlEnAmE/extra",
 			Error: true,
 		},
 	}

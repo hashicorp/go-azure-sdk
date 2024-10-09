@@ -131,7 +131,7 @@ func (id ProjectId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticDevops", "devops", "devops"),
 		resourceids.StaticSegment("staticDefault", "default", "default"),
 		resourceids.StaticSegment("staticAzureDevOpsOrgs", "azureDevOpsOrgs", "azureDevOpsOrgs"),
-		resourceids.UserSpecifiedSegment("azureDevOpsOrgName", "orgName"),
+		resourceids.UserSpecifiedSegment("azureDevOpsOrgName", "azureDevOpsOrgName"),
 		resourceids.StaticSegment("staticProjects", "projects", "projects"),
 		resourceids.UserSpecifiedSegment("projectName", "projectName"),
 	}

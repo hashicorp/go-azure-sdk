@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &MeshRevisionProfileId{}
 
 func TestNewMeshRevisionProfileID(t *testing.T) {
-	id := NewMeshRevisionProfileID("12345678-1234-9876-4563-123456789012", "location", "mode")
+	id := NewMeshRevisionProfileID("12345678-1234-9876-4563-123456789012", "locationName", "meshRevisionProfileName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "location" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.MeshRevisionProfileName != "mode" {
-		t.Fatalf("Expected %q but got %q for Segment 'MeshRevisionProfileName'", id.MeshRevisionProfileName, "mode")
+	if id.MeshRevisionProfileName != "meshRevisionProfileName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MeshRevisionProfileName'", id.MeshRevisionProfileName, "meshRevisionProfileName")
 	}
 }
 
 func TestFormatMeshRevisionProfileID(t *testing.T) {
-	actual := NewMeshRevisionProfileID("12345678-1234-9876-4563-123456789012", "location", "mode").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/meshRevisionProfiles/mode"
+	actual := NewMeshRevisionProfileID("12345678-1234-9876-4563-123456789012", "locationName", "meshRevisionProfileName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationName/meshRevisionProfiles/meshRevisionProfileName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseMeshRevisionProfileID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/meshRevisionProfiles",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationName/meshRevisionProfiles",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/meshRevisionProfiles/mode",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationName/meshRevisionProfiles/meshRevisionProfileName",
 			Expected: &MeshRevisionProfileId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				LocationName:            "location",
-				MeshRevisionProfileName: "mode",
+				LocationName:            "locationName",
+				MeshRevisionProfileName: "meshRevisionProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/meshRevisionProfiles/mode/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationName/meshRevisionProfiles/meshRevisionProfileName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseMeshRevisionProfileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/meshRevisionProfiles",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationName/meshRevisionProfiles",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoN/mEsHrEvIsIoNpRoFiLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoNnAmE/mEsHrEvIsIoNpRoFiLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/meshRevisionProfiles/mode",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationName/meshRevisionProfiles/meshRevisionProfileName",
 			Expected: &MeshRevisionProfileId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				LocationName:            "location",
-				MeshRevisionProfileName: "mode",
+				LocationName:            "locationName",
+				MeshRevisionProfileName: "meshRevisionProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/location/meshRevisionProfiles/mode/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ContainerService/locations/locationName/meshRevisionProfiles/meshRevisionProfileName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoN/mEsHrEvIsIoNpRoFiLeS/mOdE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoNnAmE/mEsHrEvIsIoNpRoFiLeS/mEsHrEvIsIoNpRoFiLeNaMe",
 			Expected: &MeshRevisionProfileId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				LocationName:            "lOcAtIoN",
-				MeshRevisionProfileName: "mOdE",
+				LocationName:            "lOcAtIoNnAmE",
+				MeshRevisionProfileName: "mEsHrEvIsIoNpRoFiLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoN/mEsHrEvIsIoNpRoFiLeS/mOdE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/lOcAtIoNs/lOcAtIoNnAmE/mEsHrEvIsIoNpRoFiLeS/mEsHrEvIsIoNpRoFiLeNaMe/extra",
 			Error: true,
 		},
 	}

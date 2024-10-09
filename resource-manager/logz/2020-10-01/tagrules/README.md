@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName")
+id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "tagRuleName")
 
 payload := tagrules.MonitoringTagRules{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName")
+id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "tagRuleName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName")
+id := tagrules.NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "tagRuleName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName", "ruleSetName")
+id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName", "tagRuleName")
 
 payload := tagrules.MonitoringTagRules{
 	// ...
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName", "ruleSetName")
+id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName", "tagRuleName")
 
 read, err := client.SubAccountTagRulesDelete(ctx, id)
 if err != nil {
@@ -131,7 +131,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName", "ruleSetName")
+id := tagrules.NewAccountTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName", "tagRuleName")
 
 read, err := client.SubAccountTagRulesGet(ctx, id)
 if err != nil {
@@ -147,7 +147,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := tagrules.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+id := tagrules.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 // alternatively `client.SubAccountTagRulesList(ctx, id)` can be used to do batched pagination
 items, err := client.SubAccountTagRulesListComplete(ctx, id)

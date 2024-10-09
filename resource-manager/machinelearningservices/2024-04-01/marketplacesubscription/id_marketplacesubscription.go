@@ -123,7 +123,7 @@ func (id MarketplaceSubscriptionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticMarketplaceSubscriptions", "marketplaceSubscriptions", "marketplaceSubscriptions"),
-		resourceids.UserSpecifiedSegment("marketplaceSubscriptionName", "name"),
+		resourceids.UserSpecifiedSegment("marketplaceSubscriptionName", "marketplaceSubscriptionName"),
 	}
 }
 

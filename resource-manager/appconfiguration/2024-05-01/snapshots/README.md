@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := snapshots.NewSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreName", "snapshotName")
+id := snapshots.NewSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationStoreName", "snapshotName")
 
 payload := snapshots.Snapshot{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := snapshots.NewSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreName", "snapshotName")
+id := snapshots.NewSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationStoreName", "snapshotName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

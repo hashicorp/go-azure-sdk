@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RecipientEmailId{}
 
 func TestNewRecipientEmailID(t *testing.T) {
-	id := NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "AccountClosedPublisher", "email")
+	id := NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "AccountClosedPublisher", "recipientEmailName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewRecipientEmailID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NotificationName'", id.NotificationName, "AccountClosedPublisher")
 	}
 
-	if id.RecipientEmailName != "email" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecipientEmailName'", id.RecipientEmailName, "email")
+	if id.RecipientEmailName != "recipientEmailName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecipientEmailName'", id.RecipientEmailName, "recipientEmailName")
 	}
 }
 
 func TestFormatRecipientEmailID(t *testing.T) {
-	actual := NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "AccountClosedPublisher", "email").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/email"
+	actual := NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "AccountClosedPublisher", "recipientEmailName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/recipientEmailName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseRecipientEmailID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/email",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/recipientEmailName",
 			Expected: &RecipientEmailId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				ServiceName:        "serviceName",
 				NotificationName:   "AccountClosedPublisher",
-				RecipientEmailName: "email",
+				RecipientEmailName: "recipientEmailName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/email/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/recipientEmailName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseRecipientEmailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/email",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/recipientEmailName",
 			Expected: &RecipientEmailId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				ServiceName:        "serviceName",
 				NotificationName:   "AccountClosedPublisher",
-				RecipientEmailName: "email",
+				RecipientEmailName: "recipientEmailName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/email/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/notifications/AccountClosedPublisher/recipientEmails/recipientEmailName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/eMaIl",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/rEcIpIeNtEmAiLnAmE",
 			Expected: &RecipientEmailId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:        "sErViCeNaMe",
 				NotificationName:   "AccountClosedPublisher",
-				RecipientEmailName: "eMaIl",
+				RecipientEmailName: "rEcIpIeNtEmAiLnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/eMaIl/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/rEcIpIeNtEmAiLnAmE/extra",
 			Error: true,
 		},
 	}

@@ -139,7 +139,7 @@ func (id LongTermRetentionDatabaseLongTermRetentionBackupId) Segments() []resour
 		resourceids.StaticSegment("staticLongTermRetentionDatabases", "longTermRetentionDatabases", "longTermRetentionDatabases"),
 		resourceids.UserSpecifiedSegment("longTermRetentionDatabaseName", "longTermRetentionDatabaseName"),
 		resourceids.StaticSegment("staticLongTermRetentionBackups", "longTermRetentionBackups", "longTermRetentionBackups"),
-		resourceids.UserSpecifiedSegment("longTermRetentionBackupName", "backupName"),
+		resourceids.UserSpecifiedSegment("longTermRetentionBackupName", "longTermRetentionBackupName"),
 	}
 }
 

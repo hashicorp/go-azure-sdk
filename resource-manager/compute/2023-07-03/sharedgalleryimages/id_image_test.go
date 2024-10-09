@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &ImageId{}
 
 func TestNewImageID(t *testing.T) {
-	id := NewImageID("12345678-1234-9876-4563-123456789012", "location", "galleryUniqueName", "galleryImageName")
+	id := NewImageID("12345678-1234-9876-4563-123456789012", "locationName", "sharedGalleryName", "imageName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "location" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.SharedGalleryName != "galleryUniqueName" {
-		t.Fatalf("Expected %q but got %q for Segment 'SharedGalleryName'", id.SharedGalleryName, "galleryUniqueName")
+	if id.SharedGalleryName != "sharedGalleryName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SharedGalleryName'", id.SharedGalleryName, "sharedGalleryName")
 	}
 
-	if id.ImageName != "galleryImageName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ImageName'", id.ImageName, "galleryImageName")
+	if id.ImageName != "imageName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ImageName'", id.ImageName, "imageName")
 	}
 }
 
 func TestFormatImageID(t *testing.T) {
-	actual := NewImageID("12345678-1234-9876-4563-123456789012", "location", "galleryUniqueName", "galleryImageName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries/galleryUniqueName/images/galleryImageName"
+	actual := NewImageID("12345678-1234-9876-4563-123456789012", "locationName", "sharedGalleryName", "imageName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries/sharedGalleryName/images/imageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -77,37 +77,37 @@ func TestParseImageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries/galleryUniqueName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries/sharedGalleryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries/galleryUniqueName/images",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries/sharedGalleryName/images",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries/galleryUniqueName/images/galleryImageName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries/sharedGalleryName/images/imageName",
 			Expected: &ImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "location",
-				SharedGalleryName: "galleryUniqueName",
-				ImageName:         "galleryImageName",
+				LocationName:      "locationName",
+				SharedGalleryName: "sharedGalleryName",
+				ImageName:         "imageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries/galleryUniqueName/images/galleryImageName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries/sharedGalleryName/images/imageName/extra",
 			Error: true,
 		},
 	}
@@ -208,72 +208,72 @@ func TestParseImageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/sHaReDgAlLeRiEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/sHaReDgAlLeRiEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries/galleryUniqueName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries/sharedGalleryName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/sHaReDgAlLeRiEs/gAlLeRyUnIqUeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/sHaReDgAlLeRiEs/sHaReDgAlLeRyNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries/galleryUniqueName/images",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries/sharedGalleryName/images",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/sHaReDgAlLeRiEs/gAlLeRyUnIqUeNaMe/iMaGeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/sHaReDgAlLeRiEs/sHaReDgAlLeRyNaMe/iMaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries/galleryUniqueName/images/galleryImageName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries/sharedGalleryName/images/imageName",
 			Expected: &ImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "location",
-				SharedGalleryName: "galleryUniqueName",
-				ImageName:         "galleryImageName",
+				LocationName:      "locationName",
+				SharedGalleryName: "sharedGalleryName",
+				ImageName:         "imageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/location/sharedGalleries/galleryUniqueName/images/galleryImageName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationName/sharedGalleries/sharedGalleryName/images/imageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/sHaReDgAlLeRiEs/gAlLeRyUnIqUeNaMe/iMaGeS/gAlLeRyImAgEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/sHaReDgAlLeRiEs/sHaReDgAlLeRyNaMe/iMaGeS/iMaGeNaMe",
 			Expected: &ImageId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				LocationName:      "lOcAtIoN",
-				SharedGalleryName: "gAlLeRyUnIqUeNaMe",
-				ImageName:         "gAlLeRyImAgEnAmE",
+				LocationName:      "lOcAtIoNnAmE",
+				SharedGalleryName: "sHaReDgAlLeRyNaMe",
+				ImageName:         "iMaGeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoN/sHaReDgAlLeRiEs/gAlLeRyUnIqUeNaMe/iMaGeS/gAlLeRyImAgEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/sHaReDgAlLeRiEs/sHaReDgAlLeRyNaMe/iMaGeS/iMaGeNaMe/extra",
 			Error: true,
 		},
 	}

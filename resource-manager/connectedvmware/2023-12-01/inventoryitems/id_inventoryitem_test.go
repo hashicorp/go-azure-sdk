@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &InventoryItemId{}
 
 func TestNewInventoryItemID(t *testing.T) {
-	id := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName", "inventoryItemName")
+	id := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName", "inventoryItemName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewInventoryItemID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VCenterName != "vcenterName" {
-		t.Fatalf("Expected %q but got %q for Segment 'VCenterName'", id.VCenterName, "vcenterName")
+	if id.VCenterName != "vCenterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VCenterName'", id.VCenterName, "vCenterName")
 	}
 
 	if id.InventoryItemName != "inventoryItemName" {
@@ -32,8 +32,8 @@ func TestNewInventoryItemID(t *testing.T) {
 }
 
 func TestFormatInventoryItemID(t *testing.T) {
-	actual := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName", "inventoryItemName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName"
+	actual := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName", "inventoryItemName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName/inventoryItems/inventoryItemName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseInventoryItemID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName/inventoryItems",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName/inventoryItems/inventoryItemName",
 			Expected: &InventoryItemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VCenterName:       "vcenterName",
+				VCenterName:       "vCenterName",
 				InventoryItemName: "inventoryItemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName/inventoryItems/inventoryItemName/extra",
 			Error: true,
 		},
 	}
@@ -228,7 +228,7 @@ func TestParseInventoryItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName",
 			Error: true,
 		},
 		{
@@ -238,7 +238,7 @@ func TestParseInventoryItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName/inventoryItems",
 			Error: true,
 		},
 		{
@@ -248,17 +248,17 @@ func TestParseInventoryItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName/inventoryItems/inventoryItemName",
 			Expected: &InventoryItemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VCenterName:       "vcenterName",
+				VCenterName:       "vCenterName",
 				InventoryItemName: "inventoryItemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/inventoryItems/inventoryItemName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName/inventoryItems/inventoryItemName/extra",
 			Error: true,
 		},
 		{

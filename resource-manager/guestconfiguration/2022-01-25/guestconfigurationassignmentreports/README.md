@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignmentreports.NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmssName", "name", "id")
+id := guestconfigurationassignmentreports.NewReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "guestConfigurationAssignmentName", "reportName")
 
 read, err := client.VMSSGet(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignmentreports.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmssName", "name")
+id := guestconfigurationassignmentreports.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "guestConfigurationAssignmentName")
 
 read, err := client.VMSSList(ctx, id)
 if err != nil {

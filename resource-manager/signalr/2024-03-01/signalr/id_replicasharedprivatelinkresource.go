@@ -127,7 +127,7 @@ func (id ReplicaSharedPrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSignalRService", "Microsoft.SignalRService", "Microsoft.SignalRService"),
 		resourceids.StaticSegment("staticSignalR", "signalR", "signalR"),
-		resourceids.UserSpecifiedSegment("signalRName", "resourceName"),
+		resourceids.UserSpecifiedSegment("signalRName", "signalRName"),
 		resourceids.StaticSegment("staticReplicas", "replicas", "replicas"),
 		resourceids.UserSpecifiedSegment("replicaName", "replicaName"),
 		resourceids.StaticSegment("staticSharedPrivateLinkResources", "sharedPrivateLinkResources", "sharedPrivateLinkResources"),

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ApplianceId{}
 
 func TestNewApplianceID(t *testing.T) {
-	id := NewApplianceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+	id := NewApplianceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applianceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewApplianceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ApplianceName != "resourceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplianceName'", id.ApplianceName, "resourceName")
+	if id.ApplianceName != "applianceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplianceName'", id.ApplianceName, "applianceName")
 	}
 }
 
 func TestFormatApplianceID(t *testing.T) {
-	actual := NewApplianceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName"
+	actual := NewApplianceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applianceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseApplianceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceName",
 			Expected: &ApplianceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ApplianceName:     "resourceName",
+				ApplianceName:     "applianceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseApplianceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceName",
 			Expected: &ApplianceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ApplianceName:     "resourceName",
+				ApplianceName:     "applianceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeNaMe",
 			Expected: &ApplianceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ApplianceName:     "rEsOuRcEnAmE",
+				ApplianceName:     "aPpLiAnCeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeNaMe/extra",
 			Error: true,
 		},
 	}

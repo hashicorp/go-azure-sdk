@@ -123,7 +123,7 @@ func (id InvoiceSectionBillingRoleDefinitionId) Segments() []resourceids.Segment
 		resourceids.StaticSegment("staticInvoiceSections", "invoiceSections", "invoiceSections"),
 		resourceids.UserSpecifiedSegment("invoiceSectionName", "invoiceSectionName"),
 		resourceids.StaticSegment("staticBillingRoleDefinitions", "billingRoleDefinitions", "billingRoleDefinitions"),
-		resourceids.UserSpecifiedSegment("billingRoleDefinitionName", "roleDefinitionName"),
+		resourceids.UserSpecifiedSegment("billingRoleDefinitionName", "billingRoleDefinitionName"),
 	}
 }
 

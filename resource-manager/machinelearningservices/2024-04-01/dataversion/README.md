@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dataName", "versionName")
 
 payload := dataversion.DataVersionBaseResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dataName", "versionName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dataName", "versionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewWorkspaceDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
+id := dataversion.NewWorkspaceDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dataName")
 
 // alternatively `client.List(ctx, id, dataversion.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, dataversion.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := dataversion.NewDataVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "dataName", "versionName")
 
 payload := dataversion.DestinationAsset{
 	// ...

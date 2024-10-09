@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RecoverableSqlPoolId{}
 
 func TestNewRecoverableSqlPoolID(t *testing.T) {
-	id := NewRecoverableSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName")
+	id := NewRecoverableSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "recoverableSqlPoolName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewRecoverableSqlPoolID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.RecoverableSqlPoolName != "sqlPoolName" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecoverableSqlPoolName'", id.RecoverableSqlPoolName, "sqlPoolName")
+	if id.RecoverableSqlPoolName != "recoverableSqlPoolName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecoverableSqlPoolName'", id.RecoverableSqlPoolName, "recoverableSqlPoolName")
 	}
 }
 
 func TestFormatRecoverableSqlPoolID(t *testing.T) {
-	actual := NewRecoverableSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/sqlPoolName"
+	actual := NewRecoverableSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "recoverableSqlPoolName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/recoverableSqlPoolName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseRecoverableSqlPoolID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/sqlPoolName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/recoverableSqlPoolName",
 			Expected: &RecoverableSqlPoolId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				WorkspaceName:          "workspaceName",
-				RecoverableSqlPoolName: "sqlPoolName",
+				RecoverableSqlPoolName: "recoverableSqlPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/sqlPoolName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/recoverableSqlPoolName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseRecoverableSqlPoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/sqlPoolName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/recoverableSqlPoolName",
 			Expected: &RecoverableSqlPoolId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				WorkspaceName:          "workspaceName",
-				RecoverableSqlPoolName: "sqlPoolName",
+				RecoverableSqlPoolName: "recoverableSqlPoolName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/sqlPoolName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/recoverableSqlPools/recoverableSqlPoolName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/rEcOvErAbLeSqLpOoLs/sQlPoOlNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/rEcOvErAbLeSqLpOoLs/rEcOvErAbLeSqLpOoLnAmE",
 			Expected: &RecoverableSqlPoolId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:          "wOrKsPaCeNaMe",
-				RecoverableSqlPoolName: "sQlPoOlNaMe",
+				RecoverableSqlPoolName: "rEcOvErAbLeSqLpOoLnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/rEcOvErAbLeSqLpOoLs/sQlPoOlNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/rEcOvErAbLeSqLpOoLs/rEcOvErAbLeSqLpOoLnAmE/extra",
 			Error: true,
 		},
 	}

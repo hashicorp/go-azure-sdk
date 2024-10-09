@@ -129,9 +129,9 @@ func (id FeatureStoreEntityVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticFeatureStoreEntities", "featureStoreEntities", "featureStoreEntities"),
-		resourceids.UserSpecifiedSegment("featureStoreEntityName", "name"),
+		resourceids.UserSpecifiedSegment("featureStoreEntityName", "featureStoreEntityName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "version"),
+		resourceids.UserSpecifiedSegment("versionName", "versionName"),
 	}
 }
 

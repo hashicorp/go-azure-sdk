@@ -256,7 +256,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workflows.NewLocationWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "workflowName")
+id := workflows.NewLocationWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "workflowName")
 
 payload := workflows.Workflow{
 	// ...

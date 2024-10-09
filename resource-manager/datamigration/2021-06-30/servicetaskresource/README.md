@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "taskName")
+id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "serviceTaskName")
 
 read, err := client.ServiceTasksCancel(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "taskName")
+id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "serviceTaskName")
 
 payload := servicetaskresource.ProjectTask{
 	// ...
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "taskName")
+id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "serviceTaskName")
 
 read, err := client.ServiceTasksDelete(ctx, id, servicetaskresource.DefaultServiceTasksDeleteOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "taskName")
+id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "serviceTaskName")
 
 read, err := client.ServiceTasksGet(ctx, id, servicetaskresource.DefaultServiceTasksGetOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "taskName")
+id := servicetaskresource.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "serviceTaskName")
 
 payload := servicetaskresource.ProjectTask{
 	// ...

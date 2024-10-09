@@ -12,14 +12,14 @@ import (
 var _ resourceids.ResourceId = &PrivateLinkScopeId{}
 
 func TestNewPrivateLinkScopeID(t *testing.T) {
-	id := NewPrivateLinkScopeID("12345678-1234-9876-4563-123456789012", "location", "privateLinkScopeId")
+	id := NewPrivateLinkScopeID("12345678-1234-9876-4563-123456789012", "locationName", "privateLinkScopeId")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "location" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
 	if id.PrivateLinkScopeId != "privateLinkScopeId" {
@@ -28,8 +28,8 @@ func TestNewPrivateLinkScopeID(t *testing.T) {
 }
 
 func TestFormatPrivateLinkScopeID(t *testing.T) {
-	actual := NewPrivateLinkScopeID("12345678-1234-9876-4563-123456789012", "location", "privateLinkScopeId").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/location/privateLinkScopes/privateLinkScopeId"
+	actual := NewPrivateLinkScopeID("12345678-1234-9876-4563-123456789012", "locationName", "privateLinkScopeId").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationName/privateLinkScopes/privateLinkScopeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParsePrivateLinkScopeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/location/privateLinkScopes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationName/privateLinkScopes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/location/privateLinkScopes/privateLinkScopeId",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationName/privateLinkScopes/privateLinkScopeId",
 			Expected: &PrivateLinkScopeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "location",
+				LocationName:       "locationName",
 				PrivateLinkScopeId: "privateLinkScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/location/privateLinkScopes/privateLinkScopeId/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationName/privateLinkScopes/privateLinkScopeId/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParsePrivateLinkScopeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/location/privateLinkScopes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationName/privateLinkScopes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoN/pRiVaTeLiNkScOpEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/pRiVaTeLiNkScOpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/location/privateLinkScopes/privateLinkScopeId",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationName/privateLinkScopes/privateLinkScopeId",
 			Expected: &PrivateLinkScopeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "location",
+				LocationName:       "locationName",
 				PrivateLinkScopeId: "privateLinkScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/location/privateLinkScopes/privateLinkScopeId/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationName/privateLinkScopes/privateLinkScopeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoN/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEiD",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEiD",
 			Expected: &PrivateLinkScopeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				LocationName:       "lOcAtIoN",
+				LocationName:       "lOcAtIoNnAmE",
 				PrivateLinkScopeId: "pRiVaTeLiNkScOpEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoN/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEiD/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoNnAmE/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEiD/extra",
 			Error: true,
 		},
 	}

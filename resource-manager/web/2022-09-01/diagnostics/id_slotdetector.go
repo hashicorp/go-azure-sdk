@@ -129,7 +129,7 @@ func (id SlotDetectorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticSites", "sites", "sites"),
 		resourceids.UserSpecifiedSegment("siteName", "siteName"),
 		resourceids.StaticSegment("staticSlots", "slots", "slots"),
-		resourceids.UserSpecifiedSegment("slotName", "slot"),
+		resourceids.UserSpecifiedSegment("slotName", "slotName"),
 		resourceids.StaticSegment("staticDetectors", "detectors", "detectors"),
 		resourceids.UserSpecifiedSegment("detectorName", "detectorName"),
 	}

@@ -397,7 +397,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualnetworkgateways.NewConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkGatewayConnectionName")
+id := virtualnetworkgateways.NewConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionName")
 
 payload := virtualnetworkgateways.VpnDeviceScriptParameters{
 	// ...

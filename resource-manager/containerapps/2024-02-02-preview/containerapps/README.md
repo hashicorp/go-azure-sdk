@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 payload := containerapps.ContainerApp{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 read, err := client.DiagnosticsGetRoot(ctx, id)
 if err != nil {
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 // alternatively `client.DiagnosticsListDetectors(ctx, id)` can be used to do batched pagination
 items, err := client.DiagnosticsListDetectorsComplete(ctx, id)
@@ -119,7 +119,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 // alternatively `client.DiagnosticsListRevisions(ctx, id, containerapps.DefaultDiagnosticsListRevisionsOperationOptions())` can be used to do batched pagination
 items, err := client.DiagnosticsListRevisionsComplete(ctx, id, containerapps.DefaultDiagnosticsListRevisionsOperationOptions())
@@ -136,7 +136,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -152,7 +152,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 read, err := client.GetAuthToken(ctx, id)
 if err != nil {
@@ -202,7 +202,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 read, err := client.ListCustomHostNameAnalysis(ctx, id, containerapps.DefaultListCustomHostNameAnalysisOperationOptions())
 if err != nil {
@@ -218,7 +218,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 read, err := client.ListSecrets(ctx, id)
 if err != nil {
@@ -234,7 +234,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 if err := client.StartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -246,7 +246,7 @@ if err := client.StartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 if err := client.StopThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -258,7 +258,7 @@ if err := client.StopThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 payload := containerapps.ContainerApp{
 	// ...

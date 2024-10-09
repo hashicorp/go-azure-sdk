@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RuleCollectionId{}
 
 func TestNewRuleCollectionID(t *testing.T) {
-	id := NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName")
+	id := NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName", "ruleCollectionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,8 +26,8 @@ func TestNewRuleCollectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerName'", id.NetworkManagerName, "networkManagerName")
 	}
 
-	if id.RoutingConfigurationName != "configurationName" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoutingConfigurationName'", id.RoutingConfigurationName, "configurationName")
+	if id.RoutingConfigurationName != "routingConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoutingConfigurationName'", id.RoutingConfigurationName, "routingConfigurationName")
 	}
 
 	if id.RuleCollectionName != "ruleCollectionName" {
@@ -36,8 +36,8 @@ func TestNewRuleCollectionID(t *testing.T) {
 }
 
 func TestFormatRuleCollectionID(t *testing.T) {
-	actual := NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName/ruleCollections/ruleCollectionName"
+	actual := NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName", "ruleCollectionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName/ruleCollections/ruleCollectionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -101,28 +101,28 @@ func TestParseRuleCollectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName/ruleCollections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName/ruleCollections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName/ruleCollections/ruleCollectionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName/ruleCollections/ruleCollectionName",
 			Expected: &RuleCollectionId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				NetworkManagerName:       "networkManagerName",
-				RoutingConfigurationName: "configurationName",
+				RoutingConfigurationName: "routingConfigurationName",
 				RuleCollectionName:       "ruleCollectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName/ruleCollections/ruleCollectionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName/ruleCollections/ruleCollectionName/extra",
 			Error: true,
 		},
 	}
@@ -267,54 +267,54 @@ func TestParseRuleCollectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/rOuTiNgCoNfIgUrAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName/ruleCollections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName/ruleCollections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/rUlEcOlLeCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/rOuTiNgCoNfIgUrAtIoNnAmE/rUlEcOlLeCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName/ruleCollections/ruleCollectionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName/ruleCollections/ruleCollectionName",
 			Expected: &RuleCollectionId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				NetworkManagerName:       "networkManagerName",
-				RoutingConfigurationName: "configurationName",
+				RoutingConfigurationName: "routingConfigurationName",
 				RuleCollectionName:       "ruleCollectionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/configurationName/ruleCollections/ruleCollectionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/routingConfigurations/routingConfigurationName/ruleCollections/ruleCollectionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/rOuTiNgCoNfIgUrAtIoNnAmE/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE",
 			Expected: &RuleCollectionId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
 				NetworkManagerName:       "nEtWoRkMaNaGeRnAmE",
-				RoutingConfigurationName: "cOnFiGuRaTiOnNaMe",
+				RoutingConfigurationName: "rOuTiNgCoNfIgUrAtIoNnAmE",
 				RuleCollectionName:       "rUlEcOlLeCtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/cOnFiGuRaTiOnNaMe/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/rOuTiNgCoNfIgUrAtIoNs/rOuTiNgCoNfIgUrAtIoNnAmE/rUlEcOlLeCtIoNs/rUlEcOlLeCtIoNnAmE/extra",
 			Error: true,
 		},
 	}

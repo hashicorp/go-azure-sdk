@@ -123,7 +123,7 @@ func (id LocationLongTermRetentionManagedInstanceId) Segments() []resourceids.Se
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
 		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticLongTermRetentionManagedInstances", "longTermRetentionManagedInstances", "longTermRetentionManagedInstances"),
-		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "managedInstanceName"),
+		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "longTermRetentionManagedInstanceName"),
 	}
 }
 

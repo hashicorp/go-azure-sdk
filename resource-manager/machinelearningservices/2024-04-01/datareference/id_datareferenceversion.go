@@ -129,9 +129,9 @@ func (id DataReferenceVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticRegistries", "registries", "registries"),
 		resourceids.UserSpecifiedSegment("registryName", "registryName"),
 		resourceids.StaticSegment("staticDataReferences", "dataReferences", "dataReferences"),
-		resourceids.UserSpecifiedSegment("dataReferenceName", "name"),
+		resourceids.UserSpecifiedSegment("dataReferenceName", "dataReferenceName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "version"),
+		resourceids.UserSpecifiedSegment("versionName", "versionName"),
 	}
 }
 

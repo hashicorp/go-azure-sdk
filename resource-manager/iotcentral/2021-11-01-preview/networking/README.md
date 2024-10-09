@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := networking.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "privateEndpointConnectionName")
+id := networking.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotAppName", "privateEndpointConnectionName")
 
 payload := networking.PrivateEndpointConnection{
 	// ...
@@ -41,7 +41,7 @@ if err := client.PrivateEndpointConnectionsCreateThenPoll(ctx, id, payload); err
 
 ```go
 ctx := context.TODO()
-id := networking.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "privateEndpointConnectionName")
+id := networking.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotAppName", "privateEndpointConnectionName")
 
 if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := networking.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "privateEndpointConnectionName")
+id := networking.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotAppName", "privateEndpointConnectionName")
 
 read, err := client.PrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networking.NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := networking.NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotAppName")
 
 read, err := client.PrivateEndpointConnectionsList(ctx, id)
 if err != nil {
@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networking.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "groupId")
+id := networking.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotAppName", "groupId")
 
 read, err := client.PrivateLinksGet(ctx, id)
 if err != nil {
@@ -101,7 +101,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networking.NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := networking.NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotAppName")
 
 read, err := client.PrivateLinksList(ctx, id)
 if err != nil {

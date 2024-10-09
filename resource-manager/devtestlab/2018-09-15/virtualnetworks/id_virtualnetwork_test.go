@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkId{}
 
 func TestNewVirtualNetworkID(t *testing.T) {
-	id := NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+	id := NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "virtualNetworkName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewVirtualNetworkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'LabName'", id.LabName, "labName")
 	}
 
-	if id.VirtualNetworkName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkName'", id.VirtualNetworkName, "name")
+	if id.VirtualNetworkName != "virtualNetworkName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkName'", id.VirtualNetworkName, "virtualNetworkName")
 	}
 }
 
 func TestFormatVirtualNetworkID(t *testing.T) {
-	actual := NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/name"
+	actual := NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "virtualNetworkName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/virtualNetworkName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseVirtualNetworkID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/virtualNetworkName",
 			Expected: &VirtualNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				LabName:            "labName",
-				VirtualNetworkName: "name",
+				VirtualNetworkName: "virtualNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/virtualNetworkName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseVirtualNetworkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/virtualNetworkName",
 			Expected: &VirtualNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				LabName:            "labName",
-				VirtualNetworkName: "name",
+				VirtualNetworkName: "virtualNetworkName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/virtualNetworks/virtualNetworkName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/vIrTuAlNeTwOrKs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKnAmE",
 			Expected: &VirtualNetworkId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:            "lAbNaMe",
-				VirtualNetworkName: "nAmE",
+				VirtualNetworkName: "vIrTuAlNeTwOrKnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/vIrTuAlNeTwOrKs/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/vIrTuAlNeTwOrKs/vIrTuAlNeTwOrKnAmE/extra",
 			Error: true,
 		},
 	}

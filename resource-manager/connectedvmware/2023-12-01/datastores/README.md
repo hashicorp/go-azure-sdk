@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
+id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreName")
 
 payload := datastores.Datastore{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
+id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreName")
 
 if err := client.DeleteThenPoll(ctx, id, datastores.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id, datastores.DefaultDeleteOperationOption
 
 ```go
 ctx := context.TODO()
-id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
+id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "datastoreName")
+id := datastores.NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataStoreName")
 
 payload := datastores.ResourcePatch{
 	// ...

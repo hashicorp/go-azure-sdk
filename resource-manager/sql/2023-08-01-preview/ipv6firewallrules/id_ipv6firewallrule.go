@@ -123,7 +123,7 @@ func (id IPv6FirewallRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticServers", "servers", "servers"),
 		resourceids.UserSpecifiedSegment("serverName", "serverName"),
 		resourceids.StaticSegment("staticIpv6FirewallRules", "ipv6FirewallRules", "ipv6FirewallRules"),
-		resourceids.UserSpecifiedSegment("ipv6FirewallRuleName", "firewallRuleName"),
+		resourceids.UserSpecifiedSegment("ipv6FirewallRuleName", "ipv6FirewallRuleName"),
 	}
 }
 

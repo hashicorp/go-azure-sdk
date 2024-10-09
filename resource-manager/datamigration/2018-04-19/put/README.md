@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := put.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
+id := put.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName")
 
 payload := put.Project{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := put.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := put.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 payload := put.DataMigrationService{
 	// ...
@@ -62,7 +62,7 @@ if err := client.ServicesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := put.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
+id := put.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName", "taskName")
 
 payload := put.ProjectTask{
 	// ...

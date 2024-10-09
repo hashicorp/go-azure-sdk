@@ -99,7 +99,7 @@ func (id ProviderOperationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAuthorization", "Microsoft.Authorization", "Microsoft.Authorization"),
 		resourceids.StaticSegment("staticProviderOperations", "providerOperations", "providerOperations"),
-		resourceids.UserSpecifiedSegment("providerOperationName", "resourceProviderNamespace"),
+		resourceids.UserSpecifiedSegment("providerOperationName", "providerOperationName"),
 	}
 }
 

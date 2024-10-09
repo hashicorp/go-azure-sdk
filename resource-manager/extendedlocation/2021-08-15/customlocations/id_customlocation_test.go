@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CustomLocationId{}
 
 func TestNewCustomLocationID(t *testing.T) {
-	id := NewCustomLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+	id := NewCustomLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "customLocationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewCustomLocationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.CustomLocationName != "resourceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomLocationName'", id.CustomLocationName, "resourceName")
+	if id.CustomLocationName != "customLocationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomLocationName'", id.CustomLocationName, "customLocationName")
 	}
 }
 
 func TestFormatCustomLocationID(t *testing.T) {
-	actual := NewCustomLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/resourceName"
+	actual := NewCustomLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "customLocationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/customLocationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseCustomLocationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/customLocationName",
 			Expected: &CustomLocationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				CustomLocationName: "resourceName",
+				CustomLocationName: "customLocationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/resourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/customLocationName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseCustomLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/resourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/customLocationName",
 			Expected: &CustomLocationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				CustomLocationName: "resourceName",
+				CustomLocationName: "customLocationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/resourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ExtendedLocation/customLocations/customLocationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eXtEnDeDlOcAtIoN/cUsToMlOcAtIoNs/rEsOuRcEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eXtEnDeDlOcAtIoN/cUsToMlOcAtIoNs/cUsToMlOcAtIoNnAmE",
 			Expected: &CustomLocationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				CustomLocationName: "rEsOuRcEnAmE",
+				CustomLocationName: "cUsToMlOcAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eXtEnDeDlOcAtIoN/cUsToMlOcAtIoNs/rEsOuRcEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eXtEnDeDlOcAtIoN/cUsToMlOcAtIoNs/cUsToMlOcAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

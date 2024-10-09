@@ -123,7 +123,7 @@ func (id PooledScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticScalingPlans", "scalingPlans", "scalingPlans"),
 		resourceids.UserSpecifiedSegment("scalingPlanName", "scalingPlanName"),
 		resourceids.StaticSegment("staticPooledSchedules", "pooledSchedules", "pooledSchedules"),
-		resourceids.UserSpecifiedSegment("pooledScheduleName", "scalingPlanScheduleName"),
+		resourceids.UserSpecifiedSegment("pooledScheduleName", "pooledScheduleName"),
 	}
 }
 

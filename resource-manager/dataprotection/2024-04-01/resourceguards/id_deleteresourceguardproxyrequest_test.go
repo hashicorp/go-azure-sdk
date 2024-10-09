@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DeleteResourceGuardProxyRequestId{}
 
 func TestNewDeleteResourceGuardProxyRequestID(t *testing.T) {
-	id := NewDeleteResourceGuardProxyRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardsName", "requestName")
+	id := NewDeleteResourceGuardProxyRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardName", "deleteResourceGuardProxyRequestName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,18 +22,18 @@ func TestNewDeleteResourceGuardProxyRequestID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceGuardName != "resourceGuardsName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceGuardName'", id.ResourceGuardName, "resourceGuardsName")
+	if id.ResourceGuardName != "resourceGuardName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceGuardName'", id.ResourceGuardName, "resourceGuardName")
 	}
 
-	if id.DeleteResourceGuardProxyRequestName != "requestName" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeleteResourceGuardProxyRequestName'", id.DeleteResourceGuardProxyRequestName, "requestName")
+	if id.DeleteResourceGuardProxyRequestName != "deleteResourceGuardProxyRequestName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeleteResourceGuardProxyRequestName'", id.DeleteResourceGuardProxyRequestName, "deleteResourceGuardProxyRequestName")
 	}
 }
 
 func TestFormatDeleteResourceGuardProxyRequestID(t *testing.T) {
-	actual := NewDeleteResourceGuardProxyRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardsName", "requestName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/deleteResourceGuardProxyRequests/requestName"
+	actual := NewDeleteResourceGuardProxyRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardName", "deleteResourceGuardProxyRequestName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName/deleteResourceGuardProxyRequests/deleteResourceGuardProxyRequestName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseDeleteResourceGuardProxyRequestID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/deleteResourceGuardProxyRequests",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName/deleteResourceGuardProxyRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/deleteResourceGuardProxyRequests/requestName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName/deleteResourceGuardProxyRequests/deleteResourceGuardProxyRequestName",
 			Expected: &DeleteResourceGuardProxyRequestId{
 				SubscriptionId:                      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                   "example-resource-group",
-				ResourceGuardName:                   "resourceGuardsName",
-				DeleteResourceGuardProxyRequestName: "requestName",
+				ResourceGuardName:                   "resourceGuardName",
+				DeleteResourceGuardProxyRequestName: "deleteResourceGuardProxyRequestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/deleteResourceGuardProxyRequests/requestName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName/deleteResourceGuardProxyRequests/deleteResourceGuardProxyRequestName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseDeleteResourceGuardProxyRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/deleteResourceGuardProxyRequests",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName/deleteResourceGuardProxyRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSnAmE/dElEtErEsOuRcEgUaRdPrOxYrEqUeStS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdNaMe/dElEtErEsOuRcEgUaRdPrOxYrEqUeStS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/deleteResourceGuardProxyRequests/requestName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName/deleteResourceGuardProxyRequests/deleteResourceGuardProxyRequestName",
 			Expected: &DeleteResourceGuardProxyRequestId{
 				SubscriptionId:                      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                   "example-resource-group",
-				ResourceGuardName:                   "resourceGuardsName",
-				DeleteResourceGuardProxyRequestName: "requestName",
+				ResourceGuardName:                   "resourceGuardName",
+				DeleteResourceGuardProxyRequestName: "deleteResourceGuardProxyRequestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsName/deleteResourceGuardProxyRequests/requestName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName/deleteResourceGuardProxyRequests/deleteResourceGuardProxyRequestName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSnAmE/dElEtErEsOuRcEgUaRdPrOxYrEqUeStS/rEqUeStNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdNaMe/dElEtErEsOuRcEgUaRdPrOxYrEqUeStS/dElEtErEsOuRcEgUaRdPrOxYrEqUeStNaMe",
 			Expected: &DeleteResourceGuardProxyRequestId{
 				SubscriptionId:                      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                   "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceGuardName:                   "rEsOuRcEgUaRdSnAmE",
-				DeleteResourceGuardProxyRequestName: "rEqUeStNaMe",
+				ResourceGuardName:                   "rEsOuRcEgUaRdNaMe",
+				DeleteResourceGuardProxyRequestName: "dElEtErEsOuRcEgUaRdPrOxYrEqUeStNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSnAmE/dElEtErEsOuRcEgUaRdPrOxYrEqUeStS/rEqUeStNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdNaMe/dElEtErEsOuRcEgUaRdPrOxYrEqUeStS/dElEtErEsOuRcEgUaRdPrOxYrEqUeStNaMe/extra",
 			Error: true,
 		},
 	}

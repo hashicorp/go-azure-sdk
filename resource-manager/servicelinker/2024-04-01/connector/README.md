@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := connector.NewDryrunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "dryrunName")
+id := connector.NewDryrunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "dryrunName")
 
 payload := connector.DryrunResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateDryrunThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := connector.NewConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "connectorName")
+id := connector.NewConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "connectorName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := connector.NewDryrunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "dryrunName")
+id := connector.NewDryrunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "dryrunName")
 
 read, err := client.DeleteDryrun(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connector.NewConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "connectorName")
+id := connector.NewConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "connectorName")
 
 payload := connector.ConfigurationInfo{
 	// ...
@@ -90,7 +90,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connector.NewDryrunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "dryrunName")
+id := connector.NewDryrunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "dryrunName")
 
 read, err := client.GetDryrun(ctx, id)
 if err != nil {
@@ -106,7 +106,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connector.NewLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location")
+id := connector.NewLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName")
 
 // alternatively `client.ListDryrun(ctx, id)` can be used to do batched pagination
 items, err := client.ListDryrunComplete(ctx, id)
@@ -123,7 +123,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := connector.NewConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "connectorName")
+id := connector.NewConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "connectorName")
 
 payload := connector.LinkerPatch{
 	// ...
@@ -140,7 +140,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := connector.NewDryrunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "dryrunName")
+id := connector.NewDryrunID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "dryrunName")
 
 payload := connector.DryrunPatch{
 	// ...
@@ -157,7 +157,7 @@ if err := client.UpdateDryrunThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := connector.NewConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "connectorName")
+id := connector.NewConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "connectorName")
 
 if err := client.ValidateThenPoll(ctx, id); err != nil {
 	// handle the error

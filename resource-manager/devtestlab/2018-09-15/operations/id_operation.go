@@ -115,7 +115,7 @@ func (id OperationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
 		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticOperations", "operations", "operations"),
-		resourceids.UserSpecifiedSegment("operationName", "name"),
+		resourceids.UserSpecifiedSegment("operationName", "operationName"),
 	}
 }
 

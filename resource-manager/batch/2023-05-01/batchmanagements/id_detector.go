@@ -121,7 +121,7 @@ func (id DetectorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBatch", "Microsoft.Batch", "Microsoft.Batch"),
 		resourceids.StaticSegment("staticBatchAccounts", "batchAccounts", "batchAccounts"),
-		resourceids.UserSpecifiedSegment("batchAccountName", "accountName"),
+		resourceids.UserSpecifiedSegment("batchAccountName", "batchAccountName"),
 		resourceids.StaticSegment("staticDetectors", "detectors", "detectors"),
 		resourceids.UserSpecifiedSegment("detectorId", "detectorId"),
 	}

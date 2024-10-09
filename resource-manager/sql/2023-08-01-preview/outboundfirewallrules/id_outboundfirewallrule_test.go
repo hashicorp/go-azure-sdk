@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OutboundFirewallRuleId{}
 
 func TestNewOutboundFirewallRuleID(t *testing.T) {
-	id := NewOutboundFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "outboundRuleFqdn")
+	id := NewOutboundFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "outboundFirewallRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewOutboundFirewallRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.OutboundFirewallRuleName != "outboundRuleFqdn" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutboundFirewallRuleName'", id.OutboundFirewallRuleName, "outboundRuleFqdn")
+	if id.OutboundFirewallRuleName != "outboundFirewallRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutboundFirewallRuleName'", id.OutboundFirewallRuleName, "outboundFirewallRuleName")
 	}
 }
 
 func TestFormatOutboundFirewallRuleID(t *testing.T) {
-	actual := NewOutboundFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "outboundRuleFqdn").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundRuleFqdn"
+	actual := NewOutboundFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "outboundFirewallRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundFirewallRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseOutboundFirewallRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundRuleFqdn",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundFirewallRuleName",
 			Expected: &OutboundFirewallRuleId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				ServerName:               "serverName",
-				OutboundFirewallRuleName: "outboundRuleFqdn",
+				OutboundFirewallRuleName: "outboundFirewallRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundRuleFqdn/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundFirewallRuleName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseOutboundFirewallRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundRuleFqdn",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundFirewallRuleName",
 			Expected: &OutboundFirewallRuleId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				ServerName:               "serverName",
-				OutboundFirewallRuleName: "outboundRuleFqdn",
+				OutboundFirewallRuleName: "outboundFirewallRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundRuleFqdn/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/outboundFirewallRules/outboundFirewallRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/oUtBoUnDfIrEwAlLrUlEs/oUtBoUnDrUlEfQdN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/oUtBoUnDfIrEwAlLrUlEs/oUtBoUnDfIrEwAlLrUlEnAmE",
 			Expected: &OutboundFirewallRuleId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
 				ServerName:               "sErVeRnAmE",
-				OutboundFirewallRuleName: "oUtBoUnDrUlEfQdN",
+				OutboundFirewallRuleName: "oUtBoUnDfIrEwAlLrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/oUtBoUnDfIrEwAlLrUlEs/oUtBoUnDrUlEfQdN/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/oUtBoUnDfIrEwAlLrUlEs/oUtBoUnDfIrEwAlLrUlEnAmE/extra",
 			Error: true,
 		},
 	}

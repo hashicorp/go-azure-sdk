@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := emailregistration.NewLocationID("location")
+id := emailregistration.NewLocationID("locationName")
 
 payload := emailregistration.EmailRegistration{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := emailregistration.NewLocationID("location")
+id := emailregistration.NewLocationID("locationName")
 
 read, err := client.RegisterEmail(ctx, id)
 if err != nil {

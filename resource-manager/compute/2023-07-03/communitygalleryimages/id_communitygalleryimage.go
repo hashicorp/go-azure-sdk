@@ -119,11 +119,11 @@ func (id CommunityGalleryImageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("locationName", "location"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticCommunityGalleries", "communityGalleries", "communityGalleries"),
-		resourceids.UserSpecifiedSegment("communityGalleryName", "publicGalleryName"),
+		resourceids.UserSpecifiedSegment("communityGalleryName", "communityGalleryName"),
 		resourceids.StaticSegment("staticImages", "images", "images"),
-		resourceids.UserSpecifiedSegment("imageName", "galleryImageName"),
+		resourceids.UserSpecifiedSegment("imageName", "imageName"),
 	}
 }
 

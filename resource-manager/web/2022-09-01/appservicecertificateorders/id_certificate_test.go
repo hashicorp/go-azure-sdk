@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &CertificateId{}
 
 func TestNewCertificateID(t *testing.T) {
-	id := NewCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "certificateOrderName", "name")
+	id := NewCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "certificateOrderName", "certificateName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewCertificateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'CertificateOrderName'", id.CertificateOrderName, "certificateOrderName")
 	}
 
-	if id.CertificateName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'CertificateName'", id.CertificateName, "name")
+	if id.CertificateName != "certificateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'CertificateName'", id.CertificateName, "certificateName")
 	}
 }
 
 func TestFormatCertificateID(t *testing.T) {
-	actual := NewCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "certificateOrderName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/name"
+	actual := NewCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "certificateOrderName", "certificateName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/certificateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseCertificateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/certificateName",
 			Expected: &CertificateId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				CertificateOrderName: "certificateOrderName",
-				CertificateName:      "name",
+				CertificateName:      "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/certificateName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/certificateName",
 			Expected: &CertificateId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				CertificateOrderName: "certificateOrderName",
-				CertificateName:      "name",
+				CertificateName:      "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CertificateRegistration/certificateOrders/certificateOrderName/certificates/certificateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cErTiFiCaTeReGiStRaTiOn/cErTiFiCaTeOrDeRs/cErTiFiCaTeOrDeRnAmE/cErTiFiCaTeS/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cErTiFiCaTeReGiStRaTiOn/cErTiFiCaTeOrDeRs/cErTiFiCaTeOrDeRnAmE/cErTiFiCaTeS/cErTiFiCaTeNaMe",
 			Expected: &CertificateId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
 				CertificateOrderName: "cErTiFiCaTeOrDeRnAmE",
-				CertificateName:      "nAmE",
+				CertificateName:      "cErTiFiCaTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cErTiFiCaTeReGiStRaTiOn/cErTiFiCaTeOrDeRs/cErTiFiCaTeOrDeRnAmE/cErTiFiCaTeS/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cErTiFiCaTeReGiStRaTiOn/cErTiFiCaTeOrDeRs/cErTiFiCaTeOrDeRnAmE/cErTiFiCaTeS/cErTiFiCaTeNaMe/extra",
 			Error: true,
 		},
 	}

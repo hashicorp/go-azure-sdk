@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RecoverableDatabaseId{}
 
 func TestNewRecoverableDatabaseID(t *testing.T) {
-	id := NewRecoverableDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName")
+	id := NewRecoverableDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "recoverableDatabaseName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewRecoverableDatabaseID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.RecoverableDatabaseName != "databaseName" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecoverableDatabaseName'", id.RecoverableDatabaseName, "databaseName")
+	if id.RecoverableDatabaseName != "recoverableDatabaseName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecoverableDatabaseName'", id.RecoverableDatabaseName, "recoverableDatabaseName")
 	}
 }
 
 func TestFormatRecoverableDatabaseID(t *testing.T) {
-	actual := NewRecoverableDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/databaseName"
+	actual := NewRecoverableDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "recoverableDatabaseName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/recoverableDatabaseName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseRecoverableDatabaseID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/databaseName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/recoverableDatabaseName",
 			Expected: &RecoverableDatabaseId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				ServerName:              "serverName",
-				RecoverableDatabaseName: "databaseName",
+				RecoverableDatabaseName: "recoverableDatabaseName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/databaseName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/recoverableDatabaseName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseRecoverableDatabaseIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/databaseName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/recoverableDatabaseName",
 			Expected: &RecoverableDatabaseId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				ServerName:              "serverName",
-				RecoverableDatabaseName: "databaseName",
+				RecoverableDatabaseName: "recoverableDatabaseName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/databaseName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/recoverableDatabases/recoverableDatabaseName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/rEcOvErAbLeDaTaBaSeS/dAtAbAsEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/rEcOvErAbLeDaTaBaSeS/rEcOvErAbLeDaTaBaSeNaMe",
 			Expected: &RecoverableDatabaseId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
 				ServerName:              "sErVeRnAmE",
-				RecoverableDatabaseName: "dAtAbAsEnAmE",
+				RecoverableDatabaseName: "rEcOvErAbLeDaTaBaSeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/rEcOvErAbLeDaTaBaSeS/dAtAbAsEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/rEcOvErAbLeDaTaBaSeS/rEcOvErAbLeDaTaBaSeNaMe/extra",
 			Error: true,
 		},
 	}

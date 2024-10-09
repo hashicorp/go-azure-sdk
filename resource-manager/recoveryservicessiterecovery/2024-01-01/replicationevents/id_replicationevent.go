@@ -121,9 +121,9 @@ func (id ReplicationEventId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "resourceName"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultName"),
 		resourceids.StaticSegment("staticReplicationEvents", "replicationEvents", "replicationEvents"),
-		resourceids.UserSpecifiedSegment("replicationEventName", "eventName"),
+		resourceids.UserSpecifiedSegment("replicationEventName", "replicationEventName"),
 	}
 }
 

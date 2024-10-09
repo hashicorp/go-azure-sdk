@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ProjectRepoId{}
 
 func TestNewProjectRepoID(t *testing.T) {
-	id := NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName", "projectName", "repoName")
+	id := NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName", "projectName", "repoName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,8 +26,8 @@ func TestNewProjectRepoID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SecurityConnectorName'", id.SecurityConnectorName, "securityConnectorName")
 	}
 
-	if id.AzureDevOpsOrgName != "orgName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AzureDevOpsOrgName'", id.AzureDevOpsOrgName, "orgName")
+	if id.AzureDevOpsOrgName != "azureDevOpsOrgName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AzureDevOpsOrgName'", id.AzureDevOpsOrgName, "azureDevOpsOrgName")
 	}
 
 	if id.ProjectName != "projectName" {
@@ -40,8 +40,8 @@ func TestNewProjectRepoID(t *testing.T) {
 }
 
 func TestFormatProjectRepoID(t *testing.T) {
-	actual := NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName", "projectName", "repoName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects/projectName/repos/repoName"
+	actual := NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName", "projectName", "repoName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects/projectName/repos/repoName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -115,39 +115,39 @@ func TestParseProjectRepoID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects/projectName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects/projectName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects/projectName/repos",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects/projectName/repos",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects/projectName/repos/repoName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects/projectName/repos/repoName",
 			Expected: &ProjectRepoId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				SecurityConnectorName: "securityConnectorName",
-				AzureDevOpsOrgName:    "orgName",
+				AzureDevOpsOrgName:    "azureDevOpsOrgName",
 				ProjectName:           "projectName",
 				RepoName:              "repoName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects/projectName/repos/repoName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects/projectName/repos/repoName/extra",
 			Error: true,
 		},
 	}
@@ -316,76 +316,76 @@ func TestParseProjectRepoIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/oRgNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/aZuReDeVoPsOrGnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/oRgNaMe/pRoJeCtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/aZuReDeVoPsOrGnAmE/pRoJeCtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects/projectName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects/projectName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/oRgNaMe/pRoJeCtS/pRoJeCtNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/aZuReDeVoPsOrGnAmE/pRoJeCtS/pRoJeCtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects/projectName/repos",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects/projectName/repos",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/oRgNaMe/pRoJeCtS/pRoJeCtNaMe/rEpOs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/aZuReDeVoPsOrGnAmE/pRoJeCtS/pRoJeCtNaMe/rEpOs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects/projectName/repos/repoName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects/projectName/repos/repoName",
 			Expected: &ProjectRepoId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				SecurityConnectorName: "securityConnectorName",
-				AzureDevOpsOrgName:    "orgName",
+				AzureDevOpsOrgName:    "azureDevOpsOrgName",
 				ProjectName:           "projectName",
 				RepoName:              "repoName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/projects/projectName/repos/repoName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/projects/projectName/repos/repoName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/oRgNaMe/pRoJeCtS/pRoJeCtNaMe/rEpOs/rEpOnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/aZuReDeVoPsOrGnAmE/pRoJeCtS/pRoJeCtNaMe/rEpOs/rEpOnAmE",
 			Expected: &ProjectRepoId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				SecurityConnectorName: "sEcUrItYcOnNeCtOrNaMe",
-				AzureDevOpsOrgName:    "oRgNaMe",
+				AzureDevOpsOrgName:    "aZuReDeVoPsOrGnAmE",
 				ProjectName:           "pRoJeCtNaMe",
 				RepoName:              "rEpOnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/oRgNaMe/pRoJeCtS/pRoJeCtNaMe/rEpOs/rEpOnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/aZuReDeVoPsOrGnAmE/pRoJeCtS/pRoJeCtNaMe/rEpOs/rEpOnAmE/extra",
 			Error: true,
 		},
 	}

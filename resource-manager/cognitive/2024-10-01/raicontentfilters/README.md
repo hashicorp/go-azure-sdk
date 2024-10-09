@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := raicontentfilters.NewRaiContentFilterID("12345678-1234-9876-4563-123456789012", "location", "filterName")
+id := raicontentfilters.NewRaiContentFilterID("12345678-1234-9876-4563-123456789012", "locationName", "raiContentFilterName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := raicontentfilters.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := raicontentfilters.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

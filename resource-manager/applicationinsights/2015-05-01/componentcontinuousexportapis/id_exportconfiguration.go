@@ -121,7 +121,7 @@ func (id ExportConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticComponents", "components", "components"),
-		resourceids.UserSpecifiedSegment("componentName", "resourceName"),
+		resourceids.UserSpecifiedSegment("componentName", "componentName"),
 		resourceids.StaticSegment("staticExportConfiguration", "exportConfiguration", "exportConfiguration"),
 		resourceids.UserSpecifiedSegment("exportId", "exportId"),
 	}

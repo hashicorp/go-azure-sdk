@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ArtifactSourceId{}
 
 func TestNewArtifactSourceID(t *testing.T) {
-	id := NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+	id := NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewArtifactSourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'LabName'", id.LabName, "labName")
 	}
 
-	if id.ArtifactSourceName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'ArtifactSourceName'", id.ArtifactSourceName, "name")
+	if id.ArtifactSourceName != "artifactSourceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ArtifactSourceName'", id.ArtifactSourceName, "artifactSourceName")
 	}
 }
 
 func TestFormatArtifactSourceID(t *testing.T) {
-	actual := NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/name"
+	actual := NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/artifactSourceName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseArtifactSourceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/artifactSourceName",
 			Expected: &ArtifactSourceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				LabName:            "labName",
-				ArtifactSourceName: "name",
+				ArtifactSourceName: "artifactSourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/artifactSourceName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseArtifactSourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/artifactSourceName",
 			Expected: &ArtifactSourceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				LabName:            "labName",
-				ArtifactSourceName: "name",
+				ArtifactSourceName: "artifactSourceName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/artifactSources/artifactSourceName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/aRtIfAcTsOuRcEs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/aRtIfAcTsOuRcEs/aRtIfAcTsOuRcEnAmE",
 			Expected: &ArtifactSourceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:            "lAbNaMe",
-				ArtifactSourceName: "nAmE",
+				ArtifactSourceName: "aRtIfAcTsOuRcEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/aRtIfAcTsOuRcEs/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/aRtIfAcTsOuRcEs/aRtIfAcTsOuRcEnAmE/extra",
 			Error: true,
 		},
 	}

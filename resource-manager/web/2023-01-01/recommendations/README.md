@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "name")
+id := recommendations.NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "recommendationName")
 
 read, err := client.DisableRecommendationForHostingEnvironment(ctx, id, recommendations.DefaultDisableRecommendationForHostingEnvironmentOperationOptions())
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "name")
+id := recommendations.NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "recommendationName")
 
 read, err := client.DisableRecommendationForSite(ctx, id)
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewRecommendationID("12345678-1234-9876-4563-123456789012", "name")
+id := recommendations.NewRecommendationID("12345678-1234-9876-4563-123456789012", "recommendationName")
 
 read, err := client.DisableRecommendationForSubscription(ctx, id)
 if err != nil {
@@ -105,7 +105,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "name")
+id := recommendations.NewHostingEnvironmentRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentName", "recommendationName")
 
 read, err := client.GetRuleDetailsByHostingEnvironment(ctx, id, recommendations.DefaultGetRuleDetailsByHostingEnvironmentOperationOptions())
 if err != nil {
@@ -121,7 +121,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "name")
+id := recommendations.NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "recommendationName")
 
 read, err := client.GetRuleDetailsByWebApp(ctx, id, recommendations.DefaultGetRuleDetailsByWebAppOperationOptions())
 if err != nil {

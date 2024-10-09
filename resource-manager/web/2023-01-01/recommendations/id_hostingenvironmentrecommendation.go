@@ -123,7 +123,7 @@ func (id HostingEnvironmentRecommendationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticHostingEnvironments", "hostingEnvironments", "hostingEnvironments"),
 		resourceids.UserSpecifiedSegment("hostingEnvironmentName", "hostingEnvironmentName"),
 		resourceids.StaticSegment("staticRecommendations", "recommendations", "recommendations"),
-		resourceids.UserSpecifiedSegment("recommendationName", "name"),
+		resourceids.UserSpecifiedSegment("recommendationName", "recommendationName"),
 	}
 }
 

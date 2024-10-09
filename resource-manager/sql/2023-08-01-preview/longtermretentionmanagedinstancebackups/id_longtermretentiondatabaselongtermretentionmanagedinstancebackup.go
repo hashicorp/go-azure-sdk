@@ -135,11 +135,11 @@ func (id LongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupId) Segm
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
 		resourceids.UserSpecifiedSegment("locationName", "locationName"),
 		resourceids.StaticSegment("staticLongTermRetentionManagedInstances", "longTermRetentionManagedInstances", "longTermRetentionManagedInstances"),
-		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "managedInstanceName"),
+		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceName", "longTermRetentionManagedInstanceName"),
 		resourceids.StaticSegment("staticLongTermRetentionDatabases", "longTermRetentionDatabases", "longTermRetentionDatabases"),
-		resourceids.UserSpecifiedSegment("longTermRetentionDatabaseName", "databaseName"),
+		resourceids.UserSpecifiedSegment("longTermRetentionDatabaseName", "longTermRetentionDatabaseName"),
 		resourceids.StaticSegment("staticLongTermRetentionManagedInstanceBackups", "longTermRetentionManagedInstanceBackups", "longTermRetentionManagedInstanceBackups"),
-		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceBackupName", "backupName"),
+		resourceids.UserSpecifiedSegment("longTermRetentionManagedInstanceBackupName", "longTermRetentionManagedInstanceBackupName"),
 	}
 }
 

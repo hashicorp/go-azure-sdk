@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "privateLinkSubResourceName")
+id := privateendpointconnections.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "privateLinkResourceName")
 
 read, err := client.PrivateEndpointConnectionGetPrivateLinkResource(ctx, id)
 if err != nil {

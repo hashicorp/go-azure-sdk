@@ -123,7 +123,7 @@ func (id DomainOwnershipIdentifierId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticDomains", "domains", "domains"),
 		resourceids.UserSpecifiedSegment("domainName", "domainName"),
 		resourceids.StaticSegment("staticDomainOwnershipIdentifiers", "domainOwnershipIdentifiers", "domainOwnershipIdentifiers"),
-		resourceids.UserSpecifiedSegment("domainOwnershipIdentifierName", "name"),
+		resourceids.UserSpecifiedSegment("domainOwnershipIdentifierName", "domainOwnershipIdentifierName"),
 	}
 }
 

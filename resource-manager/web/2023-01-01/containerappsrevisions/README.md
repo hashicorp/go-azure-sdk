@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := containerappsrevisions.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "name")
+id := containerappsrevisions.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName")
 
 read, err := client.ActivateRevision(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerappsrevisions.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "name")
+id := containerappsrevisions.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName")
 
 read, err := client.DeactivateRevision(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerappsrevisions.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "name")
+id := containerappsrevisions.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName")
 
 read, err := client.GetRevision(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerappsrevisions.NewProviderContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := containerappsrevisions.NewProviderContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 // alternatively `client.ListRevisions(ctx, id)` can be used to do batched pagination
 items, err := client.ListRevisionsComplete(ctx, id)
@@ -89,7 +89,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := containerappsrevisions.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "name")
+id := containerappsrevisions.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName")
 
 read, err := client.RestartRevision(ctx, id)
 if err != nil {

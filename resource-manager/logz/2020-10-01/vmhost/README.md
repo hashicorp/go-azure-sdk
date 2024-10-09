@@ -79,7 +79,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 payload := vmhost.VMHostUpdateRequest{
 	// ...
@@ -101,7 +101,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 // alternatively `client.SubAccountListVMHosts(ctx, id)` can be used to do batched pagination
 items, err := client.SubAccountListVMHostsComplete(ctx, id)
@@ -118,7 +118,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+id := vmhost.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 read, err := client.SubAccountVMHostPayload(ctx, id)
 if err != nil {

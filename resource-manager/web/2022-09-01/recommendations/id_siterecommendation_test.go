@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SiteRecommendationId{}
 
 func TestNewSiteRecommendationID(t *testing.T) {
-	id := NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "name")
+	id := NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "recommendationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewSiteRecommendationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteName")
 	}
 
-	if id.RecommendationName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecommendationName'", id.RecommendationName, "name")
+	if id.RecommendationName != "recommendationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecommendationName'", id.RecommendationName, "recommendationName")
 	}
 }
 
 func TestFormatSiteRecommendationID(t *testing.T) {
-	actual := NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/name"
+	actual := NewSiteRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "recommendationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/recommendationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseSiteRecommendationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/recommendationName",
 			Expected: &SiteRecommendationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				SiteName:           "siteName",
-				RecommendationName: "name",
+				RecommendationName: "recommendationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/recommendationName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseSiteRecommendationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/recommendationName",
 			Expected: &SiteRecommendationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				SiteName:           "siteName",
-				RecommendationName: "name",
+				RecommendationName: "recommendationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/recommendations/recommendationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/rEcOmMeNdAtIoNs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNnAmE",
 			Expected: &SiteRecommendationId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				SiteName:           "sItEnAmE",
-				RecommendationName: "nAmE",
+				RecommendationName: "rEcOmMeNdAtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/rEcOmMeNdAtIoNs/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNnAmE/extra",
 			Error: true,
 		},
 	}

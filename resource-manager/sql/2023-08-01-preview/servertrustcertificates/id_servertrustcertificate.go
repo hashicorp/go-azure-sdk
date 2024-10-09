@@ -123,7 +123,7 @@ func (id ServerTrustCertificateId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
 		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticServerTrustCertificates", "serverTrustCertificates", "serverTrustCertificates"),
-		resourceids.UserSpecifiedSegment("serverTrustCertificateName", "certificateName"),
+		resourceids.UserSpecifiedSegment("serverTrustCertificateName", "serverTrustCertificateName"),
 	}
 }
 

@@ -107,7 +107,7 @@ func (id ProviderPacketCoreControlPlaneVersionId) Segments() []resourceids.Segme
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMobileNetwork", "Microsoft.MobileNetwork", "Microsoft.MobileNetwork"),
 		resourceids.StaticSegment("staticPacketCoreControlPlaneVersions", "packetCoreControlPlaneVersions", "packetCoreControlPlaneVersions"),
-		resourceids.UserSpecifiedSegment("packetCoreControlPlaneVersionName", "versionName"),
+		resourceids.UserSpecifiedSegment("packetCoreControlPlaneVersionName", "packetCoreControlPlaneVersionName"),
 	}
 }
 

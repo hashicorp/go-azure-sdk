@@ -95,7 +95,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webtestsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webtestsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName")
 
 // alternatively `client.WebTestsListByComponent(ctx, id)` can be used to do batched pagination
 items, err := client.WebTestsListByComponentComplete(ctx, id)

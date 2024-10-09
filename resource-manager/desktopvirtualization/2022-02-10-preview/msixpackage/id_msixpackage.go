@@ -123,7 +123,7 @@ func (id MsixPackageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticHostPools", "hostPools", "hostPools"),
 		resourceids.UserSpecifiedSegment("hostPoolName", "hostPoolName"),
 		resourceids.StaticSegment("staticMsixPackages", "msixPackages", "msixPackages"),
-		resourceids.UserSpecifiedSegment("msixPackageName", "msixPackageFullName"),
+		resourceids.UserSpecifiedSegment("msixPackageName", "msixPackageName"),
 	}
 }
 

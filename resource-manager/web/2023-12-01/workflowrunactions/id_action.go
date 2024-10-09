@@ -133,7 +133,7 @@ func (id ActionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticSites", "sites", "sites"),
-		resourceids.UserSpecifiedSegment("siteName", "name"),
+		resourceids.UserSpecifiedSegment("siteName", "siteName"),
 		resourceids.StaticSegment("staticHostRuntime", "hostRuntime", "hostRuntime"),
 		resourceids.StaticSegment("staticRuntime", "runtime", "runtime"),
 		resourceids.StaticSegment("staticWebHooks", "webHooks", "webHooks"),

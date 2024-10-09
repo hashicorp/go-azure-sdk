@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "codeName", "versionName")
 
 payload := codeversion.PendingUploadRequestDto{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "codeName", "versionName")
 
 payload := codeversion.CodeVersionResource{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "codeName", "versionName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "codeName", "versionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
+id := codeversion.NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "codeName")
 
 // alternatively `client.List(ctx, id, codeversion.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, codeversion.DefaultListOperationOptions())
@@ -115,7 +115,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := codeversion.NewCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "codeName", "versionName")
 
 payload := codeversion.DestinationAsset{
 	// ...
@@ -132,7 +132,7 @@ if err := client.PublishThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewRegistryCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName", "version")
+id := codeversion.NewRegistryCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName", "versionName")
 
 payload := codeversion.PendingUploadRequestDto{
 	// ...
@@ -153,7 +153,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewRegistryCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName", "version")
+id := codeversion.NewRegistryCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName", "versionName")
 
 payload := codeversion.CodeVersionResource{
 	// ...
@@ -170,7 +170,7 @@ if err := client.RegistryCodeVersionsCreateOrUpdateThenPoll(ctx, id, payload); e
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewRegistryCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName", "version")
+id := codeversion.NewRegistryCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName", "versionName")
 
 if err := client.RegistryCodeVersionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -182,7 +182,7 @@ if err := client.RegistryCodeVersionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := codeversion.NewRegistryCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName", "version")
+id := codeversion.NewRegistryCodeVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "codeName", "versionName")
 
 read, err := client.RegistryCodeVersionsGet(ctx, id)
 if err != nil {

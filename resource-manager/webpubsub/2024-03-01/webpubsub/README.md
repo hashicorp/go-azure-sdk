@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := webpubsub.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := webpubsub.NameAvailabilityParameters{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 payload := webpubsub.WebPubSubResource{
 	// ...
@@ -63,7 +63,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "certificateName")
+id := webpubsub.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "customCertificateName")
 
 payload := webpubsub.CustomCertificate{
 	// ...
@@ -80,7 +80,7 @@ if err := client.CustomCertificatesCreateOrUpdateThenPoll(ctx, id, payload); err
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "certificateName")
+id := webpubsub.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "customCertificateName")
 
 read, err := client.CustomCertificatesDelete(ctx, id)
 if err != nil {
@@ -96,7 +96,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "certificateName")
+id := webpubsub.NewCustomCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "customCertificateName")
 
 read, err := client.CustomCertificatesGet(ctx, id)
 if err != nil {
@@ -112,7 +112,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 // alternatively `client.CustomCertificatesList(ctx, id)` can be used to do batched pagination
 items, err := client.CustomCertificatesListComplete(ctx, id)
@@ -129,7 +129,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "name")
+id := webpubsub.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "customDomainName")
 
 payload := webpubsub.CustomDomain{
 	// ...
@@ -146,7 +146,7 @@ if err := client.CustomDomainsCreateOrUpdateThenPoll(ctx, id, payload); err != n
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "name")
+id := webpubsub.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "customDomainName")
 
 if err := client.CustomDomainsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -158,7 +158,7 @@ if err := client.CustomDomainsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "name")
+id := webpubsub.NewCustomDomainID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "customDomainName")
 
 read, err := client.CustomDomainsGet(ctx, id)
 if err != nil {
@@ -174,7 +174,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 // alternatively `client.CustomDomainsList(ctx, id)` can be used to do batched pagination
 items, err := client.CustomDomainsListComplete(ctx, id)
@@ -191,7 +191,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -203,7 +203,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -219,7 +219,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "hubName")
+id := webpubsub.NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "hubName")
 
 payload := webpubsub.WebPubSubHub{
 	// ...
@@ -236,7 +236,7 @@ if err := client.HubsCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "hubName")
+id := webpubsub.NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "hubName")
 
 if err := client.HubsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -248,7 +248,7 @@ if err := client.HubsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "hubName")
+id := webpubsub.NewHubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "hubName")
 
 read, err := client.HubsGet(ctx, id)
 if err != nil {
@@ -264,7 +264,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 // alternatively `client.HubsList(ctx, id)` can be used to do batched pagination
 items, err := client.HubsListComplete(ctx, id)
@@ -315,7 +315,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 read, err := client.ListKeys(ctx, id)
 if err != nil {
@@ -331,7 +331,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "replicaName")
 
 // alternatively `client.ListReplicaSkus(ctx, id)` can be used to do batched pagination
 items, err := client.ListReplicaSkusComplete(ctx, id)
@@ -348,7 +348,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 // alternatively `client.ListSkus(ctx, id)` can be used to do batched pagination
 items, err := client.ListSkusComplete(ctx, id)
@@ -365,7 +365,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "privateEndpointConnectionName")
+id := webpubsub.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "privateEndpointConnectionName")
 
 if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -377,7 +377,7 @@ if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "privateEndpointConnectionName")
+id := webpubsub.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "privateEndpointConnectionName")
 
 read, err := client.PrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
@@ -393,7 +393,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 // alternatively `client.PrivateEndpointConnectionsList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateEndpointConnectionsListComplete(ctx, id)
@@ -410,7 +410,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "privateEndpointConnectionName")
+id := webpubsub.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "privateEndpointConnectionName")
 
 payload := webpubsub.PrivateEndpointConnection{
 	// ...
@@ -431,7 +431,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 // alternatively `client.PrivateLinkResourcesList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateLinkResourcesListComplete(ctx, id)
@@ -448,7 +448,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 payload := webpubsub.RegenerateKeyParameters{
 	// ...
@@ -465,7 +465,7 @@ if err := client.RegenerateKeyThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName", "sharedPrivateLinkResourceName")
+id := webpubsub.NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "replicaName", "sharedPrivateLinkResourceName")
 
 payload := webpubsub.SharedPrivateLinkResource{
 	// ...
@@ -482,7 +482,7 @@ if err := client.ReplicaSharedPrivateLinkResourcesCreateOrUpdateThenPoll(ctx, id
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName", "sharedPrivateLinkResourceName")
+id := webpubsub.NewReplicaSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "replicaName", "sharedPrivateLinkResourceName")
 
 read, err := client.ReplicaSharedPrivateLinkResourcesGet(ctx, id)
 if err != nil {
@@ -498,7 +498,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "replicaName")
 
 // alternatively `client.ReplicaSharedPrivateLinkResourcesList(ctx, id)` can be used to do batched pagination
 items, err := client.ReplicaSharedPrivateLinkResourcesListComplete(ctx, id)
@@ -515,7 +515,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "replicaName")
 
 payload := webpubsub.Replica{
 	// ...
@@ -532,7 +532,7 @@ if err := client.ReplicasCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "replicaName")
 
 read, err := client.ReplicasDelete(ctx, id)
 if err != nil {
@@ -548,7 +548,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "replicaName")
 
 read, err := client.ReplicasGet(ctx, id)
 if err != nil {
@@ -564,7 +564,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 // alternatively `client.ReplicasList(ctx, id)` can be used to do batched pagination
 items, err := client.ReplicasListComplete(ctx, id)
@@ -581,7 +581,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "replicaName")
 
 if err := client.ReplicasRestartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -593,7 +593,7 @@ if err := client.ReplicasRestartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "replicaName")
+id := webpubsub.NewReplicaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "replicaName")
 
 payload := webpubsub.Replica{
 	// ...
@@ -610,7 +610,7 @@ if err := client.ReplicasUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 if err := client.RestartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -622,7 +622,7 @@ if err := client.RestartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "sharedPrivateLinkResourceName")
+id := webpubsub.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "sharedPrivateLinkResourceName")
 
 payload := webpubsub.SharedPrivateLinkResource{
 	// ...
@@ -639,7 +639,7 @@ if err := client.SharedPrivateLinkResourcesCreateOrUpdateThenPoll(ctx, id, paylo
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "sharedPrivateLinkResourceName")
+id := webpubsub.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "sharedPrivateLinkResourceName")
 
 if err := client.SharedPrivateLinkResourcesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -651,7 +651,7 @@ if err := client.SharedPrivateLinkResourcesDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "sharedPrivateLinkResourceName")
+id := webpubsub.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName", "sharedPrivateLinkResourceName")
 
 read, err := client.SharedPrivateLinkResourcesGet(ctx, id)
 if err != nil {
@@ -667,7 +667,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 // alternatively `client.SharedPrivateLinkResourcesList(ctx, id)` can be used to do batched pagination
 items, err := client.SharedPrivateLinkResourcesListComplete(ctx, id)
@@ -684,7 +684,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := webpubsub.NewWebPubSubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "webPubSubName")
 
 payload := webpubsub.WebPubSubResource{
 	// ...
@@ -701,7 +701,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webpubsub.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := webpubsub.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.UsagesList(ctx, id)` can be used to do batched pagination
 items, err := client.UsagesListComplete(ctx, id)

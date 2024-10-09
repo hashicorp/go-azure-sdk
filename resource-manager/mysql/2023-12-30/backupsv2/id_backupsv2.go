@@ -121,9 +121,9 @@ func (id BackupsV2Id) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforMySQL", "Microsoft.DBforMySQL", "Microsoft.DBforMySQL"),
 		resourceids.StaticSegment("staticFlexibleServers", "flexibleServers", "flexibleServers"),
-		resourceids.UserSpecifiedSegment("flexibleServerName", "serverName"),
+		resourceids.UserSpecifiedSegment("flexibleServerName", "flexibleServerName"),
 		resourceids.StaticSegment("staticBackupsV2", "backupsV2", "backupsV2"),
-		resourceids.UserSpecifiedSegment("backupsV2Name", "backupName"),
+		resourceids.UserSpecifiedSegment("backupsV2Name", "backupsV2Name"),
 	}
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &Providers2Id{}
 
 func TestNewProviders2ID(t *testing.T) {
-	id := NewProviders2ID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespace")
+	id := NewProviders2ID("12345678-1234-9876-4563-123456789012", "providerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ProviderName != "resourceProviderNamespace" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "resourceProviderNamespace")
+	if id.ProviderName != "providerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "providerName")
 	}
 }
 
 func TestFormatProviders2ID(t *testing.T) {
-	actual := NewProviders2ID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespace").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace"
+	actual := NewProviders2ID("12345678-1234-9876-4563-123456789012", "providerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseProviders2ID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName",
 			Expected: &Providers2Id{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				ProviderName:   "resourceProviderNamespace",
+				ProviderName:   "providerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseProviders2IDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName",
 			Expected: &Providers2Id{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				ProviderName:   "resourceProviderNamespace",
+				ProviderName:   "providerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/resourceProviderNamespace/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Features/providers/providerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/pRoViDeRnAmE",
 			Expected: &Providers2Id{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				ProviderName:   "rEsOuRcEpRoViDeRnAmEsPaCe",
+				ProviderName:   "pRoViDeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.fEaTuReS/pRoViDeRs/pRoViDeRnAmE/extra",
 			Error: true,
 		},
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VCenterId{}
 
 func TestNewVCenterID(t *testing.T) {
-	id := NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName")
+	id := NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVCenterID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VCenterName != "vcenterName" {
-		t.Fatalf("Expected %q but got %q for Segment 'VCenterName'", id.VCenterName, "vcenterName")
+	if id.VCenterName != "vCenterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VCenterName'", id.VCenterName, "vCenterName")
 	}
 }
 
 func TestFormatVCenterID(t *testing.T) {
-	actual := NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName"
+	actual := NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVCenterID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName",
 			Expected: &VCenterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VCenterName:       "vcenterName",
+				VCenterName:       "vCenterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName/extra",
 			Error: true,
 		},
 	}
@@ -209,16 +209,16 @@ func TestParseVCenterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName",
 			Expected: &VCenterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				VCenterName:       "vcenterName",
+				VCenterName:       "vCenterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vcenterName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/vCenters/vCenterName/extra",
 			Error: true,
 		},
 		{

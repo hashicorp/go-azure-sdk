@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HybridIdentityMetadataId{}
 
 func TestNewHybridIdentityMetadataID(t *testing.T) {
-	id := NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "metadataName")
+	id := NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "hybridIdentityMetadataName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewHybridIdentityMetadataID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineName")
 	}
 
-	if id.HybridIdentityMetadataName != "metadataName" {
-		t.Fatalf("Expected %q but got %q for Segment 'HybridIdentityMetadataName'", id.HybridIdentityMetadataName, "metadataName")
+	if id.HybridIdentityMetadataName != "hybridIdentityMetadataName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HybridIdentityMetadataName'", id.HybridIdentityMetadataName, "hybridIdentityMetadataName")
 	}
 }
 
 func TestFormatHybridIdentityMetadataID(t *testing.T) {
-	actual := NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "metadataName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/metadataName"
+	actual := NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "hybridIdentityMetadataName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/hybridIdentityMetadataName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseHybridIdentityMetadataID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/metadataName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/hybridIdentityMetadataName",
 			Expected: &HybridIdentityMetadataId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				VirtualMachineName:         "virtualMachineName",
-				HybridIdentityMetadataName: "metadataName",
+				HybridIdentityMetadataName: "hybridIdentityMetadataName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/metadataName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/hybridIdentityMetadataName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseHybridIdentityMetadataIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/metadataName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/hybridIdentityMetadataName",
 			Expected: &HybridIdentityMetadataId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				VirtualMachineName:         "virtualMachineName",
-				HybridIdentityMetadataName: "metadataName",
+				HybridIdentityMetadataName: "hybridIdentityMetadataName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/metadataName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/virtualMachineName/hybridIdentityMetadata/hybridIdentityMetadataName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/hYbRiDiDeNtItYmEtAdAtA/mEtAdAtAnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/hYbRiDiDeNtItYmEtAdAtA/hYbRiDiDeNtItYmEtAdAtAnAmE",
 			Expected: &HybridIdentityMetadataId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
 				VirtualMachineName:         "vIrTuAlMaChInEnAmE",
-				HybridIdentityMetadataName: "mEtAdAtAnAmE",
+				HybridIdentityMetadataName: "hYbRiDiDeNtItYmEtAdAtAnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/hYbRiDiDeNtItYmEtAdAtA/mEtAdAtAnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnNeCtEdVmWaReVsPhErE/vIrTuAlMaChInEs/vIrTuAlMaChInEnAmE/hYbRiDiDeNtItYmEtAdAtA/hYbRiDiDeNtItYmEtAdAtAnAmE/extra",
 			Error: true,
 		},
 	}

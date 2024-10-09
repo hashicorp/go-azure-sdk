@@ -131,7 +131,7 @@ func (id ArmTemplateId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticArtifactSources", "artifactSources", "artifactSources"),
 		resourceids.UserSpecifiedSegment("artifactSourceName", "artifactSourceName"),
 		resourceids.StaticSegment("staticArmTemplates", "armTemplates", "armTemplates"),
-		resourceids.UserSpecifiedSegment("armTemplateName", "name"),
+		resourceids.UserSpecifiedSegment("armTemplateName", "armTemplateName"),
 	}
 }
 

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &OpenAIIntegrationId{}
 
 func TestNewOpenAIIntegrationID(t *testing.T) {
-	id := NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
+	id := NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "openAIIntegrationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewOpenAIIntegrationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 
-	if id.OpenAIIntegrationName != "integrationName" {
-		t.Fatalf("Expected %q but got %q for Segment 'OpenAIIntegrationName'", id.OpenAIIntegrationName, "integrationName")
+	if id.OpenAIIntegrationName != "openAIIntegrationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'OpenAIIntegrationName'", id.OpenAIIntegrationName, "openAIIntegrationName")
 	}
 }
 
 func TestFormatOpenAIIntegrationID(t *testing.T) {
-	actual := NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName"
+	actual := NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "openAIIntegrationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/openAIIntegrationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseOpenAIIntegrationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/openAIIntegrationName",
 			Expected: &OpenAIIntegrationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				MonitorName:           "monitorName",
-				OpenAIIntegrationName: "integrationName",
+				OpenAIIntegrationName: "openAIIntegrationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/openAIIntegrationName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseOpenAIIntegrationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/openAIIntegrationName",
 			Expected: &OpenAIIntegrationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				MonitorName:           "monitorName",
-				OpenAIIntegrationName: "integrationName",
+				OpenAIIntegrationName: "openAIIntegrationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/integrationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorName/openAIIntegrations/openAIIntegrationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrNaMe/oPeNaIiNtEgRaTiOnS/iNtEgRaTiOnNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrNaMe/oPeNaIiNtEgRaTiOnS/oPeNaIiNtEgRaTiOnNaMe",
 			Expected: &OpenAIIntegrationId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				MonitorName:           "mOnItOrNaMe",
-				OpenAIIntegrationName: "iNtEgRaTiOnNaMe",
+				OpenAIIntegrationName: "oPeNaIiNtEgRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrNaMe/oPeNaIiNtEgRaTiOnS/iNtEgRaTiOnNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrNaMe/oPeNaIiNtEgRaTiOnS/oPeNaIiNtEgRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

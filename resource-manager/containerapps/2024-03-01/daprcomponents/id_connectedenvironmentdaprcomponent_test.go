@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ConnectedEnvironmentDaprComponentId{}
 
 func TestNewConnectedEnvironmentDaprComponentID(t *testing.T) {
-	id := NewConnectedEnvironmentDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedEnvironmentName", "componentName")
+	id := NewConnectedEnvironmentDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedEnvironmentName", "daprComponentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewConnectedEnvironmentDaprComponentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ConnectedEnvironmentName'", id.ConnectedEnvironmentName, "connectedEnvironmentName")
 	}
 
-	if id.DaprComponentName != "componentName" {
-		t.Fatalf("Expected %q but got %q for Segment 'DaprComponentName'", id.DaprComponentName, "componentName")
+	if id.DaprComponentName != "daprComponentName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DaprComponentName'", id.DaprComponentName, "daprComponentName")
 	}
 }
 
 func TestFormatConnectedEnvironmentDaprComponentID(t *testing.T) {
-	actual := NewConnectedEnvironmentDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedEnvironmentName", "componentName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/componentName"
+	actual := NewConnectedEnvironmentDaprComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectedEnvironmentName", "daprComponentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/daprComponentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseConnectedEnvironmentDaprComponentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/componentName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/daprComponentName",
 			Expected: &ConnectedEnvironmentDaprComponentId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				ConnectedEnvironmentName: "connectedEnvironmentName",
-				DaprComponentName:        "componentName",
+				DaprComponentName:        "daprComponentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/componentName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/daprComponentName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseConnectedEnvironmentDaprComponentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/componentName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/daprComponentName",
 			Expected: &ConnectedEnvironmentDaprComponentId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				ConnectedEnvironmentName: "connectedEnvironmentName",
-				DaprComponentName:        "componentName",
+				DaprComponentName:        "daprComponentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/componentName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/connectedEnvironments/connectedEnvironmentName/daprComponents/daprComponentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTnAmE/dApRcOmPoNeNtS/cOmPoNeNtNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTnAmE/dApRcOmPoNeNtS/dApRcOmPoNeNtNaMe",
 			Expected: &ConnectedEnvironmentDaprComponentId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
 				ConnectedEnvironmentName: "cOnNeCtEdEnViRoNmEnTnAmE",
-				DaprComponentName:        "cOmPoNeNtNaMe",
+				DaprComponentName:        "dApRcOmPoNeNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTnAmE/dApRcOmPoNeNtS/cOmPoNeNtNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/cOnNeCtEdEnViRoNmEnTs/cOnNeCtEdEnViRoNmEnTnAmE/dApRcOmPoNeNtS/dApRcOmPoNeNtNaMe/extra",
 			Error: true,
 		},
 	}

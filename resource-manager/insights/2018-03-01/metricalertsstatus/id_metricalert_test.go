@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MetricAlertId{}
 
 func TestNewMetricAlertID(t *testing.T) {
-	id := NewMetricAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName")
+	id := NewMetricAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "metricAlertName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewMetricAlertID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.MetricAlertName != "ruleName" {
-		t.Fatalf("Expected %q but got %q for Segment 'MetricAlertName'", id.MetricAlertName, "ruleName")
+	if id.MetricAlertName != "metricAlertName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MetricAlertName'", id.MetricAlertName, "metricAlertName")
 	}
 }
 
 func TestFormatMetricAlertID(t *testing.T) {
-	actual := NewMetricAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/ruleName"
+	actual := NewMetricAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "metricAlertName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/metricAlertName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseMetricAlertID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/ruleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/metricAlertName",
 			Expected: &MetricAlertId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MetricAlertName:   "ruleName",
+				MetricAlertName:   "metricAlertName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/ruleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/metricAlertName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseMetricAlertIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/ruleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/metricAlertName",
 			Expected: &MetricAlertId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				MetricAlertName:   "ruleName",
+				MetricAlertName:   "metricAlertName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/ruleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/metricAlerts/metricAlertName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/mEtRiCaLeRtS/rUlEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/mEtRiCaLeRtS/mEtRiCaLeRtNaMe",
 			Expected: &MetricAlertId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MetricAlertName:   "rUlEnAmE",
+				MetricAlertName:   "mEtRiCaLeRtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/mEtRiCaLeRtS/rUlEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/mEtRiCaLeRtS/mEtRiCaLeRtNaMe/extra",
 			Error: true,
 		},
 	}

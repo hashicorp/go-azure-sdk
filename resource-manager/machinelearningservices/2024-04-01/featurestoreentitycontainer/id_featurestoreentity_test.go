@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &FeatureStoreEntityId{}
 
 func TestNewFeatureStoreEntityID(t *testing.T) {
-	id := NewFeatureStoreEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
+	id := NewFeatureStoreEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "featureStoreEntityName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewFeatureStoreEntityID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.FeatureStoreEntityName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'FeatureStoreEntityName'", id.FeatureStoreEntityName, "name")
+	if id.FeatureStoreEntityName != "featureStoreEntityName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FeatureStoreEntityName'", id.FeatureStoreEntityName, "featureStoreEntityName")
 	}
 }
 
 func TestFormatFeatureStoreEntityID(t *testing.T) {
-	actual := NewFeatureStoreEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/name"
+	actual := NewFeatureStoreEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "featureStoreEntityName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/featureStoreEntityName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseFeatureStoreEntityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/featureStoreEntityName",
 			Expected: &FeatureStoreEntityId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				WorkspaceName:          "workspaceName",
-				FeatureStoreEntityName: "name",
+				FeatureStoreEntityName: "featureStoreEntityName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/featureStoreEntityName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseFeatureStoreEntityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/featureStoreEntityName",
 			Expected: &FeatureStoreEntityId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				WorkspaceName:          "workspaceName",
-				FeatureStoreEntityName: "name",
+				FeatureStoreEntityName: "featureStoreEntityName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/featureStoreEntities/featureStoreEntityName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/fEaTuReStOrEeNtItIeS/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/fEaTuReStOrEeNtItIeS/fEaTuReStOrEeNtItYnAmE",
 			Expected: &FeatureStoreEntityId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:          "wOrKsPaCeNaMe",
-				FeatureStoreEntityName: "nAmE",
+				FeatureStoreEntityName: "fEaTuReStOrEeNtItYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/fEaTuReStOrEeNtItIeS/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/fEaTuReStOrEeNtItIeS/fEaTuReStOrEeNtItYnAmE/extra",
 			Error: true,
 		},
 	}

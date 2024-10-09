@@ -99,7 +99,7 @@ func (id MetadataId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAdvisor", "Microsoft.Advisor", "Microsoft.Advisor"),
 		resourceids.StaticSegment("staticMetadata", "metadata", "metadata"),
-		resourceids.UserSpecifiedSegment("metadataName", "name"),
+		resourceids.UserSpecifiedSegment("metadataName", "metadataName"),
 	}
 }
 

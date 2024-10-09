@@ -107,7 +107,7 @@ func (id AdvisorScoreId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAdvisor", "Microsoft.Advisor", "Microsoft.Advisor"),
 		resourceids.StaticSegment("staticAdvisorScore", "advisorScore", "advisorScore"),
-		resourceids.UserSpecifiedSegment("advisorScoreName", "name"),
+		resourceids.UserSpecifiedSegment("advisorScoreName", "advisorScoreName"),
 	}
 }
 

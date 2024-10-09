@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RevisionId{}
 
 func TestNewRevisionID(t *testing.T) {
-	id := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "name")
+	id := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewRevisionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ContainerAppName'", id.ContainerAppName, "containerAppName")
 	}
 
-	if id.RevisionName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'RevisionName'", id.RevisionName, "name")
+	if id.RevisionName != "revisionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RevisionName'", id.RevisionName, "revisionName")
 	}
 }
 
 func TestFormatRevisionID(t *testing.T) {
-	actual := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name"
+	actual := NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName", "revisionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/revisionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseRevisionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/revisionName",
 			Expected: &RevisionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ContainerAppName:  "containerAppName",
-				RevisionName:      "name",
+				RevisionName:      "revisionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/revisionName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseRevisionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/revisionName",
 			Expected: &RevisionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ContainerAppName:  "containerAppName",
-				RevisionName:      "name",
+				RevisionName:      "revisionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/containerApps/containerAppName/revisions/revisionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/rEvIsIoNnAmE",
 			Expected: &RevisionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ContainerAppName:  "cOnTaInErApPnAmE",
-				RevisionName:      "nAmE",
+				RevisionName:      "rEvIsIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cOnTaInErApPs/cOnTaInErApPnAmE/rEvIsIoNs/rEvIsIoNnAmE/extra",
 			Error: true,
 		},
 	}

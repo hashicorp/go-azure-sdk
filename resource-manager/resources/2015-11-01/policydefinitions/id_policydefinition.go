@@ -107,7 +107,7 @@ func (id PolicydefinitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAuthorization", "Microsoft.Authorization", "Microsoft.Authorization"),
 		resourceids.StaticSegment("staticPolicydefinitions", "policydefinitions", "policydefinitions"),
-		resourceids.UserSpecifiedSegment("policydefinitionName", "policyDefinitionName"),
+		resourceids.UserSpecifiedSegment("policydefinitionName", "policydefinitionName"),
 	}
 }
 

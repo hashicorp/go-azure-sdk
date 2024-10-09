@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ScopeRepetitionId{}
 
 func TestNewScopeRepetitionID(t *testing.T) {
-	id := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "runName", "actionName", "repetitionName")
+	id := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "runName", "actionName", "scopeRepetitionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -34,14 +34,14 @@ func TestNewScopeRepetitionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ActionName'", id.ActionName, "actionName")
 	}
 
-	if id.ScopeRepetitionName != "repetitionName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScopeRepetitionName'", id.ScopeRepetitionName, "repetitionName")
+	if id.ScopeRepetitionName != "scopeRepetitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScopeRepetitionName'", id.ScopeRepetitionName, "scopeRepetitionName")
 	}
 }
 
 func TestFormatScopeRepetitionID(t *testing.T) {
-	actual := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "runName", "actionName", "repetitionName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName"
+	actual := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowName", "runName", "actionName", "scopeRepetitionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/scopeRepetitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -125,19 +125,19 @@ func TestParseScopeRepetitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/scopeRepetitionName",
 			Expected: &ScopeRepetitionId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
 				WorkflowName:        "workflowName",
 				RunName:             "runName",
 				ActionName:          "actionName",
-				ScopeRepetitionName: "repetitionName",
+				ScopeRepetitionName: "scopeRepetitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/scopeRepetitionName/extra",
 			Error: true,
 		},
 	}
@@ -326,36 +326,36 @@ func TestParseScopeRepetitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/scopeRepetitionName",
 			Expected: &ScopeRepetitionId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
 				WorkflowName:        "workflowName",
 				RunName:             "runName",
 				ActionName:          "actionName",
-				ScopeRepetitionName: "repetitionName",
+				ScopeRepetitionName: "scopeRepetitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/repetitionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowName/runs/runName/actions/actionName/scopeRepetitions/scopeRepetitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe/aCtIoNs/aCtIoNnAmE/sCoPeRePeTiTiOnS/rEpEtItIoNnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe/aCtIoNs/aCtIoNnAmE/sCoPeRePeTiTiOnS/sCoPeRePeTiTiOnNaMe",
 			Expected: &ScopeRepetitionId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkflowName:        "wOrKfLoWnAmE",
 				RunName:             "rUnNaMe",
 				ActionName:          "aCtIoNnAmE",
-				ScopeRepetitionName: "rEpEtItIoNnAmE",
+				ScopeRepetitionName: "sCoPeRePeTiTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe/aCtIoNs/aCtIoNnAmE/sCoPeRePeTiTiOnS/rEpEtItIoNnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWnAmE/rUnS/rUnNaMe/aCtIoNs/aCtIoNnAmE/sCoPeRePeTiTiOnS/sCoPeRePeTiTiOnNaMe/extra",
 			Error: true,
 		},
 	}

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := azurebackupjob.NewOperationIdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "operationId")
+id := azurebackupjob.NewOperationIdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultName", "operationId")
 
 read, err := client.ExportJobsOperationResultGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := azurebackupjob.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
+id := azurebackupjob.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultName")
 
 if err := client.ExportJobsTriggerThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -52,7 +52,7 @@ if err := client.ExportJobsTriggerThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := azurebackupjob.NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "jobId")
+id := azurebackupjob.NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultName", "jobId")
 
 read, err := client.JobsGet(ctx, id)
 if err != nil {

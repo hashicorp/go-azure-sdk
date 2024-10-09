@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := inventoryitems.NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName", "inventoryItemName")
+id := inventoryitems.NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName", "inventoryItemName")
 
 payload := inventoryitems.InventoryItem{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := inventoryitems.NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName", "inventoryItemName")
+id := inventoryitems.NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName", "inventoryItemName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := inventoryitems.NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName", "inventoryItemName")
+id := inventoryitems.NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName", "inventoryItemName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := inventoryitems.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcenterName")
+id := inventoryitems.NewVCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vCenterName")
 
 // alternatively `client.ListByVCenter(ctx, id)` can be used to do batched pagination
 items, err := client.ListByVCenterComplete(ctx, id)

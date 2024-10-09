@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := patch.NewFileID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "fileName")
+id := patch.NewFileID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName", "fileName")
 
 payload := patch.ProjectFile{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := patch.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
+id := patch.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName")
 
 payload := patch.Project{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := patch.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "taskName")
+id := patch.NewServiceTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "serviceTaskName")
 
 payload := patch.ProjectTask{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := patch.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := patch.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 payload := patch.DataMigrationService{
 	// ...
@@ -104,7 +104,7 @@ if err := client.ServicesUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := patch.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
+id := patch.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName", "taskName")
 
 payload := patch.ProjectTask{
 	// ...

@@ -115,7 +115,7 @@ func (id AutoScaleVCoreId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftPowerBIDedicated", "Microsoft.PowerBIDedicated", "Microsoft.PowerBIDedicated"),
 		resourceids.StaticSegment("staticAutoScaleVCores", "autoScaleVCores", "autoScaleVCores"),
-		resourceids.UserSpecifiedSegment("autoScaleVCoreName", "vcoreName"),
+		resourceids.UserSpecifiedSegment("autoScaleVCoreName", "autoScaleVCoreName"),
 	}
 }
 

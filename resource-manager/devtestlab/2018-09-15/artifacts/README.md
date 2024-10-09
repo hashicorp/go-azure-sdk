@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := artifacts.NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName", "name")
+id := artifacts.NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName", "artifactName")
 
 payload := artifacts.GenerateArmTemplateRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := artifacts.NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName", "name")
+id := artifacts.NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName", "artifactName")
 
 read, err := client.Get(ctx, id, artifacts.DefaultGetOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := artifacts.NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := artifacts.NewArtifactSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "artifactSourceName")
 
 // alternatively `client.List(ctx, id, artifacts.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, artifacts.DefaultListOperationOptions())

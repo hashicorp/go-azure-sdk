@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualNetworkTapId{}
 
 func TestNewVirtualNetworkTapID(t *testing.T) {
-	id := NewVirtualNetworkTapID("12345678-1234-9876-4563-123456789012", "example-resource-group", "tapName")
+	id := NewVirtualNetworkTapID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkTapName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewVirtualNetworkTapID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VirtualNetworkTapName != "tapName" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkTapName'", id.VirtualNetworkTapName, "tapName")
+	if id.VirtualNetworkTapName != "virtualNetworkTapName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualNetworkTapName'", id.VirtualNetworkTapName, "virtualNetworkTapName")
 	}
 }
 
 func TestFormatVirtualNetworkTapID(t *testing.T) {
-	actual := NewVirtualNetworkTapID("12345678-1234-9876-4563-123456789012", "example-resource-group", "tapName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/tapName"
+	actual := NewVirtualNetworkTapID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkTapName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/virtualNetworkTapName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseVirtualNetworkTapID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/tapName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/virtualNetworkTapName",
 			Expected: &VirtualNetworkTapId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				VirtualNetworkTapName: "tapName",
+				VirtualNetworkTapName: "virtualNetworkTapName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/tapName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/virtualNetworkTapName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseVirtualNetworkTapIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/tapName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/virtualNetworkTapName",
 			Expected: &VirtualNetworkTapId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				VirtualNetworkTapName: "tapName",
+				VirtualNetworkTapName: "virtualNetworkTapName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/tapName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworkTaps/virtualNetworkTapName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKtApS/tApNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKtApS/vIrTuAlNeTwOrKtApNaMe",
 			Expected: &VirtualNetworkTapId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				VirtualNetworkTapName: "tApNaMe",
+				VirtualNetworkTapName: "vIrTuAlNeTwOrKtApNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKtApS/tApNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlNeTwOrKtApS/vIrTuAlNeTwOrKtApNaMe/extra",
 			Error: true,
 		},
 	}

@@ -123,7 +123,7 @@ func (id NotificationChannelId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
 		resourceids.UserSpecifiedSegment("labName", "labName"),
 		resourceids.StaticSegment("staticNotificationChannels", "notificationChannels", "notificationChannels"),
-		resourceids.UserSpecifiedSegment("notificationChannelName", "name"),
+		resourceids.UserSpecifiedSegment("notificationChannelName", "notificationChannelName"),
 	}
 }
 

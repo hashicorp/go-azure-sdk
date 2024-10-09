@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := alerts.NewLocationAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "alertName")
+id := alerts.NewLocationAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "alertName")
 
 read, err := client.GetResourceGroupLevelAlerts(ctx, id)
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewAlertID("12345678-1234-9876-4563-123456789012", "ascLocation", "alertName")
+id := alerts.NewAlertID("12345678-1234-9876-4563-123456789012", "locationName", "alertName")
 
 read, err := client.GetSubscriptionLevelAlert(ctx, id)
 if err != nil {
@@ -91,7 +91,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation")
+id := alerts.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName")
 
 // alternatively `client.ListResourceGroupLevelAlertsByRegion(ctx, id)` can be used to do batched pagination
 items, err := client.ListResourceGroupLevelAlertsByRegionComplete(ctx, id)
@@ -108,7 +108,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewLocationID("12345678-1234-9876-4563-123456789012", "ascLocation")
+id := alerts.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ListSubscriptionLevelAlertsByRegion(ctx, id)` can be used to do batched pagination
 items, err := client.ListSubscriptionLevelAlertsByRegionComplete(ctx, id)
@@ -125,7 +125,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewLocationAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "alertName")
+id := alerts.NewLocationAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "alertName")
 
 read, err := client.UpdateResourceGroupLevelAlertStateToDismiss(ctx, id)
 if err != nil {
@@ -141,7 +141,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewLocationAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "alertName")
+id := alerts.NewLocationAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "alertName")
 
 read, err := client.UpdateResourceGroupLevelAlertStateToReactivate(ctx, id)
 if err != nil {
@@ -157,7 +157,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewLocationAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "alertName")
+id := alerts.NewLocationAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "alertName")
 
 read, err := client.UpdateResourceGroupLevelStateToResolve(ctx, id)
 if err != nil {
@@ -173,7 +173,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewAlertID("12345678-1234-9876-4563-123456789012", "ascLocation", "alertName")
+id := alerts.NewAlertID("12345678-1234-9876-4563-123456789012", "locationName", "alertName")
 
 read, err := client.UpdateSubscriptionLevelAlertStateToDismiss(ctx, id)
 if err != nil {
@@ -189,7 +189,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewAlertID("12345678-1234-9876-4563-123456789012", "ascLocation", "alertName")
+id := alerts.NewAlertID("12345678-1234-9876-4563-123456789012", "locationName", "alertName")
 
 read, err := client.UpdateSubscriptionLevelAlertStateToReactivate(ctx, id)
 if err != nil {
@@ -205,7 +205,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := alerts.NewAlertID("12345678-1234-9876-4563-123456789012", "ascLocation", "alertName")
+id := alerts.NewAlertID("12345678-1234-9876-4563-123456789012", "locationName", "alertName")
 
 read, err := client.UpdateSubscriptionLevelStateToResolve(ctx, id)
 if err != nil {

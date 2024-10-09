@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := packetcorecontrolplaneversion.NewPacketCoreControlPlaneVersionID("versionName")
+id := packetcorecontrolplaneversion.NewPacketCoreControlPlaneVersionID("packetCoreControlPlaneVersionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

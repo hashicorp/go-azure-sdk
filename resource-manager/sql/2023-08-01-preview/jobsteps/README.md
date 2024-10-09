@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := jobsteps.NewVersionStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "jobVersion", "stepName")
+id := jobsteps.NewVersionStepID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "versionName", "stepName")
 
 read, err := client.GetByVersion(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := jobsteps.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "jobVersion")
+id := jobsteps.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "jobAgentName", "jobName", "versionName")
 
 // alternatively `client.ListByVersion(ctx, id)` can be used to do batched pagination
 items, err := client.ListByVersionComplete(ctx, id)

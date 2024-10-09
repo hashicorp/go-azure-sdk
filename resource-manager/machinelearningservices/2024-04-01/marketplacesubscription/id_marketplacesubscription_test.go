@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &MarketplaceSubscriptionId{}
 
 func TestNewMarketplaceSubscriptionID(t *testing.T) {
-	id := NewMarketplaceSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
+	id := NewMarketplaceSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "marketplaceSubscriptionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewMarketplaceSubscriptionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.MarketplaceSubscriptionName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'MarketplaceSubscriptionName'", id.MarketplaceSubscriptionName, "name")
+	if id.MarketplaceSubscriptionName != "marketplaceSubscriptionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'MarketplaceSubscriptionName'", id.MarketplaceSubscriptionName, "marketplaceSubscriptionName")
 	}
 }
 
 func TestFormatMarketplaceSubscriptionID(t *testing.T) {
-	actual := NewMarketplaceSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/name"
+	actual := NewMarketplaceSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "marketplaceSubscriptionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/marketplaceSubscriptionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseMarketplaceSubscriptionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/marketplaceSubscriptionName",
 			Expected: &MarketplaceSubscriptionId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
 				WorkspaceName:               "workspaceName",
-				MarketplaceSubscriptionName: "name",
+				MarketplaceSubscriptionName: "marketplaceSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/marketplaceSubscriptionName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseMarketplaceSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/marketplaceSubscriptionName",
 			Expected: &MarketplaceSubscriptionId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
 				WorkspaceName:               "workspaceName",
-				MarketplaceSubscriptionName: "name",
+				MarketplaceSubscriptionName: "marketplaceSubscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceName/marketplaceSubscriptions/marketplaceSubscriptionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/mArKeTpLaCeSuBsCrIpTiOnS/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/mArKeTpLaCeSuBsCrIpTiOnS/mArKeTpLaCeSuBsCrIpTiOnNaMe",
 			Expected: &MarketplaceSubscriptionId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:               "wOrKsPaCeNaMe",
-				MarketplaceSubscriptionName: "nAmE",
+				MarketplaceSubscriptionName: "mArKeTpLaCeSuBsCrIpTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/mArKeTpLaCeSuBsCrIpTiOnS/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeNaMe/mArKeTpLaCeSuBsCrIpTiOnS/mArKeTpLaCeSuBsCrIpTiOnNaMe/extra",
 			Error: true,
 		},
 	}

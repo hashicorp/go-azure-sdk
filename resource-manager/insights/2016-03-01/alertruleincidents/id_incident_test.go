@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &IncidentId{}
 
 func TestNewIncidentID(t *testing.T) {
-	id := NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName", "incidentName")
+	id := NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertRuleName", "incidentName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewIncidentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AlertRuleName != "ruleName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AlertRuleName'", id.AlertRuleName, "ruleName")
+	if id.AlertRuleName != "alertRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AlertRuleName'", id.AlertRuleName, "alertRuleName")
 	}
 
 	if id.IncidentName != "incidentName" {
@@ -32,8 +32,8 @@ func TestNewIncidentID(t *testing.T) {
 }
 
 func TestFormatIncidentID(t *testing.T) {
-	actual := NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName", "incidentName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/ruleName/incidents/incidentName"
+	actual := NewIncidentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertRuleName", "incidentName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/alertRuleName/incidents/incidentName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseIncidentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/ruleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/alertRuleName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/ruleName/incidents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/alertRuleName/incidents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/ruleName/incidents/incidentName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/alertRuleName/incidents/incidentName",
 			Expected: &IncidentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AlertRuleName:     "ruleName",
+				AlertRuleName:     "alertRuleName",
 				IncidentName:      "incidentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/ruleName/incidents/incidentName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/alertRuleName/incidents/incidentName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseIncidentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/ruleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/alertRuleName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aLeRtRuLeS/rUlEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aLeRtRuLeS/aLeRtRuLeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/ruleName/incidents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/alertRuleName/incidents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aLeRtRuLeS/rUlEnAmE/iNcIdEnTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aLeRtRuLeS/aLeRtRuLeNaMe/iNcIdEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/ruleName/incidents/incidentName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/alertRuleName/incidents/incidentName",
 			Expected: &IncidentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AlertRuleName:     "ruleName",
+				AlertRuleName:     "alertRuleName",
 				IncidentName:      "incidentName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/ruleName/incidents/incidentName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/alertRules/alertRuleName/incidents/incidentName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aLeRtRuLeS/rUlEnAmE/iNcIdEnTs/iNcIdEnTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aLeRtRuLeS/aLeRtRuLeNaMe/iNcIdEnTs/iNcIdEnTnAmE",
 			Expected: &IncidentId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AlertRuleName:     "rUlEnAmE",
+				AlertRuleName:     "aLeRtRuLeNaMe",
 				IncidentName:      "iNcIdEnTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aLeRtRuLeS/rUlEnAmE/iNcIdEnTs/iNcIdEnTnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/aLeRtRuLeS/aLeRtRuLeNaMe/iNcIdEnTs/iNcIdEnTnAmE/extra",
 			Error: true,
 		},
 	}

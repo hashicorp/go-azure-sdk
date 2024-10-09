@@ -129,7 +129,7 @@ func (id RuleCollectionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticNetworkManagers", "networkManagers", "networkManagers"),
 		resourceids.UserSpecifiedSegment("networkManagerName", "networkManagerName"),
 		resourceids.StaticSegment("staticRoutingConfigurations", "routingConfigurations", "routingConfigurations"),
-		resourceids.UserSpecifiedSegment("routingConfigurationName", "configurationName"),
+		resourceids.UserSpecifiedSegment("routingConfigurationName", "routingConfigurationName"),
 		resourceids.StaticSegment("staticRuleCollections", "ruleCollections", "ruleCollections"),
 		resourceids.UserSpecifiedSegment("ruleCollectionName", "ruleCollectionName"),
 	}

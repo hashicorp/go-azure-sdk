@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "locationName", "managedInstanceName", "databaseName", "backupName")
+id := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionManagedInstanceName", "longTermRetentionDatabaseName", "longTermRetentionManagedInstanceBackupName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionmanagedinstancebackups.NewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "managedInstanceName", "databaseName", "backupName")
+id := longtermretentionmanagedinstancebackups.NewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionManagedInstanceName", "longTermRetentionDatabaseName", "longTermRetentionManagedInstanceBackupName")
 
 if err := client.DeleteByResourceGroupThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -48,7 +48,7 @@ if err := client.DeleteByResourceGroupThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "locationName", "managedInstanceName", "databaseName", "backupName")
+id := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionManagedInstanceName", "longTermRetentionDatabaseName", "longTermRetentionManagedInstanceBackupName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -64,7 +64,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionmanagedinstancebackups.NewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "managedInstanceName", "databaseName", "backupName")
+id := longtermretentionmanagedinstancebackups.NewLongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionManagedInstanceName", "longTermRetentionDatabaseName", "longTermRetentionManagedInstanceBackupName")
 
 read, err := client.GetByResourceGroup(ctx, id)
 if err != nil {
@@ -80,7 +80,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionmanagedinstancebackups.NewLongTermRetentionDatabaseID("12345678-1234-9876-4563-123456789012", "locationName", "managedInstanceName", "databaseName")
+id := longtermretentionmanagedinstancebackups.NewLongTermRetentionDatabaseID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionManagedInstanceName", "longTermRetentionDatabaseName")
 
 // alternatively `client.ListByDatabase(ctx, id, longtermretentionmanagedinstancebackups.DefaultListByDatabaseOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDatabaseComplete(ctx, id, longtermretentionmanagedinstancebackups.DefaultListByDatabaseOperationOptions())
@@ -97,7 +97,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceID("12345678-1234-9876-4563-123456789012", "locationName", "managedInstanceName")
+id := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionManagedInstanceName")
 
 // alternatively `client.ListByInstance(ctx, id, longtermretentionmanagedinstancebackups.DefaultListByInstanceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByInstanceComplete(ctx, id, longtermretentionmanagedinstancebackups.DefaultListByInstanceOperationOptions())
@@ -131,7 +131,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceLongTermRetentionDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "managedInstanceName", "databaseName")
+id := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceLongTermRetentionDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionManagedInstanceName", "longTermRetentionDatabaseName")
 
 // alternatively `client.ListByResourceGroupDatabase(ctx, id, longtermretentionmanagedinstancebackups.DefaultListByResourceGroupDatabaseOperationOptions())` can be used to do batched pagination
 items, err := client.ListByResourceGroupDatabaseComplete(ctx, id, longtermretentionmanagedinstancebackups.DefaultListByResourceGroupDatabaseOperationOptions())
@@ -148,7 +148,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionmanagedinstancebackups.NewLocationLongTermRetentionManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "managedInstanceName")
+id := longtermretentionmanagedinstancebackups.NewLocationLongTermRetentionManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionManagedInstanceName")
 
 // alternatively `client.ListByResourceGroupInstance(ctx, id, longtermretentionmanagedinstancebackups.DefaultListByResourceGroupInstanceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByResourceGroupInstanceComplete(ctx, id, longtermretentionmanagedinstancebackups.DefaultListByResourceGroupInstanceOperationOptions())

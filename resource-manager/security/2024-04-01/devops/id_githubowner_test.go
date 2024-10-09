@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &GitHubOwnerId{}
 
 func TestNewGitHubOwnerID(t *testing.T) {
-	id := NewGitHubOwnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "ownerName")
+	id := NewGitHubOwnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "gitHubOwnerName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewGitHubOwnerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SecurityConnectorName'", id.SecurityConnectorName, "securityConnectorName")
 	}
 
-	if id.GitHubOwnerName != "ownerName" {
-		t.Fatalf("Expected %q but got %q for Segment 'GitHubOwnerName'", id.GitHubOwnerName, "ownerName")
+	if id.GitHubOwnerName != "gitHubOwnerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'GitHubOwnerName'", id.GitHubOwnerName, "gitHubOwnerName")
 	}
 }
 
 func TestFormatGitHubOwnerID(t *testing.T) {
-	actual := NewGitHubOwnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "ownerName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/ownerName"
+	actual := NewGitHubOwnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "gitHubOwnerName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/gitHubOwnerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -107,17 +107,17 @@ func TestParseGitHubOwnerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/ownerName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/gitHubOwnerName",
 			Expected: &GitHubOwnerId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				SecurityConnectorName: "securityConnectorName",
-				GitHubOwnerName:       "ownerName",
+				GitHubOwnerName:       "gitHubOwnerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/ownerName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/gitHubOwnerName/extra",
 			Error: true,
 		},
 	}
@@ -278,32 +278,32 @@ func TestParseGitHubOwnerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/ownerName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/gitHubOwnerName",
 			Expected: &GitHubOwnerId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				SecurityConnectorName: "securityConnectorName",
-				GitHubOwnerName:       "ownerName",
+				GitHubOwnerName:       "gitHubOwnerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/ownerName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/gitHubOwners/gitHubOwnerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/gItHuBoWnErS/oWnErNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/gItHuBoWnErS/gItHuBoWnErNaMe",
 			Expected: &GitHubOwnerId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				SecurityConnectorName: "sEcUrItYcOnNeCtOrNaMe",
-				GitHubOwnerName:       "oWnErNaMe",
+				GitHubOwnerName:       "gItHuBoWnErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/gItHuBoWnErS/oWnErNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/gItHuBoWnErS/gItHuBoWnErNaMe/extra",
 			Error: true,
 		},
 	}

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := communitygalleryimageversions.NewCommunityGalleryImageVersionID("12345678-1234-9876-4563-123456789012", "location", "publicGalleryName", "galleryImageName", "galleryImageVersionName")
+id := communitygalleryimageversions.NewCommunityGalleryImageVersionID("12345678-1234-9876-4563-123456789012", "locationName", "communityGalleryName", "imageName", "versionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := communitygalleryimageversions.NewCommunityGalleryImageID("12345678-1234-9876-4563-123456789012", "location", "publicGalleryName", "galleryImageName")
+id := communitygalleryimageversions.NewCommunityGalleryImageID("12345678-1234-9876-4563-123456789012", "locationName", "communityGalleryName", "imageName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

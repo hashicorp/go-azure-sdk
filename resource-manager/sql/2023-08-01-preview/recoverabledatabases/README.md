@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := recoverabledatabases.NewRecoverableDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "databaseName")
+id := recoverabledatabases.NewRecoverableDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "recoverableDatabaseName")
 
 read, err := client.Get(ctx, id, recoverabledatabases.DefaultGetOperationOptions())
 if err != nil {

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := netappresource.FilePathAvailabilityRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := netappresource.ResourceNameAvailabilityRequest{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := netappresource.QuotaAvailabilityRequest{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := netappresource.QueryNetworkSiblingSetRequest{
 	// ...
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 read, err := client.QueryRegionInfo(ctx, id)
 if err != nil {
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewQuotaLimitID("12345678-1234-9876-4563-123456789012", "location", "quotaLimitName")
+id := netappresource.NewQuotaLimitID("12345678-1234-9876-4563-123456789012", "locationName", "quotaLimitName")
 
 read, err := client.QuotaLimitsGet(ctx, id)
 if err != nil {
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 read, err := client.QuotaLimitsList(ctx, id)
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := netappresource.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := netappresource.UpdateNetworkSiblingSetRequest{
 	// ...

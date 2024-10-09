@@ -105,9 +105,9 @@ func (id AgentVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticOsType", "osType", "osType"),
-		resourceids.UserSpecifiedSegment("osTypeName", "osType"),
+		resourceids.UserSpecifiedSegment("osTypeName", "osTypeName"),
 		resourceids.StaticSegment("staticAgentVersions", "agentVersions", "agentVersions"),
-		resourceids.UserSpecifiedSegment("agentVersionName", "version"),
+		resourceids.UserSpecifiedSegment("agentVersionName", "agentVersionName"),
 	}
 }
 

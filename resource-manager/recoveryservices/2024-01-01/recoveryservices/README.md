@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := recoveryservices.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := recoveryservices.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 payload := recoveryservices.ResourceCapabilities{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recoveryservices.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location")
+id := recoveryservices.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName")
 
 payload := recoveryservices.CheckNameAvailabilityParameters{
 	// ...

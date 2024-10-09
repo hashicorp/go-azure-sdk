@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AvailabilitySetId{}
 
 func TestNewAvailabilitySetID(t *testing.T) {
-	id := NewAvailabilitySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "availabilitySetResourceName")
+	id := NewAvailabilitySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "availabilitySetName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewAvailabilitySetID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AvailabilitySetName != "availabilitySetResourceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AvailabilitySetName'", id.AvailabilitySetName, "availabilitySetResourceName")
+	if id.AvailabilitySetName != "availabilitySetName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AvailabilitySetName'", id.AvailabilitySetName, "availabilitySetName")
 	}
 }
 
 func TestFormatAvailabilitySetID(t *testing.T) {
-	actual := NewAvailabilitySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "availabilitySetResourceName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetResourceName"
+	actual := NewAvailabilitySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "availabilitySetName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseAvailabilitySetID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetResourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetName",
 			Expected: &AvailabilitySetId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				AvailabilitySetName: "availabilitySetResourceName",
+				AvailabilitySetName: "availabilitySetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetResourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseAvailabilitySetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetResourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetName",
 			Expected: &AvailabilitySetId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				AvailabilitySetName: "availabilitySetResourceName",
+				AvailabilitySetName: "availabilitySetName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetResourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/availabilitySets/availabilitySetName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/aVaIlAbIlItYsEtS/aVaIlAbIlItYsEtReSoUrCeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/aVaIlAbIlItYsEtS/aVaIlAbIlItYsEtNaMe",
 			Expected: &AvailabilitySetId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				AvailabilitySetName: "aVaIlAbIlItYsEtReSoUrCeNaMe",
+				AvailabilitySetName: "aVaIlAbIlItYsEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/aVaIlAbIlItYsEtS/aVaIlAbIlItYsEtReSoUrCeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/aVaIlAbIlItYsEtS/aVaIlAbIlItYsEtNaMe/extra",
 			Error: true,
 		},
 	}

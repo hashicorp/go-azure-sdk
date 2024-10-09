@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := favoritesapis.NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "favoriteId")
+id := favoritesapis.NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "favoriteId")
 
 payload := favoritesapis.ApplicationInsightsComponentFavorite{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := favoritesapis.NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "favoriteId")
+id := favoritesapis.NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "favoriteId")
 
 read, err := client.FavoritesDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := favoritesapis.NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "favoriteId")
+id := favoritesapis.NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "favoriteId")
 
 read, err := client.FavoritesGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := favoritesapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := favoritesapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName")
 
 read, err := client.FavoritesList(ctx, id, favoritesapis.DefaultFavoritesListOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := favoritesapis.NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "favoriteId")
+id := favoritesapis.NewFavoriteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "favoriteId")
 
 payload := favoritesapis.ApplicationInsightsComponentFavorite{
 	// ...

@@ -123,7 +123,7 @@ func (id ModelId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticModels", "models", "models"),
-		resourceids.UserSpecifiedSegment("modelName", "name"),
+		resourceids.UserSpecifiedSegment("modelName", "modelName"),
 	}
 }
 

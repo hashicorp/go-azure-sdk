@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &BillingSubscriptionAliasId{}
 
 func TestNewBillingSubscriptionAliasID(t *testing.T) {
-	id := NewBillingSubscriptionAliasID("billingAccountName", "aliasName")
+	id := NewBillingSubscriptionAliasID("billingAccountName", "billingSubscriptionAliasName")
 
 	if id.BillingAccountName != "billingAccountName" {
 		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.BillingSubscriptionAliasName != "aliasName" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingSubscriptionAliasName'", id.BillingSubscriptionAliasName, "aliasName")
+	if id.BillingSubscriptionAliasName != "billingSubscriptionAliasName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingSubscriptionAliasName'", id.BillingSubscriptionAliasName, "billingSubscriptionAliasName")
 	}
 }
 
 func TestFormatBillingSubscriptionAliasID(t *testing.T) {
-	actual := NewBillingSubscriptionAliasID("billingAccountName", "aliasName").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/aliasName"
+	actual := NewBillingSubscriptionAliasID("billingAccountName", "billingSubscriptionAliasName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/billingSubscriptionAliasName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseBillingSubscriptionAliasID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/aliasName",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/billingSubscriptionAliasName",
 			Expected: &BillingSubscriptionAliasId{
 				BillingAccountName:           "billingAccountName",
-				BillingSubscriptionAliasName: "aliasName",
+				BillingSubscriptionAliasName: "billingSubscriptionAliasName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/aliasName/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/billingSubscriptionAliasName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseBillingSubscriptionAliasIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/aliasName",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/billingSubscriptionAliasName",
 			Expected: &BillingSubscriptionAliasId{
 				BillingAccountName:           "billingAccountName",
-				BillingSubscriptionAliasName: "aliasName",
+				BillingSubscriptionAliasName: "billingSubscriptionAliasName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/aliasName/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingSubscriptionAliases/billingSubscriptionAliasName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgSuBsCrIpTiOnAlIaSeS/aLiAsNaMe",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgSuBsCrIpTiOnAlIaSeS/bIlLiNgSuBsCrIpTiOnAlIaSnAmE",
 			Expected: &BillingSubscriptionAliasId{
 				BillingAccountName:           "bIlLiNgAcCoUnTnAmE",
-				BillingSubscriptionAliasName: "aLiAsNaMe",
+				BillingSubscriptionAliasName: "bIlLiNgSuBsCrIpTiOnAlIaSnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgSuBsCrIpTiOnAlIaSeS/aLiAsNaMe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgSuBsCrIpTiOnAlIaSeS/bIlLiNgSuBsCrIpTiOnAlIaSnAmE/extra",
 			Error: true,
 		},
 	}

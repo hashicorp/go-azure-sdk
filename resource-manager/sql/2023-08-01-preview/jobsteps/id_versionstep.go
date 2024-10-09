@@ -145,7 +145,7 @@ func (id VersionStepId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticJobs", "jobs", "jobs"),
 		resourceids.UserSpecifiedSegment("jobName", "jobName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "jobVersion"),
+		resourceids.UserSpecifiedSegment("versionName", "versionName"),
 		resourceids.StaticSegment("staticSteps", "steps", "steps"),
 		resourceids.UserSpecifiedSegment("stepName", "stepName"),
 	}

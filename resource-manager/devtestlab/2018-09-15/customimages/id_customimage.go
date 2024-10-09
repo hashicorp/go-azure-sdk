@@ -123,7 +123,7 @@ func (id CustomImageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
 		resourceids.UserSpecifiedSegment("labName", "labName"),
 		resourceids.StaticSegment("staticCustomImages", "customImages", "customImages"),
-		resourceids.UserSpecifiedSegment("customImageName", "name"),
+		resourceids.UserSpecifiedSegment("customImageName", "customImageName"),
 	}
 }
 

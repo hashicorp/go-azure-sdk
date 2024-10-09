@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := devops.NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName")
+id := devops.NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName")
 
 payload := devops.AzureDevOpsOrg{
 	// ...
@@ -41,7 +41,7 @@ if err := client.AzureDevOpsOrgsCreateOrUpdateThenPoll(ctx, id, payload); err !=
 
 ```go
 ctx := context.TODO()
-id := devops.NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName")
+id := devops.NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName")
 
 read, err := client.AzureDevOpsOrgsGet(ctx, id)
 if err != nil {
@@ -91,7 +91,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devops.NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName")
+id := devops.NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName")
 
 payload := devops.AzureDevOpsOrg{
 	// ...
@@ -108,7 +108,7 @@ if err := client.AzureDevOpsOrgsUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := devops.NewProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName", "projectName")
+id := devops.NewProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName", "projectName")
 
 payload := devops.AzureDevOpsProject{
 	// ...
@@ -125,7 +125,7 @@ if err := client.AzureDevOpsProjectsCreateOrUpdateThenPoll(ctx, id, payload); er
 
 ```go
 ctx := context.TODO()
-id := devops.NewProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName", "projectName")
+id := devops.NewProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName", "projectName")
 
 read, err := client.AzureDevOpsProjectsGet(ctx, id)
 if err != nil {
@@ -141,7 +141,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devops.NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName")
+id := devops.NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName")
 
 // alternatively `client.AzureDevOpsProjectsList(ctx, id)` can be used to do batched pagination
 items, err := client.AzureDevOpsProjectsListComplete(ctx, id)
@@ -158,7 +158,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devops.NewProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName", "projectName")
+id := devops.NewProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName", "projectName")
 
 payload := devops.AzureDevOpsProject{
 	// ...
@@ -175,7 +175,7 @@ if err := client.AzureDevOpsProjectsUpdateThenPoll(ctx, id, payload); err != nil
 
 ```go
 ctx := context.TODO()
-id := devops.NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName", "projectName", "repoName")
+id := devops.NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName", "projectName", "repoName")
 
 payload := devops.AzureDevOpsRepository{
 	// ...
@@ -192,7 +192,7 @@ if err := client.AzureDevOpsReposCreateOrUpdateThenPoll(ctx, id, payload); err !
 
 ```go
 ctx := context.TODO()
-id := devops.NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName", "projectName", "repoName")
+id := devops.NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName", "projectName", "repoName")
 
 read, err := client.AzureDevOpsReposGet(ctx, id)
 if err != nil {
@@ -208,7 +208,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devops.NewProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName", "projectName")
+id := devops.NewProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName", "projectName")
 
 // alternatively `client.AzureDevOpsReposList(ctx, id)` can be used to do batched pagination
 items, err := client.AzureDevOpsReposListComplete(ctx, id)
@@ -225,7 +225,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devops.NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName", "projectName", "repoName")
+id := devops.NewProjectRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName", "projectName", "repoName")
 
 payload := devops.AzureDevOpsRepository{
 	// ...
@@ -321,7 +321,7 @@ if err := client.ConfigurationsUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := devops.NewGitHubOwnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "ownerName")
+id := devops.NewGitHubOwnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "gitHubOwnerName")
 
 read, err := client.GitHubOwnersGet(ctx, id)
 if err != nil {
@@ -371,7 +371,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devops.NewRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "ownerName", "repoName")
+id := devops.NewRepoID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "gitHubOwnerName", "repoName")
 
 read, err := client.GitHubReposGet(ctx, id)
 if err != nil {
@@ -387,7 +387,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devops.NewGitHubOwnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "ownerName")
+id := devops.NewGitHubOwnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "gitHubOwnerName")
 
 // alternatively `client.GitHubReposList(ctx, id)` can be used to do batched pagination
 items, err := client.GitHubReposListComplete(ctx, id)
@@ -404,7 +404,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devops.NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "groupFQName")
+id := devops.NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "gitLabGroupName")
 
 read, err := client.GitLabGroupsGet(ctx, id)
 if err != nil {
@@ -454,7 +454,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devops.NewGitLabGroupProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "groupFQName", "projectName")
+id := devops.NewGitLabGroupProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "gitLabGroupName", "projectName")
 
 read, err := client.GitLabProjectsGet(ctx, id)
 if err != nil {
@@ -470,7 +470,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devops.NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "groupFQName")
+id := devops.NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "gitLabGroupName")
 
 // alternatively `client.GitLabProjectsList(ctx, id)` can be used to do batched pagination
 items, err := client.GitLabProjectsListComplete(ctx, id)
@@ -487,7 +487,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devops.NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "groupFQName")
+id := devops.NewGitLabGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "gitLabGroupName")
 
 // alternatively `client.GitLabSubgroupsList(ctx, id)` can be used to do batched pagination
 items, err := client.GitLabSubgroupsListComplete(ctx, id)

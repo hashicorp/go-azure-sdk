@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "notificationChannelName")
 
 payload := notificationchannels.NotificationChannel{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "notificationChannelName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "notificationChannelName")
 
 read, err := client.Get(ctx, id, notificationchannels.DefaultGetOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationchannels.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := notificationchannels.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName")
 
 // alternatively `client.List(ctx, id, notificationchannels.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, notificationchannels.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "notificationChannelName")
 
 payload := notificationchannels.NotifyParameters{
 	// ...
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+id := notificationchannels.NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "notificationChannelName")
 
 payload := notificationchannels.UpdateResource{
 	// ...

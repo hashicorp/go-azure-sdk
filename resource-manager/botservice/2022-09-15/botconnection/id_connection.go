@@ -121,7 +121,7 @@ func (id ConnectionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBotService", "Microsoft.BotService", "Microsoft.BotService"),
 		resourceids.StaticSegment("staticBotServices", "botServices", "botServices"),
-		resourceids.UserSpecifiedSegment("botServiceName", "resourceName"),
+		resourceids.UserSpecifiedSegment("botServiceName", "botServiceName"),
 		resourceids.StaticSegment("staticConnections", "connections", "connections"),
 		resourceids.UserSpecifiedSegment("connectionName", "connectionName"),
 	}

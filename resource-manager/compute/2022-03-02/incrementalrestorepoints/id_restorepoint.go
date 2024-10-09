@@ -123,7 +123,7 @@ func (id RestorePointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticRestorePointCollections", "restorePointCollections", "restorePointCollections"),
 		resourceids.UserSpecifiedSegment("restorePointCollectionName", "restorePointCollectionName"),
 		resourceids.StaticSegment("staticRestorePoints", "restorePoints", "restorePoints"),
-		resourceids.UserSpecifiedSegment("restorePointName", "vmRestorePointName"),
+		resourceids.UserSpecifiedSegment("restorePointName", "restorePointName"),
 	}
 }
 

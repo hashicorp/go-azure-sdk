@@ -131,7 +131,7 @@ func (id VirtualMachineExtensionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
 		resourceids.UserSpecifiedSegment("instanceId", "instanceId"),
 		resourceids.StaticSegment("staticExtensions", "extensions", "extensions"),
-		resourceids.UserSpecifiedSegment("extensionName", "vmExtensionName"),
+		resourceids.UserSpecifiedSegment("extensionName", "extensionName"),
 	}
 }
 

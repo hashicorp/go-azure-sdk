@@ -107,7 +107,7 @@ func (id TopLevelDomainId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDomainRegistration", "Microsoft.DomainRegistration", "Microsoft.DomainRegistration"),
 		resourceids.StaticSegment("staticTopLevelDomains", "topLevelDomains", "topLevelDomains"),
-		resourceids.UserSpecifiedSegment("topLevelDomainName", "name"),
+		resourceids.UserSpecifiedSegment("topLevelDomainName", "topLevelDomainName"),
 	}
 }
 

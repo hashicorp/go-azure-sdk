@@ -131,7 +131,7 @@ func (id RegistryModelVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticModels", "models", "models"),
 		resourceids.UserSpecifiedSegment("modelName", "modelName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "version"),
+		resourceids.UserSpecifiedSegment("versionName", "versionName"),
 	}
 }
 

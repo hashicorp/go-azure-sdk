@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DiagnosticSettingId{}
 
 func TestNewDiagnosticSettingID(t *testing.T) {
-	id := NewDiagnosticSettingID("12345678-1234-9876-4563-123456789012", "name")
+	id := NewDiagnosticSettingID("12345678-1234-9876-4563-123456789012", "diagnosticSettingName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.DiagnosticSettingName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticSettingName'", id.DiagnosticSettingName, "name")
+	if id.DiagnosticSettingName != "diagnosticSettingName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticSettingName'", id.DiagnosticSettingName, "diagnosticSettingName")
 	}
 }
 
 func TestFormatDiagnosticSettingID(t *testing.T) {
-	actual := NewDiagnosticSettingID("12345678-1234-9876-4563-123456789012", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/name"
+	actual := NewDiagnosticSettingID("12345678-1234-9876-4563-123456789012", "diagnosticSettingName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseDiagnosticSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingName",
 			Expected: &DiagnosticSettingId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				DiagnosticSettingName: "name",
+				DiagnosticSettingName: "diagnosticSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseDiagnosticSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingName",
 			Expected: &DiagnosticSettingId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				DiagnosticSettingName: "name",
+				DiagnosticSettingName: "diagnosticSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgS/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgS/dIaGnOsTiCsEtTiNgNaMe",
 			Expected: &DiagnosticSettingId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				DiagnosticSettingName: "nAmE",
+				DiagnosticSettingName: "dIaGnOsTiCsEtTiNgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgS/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgS/dIaGnOsTiCsEtTiNgNaMe/extra",
 			Error: true,
 		},
 	}

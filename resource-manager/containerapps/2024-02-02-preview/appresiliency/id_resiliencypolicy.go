@@ -121,9 +121,9 @@ func (id ResiliencyPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticContainerApps", "containerApps", "containerApps"),
-		resourceids.UserSpecifiedSegment("containerAppName", "appName"),
+		resourceids.UserSpecifiedSegment("containerAppName", "containerAppName"),
 		resourceids.StaticSegment("staticResiliencyPolicies", "resiliencyPolicies", "resiliencyPolicies"),
-		resourceids.UserSpecifiedSegment("resiliencyPolicyName", "name"),
+		resourceids.UserSpecifiedSegment("resiliencyPolicyName", "resiliencyPolicyName"),
 	}
 }
 

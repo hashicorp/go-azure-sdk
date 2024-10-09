@@ -131,7 +131,7 @@ func (id SecretId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticUsers", "users", "users"),
 		resourceids.UserSpecifiedSegment("userName", "userName"),
 		resourceids.StaticSegment("staticSecrets", "secrets", "secrets"),
-		resourceids.UserSpecifiedSegment("secretName", "name"),
+		resourceids.UserSpecifiedSegment("secretName", "secretName"),
 	}
 }
 

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewClusterVersionID("12345678-1234-9876-4563-123456789012", "location", "clusterVersion")
+id := clusterversion.NewClusterVersionID("12345678-1234-9876-4563-123456789012", "locationName", "clusterVersionName")
 
 // alternatively `client.Get(ctx, id)` can be used to do batched pagination
 items, err := client.GetComplete(ctx, id)
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewEnvironmentClusterVersionID("12345678-1234-9876-4563-123456789012", "location", "Linux", "clusterVersion")
+id := clusterversion.NewEnvironmentClusterVersionID("12345678-1234-9876-4563-123456789012", "locationName", "Linux", "clusterVersionName")
 
 // alternatively `client.GetByEnvironment(ctx, id)` can be used to do batched pagination
 items, err := client.GetByEnvironmentComplete(ctx, id)
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := clusterversion.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -75,7 +75,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := clusterversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "location", "Linux")
+id := clusterversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "locationName", "Linux")
 
 // alternatively `client.ListByEnvironment(ctx, id)` can be used to do batched pagination
 items, err := client.ListByEnvironmentComplete(ctx, id)

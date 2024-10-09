@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := agentpools.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "agentPoolName")
+id := agentpools.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterName", "agentPoolName")
 
 payload := agentpools.AgentPool{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := agentpools.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "agentPoolName")
+id := agentpools.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterName", "agentPoolName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := agentpools.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "agentPoolName")
+id := agentpools.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterName", "agentPoolName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := agentpools.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "agentPoolName")
+id := agentpools.NewAgentPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterName", "agentPoolName")
 
 read, err := client.GetUpgradeProfile(ctx, id)
 if err != nil {

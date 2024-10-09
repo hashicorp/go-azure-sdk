@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &EventhubId{}
 
 func TestNewEventhubID(t *testing.T) {
-	id := NewEventhubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "eventHubName")
+	id := NewEventhubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "eventhubName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewEventhubID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceName")
 	}
 
-	if id.EventhubName != "eventHubName" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventhubName'", id.EventhubName, "eventHubName")
+	if id.EventhubName != "eventhubName" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventhubName'", id.EventhubName, "eventhubName")
 	}
 }
 
 func TestFormatEventhubID(t *testing.T) {
-	actual := NewEventhubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "eventHubName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName"
+	actual := NewEventhubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "eventhubName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseEventhubID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName",
 			Expected: &EventhubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				NamespaceName:     "namespaceName",
-				EventhubName:      "eventHubName",
+				EventhubName:      "eventhubName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName/extra",
 			Error: true,
 		},
 	}
@@ -248,17 +248,17 @@ func TestParseEventhubIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName",
 			Expected: &EventhubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				NamespaceName:     "namespaceName",
-				EventhubName:      "eventHubName",
+				EventhubName:      "eventhubName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventHubName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName/eventhubs/eventhubName/extra",
 			Error: true,
 		},
 		{

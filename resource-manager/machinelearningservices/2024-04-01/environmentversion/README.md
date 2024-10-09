@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "environmentName", "versionName")
 
 payload := environmentversion.EnvironmentVersionResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "environmentName", "versionName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "environmentName", "versionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
+id := environmentversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "environmentName")
 
 // alternatively `client.List(ctx, id, environmentversion.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, environmentversion.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "environmentName", "versionName")
 
 payload := environmentversion.DestinationAsset{
 	// ...
@@ -111,7 +111,7 @@ if err := client.PublishThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "version")
+id := environmentversion.NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "versionName")
 
 payload := environmentversion.EnvironmentVersionResource{
 	// ...
@@ -128,7 +128,7 @@ if err := client.RegistryEnvironmentVersionsCreateOrUpdateThenPoll(ctx, id, payl
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "version")
+id := environmentversion.NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "versionName")
 
 if err := client.RegistryEnvironmentVersionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -140,7 +140,7 @@ if err := client.RegistryEnvironmentVersionsDeleteThenPoll(ctx, id); err != nil 
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "version")
+id := environmentversion.NewRegistryEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "environmentName", "versionName")
 
 read, err := client.RegistryEnvironmentVersionsGet(ctx, id)
 if err != nil {

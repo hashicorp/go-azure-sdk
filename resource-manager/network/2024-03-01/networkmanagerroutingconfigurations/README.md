@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := networkmanagerroutingconfigurations.NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+id := networkmanagerroutingconfigurations.NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName")
 
 payload := networkmanagerroutingconfigurations.NetworkManagerRoutingConfiguration{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkmanagerroutingconfigurations.NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+id := networkmanagerroutingconfigurations.NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName")
 
 if err := client.DeleteThenPoll(ctx, id, networkmanagerroutingconfigurations.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -57,7 +57,7 @@ if err := client.DeleteThenPoll(ctx, id, networkmanagerroutingconfigurations.Def
 
 ```go
 ctx := context.TODO()
-id := networkmanagerroutingconfigurations.NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+id := networkmanagerroutingconfigurations.NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

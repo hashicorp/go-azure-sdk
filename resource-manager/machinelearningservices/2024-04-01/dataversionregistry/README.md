@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := dataversionregistry.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name", "version")
+id := dataversionregistry.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "dataName", "versionName")
 
 payload := dataversionregistry.PendingUploadRequestDto{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataversionregistry.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name", "version")
+id := dataversionregistry.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "dataName", "versionName")
 
 payload := dataversionregistry.DataVersionBaseResource{
 	// ...
@@ -62,7 +62,7 @@ if err := client.RegistryDataVersionsCreateOrUpdateThenPoll(ctx, id, payload); e
 
 ```go
 ctx := context.TODO()
-id := dataversionregistry.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name", "version")
+id := dataversionregistry.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "dataName", "versionName")
 
 if err := client.RegistryDataVersionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -74,7 +74,7 @@ if err := client.RegistryDataVersionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := dataversionregistry.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name", "version")
+id := dataversionregistry.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "dataName", "versionName")
 
 read, err := client.RegistryDataVersionsGet(ctx, id)
 if err != nil {
@@ -90,7 +90,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := dataversionregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "name")
+id := dataversionregistry.NewDataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "dataName")
 
 // alternatively `client.RegistryDataVersionsList(ctx, id, dataversionregistry.DefaultRegistryDataVersionsListOperationOptions())` can be used to do batched pagination
 items, err := client.RegistryDataVersionsListComplete(ctx, id, dataversionregistry.DefaultRegistryDataVersionsListOperationOptions())

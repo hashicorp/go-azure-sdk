@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualApplianceSiteId{}
 
 func TestNewVirtualApplianceSiteID(t *testing.T) {
-	id := NewVirtualApplianceSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "siteName")
+	id := NewVirtualApplianceSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "virtualApplianceSiteName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewVirtualApplianceSiteID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NetworkVirtualApplianceName'", id.NetworkVirtualApplianceName, "networkVirtualApplianceName")
 	}
 
-	if id.VirtualApplianceSiteName != "siteName" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualApplianceSiteName'", id.VirtualApplianceSiteName, "siteName")
+	if id.VirtualApplianceSiteName != "virtualApplianceSiteName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualApplianceSiteName'", id.VirtualApplianceSiteName, "virtualApplianceSiteName")
 	}
 }
 
 func TestFormatVirtualApplianceSiteID(t *testing.T) {
-	actual := NewVirtualApplianceSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "siteName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/siteName"
+	actual := NewVirtualApplianceSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkVirtualApplianceName", "virtualApplianceSiteName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/virtualApplianceSiteName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseVirtualApplianceSiteID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/siteName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/virtualApplianceSiteName",
 			Expected: &VirtualApplianceSiteId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
 				NetworkVirtualApplianceName: "networkVirtualApplianceName",
-				VirtualApplianceSiteName:    "siteName",
+				VirtualApplianceSiteName:    "virtualApplianceSiteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/siteName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/virtualApplianceSiteName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseVirtualApplianceSiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/siteName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/virtualApplianceSiteName",
 			Expected: &VirtualApplianceSiteId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "example-resource-group",
 				NetworkVirtualApplianceName: "networkVirtualApplianceName",
-				VirtualApplianceSiteName:    "siteName",
+				VirtualApplianceSiteName:    "virtualApplianceSiteName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/siteName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkVirtualAppliances/networkVirtualApplianceName/virtualApplianceSites/virtualApplianceSiteName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/vIrTuAlApPlIaNcEsItEs/sItEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/vIrTuAlApPlIaNcEsItEs/vIrTuAlApPlIaNcEsItEnAmE",
 			Expected: &VirtualApplianceSiteId{
 				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
 				NetworkVirtualApplianceName: "nEtWoRkViRtUaLaPpLiAnCeNaMe",
-				VirtualApplianceSiteName:    "sItEnAmE",
+				VirtualApplianceSiteName:    "vIrTuAlApPlIaNcEsItEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/vIrTuAlApPlIaNcEsItEs/sItEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkViRtUaLaPpLiAnCeS/nEtWoRkViRtUaLaPpLiAnCeNaMe/vIrTuAlApPlIaNcEsItEs/vIrTuAlApPlIaNcEsItEnAmE/extra",
 			Error: true,
 		},
 	}

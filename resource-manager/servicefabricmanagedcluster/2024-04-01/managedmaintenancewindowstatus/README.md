@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := managedmaintenancewindowstatus.NewManagedClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName")
+id := managedmaintenancewindowstatus.NewManagedClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

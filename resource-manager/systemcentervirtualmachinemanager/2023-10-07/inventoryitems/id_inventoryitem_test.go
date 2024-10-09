@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &InventoryItemId{}
 
 func TestNewInventoryItemID(t *testing.T) {
-	id := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmmServerName", "inventoryItemResourceName")
+	id := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmmServerName", "inventoryItemName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewInventoryItemID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VmmServerName'", id.VmmServerName, "vmmServerName")
 	}
 
-	if id.InventoryItemName != "inventoryItemResourceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'InventoryItemName'", id.InventoryItemName, "inventoryItemResourceName")
+	if id.InventoryItemName != "inventoryItemName" {
+		t.Fatalf("Expected %q but got %q for Segment 'InventoryItemName'", id.InventoryItemName, "inventoryItemName")
 	}
 }
 
 func TestFormatInventoryItemID(t *testing.T) {
-	actual := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmmServerName", "inventoryItemResourceName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemResourceName"
+	actual := NewInventoryItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmmServerName", "inventoryItemName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseInventoryItemID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemResourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemName",
 			Expected: &InventoryItemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VmmServerName:     "vmmServerName",
-				InventoryItemName: "inventoryItemResourceName",
+				InventoryItemName: "inventoryItemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemResourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseInventoryItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemResourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemName",
 			Expected: &InventoryItemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VmmServerName:     "vmmServerName",
-				InventoryItemName: "inventoryItemResourceName",
+				InventoryItemName: "inventoryItemName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemResourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName/inventoryItems/inventoryItemName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/vMmSeRvErS/vMmSeRvErNaMe/iNvEnToRyItEmS/iNvEnToRyItEmReSoUrCeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/vMmSeRvErS/vMmSeRvErNaMe/iNvEnToRyItEmS/iNvEnToRyItEmNaMe",
 			Expected: &InventoryItemId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				VmmServerName:     "vMmSeRvErNaMe",
-				InventoryItemName: "iNvEnToRyItEmReSoUrCeNaMe",
+				InventoryItemName: "iNvEnToRyItEmNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/vMmSeRvErS/vMmSeRvErNaMe/iNvEnToRyItEmS/iNvEnToRyItEmReSoUrCeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sCvMm/vMmSeRvErS/vMmSeRvErNaMe/iNvEnToRyItEmS/iNvEnToRyItEmNaMe/extra",
 			Error: true,
 		},
 	}

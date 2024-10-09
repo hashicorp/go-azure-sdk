@@ -115,7 +115,7 @@ func (id CustomApiId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticCustomApis", "customApis", "customApis"),
-		resourceids.UserSpecifiedSegment("customApiName", "apiName"),
+		resourceids.UserSpecifiedSegment("customApiName", "customApiName"),
 	}
 }
 

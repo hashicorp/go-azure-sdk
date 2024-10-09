@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingroledefinition.NewBillingRoleDefinitionID("billingAccountName", "roleDefinitionName")
+id := billingroledefinition.NewBillingRoleDefinitionID("billingAccountName", "billingRoleDefinitionName")
 
 read, err := client.GetByBillingAccount(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroledefinition.NewBillingProfileBillingRoleDefinitionID("billingAccountName", "billingProfileName", "roleDefinitionName")
+id := billingroledefinition.NewBillingProfileBillingRoleDefinitionID("billingAccountName", "billingProfileName", "billingRoleDefinitionName")
 
 read, err := client.GetByBillingProfile(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroledefinition.NewCustomerBillingRoleDefinitionID("billingAccountName", "billingProfileName", "customerName", "roleDefinitionName")
+id := billingroledefinition.NewCustomerBillingRoleDefinitionID("billingAccountName", "billingProfileName", "customerName", "billingRoleDefinitionName")
 
 read, err := client.GetByCustomer(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroledefinition.NewDepartmentBillingRoleDefinitionID("billingAccountName", "departmentName", "roleDefinitionName")
+id := billingroledefinition.NewDepartmentBillingRoleDefinitionID("billingAccountName", "departmentName", "billingRoleDefinitionName")
 
 read, err := client.GetByDepartment(ctx, id)
 if err != nil {
@@ -88,7 +88,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroledefinition.NewEnrollmentAccountBillingRoleDefinitionID("billingAccountName", "enrollmentAccountName", "roleDefinitionName")
+id := billingroledefinition.NewEnrollmentAccountBillingRoleDefinitionID("billingAccountName", "enrollmentAccountName", "billingRoleDefinitionName")
 
 read, err := client.GetByEnrollmentAccount(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := billingroledefinition.NewInvoiceSectionBillingRoleDefinitionID("billingAccountName", "billingProfileName", "invoiceSectionName", "roleDefinitionName")
+id := billingroledefinition.NewInvoiceSectionBillingRoleDefinitionID("billingAccountName", "billingProfileName", "invoiceSectionName", "billingRoleDefinitionName")
 
 read, err := client.GetByInvoiceSection(ctx, id)
 if err != nil {

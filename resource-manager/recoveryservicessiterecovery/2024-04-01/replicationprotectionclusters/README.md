@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName")
+id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName")
 
 payload := replicationprotectionclusters.ApplyClusterRecoveryPointInput{
 	// ...
@@ -41,7 +41,7 @@ if err := client.ApplyRecoveryPointThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName")
+id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName")
 
 payload := replicationprotectionclusters.ReplicationProtectionCluster{
 	// ...
@@ -58,7 +58,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName")
+id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName")
 
 if err := client.FailoverCommitThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -70,7 +70,7 @@ if err := client.FailoverCommitThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName")
+id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := replicationprotectionclusters.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
 
 // alternatively `client.List(ctx, id, replicationprotectionclusters.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, replicationprotectionclusters.DefaultListOperationOptions())
@@ -103,7 +103,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName")
+id := replicationprotectionclusters.NewReplicationProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName")
 
 // alternatively `client.ListByReplicationProtectionContainers(ctx, id)` can be used to do batched pagination
 items, err := client.ListByReplicationProtectionContainersComplete(ctx, id)
@@ -120,7 +120,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName")
+id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName")
 
 if err := client.PurgeThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -132,7 +132,7 @@ if err := client.PurgeThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName")
+id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName")
 
 if err := client.RepairReplicationThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -144,7 +144,7 @@ if err := client.RepairReplicationThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName")
+id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName")
 
 payload := replicationprotectionclusters.ClusterTestFailoverInput{
 	// ...
@@ -161,7 +161,7 @@ if err := client.TestFailoverThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName")
+id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName")
 
 payload := replicationprotectionclusters.ClusterTestFailoverCleanupInput{
 	// ...
@@ -178,7 +178,7 @@ if err := client.TestFailoverCleanupThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "fabricName", "protectionContainerName", "replicationProtectionClusterName")
+id := replicationprotectionclusters.NewReplicationProtectionClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "replicationFabricName", "replicationProtectionContainerName", "replicationProtectionClusterName")
 
 payload := replicationprotectionclusters.ClusterUnplannedFailoverInput{
 	// ...

@@ -121,7 +121,7 @@ func (id MigrationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforPostgreSQL", "Microsoft.DBforPostgreSQL", "Microsoft.DBforPostgreSQL"),
 		resourceids.StaticSegment("staticFlexibleServers", "flexibleServers", "flexibleServers"),
-		resourceids.UserSpecifiedSegment("flexibleServerName", "targetDbServerName"),
+		resourceids.UserSpecifiedSegment("flexibleServerName", "flexibleServerName"),
 		resourceids.StaticSegment("staticMigrations", "migrations", "migrations"),
 		resourceids.UserSpecifiedSegment("migrationName", "migrationName"),
 	}

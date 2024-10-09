@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RuleId{}
 
 func TestNewRuleID(t *testing.T) {
-	id := NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "dataMaskingRuleName")
+	id := NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "ruleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SqlPoolName'", id.SqlPoolName, "sqlPoolName")
 	}
 
-	if id.RuleName != "dataMaskingRuleName" {
-		t.Fatalf("Expected %q but got %q for Segment 'RuleName'", id.RuleName, "dataMaskingRuleName")
+	if id.RuleName != "ruleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RuleName'", id.RuleName, "ruleName")
 	}
 }
 
 func TestFormatRuleID(t *testing.T) {
-	actual := NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "dataMaskingRuleName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/dataMaskingRuleName"
+	actual := NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "ruleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/ruleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -121,18 +121,18 @@ func TestParseRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/dataMaskingRuleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/ruleName",
 			Expected: &RuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceName",
 				SqlPoolName:       "sqlPoolName",
-				RuleName:          "dataMaskingRuleName",
+				RuleName:          "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/dataMaskingRuleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/ruleName/extra",
 			Error: true,
 		},
 	}
@@ -317,34 +317,34 @@ func TestParseRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/dataMaskingRuleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/ruleName",
 			Expected: &RuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceName",
 				SqlPoolName:       "sqlPoolName",
-				RuleName:          "dataMaskingRuleName",
+				RuleName:          "ruleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/dataMaskingRuleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Synapse/workspaces/workspaceName/sqlPools/sqlPoolName/dataMaskingPolicies/default/rules/ruleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe/dAtAmAsKiNgPoLiCiEs/dEfAuLt/rUlEs/dAtAmAsKiNgRuLeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe/dAtAmAsKiNgPoLiCiEs/dEfAuLt/rUlEs/rUlEnAmE",
 			Expected: &RuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:     "wOrKsPaCeNaMe",
 				SqlPoolName:       "sQlPoOlNaMe",
-				RuleName:          "dAtAmAsKiNgRuLeNaMe",
+				RuleName:          "rUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe/dAtAmAsKiNgPoLiCiEs/dEfAuLt/rUlEs/dAtAmAsKiNgRuLeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sYnApSe/wOrKsPaCeS/wOrKsPaCeNaMe/sQlPoOlS/sQlPoOlNaMe/dAtAmAsKiNgPoLiCiEs/dEfAuLt/rUlEs/rUlEnAmE/extra",
 			Error: true,
 		},
 	}

@@ -123,7 +123,7 @@ func (id ServerlessEndpointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticServerlessEndpoints", "serverlessEndpoints", "serverlessEndpoints"),
-		resourceids.UserSpecifiedSegment("serverlessEndpointName", "name"),
+		resourceids.UserSpecifiedSegment("serverlessEndpointName", "serverlessEndpointName"),
 	}
 }
 

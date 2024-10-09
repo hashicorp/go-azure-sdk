@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 payload := subaccount.LogzMonitorResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 // alternatively `client.ListMonitoredResources(ctx, id)` can be used to do batched pagination
 items, err := client.ListMonitoredResourcesComplete(ctx, id)
@@ -103,7 +103,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+id := subaccount.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 payload := subaccount.LogzMonitorResourceUpdateParameters{
 	// ...

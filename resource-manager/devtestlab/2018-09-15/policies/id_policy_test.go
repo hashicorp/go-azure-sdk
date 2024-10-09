@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &PolicyId{}
 
 func TestNewPolicyID(t *testing.T) {
-	id := NewPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "policySetName", "name")
+	id := NewPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "policySetName", "policyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'PolicySetName'", id.PolicySetName, "policySetName")
 	}
 
-	if id.PolicyName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'PolicyName'", id.PolicyName, "name")
+	if id.PolicyName != "policyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PolicyName'", id.PolicyName, "policyName")
 	}
 }
 
 func TestFormatPolicyID(t *testing.T) {
-	actual := NewPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "policySetName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/name"
+	actual := NewPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "policySetName", "policyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/policyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParsePolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/policyName",
 			Expected: &PolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labName",
 				PolicySetName:     "policySetName",
-				PolicyName:        "name",
+				PolicyName:        "policyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/policyName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParsePolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/policyName",
 			Expected: &PolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labName",
 				PolicySetName:     "policySetName",
-				PolicyName:        "name",
+				PolicyName:        "policyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/policySets/policySetName/policies/policyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/pOlIcYsEtS/pOlIcYsEtNaMe/pOlIcIeS/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/pOlIcYsEtS/pOlIcYsEtNaMe/pOlIcIeS/pOlIcYnAmE",
 			Expected: &PolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbNaMe",
 				PolicySetName:     "pOlIcYsEtNaMe",
-				PolicyName:        "nAmE",
+				PolicyName:        "pOlIcYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/pOlIcYsEtS/pOlIcYsEtNaMe/pOlIcIeS/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/pOlIcYsEtS/pOlIcYsEtNaMe/pOlIcIeS/pOlIcYnAmE/extra",
 			Error: true,
 		},
 	}

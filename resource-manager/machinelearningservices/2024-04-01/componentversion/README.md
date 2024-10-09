@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := componentversion.NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := componentversion.NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "componentName", "versionName")
 
 payload := componentversion.ComponentVersionResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentversion.NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := componentversion.NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "componentName", "versionName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentversion.NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := componentversion.NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "componentName", "versionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentversion.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name")
+id := componentversion.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "componentName")
 
 // alternatively `client.List(ctx, id, componentversion.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, componentversion.DefaultListOperationOptions())
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := componentversion.NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "name", "version")
+id := componentversion.NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "componentName", "versionName")
 
 payload := componentversion.DestinationAsset{
 	// ...
@@ -111,7 +111,7 @@ if err := client.PublishThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := componentversion.NewRegistryComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "componentName", "version")
+id := componentversion.NewRegistryComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "componentName", "versionName")
 
 payload := componentversion.ComponentVersionResource{
 	// ...
@@ -128,7 +128,7 @@ if err := client.RegistryComponentVersionsCreateOrUpdateThenPoll(ctx, id, payloa
 
 ```go
 ctx := context.TODO()
-id := componentversion.NewRegistryComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "componentName", "version")
+id := componentversion.NewRegistryComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "componentName", "versionName")
 
 if err := client.RegistryComponentVersionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -140,7 +140,7 @@ if err := client.RegistryComponentVersionsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := componentversion.NewRegistryComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "componentName", "version")
+id := componentversion.NewRegistryComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "componentName", "versionName")
 
 read, err := client.RegistryComponentVersionsGet(ctx, id)
 if err != nil {

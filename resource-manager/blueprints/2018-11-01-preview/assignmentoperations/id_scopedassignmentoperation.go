@@ -112,7 +112,7 @@ func (id ScopedAssignmentOperationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBlueprint", "Microsoft.Blueprint", "Microsoft.Blueprint"),
 		resourceids.StaticSegment("staticBlueprintAssignments", "blueprintAssignments", "blueprintAssignments"),
-		resourceids.UserSpecifiedSegment("blueprintAssignmentName", "assignmentName"),
+		resourceids.UserSpecifiedSegment("blueprintAssignmentName", "blueprintAssignmentName"),
 		resourceids.StaticSegment("staticAssignmentOperations", "assignmentOperations", "assignmentOperations"),
 		resourceids.UserSpecifiedSegment("assignmentOperationName", "assignmentOperationName"),
 	}

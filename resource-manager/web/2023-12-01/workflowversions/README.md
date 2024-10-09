@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workflowversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "versionId")
+id := workflowversions.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName", "versionId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workflowversions.NewManagementWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName")
+id := workflowversions.NewManagementWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName")
 
 // alternatively `client.List(ctx, id, workflowversions.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, workflowversions.DefaultListOperationOptions())

@@ -76,7 +76,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := provider.NewLocationID("location")
+id := provider.NewLocationID("locationName")
 
 // alternatively `client.GetFunctionAppStacksForLocation(ctx, id, provider.DefaultGetFunctionAppStacksForLocationOperationOptions())` can be used to do batched pagination
 items, err := client.GetFunctionAppStacksForLocationComplete(ctx, id, provider.DefaultGetFunctionAppStacksForLocationOperationOptions())
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := provider.NewLocationID("location")
+id := provider.NewLocationID("locationName")
 
 // alternatively `client.GetWebAppStacksForLocation(ctx, id, provider.DefaultGetWebAppStacksForLocationOperationOptions())` can be used to do batched pagination
 items, err := client.GetWebAppStacksForLocationComplete(ctx, id, provider.DefaultGetWebAppStacksForLocationOperationOptions())

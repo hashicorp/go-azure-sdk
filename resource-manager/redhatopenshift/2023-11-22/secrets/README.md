@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "childResourceName")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterName", "secretName")
 
 payload := secrets.Secret{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "childResourceName")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterName", "secretName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "childResourceName")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterName", "secretName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewOpenShiftClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := secrets.NewOpenShiftClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "childResourceName")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "openShiftClusterName", "secretName")
 
 payload := secrets.SecretUpdate{
 	// ...

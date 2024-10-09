@@ -115,7 +115,7 @@ func (id DepartmentBillingRoleDefinitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticDepartments", "departments", "departments"),
 		resourceids.UserSpecifiedSegment("departmentName", "departmentName"),
 		resourceids.StaticSegment("staticBillingRoleDefinitions", "billingRoleDefinitions", "billingRoleDefinitions"),
-		resourceids.UserSpecifiedSegment("billingRoleDefinitionName", "roleDefinitionName"),
+		resourceids.UserSpecifiedSegment("billingRoleDefinitionName", "billingRoleDefinitionName"),
 	}
 }
 

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AfdEndpointId{}
 
 func TestNewAfdEndpointID(t *testing.T) {
-	id := NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName")
+	id := NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewAfdEndpointID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ProfileName'", id.ProfileName, "profileName")
 	}
 
-	if id.AfdEndpointName != "endpointName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AfdEndpointName'", id.AfdEndpointName, "endpointName")
+	if id.AfdEndpointName != "afdEndpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AfdEndpointName'", id.AfdEndpointName, "afdEndpointName")
 	}
 }
 
 func TestFormatAfdEndpointID(t *testing.T) {
-	actual := NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName"
+	actual := NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseAfdEndpointID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName",
 			Expected: &AfdEndpointId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ProfileName:       "profileName",
-				AfdEndpointName:   "endpointName",
+				AfdEndpointName:   "afdEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseAfdEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName",
 			Expected: &AfdEndpointId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ProfileName:       "profileName",
-				AfdEndpointName:   "endpointName",
+				AfdEndpointName:   "afdEndpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/eNdPoInTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/aFdEnDpOiNtNaMe",
 			Expected: &AfdEndpointId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ProfileName:       "pRoFiLeNaMe",
-				AfdEndpointName:   "eNdPoInTnAmE",
+				AfdEndpointName:   "aFdEnDpOiNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/eNdPoInTnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/aFdEnDpOiNtNaMe/extra",
 			Error: true,
 		},
 	}

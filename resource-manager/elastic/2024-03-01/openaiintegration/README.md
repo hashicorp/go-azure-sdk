@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
+id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "openAIIntegrationName")
 
 payload := openaiintegration.OpenAIIntegrationRPModel{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
+id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "openAIIntegrationName")
 
 read, err := client.OpenAIDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
+id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "openAIIntegrationName")
 
 read, err := client.OpenAIGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "integrationName")
+id := openaiintegration.NewOpenAIIntegrationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "openAIIntegrationName")
 
 read, err := client.OpenAIGetStatus(ctx, id)
 if err != nil {

@@ -123,7 +123,7 @@ func (id ManagedInstancePrivateLinkResourceId) Segments() []resourceids.Segment 
 		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
 		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceName"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
-		resourceids.UserSpecifiedSegment("privateLinkResourceName", "groupName"),
+		resourceids.UserSpecifiedSegment("privateLinkResourceName", "privateLinkResourceName"),
 	}
 }
 

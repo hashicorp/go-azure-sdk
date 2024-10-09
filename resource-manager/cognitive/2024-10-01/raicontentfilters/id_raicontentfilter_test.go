@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &RaiContentFilterId{}
 
 func TestNewRaiContentFilterID(t *testing.T) {
-	id := NewRaiContentFilterID("12345678-1234-9876-4563-123456789012", "location", "filterName")
+	id := NewRaiContentFilterID("12345678-1234-9876-4563-123456789012", "locationName", "raiContentFilterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "location" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.RaiContentFilterName != "filterName" {
-		t.Fatalf("Expected %q but got %q for Segment 'RaiContentFilterName'", id.RaiContentFilterName, "filterName")
+	if id.RaiContentFilterName != "raiContentFilterName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RaiContentFilterName'", id.RaiContentFilterName, "raiContentFilterName")
 	}
 }
 
 func TestFormatRaiContentFilterID(t *testing.T) {
-	actual := NewRaiContentFilterID("12345678-1234-9876-4563-123456789012", "location", "filterName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/raiContentFilters/filterName"
+	actual := NewRaiContentFilterID("12345678-1234-9876-4563-123456789012", "locationName", "raiContentFilterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/raiContentFilters/raiContentFilterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,26 +73,26 @@ func TestParseRaiContentFilterID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/raiContentFilters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/raiContentFilters",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/raiContentFilters/filterName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/raiContentFilters/raiContentFilterName",
 			Expected: &RaiContentFilterId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				LocationName:         "location",
-				RaiContentFilterName: "filterName",
+				LocationName:         "locationName",
+				RaiContentFilterName: "raiContentFilterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/raiContentFilters/filterName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/raiContentFilters/raiContentFilterName/extra",
 			Error: true,
 		},
 	}
@@ -189,50 +189,50 @@ func TestParseRaiContentFilterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/raiContentFilters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/raiContentFilters",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN/rAiCoNtEnTfIlTeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE/rAiCoNtEnTfIlTeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/raiContentFilters/filterName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/raiContentFilters/raiContentFilterName",
 			Expected: &RaiContentFilterId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				LocationName:         "location",
-				RaiContentFilterName: "filterName",
+				LocationName:         "locationName",
+				RaiContentFilterName: "raiContentFilterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/location/raiContentFilters/filterName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationName/raiContentFilters/raiContentFilterName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN/rAiCoNtEnTfIlTeRs/fIlTeRnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE/rAiCoNtEnTfIlTeRs/rAiCoNtEnTfIlTeRnAmE",
 			Expected: &RaiContentFilterId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				LocationName:         "lOcAtIoN",
-				RaiContentFilterName: "fIlTeRnAmE",
+				LocationName:         "lOcAtIoNnAmE",
+				RaiContentFilterName: "rAiCoNtEnTfIlTeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoN/rAiCoNtEnTfIlTeRs/fIlTeRnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNnAmE/rAiCoNtEnTfIlTeRs/rAiCoNtEnTfIlTeRnAmE/extra",
 			Error: true,
 		},
 	}

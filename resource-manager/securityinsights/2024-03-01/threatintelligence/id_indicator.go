@@ -127,7 +127,7 @@ func (id IndicatorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticThreatIntelligence", "threatIntelligence", "threatIntelligence"),
 		resourceids.StaticSegment("staticMain", "main", "main"),
 		resourceids.StaticSegment("staticIndicators", "indicators", "indicators"),
-		resourceids.UserSpecifiedSegment("indicatorName", "name"),
+		resourceids.UserSpecifiedSegment("indicatorName", "indicatorName"),
 	}
 }
 

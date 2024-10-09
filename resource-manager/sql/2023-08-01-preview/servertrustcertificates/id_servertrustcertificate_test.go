@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ServerTrustCertificateId{}
 
 func TestNewServerTrustCertificateID(t *testing.T) {
-	id := NewServerTrustCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "certificateName")
+	id := NewServerTrustCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "serverTrustCertificateName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewServerTrustCertificateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ManagedInstanceName'", id.ManagedInstanceName, "managedInstanceName")
 	}
 
-	if id.ServerTrustCertificateName != "certificateName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerTrustCertificateName'", id.ServerTrustCertificateName, "certificateName")
+	if id.ServerTrustCertificateName != "serverTrustCertificateName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerTrustCertificateName'", id.ServerTrustCertificateName, "serverTrustCertificateName")
 	}
 }
 
 func TestFormatServerTrustCertificateID(t *testing.T) {
-	actual := NewServerTrustCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "certificateName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName"
+	actual := NewServerTrustCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "serverTrustCertificateName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/serverTrustCertificateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseServerTrustCertificateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/serverTrustCertificateName",
 			Expected: &ServerTrustCertificateId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				ManagedInstanceName:        "managedInstanceName",
-				ServerTrustCertificateName: "certificateName",
+				ServerTrustCertificateName: "serverTrustCertificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/serverTrustCertificateName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseServerTrustCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/serverTrustCertificateName",
 			Expected: &ServerTrustCertificateId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				ManagedInstanceName:        "managedInstanceName",
-				ServerTrustCertificateName: "certificateName",
+				ServerTrustCertificateName: "serverTrustCertificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/certificateName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceName/serverTrustCertificates/serverTrustCertificateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/sErVeRtRuStCeRtIfIcAtEs/cErTiFiCaTeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/sErVeRtRuStCeRtIfIcAtEs/sErVeRtRuStCeRtIfIcAtEnAmE",
 			Expected: &ServerTrustCertificateId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
 				ManagedInstanceName:        "mAnAgEdInStAnCeNaMe",
-				ServerTrustCertificateName: "cErTiFiCaTeNaMe",
+				ServerTrustCertificateName: "sErVeRtRuStCeRtIfIcAtEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/sErVeRtRuStCeRtIfIcAtEs/cErTiFiCaTeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeNaMe/sErVeRtRuStCeRtIfIcAtEs/sErVeRtRuStCeRtIfIcAtEnAmE/extra",
 			Error: true,
 		},
 	}

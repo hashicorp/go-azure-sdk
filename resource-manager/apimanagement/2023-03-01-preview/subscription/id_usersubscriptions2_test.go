@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &UserSubscriptions2Id{}
 
 func TestNewUserSubscriptions2ID(t *testing.T) {
-	id := NewUserSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "userId", "sid")
+	id := NewUserSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "userId", "subscriptionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewUserSubscriptions2ID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.SubscriptionName != "sid" {
-		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionName'", id.SubscriptionName, "sid")
+	if id.SubscriptionName != "subscriptionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionName'", id.SubscriptionName, "subscriptionName")
 	}
 }
 
 func TestFormatUserSubscriptions2ID(t *testing.T) {
-	actual := NewUserSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "userId", "sid").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/sid"
+	actual := NewUserSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "userId", "subscriptionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/subscriptionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseUserSubscriptions2ID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/sid",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/subscriptionName",
 			Expected: &UserSubscriptions2Id{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServiceName:       "serviceName",
 				UserId:            "userId",
-				SubscriptionName:  "sid",
+				SubscriptionName:  "subscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/sid/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/subscriptionName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseUserSubscriptions2IDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/sid",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/subscriptionName",
 			Expected: &UserSubscriptions2Id{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServiceName:       "serviceName",
 				UserId:            "userId",
-				SubscriptionName:  "sid",
+				SubscriptionName:  "subscriptionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/sid/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/users/userId/subscriptions/subscriptionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/uSeRs/uSeRiD/sUbScRiPtIoNs/sId",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/uSeRs/uSeRiD/sUbScRiPtIoNs/sUbScRiPtIoNnAmE",
 			Expected: &UserSubscriptions2Id{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:       "sErViCeNaMe",
 				UserId:            "uSeRiD",
-				SubscriptionName:  "sId",
+				SubscriptionName:  "sUbScRiPtIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/uSeRs/uSeRiD/sUbScRiPtIoNs/sId/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeNaMe/uSeRs/uSeRiD/sUbScRiPtIoNs/sUbScRiPtIoNnAmE/extra",
 			Error: true,
 		},
 	}

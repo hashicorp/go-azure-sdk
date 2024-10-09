@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AccountId{}
 
 func TestNewAccountID(t *testing.T) {
-	id := NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName")
+	id := NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewAccountID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 
-	if id.AccountName != "subAccountName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "subAccountName")
+	if id.AccountName != "accountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountName")
 	}
 }
 
 func TestFormatAccountID(t *testing.T) {
-	actual := NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "subAccountName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName"
+	actual := NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "accountName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/accountName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseAccountID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/accountName",
 			Expected: &AccountId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				MonitorName:       "monitorName",
-				AccountName:       "subAccountName",
+				AccountName:       "accountName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/accountName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/accountName",
 			Expected: &AccountId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				MonitorName:       "monitorName",
-				AccountName:       "subAccountName",
+				AccountName:       "accountName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/subAccountName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logz/monitors/monitorName/accounts/accountName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe/aCcOuNtS/sUbAcCoUnTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe/aCcOuNtS/aCcOuNtNaMe",
 			Expected: &AccountId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				MonitorName:       "mOnItOrNaMe",
-				AccountName:       "sUbAcCoUnTnAmE",
+				AccountName:       "aCcOuNtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe/aCcOuNtS/sUbAcCoUnTnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgZ/mOnItOrS/mOnItOrNaMe/aCcOuNtS/aCcOuNtNaMe/extra",
 			Error: true,
 		},
 	}

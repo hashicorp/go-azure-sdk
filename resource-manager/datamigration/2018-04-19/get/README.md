@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := get.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
+id := get.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName")
 
 read, err := client.ProjectsGet(ctx, id)
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := get.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := get.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 // alternatively `client.ProjectsListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ProjectsListByResourceGroupComplete(ctx, id)
@@ -75,7 +75,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := get.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := get.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 read, err := client.ServicesGet(ctx, id)
 if err != nil {
@@ -108,7 +108,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := get.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "groupName")
+id := get.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "resourceGroupName")
 
 // alternatively `client.ServicesListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ServicesListByResourceGroupComplete(ctx, id)
@@ -125,7 +125,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := get.NewServiceID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName")
+id := get.NewServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName")
 
 // alternatively `client.ServicesListSkus(ctx, id)` can be used to do batched pagination
 items, err := client.ServicesListSkusComplete(ctx, id)
@@ -142,7 +142,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := get.NewTaskID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName", "taskName")
+id := get.NewTaskID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName", "taskName")
 
 read, err := client.TasksGet(ctx, id, get.DefaultTasksGetOperationOptions())
 if err != nil {
@@ -158,7 +158,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := get.NewProjectID("12345678-1234-9876-4563-123456789012", "groupName", "serviceName", "projectName")
+id := get.NewProjectID("12345678-1234-9876-4563-123456789012", "resourceGroupName", "serviceName", "projectName")
 
 // alternatively `client.TasksList(ctx, id, get.DefaultTasksListOperationOptions())` can be used to do batched pagination
 items, err := client.TasksListComplete(ctx, id, get.DefaultTasksListOperationOptions())
@@ -175,7 +175,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := get.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := get.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.UsagesList(ctx, id)` can be used to do batched pagination
 items, err := client.UsagesListComplete(ctx, id)

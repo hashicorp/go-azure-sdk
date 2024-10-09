@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName")
+id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName")
 
 payload := afdendpoints.AFDEndpoint{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName")
+id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName")
+id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName")
+id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName")
 
 // alternatively `client.ListResourceUsage(ctx, id)` can be used to do batched pagination
 items, err := client.ListResourceUsageComplete(ctx, id)
@@ -103,7 +103,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName")
+id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName")
 
 payload := afdendpoints.AfdPurgeParameters{
 	// ...
@@ -120,7 +120,7 @@ if err := client.PurgeContentThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName")
+id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName")
 
 payload := afdendpoints.AFDEndpointUpdateParameters{
 	// ...
@@ -137,7 +137,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName")
+id := afdendpoints.NewAfdEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName")
 
 payload := afdendpoints.ValidateCustomDomainInput{
 	// ...

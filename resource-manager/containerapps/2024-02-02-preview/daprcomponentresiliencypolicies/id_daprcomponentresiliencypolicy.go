@@ -127,11 +127,11 @@ func (id DaprComponentResiliencyPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticManagedEnvironments", "managedEnvironments", "managedEnvironments"),
-		resourceids.UserSpecifiedSegment("managedEnvironmentName", "environmentName"),
+		resourceids.UserSpecifiedSegment("managedEnvironmentName", "managedEnvironmentName"),
 		resourceids.StaticSegment("staticDaprComponents", "daprComponents", "daprComponents"),
-		resourceids.UserSpecifiedSegment("daprComponentName", "componentName"),
+		resourceids.UserSpecifiedSegment("daprComponentName", "daprComponentName"),
 		resourceids.StaticSegment("staticResiliencyPolicies", "resiliencyPolicies", "resiliencyPolicies"),
-		resourceids.UserSpecifiedSegment("resiliencyPolicyName", "name"),
+		resourceids.UserSpecifiedSegment("resiliencyPolicyName", "resiliencyPolicyName"),
 	}
 }
 

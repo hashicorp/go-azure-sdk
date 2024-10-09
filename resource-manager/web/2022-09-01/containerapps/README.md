@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewProviderContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := containerapps.NewProviderContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 payload := containerapps.ContainerApp{
 	// ...
@@ -42,7 +42,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewProviderContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := containerapps.NewProviderContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -54,7 +54,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewProviderContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := containerapps.NewProviderContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -104,7 +104,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "name")
+id := containerapps.NewContainerAppID("12345678-1234-9876-4563-123456789012", "containerAppName")
 
 read, err := client.ListSecrets(ctx, id)
 if err != nil {

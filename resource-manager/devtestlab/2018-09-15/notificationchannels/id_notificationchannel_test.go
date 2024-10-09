@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &NotificationChannelId{}
 
 func TestNewNotificationChannelID(t *testing.T) {
-	id := NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name")
+	id := NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "notificationChannelName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewNotificationChannelID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'LabName'", id.LabName, "labName")
 	}
 
-	if id.NotificationChannelName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotificationChannelName'", id.NotificationChannelName, "name")
+	if id.NotificationChannelName != "notificationChannelName" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotificationChannelName'", id.NotificationChannelName, "notificationChannelName")
 	}
 }
 
 func TestFormatNotificationChannelID(t *testing.T) {
-	actual := NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "name").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/name"
+	actual := NewNotificationChannelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labName", "notificationChannelName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/notificationChannelName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseNotificationChannelID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/notificationChannelName",
 			Expected: &NotificationChannelId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				LabName:                 "labName",
-				NotificationChannelName: "name",
+				NotificationChannelName: "notificationChannelName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/notificationChannelName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseNotificationChannelIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/name",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/notificationChannelName",
 			Expected: &NotificationChannelId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "example-resource-group",
 				LabName:                 "labName",
-				NotificationChannelName: "name",
+				NotificationChannelName: "notificationChannelName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/name/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labName/notificationChannels/notificationChannelName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/nOtIfIcAtIoNcHaNnElS/nAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/nOtIfIcAtIoNcHaNnElS/nOtIfIcAtIoNcHaNnElNaMe",
 			Expected: &NotificationChannelId{
 				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:                 "lAbNaMe",
-				NotificationChannelName: "nAmE",
+				NotificationChannelName: "nOtIfIcAtIoNcHaNnElNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/nOtIfIcAtIoNcHaNnElS/nAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbNaMe/nOtIfIcAtIoNcHaNnElS/nOtIfIcAtIoNcHaNnElNaMe/extra",
 			Error: true,
 		},
 	}

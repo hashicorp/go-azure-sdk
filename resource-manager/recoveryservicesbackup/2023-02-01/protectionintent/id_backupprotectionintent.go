@@ -129,9 +129,9 @@ func (id BackupProtectionIntentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
 		resourceids.UserSpecifiedSegment("vaultName", "vaultName"),
 		resourceids.StaticSegment("staticBackupFabrics", "backupFabrics", "backupFabrics"),
-		resourceids.UserSpecifiedSegment("backupFabricName", "fabricName"),
+		resourceids.UserSpecifiedSegment("backupFabricName", "backupFabricName"),
 		resourceids.StaticSegment("staticBackupProtectionIntent", "backupProtectionIntent", "backupProtectionIntent"),
-		resourceids.UserSpecifiedSegment("backupProtectionIntentName", "intentObjectName"),
+		resourceids.UserSpecifiedSegment("backupProtectionIntentName", "backupProtectionIntentName"),
 	}
 }
 

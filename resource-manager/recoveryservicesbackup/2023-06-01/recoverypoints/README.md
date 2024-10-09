@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := recoverypoints.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "fabricName", "containerName", "protectedItemName", "recoveryPointId")
+id := recoverypoints.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupFabricName", "protectionContainerName", "protectedItemName", "recoveryPointId")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recoverypoints.NewProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "fabricName", "containerName", "protectedItemName")
+id := recoverypoints.NewProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupFabricName", "protectionContainerName", "protectedItemName")
 
 // alternatively `client.List(ctx, id, recoverypoints.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, recoverypoints.DefaultListOperationOptions())

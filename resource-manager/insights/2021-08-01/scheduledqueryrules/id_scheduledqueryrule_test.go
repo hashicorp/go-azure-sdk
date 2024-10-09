@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ScheduledQueryRuleId{}
 
 func TestNewScheduledQueryRuleID(t *testing.T) {
-	id := NewScheduledQueryRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName")
+	id := NewScheduledQueryRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scheduledQueryRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewScheduledQueryRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ScheduledQueryRuleName != "ruleName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScheduledQueryRuleName'", id.ScheduledQueryRuleName, "ruleName")
+	if id.ScheduledQueryRuleName != "scheduledQueryRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduledQueryRuleName'", id.ScheduledQueryRuleName, "scheduledQueryRuleName")
 	}
 }
 
 func TestFormatScheduledQueryRuleID(t *testing.T) {
-	actual := NewScheduledQueryRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleName"
+	actual := NewScheduledQueryRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scheduledQueryRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseScheduledQueryRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleName",
 			Expected: &ScheduledQueryRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ScheduledQueryRuleName: "ruleName",
+				ScheduledQueryRuleName: "scheduledQueryRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseScheduledQueryRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleName",
 			Expected: &ScheduledQueryRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
-				ScheduledQueryRuleName: "ruleName",
+				ScheduledQueryRuleName: "scheduledQueryRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/sChEdUlEdQuErYrUlEs/rUlEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/sChEdUlEdQuErYrUlEs/sChEdUlEdQuErYrUlEnAmE",
 			Expected: &ScheduledQueryRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				ScheduledQueryRuleName: "rUlEnAmE",
+				ScheduledQueryRuleName: "sChEdUlEdQuErYrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/sChEdUlEdQuErYrUlEs/rUlEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/sChEdUlEdQuErYrUlEs/sChEdUlEdQuErYrUlEnAmE/extra",
 			Error: true,
 		},
 	}
