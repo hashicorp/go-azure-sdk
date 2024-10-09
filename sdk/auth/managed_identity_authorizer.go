@@ -180,7 +180,10 @@ func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
 	// In this case, we need to pass identity header to http request. New version of API requires this header.
 	identityHeader := os.Getenv("IDENTITY_HEADER")
 	if identityHeader != "" {
-		headers["x-ms-identity"] = []string{identityHeader}
+		headers = http.Header{
+			"Metadata":          []string{"true"},
+			"x-identity-header": []string{identityHeader},
+		}
 	}
 
 	req.Header = headers
