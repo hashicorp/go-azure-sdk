@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := securityuserrules.NewRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName", "ruleName")
+id := securityuserrules.NewRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityUserConfigurationName", "ruleCollectionName", "ruleName")
 
 payload := securityuserrules.SecurityUserRule{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := securityuserrules.NewRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName", "ruleName")
+id := securityuserrules.NewRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityUserConfigurationName", "ruleCollectionName", "ruleName")
 
 if err := client.DeleteThenPoll(ctx, id, securityuserrules.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -57,7 +57,7 @@ if err := client.DeleteThenPoll(ctx, id, securityuserrules.DefaultDeleteOperatio
 
 ```go
 ctx := context.TODO()
-id := securityuserrules.NewRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName", "ruleName")
+id := securityuserrules.NewRuleCollectionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityUserConfigurationName", "ruleCollectionName", "ruleName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := securityuserrules.NewSecurityUserConfigurationRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName")
+id := securityuserrules.NewSecurityUserConfigurationRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityUserConfigurationName", "ruleCollectionName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

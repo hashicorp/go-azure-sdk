@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &IPv6FirewallRuleId{}
 
 func TestNewIPv6FirewallRuleID(t *testing.T) {
-	id := NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "firewallRuleName")
+	id := NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "ipv6FirewallRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewIPv6FirewallRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverName")
 	}
 
-	if id.Ipv6FirewallRuleName != "firewallRuleName" {
-		t.Fatalf("Expected %q but got %q for Segment 'Ipv6FirewallRuleName'", id.Ipv6FirewallRuleName, "firewallRuleName")
+	if id.Ipv6FirewallRuleName != "ipv6FirewallRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'Ipv6FirewallRuleName'", id.Ipv6FirewallRuleName, "ipv6FirewallRuleName")
 	}
 }
 
 func TestFormatIPv6FirewallRuleID(t *testing.T) {
-	actual := NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "firewallRuleName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/firewallRuleName"
+	actual := NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "ipv6FirewallRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/ipv6FirewallRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseIPv6FirewallRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/firewallRuleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/ipv6FirewallRuleName",
 			Expected: &IPv6FirewallRuleId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				ServerName:           "serverName",
-				Ipv6FirewallRuleName: "firewallRuleName",
+				Ipv6FirewallRuleName: "ipv6FirewallRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/firewallRuleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/ipv6FirewallRuleName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseIPv6FirewallRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/firewallRuleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/ipv6FirewallRuleName",
 			Expected: &IPv6FirewallRuleId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				ServerName:           "serverName",
-				Ipv6FirewallRuleName: "firewallRuleName",
+				Ipv6FirewallRuleName: "ipv6FirewallRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/firewallRuleName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/servers/serverName/ipv6FirewallRules/ipv6FirewallRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/iPv6fIrEwAlLrUlEs/fIrEwAlLrUlEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/iPv6fIrEwAlLrUlEs/iPv6fIrEwAlLrUlEnAmE",
 			Expected: &IPv6FirewallRuleId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
 				ServerName:           "sErVeRnAmE",
-				Ipv6FirewallRuleName: "fIrEwAlLrUlEnAmE",
+				Ipv6FirewallRuleName: "iPv6fIrEwAlLrUlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/iPv6fIrEwAlLrUlEs/fIrEwAlLrUlEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/sErVeRs/sErVeRnAmE/iPv6fIrEwAlLrUlEs/iPv6fIrEwAlLrUlEnAmE/extra",
 			Error: true,
 		},
 	}

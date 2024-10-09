@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &TagRuleId{}
 
 func TestNewTagRuleID(t *testing.T) {
-	id := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName")
+	id := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "tagRuleName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewTagRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorName")
 	}
 
-	if id.TagRuleName != "ruleSetName" {
-		t.Fatalf("Expected %q but got %q for Segment 'TagRuleName'", id.TagRuleName, "ruleSetName")
+	if id.TagRuleName != "tagRuleName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TagRuleName'", id.TagRuleName, "tagRuleName")
 	}
 }
 
 func TestFormatTagRuleID(t *testing.T) {
-	actual := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "ruleSetName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/ruleSetName"
+	actual := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorName", "tagRuleName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/tagRuleName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseTagRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/ruleSetName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/tagRuleName",
 			Expected: &TagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				MonitorName:       "monitorName",
-				TagRuleName:       "ruleSetName",
+				TagRuleName:       "tagRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/ruleSetName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/tagRuleName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseTagRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/ruleSetName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/tagRuleName",
 			Expected: &TagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				MonitorName:       "monitorName",
-				TagRuleName:       "ruleSetName",
+				TagRuleName:       "tagRuleName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/ruleSetName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Datadog/monitors/monitorName/tagRules/tagRuleName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/tAgRuLeS/rUlEsEtNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/tAgRuLeS/tAgRuLeNaMe",
 			Expected: &TagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				MonitorName:       "mOnItOrNaMe",
-				TagRuleName:       "rUlEsEtNaMe",
+				TagRuleName:       "tAgRuLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/tAgRuLeS/rUlEsEtNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAdOg/mOnItOrS/mOnItOrNaMe/tAgRuLeS/tAgRuLeNaMe/extra",
 			Error: true,
 		},
 	}

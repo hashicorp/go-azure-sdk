@@ -123,7 +123,7 @@ func (id OutboundRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticOutboundRules", "outboundRules", "outboundRules"),
-		resourceids.UserSpecifiedSegment("outboundRuleName", "ruleName"),
+		resourceids.UserSpecifiedSegment("outboundRuleName", "outboundRuleName"),
 	}
 }
 

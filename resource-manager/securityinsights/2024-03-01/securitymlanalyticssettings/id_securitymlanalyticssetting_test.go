@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SecurityMLAnalyticsSettingId{}
 
 func TestNewSecurityMLAnalyticsSettingID(t *testing.T) {
-	id := NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "settingsResourceName")
+	id := NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "securityMLAnalyticsSettingName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewSecurityMLAnalyticsSettingID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.SecurityMLAnalyticsSettingName != "settingsResourceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'SecurityMLAnalyticsSettingName'", id.SecurityMLAnalyticsSettingName, "settingsResourceName")
+	if id.SecurityMLAnalyticsSettingName != "securityMLAnalyticsSettingName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SecurityMLAnalyticsSettingName'", id.SecurityMLAnalyticsSettingName, "securityMLAnalyticsSettingName")
 	}
 }
 
 func TestFormatSecurityMLAnalyticsSettingID(t *testing.T) {
-	actual := NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "settingsResourceName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/settingsResourceName"
+	actual := NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "securityMLAnalyticsSettingName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/securityMLAnalyticsSettingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -107,17 +107,17 @@ func TestParseSecurityMLAnalyticsSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/settingsResourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/securityMLAnalyticsSettingName",
 			Expected: &SecurityMLAnalyticsSettingId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "example-resource-group",
 				WorkspaceName:                  "workspaceName",
-				SecurityMLAnalyticsSettingName: "settingsResourceName",
+				SecurityMLAnalyticsSettingName: "securityMLAnalyticsSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/settingsResourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/securityMLAnalyticsSettingName/extra",
 			Error: true,
 		},
 	}
@@ -278,32 +278,32 @@ func TestParseSecurityMLAnalyticsSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/settingsResourceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/securityMLAnalyticsSettingName",
 			Expected: &SecurityMLAnalyticsSettingId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "example-resource-group",
 				WorkspaceName:                  "workspaceName",
-				SecurityMLAnalyticsSettingName: "settingsResourceName",
+				SecurityMLAnalyticsSettingName: "securityMLAnalyticsSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/settingsResourceName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/securityMLAnalyticsSettingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/sEcUrItYmLaNaLyTiCsSeTtInGs/sEtTiNgSrEsOuRcEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/sEcUrItYmLaNaLyTiCsSeTtInGs/sEcUrItYmLaNaLyTiCsSeTtInGnAmE",
 			Expected: &SecurityMLAnalyticsSettingId{
 				SubscriptionId:                 "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:              "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:                  "wOrKsPaCeNaMe",
-				SecurityMLAnalyticsSettingName: "sEtTiNgSrEsOuRcEnAmE",
+				SecurityMLAnalyticsSettingName: "sEcUrItYmLaNaLyTiCsSeTtInGnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/sEcUrItYmLaNaLyTiCsSeTtInGs/sEtTiNgSrEsOuRcEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/sEcUrItYmLaNaLyTiCsSeTtInGs/sEcUrItYmLaNaLyTiCsSeTtInGnAmE/extra",
 			Error: true,
 		},
 	}

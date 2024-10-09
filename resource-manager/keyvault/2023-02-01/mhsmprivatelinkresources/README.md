@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := mhsmprivatelinkresources.NewManagedHSMID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := mhsmprivatelinkresources.NewManagedHSMID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedHSMName")
 
 read, err := client.ListByMHSMResource(ctx, id)
 if err != nil {

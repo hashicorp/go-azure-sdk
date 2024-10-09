@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ScopedQuotaRequestId{}
 
 func TestNewScopedQuotaRequestID(t *testing.T) {
-	id := NewScopedQuotaRequestID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "id")
+	id := NewScopedQuotaRequestID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "quotaRequestName")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.QuotaRequestName != "id" {
-		t.Fatalf("Expected %q but got %q for Segment 'QuotaRequestName'", id.QuotaRequestName, "id")
+	if id.QuotaRequestName != "quotaRequestName" {
+		t.Fatalf("Expected %q but got %q for Segment 'QuotaRequestName'", id.QuotaRequestName, "quotaRequestName")
 	}
 }
 
 func TestFormatScopedQuotaRequestID(t *testing.T) {
-	actual := NewScopedQuotaRequestID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "id").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/id"
+	actual := NewScopedQuotaRequestID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "quotaRequestName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/quotaRequestName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,15 +64,15 @@ func TestParseScopedQuotaRequestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/id",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/quotaRequestName",
 			Expected: &ScopedQuotaRequestId{
 				Scope:            "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				QuotaRequestName: "id",
+				QuotaRequestName: "quotaRequestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/id/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/quotaRequestName/extra",
 			Error: true,
 		},
 	}
@@ -155,28 +155,28 @@ func TestParseScopedQuotaRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/id",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/quotaRequestName",
 			Expected: &ScopedQuotaRequestId{
 				Scope:            "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				QuotaRequestName: "id",
+				QuotaRequestName: "quotaRequestName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/id/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Quota/quotaRequests/quotaRequestName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.qUoTa/qUoTaReQuEsTs/iD",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.qUoTa/qUoTaReQuEsTs/qUoTaReQuEsTnAmE",
 			Expected: &ScopedQuotaRequestId{
 				Scope:            "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				QuotaRequestName: "iD",
+				QuotaRequestName: "qUoTaReQuEsTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.qUoTa/qUoTaReQuEsTs/iD/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.qUoTa/qUoTaReQuEsTs/qUoTaReQuEsTnAmE/extra",
 			Error: true,
 		},
 	}

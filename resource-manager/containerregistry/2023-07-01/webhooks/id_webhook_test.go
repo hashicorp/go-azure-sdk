@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &WebHookId{}
 
 func TestNewWebHookID(t *testing.T) {
-	id := NewWebHookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "webhookName")
+	id := NewWebHookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "webHookName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewWebHookID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'RegistryName'", id.RegistryName, "registryName")
 	}
 
-	if id.WebHookName != "webhookName" {
-		t.Fatalf("Expected %q but got %q for Segment 'WebHookName'", id.WebHookName, "webhookName")
+	if id.WebHookName != "webHookName" {
+		t.Fatalf("Expected %q but got %q for Segment 'WebHookName'", id.WebHookName, "webHookName")
 	}
 }
 
 func TestFormatWebHookID(t *testing.T) {
-	actual := NewWebHookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "webhookName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webhookName"
+	actual := NewWebHookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "registryName", "webHookName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webHookName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseWebHookID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webhookName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webHookName",
 			Expected: &WebHookId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				RegistryName:      "registryName",
-				WebHookName:       "webhookName",
+				WebHookName:       "webHookName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webhookName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webHookName/extra",
 			Error: true,
 		},
 	}
@@ -248,17 +248,17 @@ func TestParseWebHookIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webhookName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webHookName",
 			Expected: &WebHookId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				RegistryName:      "registryName",
-				WebHookName:       "webhookName",
+				WebHookName:       "webHookName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webhookName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerRegistry/registries/registryName/webHooks/webHookName/extra",
 			Error: true,
 		},
 		{

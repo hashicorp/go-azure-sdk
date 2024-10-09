@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := quotarequests.NewScopedQuotaRequestID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "id")
+id := quotarequests.NewScopedQuotaRequestID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "quotaRequestName")
 
 read, err := client.TatusGet(ctx, id)
 if err != nil {

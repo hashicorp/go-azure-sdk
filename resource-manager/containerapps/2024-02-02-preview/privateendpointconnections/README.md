@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "privateEndpointConnectionName")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "privateEndpointConnectionName")
 
 payload := privateendpointconnections.PrivateEndpointConnection{
 	// ...
@@ -41,7 +41,7 @@ if err := client.ManagedEnvironmentPrivateEndpointConnectionsCreateOrUpdateThenP
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "privateEndpointConnectionName")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "privateEndpointConnectionName")
 
 if err := client.ManagedEnvironmentPrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.ManagedEnvironmentPrivateEndpointConnectionsDeleteThenPoll(ctx,
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName", "privateEndpointConnectionName")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName", "privateEndpointConnectionName")
 
 read, err := client.ManagedEnvironmentPrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentName")
+id := privateendpointconnections.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentName")
 
 // alternatively `client.ManagedEnvironmentPrivateEndpointConnectionsList(ctx, id)` can be used to do batched pagination
 items, err := client.ManagedEnvironmentPrivateEndpointConnectionsListComplete(ctx, id)

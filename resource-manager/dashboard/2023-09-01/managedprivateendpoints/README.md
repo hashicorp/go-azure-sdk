@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := managedprivateendpoints.NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "managedPrivateEndpointName")
+id := managedprivateendpoints.NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaName", "managedPrivateEndpointName")
 
 payload := managedprivateendpoints.ManagedPrivateEndpointModel{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := managedprivateendpoints.NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "managedPrivateEndpointName")
+id := managedprivateendpoints.NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaName", "managedPrivateEndpointName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := managedprivateendpoints.NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "managedPrivateEndpointName")
+id := managedprivateendpoints.NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaName", "managedPrivateEndpointName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedprivateendpoints.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
+id := managedprivateendpoints.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaName")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := managedprivateendpoints.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
+id := managedprivateendpoints.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaName")
 
 if err := client.RefreshThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -98,7 +98,7 @@ if err := client.RefreshThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := managedprivateendpoints.NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "managedPrivateEndpointName")
+id := managedprivateendpoints.NewManagedPrivateEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaName", "managedPrivateEndpointName")
 
 payload := managedprivateendpoints.ManagedPrivateEndpointUpdateParameters{
 	// ...

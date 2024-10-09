@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := recoverablesqlpools.NewRecoverableSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName")
+id := recoverablesqlpools.NewRecoverableSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "recoverableSqlPoolName")
 
 read, err := client.WorkspaceManagedSqlServerRecoverableSqlPoolsGet(ctx, id)
 if err != nil {

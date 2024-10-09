@@ -123,7 +123,7 @@ func (id DomainTopicId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticDomains", "domains", "domains"),
 		resourceids.UserSpecifiedSegment("domainName", "domainName"),
 		resourceids.StaticSegment("staticTopics", "topics", "topics"),
-		resourceids.UserSpecifiedSegment("topicName", "domainTopicName"),
+		resourceids.UserSpecifiedSegment("topicName", "topicName"),
 	}
 }
 

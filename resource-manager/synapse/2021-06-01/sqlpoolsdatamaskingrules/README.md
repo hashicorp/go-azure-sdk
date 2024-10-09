@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sqlpoolsdatamaskingrules.NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "dataMaskingRuleName")
+id := sqlpoolsdatamaskingrules.NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "ruleName")
 
 payload := sqlpoolsdatamaskingrules.DataMaskingRule{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sqlpoolsdatamaskingrules.NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "dataMaskingRuleName")
+id := sqlpoolsdatamaskingrules.NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName", "ruleName")
 
 read, err := client.DataMaskingRulesGet(ctx, id)
 if err != nil {

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SecurityUserConfigurationId{}
 
 func TestNewSecurityUserConfigurationID(t *testing.T) {
-	id := NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+	id := NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityUserConfigurationName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewSecurityUserConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NetworkManagerName'", id.NetworkManagerName, "networkManagerName")
 	}
 
-	if id.SecurityUserConfigurationName != "configurationName" {
-		t.Fatalf("Expected %q but got %q for Segment 'SecurityUserConfigurationName'", id.SecurityUserConfigurationName, "configurationName")
+	if id.SecurityUserConfigurationName != "securityUserConfigurationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SecurityUserConfigurationName'", id.SecurityUserConfigurationName, "securityUserConfigurationName")
 	}
 }
 
 func TestFormatSecurityUserConfigurationID(t *testing.T) {
-	actual := NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/configurationName"
+	actual := NewSecurityUserConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "securityUserConfigurationName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/securityUserConfigurationName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseSecurityUserConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/securityUserConfigurationName",
 			Expected: &SecurityUserConfigurationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
 				NetworkManagerName:            "networkManagerName",
-				SecurityUserConfigurationName: "configurationName",
+				SecurityUserConfigurationName: "securityUserConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/configurationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/securityUserConfigurationName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseSecurityUserConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/configurationName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/securityUserConfigurationName",
 			Expected: &SecurityUserConfigurationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
 				NetworkManagerName:            "networkManagerName",
-				SecurityUserConfigurationName: "configurationName",
+				SecurityUserConfigurationName: "securityUserConfigurationName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/configurationName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/securityUserConfigurations/securityUserConfigurationName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYuSeRcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYuSeRcOnFiGuRaTiOnS/sEcUrItYuSeRcOnFiGuRaTiOnNaMe",
 			Expected: &SecurityUserConfigurationId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
 				NetworkManagerName:            "nEtWoRkMaNaGeRnAmE",
-				SecurityUserConfigurationName: "cOnFiGuRaTiOnNaMe",
+				SecurityUserConfigurationName: "sEcUrItYuSeRcOnFiGuRaTiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYuSeRcOnFiGuRaTiOnS/cOnFiGuRaTiOnNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/nEtWoRkMaNaGeRs/nEtWoRkMaNaGeRnAmE/sEcUrItYuSeRcOnFiGuRaTiOnS/sEcUrItYuSeRcOnFiGuRaTiOnNaMe/extra",
 			Error: true,
 		},
 	}

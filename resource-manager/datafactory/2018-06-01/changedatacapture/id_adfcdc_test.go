@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AdfcdcId{}
 
 func TestNewAdfcdcID(t *testing.T) {
-	id := NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName")
+	id := NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "adfcdcName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewAdfcdcID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'FactoryName'", id.FactoryName, "factoryName")
 	}
 
-	if id.AdfcdcName != "changeDataCaptureName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AdfcdcName'", id.AdfcdcName, "changeDataCaptureName")
+	if id.AdfcdcName != "adfcdcName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AdfcdcName'", id.AdfcdcName, "adfcdcName")
 	}
 }
 
 func TestFormatAdfcdcID(t *testing.T) {
-	actual := NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "changeDataCaptureName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/changeDataCaptureName"
+	actual := NewAdfcdcID("12345678-1234-9876-4563-123456789012", "example-resource-group", "factoryName", "adfcdcName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/adfcdcName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseAdfcdcID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/changeDataCaptureName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/adfcdcName",
 			Expected: &AdfcdcId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				FactoryName:       "factoryName",
-				AdfcdcName:        "changeDataCaptureName",
+				AdfcdcName:        "adfcdcName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/changeDataCaptureName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/adfcdcName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseAdfcdcIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/changeDataCaptureName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/adfcdcName",
 			Expected: &AdfcdcId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				FactoryName:       "factoryName",
-				AdfcdcName:        "changeDataCaptureName",
+				AdfcdcName:        "adfcdcName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/changeDataCaptureName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName/adfcdcs/adfcdcName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/aDfCdCs/cHaNgEdAtAcApTuReNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/aDfCdCs/aDfCdCnAmE",
 			Expected: &AdfcdcId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				FactoryName:       "fAcToRyNaMe",
-				AdfcdcName:        "cHaNgEdAtAcApTuReNaMe",
+				AdfcdcName:        "aDfCdCnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/aDfCdCs/cHaNgEdAtAcApTuReNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAfAcToRy/fAcToRiEs/fAcToRyNaMe/aDfCdCs/aDfCdCnAmE/extra",
 			Error: true,
 		},
 	}

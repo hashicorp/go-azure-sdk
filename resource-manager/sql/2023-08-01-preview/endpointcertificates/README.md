@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := endpointcertificates.NewEndpointCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "endpointType")
+id := endpointcertificates.NewEndpointCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceName", "endpointCertificateName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

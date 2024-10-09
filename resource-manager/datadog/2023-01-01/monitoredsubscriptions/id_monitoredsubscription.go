@@ -123,7 +123,7 @@ func (id MonitoredSubscriptionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticMonitors", "monitors", "monitors"),
 		resourceids.UserSpecifiedSegment("monitorName", "monitorName"),
 		resourceids.StaticSegment("staticMonitoredSubscriptions", "monitoredSubscriptions", "monitoredSubscriptions"),
-		resourceids.UserSpecifiedSegment("monitoredSubscriptionName", "configurationName"),
+		resourceids.UserSpecifiedSegment("monitoredSubscriptionName", "monitoredSubscriptionName"),
 	}
 }
 

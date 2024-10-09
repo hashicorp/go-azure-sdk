@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workflowtriggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "triggerName")
+id := workflowtriggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName", "triggerName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workflowtriggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "triggerName")
+id := workflowtriggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName", "triggerName")
 
 read, err := client.GetSchemaJson(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workflowtriggers.NewManagementWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName")
+id := workflowtriggers.NewManagementWorkflowID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName")
 
 // alternatively `client.List(ctx, id, workflowtriggers.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, workflowtriggers.DefaultListOperationOptions())
@@ -73,7 +73,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := workflowtriggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "triggerName")
+id := workflowtriggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName", "triggerName")
 
 read, err := client.ListCallbackUrl(ctx, id)
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workflowtriggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "triggerName")
+id := workflowtriggers.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName", "triggerName")
 
 if err := client.RunThenPoll(ctx, id); err != nil {
 	// handle the error

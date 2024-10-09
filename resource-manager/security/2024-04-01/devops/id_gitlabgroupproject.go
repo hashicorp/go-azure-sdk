@@ -131,7 +131,7 @@ func (id GitLabGroupProjectId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticDevops", "devops", "devops"),
 		resourceids.StaticSegment("staticDefault", "default", "default"),
 		resourceids.StaticSegment("staticGitLabGroups", "gitLabGroups", "gitLabGroups"),
-		resourceids.UserSpecifiedSegment("gitLabGroupName", "groupFQName"),
+		resourceids.UserSpecifiedSegment("gitLabGroupName", "gitLabGroupName"),
 		resourceids.StaticSegment("staticProjects", "projects", "projects"),
 		resourceids.UserSpecifiedSegment("projectName", "projectName"),
 	}

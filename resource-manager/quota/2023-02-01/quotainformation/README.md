@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceName")
+id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "quotaName")
 
 payload := quotainformation.CurrentQuotaLimitBase{
 	// ...
@@ -42,7 +42,7 @@ if err := client.QuotaCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceName")
+id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "quotaName")
 
 read, err := client.QuotaGet(ctx, id)
 if err != nil {
@@ -75,7 +75,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceName")
+id := quotainformation.NewScopedQuotaID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "quotaName")
 
 payload := quotainformation.CurrentQuotaLimitBase{
 	// ...

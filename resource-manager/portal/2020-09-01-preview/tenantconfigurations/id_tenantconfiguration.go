@@ -99,7 +99,7 @@ func (id TenantConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftPortal", "Microsoft.Portal", "Microsoft.Portal"),
 		resourceids.StaticSegment("staticTenantConfigurations", "tenantConfigurations", "tenantConfigurations"),
-		resourceids.UserSpecifiedSegment("tenantConfigurationName", "configurationName"),
+		resourceids.UserSpecifiedSegment("tenantConfigurationName", "tenantConfigurationName"),
 	}
 }
 

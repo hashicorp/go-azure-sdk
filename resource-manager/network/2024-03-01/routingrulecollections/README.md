@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := routingrulecollections.NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName")
+id := routingrulecollections.NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName", "ruleCollectionName")
 
 payload := routingrulecollections.RoutingRuleCollection{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := routingrulecollections.NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName")
+id := routingrulecollections.NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName", "ruleCollectionName")
 
 if err := client.DeleteThenPoll(ctx, id, routingrulecollections.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -57,7 +57,7 @@ if err := client.DeleteThenPoll(ctx, id, routingrulecollections.DefaultDeleteOpe
 
 ```go
 ctx := context.TODO()
-id := routingrulecollections.NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName", "ruleCollectionName")
+id := routingrulecollections.NewRuleCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName", "ruleCollectionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := routingrulecollections.NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "configurationName")
+id := routingrulecollections.NewRoutingConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkManagerName", "routingConfigurationName")
 
 // alternatively `client.List(ctx, id, routingrulecollections.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, routingrulecollections.DefaultListOperationOptions())

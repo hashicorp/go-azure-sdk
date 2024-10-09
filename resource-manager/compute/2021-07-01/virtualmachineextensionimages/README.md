@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensionimages.NewVersionID("12345678-1234-9876-4563-123456789012", "location", "publisherName", "typeName", "version")
+id := virtualmachineextensionimages.NewVersionID("12345678-1234-9876-4563-123456789012", "locationName", "publisherName", "typeName", "versionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensionimages.NewPublisherID("12345678-1234-9876-4563-123456789012", "location", "publisherName")
+id := virtualmachineextensionimages.NewPublisherID("12345678-1234-9876-4563-123456789012", "locationName", "publisherName")
 
 read, err := client.ListTypes(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensionimages.NewTypeID("12345678-1234-9876-4563-123456789012", "location", "publisherName", "typeName")
+id := virtualmachineextensionimages.NewTypeID("12345678-1234-9876-4563-123456789012", "locationName", "publisherName", "typeName")
 
 read, err := client.ListVersions(ctx, id, virtualmachineextensionimages.DefaultListVersionsOperationOptions())
 if err != nil {

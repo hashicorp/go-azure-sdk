@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &HubRouteTableId{}
 
 func TestNewHubRouteTableID(t *testing.T) {
-	id := NewHubRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubName", "routeTableName")
+	id := NewHubRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubName", "hubRouteTableName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewHubRouteTableID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VirtualHubName'", id.VirtualHubName, "virtualHubName")
 	}
 
-	if id.HubRouteTableName != "routeTableName" {
-		t.Fatalf("Expected %q but got %q for Segment 'HubRouteTableName'", id.HubRouteTableName, "routeTableName")
+	if id.HubRouteTableName != "hubRouteTableName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HubRouteTableName'", id.HubRouteTableName, "hubRouteTableName")
 	}
 }
 
 func TestFormatHubRouteTableID(t *testing.T) {
-	actual := NewHubRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubName", "routeTableName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/routeTableName"
+	actual := NewHubRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubName", "hubRouteTableName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/hubRouteTableName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseHubRouteTableID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/routeTableName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/hubRouteTableName",
 			Expected: &HubRouteTableId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VirtualHubName:    "virtualHubName",
-				HubRouteTableName: "routeTableName",
+				HubRouteTableName: "hubRouteTableName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/routeTableName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/hubRouteTableName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseHubRouteTableIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/routeTableName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/hubRouteTableName",
 			Expected: &HubRouteTableId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VirtualHubName:    "virtualHubName",
-				HubRouteTableName: "routeTableName",
+				HubRouteTableName: "hubRouteTableName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/routeTableName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName/hubRouteTables/hubRouteTableName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/hUbRoUtEtAbLeS/rOuTeTaBlEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/hUbRoUtEtAbLeS/hUbRoUtEtAbLeNaMe",
 			Expected: &HubRouteTableId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				VirtualHubName:    "vIrTuAlHuBnAmE",
-				HubRouteTableName: "rOuTeTaBlEnAmE",
+				HubRouteTableName: "hUbRoUtEtAbLeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/hUbRoUtEtAbLeS/rOuTeTaBlEnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/vIrTuAlHuBs/vIrTuAlHuBnAmE/hUbRoUtEtAbLeS/hUbRoUtEtAbLeNaMe/extra",
 			Error: true,
 		},
 	}

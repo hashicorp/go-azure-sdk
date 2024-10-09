@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &RouteId{}
 
 func TestNewRouteID(t *testing.T) {
-	id := NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName", "routeName")
+	id := NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName", "routeName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,8 +26,8 @@ func TestNewRouteID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ProfileName'", id.ProfileName, "profileName")
 	}
 
-	if id.AfdEndpointName != "endpointName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AfdEndpointName'", id.AfdEndpointName, "endpointName")
+	if id.AfdEndpointName != "afdEndpointName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AfdEndpointName'", id.AfdEndpointName, "afdEndpointName")
 	}
 
 	if id.RouteName != "routeName" {
@@ -36,8 +36,8 @@ func TestNewRouteID(t *testing.T) {
 }
 
 func TestFormatRouteID(t *testing.T) {
-	actual := NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "endpointName", "routeName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName/routes/routeName"
+	actual := NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "afdEndpointName", "routeName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName/routes/routeName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -101,28 +101,28 @@ func TestParseRouteID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName/routes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName/routes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName/routes/routeName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName/routes/routeName",
 			Expected: &RouteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ProfileName:       "profileName",
-				AfdEndpointName:   "endpointName",
+				AfdEndpointName:   "afdEndpointName",
 				RouteName:         "routeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName/routes/routeName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName/routes/routeName/extra",
 			Error: true,
 		},
 	}
@@ -267,54 +267,54 @@ func TestParseRouteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/eNdPoInTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/aFdEnDpOiNtNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName/routes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName/routes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/eNdPoInTnAmE/rOuTeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/aFdEnDpOiNtNaMe/rOuTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName/routes/routeName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName/routes/routeName",
 			Expected: &RouteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ProfileName:       "profileName",
-				AfdEndpointName:   "endpointName",
+				AfdEndpointName:   "afdEndpointName",
 				RouteName:         "routeName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/endpointName/routes/routeName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/afdEndpoints/afdEndpointName/routes/routeName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/eNdPoInTnAmE/rOuTeS/rOuTeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/aFdEnDpOiNtNaMe/rOuTeS/rOuTeNaMe",
 			Expected: &RouteId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ProfileName:       "pRoFiLeNaMe",
-				AfdEndpointName:   "eNdPoInTnAmE",
+				AfdEndpointName:   "aFdEnDpOiNtNaMe",
 				RouteName:         "rOuTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/eNdPoInTnAmE/rOuTeS/rOuTeNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cDn/pRoFiLeS/pRoFiLeNaMe/aFdEnDpOiNtS/aFdEnDpOiNtNaMe/rOuTeS/rOuTeNaMe/extra",
 			Error: true,
 		},
 	}

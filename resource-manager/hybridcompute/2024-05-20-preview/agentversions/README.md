@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := agentversions.NewAgentVersionID("osType", "version")
+id := agentversions.NewAgentVersionID("osTypeName", "agentVersionName")
 
 read, err := client.AgentVersionGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := agentversions.NewOsTypeID("osType")
+id := agentversions.NewOsTypeID("osTypeName")
 
 // alternatively `client.AgentVersionList(ctx, id)` can be used to do batched pagination
 items, err := client.AgentVersionListComplete(ctx, id)

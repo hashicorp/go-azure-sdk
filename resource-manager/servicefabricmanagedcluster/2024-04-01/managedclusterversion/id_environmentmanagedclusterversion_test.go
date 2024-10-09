@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &EnvironmentManagedClusterVersionId{}
 
 func TestNewEnvironmentManagedClusterVersionID(t *testing.T) {
-	id := NewEnvironmentManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "location", "clusterVersion")
+	id := NewEnvironmentManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "locationName", "managedClusterVersionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.LocationName != "location" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "location")
+	if id.LocationName != "locationName" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationName")
 	}
 
-	if id.ManagedClusterVersionName != "clusterVersion" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedClusterVersionName'", id.ManagedClusterVersionName, "clusterVersion")
+	if id.ManagedClusterVersionName != "managedClusterVersionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedClusterVersionName'", id.ManagedClusterVersionName, "managedClusterVersionName")
 	}
 }
 
 func TestFormatEnvironmentManagedClusterVersionID(t *testing.T) {
-	actual := NewEnvironmentManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "location", "clusterVersion").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments/Windows/managedClusterVersions/clusterVersion"
+	actual := NewEnvironmentManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "locationName", "managedClusterVersionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments/Windows/managedClusterVersions/managedClusterVersionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,36 +73,36 @@ func TestParseEnvironmentManagedClusterVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments/Windows",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments/Windows",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments/Windows/managedClusterVersions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments/Windows/managedClusterVersions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments/Windows/managedClusterVersions/clusterVersion",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments/Windows/managedClusterVersions/managedClusterVersionName",
 			Expected: &EnvironmentManagedClusterVersionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
-				LocationName:              "location",
-				ManagedClusterVersionName: "clusterVersion",
+				LocationName:              "locationName",
+				ManagedClusterVersionName: "managedClusterVersionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments/Windows/managedClusterVersions/clusterVersion/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments/Windows/managedClusterVersions/managedClusterVersionName/extra",
 			Error: true,
 		},
 	}
@@ -199,70 +199,70 @@ func TestParseEnvironmentManagedClusterVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoN/eNvIrOnMeNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNnAmE/eNvIrOnMeNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments/Windows",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments/Windows",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoN/eNvIrOnMeNtS/wInDoWs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNnAmE/eNvIrOnMeNtS/wInDoWs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments/Windows/managedClusterVersions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments/Windows/managedClusterVersions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoN/eNvIrOnMeNtS/wInDoWs/mAnAgEdClUsTeRvErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNnAmE/eNvIrOnMeNtS/wInDoWs/mAnAgEdClUsTeRvErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments/Windows/managedClusterVersions/clusterVersion",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments/Windows/managedClusterVersions/managedClusterVersionName",
 			Expected: &EnvironmentManagedClusterVersionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
-				LocationName:              "location",
-				ManagedClusterVersionName: "clusterVersion",
+				LocationName:              "locationName",
+				ManagedClusterVersionName: "managedClusterVersionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/location/environments/Windows/managedClusterVersions/clusterVersion/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationName/environments/Windows/managedClusterVersions/managedClusterVersionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoN/eNvIrOnMeNtS/wInDoWs/mAnAgEdClUsTeRvErSiOnS/cLuStErVeRsIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNnAmE/eNvIrOnMeNtS/wInDoWs/mAnAgEdClUsTeRvErSiOnS/mAnAgEdClUsTeRvErSiOnNaMe",
 			Expected: &EnvironmentManagedClusterVersionId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
-				LocationName:              "lOcAtIoN",
-				ManagedClusterVersionName: "cLuStErVeRsIoN",
+				LocationName:              "lOcAtIoNnAmE",
+				ManagedClusterVersionName: "mAnAgEdClUsTeRvErSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoN/eNvIrOnMeNtS/wInDoWs/mAnAgEdClUsTeRvErSiOnS/cLuStErVeRsIoN/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNnAmE/eNvIrOnMeNtS/wInDoWs/mAnAgEdClUsTeRvErSiOnS/mAnAgEdClUsTeRvErSiOnNaMe/extra",
 			Error: true,
 		},
 	}

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AnalysisId{}
 
 func TestNewAnalysisID(t *testing.T) {
-	id := NewAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticCategory", "analysisName")
+	id := NewAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticName", "analysisName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,8 +26,8 @@ func TestNewAnalysisID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SiteName'", id.SiteName, "siteName")
 	}
 
-	if id.DiagnosticName != "diagnosticCategory" {
-		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticName'", id.DiagnosticName, "diagnosticCategory")
+	if id.DiagnosticName != "diagnosticName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticName'", id.DiagnosticName, "diagnosticName")
 	}
 
 	if id.AnalysisName != "analysisName" {
@@ -36,8 +36,8 @@ func TestNewAnalysisID(t *testing.T) {
 }
 
 func TestFormatAnalysisID(t *testing.T) {
-	actual := NewAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticCategory", "analysisName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticCategory/analyses/analysisName"
+	actual := NewAnalysisID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "diagnosticName", "analysisName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticName/analyses/analysisName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -101,28 +101,28 @@ func TestParseAnalysisID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticCategory",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticCategory/analyses",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticName/analyses",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticCategory/analyses/analysisName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticName/analyses/analysisName",
 			Expected: &AnalysisId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				SiteName:          "siteName",
-				DiagnosticName:    "diagnosticCategory",
+				DiagnosticName:    "diagnosticName",
 				AnalysisName:      "analysisName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticCategory/analyses/analysisName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticName/analyses/analysisName/extra",
 			Error: true,
 		},
 	}
@@ -267,54 +267,54 @@ func TestParseAnalysisIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticCategory",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/dIaGnOsTiCs/dIaGnOsTiCcAtEgOrY",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/dIaGnOsTiCs/dIaGnOsTiCnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticCategory/analyses",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticName/analyses",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/dIaGnOsTiCs/dIaGnOsTiCcAtEgOrY/aNaLySeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/dIaGnOsTiCs/dIaGnOsTiCnAmE/aNaLySeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticCategory/analyses/analysisName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticName/analyses/analysisName",
 			Expected: &AnalysisId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				SiteName:          "siteName",
-				DiagnosticName:    "diagnosticCategory",
+				DiagnosticName:    "diagnosticName",
 				AnalysisName:      "analysisName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticCategory/analyses/analysisName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/sites/siteName/diagnostics/diagnosticName/analyses/analysisName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/dIaGnOsTiCs/dIaGnOsTiCcAtEgOrY/aNaLySeS/aNaLySiSnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/dIaGnOsTiCs/dIaGnOsTiCnAmE/aNaLySeS/aNaLySiSnAmE",
 			Expected: &AnalysisId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				SiteName:          "sItEnAmE",
-				DiagnosticName:    "dIaGnOsTiCcAtEgOrY",
+				DiagnosticName:    "dIaGnOsTiCnAmE",
 				AnalysisName:      "aNaLySiSnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/dIaGnOsTiCs/dIaGnOsTiCcAtEgOrY/aNaLySeS/aNaLySiSnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/sItEs/sItEnAmE/dIaGnOsTiCs/dIaGnOsTiCnAmE/aNaLySeS/aNaLySiSnAmE/extra",
 			Error: true,
 		},
 	}

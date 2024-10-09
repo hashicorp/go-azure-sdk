@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := jobdetails.NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "jobName")
+id := jobdetails.NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupJobName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

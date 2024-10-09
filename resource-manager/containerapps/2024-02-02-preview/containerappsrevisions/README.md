@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := containerappsrevisions.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "appName")
+id := containerappsrevisions.NewContainerAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "containerAppName")
 
 // alternatively `client.ListRevisions(ctx, id, containerappsrevisions.DefaultListRevisionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListRevisionsComplete(ctx, id, containerappsrevisions.DefaultListRevisionsOperationOptions())

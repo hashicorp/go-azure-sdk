@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
+id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName")
 
 payload := longtermretentionbackup.LtrBackupRequest{
 	// ...
@@ -41,7 +41,7 @@ if err := client.FlexibleServerStartLtrBackupThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
+id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName")
 
 payload := longtermretentionbackup.BackupRequestBase{
 	// ...
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackup.NewLtrBackupOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "backupName")
+id := longtermretentionbackup.NewLtrBackupOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName", "ltrBackupOperationName")
 
 read, err := client.LtrBackupOperationsGet(ctx, id)
 if err != nil {
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
+id := longtermretentionbackup.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName")
 
 // alternatively `client.LtrBackupOperationsListByServer(ctx, id)` can be used to do batched pagination
 items, err := client.LtrBackupOperationsListByServerComplete(ctx, id)

@@ -115,7 +115,7 @@ func (id CdnWebApplicationFirewallPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCDN", "Microsoft.CDN", "Microsoft.CDN"),
 		resourceids.StaticSegment("staticCdnWebApplicationFirewallPolicies", "cdnWebApplicationFirewallPolicies", "cdnWebApplicationFirewallPolicies"),
-		resourceids.UserSpecifiedSegment("cdnWebApplicationFirewallPolicyName", "policyName"),
+		resourceids.UserSpecifiedSegment("cdnWebApplicationFirewallPolicyName", "cdnWebApplicationFirewallPolicyName"),
 	}
 }
 

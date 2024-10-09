@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := componentcontinuousexportapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName")
 
 payload := componentcontinuousexportapis.ApplicationInsightsComponentExportRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "exportId")
+id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "exportId")
 
 read, err := client.ExportConfigurationsDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "exportId")
+id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "exportId")
 
 read, err := client.ExportConfigurationsGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := componentcontinuousexportapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName")
 
 read, err := client.ExportConfigurationsList(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "exportId")
+id := componentcontinuousexportapis.NewExportConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "exportId")
 
 payload := componentcontinuousexportapis.ApplicationInsightsComponentExportRequest{
 	// ...

@@ -121,7 +121,7 @@ func (id AccessPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticVideoAnalyzers", "videoAnalyzers", "videoAnalyzers"),
-		resourceids.UserSpecifiedSegment("videoAnalyzerName", "accountName"),
+		resourceids.UserSpecifiedSegment("videoAnalyzerName", "videoAnalyzerName"),
 		resourceids.StaticSegment("staticAccessPolicies", "accessPolicies", "accessPolicies"),
 		resourceids.UserSpecifiedSegment("accessPolicyName", "accessPolicyName"),
 	}

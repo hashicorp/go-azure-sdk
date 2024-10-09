@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := storageaccountsnetworksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "networkSecurityPerimeterConfigurationName")
+id := storageaccountsnetworksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "networkSecurityPerimeterConfigurationName")
 
 read, err := client.NetworkSecurityPerimeterConfigurationsGet(ctx, id)
 if err != nil {
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := storageaccountsnetworksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "networkSecurityPerimeterConfigurationName")
+id := storageaccountsnetworksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "networkSecurityPerimeterConfigurationName")
 
 if err := client.NetworkSecurityPerimeterConfigurationsReconcileThenPoll(ctx, id); err != nil {
 	// handle the error

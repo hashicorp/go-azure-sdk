@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := graphqueries.NewQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := graphqueries.NewQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryName")
 
 payload := graphqueries.GraphQueryUpdateParameters{
 	// ...

@@ -123,7 +123,7 @@ func (id HybridIdentityMetadataId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticMachines", "machines", "machines"),
 		resourceids.UserSpecifiedSegment("machineName", "machineName"),
 		resourceids.StaticSegment("staticHybridIdentityMetadata", "hybridIdentityMetadata", "hybridIdentityMetadata"),
-		resourceids.UserSpecifiedSegment("hybridIdentityMetadataName", "metadataName"),
+		resourceids.UserSpecifiedSegment("hybridIdentityMetadataName", "hybridIdentityMetadataName"),
 	}
 }
 

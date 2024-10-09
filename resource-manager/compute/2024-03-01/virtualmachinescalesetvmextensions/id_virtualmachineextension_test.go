@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VirtualMachineExtensionId{}
 
 func TestNewVirtualMachineExtensionID(t *testing.T) {
-	id := NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "vmExtensionName")
+	id := NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "extensionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewVirtualMachineExtensionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'InstanceId'", id.InstanceId, "instanceId")
 	}
 
-	if id.ExtensionName != "vmExtensionName" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionName'", id.ExtensionName, "vmExtensionName")
+	if id.ExtensionName != "extensionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionName'", id.ExtensionName, "extensionName")
 	}
 }
 
 func TestFormatVirtualMachineExtensionID(t *testing.T) {
-	actual := NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "vmExtensionName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/vmExtensionName"
+	actual := NewVirtualMachineExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "instanceId", "extensionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/extensionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseVirtualMachineExtensionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/vmExtensionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/extensionName",
 			Expected: &VirtualMachineExtensionId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				VirtualMachineScaleSetName: "virtualMachineScaleSetName",
 				InstanceId:                 "instanceId",
-				ExtensionName:              "vmExtensionName",
+				ExtensionName:              "extensionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/vmExtensionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/extensionName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseVirtualMachineExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/vmExtensionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/extensionName",
 			Expected: &VirtualMachineExtensionId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				VirtualMachineScaleSetName: "virtualMachineScaleSetName",
 				InstanceId:                 "instanceId",
-				ExtensionName:              "vmExtensionName",
+				ExtensionName:              "extensionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/vmExtensionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetName/virtualMachines/instanceId/extensions/extensionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTnAmE/vIrTuAlMaChInEs/iNsTaNcEiD/eXtEnSiOnS/vMeXtEnSiOnNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTnAmE/vIrTuAlMaChInEs/iNsTaNcEiD/eXtEnSiOnS/eXtEnSiOnNaMe",
 			Expected: &VirtualMachineExtensionId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
 				VirtualMachineScaleSetName: "vIrTuAlMaChInEsCaLeSeTnAmE",
 				InstanceId:                 "iNsTaNcEiD",
-				ExtensionName:              "vMeXtEnSiOnNaMe",
+				ExtensionName:              "eXtEnSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTnAmE/vIrTuAlMaChInEs/iNsTaNcEiD/eXtEnSiOnS/vMeXtEnSiOnNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTnAmE/vIrTuAlMaChInEs/iNsTaNcEiD/eXtEnSiOnS/eXtEnSiOnNaMe/extra",
 			Error: true,
 		},
 	}

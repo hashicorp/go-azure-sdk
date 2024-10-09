@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &VersionId{}
 
 func TestNewVersionID(t *testing.T) {
-	id := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "applicationTypeName", "version")
+	id := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "applicationTypeName", "versionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -30,14 +30,14 @@ func TestNewVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ApplicationTypeName'", id.ApplicationTypeName, "applicationTypeName")
 	}
 
-	if id.VersionName != "version" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "version")
+	if id.VersionName != "versionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionName")
 	}
 }
 
 func TestFormatVersionID(t *testing.T) {
-	actual := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "applicationTypeName", "version").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/version"
+	actual := NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "applicationTypeName", "versionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/versionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -111,18 +111,18 @@ func TestParseVersionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/version",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/versionName",
 			Expected: &VersionId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
 				ClusterName:         "clusterName",
 				ApplicationTypeName: "applicationTypeName",
-				VersionName:         "version",
+				VersionName:         "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/version/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/versionName/extra",
 			Error: true,
 		},
 	}
@@ -287,34 +287,34 @@ func TestParseVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/version",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/versionName",
 			Expected: &VersionId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
 				ClusterName:         "clusterName",
 				ApplicationTypeName: "applicationTypeName",
-				VersionName:         "version",
+				VersionName:         "versionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/version/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/clusters/clusterName/applicationTypes/applicationTypeName/versions/versionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/cLuStErS/cLuStErNaMe/aPpLiCaTiOnTyPeS/aPpLiCaTiOnTyPeNaMe/vErSiOnS/vErSiOn",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/cLuStErS/cLuStErNaMe/aPpLiCaTiOnTyPeS/aPpLiCaTiOnTyPeNaMe/vErSiOnS/vErSiOnNaMe",
 			Expected: &VersionId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
 				ClusterName:         "cLuStErNaMe",
 				ApplicationTypeName: "aPpLiCaTiOnTyPeNaMe",
-				VersionName:         "vErSiOn",
+				VersionName:         "vErSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/cLuStErS/cLuStErNaMe/aPpLiCaTiOnTyPeS/aPpLiCaTiOnTyPeNaMe/vErSiOnS/vErSiOn/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/cLuStErS/cLuStErNaMe/aPpLiCaTiOnTyPeS/aPpLiCaTiOnTyPeNaMe/vErSiOnS/vErSiOnNaMe/extra",
 			Error: true,
 		},
 	}

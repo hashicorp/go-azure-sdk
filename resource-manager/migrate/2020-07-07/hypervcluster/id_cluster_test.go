@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &ClusterId{}
 
 func TestNewClusterID(t *testing.T) {
-	id := NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "clusterName")
+	id := NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteName", "clusterName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewClusterID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.HyperVSiteName != "siteName" {
-		t.Fatalf("Expected %q but got %q for Segment 'HyperVSiteName'", id.HyperVSiteName, "siteName")
+	if id.HyperVSiteName != "hyperVSiteName" {
+		t.Fatalf("Expected %q but got %q for Segment 'HyperVSiteName'", id.HyperVSiteName, "hyperVSiteName")
 	}
 
 	if id.ClusterName != "clusterName" {
@@ -32,8 +32,8 @@ func TestNewClusterID(t *testing.T) {
 }
 
 func TestFormatClusterID(t *testing.T) {
-	actual := NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "clusterName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/clusters/clusterName"
+	actual := NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hyperVSiteName", "clusterName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteName/clusters/clusterName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -87,27 +87,27 @@ func TestParseClusterID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/clusters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteName/clusters",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/clusters/clusterName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteName/clusters/clusterName",
 			Expected: &ClusterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				HyperVSiteName:    "siteName",
+				HyperVSiteName:    "hyperVSiteName",
 				ClusterName:       "clusterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/clusters/clusterName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteName/clusters/clusterName/extra",
 			Error: true,
 		},
 	}
@@ -228,52 +228,52 @@ func TestParseClusterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/sItEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/hYpErVsItEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/clusters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteName/clusters",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/sItEnAmE/cLuStErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/hYpErVsItEnAmE/cLuStErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/clusters/clusterName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteName/clusters/clusterName",
 			Expected: &ClusterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				HyperVSiteName:    "siteName",
+				HyperVSiteName:    "hyperVSiteName",
 				ClusterName:       "clusterName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/siteName/clusters/clusterName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OffAzure/hyperVSites/hyperVSiteName/clusters/clusterName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/sItEnAmE/cLuStErS/cLuStErNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/hYpErVsItEnAmE/cLuStErS/cLuStErNaMe",
 			Expected: &ClusterId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				HyperVSiteName:    "sItEnAmE",
+				HyperVSiteName:    "hYpErVsItEnAmE",
 				ClusterName:       "cLuStErNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/sItEnAmE/cLuStErS/cLuStErNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oFfAzUrE/hYpErVsItEs/hYpErVsItEnAmE/cLuStErS/cLuStErNaMe/extra",
 			Error: true,
 		},
 	}

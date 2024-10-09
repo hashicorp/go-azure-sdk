@@ -242,7 +242,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainTopicName")
+id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName")
 
 // alternatively `client.DomainTopicEventSubscriptionsList(ctx, id, eventsubscriptions.DefaultDomainTopicEventSubscriptionsListOperationOptions())` can be used to do batched pagination
 items, err := client.DomainTopicEventSubscriptionsListComplete(ctx, id, eventsubscriptions.DefaultDomainTopicEventSubscriptionsListOperationOptions())
@@ -324,7 +324,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "domainTopicName")
+id := eventsubscriptions.NewDomainTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "domainName", "topicName")
 
 // alternatively `client.ListByDomainTopic(ctx, id, eventsubscriptions.DefaultListByDomainTopicOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDomainTopicComplete(ctx, id, eventsubscriptions.DefaultListByDomainTopicOperationOptions())
@@ -426,7 +426,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location")
+id := eventsubscriptions.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName")
 
 // alternatively `client.ListRegionalByResourceGroup(ctx, id, eventsubscriptions.DefaultListRegionalByResourceGroupOperationOptions())` can be used to do batched pagination
 items, err := client.ListRegionalByResourceGroupComplete(ctx, id, eventsubscriptions.DefaultListRegionalByResourceGroupOperationOptions())
@@ -443,7 +443,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewProviderLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "location", "topicTypeName")
+id := eventsubscriptions.NewProviderLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "topicTypeName")
 
 // alternatively `client.ListRegionalByResourceGroupForTopicType(ctx, id, eventsubscriptions.DefaultListRegionalByResourceGroupForTopicTypeOperationOptions())` can be used to do batched pagination
 items, err := client.ListRegionalByResourceGroupForTopicTypeComplete(ctx, id, eventsubscriptions.DefaultListRegionalByResourceGroupForTopicTypeOperationOptions())
@@ -460,7 +460,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := eventsubscriptions.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ListRegionalBySubscription(ctx, id, eventsubscriptions.DefaultListRegionalBySubscriptionOperationOptions())` can be used to do batched pagination
 items, err := client.ListRegionalBySubscriptionComplete(ctx, id, eventsubscriptions.DefaultListRegionalBySubscriptionOperationOptions())
@@ -477,7 +477,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventsubscriptions.NewLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "location", "topicTypeName")
+id := eventsubscriptions.NewLocationTopicTypeID("12345678-1234-9876-4563-123456789012", "locationName", "topicTypeName")
 
 // alternatively `client.ListRegionalBySubscriptionForTopicType(ctx, id, eventsubscriptions.DefaultListRegionalBySubscriptionForTopicTypeOperationOptions())` can be used to do batched pagination
 items, err := client.ListRegionalBySubscriptionForTopicTypeComplete(ctx, id, eventsubscriptions.DefaultListRegionalBySubscriptionForTopicTypeOperationOptions())

@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AzureDevOpsOrgId{}
 
 func TestNewAzureDevOpsOrgID(t *testing.T) {
-	id := NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName")
+	id := NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewAzureDevOpsOrgID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SecurityConnectorName'", id.SecurityConnectorName, "securityConnectorName")
 	}
 
-	if id.AzureDevOpsOrgName != "orgName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AzureDevOpsOrgName'", id.AzureDevOpsOrgName, "orgName")
+	if id.AzureDevOpsOrgName != "azureDevOpsOrgName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AzureDevOpsOrgName'", id.AzureDevOpsOrgName, "azureDevOpsOrgName")
 	}
 }
 
 func TestFormatAzureDevOpsOrgID(t *testing.T) {
-	actual := NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "orgName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName"
+	actual := NewAzureDevOpsOrgID("12345678-1234-9876-4563-123456789012", "example-resource-group", "securityConnectorName", "azureDevOpsOrgName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -107,17 +107,17 @@ func TestParseAzureDevOpsOrgID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName",
 			Expected: &AzureDevOpsOrgId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				SecurityConnectorName: "securityConnectorName",
-				AzureDevOpsOrgName:    "orgName",
+				AzureDevOpsOrgName:    "azureDevOpsOrgName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/extra",
 			Error: true,
 		},
 	}
@@ -278,32 +278,32 @@ func TestParseAzureDevOpsOrgIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName",
 			Expected: &AzureDevOpsOrgId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				SecurityConnectorName: "securityConnectorName",
-				AzureDevOpsOrgName:    "orgName",
+				AzureDevOpsOrgName:    "azureDevOpsOrgName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/orgName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Security/securityConnectors/securityConnectorName/devops/default/azureDevOpsOrgs/azureDevOpsOrgName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/oRgNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/aZuReDeVoPsOrGnAmE",
 			Expected: &AzureDevOpsOrgId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				SecurityConnectorName: "sEcUrItYcOnNeCtOrNaMe",
-				AzureDevOpsOrgName:    "oRgNaMe",
+				AzureDevOpsOrgName:    "aZuReDeVoPsOrGnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/oRgNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEcUrItY/sEcUrItYcOnNeCtOrS/sEcUrItYcOnNeCtOrNaMe/dEvOpS/dEfAuLt/aZuReDeVoPsOrGs/aZuReDeVoPsOrGnAmE/extra",
 			Error: true,
 		},
 	}

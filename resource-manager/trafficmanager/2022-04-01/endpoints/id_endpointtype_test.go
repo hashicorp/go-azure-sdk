@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &EndpointTypeId{}
 
 func TestNewEndpointTypeID(t *testing.T) {
-	id := NewEndpointTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "AzureEndpoints", "endpointName")
+	id := NewEndpointTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficManagerProfileName", "AzureEndpoints", "endpointName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewEndpointTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.TrafficManagerProfileName != "profileName" {
-		t.Fatalf("Expected %q but got %q for Segment 'TrafficManagerProfileName'", id.TrafficManagerProfileName, "profileName")
+	if id.TrafficManagerProfileName != "trafficManagerProfileName" {
+		t.Fatalf("Expected %q but got %q for Segment 'TrafficManagerProfileName'", id.TrafficManagerProfileName, "trafficManagerProfileName")
 	}
 
 	if id.EndpointType != "AzureEndpoints" {
@@ -36,8 +36,8 @@ func TestNewEndpointTypeID(t *testing.T) {
 }
 
 func TestFormatEndpointTypeID(t *testing.T) {
-	actual := NewEndpointTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "AzureEndpoints", "endpointName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileName/AzureEndpoints/endpointName"
+	actual := NewEndpointTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficManagerProfileName", "AzureEndpoints", "endpointName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileName/AzureEndpoints/endpointName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,28 +91,28 @@ func TestParseEndpointTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileName/AzureEndpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileName/AzureEndpoints",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileName/AzureEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileName/AzureEndpoints/endpointName",
 			Expected: &EndpointTypeId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				TrafficManagerProfileName: "profileName",
+				TrafficManagerProfileName: "trafficManagerProfileName",
 				EndpointType:              "AzureEndpoints",
 				EndpointName:              "endpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileName/AzureEndpoints/endpointName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileName/AzureEndpoints/endpointName/extra",
 			Error: true,
 		},
 	}
@@ -237,54 +237,54 @@ func TestParseEndpointTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/pRoFiLeNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/tRaFfIcMaNaGeRpRoFiLeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileName/AzureEndpoints",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileName/AzureEndpoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/pRoFiLeNaMe/aZuReEnDpOiNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/tRaFfIcMaNaGeRpRoFiLeNaMe/aZuReEnDpOiNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileName/AzureEndpoints/endpointName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileName/AzureEndpoints/endpointName",
 			Expected: &EndpointTypeId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				TrafficManagerProfileName: "profileName",
+				TrafficManagerProfileName: "trafficManagerProfileName",
 				EndpointType:              "AzureEndpoints",
 				EndpointName:              "endpointName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileName/AzureEndpoints/endpointName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileName/AzureEndpoints/endpointName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/pRoFiLeNaMe/aZuReEnDpOiNtS/eNdPoInTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/tRaFfIcMaNaGeRpRoFiLeNaMe/aZuReEnDpOiNtS/eNdPoInTnAmE",
 			Expected: &EndpointTypeId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				TrafficManagerProfileName: "pRoFiLeNaMe",
+				TrafficManagerProfileName: "tRaFfIcMaNaGeRpRoFiLeNaMe",
 				EndpointType:              "AzureEndpoints",
 				EndpointName:              "eNdPoInTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/pRoFiLeNaMe/aZuReEnDpOiNtS/eNdPoInTnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/tRaFfIcMaNaGeRpRoFiLeNaMe/aZuReEnDpOiNtS/eNdPoInTnAmE/extra",
 			Error: true,
 		},
 	}

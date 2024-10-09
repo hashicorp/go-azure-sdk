@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AddonId{}
 
 func TestNewAddonID(t *testing.T) {
-	id := NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName", "roleName", "addonName")
+	id := NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceName", "roleName", "addonName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewAddonID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.DataBoxEdgeDeviceName != "deviceName" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataBoxEdgeDeviceName'", id.DataBoxEdgeDeviceName, "deviceName")
+	if id.DataBoxEdgeDeviceName != "dataBoxEdgeDeviceName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataBoxEdgeDeviceName'", id.DataBoxEdgeDeviceName, "dataBoxEdgeDeviceName")
 	}
 
 	if id.RoleName != "roleName" {
@@ -36,8 +36,8 @@ func TestNewAddonID(t *testing.T) {
 }
 
 func TestFormatAddonID(t *testing.T) {
-	actual := NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName", "roleName", "addonName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles/roleName/addons/addonName"
+	actual := NewAddonID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceName", "roleName", "addonName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles/roleName/addons/addonName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -91,38 +91,38 @@ func TestParseAddonID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles/roleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles/roleName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles/roleName/addons",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles/roleName/addons",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles/roleName/addons/addonName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles/roleName/addons/addonName",
 			Expected: &AddonId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				DataBoxEdgeDeviceName: "deviceName",
+				DataBoxEdgeDeviceName: "dataBoxEdgeDeviceName",
 				RoleName:              "roleName",
 				AddonName:             "addonName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles/roleName/addons/addonName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles/roleName/addons/addonName/extra",
 			Error: true,
 		},
 	}
@@ -247,74 +247,74 @@ func TestParseAddonIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dEvIcEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dAtAbOxEdGeDeViCeNaMe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dEvIcEnAmE/rOlEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dAtAbOxEdGeDeViCeNaMe/rOlEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles/roleName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles/roleName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dEvIcEnAmE/rOlEs/rOlEnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dAtAbOxEdGeDeViCeNaMe/rOlEs/rOlEnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles/roleName/addons",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles/roleName/addons",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dEvIcEnAmE/rOlEs/rOlEnAmE/aDdOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dAtAbOxEdGeDeViCeNaMe/rOlEs/rOlEnAmE/aDdOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles/roleName/addons/addonName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles/roleName/addons/addonName",
 			Expected: &AddonId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				DataBoxEdgeDeviceName: "deviceName",
+				DataBoxEdgeDeviceName: "dataBoxEdgeDeviceName",
 				RoleName:              "roleName",
 				AddonName:             "addonName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/deviceName/roles/roleName/addons/addonName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/dataBoxEdgeDeviceName/roles/roleName/addons/addonName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dEvIcEnAmE/rOlEs/rOlEnAmE/aDdOnS/aDdOnNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dAtAbOxEdGeDeViCeNaMe/rOlEs/rOlEnAmE/aDdOnS/aDdOnNaMe",
 			Expected: &AddonId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				DataBoxEdgeDeviceName: "dEvIcEnAmE",
+				DataBoxEdgeDeviceName: "dAtAbOxEdGeDeViCeNaMe",
 				RoleName:              "rOlEnAmE",
 				AddonName:             "aDdOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dEvIcEnAmE/rOlEs/rOlEnAmE/aDdOnS/aDdOnNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbOxEdGe/dAtAbOxEdGeDeViCeS/dAtAbOxEdGeDeViCeNaMe/rOlEs/rOlEnAmE/aDdOnS/aDdOnNaMe/extra",
 			Error: true,
 		},
 	}

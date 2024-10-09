@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName", "diskRestorePointName")
+id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "restorePointName", "diskRestorePointName")
 
 read, err := client.DiskRestorePointGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName", "diskRestorePointName")
+id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "restorePointName", "diskRestorePointName")
 
 payload := incrementalrestorepoints.GrantAccessData{
 	// ...
@@ -57,7 +57,7 @@ if err := client.DiskRestorePointGrantAccessThenPoll(ctx, id, payload); err != n
 
 ```go
 ctx := context.TODO()
-id := incrementalrestorepoints.NewRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName")
+id := incrementalrestorepoints.NewRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "restorePointName")
 
 // alternatively `client.DiskRestorePointListByRestorePoint(ctx, id)` can be used to do batched pagination
 items, err := client.DiskRestorePointListByRestorePointComplete(ctx, id)
@@ -74,7 +74,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "vmRestorePointName", "diskRestorePointName")
+id := incrementalrestorepoints.NewDiskRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionName", "restorePointName", "diskRestorePointName")
 
 if err := client.DiskRestorePointRevokeAccessThenPoll(ctx, id); err != nil {
 	// handle the error

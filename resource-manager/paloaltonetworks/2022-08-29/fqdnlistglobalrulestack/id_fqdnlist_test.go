@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &FqdnListId{}
 
 func TestNewFqdnListID(t *testing.T) {
-	id := NewFqdnListID("globalRulestackName", "name")
+	id := NewFqdnListID("globalRulestackName", "fqdnListName")
 
 	if id.GlobalRulestackName != "globalRulestackName" {
 		t.Fatalf("Expected %q but got %q for Segment 'GlobalRulestackName'", id.GlobalRulestackName, "globalRulestackName")
 	}
 
-	if id.FqdnListName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'FqdnListName'", id.FqdnListName, "name")
+	if id.FqdnListName != "fqdnListName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FqdnListName'", id.FqdnListName, "fqdnListName")
 	}
 }
 
 func TestFormatFqdnListID(t *testing.T) {
-	actual := NewFqdnListID("globalRulestackName", "name").ID()
-	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/name"
+	actual := NewFqdnListID("globalRulestackName", "fqdnListName").ID()
+	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/fqdnListName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParseFqdnListID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/name",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/fqdnListName",
 			Expected: &FqdnListId{
 				GlobalRulestackName: "globalRulestackName",
-				FqdnListName:        "name",
+				FqdnListName:        "fqdnListName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/name/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/fqdnListName/extra",
 			Error: true,
 		},
 	}
@@ -170,28 +170,28 @@ func TestParseFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/name",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/fqdnListName",
 			Expected: &FqdnListId{
 				GlobalRulestackName: "globalRulestackName",
-				FqdnListName:        "name",
+				FqdnListName:        "fqdnListName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/name/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackName/fqdnLists/fqdnListName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/fQdNlIsTs/nAmE",
+			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/fQdNlIsTs/fQdNlIsTnAmE",
 			Expected: &FqdnListId{
 				GlobalRulestackName: "gLoBaLrUlEsTaCkNaMe",
-				FqdnListName:        "nAmE",
+				FqdnListName:        "fQdNlIsTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/fQdNlIsTs/nAmE/extra",
+			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkNaMe/fQdNlIsTs/fQdNlIsTnAmE/extra",
 			Error: true,
 		},
 	}

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := operations.NewOperationID("12345678-1234-9876-4563-123456789012", "locationName", "name")
+id := operations.NewOperationID("12345678-1234-9876-4563-123456789012", "locationName", "operationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

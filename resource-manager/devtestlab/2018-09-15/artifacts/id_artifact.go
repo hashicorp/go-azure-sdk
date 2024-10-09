@@ -131,7 +131,7 @@ func (id ArtifactId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticArtifactSources", "artifactSources", "artifactSources"),
 		resourceids.UserSpecifiedSegment("artifactSourceName", "artifactSourceName"),
 		resourceids.StaticSegment("staticArtifacts", "artifacts", "artifacts"),
-		resourceids.UserSpecifiedSegment("artifactName", "name"),
+		resourceids.UserSpecifiedSegment("artifactName", "artifactName"),
 	}
 }
 

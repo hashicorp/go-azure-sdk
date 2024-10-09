@@ -107,7 +107,7 @@ func (id BillingSubscriptionAliasId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
 		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountName"),
 		resourceids.StaticSegment("staticBillingSubscriptionAliases", "billingSubscriptionAliases", "billingSubscriptionAliases"),
-		resourceids.UserSpecifiedSegment("billingSubscriptionAliasName", "aliasName"),
+		resourceids.UserSpecifiedSegment("billingSubscriptionAliasName", "billingSubscriptionAliasName"),
 	}
 }
 

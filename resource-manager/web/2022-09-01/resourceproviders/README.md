@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSourceControlID("sourceControlType")
+id := resourceproviders.NewSourceControlID("sourceControlName")
 
 read, err := client.GetSourceControl(ctx, id)
 if err != nil {
@@ -258,7 +258,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceproviders.NewSourceControlID("sourceControlType")
+id := resourceproviders.NewSourceControlID("sourceControlName")
 
 payload := resourceproviders.SourceControl{
 	// ...

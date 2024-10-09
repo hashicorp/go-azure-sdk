@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := metricalertsstatus.NewMetricAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName")
+id := metricalertsstatus.NewMetricAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "metricAlertName")
 
 read, err := client.List(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := metricalertsstatus.NewStatusID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleName", "statusName")
+id := metricalertsstatus.NewStatusID("12345678-1234-9876-4563-123456789012", "example-resource-group", "metricAlertName", "statusName")
 
 read, err := client.ListByName(ctx, id)
 if err != nil {
