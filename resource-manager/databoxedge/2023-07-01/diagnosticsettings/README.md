@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
+id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceName")
 
 read, err := client.GetDiagnosticProactiveLogCollectionSettings(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
+id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceName")
 
 read, err := client.GetDiagnosticRemoteSupportSettings(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
+id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceName")
 
 payload := diagnosticsettings.DiagnosticProactiveLogCollectionSettings{
 	// ...
@@ -73,7 +73,7 @@ if err := client.UpdateDiagnosticProactiveLogCollectionSettingsThenPoll(ctx, id,
 
 ```go
 ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName")
+id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceName")
 
 payload := diagnosticsettings.DiagnosticRemoteSupportSettings{
 	// ...

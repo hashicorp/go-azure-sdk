@@ -4,7 +4,7 @@ package deploymentinfo
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DeploymentInfoResponse struct {
-	DeploymentUrl       *string                  `json:"deploymentUrl,omitempty"`
+	DeploymentURL       *string                  `json:"deploymentUrl,omitempty"`
 	DiskCapacity        *string                  `json:"diskCapacity,omitempty"`
 	MarketplaceSaasInfo *MarketplaceSaaSInfo     `json:"marketplaceSaasInfo,omitempty"`
 	MemoryCapacity      *string                  `json:"memoryCapacity,omitempty"`

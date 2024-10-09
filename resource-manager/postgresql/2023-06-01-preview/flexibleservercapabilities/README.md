@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := flexibleservercapabilities.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
+id := flexibleservercapabilities.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName")
 
 // alternatively `client.ServerCapabilitiesList(ctx, id)` can be used to do batched pagination
 items, err := client.ServerCapabilitiesListComplete(ctx, id)

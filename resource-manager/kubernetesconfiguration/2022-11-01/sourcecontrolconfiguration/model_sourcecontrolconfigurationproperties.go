@@ -15,6 +15,6 @@ type SourceControlConfigurationProperties struct {
 	OperatorType                   *OperatorType           `json:"operatorType,omitempty"`
 	ProvisioningState              *ProvisioningStateType  `json:"provisioningState,omitempty"`
 	RepositoryPublicKey            *string                 `json:"repositoryPublicKey,omitempty"`
-	RepositoryUrl                  *string                 `json:"repositoryUrl,omitempty"`
+	RepositoryURL                  *string                 `json:"repositoryUrl,omitempty"`
 	SshKnownHostsContents          *string                 `json:"sshKnownHostsContents,omitempty"`
 }

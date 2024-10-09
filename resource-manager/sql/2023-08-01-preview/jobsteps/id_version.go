@@ -139,7 +139,7 @@ func (id VersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticJobs", "jobs", "jobs"),
 		resourceids.UserSpecifiedSegment("jobName", "jobName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "jobVersion"),
+		resourceids.UserSpecifiedSegment("versionName", "versionName"),
 	}
 }
 

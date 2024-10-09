@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := heatmaps.NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+id := heatmaps.NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficManagerProfileName")
 
 read, err := client.HeatMapGet(ctx, id, heatmaps.DefaultHeatMapGetOperationOptions())
 if err != nil {

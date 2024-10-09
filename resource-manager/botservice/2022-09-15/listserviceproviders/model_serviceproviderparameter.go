@@ -7,7 +7,7 @@ type ServiceProviderParameter struct {
 	Default     *string                           `json:"default,omitempty"`
 	Description *string                           `json:"description,omitempty"`
 	DisplayName *string                           `json:"displayName,omitempty"`
-	HelpUrl     *string                           `json:"helpUrl,omitempty"`
+	HelpURL     *string                           `json:"helpUrl,omitempty"`
 	Metadata    *ServiceProviderParameterMetadata `json:"metadata,omitempty"`
 	Name        *string                           `json:"name,omitempty"`
 	Type        *string                           `json:"type,omitempty"`

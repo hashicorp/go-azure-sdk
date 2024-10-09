@@ -115,7 +115,7 @@ func (id VCenterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere", "Microsoft.ConnectedVMwarevSphere"),
 		resourceids.StaticSegment("staticVCenters", "vCenters", "vCenters"),
-		resourceids.UserSpecifiedSegment("vCenterName", "vcenterName"),
+		resourceids.UserSpecifiedSegment("vCenterName", "vCenterName"),
 	}
 }
 

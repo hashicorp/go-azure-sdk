@@ -4,7 +4,7 @@ package apimconfig
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApiCollectionProperties struct {
-	BaseUrl                                      *string            `json:"baseUrl,omitempty"`
+	BaseURL                                      *string            `json:"baseUrl,omitempty"`
 	DiscoveredVia                                *string            `json:"discoveredVia,omitempty"`
 	DisplayName                                  *string            `json:"displayName,omitempty"`
 	NumberOfApiEndpoints                         *int64             `json:"numberOfApiEndpoints,omitempty"`

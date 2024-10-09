@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &StorageInsightConfigId{}
 
 func TestNewStorageInsightConfigID(t *testing.T) {
-	id := NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "storageInsightName")
+	id := NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "storageInsightConfigName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewStorageInsightConfigID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceName")
 	}
 
-	if id.StorageInsightConfigName != "storageInsightName" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageInsightConfigName'", id.StorageInsightConfigName, "storageInsightName")
+	if id.StorageInsightConfigName != "storageInsightConfigName" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageInsightConfigName'", id.StorageInsightConfigName, "storageInsightConfigName")
 	}
 }
 
 func TestFormatStorageInsightConfigID(t *testing.T) {
-	actual := NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "storageInsightName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightName"
+	actual := NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "storageInsightConfigName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightConfigName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseStorageInsightConfigID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightConfigName",
 			Expected: &StorageInsightConfigId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				WorkspaceName:            "workspaceName",
-				StorageInsightConfigName: "storageInsightName",
+				StorageInsightConfigName: "storageInsightConfigName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightConfigName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseStorageInsightConfigIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightConfigName",
 			Expected: &StorageInsightConfigId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "example-resource-group",
 				WorkspaceName:            "workspaceName",
-				StorageInsightConfigName: "storageInsightName",
+				StorageInsightConfigName: "storageInsightConfigName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName/storageInsightConfigs/storageInsightConfigName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/sToRaGeInSiGhTcOnFiGs/sToRaGeInSiGhTnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/sToRaGeInSiGhTcOnFiGs/sToRaGeInSiGhTcOnFiGnAmE",
 			Expected: &StorageInsightConfigId{
 				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:            "wOrKsPaCeNaMe",
-				StorageInsightConfigName: "sToRaGeInSiGhTnAmE",
+				StorageInsightConfigName: "sToRaGeInSiGhTcOnFiGnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/sToRaGeInSiGhTcOnFiGs/sToRaGeInSiGhTnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeNaMe/sToRaGeInSiGhTcOnFiGs/sToRaGeInSiGhTcOnFiGnAmE/extra",
 			Error: true,
 		},
 	}

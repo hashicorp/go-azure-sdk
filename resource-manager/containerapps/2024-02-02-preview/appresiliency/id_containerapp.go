@@ -115,7 +115,7 @@ func (id ContainerAppId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticContainerApps", "containerApps", "containerApps"),
-		resourceids.UserSpecifiedSegment("containerAppName", "appName"),
+		resourceids.UserSpecifiedSegment("containerAppName", "containerAppName"),
 	}
 }
 

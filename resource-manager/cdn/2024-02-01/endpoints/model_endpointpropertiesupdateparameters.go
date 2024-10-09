@@ -16,6 +16,6 @@ type EndpointPropertiesUpdateParameters struct {
 	OriginPath                       *string                                                             `json:"originPath,omitempty"`
 	ProbePath                        *string                                                             `json:"probePath,omitempty"`
 	QueryStringCachingBehavior       *QueryStringCachingBehavior                                         `json:"queryStringCachingBehavior,omitempty"`
-	UrlSigningKeys                   *[]UrlSigningKey                                                    `json:"urlSigningKeys,omitempty"`
+	UrlSigningKeys                   *[]URLSigningKey                                                    `json:"urlSigningKeys,omitempty"`
 	WebApplicationFirewallPolicyLink *EndpointPropertiesUpdateParametersWebApplicationFirewallPolicyLink `json:"webApplicationFirewallPolicyLink,omitempty"`
 }

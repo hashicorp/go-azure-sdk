@@ -7,7 +7,7 @@ type BotProperties struct {
 	AllSettings                       *map[string]string           `json:"allSettings,omitempty"`
 	AppPasswordHint                   *string                      `json:"appPasswordHint,omitempty"`
 	CmekEncryptionStatus              *string                      `json:"cmekEncryptionStatus,omitempty"`
-	CmekKeyVaultUrl                   *string                      `json:"cmekKeyVaultUrl,omitempty"`
+	CmekKeyVaultURL                   *string                      `json:"cmekKeyVaultUrl,omitempty"`
 	ConfiguredChannels                *[]string                    `json:"configuredChannels,omitempty"`
 	Description                       *string                      `json:"description,omitempty"`
 	DeveloperAppInsightKey            *string                      `json:"developerAppInsightKey,omitempty"`
@@ -18,13 +18,13 @@ type BotProperties struct {
 	EnabledChannels                   *[]string                    `json:"enabledChannels,omitempty"`
 	Endpoint                          string                       `json:"endpoint"`
 	EndpointVersion                   *string                      `json:"endpointVersion,omitempty"`
-	IconUrl                           *string                      `json:"iconUrl,omitempty"`
+	IconURL                           *string                      `json:"iconUrl,omitempty"`
 	IsCmekEnabled                     *bool                        `json:"isCmekEnabled,omitempty"`
 	IsDeveloperAppInsightsApiKeySet   *bool                        `json:"isDeveloperAppInsightsApiKeySet,omitempty"`
 	IsStreamingSupported              *bool                        `json:"isStreamingSupported,omitempty"`
 	LuisAppIds                        *[]string                    `json:"luisAppIds,omitempty"`
 	LuisKey                           *string                      `json:"luisKey,omitempty"`
-	ManifestUrl                       *string                      `json:"manifestUrl,omitempty"`
+	ManifestURL                       *string                      `json:"manifestUrl,omitempty"`
 	MigrationToken                    *string                      `json:"migrationToken,omitempty"`
 	MsaAppId                          string                       `json:"msaAppId"`
 	MsaAppMSIResourceId               *string                      `json:"msaAppMSIResourceId,omitempty"`

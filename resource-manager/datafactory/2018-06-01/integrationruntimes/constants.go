@@ -678,30 +678,24 @@ func parseSelfHostedIntegrationRuntimeNodeStatus(input string) (*SelfHostedInteg
 	return &out, nil
 }
 
-type SsisObjectMetadataType string
+type Type string
 
 const (
-	SsisObjectMetadataTypeEnvironment SsisObjectMetadataType = "Environment"
-	SsisObjectMetadataTypeFolder      SsisObjectMetadataType = "Folder"
-	SsisObjectMetadataTypePackage     SsisObjectMetadataType = "Package"
-	SsisObjectMetadataTypeProject     SsisObjectMetadataType = "Project"
+	TypeLinkedServiceReference Type = "LinkedServiceReference"
 )
 
-func PossibleValuesForSsisObjectMetadataType() []string {
+func PossibleValuesForType() []string {
 	return []string{
-		string(SsisObjectMetadataTypeEnvironment),
-		string(SsisObjectMetadataTypeFolder),
-		string(SsisObjectMetadataTypePackage),
-		string(SsisObjectMetadataTypeProject),
+		string(TypeLinkedServiceReference),
 	}
 }
 
-func (s *SsisObjectMetadataType) UnmarshalJSON(bytes []byte) error {
+func (s *Type) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseSsisObjectMetadataType(decoded)
+	out, err := parseType(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -709,18 +703,15 @@ func (s *SsisObjectMetadataType) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseSsisObjectMetadataType(input string) (*SsisObjectMetadataType, error) {
-	vals := map[string]SsisObjectMetadataType{
-		"environment": SsisObjectMetadataTypeEnvironment,
-		"folder":      SsisObjectMetadataTypeFolder,
-		"package":     SsisObjectMetadataTypePackage,
-		"project":     SsisObjectMetadataTypeProject,
+func parseType(input string) (*Type, error) {
+	vals := map[string]Type{
+		"linkedservicereference": TypeLinkedServiceReference,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := SsisObjectMetadataType(input)
+	out := Type(input)
 	return &out, nil
 }

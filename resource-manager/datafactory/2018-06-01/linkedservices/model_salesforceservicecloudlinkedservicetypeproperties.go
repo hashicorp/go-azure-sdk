@@ -11,7 +11,7 @@ import (
 type SalesforceServiceCloudLinkedServiceTypeProperties struct {
 	ApiVersion          *string    `json:"apiVersion,omitempty"`
 	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
-	EnvironmentUrl      *string    `json:"environmentUrl,omitempty"`
+	EnvironmentURL      *string    `json:"environmentUrl,omitempty"`
 	ExtendedProperties  *string    `json:"extendedProperties,omitempty"`
 	Password            SecretBase `json:"password"`
 	SecurityToken       SecretBase `json:"securityToken"`
@@ -24,7 +24,7 @@ func (s *SalesforceServiceCloudLinkedServiceTypeProperties) UnmarshalJSON(bytes 
 	var decoded struct {
 		ApiVersion          *string `json:"apiVersion,omitempty"`
 		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
-		EnvironmentUrl      *string `json:"environmentUrl,omitempty"`
+		EnvironmentURL      *string `json:"environmentUrl,omitempty"`
 		ExtendedProperties  *string `json:"extendedProperties,omitempty"`
 		Username            *string `json:"username,omitempty"`
 	}
@@ -34,7 +34,7 @@ func (s *SalesforceServiceCloudLinkedServiceTypeProperties) UnmarshalJSON(bytes 
 
 	s.ApiVersion = decoded.ApiVersion
 	s.EncryptedCredential = decoded.EncryptedCredential
-	s.EnvironmentUrl = decoded.EnvironmentUrl
+	s.EnvironmentURL = decoded.EnvironmentURL
 	s.ExtendedProperties = decoded.ExtendedProperties
 	s.Username = decoded.Username
 

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := advancedthreatprotectionsettings.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
+id := advancedthreatprotectionsettings.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName")
 
 payload := advancedthreatprotectionsettings.ServerThreatProtectionSettingsModel{
 	// ...
@@ -41,7 +41,7 @@ if err := client.ServerThreatProtectionSettingsCreateOrUpdateThenPoll(ctx, id, p
 
 ```go
 ctx := context.TODO()
-id := advancedthreatprotectionsettings.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
+id := advancedthreatprotectionsettings.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName")
 
 read, err := client.ServerThreatProtectionSettingsGet(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := advancedthreatprotectionsettings.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName")
+id := advancedthreatprotectionsettings.NewFlexibleServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerName")
 
 // alternatively `client.ServerThreatProtectionSettingsListByServer(ctx, id)` can be used to do batched pagination
 items, err := client.ServerThreatProtectionSettingsListByServerComplete(ctx, id)

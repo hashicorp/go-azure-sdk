@@ -139,7 +139,7 @@ func (id ServiceFabricScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticServiceFabrics", "serviceFabrics", "serviceFabrics"),
 		resourceids.UserSpecifiedSegment("serviceFabricName", "serviceFabricName"),
 		resourceids.StaticSegment("staticSchedules", "schedules", "schedules"),
-		resourceids.UserSpecifiedSegment("scheduleName", "name"),
+		resourceids.UserSpecifiedSegment("scheduleName", "scheduleName"),
 	}
 }
 

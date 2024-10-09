@@ -125,7 +125,7 @@ func (id GitHubOwnerId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticDevops", "devops", "devops"),
 		resourceids.StaticSegment("staticDefault", "default", "default"),
 		resourceids.StaticSegment("staticGitHubOwners", "gitHubOwners", "gitHubOwners"),
-		resourceids.UserSpecifiedSegment("gitHubOwnerName", "ownerName"),
+		resourceids.UserSpecifiedSegment("gitHubOwnerName", "gitHubOwnerName"),
 	}
 }
 

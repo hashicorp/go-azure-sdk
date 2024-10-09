@@ -115,7 +115,7 @@ func (id HyperVSiteId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftOffAzure", "Microsoft.OffAzure", "Microsoft.OffAzure"),
 		resourceids.StaticSegment("staticHyperVSites", "hyperVSites", "hyperVSites"),
-		resourceids.UserSpecifiedSegment("hyperVSiteName", "siteName"),
+		resourceids.UserSpecifiedSegment("hyperVSiteName", "hyperVSiteName"),
 	}
 }
 

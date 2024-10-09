@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := hybrididentitymetadata.NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "metadataName")
+id := hybrididentitymetadata.NewHybridIdentityMetadataID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "hybridIdentityMetadataName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

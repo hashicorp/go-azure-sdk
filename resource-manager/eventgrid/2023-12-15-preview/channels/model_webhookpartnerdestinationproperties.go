@@ -10,23 +10,23 @@ import (
 
 type WebhookPartnerDestinationProperties struct {
 	ClientAuthentication PartnerClientAuthentication `json:"clientAuthentication"`
-	EndpointBaseUrl      *string                     `json:"endpointBaseUrl,omitempty"`
-	EndpointUrl          *string                     `json:"endpointUrl,omitempty"`
+	EndpointBaseURL      *string                     `json:"endpointBaseUrl,omitempty"`
+	EndpointURL          *string                     `json:"endpointUrl,omitempty"`
 }
 
 var _ json.Unmarshaler = &WebhookPartnerDestinationProperties{}
 
 func (s *WebhookPartnerDestinationProperties) UnmarshalJSON(bytes []byte) error {
 	var decoded struct {
-		EndpointBaseUrl *string `json:"endpointBaseUrl,omitempty"`
-		EndpointUrl     *string `json:"endpointUrl,omitempty"`
+		EndpointBaseURL *string `json:"endpointBaseUrl,omitempty"`
+		EndpointURL     *string `json:"endpointUrl,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.EndpointBaseUrl = decoded.EndpointBaseUrl
-	s.EndpointUrl = decoded.EndpointUrl
+	s.EndpointBaseURL = decoded.EndpointBaseURL
+	s.EndpointURL = decoded.EndpointURL
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

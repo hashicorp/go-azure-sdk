@@ -131,7 +131,7 @@ func (id EnvironmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticUsers", "users", "users"),
 		resourceids.UserSpecifiedSegment("userName", "userName"),
 		resourceids.StaticSegment("staticEnvironments", "environments", "environments"),
-		resourceids.UserSpecifiedSegment("environmentName", "name"),
+		resourceids.UserSpecifiedSegment("environmentName", "environmentName"),
 	}
 }
 

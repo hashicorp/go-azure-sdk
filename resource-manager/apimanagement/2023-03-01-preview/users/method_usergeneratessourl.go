@@ -12,14 +12,14 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type UserGenerateSsoUrlOperationResponse struct {
+type UserGenerateSsoURLOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *GenerateSsoUrlResult
+	Model        *GenerateSsoURLResult
 }
 
-// UserGenerateSsoUrl ...
-func (c UsersClient) UserGenerateSsoUrl(ctx context.Context, id UserId) (result UserGenerateSsoUrlOperationResponse, err error) {
+// UserGenerateSsoURL ...
+func (c UsersClient) UserGenerateSsoURL(ctx context.Context, id UserId) (result UserGenerateSsoURLOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -44,7 +44,7 @@ func (c UsersClient) UserGenerateSsoUrl(ctx context.Context, id UserId) (result 
 		return
 	}
 
-	var model GenerateSsoUrlResult
+	var model GenerateSsoURLResult
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

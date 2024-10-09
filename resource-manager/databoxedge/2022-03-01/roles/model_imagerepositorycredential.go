@@ -4,7 +4,7 @@ package roles
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ImageRepositoryCredential struct {
-	ImageRepositoryUrl string                     `json:"imageRepositoryUrl"`
+	ImageRepositoryURL string                     `json:"imageRepositoryUrl"`
 	Password           *AsymmetricEncryptedSecret `json:"password,omitempty"`
 	UserName           string                     `json:"userName"`
 }

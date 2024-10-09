@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "providerNamespace", "featureName")
+id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderName", "subscriptionFeatureRegistrationName")
 
 payload := subscriptionfeatureregistrations.SubscriptionFeatureRegistration{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "providerNamespace", "featureName")
+id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderName", "subscriptionFeatureRegistrationName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "providerNamespace", "featureName")
+id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderName", "subscriptionFeatureRegistrationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -95,7 +95,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := subscriptionfeatureregistrations.NewFeatureProviderID("12345678-1234-9876-4563-123456789012", "providerNamespace")
+id := subscriptionfeatureregistrations.NewFeatureProviderID("12345678-1234-9876-4563-123456789012", "featureProviderName")
 
 // alternatively `client.ListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySubscriptionComplete(ctx, id)

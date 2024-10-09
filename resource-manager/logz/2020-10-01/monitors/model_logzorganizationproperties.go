@@ -7,5 +7,5 @@ type LogzOrganizationProperties struct {
 	CompanyName     *string `json:"companyName,omitempty"`
 	EnterpriseAppId *string `json:"enterpriseAppId,omitempty"`
 	Id              *string `json:"id,omitempty"`
-	SingleSignOnUrl *string `json:"singleSignOnUrl,omitempty"`
+	SingleSignOnURL *string `json:"singleSignOnUrl,omitempty"`
 }

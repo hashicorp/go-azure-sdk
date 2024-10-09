@@ -9,7 +9,7 @@ type ImageProperties struct {
 	Description       *string            `json:"description,omitempty"`
 	DisplayName       *string            `json:"displayName,omitempty"`
 	EnabledState      *EnableState       `json:"enabledState,omitempty"`
-	IconUrl           *string            `json:"iconUrl,omitempty"`
+	IconURL           *string            `json:"iconUrl,omitempty"`
 	Offer             *string            `json:"offer,omitempty"`
 	OsState           *OsState           `json:"osState,omitempty"`
 	OsType            *OsType            `json:"osType,omitempty"`

@@ -11,7 +11,7 @@ import (
 type SalesforceLinkedServiceTypeProperties struct {
 	ApiVersion          *string    `json:"apiVersion,omitempty"`
 	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
-	EnvironmentUrl      *string    `json:"environmentUrl,omitempty"`
+	EnvironmentURL      *string    `json:"environmentUrl,omitempty"`
 	Password            SecretBase `json:"password"`
 	SecurityToken       SecretBase `json:"securityToken"`
 	Username            *string    `json:"username,omitempty"`
@@ -23,7 +23,7 @@ func (s *SalesforceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 	var decoded struct {
 		ApiVersion          *string `json:"apiVersion,omitempty"`
 		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
-		EnvironmentUrl      *string `json:"environmentUrl,omitempty"`
+		EnvironmentURL      *string `json:"environmentUrl,omitempty"`
 		Username            *string `json:"username,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
@@ -32,7 +32,7 @@ func (s *SalesforceLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) erro
 
 	s.ApiVersion = decoded.ApiVersion
 	s.EncryptedCredential = decoded.EncryptedCredential
-	s.EnvironmentUrl = decoded.EnvironmentUrl
+	s.EnvironmentURL = decoded.EnvironmentURL
 	s.Username = decoded.Username
 
 	var temp map[string]json.RawMessage

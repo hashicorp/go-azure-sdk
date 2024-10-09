@@ -129,7 +129,7 @@ func (id WcfRelayAuthorizationRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
 		resourceids.UserSpecifiedSegment("namespaceName", "namespaceName"),
 		resourceids.StaticSegment("staticWcfRelays", "wcfRelays", "wcfRelays"),
-		resourceids.UserSpecifiedSegment("wcfRelayName", "relayName"),
+		resourceids.UserSpecifiedSegment("wcfRelayName", "wcfRelayName"),
 		resourceids.StaticSegment("staticAuthorizationRules", "authorizationRules", "authorizationRules"),
 		resourceids.UserSpecifiedSegment("authorizationRuleName", "authorizationRuleName"),
 	}

@@ -22,7 +22,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c GalleryImageVersionsClient) Update(ctx context.Context, id ImageVersionId, input GalleryImageVersionUpdate) (result UpdateOperationResponse, err error) {
+func (c GalleryImageVersionsClient) Update(ctx context.Context, id GalleryImageVersionId, input GalleryImageVersionUpdate) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +60,7 @@ func (c GalleryImageVersionsClient) Update(ctx context.Context, id ImageVersionI
 }
 
 // UpdateThenPoll performs Update then polls until it's completed
-func (c GalleryImageVersionsClient) UpdateThenPoll(ctx context.Context, id ImageVersionId, input GalleryImageVersionUpdate) error {
+func (c GalleryImageVersionsClient) UpdateThenPoll(ctx context.Context, id GalleryImageVersionId, input GalleryImageVersionUpdate) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)

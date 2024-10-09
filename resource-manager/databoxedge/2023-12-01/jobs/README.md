@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := jobs.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deviceName", "name")
+id := jobs.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceName", "jobName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

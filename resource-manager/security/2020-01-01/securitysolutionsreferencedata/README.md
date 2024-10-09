@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := securitysolutionsreferencedata.NewLocationID("12345678-1234-9876-4563-123456789012", "ascLocation")
+id := securitysolutionsreferencedata.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 read, err := client.ListByHomeRegion(ctx, id)
 if err != nil {

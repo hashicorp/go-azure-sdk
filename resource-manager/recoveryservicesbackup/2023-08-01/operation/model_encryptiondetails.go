@@ -5,8 +5,8 @@ package operation
 
 type EncryptionDetails struct {
 	EncryptionEnabled *bool   `json:"encryptionEnabled,omitempty"`
-	KekUrl            *string `json:"kekUrl,omitempty"`
+	KekURL            *string `json:"kekUrl,omitempty"`
 	KekVaultId        *string `json:"kekVaultId,omitempty"`
-	SecretKeyUrl      *string `json:"secretKeyUrl,omitempty"`
+	SecretKeyURL      *string `json:"secretKeyUrl,omitempty"`
 	SecretKeyVaultId  *string `json:"secretKeyVaultId,omitempty"`
 }

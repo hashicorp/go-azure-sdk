@@ -121,9 +121,9 @@ func (id DotNetComponentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApp", "Microsoft.App", "Microsoft.App"),
 		resourceids.StaticSegment("staticManagedEnvironments", "managedEnvironments", "managedEnvironments"),
-		resourceids.UserSpecifiedSegment("managedEnvironmentName", "environmentName"),
+		resourceids.UserSpecifiedSegment("managedEnvironmentName", "managedEnvironmentName"),
 		resourceids.StaticSegment("staticDotNetComponents", "dotNetComponents", "dotNetComponents"),
-		resourceids.UserSpecifiedSegment("dotNetComponentName", "name"),
+		resourceids.UserSpecifiedSegment("dotNetComponentName", "dotNetComponentName"),
 	}
 }
 

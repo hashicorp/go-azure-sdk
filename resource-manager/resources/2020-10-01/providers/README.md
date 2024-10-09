@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespace")
+id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "providerName")
 
 read, err := client.Get(ctx, id, providers.DefaultGetOperationOptions())
 if err != nil {
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := providers.NewProviderID("resourceProviderNamespace")
+id := providers.NewProviderID("providerName")
 
 read, err := client.GetAtTenantScope(ctx, id, providers.DefaultGetAtTenantScopeOperationOptions())
 if err != nil {
@@ -91,7 +91,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespace")
+id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "providerName")
 
 // alternatively `client.ProviderResourceTypesList(ctx, id, providers.DefaultProviderResourceTypesListOperationOptions())` can be used to do batched pagination
 items, err := client.ProviderResourceTypesListComplete(ctx, id, providers.DefaultProviderResourceTypesListOperationOptions())
@@ -108,7 +108,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespace")
+id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "providerName")
 
 read, err := client.Register(ctx, id)
 if err != nil {
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := providers.NewProviders2ID("groupId", "resourceProviderNamespace")
+id := providers.NewProviders2ID("groupId", "providerName")
 
 read, err := client.RegisterAtManagementGroupScope(ctx, id)
 if err != nil {
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespace")
+id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "providerName")
 
 read, err := client.Unregister(ctx, id)
 if err != nil {

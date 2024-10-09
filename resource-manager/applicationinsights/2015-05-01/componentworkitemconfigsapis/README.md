@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := componentworkitemconfigsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := componentworkitemconfigsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName")
 
 payload := componentworkitemconfigsapis.WorkItemCreateConfiguration{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentworkitemconfigsapis.NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "workItemConfigId")
+id := componentworkitemconfigsapis.NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "workItemConfigId")
 
 read, err := client.WorkItemConfigurationsDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentworkitemconfigsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := componentworkitemconfigsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName")
 
 read, err := client.WorkItemConfigurationsGetDefault(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentworkitemconfigsapis.NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "workItemConfigId")
+id := componentworkitemconfigsapis.NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "workItemConfigId")
 
 read, err := client.WorkItemConfigurationsGetItem(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentworkitemconfigsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName")
+id := componentworkitemconfigsapis.NewComponentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName")
 
 read, err := client.WorkItemConfigurationsList(ctx, id)
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := componentworkitemconfigsapis.NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceName", "workItemConfigId")
+id := componentworkitemconfigsapis.NewWorkItemConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "componentName", "workItemConfigId")
 
 payload := componentworkitemconfigsapis.WorkItemCreateConfiguration{
 	// ...

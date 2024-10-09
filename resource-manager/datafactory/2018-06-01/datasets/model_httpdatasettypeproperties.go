@@ -12,7 +12,7 @@ type HTTPDatasetTypeProperties struct {
 	AdditionalHeaders *string              `json:"additionalHeaders,omitempty"`
 	Compression       *DatasetCompression  `json:"compression,omitempty"`
 	Format            DatasetStorageFormat `json:"format"`
-	RelativeUrl       *string              `json:"relativeUrl,omitempty"`
+	RelativeURL       *string              `json:"relativeUrl,omitempty"`
 	RequestBody       *string              `json:"requestBody,omitempty"`
 	RequestMethod     *string              `json:"requestMethod,omitempty"`
 }
@@ -23,7 +23,7 @@ func (s *HTTPDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 	var decoded struct {
 		AdditionalHeaders *string             `json:"additionalHeaders,omitempty"`
 		Compression       *DatasetCompression `json:"compression,omitempty"`
-		RelativeUrl       *string             `json:"relativeUrl,omitempty"`
+		RelativeURL       *string             `json:"relativeUrl,omitempty"`
 		RequestBody       *string             `json:"requestBody,omitempty"`
 		RequestMethod     *string             `json:"requestMethod,omitempty"`
 	}
@@ -33,7 +33,7 @@ func (s *HTTPDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 
 	s.AdditionalHeaders = decoded.AdditionalHeaders
 	s.Compression = decoded.Compression
-	s.RelativeUrl = decoded.RelativeUrl
+	s.RelativeURL = decoded.RelativeURL
 	s.RequestBody = decoded.RequestBody
 	s.RequestMethod = decoded.RequestMethod
 

@@ -4,7 +4,7 @@ package v2workspaceconnectionresource
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WorkspaceConnectionOAuth2 struct {
-	AuthUrl        *string `json:"authUrl,omitempty"`
+	AuthURL        *string `json:"authUrl,omitempty"`
 	ClientId       *string `json:"clientId,omitempty"`
 	ClientSecret   *string `json:"clientSecret,omitempty"`
 	DeveloperToken *string `json:"developerToken,omitempty"`

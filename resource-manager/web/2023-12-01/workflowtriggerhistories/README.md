@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := workflowtriggerhistories.NewTriggerHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "triggerName", "historyName")
+id := workflowtriggerhistories.NewTriggerHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName", "triggerName", "historyName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workflowtriggerhistories.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "triggerName")
+id := workflowtriggerhistories.NewTriggerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName", "triggerName")
 
 // alternatively `client.List(ctx, id, workflowtriggerhistories.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, workflowtriggerhistories.DefaultListOperationOptions())
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := workflowtriggerhistories.NewTriggerHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "workflowName", "triggerName", "historyName")
+id := workflowtriggerhistories.NewTriggerHistoryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "workflowName", "triggerName", "historyName")
 
 if err := client.ResubmitThenPoll(ctx, id); err != nil {
 	// handle the error

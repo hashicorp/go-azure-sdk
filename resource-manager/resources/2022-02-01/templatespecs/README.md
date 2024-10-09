@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := templatespecs.NewBuiltInTemplateSpecID("templateSpecName")
+id := templatespecs.NewBuiltInTemplateSpecID("builtInTemplateSpecName")
 
 read, err := client.GetBuiltIn(ctx, id, templatespecs.DefaultGetBuiltInOperationOptions())
 if err != nil {

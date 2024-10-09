@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &DetectorPropertyId{}
 
 func TestNewDetectorPropertyID(t *testing.T) {
-	id := NewDetectorPropertyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "apiName")
+	id := NewDetectorPropertyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "detectorPropertyName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewDetectorPropertyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'JobName'", id.JobName, "jobName")
 	}
 
-	if id.DetectorPropertyName != "apiName" {
-		t.Fatalf("Expected %q but got %q for Segment 'DetectorPropertyName'", id.DetectorPropertyName, "apiName")
+	if id.DetectorPropertyName != "detectorPropertyName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DetectorPropertyName'", id.DetectorPropertyName, "detectorPropertyName")
 	}
 }
 
 func TestFormatDetectorPropertyID(t *testing.T) {
-	actual := NewDetectorPropertyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "apiName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/apiName"
+	actual := NewDetectorPropertyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobName", "detectorPropertyName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/detectorPropertyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseDetectorPropertyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/apiName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/detectorPropertyName",
 			Expected: &DetectorPropertyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				JobName:              "jobName",
-				DetectorPropertyName: "apiName",
+				DetectorPropertyName: "detectorPropertyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/apiName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/detectorPropertyName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseDetectorPropertyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/apiName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/detectorPropertyName",
 			Expected: &DetectorPropertyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				JobName:              "jobName",
-				DetectorPropertyName: "apiName",
+				DetectorPropertyName: "detectorPropertyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/apiName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/jobs/jobName/detectorProperties/detectorPropertyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/jObS/jObNaMe/dEtEcToRpRoPeRtIeS/aPiNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/jObS/jObNaMe/dEtEcToRpRoPeRtIeS/dEtEcToRpRoPeRtYnAmE",
 			Expected: &DetectorPropertyId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
 				JobName:              "jObNaMe",
-				DetectorPropertyName: "aPiNaMe",
+				DetectorPropertyName: "dEtEcToRpRoPeRtYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/jObS/jObNaMe/dEtEcToRpRoPeRtIeS/aPiNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/jObS/jObNaMe/dEtEcToRpRoPeRtIeS/dEtEcToRpRoPeRtYnAmE/extra",
 			Error: true,
 		},
 	}

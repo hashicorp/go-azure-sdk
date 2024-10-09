@@ -5,7 +5,7 @@ package securitysolutionsreferencedata
 
 type SecuritySolutionsReferenceDataProperties struct {
 	AlertVendorName      string         `json:"alertVendorName"`
-	PackageInfoUrl       string         `json:"packageInfoUrl"`
+	PackageInfoURL       string         `json:"packageInfoUrl"`
 	ProductName          string         `json:"productName"`
 	Publisher            string         `json:"publisher"`
 	PublisherDisplayName string         `json:"publisherDisplayName"`

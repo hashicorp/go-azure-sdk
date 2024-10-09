@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DiagnosticSettingId{}
 
 func TestNewDiagnosticSettingID(t *testing.T) {
-	id := NewDiagnosticSettingID("name")
+	id := NewDiagnosticSettingID("diagnosticSettingName")
 
-	if id.DiagnosticSettingName != "name" {
-		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticSettingName'", id.DiagnosticSettingName, "name")
+	if id.DiagnosticSettingName != "diagnosticSettingName" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticSettingName'", id.DiagnosticSettingName, "diagnosticSettingName")
 	}
 }
 
 func TestFormatDiagnosticSettingID(t *testing.T) {
-	actual := NewDiagnosticSettingID("name").ID()
-	expected := "/providers/Microsoft.AADIAM/diagnosticSettings/name"
+	actual := NewDiagnosticSettingID("diagnosticSettingName").ID()
+	expected := "/providers/Microsoft.AADIAM/diagnosticSettings/diagnosticSettingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDiagnosticSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.AADIAM/diagnosticSettings/name",
+			Input: "/providers/Microsoft.AADIAM/diagnosticSettings/diagnosticSettingName",
 			Expected: &DiagnosticSettingId{
-				DiagnosticSettingName: "name",
+				DiagnosticSettingName: "diagnosticSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.AADIAM/diagnosticSettings/name/extra",
+			Input: "/providers/Microsoft.AADIAM/diagnosticSettings/diagnosticSettingName/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDiagnosticSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.AADIAM/diagnosticSettings/name",
+			Input: "/providers/Microsoft.AADIAM/diagnosticSettings/diagnosticSettingName",
 			Expected: &DiagnosticSettingId{
-				DiagnosticSettingName: "name",
+				DiagnosticSettingName: "diagnosticSettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.AADIAM/diagnosticSettings/name/extra",
+			Input: "/providers/Microsoft.AADIAM/diagnosticSettings/diagnosticSettingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aAdIaM/dIaGnOsTiCsEtTiNgS/nAmE",
+			Input: "/pRoViDeRs/mIcRoSoFt.aAdIaM/dIaGnOsTiCsEtTiNgS/dIaGnOsTiCsEtTiNgNaMe",
 			Expected: &DiagnosticSettingId{
-				DiagnosticSettingName: "nAmE",
+				DiagnosticSettingName: "dIaGnOsTiCsEtTiNgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.aAdIaM/dIaGnOsTiCsEtTiNgS/nAmE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.aAdIaM/dIaGnOsTiCsEtTiNgS/dIaGnOsTiCsEtTiNgNaMe/extra",
 			Error: true,
 		},
 	}

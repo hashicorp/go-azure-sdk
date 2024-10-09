@@ -4,7 +4,7 @@ package integrationserviceenvironmentmanagedapis
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type IntegrationServiceEnvironmentManagedApiProperties struct {
-	ApiDefinitionUrl              *string                                                      `json:"apiDefinitionUrl,omitempty"`
+	ApiDefinitionURL              *string                                                      `json:"apiDefinitionUrl,omitempty"`
 	ApiDefinitions                *ApiResourceDefinitions                                      `json:"apiDefinitions,omitempty"`
 	BackendService                *ApiResourceBackendService                                   `json:"backendService,omitempty"`
 	Capabilities                  *[]string                                                    `json:"capabilities,omitempty"`
@@ -17,5 +17,5 @@ type IntegrationServiceEnvironmentManagedApiProperties struct {
 	Name                          *string                                                      `json:"name,omitempty"`
 	Policies                      *ApiResourcePolicies                                         `json:"policies,omitempty"`
 	ProvisioningState             *WorkflowProvisioningState                                   `json:"provisioningState,omitempty"`
-	RuntimeUrls                   *[]string                                                    `json:"runtimeUrls,omitempty"`
+	RuntimeURLs                   *[]string                                                    `json:"runtimeUrls,omitempty"`
 }

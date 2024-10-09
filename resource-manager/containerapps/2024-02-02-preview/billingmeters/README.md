@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := billingmeters.NewLocationID("12345678-1234-9876-4563-123456789012", "location")
+id := billingmeters.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

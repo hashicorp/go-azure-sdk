@@ -30,7 +30,7 @@ type AzureBackupJob struct {
 	PolicyId                   *string            `json:"policyId,omitempty"`
 	PolicyName                 *string            `json:"policyName,omitempty"`
 	ProgressEnabled            bool               `json:"progressEnabled"`
-	ProgressUrl                *string            `json:"progressUrl,omitempty"`
+	ProgressURL                *string            `json:"progressUrl,omitempty"`
 	RehydrationPriority        *string            `json:"rehydrationPriority,omitempty"`
 	RestoreType                *string            `json:"restoreType,omitempty"`
 	SourceDataStoreName        *string            `json:"sourceDataStoreName,omitempty"`

@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := ipv6firewallrules.NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "firewallRuleName")
+id := ipv6firewallrules.NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "ipv6FirewallRuleName")
 
 payload := ipv6firewallrules.IPv6FirewallRule{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := ipv6firewallrules.NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "firewallRuleName")
+id := ipv6firewallrules.NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "ipv6FirewallRuleName")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := ipv6firewallrules.NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "firewallRuleName")
+id := ipv6firewallrules.NewIPv6FirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverName", "ipv6FirewallRuleName")
 
 read, err := client.Get(ctx, id)
 if err != nil {

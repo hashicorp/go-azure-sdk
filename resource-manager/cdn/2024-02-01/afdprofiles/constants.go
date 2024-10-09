@@ -379,7 +379,7 @@ const (
 	SecretTypeAzureFirstPartyManagedCertificate SecretType = "AzureFirstPartyManagedCertificate"
 	SecretTypeCustomerCertificate               SecretType = "CustomerCertificate"
 	SecretTypeManagedCertificate                SecretType = "ManagedCertificate"
-	SecretTypeUrlSigningKey                     SecretType = "UrlSigningKey"
+	SecretTypeURLSigningKey                     SecretType = "UrlSigningKey"
 )
 
 func PossibleValuesForSecretType() []string {
@@ -387,7 +387,7 @@ func PossibleValuesForSecretType() []string {
 		string(SecretTypeAzureFirstPartyManagedCertificate),
 		string(SecretTypeCustomerCertificate),
 		string(SecretTypeManagedCertificate),
-		string(SecretTypeUrlSigningKey),
+		string(SecretTypeURLSigningKey),
 	}
 }
 
@@ -409,7 +409,7 @@ func parseSecretType(input string) (*SecretType, error) {
 		"azurefirstpartymanagedcertificate": SecretTypeAzureFirstPartyManagedCertificate,
 		"customercertificate":               SecretTypeCustomerCertificate,
 		"managedcertificate":                SecretTypeManagedCertificate,
-		"urlsigningkey":                     SecretTypeUrlSigningKey,
+		"urlsigningkey":                     SecretTypeURLSigningKey,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

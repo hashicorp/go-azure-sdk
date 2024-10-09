@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicydefinitionId{}
 
 func TestNewPolicydefinitionID(t *testing.T) {
-	id := NewPolicydefinitionID("12345678-1234-9876-4563-123456789012", "policyDefinitionName")
+	id := NewPolicydefinitionID("12345678-1234-9876-4563-123456789012", "policydefinitionName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.PolicydefinitionName != "policyDefinitionName" {
-		t.Fatalf("Expected %q but got %q for Segment 'PolicydefinitionName'", id.PolicydefinitionName, "policyDefinitionName")
+	if id.PolicydefinitionName != "policydefinitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'PolicydefinitionName'", id.PolicydefinitionName, "policydefinitionName")
 	}
 }
 
 func TestFormatPolicydefinitionID(t *testing.T) {
-	actual := NewPolicydefinitionID("12345678-1234-9876-4563-123456789012", "policyDefinitionName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName"
+	actual := NewPolicydefinitionID("12345678-1234-9876-4563-123456789012", "policydefinitionName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -69,15 +69,15 @@ func TestParsePolicydefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionName",
 			Expected: &PolicydefinitionId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				PolicydefinitionName: "policyDefinitionName",
+				PolicydefinitionName: "policydefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionName/extra",
 			Error: true,
 		},
 	}
@@ -170,15 +170,15 @@ func TestParsePolicydefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionName",
 			Expected: &PolicydefinitionId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
-				PolicydefinitionName: "policyDefinitionName",
+				PolicydefinitionName: "policydefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policyDefinitionName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Authorization/policydefinitions/policydefinitionName/extra",
 			Error: true,
 		},
 		{

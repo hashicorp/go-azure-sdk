@@ -8,12 +8,12 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ DeliveryRuleConditionParameters = UrlFileNameMatchConditionParameters{}
+var _ DeliveryRuleConditionParameters = URLFileNameMatchConditionParameters{}
 
-type UrlFileNameMatchConditionParameters struct {
+type URLFileNameMatchConditionParameters struct {
 	MatchValues     *[]string           `json:"matchValues,omitempty"`
 	NegateCondition *bool               `json:"negateCondition,omitempty"`
-	Operator        UrlFileNameOperator `json:"operator"`
+	Operator        URLFileNameOperator `json:"operator"`
 	Transforms      *[]Transform        `json:"transforms,omitempty"`
 
 	// Fields inherited from DeliveryRuleConditionParameters
@@ -21,32 +21,32 @@ type UrlFileNameMatchConditionParameters struct {
 	TypeName DeliveryRuleConditionParametersType `json:"typeName"`
 }
 
-func (s UrlFileNameMatchConditionParameters) DeliveryRuleConditionParameters() BaseDeliveryRuleConditionParametersImpl {
+func (s URLFileNameMatchConditionParameters) DeliveryRuleConditionParameters() BaseDeliveryRuleConditionParametersImpl {
 	return BaseDeliveryRuleConditionParametersImpl{
 		TypeName: s.TypeName,
 	}
 }
 
-var _ json.Marshaler = UrlFileNameMatchConditionParameters{}
+var _ json.Marshaler = URLFileNameMatchConditionParameters{}
 
-func (s UrlFileNameMatchConditionParameters) MarshalJSON() ([]byte, error) {
-	type wrapper UrlFileNameMatchConditionParameters
+func (s URLFileNameMatchConditionParameters) MarshalJSON() ([]byte, error) {
+	type wrapper URLFileNameMatchConditionParameters
 	wrapped := wrapper(s)
 	encoded, err := json.Marshal(wrapped)
 	if err != nil {
-		return nil, fmt.Errorf("marshaling UrlFileNameMatchConditionParameters: %+v", err)
+		return nil, fmt.Errorf("marshaling URLFileNameMatchConditionParameters: %+v", err)
 	}
 
 	var decoded map[string]interface{}
 	if err = json.Unmarshal(encoded, &decoded); err != nil {
-		return nil, fmt.Errorf("unmarshaling UrlFileNameMatchConditionParameters: %+v", err)
+		return nil, fmt.Errorf("unmarshaling URLFileNameMatchConditionParameters: %+v", err)
 	}
 
 	decoded["typeName"] = "DeliveryRuleUrlFilenameConditionParameters"
 
 	encoded, err = json.Marshal(decoded)
 	if err != nil {
-		return nil, fmt.Errorf("re-marshaling UrlFileNameMatchConditionParameters: %+v", err)
+		return nil, fmt.Errorf("re-marshaling URLFileNameMatchConditionParameters: %+v", err)
 	}
 
 	return encoded, nil

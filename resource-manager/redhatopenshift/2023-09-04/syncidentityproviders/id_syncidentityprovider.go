@@ -121,9 +121,9 @@ func (id SyncIdentityProviderId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRedHatOpenShift", "Microsoft.RedHatOpenShift", "Microsoft.RedHatOpenShift"),
 		resourceids.StaticSegment("staticOpenShiftClusters", "openShiftClusters", "openShiftClusters"),
-		resourceids.UserSpecifiedSegment("openShiftClusterName", "resourceName"),
+		resourceids.UserSpecifiedSegment("openShiftClusterName", "openShiftClusterName"),
 		resourceids.StaticSegment("staticSyncIdentityProvider", "syncIdentityProvider", "syncIdentityProvider"),
-		resourceids.UserSpecifiedSegment("syncIdentityProviderName", "childResourceName"),
+		resourceids.UserSpecifiedSegment("syncIdentityProviderName", "syncIdentityProviderName"),
 	}
 }
 

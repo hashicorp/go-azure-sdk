@@ -135,9 +135,9 @@ func (id FeatureId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceName"),
 		resourceids.StaticSegment("staticFeatureSets", "featureSets", "featureSets"),
-		resourceids.UserSpecifiedSegment("featureSetName", "featuresetName"),
+		resourceids.UserSpecifiedSegment("featureSetName", "featureSetName"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("versionName", "featuresetVersion"),
+		resourceids.UserSpecifiedSegment("versionName", "versionName"),
 		resourceids.StaticSegment("staticFeatures", "features", "features"),
 		resourceids.UserSpecifiedSegment("featureName", "featureName"),
 	}

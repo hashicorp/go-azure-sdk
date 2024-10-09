@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &SecuritySettingId{}
 
 func TestNewSecuritySettingID(t *testing.T) {
-	id := NewSecuritySettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "securitySettingsName")
+	id := NewSecuritySettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "securitySettingName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -26,14 +26,14 @@ func TestNewSecuritySettingID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterName")
 	}
 
-	if id.SecuritySettingName != "securitySettingsName" {
-		t.Fatalf("Expected %q but got %q for Segment 'SecuritySettingName'", id.SecuritySettingName, "securitySettingsName")
+	if id.SecuritySettingName != "securitySettingName" {
+		t.Fatalf("Expected %q but got %q for Segment 'SecuritySettingName'", id.SecuritySettingName, "securitySettingName")
 	}
 }
 
 func TestFormatSecuritySettingID(t *testing.T) {
-	actual := NewSecuritySettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "securitySettingsName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingsName"
+	actual := NewSecuritySettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterName", "securitySettingName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -97,17 +97,17 @@ func TestParseSecuritySettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingsName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingName",
 			Expected: &SecuritySettingId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
 				ClusterName:         "clusterName",
-				SecuritySettingName: "securitySettingsName",
+				SecuritySettingName: "securitySettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingsName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingName/extra",
 			Error: true,
 		},
 	}
@@ -248,32 +248,32 @@ func TestParseSecuritySettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingsName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingName",
 			Expected: &SecuritySettingId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
 				ClusterName:         "clusterName",
-				SecuritySettingName: "securitySettingsName",
+				SecuritySettingName: "securitySettingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingsName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AzureStackHCI/clusters/clusterName/securitySettings/securitySettingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErNaMe/sEcUrItYsEtTiNgS/sEcUrItYsEtTiNgSnAmE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErNaMe/sEcUrItYsEtTiNgS/sEcUrItYsEtTiNgNaMe",
 			Expected: &SecuritySettingId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
 				ClusterName:         "cLuStErNaMe",
-				SecuritySettingName: "sEcUrItYsEtTiNgSnAmE",
+				SecuritySettingName: "sEcUrItYsEtTiNgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErNaMe/sEcUrItYsEtTiNgS/sEcUrItYsEtTiNgSnAmE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aZuReStAcKhCi/cLuStErS/cLuStErNaMe/sEcUrItYsEtTiNgS/sEcUrItYsEtTiNgNaMe/extra",
 			Error: true,
 		},
 	}

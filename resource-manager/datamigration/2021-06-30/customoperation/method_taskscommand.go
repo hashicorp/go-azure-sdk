@@ -2,6 +2,7 @@ package customoperation
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -15,7 +16,7 @@ import (
 type TasksCommandOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommandProperties
+	Model        CommandProperties
 }
 
 // TasksCommand ...
@@ -48,11 +49,15 @@ func (c CustomOperationClient) TasksCommand(ctx context.Context, id TaskId, inpu
 		return
 	}
 
-	var model CommandProperties
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var respObj json.RawMessage
+	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
+	model, err := UnmarshalCommandPropertiesImplementation(respObj)
+	if err != nil {
+		return
+	}
+	result.Model = model
 
 	return
 }

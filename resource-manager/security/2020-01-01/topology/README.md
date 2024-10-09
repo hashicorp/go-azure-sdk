@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := topology.NewTopologyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ascLocation", "topologyResourceName")
+id := topology.NewTopologyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "topologyName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -58,7 +58,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := topology.NewLocationID("12345678-1234-9876-4563-123456789012", "ascLocation")
+id := topology.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
 
 // alternatively `client.ListByHomeRegion(ctx, id)` can be used to do batched pagination
 items, err := client.ListByHomeRegionComplete(ctx, id)

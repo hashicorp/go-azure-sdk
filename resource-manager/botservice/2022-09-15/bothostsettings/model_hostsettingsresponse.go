@@ -5,11 +5,11 @@ package bothostsettings
 
 type HostSettingsResponse struct {
 	BotOpenIdMetadata                  *string `json:"BotOpenIdMetadata,omitempty"`
-	OAuthUrl                           *string `json:"OAuthUrl,omitempty"`
-	ToBotFromChannelOpenIdMetadataUrl  *string `json:"ToBotFromChannelOpenIdMetadataUrl,omitempty"`
+	OAuthURL                           *string `json:"OAuthUrl,omitempty"`
+	ToBotFromChannelOpenIdMetadataURL  *string `json:"ToBotFromChannelOpenIdMetadataUrl,omitempty"`
 	ToBotFromChannelTokenIssuer        *string `json:"ToBotFromChannelTokenIssuer,omitempty"`
-	ToBotFromEmulatorOpenIdMetadataUrl *string `json:"ToBotFromEmulatorOpenIdMetadataUrl,omitempty"`
-	ToChannelFromBotLoginUrl           *string `json:"ToChannelFromBotLoginUrl,omitempty"`
+	ToBotFromEmulatorOpenIdMetadataURL *string `json:"ToBotFromEmulatorOpenIdMetadataUrl,omitempty"`
+	ToChannelFromBotLoginURL           *string `json:"ToChannelFromBotLoginUrl,omitempty"`
 	ToChannelFromBotOAuthScope         *string `json:"ToChannelFromBotOAuthScope,omitempty"`
 	ValidateAuthority                  *bool   `json:"ValidateAuthority,omitempty"`
 }

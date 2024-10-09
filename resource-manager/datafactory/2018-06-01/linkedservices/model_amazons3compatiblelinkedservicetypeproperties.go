@@ -13,7 +13,7 @@ type AmazonS3CompatibleLinkedServiceTypeProperties struct {
 	EncryptedCredential *string    `json:"encryptedCredential,omitempty"`
 	ForcePathStyle      *bool      `json:"forcePathStyle,omitempty"`
 	SecretAccessKey     SecretBase `json:"secretAccessKey"`
-	ServiceUrl          *string    `json:"serviceUrl,omitempty"`
+	ServiceURL          *string    `json:"serviceUrl,omitempty"`
 }
 
 var _ json.Unmarshaler = &AmazonS3CompatibleLinkedServiceTypeProperties{}
@@ -23,7 +23,7 @@ func (s *AmazonS3CompatibleLinkedServiceTypeProperties) UnmarshalJSON(bytes []by
 		AccessKeyId         *string `json:"accessKeyId,omitempty"`
 		EncryptedCredential *string `json:"encryptedCredential,omitempty"`
 		ForcePathStyle      *bool   `json:"forcePathStyle,omitempty"`
-		ServiceUrl          *string `json:"serviceUrl,omitempty"`
+		ServiceURL          *string `json:"serviceUrl,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
@@ -32,7 +32,7 @@ func (s *AmazonS3CompatibleLinkedServiceTypeProperties) UnmarshalJSON(bytes []by
 	s.AccessKeyId = decoded.AccessKeyId
 	s.EncryptedCredential = decoded.EncryptedCredential
 	s.ForcePathStyle = decoded.ForcePathStyle
-	s.ServiceUrl = decoded.ServiceUrl
+	s.ServiceURL = decoded.ServiceURL
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

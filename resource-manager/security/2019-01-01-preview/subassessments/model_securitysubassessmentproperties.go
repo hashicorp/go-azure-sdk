@@ -19,7 +19,7 @@ type SecuritySubAssessmentProperties struct {
 	Id              *string              `json:"id,omitempty"`
 	Impact          *string              `json:"impact,omitempty"`
 	Remediation     *string              `json:"remediation,omitempty"`
-	ResourceDetails *ResourceDetails     `json:"resourceDetails,omitempty"`
+	ResourceDetails ResourceDetails      `json:"resourceDetails"`
 	Status          *SubAssessmentStatus `json:"status,omitempty"`
 	TimeGenerated   *string              `json:"timeGenerated,omitempty"`
 }
@@ -40,15 +40,14 @@ var _ json.Unmarshaler = &SecuritySubAssessmentProperties{}
 
 func (s *SecuritySubAssessmentProperties) UnmarshalJSON(bytes []byte) error {
 	var decoded struct {
-		Category        *string              `json:"category,omitempty"`
-		Description     *string              `json:"description,omitempty"`
-		DisplayName     *string              `json:"displayName,omitempty"`
-		Id              *string              `json:"id,omitempty"`
-		Impact          *string              `json:"impact,omitempty"`
-		Remediation     *string              `json:"remediation,omitempty"`
-		ResourceDetails *ResourceDetails     `json:"resourceDetails,omitempty"`
-		Status          *SubAssessmentStatus `json:"status,omitempty"`
-		TimeGenerated   *string              `json:"timeGenerated,omitempty"`
+		Category      *string              `json:"category,omitempty"`
+		Description   *string              `json:"description,omitempty"`
+		DisplayName   *string              `json:"displayName,omitempty"`
+		Id            *string              `json:"id,omitempty"`
+		Impact        *string              `json:"impact,omitempty"`
+		Remediation   *string              `json:"remediation,omitempty"`
+		Status        *SubAssessmentStatus `json:"status,omitempty"`
+		TimeGenerated *string              `json:"timeGenerated,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
@@ -60,7 +59,6 @@ func (s *SecuritySubAssessmentProperties) UnmarshalJSON(bytes []byte) error {
 	s.Id = decoded.Id
 	s.Impact = decoded.Impact
 	s.Remediation = decoded.Remediation
-	s.ResourceDetails = decoded.ResourceDetails
 	s.Status = decoded.Status
 	s.TimeGenerated = decoded.TimeGenerated
 
@@ -75,6 +73,14 @@ func (s *SecuritySubAssessmentProperties) UnmarshalJSON(bytes []byte) error {
 			return fmt.Errorf("unmarshaling field 'AdditionalData' for 'SecuritySubAssessmentProperties': %+v", err)
 		}
 		s.AdditionalData = impl
+	}
+
+	if v, ok := temp["resourceDetails"]; ok {
+		impl, err := UnmarshalResourceDetailsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ResourceDetails' for 'SecuritySubAssessmentProperties': %+v", err)
+		}
+		s.ResourceDetails = impl
 	}
 
 	return nil

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 payload := longtermretentionbackups.ChangeLongTermRetentionBackupAccessTierParameters{
 	// ...
@@ -41,7 +41,7 @@ if err := client.ChangeAccessTierThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 payload := longtermretentionbackups.ChangeLongTermRetentionBackupAccessTierParameters{
 	// ...
@@ -58,7 +58,7 @@ if err := client.ChangeAccessTierByResourceGroupThenPoll(ctx, id, payload); err 
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 payload := longtermretentionbackups.CopyLongTermRetentionBackupParameters{
 	// ...
@@ -75,7 +75,7 @@ if err := client.CopyThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 payload := longtermretentionbackups.CopyLongTermRetentionBackupParameters{
 	// ...
@@ -92,7 +92,7 @@ if err := client.CopyByResourceGroupThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -104,7 +104,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 if err := client.DeleteByResourceGroupThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -116,7 +116,7 @@ if err := client.DeleteByResourceGroupThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -132,7 +132,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 read, err := client.GetByResourceGroup(ctx, id)
 if err != nil {
@@ -250,7 +250,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 payload := longtermretentionbackups.UpdateLongTermRetentionBackupParameters{
 	// ...
@@ -267,7 +267,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "backupName")
+id := longtermretentionbackups.NewLongTermRetentionDatabaseLongTermRetentionBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "longTermRetentionServerName", "longTermRetentionDatabaseName", "longTermRetentionBackupName")
 
 payload := longtermretentionbackups.UpdateLongTermRetentionBackupParameters{
 	// ...

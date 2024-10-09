@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := machineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "extensionName")
+id := machineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "extensionName")
 
 payload := machineextensions.MachineExtension{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := machineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "extensionName")
+id := machineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "extensionName")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := machineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "extensionName")
+id := machineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "extensionName")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := machineextensions.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name")
+id := machineextensions.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName")
 
 // alternatively `client.List(ctx, id, machineextensions.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, machineextensions.DefaultListOperationOptions())
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := machineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "name", "extensionName")
+id := machineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "extensionName")
 
 payload := machineextensions.MachineExtensionUpdate{
 	// ...

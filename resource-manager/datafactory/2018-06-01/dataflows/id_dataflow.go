@@ -123,7 +123,7 @@ func (id DataflowId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticFactories", "factories", "factories"),
 		resourceids.UserSpecifiedSegment("factoryName", "factoryName"),
 		resourceids.StaticSegment("staticDataflows", "dataflows", "dataflows"),
-		resourceids.UserSpecifiedSegment("dataflowName", "dataFlowName"),
+		resourceids.UserSpecifiedSegment("dataflowName", "dataflowName"),
 	}
 }
 

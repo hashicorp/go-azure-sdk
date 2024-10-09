@@ -18,7 +18,7 @@ type IncidentProperties struct {
 	Description            *string                       `json:"description,omitempty"`
 	FirstActivityTimeUtc   *string                       `json:"firstActivityTimeUtc,omitempty"`
 	IncidentNumber         *int64                        `json:"incidentNumber,omitempty"`
-	IncidentUrl            *string                       `json:"incidentUrl,omitempty"`
+	IncidentURL            *string                       `json:"incidentUrl,omitempty"`
 	Labels                 *[]IncidentLabel              `json:"labels,omitempty"`
 	LastActivityTimeUtc    *string                       `json:"lastActivityTimeUtc,omitempty"`
 	LastModifiedTimeUtc    *string                       `json:"lastModifiedTimeUtc,omitempty"`

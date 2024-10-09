@@ -12,7 +12,7 @@ import (
 var _ resourceids.ResourceId = &AccessConnectorId{}
 
 func TestNewAccessConnectorID(t *testing.T) {
-	id := NewAccessConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectorName")
+	id := NewAccessConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accessConnectorName")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,14 +22,14 @@ func TestNewAccessConnectorID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccessConnectorName != "connectorName" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessConnectorName'", id.AccessConnectorName, "connectorName")
+	if id.AccessConnectorName != "accessConnectorName" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessConnectorName'", id.AccessConnectorName, "accessConnectorName")
 	}
 }
 
 func TestFormatAccessConnectorID(t *testing.T) {
-	actual := NewAccessConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectorName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorName"
+	actual := NewAccessConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accessConnectorName").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -83,16 +83,16 @@ func TestParseAccessConnectorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorName",
 			Expected: &AccessConnectorId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				AccessConnectorName: "connectorName",
+				AccessConnectorName: "accessConnectorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorName/extra",
 			Error: true,
 		},
 	}
@@ -209,30 +209,30 @@ func TestParseAccessConnectorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorName",
 			Expected: &AccessConnectorId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				AccessConnectorName: "connectorName",
+				AccessConnectorName: "accessConnectorName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/aCcEsScOnNeCtOrS/cOnNeCtOrNaMe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/aCcEsScOnNeCtOrS/aCcEsScOnNeCtOrNaMe",
 			Expected: &AccessConnectorId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				AccessConnectorName: "cOnNeCtOrNaMe",
+				AccessConnectorName: "aCcEsScOnNeCtOrNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/aCcEsScOnNeCtOrS/cOnNeCtOrNaMe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/aCcEsScOnNeCtOrS/aCcEsScOnNeCtOrNaMe/extra",
 			Error: true,
 		},
 	}
