@@ -43,7 +43,7 @@ func (s MongoDbConnectionInfo) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("unmarshaling MongoDbConnectionInfo: %+v", err)
 	}
 
-	decoded["type"] = "MongoDbConnectionInfo"
+	decoded["type"] = "mongoDbConnectionInfo"
 
 	encoded, err = json.Marshal(decoded)
 	if err != nil {
