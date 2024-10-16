@@ -4,6 +4,7 @@ package dataflowdebugsession
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PostgreSqlV2LinkedServiceTypeProperties struct {
+	AuthenticationType     string                        `json:"authenticationType"`
 	CommandTimeout         *int64                        `json:"commandTimeout,omitempty"`
 	ConnectionTimeout      *int64                        `json:"connectionTimeout,omitempty"`
 	Database               string                        `json:"database"`
