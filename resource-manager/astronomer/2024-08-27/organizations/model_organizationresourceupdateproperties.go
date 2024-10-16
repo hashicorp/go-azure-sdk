@@ -4,6 +4,7 @@ package organizations
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OrganizationResourceUpdateProperties struct {
+	Marketplace                   *LiftrBaseMarketplaceDetailsUpdate                `json:"marketplace,omitempty"`
 	PartnerOrganizationProperties *LiftrBaseDataPartnerOrganizationPropertiesUpdate `json:"partnerOrganizationProperties,omitempty"`
 	User                          *LiftrBaseUserDetailsUpdate                       `json:"user,omitempty"`
 }
