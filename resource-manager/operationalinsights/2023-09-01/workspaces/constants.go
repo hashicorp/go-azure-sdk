@@ -135,6 +135,88 @@ func parsePublicNetworkAccessType(input string) (*PublicNetworkAccessType, error
 	return &out, nil
 }
 
+type PurgeState string
+
+const (
+	PurgeStateCompleted PurgeState = "completed"
+	PurgeStatePending   PurgeState = "pending"
+)
+
+func PossibleValuesForPurgeState() []string {
+	return []string{
+		string(PurgeStateCompleted),
+		string(PurgeStatePending),
+	}
+}
+
+func (s *PurgeState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePurgeState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parsePurgeState(input string) (*PurgeState, error) {
+	vals := map[string]PurgeState{
+		"completed": PurgeStateCompleted,
+		"pending":   PurgeStatePending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PurgeState(input)
+	return &out, nil
+}
+
+type SearchSortEnum string
+
+const (
+	SearchSortEnumAsc  SearchSortEnum = "asc"
+	SearchSortEnumDesc SearchSortEnum = "desc"
+)
+
+func PossibleValuesForSearchSortEnum() []string {
+	return []string{
+		string(SearchSortEnumAsc),
+		string(SearchSortEnumDesc),
+	}
+}
+
+func (s *SearchSortEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSearchSortEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseSearchSortEnum(input string) (*SearchSortEnum, error) {
+	vals := map[string]SearchSortEnum{
+		"asc":  SearchSortEnumAsc,
+		"desc": SearchSortEnumDesc,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SearchSortEnum(input)
+	return &out, nil
+}
+
 type WorkspaceEntityStatus string
 
 const (
