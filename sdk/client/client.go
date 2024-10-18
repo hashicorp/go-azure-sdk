@@ -699,7 +699,7 @@ func (c *Client) retryableClient(ctx context.Context, checkRetry retryablehttp.C
 	// This results into the following N(t) (by guaranteeing T(n) <= t):
 	// - n = floor(log(t+1)) - 1 		(0<=t<=63)
 	// - n = (t - 63)/61 + 6 			(t > 63)
-	safeRetryNumber := func(t time.Duration) int {
+	var safeRetryNumber = func(t time.Duration) int {
 		sec := t.Seconds()
 		if sec <= 63 {
 			return int(math.Floor(math.Log2(sec+1))) - 1
