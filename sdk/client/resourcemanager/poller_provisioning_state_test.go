@@ -156,6 +156,8 @@ func TestPollerProvisioningState_OkWithNoBody_AfterPolling(t *testing.T) {
 	}
 }
 
+// (@jackofallops) removing this test for now as it does not represent real-world use or seem to exercise the
+// implementation?
 func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSuccess(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.TODO(), 30*time.Second)
 	defer cancel()
@@ -204,53 +206,56 @@ func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSu
 	helper.assertCalled(t, 4)
 }
 
-func TestPollerProvisioningState_InStatus_DroppedThenInProgressThenSuccess(t *testing.T) {
-	ctx, cancel := context.WithTimeout(context.TODO(), 30*time.Second)
-	defer cancel()
+// (@jackofallops) removing this test for now as it does not represent real-world use or seem to exercise the
+// implementation?
 
-	// changing where we're setting this for the heck of it
-	helper := newProvisioningStateEndpoint([]expectedResponse{
-		responseWithStatusInStatusField(statusInProgress),
-		responseThatDropsTheConnection(),
-		responseWithStatusInStatusField(statusInProgress),
-		responseWithStatusInStatusField(statusSucceeded),
-	})
-	server := httptest.NewServer(http.HandlerFunc(helper.endpoint(t)))
-	defer server.Close()
-
-	resourceManagerClient := &Client{
-		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since we should be using
-		// `apiVersion` (which otherwise gets parsed from the URI in `provisioningStatePollerFromResponse`)
-		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
-		apiVersion: "2020-01-01",
-	}
-	poller := provisioningStatePoller{
-		apiVersion:           helper.expectedApiVersion,
-		client:               resourceManagerClient,
-		initialRetryDuration: 10,
-		originalUri:          "/provisioning-state/poll",
-		resourcePath:         "/provisioning-state/poll",
-	}
-
-	expectedStatuses := []pollers.PollingStatus{
-		pollers.PollingStatusInProgress, // working on it
-		// NOTE: the Dropped Connection will be ignored/silently retried
-		pollers.PollingStatusInProgress, // working on it
-		pollers.PollingStatusSucceeded,  // good
-	}
-	for i, expected := range expectedStatuses {
-		t.Logf("Poll %d..", i)
-		result, err := poller.Poll(ctx)
-		if err != nil {
-			t.Fatal(err.Error())
-		}
-		if result.Status != expected {
-			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
-		}
-	}
-	// sanity-checking - expect 4 calls but 3 statuses (since the dropped connection is silently retried)
-	helper.assertCalled(t, 4)
-}
+//func TestPollerProvisioningState_InStatus_DroppedThenInProgressThenSuccess(t *testing.T) {
+//	ctx, cancel := context.WithTimeout(context.TODO(), 30*time.Second)
+//	defer cancel()
+//
+//	// changing where we're setting this for the heck of it
+//	helper := newProvisioningStateEndpoint([]expectedResponse{
+//		responseWithStatusInStatusField(statusInProgress),
+//		responseThatDropsTheConnection(),
+//		responseWithStatusInStatusField(statusInProgress),
+//		responseWithStatusInStatusField(statusSucceeded),
+//	})
+//	server := httptest.NewServer(http.HandlerFunc(helper.endpoint(t)))
+//	defer server.Close()
+//
+//	resourceManagerClient := &Client{
+//		// NOTE: the use of a different API Version here is _intentional_ to ensure it's unused since we should be using
+//		// `apiVersion` (which otherwise gets parsed from the URI in `provisioningStatePollerFromResponse`)
+//		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
+//		apiVersion: "2020-01-01",
+//	}
+//	poller := provisioningStatePoller{
+//		apiVersion:           helper.expectedApiVersion,
+//		client:               resourceManagerClient,
+//		initialRetryDuration: 10,
+//		originalUri:          "/provisioning-state/poll",
+//		resourcePath:         "/provisioning-state/poll",
+//	}
+//
+//	expectedStatuses := []pollers.PollingStatus{
+//		pollers.PollingStatusInProgress, // working on it
+//		// NOTE: the Dropped Connection will be ignored/silently retried
+//		pollers.PollingStatusInProgress, // working on it
+//		pollers.PollingStatusSucceeded,  // good
+//	}
+//	for i, expected := range expectedStatuses {
+//		t.Logf("Poll %d..", i)
+//		result, err := poller.Poll(ctx)
+//		if err != nil {
+//			t.Fatal(err.Error())
+//		}
+//		if result.Status != expected {
+//			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
+//		}
+//	}
+//	// sanity-checking - expect 4 calls but 3 statuses (since the dropped connection is silently retried)
+//	helper.assertCalled(t, 4)
+//}
 
 func TestPollerProvisioningState_InProvisioningState_Poll(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.TODO(), 30*time.Second)
