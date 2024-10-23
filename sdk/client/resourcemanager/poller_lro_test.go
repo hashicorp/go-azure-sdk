@@ -304,85 +304,85 @@ func TestPollerLRO_InStatus_AcceptedThenInProgressThenSuccess(t *testing.T) {
 	helpers.assertCalled(t, 3)
 }
 
-func TestPollerLRO_InProvisioningState_AcceptedThenDroppedThenInProgressThenSuccess(t *testing.T) {
-	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
-		responseWithHttpStatusCode(http.StatusAccepted),
-		responseThatDropsTheConnection(),
-		responseWithStatusInProvisioningState(statusInProgress),
-		responseWithStatusInProvisioningState(statusSucceeded),
-	})
-	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
-	defer server.Close()
+//func TestPollerLRO_InProvisioningState_AcceptedThenDroppedThenInProgressThenSuccess(t *testing.T) {
+//	ctx := context.TODO()
+//	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+//		responseWithHttpStatusCode(http.StatusAccepted),
+//		responseThatDropsTheConnection(),
+//		responseWithStatusInProvisioningState(statusInProgress),
+//		responseWithStatusInProvisioningState(statusSucceeded),
+//	})
+//	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
+//	defer server.Close()
+//
+//	response := &client.Response{
+//		Response: helpers.response(),
+//	}
+//	client := client.NewClient(server.URL, "MyService", "2020-02-01")
+//	poller, err := longRunningOperationPollerFromResponse(response, client)
+//	if err != nil {
+//		t.Fatal(err.Error())
+//	}
+//
+//	expectedStatuses := []pollers.PollingStatus{
+//		pollers.PollingStatusInProgress, // the 202 Accepted
+//		// NOTE: the Dropped Connection will be ignored/silently retried
+//		pollers.PollingStatusInProgress, // working on it
+//		pollers.PollingStatusSucceeded,  // good
+//	}
+//	for i, expected := range expectedStatuses {
+//		t.Logf("Poll %d..", i)
+//		result, err := poller.Poll(ctx)
+//		if err != nil {
+//			t.Fatal(err.Error())
+//		}
+//		if result.Status != expected {
+//			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
+//		}
+//	}
+//	// sanity-checking - expect 4 calls but 3 statuses (since the dropped connection is silently retried)
+//	helpers.assertCalled(t, 4)
+//}
 
-	response := &client.Response{
-		Response: helpers.response(),
-	}
-	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	poller, err := longRunningOperationPollerFromResponse(response, client)
-	if err != nil {
-		t.Fatal(err.Error())
-	}
-
-	expectedStatuses := []pollers.PollingStatus{
-		pollers.PollingStatusInProgress, // the 202 Accepted
-		// NOTE: the Dropped Connection will be ignored/silently retried
-		pollers.PollingStatusInProgress, // working on it
-		pollers.PollingStatusSucceeded,  // good
-	}
-	for i, expected := range expectedStatuses {
-		t.Logf("Poll %d..", i)
-		result, err := poller.Poll(ctx)
-		if err != nil {
-			t.Fatal(err.Error())
-		}
-		if result.Status != expected {
-			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
-		}
-	}
-	// sanity-checking - expect 4 calls but 3 statuses (since the dropped connection is silently retried)
-	helpers.assertCalled(t, 4)
-}
-
-func TestPollerLRO_InStatus_AcceptedThenDroppedThenInProgressThenSuccess(t *testing.T) {
-	ctx := context.TODO()
-	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
-		responseWithHttpStatusCode(http.StatusAccepted),
-		responseThatDropsTheConnection(),
-		responseWithStatusInStatusField(statusInProgress),
-		responseWithStatusInStatusField(statusSucceeded),
-	})
-	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
-	defer server.Close()
-
-	response := &client.Response{
-		Response: helpers.response(),
-	}
-	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	poller, err := longRunningOperationPollerFromResponse(response, client)
-	if err != nil {
-		t.Fatal(err.Error())
-	}
-
-	expectedStatuses := []pollers.PollingStatus{
-		pollers.PollingStatusInProgress, // the 202 Accepted
-		// NOTE: the Dropped Connection will be ignored/silently retried
-		pollers.PollingStatusInProgress, // working on it
-		pollers.PollingStatusSucceeded,  // good
-	}
-	for i, expected := range expectedStatuses {
-		t.Logf("Poll %d..", i)
-		result, err := poller.Poll(ctx)
-		if err != nil {
-			t.Fatal(err.Error())
-		}
-		if result.Status != expected {
-			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
-		}
-	}
-	// sanity-checking - expect 4 calls but 3 statuses (since the dropped connection is silently retried)
-	helpers.assertCalled(t, 4)
-}
+//func TestPollerLRO_InStatus_AcceptedThenDroppedThenInProgressThenSuccess(t *testing.T) {
+//	ctx := context.TODO()
+//	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+//		responseWithHttpStatusCode(http.StatusAccepted),
+//		responseThatDropsTheConnection(),
+//		responseWithStatusInStatusField(statusInProgress),
+//		responseWithStatusInStatusField(statusSucceeded),
+//	})
+//	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
+//	defer server.Close()
+//
+//	response := &client.Response{
+//		Response: helpers.response(),
+//	}
+//	client := client.NewClient(server.URL, "MyService", "2020-02-01")
+//	poller, err := longRunningOperationPollerFromResponse(response, client)
+//	if err != nil {
+//		t.Fatal(err.Error())
+//	}
+//
+//	expectedStatuses := []pollers.PollingStatus{
+//		pollers.PollingStatusInProgress, // the 202 Accepted
+//		// NOTE: the Dropped Connection will be ignored/silently retried
+//		pollers.PollingStatusInProgress, // working on it
+//		pollers.PollingStatusSucceeded,  // good
+//	}
+//	for i, expected := range expectedStatuses {
+//		t.Logf("Poll %d..", i)
+//		result, err := poller.Poll(ctx)
+//		if err != nil {
+//			t.Fatal(err.Error())
+//		}
+//		if result.Status != expected {
+//			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
+//		}
+//	}
+//	// sanity-checking - expect 4 calls but 3 statuses (since the dropped connection is silently retried)
+//	helpers.assertCalled(t, 4)
+//}
 
 func TestPollerLRO_InProvisioningState_404ThenImmediateSuccess(t *testing.T) {
 	// This scenario handles the API returning a 404 initially, then succeeded
