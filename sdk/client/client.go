@@ -617,7 +617,7 @@ func (c *Client) ExecutePaged(ctx context.Context, req *Request) (*Response, err
 			return resp, err
 		}
 	}
-	if nextLink == nil {
+	if nextLink == nil || string(*nextLink) == "" {
 		// This is the last page
 		return resp, nil
 	}
