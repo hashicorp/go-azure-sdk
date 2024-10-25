@@ -102,6 +102,9 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 
 		return nil, fmt.Errorf("executing request: %+v", err)
 	}
+
+	p.droppedConnectionCount = 0
+
 	if resp == nil {
 		return nil, pollers.PollingDroppedConnectionError{}
 	}
