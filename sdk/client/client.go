@@ -779,7 +779,7 @@ func extendedRetryPolicy(resp *http.Response, err error) (bool, error) {
 	// connection
 	tcpDialTCPRe := regexp.MustCompile(`dial tcp`)
 
-	// A regular expression to match complete packet loss - see comment below on packet-loss scenarios
+	// A regular expression to match complete packet loss
 	completePacketLossRe := regexp.MustCompile(`EOF`)
 
 	if err != nil {
@@ -809,7 +809,6 @@ func extendedRetryPolicy(resp *http.Response, err error) (bool, error) {
 				return false, v
 			}
 
-			// Such as Temporary Proxy outage, or recoverable disruption to network traffic (e.g. bgp events, Proxy failures etc)
 			if completePacketLossRe.MatchString(v.Error()) {
 				return false, v
 			}
