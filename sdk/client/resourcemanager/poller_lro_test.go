@@ -326,6 +326,7 @@ func TestPollerLRO_InProvisioningState_AcceptedThenDroppedThenInProgressThenSucc
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // the 202 Accepted
+		pollers.PollingStatusUnknown,
 		// NOTE: the Dropped Connection will be ignored/silently retried
 		pollers.PollingStatusInProgress, // working on it
 		pollers.PollingStatusSucceeded,  // good
@@ -366,7 +367,7 @@ func TestPollerLRO_InStatus_AcceptedThenDroppedThenInProgressThenSuccess(t *test
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // the 202 Accepted
-		// NOTE: the Dropped Connection will be ignored/silently retried
+		pollers.PollingStatusUnknown,
 		pollers.PollingStatusInProgress, // working on it
 		pollers.PollingStatusSucceeded,  // good
 	}

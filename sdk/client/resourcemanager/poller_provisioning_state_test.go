@@ -157,7 +157,7 @@ func TestPollerProvisioningState_OkWithNoBody_AfterPolling(t *testing.T) {
 }
 
 func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSuccess(t *testing.T) {
-	ctx, cancel := context.WithTimeout(context.TODO(), 30*time.Second)
+	ctx, cancel := context.WithTimeout(context.TODO(), 90*time.Second)
 	defer cancel()
 
 	// changing where we're setting this for the heck of it
@@ -177,15 +177,17 @@ func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSu
 		apiVersion: "2020-01-01",
 	}
 	poller := provisioningStatePoller{
-		apiVersion:           helper.expectedApiVersion,
-		client:               resourceManagerClient,
-		initialRetryDuration: 10,
-		originalUri:          "/provisioning-state/poll",
-		resourcePath:         "/provisioning-state/poll",
+		apiVersion:            helper.expectedApiVersion,
+		client:                resourceManagerClient,
+		initialRetryDuration:  10,
+		originalUri:           "/provisioning-state/poll",
+		resourcePath:          "/provisioning-state/poll",
+		maxDroppedConnections: 3,
 	}
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // working on it
+		pollers.PollingStatusUnknown,
 		// NOTE: the Dropped Connection will be ignored/silently retried
 		pollers.PollingStatusInProgress, // working on it
 		pollers.PollingStatusSucceeded,  // good
@@ -200,7 +202,6 @@ func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSu
 			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
 		}
 	}
-	// sanity-checking - expect 4 calls but 3 statuses (since the dropped connection is silently retried)
 	helper.assertCalled(t, 4)
 }
 
@@ -225,16 +226,17 @@ func TestPollerProvisioningState_InStatus_DroppedThenInProgressThenSuccess(t *te
 		apiVersion: "2020-01-01",
 	}
 	poller := provisioningStatePoller{
-		apiVersion:           helper.expectedApiVersion,
-		client:               resourceManagerClient,
-		initialRetryDuration: 10,
-		originalUri:          "/provisioning-state/poll",
-		resourcePath:         "/provisioning-state/poll",
+		apiVersion:            helper.expectedApiVersion,
+		client:                resourceManagerClient,
+		initialRetryDuration:  10,
+		originalUri:           "/provisioning-state/poll",
+		resourcePath:          "/provisioning-state/poll",
+		maxDroppedConnections: 3,
 	}
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // working on it
-		// NOTE: the Dropped Connection will be ignored/silently retried
+		pollers.PollingStatusUnknown,
 		pollers.PollingStatusInProgress, // working on it
 		pollers.PollingStatusSucceeded,  // good
 	}
