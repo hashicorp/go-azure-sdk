@@ -2,7 +2,7 @@ module github.com/hashicorp/go-azure-sdk/microsoft-graph
 
 go 1.21
 
-require github.com/hashicorp/go-azure-sdk/sdk v0.20241025.1143247
+require github.com/hashicorp/go-azure-sdk/sdk v0.20241029.1112340
 
 require (
 	github.com/golang/protobuf v1.5.3 // indirect
