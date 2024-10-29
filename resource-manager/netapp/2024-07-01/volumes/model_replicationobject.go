@@ -7,7 +7,7 @@ type ReplicationObject struct {
 	EndpointType           *EndpointType        `json:"endpointType,omitempty"`
 	RemotePath             *RemotePath          `json:"remotePath,omitempty"`
 	RemoteVolumeRegion     *string              `json:"remoteVolumeRegion,omitempty"`
-	RemoteVolumeResourceId string               `json:"remoteVolumeResourceId"`
+	RemoteVolumeResourceId *string              `json:"remoteVolumeResourceId,omitempty"`
 	ReplicationId          *string              `json:"replicationId,omitempty"`
 	ReplicationSchedule    *ReplicationSchedule `json:"replicationSchedule,omitempty"`
 }
