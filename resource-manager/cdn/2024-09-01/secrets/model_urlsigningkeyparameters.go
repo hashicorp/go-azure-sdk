@@ -13,7 +13,7 @@ var _ SecretParameters = URLSigningKeyParameters{}
 type URLSigningKeyParameters struct {
 	KeyId         string            `json:"keyId"`
 	SecretSource  ResourceReference `json:"secretSource"`
-	SecretVersion *string           `json:"secretVersion,omitempty"`
+	SecretVersion string            `json:"secretVersion"`
 
 	// Fields inherited from SecretParameters
 
