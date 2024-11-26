@@ -25,6 +25,7 @@ type ListForManagementGroupCompleteResult struct {
 }
 
 type ListForManagementGroupOperationOptions struct {
+	Expand *string
 	Filter *string
 	Top    *int64
 }
@@ -47,6 +48,9 @@ func (o ListForManagementGroupOperationOptions) ToOData() *odata.Query {
 
 func (o ListForManagementGroupOperationOptions) ToQuery() *client.QueryParams {
 	out := client.QueryParams{}
+	if o.Expand != nil {
+		out.Append("$expand", fmt.Sprintf("%v", *o.Expand))
+	}
 	if o.Filter != nil {
 		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
 	}
