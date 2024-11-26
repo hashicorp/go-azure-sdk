@@ -101,7 +101,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := policyassignments.NewScopedPolicyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "policyAssignmentName")
 
-read, err := client.Get(ctx, id)
+read, err := client.Get(ctx, id, policyassignments.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -117,7 +117,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := policyassignments.NewPolicyAssignmentIdID("policyAssignmentId")
 
-read, err := client.GetById(ctx, id)
+read, err := client.GetById(ctx, id, policyassignments.DefaultGetByIdOperationOptions())
 if err != nil {
 	// handle the error
 }

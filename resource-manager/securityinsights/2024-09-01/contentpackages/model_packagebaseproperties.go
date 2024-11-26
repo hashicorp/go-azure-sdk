@@ -1,0 +1,30 @@
+package contentpackages
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PackageBaseProperties struct {
+	Author                   *MetadataAuthor       `json:"author,omitempty"`
+	Categories               *MetadataCategories   `json:"categories,omitempty"`
+	ContentId                *string               `json:"contentId,omitempty"`
+	ContentKind              *PackageKind          `json:"contentKind,omitempty"`
+	ContentProductId         *string               `json:"contentProductId,omitempty"`
+	ContentSchemaVersion     *string               `json:"contentSchemaVersion,omitempty"`
+	Dependencies             *MetadataDependencies `json:"dependencies,omitempty"`
+	Description              *string               `json:"description,omitempty"`
+	DisplayName              *string               `json:"displayName,omitempty"`
+	FirstPublishDate         *string               `json:"firstPublishDate,omitempty"`
+	Icon                     *string               `json:"icon,omitempty"`
+	IsDeprecated             *Flag                 `json:"isDeprecated,omitempty"`
+	IsFeatured               *Flag                 `json:"isFeatured,omitempty"`
+	IsNew                    *Flag                 `json:"isNew,omitempty"`
+	IsPreview                *Flag                 `json:"isPreview,omitempty"`
+	LastPublishDate          *string               `json:"lastPublishDate,omitempty"`
+	Providers                *[]string             `json:"providers,omitempty"`
+	PublisherDisplayName     *string               `json:"publisherDisplayName,omitempty"`
+	Source                   *MetadataSource       `json:"source,omitempty"`
+	Support                  *MetadataSupport      `json:"support,omitempty"`
+	ThreatAnalysisTactics    *[]string             `json:"threatAnalysisTactics,omitempty"`
+	ThreatAnalysisTechniques *[]string             `json:"threatAnalysisTechniques,omitempty"`
+	Version                  *string               `json:"version,omitempty"`
+}
