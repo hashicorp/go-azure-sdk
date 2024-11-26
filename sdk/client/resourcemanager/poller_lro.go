@@ -194,6 +194,7 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 			if parseError != nil {
 				return nil, parseError
 			}
+			result.HttpResponse.Body = io.NopCloser(bytes.NewReader(respBody))
 
 			err = pollers.PollingFailedError{
 				HttpResponse: result.HttpResponse,
@@ -206,6 +207,7 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 			if parseError != nil {
 				return nil, parseError
 			}
+			result.HttpResponse.Body = io.NopCloser(bytes.NewReader(respBody))
 
 			err = pollers.PollingCancelledError{
 				HttpResponse: result.HttpResponse,
