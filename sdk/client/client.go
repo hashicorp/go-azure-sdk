@@ -471,7 +471,7 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 		// Check for failed connections etc and decide if retries are appropriate
 		if r == nil {
 			if req.IsIdempotent() {
-				if !isResourceMangerHost(req) {
+				if !isResourceManagerHost(req) {
 					return extendedRetryPolicy(r, err)
 				}
 
@@ -849,7 +849,7 @@ func extendedRetryPolicy(resp *http.Response, err error) (bool, error) {
 
 // exclude Resource Manager calls from the network failure retry avoidance to help users on unreliable networks
 // This code path should be removed when the Data Plane separation work is completed and 5.0 ships.
-func isResourceMangerHost(req *Request) bool {
+func isResourceManagerHost(req *Request) bool {
 	knownResourceManagerHosts := []string{
 		"management.azure.com",
 		"management.chinacloudapi.cn",
