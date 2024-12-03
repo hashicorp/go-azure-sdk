@@ -4,7 +4,7 @@ go 1.22
 
 toolchain go1.22.7
 
-require github.com/hashicorp/go-azure-sdk/sdk v0.20241128.1112539
+require github.com/hashicorp/go-azure-sdk/sdk v0.20241203.1090052
 
 require (
 	github.com/golang/protobuf v1.5.3 // indirect
