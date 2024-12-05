@@ -1,0 +1,30 @@
+package incidents
+
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamInformation struct {
+	Description         *string `json:"description,omitempty"`
+	Name                *string `json:"name,omitempty"`
+	PrimaryChannelURL   *string `json:"primaryChannelUrl,omitempty"`
+	TeamCreationTimeUtc *string `json:"teamCreationTimeUtc,omitempty"`
+	TeamId              *string `json:"teamId,omitempty"`
+}
+
+func (o *TeamInformation) GetTeamCreationTimeUtcAsTime() (*time.Time, error) {
+	if o.TeamCreationTimeUtc == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.TeamCreationTimeUtc, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *TeamInformation) SetTeamCreationTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.TeamCreationTimeUtc = &formatted
+}
