@@ -45,7 +45,7 @@ func (c ProfilesClient) List(ctx context.Context, id commonids.SubscriptionId) (
 		},
 		HttpMethod: http.MethodGet,
 		Pager:      &ListCustomPager{},
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CDN/profiles", id.ID()),
+		Path:       fmt.Sprintf("%s/providers/Microsoft.Cdn/profiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

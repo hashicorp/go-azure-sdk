@@ -45,7 +45,7 @@ func (c WebApplicationFirewallPoliciesClient) PoliciesList(ctx context.Context, 
 		},
 		HttpMethod: http.MethodGet,
 		Pager:      &PoliciesListCustomPager{},
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CDN/cdnWebApplicationFirewallPolicies", id.ID()),
+		Path:       fmt.Sprintf("%s/providers/Microsoft.Cdn/cdnWebApplicationFirewallPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -27,7 +27,7 @@ func (c CheckEndpointNameAvailabilityClient) CheckEndpointNameAvailability(ctx c
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CDN/checkEndpointNameAvailability", id.ID()),
+		Path:       fmt.Sprintf("%s/providers/Microsoft.Cdn/checkEndpointNameAvailability", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

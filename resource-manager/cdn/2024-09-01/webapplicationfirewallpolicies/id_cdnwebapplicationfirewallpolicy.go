@@ -101,7 +101,7 @@ func ValidateCdnWebApplicationFirewallPolicyID(input interface{}, key string) (w
 
 // ID returns the formatted Cdn Web Application Firewall Policy ID
 func (id CdnWebApplicationFirewallPolicyId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.CDN/cdnWebApplicationFirewallPolicies/%s"
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Cdn/cdnWebApplicationFirewallPolicies/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.CdnWebApplicationFirewallPolicyName)
 }
 
@@ -113,7 +113,7 @@ func (id CdnWebApplicationFirewallPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticMicrosoftCDN", "Microsoft.CDN", "Microsoft.CDN"),
+		resourceids.ResourceProviderSegment("staticMicrosoftCdn", "Microsoft.Cdn", "Microsoft.Cdn"),
 		resourceids.StaticSegment("staticCdnWebApplicationFirewallPolicies", "cdnWebApplicationFirewallPolicies", "cdnWebApplicationFirewallPolicies"),
 		resourceids.UserSpecifiedSegment("cdnWebApplicationFirewallPolicyName", "cdnWebApplicationFirewallPolicyName"),
 	}

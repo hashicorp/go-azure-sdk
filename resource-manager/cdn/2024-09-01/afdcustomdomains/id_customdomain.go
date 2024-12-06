@@ -107,7 +107,7 @@ func ValidateCustomDomainID(input interface{}, key string) (warnings []string, e
 
 // ID returns the formatted Custom Domain ID
 func (id CustomDomainId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.CDN/profiles/%s/customDomains/%s"
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Cdn/profiles/%s/customDomains/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ProfileName, id.CustomDomainName)
 }
 
@@ -119,7 +119,7 @@ func (id CustomDomainId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticMicrosoftCDN", "Microsoft.CDN", "Microsoft.CDN"),
+		resourceids.ResourceProviderSegment("staticMicrosoftCdn", "Microsoft.Cdn", "Microsoft.Cdn"),
 		resourceids.StaticSegment("staticProfiles", "profiles", "profiles"),
 		resourceids.UserSpecifiedSegment("profileName", "profileName"),
 		resourceids.StaticSegment("staticCustomDomains", "customDomains", "customDomains"),
