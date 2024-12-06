@@ -52,6 +52,11 @@ func provisioningStatePollerFromResponse(response *client.Response, lroIsSelfRef
 	}
 
 	resourcePath := originalUri
+	if pollingUriStr := pollingUriForLongRunningOperation(response); pollingUriStr != "" {
+		if pollingUri, err := url.ParseRequestURI(pollingUriStr); err == nil {
+			resourcePath = pollingUri.RequestURI()
+		}
+	}
 	if !lroIsSelfReference {
 		// if it's a self-reference (such as API Management's API/API Schema)
 		path, err := resourceManagerResourcePathFromUri(originalUri)
@@ -79,7 +84,8 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 		},
 		HttpMethod: http.MethodGet,
 		OptionsObject: provisioningStateOptions{
-			apiVersion: p.apiVersion,
+			apiVersion:       p.apiVersion,
+			additionalParams: additonalParamsFromUri(p.resourcePath),
 		},
 		Path: p.resourcePath,
 	}
@@ -201,8 +207,11 @@ func resourceManagerResourcePathFromUri(input string) (*string, error) {
 
 var _ client.Options = provisioningStateOptions{}
 
+// For APIM API resource, the query string in the polling URI is not always the same as the original request URI.
+// These query strings are required for the polling request, otherwise, it will respond with 404 Not Found instead of a 400 Bad Request.
 type provisioningStateOptions struct {
-	apiVersion string
+	apiVersion       string
+	additionalParams map[string]string
 }
 
 func (p provisioningStateOptions) ToHeaders() *client.Headers {
@@ -215,6 +224,29 @@ func (p provisioningStateOptions) ToOData() *odata.Query {
 
 func (p provisioningStateOptions) ToQuery() *client.QueryParams {
 	q := client.QueryParams{}
+	for k, v := range p.additionalParams {
+		q.Append(k, v)
+	}
 	q.Append("api-version", p.apiVersion)
 	return &q
+}
+
+// APIM API resource need the asyncId parameter to get the real provisioning state.
+var additionalParamKeys = map[string]bool{
+	"asyncId": true,
+}
+
+func additonalParamsFromUri(uri string) map[string]string {
+	if u, err := url.ParseRequestURI(uri); err == nil {
+		if u.RawQuery != "" {
+			additionalParams := map[string]string{}
+			for k, v := range u.Query() {
+				if additionalParamKeys[k] {
+					additionalParams[k] = v[0]
+				}
+			}
+			return additionalParams
+		}
+	}
+	return nil
 }
