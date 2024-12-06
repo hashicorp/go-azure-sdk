@@ -27,7 +27,7 @@ func (c ValidateProbeClient) ValidateProbe(ctx context.Context, id commonids.Sub
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CDN/validateProbe", id.ID()),
+		Path:       fmt.Sprintf("%s/providers/Microsoft.Cdn/validateProbe", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

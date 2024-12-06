@@ -107,7 +107,7 @@ func ValidateSecurityPolicyID(input interface{}, key string) (warnings []string,
 
 // ID returns the formatted Security Policy ID
 func (id SecurityPolicyId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.CDN/profiles/%s/securityPolicies/%s"
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Cdn/profiles/%s/securityPolicies/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ProfileName, id.SecurityPolicyName)
 }
 
@@ -119,7 +119,7 @@ func (id SecurityPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticMicrosoftCDN", "Microsoft.CDN", "Microsoft.CDN"),
+		resourceids.ResourceProviderSegment("staticMicrosoftCdn", "Microsoft.Cdn", "Microsoft.Cdn"),
 		resourceids.StaticSegment("staticProfiles", "profiles", "profiles"),
 		resourceids.UserSpecifiedSegment("profileName", "profileName"),
 		resourceids.StaticSegment("staticSecurityPolicies", "securityPolicies", "securityPolicies"),

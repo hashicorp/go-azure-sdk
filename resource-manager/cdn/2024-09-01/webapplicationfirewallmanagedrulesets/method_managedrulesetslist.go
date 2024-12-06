@@ -45,7 +45,7 @@ func (c WebApplicationFirewallManagedRuleSetsClient) ManagedRuleSetsList(ctx con
 		},
 		HttpMethod: http.MethodGet,
 		Pager:      &ManagedRuleSetsListCustomPager{},
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CDN/cdnWebApplicationFirewallManagedRuleSets", id.ID()),
+		Path:       fmt.Sprintf("%s/providers/Microsoft.Cdn/cdnWebApplicationFirewallManagedRuleSets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

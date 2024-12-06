@@ -25,7 +25,7 @@ func (c CheckNameAvailabilityClient) CheckNameAvailability(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       "/providers/Microsoft.CDN/checkNameAvailability",
+		Path:       "/providers/Microsoft.Cdn/checkNameAvailability",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
