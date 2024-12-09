@@ -7,8 +7,6 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2016-03-01/alertruleincidents"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2016-03-01/alertrules"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2016-03-01/alertrulesapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2016-03-01/logprofiles"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2016-03-01/logprofilesapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2016-03-01/metricdefinitions"
@@ -18,8 +16,6 @@ import (
 
 type Client struct {
 	AlertRuleIncidents *alertruleincidents.AlertRuleIncidentsClient
-	AlertRules         *alertrules.AlertRulesClient
-	AlertRulesAPIs     *alertrulesapis.AlertRulesAPIsClient
 	LogProfiles        *logprofiles.LogProfilesClient
 	LogProfilesAPIs    *logprofilesapis.LogProfilesAPIsClient
 	MetricDefinitions  *metricdefinitions.MetricDefinitionsClient
@@ -31,18 +27,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building AlertRuleIncidents client: %+v", err)
 	}
 	configureFunc(alertRuleIncidentsClient.Client)
-
-	alertRulesAPIsClient, err := alertrulesapis.NewAlertRulesAPIsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building AlertRulesAPIs client: %+v", err)
-	}
-	configureFunc(alertRulesAPIsClient.Client)
-
-	alertRulesClient, err := alertrules.NewAlertRulesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building AlertRules client: %+v", err)
-	}
-	configureFunc(alertRulesClient.Client)
 
 	logProfilesAPIsClient, err := logprofilesapis.NewLogProfilesAPIsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -64,8 +48,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 
 	return &Client{
 		AlertRuleIncidents: alertRuleIncidentsClient,
-		AlertRules:         alertRulesClient,
-		AlertRulesAPIs:     alertRulesAPIsClient,
 		LogProfiles:        logProfilesClient,
 		LogProfilesAPIs:    logProfilesAPIsClient,
 		MetricDefinitions:  metricDefinitionsClient,

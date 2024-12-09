@@ -12,6 +12,7 @@ var _ ProtectionContainer = AzureStorageContainer{}
 
 type AzureStorageContainer struct {
 	AcquireStorageAccountLock *AcquireStorageAccountLock `json:"acquireStorageAccountLock,omitempty"`
+	OperationType             *OperationType             `json:"operationType,omitempty"`
 	ProtectedItemCount        *int64                     `json:"protectedItemCount,omitempty"`
 	ResourceGroup             *string                    `json:"resourceGroup,omitempty"`
 	SourceResourceId          *string                    `json:"sourceResourceId,omitempty"`

@@ -5,5 +5,4 @@ package registrymanagement
 
 type AcrDetails struct {
 	SystemCreatedAcrAccount *SystemCreatedAcrAccount `json:"systemCreatedAcrAccount,omitempty"`
-	UserCreatedAcrAccount   *UserCreatedAcrAccount   `json:"userCreatedAcrAccount,omitempty"`
 }

@@ -5,5 +5,4 @@ package registrymanagement
 
 type StorageAccountDetails struct {
 	SystemCreatedStorageAccount *SystemCreatedStorageAccount `json:"systemCreatedStorageAccount,omitempty"`
-	UserCreatedStorageAccount   *UserCreatedStorageAccount   `json:"userCreatedStorageAccount,omitempty"`
 }
