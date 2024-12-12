@@ -1,0 +1,53 @@
+
+## `github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-08-preview/activesessionhostconfiguration` Documentation
+
+The `activesessionhostconfiguration` SDK allows for interaction with Azure Resource Manager `desktopvirtualization` (API Version `2024-04-08-preview`).
+
+This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
+
+### Import Path
+
+```go
+import "github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-08-preview/activesessionhostconfiguration"
+```
+
+
+### Client Initialization
+
+```go
+client := activesessionhostconfiguration.NewActiveSessionHostConfigurationClientWithBaseURI("https://management.azure.com")
+client.Client.Authorizer = authorizer
+```
+
+
+### Example Usage: `ActiveSessionHostConfigurationClient.Get`
+
+```go
+ctx := context.TODO()
+id := activesessionhostconfiguration.NewHostPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName")
+
+read, err := client.Get(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ActiveSessionHostConfigurationClient.ListByHostPool`
+
+```go
+ctx := context.TODO()
+id := activesessionhostconfiguration.NewHostPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolName")
+
+// alternatively `client.ListByHostPool(ctx, id)` can be used to do batched pagination
+items, err := client.ListByHostPoolComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
