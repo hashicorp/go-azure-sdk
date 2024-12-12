@@ -1,0 +1,11 @@
+package sessionhostmanagement
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type HostPoolUpdateConfigurationPatchProperties struct {
+	DeleteOriginalVM   *bool   `json:"deleteOriginalVm,omitempty"`
+	LogOffDelayMinutes *int64  `json:"logOffDelayMinutes,omitempty"`
+	LogOffMessage      *string `json:"logOffMessage,omitempty"`
+	MaxVMsRemoved      *int64  `json:"maxVmsRemoved,omitempty"`
+}
