@@ -86,6 +86,9 @@ var longRunningOperationCustomStatuses = map[status]pollers.PollingStatus{
 	// Resources @ 2020-10-01 (DeploymentScripts) returns `ProvisioningResources` during Creation
 	"ProvisioningResources": pollers.PollingStatusInProgress,
 
+	// Postgres @ 2021-06-01 returns `Restarting` during restart
+	"Restarting": pollers.PollingStatusInProgress,
+
 	// AnalysisServices @ 2017-08-01 (Servers Resume) returns `Resuming` during Update
 	"Resuming": pollers.PollingStatusInProgress,
 
