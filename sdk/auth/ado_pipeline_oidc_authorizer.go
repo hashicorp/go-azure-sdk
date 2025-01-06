@@ -101,7 +101,7 @@ func (a *ADOPipelineOIDCAuthorizer) adoPipelineAssertion(ctx context.Context, _ 
 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", a.conf.IDTokenRequestToken))
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := Client.Do(req)
 	if err != nil {
