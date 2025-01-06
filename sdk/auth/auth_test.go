@@ -30,8 +30,8 @@ func TestNewAuthorizerFromCredentials(t *testing.T) {
 		ClientSecret:                  "supersecret",
 		CustomManagedIdentityEndpoint: "https://endpoint",
 		Environment:                   *env,
-		GitHubOIDCTokenRequestToken:   "githubtoken",
-		GitHubOIDCTokenRequestURL:     "https://githubtokenendpoint",
+		OIDCTokenRequestToken:         "githubtoken",
+		OIDCTokenRequestURL:           "https://githubtokenendpoint",
 		OIDCAssertionToken:            "idtokenblurh",
 		TenantID:                      "00000000-1111-0000-0000-000000000000",
 	}
@@ -190,8 +190,8 @@ func TestAccNewAuthorizerFromCredentials(t *testing.T) {
 		ClientSecret:                  test.ClientSecret,
 		CustomManagedIdentityEndpoint: test.CustomManagedIdentityEndpoint,
 		Environment:                   *env,
-		GitHubOIDCTokenRequestToken:   test.GitHubToken,
-		GitHubOIDCTokenRequestURL:     test.GitHubTokenURL,
+		OIDCTokenRequestToken:         test.GitHubToken,
+		OIDCTokenRequestURL:           test.GitHubTokenURL,
 		OIDCAssertionToken:            test.IdToken,
 		TenantID:                      test.TenantId,
 	}

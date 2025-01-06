@@ -13,33 +13,34 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 
-func TestGitHubOIDCAuthorizer(t *testing.T) {
+func TestADOPipelineOIDCAuthorizer(t *testing.T) {
 	ctx := context.Background()
 	env := environments.AzurePublic()
 
-	mockHost := "github-oidc-issuer"
+	mockHost := "ado-oidc-issuer"
 	auth.Client = &oidcMockClient{
 		authorization: *env.Authorization,
-		platform:      OidcMockClientPlatformGithub,
+		platform:      OidcMockClientPlatformADOPipeline,
 		mockHost:      mockHost,
 	}
 
 	idTokenRequestUrl := fmt.Sprintf("https://%s/vend-id-token", mockHost)
 	idTokenRequestToken := test.DummyAccessToken
 
-	opts := auth.GitHubOIDCAuthorizerOptions{
+	opts := auth.ADOPipelineOIDCAuthorizerOptions{
 		Api:                 env.MicrosoftGraph,
 		AuxiliaryTenantIds:  test.AuxiliaryTenantIds,
 		ClientId:            "11111111-0000-0000-0000-000000000000",
 		Environment:         *env,
 		IdTokenRequestToken: idTokenRequestToken,
 		IdTokenRequestUrl:   idTokenRequestUrl,
+		ServiceConnectionId: "test-service-connection",
 		TenantId:            "00000000-1111-0000-0000-000000000000",
 	}
 
-	authorizer, err := auth.NewGitHubOIDCAuthorizer(ctx, opts)
+	authorizer, err := auth.NewADOPipelineOIDCAuthorizer(ctx, opts)
 	if err != nil {
-		t.Fatalf("NewGitHubOIDCAuthorizer(): %v", err)
+		t.Fatalf("NewADOPipelineOIDCAuthorizer(): %v", err)
 	}
 
 	if authorizer == nil {
@@ -51,14 +52,17 @@ func TestGitHubOIDCAuthorizer(t *testing.T) {
 	}
 }
 
-func TestAccGitHubOIDCAuthorizer(t *testing.T) {
+func TestAccADOPipelineOIDCAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
-	if test.GitHubTokenURL == "" {
-		t.Skip("test.GitHubTokenURL was empty")
+	if test.ADOPipelineToken == "" {
+		t.Skip("test.ADOPipelineToken was empty")
 	}
-	if test.GitHubToken == "" {
-		t.Skip("test.GitHubToken was empty")
+	if test.ADOPipelineTokenURL == "" {
+		t.Skip("test.ADOPipelineTokenURL was empty")
+	}
+	if test.ADOServiceConnectionId == "" {
+		t.Skip("test.ADOServiceConnectionId was empty")
 	}
 
 	ctx := context.Background()
@@ -68,19 +72,20 @@ func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	opts := auth.GitHubOIDCAuthorizerOptions{
+	opts := auth.ADOPipelineOIDCAuthorizerOptions{
 		Api:                 env.MicrosoftGraph,
 		AuxiliaryTenantIds:  test.AuxiliaryTenantIds,
 		ClientId:            test.ClientId,
 		Environment:         *env,
 		TenantId:            test.TenantId,
-		IdTokenRequestUrl:   test.GitHubTokenURL,
-		IdTokenRequestToken: test.GitHubToken,
+		IdTokenRequestUrl:   test.ADOPipelineTokenURL,
+		IdTokenRequestToken: test.ADOPipelineToken,
+		ServiceConnectionId: test.ADOServiceConnectionId,
 	}
 
-	authorizer, err := auth.NewGitHubOIDCAuthorizer(ctx, opts)
+	authorizer, err := auth.NewADOPipelineOIDCAuthorizer(ctx, opts)
 	if err != nil {
-		t.Fatalf("NewGitHubOIDCAuthorizer(): %v", err)
+		t.Fatalf("NewADOPipelineOIDCAuthorizer(): %v", err)
 	}
 
 	if authorizer == nil {
