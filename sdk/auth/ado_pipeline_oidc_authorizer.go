@@ -88,9 +88,6 @@ func (a *ADOPipelineOIDCAuthorizer) adoPipelineAssertion(ctx context.Context, _ 
 	if err != nil {
 		return nil, fmt.Errorf("adoPipelineAssertion: cannot parse URL query")
 	}
-	if query.Get("audience") == "" {
-		query.Set("audience", "api://AzureADTokenExchange")
-	}
 	if query.Get("api-version") == "" {
 		query.Add("api-version", adoPipelineOIDCAPIVersion)
 	}
