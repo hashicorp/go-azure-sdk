@@ -94,6 +94,9 @@ func (a *ADOPipelineOIDCAuthorizer) adoPipelineAssertion(ctx context.Context, _ 
 	if query.Get("serviceConnectionId") == "" {
 		query.Add("serviceConnectionId", a.conf.ServiceConnectionID)
 	}
+	if query.Get("audience") == "" {
+		query.Add("audience", "api://AzureADTokenExchange")
+	}
 	req.URL.RawQuery = query.Encode()
 
 	req.Header.Set("Accept", "application/json")

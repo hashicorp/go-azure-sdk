@@ -84,6 +84,7 @@ func (c *oidcMockClient) Do(r *http.Request) (resp *http.Response, err error) {
 
 		return
 	}
+
 	client := &test.AzureADAccessTokenMockClient{
 		Authorization: c.authorization,
 	}
