@@ -54,11 +54,11 @@ func TestGitHubOIDCAuthorizer(t *testing.T) {
 func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
-	if test.GitHubTokenURL == "" {
-		t.Skip("test.GitHubTokenURL was empty")
+	if test.OIDCRequestURL == "" {
+		t.Skip("test.OIDCRequestURL was empty")
 	}
-	if test.GitHubToken == "" {
-		t.Skip("test.GitHubToken was empty")
+	if test.OIDCRequestToken == "" {
+		t.Skip("test.OIDCRequestToken was empty")
 	}
 
 	ctx := context.Background()
@@ -74,8 +74,8 @@ func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 		ClientId:            test.ClientId,
 		Environment:         *env,
 		TenantId:            test.TenantId,
-		IdTokenRequestUrl:   test.GitHubTokenURL,
-		IdTokenRequestToken: test.GitHubToken,
+		IdTokenRequestUrl:   test.OIDCRequestURL,
+		IdTokenRequestToken: test.OIDCRequestToken,
 	}
 
 	authorizer, err := auth.NewGitHubOIDCAuthorizer(ctx, opts)

@@ -39,20 +39,22 @@ func NewConnection(t *testing.T) *Connection {
 
 	return &Connection{
 		AuthConfig: auth.Credentials{
-			Environment:                   *env,
-			TenantID:                      TenantId,
-			ClientID:                      ClientId,
-			ClientCertificateData:         Base64DecodeCertificate(t, ClientCertificate),
-			ClientCertificatePath:         ClientCertificatePath,
-			ClientCertificatePassword:     ClientCertPassword,
-			ClientSecret:                  ClientSecret,
-			OIDCTokenRequestURL:           GitHubTokenURL,
-			OIDCTokenRequestToken:         GitHubToken,
-			OIDCAssertionToken:            IdToken,
-			CustomManagedIdentityEndpoint: CustomManagedIdentityEndpoint,
+			Environment:                                *env,
+			TenantID:                                   TenantId,
+			ClientID:                                   ClientId,
+			ClientCertificateData:                      Base64DecodeCertificate(t, ClientCertificate),
+			ClientCertificatePath:                      ClientCertificatePath,
+			ClientCertificatePassword:                  ClientCertPassword,
+			ClientSecret:                               ClientSecret,
+			OIDCTokenRequestURL:                        OIDCRequestURL,
+			OIDCTokenRequestToken:                      OIDCRequestToken,
+			OIDCAssertionToken:                         IdToken,
+			ADOPipelineServiceConnectionID:             ADOServiceConnectionId,
+			CustomManagedIdentityEndpoint:              CustomManagedIdentityEndpoint,
 			EnableAuthenticatingUsingClientCertificate: true,
 			EnableAuthenticatingUsingClientSecret:      true,
 			EnableAuthenticationUsingGitHubOIDC:        true,
+			EnableAuthenticationUsingADOPipelineOIDC:   true,
 		},
 	}
 }

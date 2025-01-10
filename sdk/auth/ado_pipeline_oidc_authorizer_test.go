@@ -55,11 +55,11 @@ func TestADOPipelineOIDCAuthorizer(t *testing.T) {
 func TestAccADOPipelineOIDCAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
-	if test.ADOPipelineToken == "" {
-		t.Skip("test.ADOPipelineToken was empty")
+	if test.OIDCRequestToken == "" {
+		t.Skip("test.OIDCRequestToken was empty")
 	}
-	if test.ADOPipelineTokenURL == "" {
-		t.Skip("test.ADOPipelineTokenURL was empty")
+	if test.OIDCRequestURL == "" {
+		t.Skip("test.OIDCRequestURL was empty")
 	}
 	if test.ADOServiceConnectionId == "" {
 		t.Skip("test.ADOServiceConnectionId was empty")
@@ -78,8 +78,8 @@ func TestAccADOPipelineOIDCAuthorizer(t *testing.T) {
 		ClientId:            test.ClientId,
 		Environment:         *env,
 		TenantId:            test.TenantId,
-		IdTokenRequestUrl:   test.ADOPipelineTokenURL,
-		IdTokenRequestToken: test.ADOPipelineToken,
+		IdTokenRequestUrl:   test.OIDCRequestURL,
+		IdTokenRequestToken: test.OIDCRequestToken,
 		ServiceConnectionId: test.ADOServiceConnectionId,
 	}
 
