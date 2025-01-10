@@ -100,6 +100,7 @@ func NewAuthorizerFromCredentials(ctx context.Context, c Credentials, api enviro
 			Environment:         c.Environment,
 			IdTokenRequestUrl:   c.OIDCTokenRequestURL,
 			IdTokenRequestToken: c.OIDCTokenRequestToken,
+			ServiceConnectionId: c.ADOPipelineServiceConnectionID,
 			TenantId:            c.TenantID,
 		}
 		a, err := NewADOPipelineOIDCAuthorizer(context.Background(), opts)
