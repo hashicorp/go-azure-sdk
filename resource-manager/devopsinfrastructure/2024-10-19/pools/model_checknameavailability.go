@@ -1,8 +1,9 @@
-package createresource
+package pools
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type CreateResourceSupportedResponseList struct {
-	Value *[]CreateResourceSupportedResponse `json:"value,omitempty"`
+type CheckNameAvailability struct {
+	Name string                           `json:"name"`
+	Type DevOpsInfrastructureResourceType `json:"type"`
 }

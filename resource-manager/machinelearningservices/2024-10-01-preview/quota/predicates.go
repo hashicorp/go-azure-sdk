@@ -3,6 +3,14 @@ package quota
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+type AvailableQuotaOperationPredicate struct {
+}
+
+func (p AvailableQuotaOperationPredicate) Matches(input AvailableQuota) bool {
+
+	return true
+}
+
 type ResourceQuotaOperationPredicate struct {
 	AmlWorkspaceLocation *string
 	Id                   *string
@@ -48,6 +56,24 @@ func (p UpdateWorkspaceQuotasOperationPredicate) Matches(input UpdateWorkspaceQu
 	}
 
 	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}
+
+type UsageAndQuotaDetailsOperationPredicate struct {
+	ModelCollection *string
+	Quota           *int64
+}
+
+func (p UsageAndQuotaDetailsOperationPredicate) Matches(input UsageAndQuotaDetails) bool {
+
+	if p.ModelCollection != nil && (input.ModelCollection == nil || *p.ModelCollection != *input.ModelCollection) {
+		return false
+	}
+
+	if p.Quota != nil && (input.Quota == nil || *p.Quota != *input.Quota) {
 		return false
 	}
 

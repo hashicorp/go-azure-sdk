@@ -16,7 +16,12 @@ import (
 type CreationSupportedListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CreateResourceSupportedResponseList
+	Model        *[]CreateResourceSupportedResponse
+}
+
+type CreationSupportedListCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []CreateResourceSupportedResponse
 }
 
 type CreationSupportedListOperationOptions struct {
@@ -47,6 +52,18 @@ func (o CreationSupportedListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type CreationSupportedListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *CreationSupportedListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // CreationSupportedList ...
 func (c CreateResourceClient) CreationSupportedList(ctx context.Context, id commonids.SubscriptionId, options CreationSupportedListOperationOptions) (result CreationSupportedListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -56,6 +73,7 @@ func (c CreateResourceClient) CreationSupportedList(ctx context.Context, id comm
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
+		Pager:         &CreationSupportedListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Datadog/subscriptionStatuses", id.ID()),
 	}
 
@@ -65,7 +83,7 @@ func (c CreateResourceClient) CreationSupportedList(ctx context.Context, id comm
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -74,11 +92,44 @@ func (c CreateResourceClient) CreationSupportedList(ctx context.Context, id comm
 		return
 	}
 
-	var model CreateResourceSupportedResponseList
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]CreateResourceSupportedResponse `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// CreationSupportedListComplete retrieves all the results into a single object
+func (c CreateResourceClient) CreationSupportedListComplete(ctx context.Context, id commonids.SubscriptionId, options CreationSupportedListOperationOptions) (CreationSupportedListCompleteResult, error) {
+	return c.CreationSupportedListCompleteMatchingPredicate(ctx, id, options, CreateResourceSupportedResponseOperationPredicate{})
+}
+
+// CreationSupportedListCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c CreateResourceClient) CreationSupportedListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, options CreationSupportedListOperationOptions, predicate CreateResourceSupportedResponseOperationPredicate) (result CreationSupportedListCompleteResult, err error) {
+	items := make([]CreateResourceSupportedResponse, 0)
+
+	resp, err := c.CreationSupportedList(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = CreationSupportedListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

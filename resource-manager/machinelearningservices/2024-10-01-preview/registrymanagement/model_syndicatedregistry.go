@@ -1,8 +1,8 @@
-package monitoredsubscriptions
+package registrymanagement
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type MonitoredSubscriptionPropertiesList struct {
-	Value *[]MonitoredSubscriptionProperties `json:"value,omitempty"`
+type SyndicatedRegistry struct {
+	RegistryId *string `json:"registryId,omitempty"`
 }
