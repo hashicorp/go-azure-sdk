@@ -16,8 +16,8 @@ import (
 // - Client certificate authentication
 // - Client secret authentication
 // - OIDC authentication
-// - GitHub OIDC authentication
 // - ADO Pipeline OIDC authentication
+// - GitHub OIDC authentication
 // - MSI authentication
 // - Azure CLI authentication
 //
@@ -27,8 +27,8 @@ import (
 // For client certificate authentication, specify TenantID, ClientID and ClientCertificateData / ClientCertificatePath.
 // For client secret authentication, specify TenantID, ClientID and ClientSecret.
 // For OIDC authentication, specify TenantID, ClientID and OIDCAssertionToken.
-// For GitHub OIDC authentication, specify TenantID, ClientID, OIDCTokenRequestURL and OIDCTokenRequestToken.
 // For ADO Pipeline OIDC authentication, specify TenantID, ClientID, ADOPipelineServiceConnectionID, OIDCTokenRequestURL and OIDCTokenRequestToken.
+// For GitHub OIDC authentication, specify TenantID, ClientID, OIDCTokenRequestURL and OIDCTokenRequestToken.
 // MSI authentication (if enabled) using the Azure Metadata Service is then attempted
 // Azure CLI authentication (if enabled) is attempted last
 //
@@ -92,25 +92,6 @@ func NewAuthorizerFromCredentials(ctx context.Context, c Credentials, api enviro
 		}
 	}
 
-	if c.EnableAuthenticationUsingGitHubOIDC && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && strings.TrimSpace(c.OIDCTokenRequestURL) != "" && strings.TrimSpace(c.OIDCTokenRequestToken) != "" {
-		opts := GitHubOIDCAuthorizerOptions{
-			Api:                 api,
-			AuxiliaryTenantIds:  c.AuxiliaryTenantIDs,
-			ClientId:            c.ClientID,
-			Environment:         c.Environment,
-			IdTokenRequestUrl:   c.OIDCTokenRequestURL,
-			IdTokenRequestToken: c.OIDCTokenRequestToken,
-			TenantId:            c.TenantID,
-		}
-		a, err := NewGitHubOIDCAuthorizer(context.Background(), opts)
-		if err != nil {
-			return nil, fmt.Errorf("could not configure GitHubOIDC Authorizer: %s", err)
-		}
-		if a != nil {
-			return a, nil
-		}
-	}
-
 	if c.EnableAuthenticationUsingADOPipelineOIDC && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && strings.TrimSpace(c.OIDCTokenRequestURL) != "" && strings.TrimSpace(c.OIDCTokenRequestToken) != "" && strings.TrimSpace(c.ADOPipelineServiceConnectionID) != "" {
 		opts := ADOPipelineOIDCAuthorizerOptions{
 			Api:                 api,
@@ -124,6 +105,25 @@ func NewAuthorizerFromCredentials(ctx context.Context, c Credentials, api enviro
 		a, err := NewADOPipelineOIDCAuthorizer(context.Background(), opts)
 		if err != nil {
 			return nil, fmt.Errorf("could not configure ADOPipelineOIDC Authorizer: %s", err)
+		}
+		if a != nil {
+			return a, nil
+		}
+	}
+
+	if c.EnableAuthenticationUsingGitHubOIDC && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && strings.TrimSpace(c.OIDCTokenRequestURL) != "" && strings.TrimSpace(c.OIDCTokenRequestToken) != "" {
+		opts := GitHubOIDCAuthorizerOptions{
+			Api:                 api,
+			AuxiliaryTenantIds:  c.AuxiliaryTenantIDs,
+			ClientId:            c.ClientID,
+			Environment:         c.Environment,
+			IdTokenRequestUrl:   c.OIDCTokenRequestURL,
+			IdTokenRequestToken: c.OIDCTokenRequestToken,
+			TenantId:            c.TenantID,
+		}
+		a, err := NewGitHubOIDCAuthorizer(context.Background(), opts)
+		if err != nil {
+			return nil, fmt.Errorf("could not configure GitHubOIDC Authorizer: %s", err)
 		}
 		if a != nil {
 			return a, nil
