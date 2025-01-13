@@ -4,12 +4,13 @@ package registrymanagement
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Registry struct {
-	DiscoveryURL                       *string                              `json:"discoveryUrl,omitempty"`
-	IntellectualPropertyPublisher      *string                              `json:"intellectualPropertyPublisher,omitempty"`
-	ManagedResourceGroup               *ArmResourceId                       `json:"managedResourceGroup,omitempty"`
-	ManagedResourceGroupSettings       *ManagedResourceGroupSettings        `json:"managedResourceGroupSettings,omitempty"`
-	MlFlowRegistryUri                  *string                              `json:"mlFlowRegistryUri,omitempty"`
-	PublicNetworkAccess                *string                              `json:"publicNetworkAccess,omitempty"`
-	RegionDetails                      *[]RegistryRegionArmDetails          `json:"regionDetails,omitempty"`
-	RegistryPrivateEndpointConnections *[]RegistryPrivateEndpointConnection `json:"registryPrivateEndpointConnections,omitempty"`
+	DiscoveryURL                       *string                                `json:"discoveryUrl,omitempty"`
+	IntellectualPropertyPublisher      *string                                `json:"intellectualPropertyPublisher,omitempty"`
+	ManagedResourceGroup               *ArmResourceId                         `json:"managedResourceGroup,omitempty"`
+	ManagedResourceGroupSettings       *ManagedResourceGroupSettings          `json:"managedResourceGroupSettings,omitempty"`
+	MlFlowRegistryUri                  *string                                `json:"mlFlowRegistryUri,omitempty"`
+	PublicNetworkAccess                *string                                `json:"publicNetworkAccess,omitempty"`
+	RegionDetails                      *[]RegistryRegionArmDetails            `json:"regionDetails,omitempty"`
+	RegistryPrivateEndpointConnections *[]RegistryPrivateEndpointConnection   `json:"registryPrivateEndpointConnections,omitempty"`
+	SyndicatedRegistries               *[]RegistrySyndicatedRegistriesInlined `json:"syndicatedRegistries,omitempty"`
 }
