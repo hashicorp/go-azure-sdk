@@ -37,6 +37,56 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `QuotaClient.PTUQuotaGetAvailable`
+
+```go
+ctx := context.TODO()
+id := quota.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
+
+read, err := client.PTUQuotaGetAvailable(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `QuotaClient.PTUQuotaList`
+
+```go
+ctx := context.TODO()
+id := quota.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
+
+// alternatively `client.PTUQuotaList(ctx, id, quota.DefaultPTUQuotaListOperationOptions())` can be used to do batched pagination
+items, err := client.PTUQuotaListComplete(ctx, id, quota.DefaultPTUQuotaListOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `QuotaClient.PTUQuotaListAvailable`
+
+```go
+ctx := context.TODO()
+id := quota.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
+
+// alternatively `client.PTUQuotaListAvailable(ctx, id, quota.DefaultPTUQuotaListAvailableOperationOptions())` can be used to do batched pagination
+items, err := client.PTUQuotaListAvailableComplete(ctx, id, quota.DefaultPTUQuotaListAvailableOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `QuotaClient.Update`
 
 ```go

@@ -18,7 +18,7 @@ type SapTableLinkedServiceTypeProperties struct {
 	Password             SecretBase `json:"password"`
 	Server               *string    `json:"server,omitempty"`
 	SncLibraryPath       *string    `json:"sncLibraryPath,omitempty"`
-	SncMode              *string    `json:"sncMode,omitempty"`
+	SncMode              *bool      `json:"sncMode,omitempty"`
 	SncMyName            *string    `json:"sncMyName,omitempty"`
 	SncPartnerName       *string    `json:"sncPartnerName,omitempty"`
 	SncQop               *string    `json:"sncQop,omitempty"`
@@ -39,7 +39,7 @@ func (s *SapTableLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error 
 		MessageServerService *string `json:"messageServerService,omitempty"`
 		Server               *string `json:"server,omitempty"`
 		SncLibraryPath       *string `json:"sncLibraryPath,omitempty"`
-		SncMode              *string `json:"sncMode,omitempty"`
+		SncMode              *bool   `json:"sncMode,omitempty"`
 		SncMyName            *string `json:"sncMyName,omitempty"`
 		SncPartnerName       *string `json:"sncPartnerName,omitempty"`
 		SncQop               *string `json:"sncQop,omitempty"`
