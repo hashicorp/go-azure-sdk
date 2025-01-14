@@ -21,6 +21,27 @@ client.Client.Authorizer = authorizer
 ```
 
 
+### Example Usage: `PoolsClient.CheckNameAvailability`
+
+```go
+ctx := context.TODO()
+id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+
+payload := pools.CheckNameAvailability{
+	// ...
+}
+
+
+read, err := client.CheckNameAvailability(ctx, id, payload)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `PoolsClient.CreateOrUpdate`
 
 ```go

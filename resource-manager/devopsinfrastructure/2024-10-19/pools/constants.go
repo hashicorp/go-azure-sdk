@@ -9,6 +9,47 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+type AvailabilityStatus string
+
+const (
+	AvailabilityStatusAvailable   AvailabilityStatus = "Available"
+	AvailabilityStatusUnavailable AvailabilityStatus = "Unavailable"
+)
+
+func PossibleValuesForAvailabilityStatus() []string {
+	return []string{
+		string(AvailabilityStatusAvailable),
+		string(AvailabilityStatusUnavailable),
+	}
+}
+
+func (s *AvailabilityStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAvailabilityStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseAvailabilityStatus(input string) (*AvailabilityStatus, error) {
+	vals := map[string]AvailabilityStatus{
+		"available":   AvailabilityStatusAvailable,
+		"unavailable": AvailabilityStatusUnavailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AvailabilityStatus(input)
+	return &out, nil
+}
+
 type AzureDevOpsPermissionType string
 
 const (
@@ -94,6 +135,85 @@ func parseCachingType(input string) (*CachingType, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := CachingType(input)
+	return &out, nil
+}
+
+type CheckNameAvailabilityReason string
+
+const (
+	CheckNameAvailabilityReasonAlreadyExists CheckNameAvailabilityReason = "AlreadyExists"
+	CheckNameAvailabilityReasonInvalid       CheckNameAvailabilityReason = "Invalid"
+)
+
+func PossibleValuesForCheckNameAvailabilityReason() []string {
+	return []string{
+		string(CheckNameAvailabilityReasonAlreadyExists),
+		string(CheckNameAvailabilityReasonInvalid),
+	}
+}
+
+func (s *CheckNameAvailabilityReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCheckNameAvailabilityReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseCheckNameAvailabilityReason(input string) (*CheckNameAvailabilityReason, error) {
+	vals := map[string]CheckNameAvailabilityReason{
+		"alreadyexists": CheckNameAvailabilityReasonAlreadyExists,
+		"invalid":       CheckNameAvailabilityReasonInvalid,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CheckNameAvailabilityReason(input)
+	return &out, nil
+}
+
+type DevOpsInfrastructureResourceType string
+
+const (
+	DevOpsInfrastructureResourceTypeMicrosoftPointDevOpsInfrastructurePools DevOpsInfrastructureResourceType = "Microsoft.DevOpsInfrastructure/pools"
+)
+
+func PossibleValuesForDevOpsInfrastructureResourceType() []string {
+	return []string{
+		string(DevOpsInfrastructureResourceTypeMicrosoftPointDevOpsInfrastructurePools),
+	}
+}
+
+func (s *DevOpsInfrastructureResourceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDevOpsInfrastructureResourceType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseDevOpsInfrastructureResourceType(input string) (*DevOpsInfrastructureResourceType, error) {
+	vals := map[string]DevOpsInfrastructureResourceType{
+		"microsoft.devopsinfrastructure/pools": DevOpsInfrastructureResourceTypeMicrosoftPointDevOpsInfrastructurePools,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DevOpsInfrastructureResourceType(input)
 	return &out, nil
 }
 
