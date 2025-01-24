@@ -13,6 +13,7 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"net/url"
 	"runtime"
 	"time"
 )
@@ -52,7 +53,12 @@ func (c *Client) GetMetaData(ctx context.Context) (*MetaData, error) {
 			MaxIdleConnsPerHost:   runtime.GOMAXPROCS(0) + 1,
 		},
 	}
-	uri := fmt.Sprintf("%s/metadata/endpoints?api-version=2022-09-01", c.endpoint)
+	uri, err := url.JoinPath(c.endpoint, "/metadata/endpoints")
+	if err != nil {
+		return nil, fmt.Errorf("parsing endpoint: %+v", err)
+	}
+	uri += "?api-version=2022-09-01"
+
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, uri, nil)
 	if err != nil {
 		return nil, fmt.Errorf("preparing request: %+v", err)

@@ -83,7 +83,11 @@ func (a *ClientSecretAuthorizer) Token(ctx context.Context, _ *http.Request) (*o
 		if a.conf.Environment.Authorization == nil {
 			return nil, fmt.Errorf("no `authorization` configuration was found for this environment")
 		}
-		tokenUrl = tokenEndpoint(*a.conf.Environment.Authorization, a.conf.TenantID)
+		var err error
+		tokenUrl, err = tokenEndpoint(*a.conf.Environment.Authorization, a.conf.TenantID)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return clientCredentialsToken(ctx, tokenUrl, &v)
@@ -118,7 +122,11 @@ func (a *ClientSecretAuthorizer) AuxiliaryTokens(ctx context.Context, _ *http.Re
 			if a.conf.Environment.Authorization == nil {
 				return nil, fmt.Errorf("no `authorization` configuration was found for this environment")
 			}
-			tokenUrl = tokenEndpoint(*a.conf.Environment.Authorization, tenantId)
+			var err error
+			tokenUrl, err = tokenEndpoint(*a.conf.Environment.Authorization, tenantId)
+			if err != nil {
+				return nil, err
+			}
 		}
 
 		token, err := clientCredentialsToken(ctx, tokenUrl, &v)
