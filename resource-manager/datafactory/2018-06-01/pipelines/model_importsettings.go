@@ -69,6 +69,14 @@ func UnmarshalImportSettingsImplementation(input []byte) (ImportSettings, error)
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "TeradataImportCommand") {
+		var out TeradataImportCommand
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TeradataImportCommand: %+v", err)
+		}
+		return out, nil
+	}
+
 	var parent BaseImportSettingsImpl
 	if err := json.Unmarshal(input, &parent); err != nil {
 		return nil, fmt.Errorf("unmarshaling into BaseImportSettingsImpl: %+v", err)
