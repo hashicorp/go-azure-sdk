@@ -411,6 +411,14 @@ func UnmarshalCopySinkImplementation(input []byte) (CopySink, error) {
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "TeradataSink") {
+		var out TeradataSink
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TeradataSink: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "WarehouseSink") {
 		var out WarehouseSink
 		if err := json.Unmarshal(input, &out); err != nil {
