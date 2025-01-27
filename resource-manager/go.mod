@@ -7,7 +7,7 @@ toolchain go1.22.7
 require (
 	github.com/Azure/go-autorest/autorest v0.11.29
 	github.com/hashicorp/go-azure-helpers v0.67.0
-	github.com/hashicorp/go-azure-sdk/sdk v0.20250115.1141151
+	github.com/hashicorp/go-azure-sdk/sdk v0.20250127.1133651
 )
 
 require (
