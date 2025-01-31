@@ -61,7 +61,7 @@ func (c *AzureADAccessTokenMockClient) Do(r *http.Request) (resp *http.Response,
 		return c.tokenFromInstanceMetadataService(resp)
 	}
 
-	return nil, fmt.Errorf("unexpected Host header, expected %q, received %q", u.Host, loginHost)
+	return nil, fmt.Errorf("unexpected Host header, expected %q, received %q", u.Host, r.Host)
 
 }
 
