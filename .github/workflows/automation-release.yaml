@@ -2,6 +2,8 @@ name: Conditionally Release the SDK
 on:
   pull_request:
     types: ['closed']
+    
+  workflow_dispatch:
 
 concurrency:
   group: 'release-${{ github.head_ref }}'
