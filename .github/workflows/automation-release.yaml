@@ -2,7 +2,7 @@ name: Conditionally Release the SDK
 on:
   pull_request:
     types: ['closed']
-    
+
   workflow_dispatch:
 
 concurrency:
@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   release-go-sdk:
-    if: ${{ github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'release-once-merged') }}
+    if: ${{ (github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'release-once-merged')) || github.event_name == 'workflow_dispatch' }}
     runs-on: custom-linux-medium
     permissions:
       contents: write
