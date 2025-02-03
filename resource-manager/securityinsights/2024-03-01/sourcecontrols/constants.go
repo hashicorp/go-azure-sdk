@@ -12,7 +12,7 @@ import (
 type ContentType string
 
 const (
-	ContentTypeAnalyticRule   ContentType = "AnalyticRule"
+	ContentTypeAnalyticsRule  ContentType = "AnalyticsRule"
 	ContentTypeAutomationRule ContentType = "AutomationRule"
 	ContentTypeHuntingQuery   ContentType = "HuntingQuery"
 	ContentTypeParser         ContentType = "Parser"
@@ -22,7 +22,7 @@ const (
 
 func PossibleValuesForContentType() []string {
 	return []string{
-		string(ContentTypeAnalyticRule),
+		string(ContentTypeAnalyticsRule),
 		string(ContentTypeAutomationRule),
 		string(ContentTypeHuntingQuery),
 		string(ContentTypeParser),
@@ -46,7 +46,7 @@ func (s *ContentType) UnmarshalJSON(bytes []byte) error {
 
 func parseContentType(input string) (*ContentType, error) {
 	vals := map[string]ContentType{
-		"analyticrule":   ContentTypeAnalyticRule,
+		"analyticsrule":  ContentTypeAnalyticsRule,
 		"automationrule": ContentTypeAutomationRule,
 		"huntingquery":   ContentTypeHuntingQuery,
 		"parser":         ContentTypeParser,

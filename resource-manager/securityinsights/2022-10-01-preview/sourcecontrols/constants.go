@@ -12,13 +12,13 @@ import (
 type ContentType string
 
 const (
-	ContentTypeAnalyticRule ContentType = "AnalyticRule"
-	ContentTypeWorkbook     ContentType = "Workbook"
+	ContentTypeAnalyticsRule ContentType = "AnalyticsRule"
+	ContentTypeWorkbook      ContentType = "Workbook"
 )
 
 func PossibleValuesForContentType() []string {
 	return []string{
-		string(ContentTypeAnalyticRule),
+		string(ContentTypeAnalyticsRule),
 		string(ContentTypeWorkbook),
 	}
 }
@@ -38,8 +38,8 @@ func (s *ContentType) UnmarshalJSON(bytes []byte) error {
 
 func parseContentType(input string) (*ContentType, error) {
 	vals := map[string]ContentType{
-		"analyticrule": ContentTypeAnalyticRule,
-		"workbook":     ContentTypeWorkbook,
+		"analyticsrule": ContentTypeAnalyticsRule,
+		"workbook":      ContentTypeWorkbook,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
