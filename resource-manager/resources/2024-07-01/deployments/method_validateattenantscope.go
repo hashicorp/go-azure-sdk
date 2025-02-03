@@ -18,7 +18,7 @@ type ValidateAtTenantScopeOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *DeploymentExtended
+	Model        *DeploymentValidateResult
 }
 
 // ValidateAtTenantScope ...
