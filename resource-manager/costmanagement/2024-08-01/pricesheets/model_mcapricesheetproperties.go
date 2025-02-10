@@ -21,6 +21,7 @@ type MCAPriceSheetProperties struct {
 	EffectiveStartDate *string  `json:"effectiveStartDate,omitempty"`
 	MarketPrice        *string  `json:"marketPrice,omitempty"`
 	MeterCategory      *string  `json:"meterCategory,omitempty"`
+	MeterId            *string  `json:"meterId,omitempty"`
 	MeterName          *string  `json:"meterName,omitempty"`
 	MeterRegion        *string  `json:"meterRegion,omitempty"`
 	MeterSubCategory   *string  `json:"meterSubCategory,omitempty"`
