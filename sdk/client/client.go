@@ -377,11 +377,14 @@ func (c *Client) ClearResponseMiddlewares() {
 
 // NewRequest configures a new *Request
 func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request, error) {
-	req := (&http.Request{}).WithContext(ctx)
-
-	req.Method = input.HttpMethod
-
-	req.Header = make(http.Header)
+	uri, err := url.JoinPath(c.BaseUri, input.Path)
+	if err != nil {
+		return nil, fmt.Errorf("parsing URI: %w", err)
+	}
+	req, err := http.NewRequestWithContext(ctx, input.HttpMethod, uri, nil)
+	if err != nil {
+		return nil, err
+	}
 
 	if input.ContentType != "" {
 		req.Header.Add("Content-Type", input.ContentType)
@@ -393,15 +396,6 @@ func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request
 	if c.CorrelationId != "" {
 		req.Header.Add("X-Ms-Correlation-Request-Id", c.CorrelationId)
 	}
-
-	path := strings.TrimPrefix(input.Path, "/")
-	u, err := url.ParseRequestURI(fmt.Sprintf("%s/%s", c.BaseUri, path))
-	if err != nil {
-		return nil, err
-	}
-
-	req.Host = u.Host
-	req.URL = u
 
 	ret := Request{
 		Client:           c,
