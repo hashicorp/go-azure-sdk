@@ -10,7 +10,7 @@ type WebActivityTypeProperties struct {
 	Datasets              *[]DatasetReference          `json:"datasets,omitempty"`
 	DisableCertValidation *bool                        `json:"disableCertValidation,omitempty"`
 	HTTPRequestTimeout    *string                      `json:"httpRequestTimeout,omitempty"`
-	Headers               *map[string]string           `json:"headers,omitempty"`
+	Headers               *map[string]interface{}      `json:"headers,omitempty"`
 	LinkedServices        *[]LinkedServiceReference    `json:"linkedServices,omitempty"`
 	Method                WebActivityMethod            `json:"method"`
 	TurnOffAsync          *bool                        `json:"turnOffAsync,omitempty"`
