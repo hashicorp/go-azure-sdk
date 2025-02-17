@@ -11,8 +11,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-04-01/appserviceplans"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-04-01/certificateordersdiagnostics"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-04-01/certificates"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-04-01/containerapps"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-04-01/containerappsrevisions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-04-01/deletedwebapps"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-04-01/diagnostics"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-04-01/domains"
@@ -41,8 +39,6 @@ type Client struct {
 	AppServicePlans              *appserviceplans.AppServicePlansClient
 	CertificateOrdersDiagnostics *certificateordersdiagnostics.CertificateOrdersDiagnosticsClient
 	Certificates                 *certificates.CertificatesClient
-	ContainerApps                *containerapps.ContainerAppsClient
-	ContainerAppsRevisions       *containerappsrevisions.ContainerAppsRevisionsClient
 	DeletedWebApps               *deletedwebapps.DeletedWebAppsClient
 	Diagnostics                  *diagnostics.DiagnosticsClient
 	Domains                      *domains.DomainsClient
@@ -93,18 +89,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building Certificates client: %+v", err)
 	}
 	configureFunc(certificatesClient.Client)
-
-	containerAppsClient, err := containerapps.NewContainerAppsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ContainerApps client: %+v", err)
-	}
-	configureFunc(containerAppsClient.Client)
-
-	containerAppsRevisionsClient, err := containerappsrevisions.NewContainerAppsRevisionsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ContainerAppsRevisions client: %+v", err)
-	}
-	configureFunc(containerAppsRevisionsClient.Client)
 
 	deletedWebAppsClient, err := deletedwebapps.NewDeletedWebAppsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -220,8 +204,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		AppServicePlans:              appServicePlansClient,
 		CertificateOrdersDiagnostics: certificateOrdersDiagnosticsClient,
 		Certificates:                 certificatesClient,
-		ContainerApps:                containerAppsClient,
-		ContainerAppsRevisions:       containerAppsRevisionsClient,
 		DeletedWebApps:               deletedWebAppsClient,
 		Diagnostics:                  diagnosticsClient,
 		Domains:                      domainsClient,
