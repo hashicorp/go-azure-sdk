@@ -276,7 +276,11 @@ func (a *ClientAssertionAuthorizer) Token(ctx context.Context, _ *http.Request) 
 		if a.conf.Environment.Authorization == nil {
 			return nil, fmt.Errorf("no `authorization` configuration was found for this environment")
 		}
-		tokenUrl = tokenEndpoint(*a.conf.Environment.Authorization, a.conf.TenantID)
+		var err error
+		tokenUrl, err = tokenEndpoint(*a.conf.Environment.Authorization, a.conf.TenantID)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return a.token(ctx, tokenUrl)
@@ -300,7 +304,11 @@ func (a *ClientAssertionAuthorizer) AuxiliaryTokens(ctx context.Context, _ *http
 			if a.conf.Environment.Authorization == nil {
 				return nil, fmt.Errorf("no `authorization` configuration was found for this environment")
 			}
-			tokenUrl = tokenEndpoint(*a.conf.Environment.Authorization, tenantId)
+			var err error
+			tokenUrl, err = tokenEndpoint(*a.conf.Environment.Authorization, tenantId)
+			if err != nil {
+				return tokens, err
+			}
 		}
 
 		token, err := a.token(ctx, tokenUrl)
@@ -374,9 +382,13 @@ func clientCredentialsToken(ctx context.Context, endpoint string, params *url.Va
 	return token, nil
 }
 
-func tokenEndpoint(endpoint environments.Authorization, tenant string) string {
+func tokenEndpoint(endpoint environments.Authorization, tenant string) (string, error) {
 	if tenant == "" {
 		tenant = "common"
 	}
-	return fmt.Sprintf("%s/%s/oauth2/v2.0/token", endpoint.LoginEndpoint, tenant)
+	uri, err := url.JoinPath(endpoint.LoginEndpoint, tenant, "oauth2/v2.0/token")
+	if err != nil {
+		return "", fmt.Errorf("parsing loginEndpoint: %w", err)
+	}
+	return uri, nil
 }
