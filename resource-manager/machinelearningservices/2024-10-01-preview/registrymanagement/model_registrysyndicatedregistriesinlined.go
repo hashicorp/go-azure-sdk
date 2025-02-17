@@ -4,6 +4,5 @@ package registrymanagement
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RegistrySyndicatedRegistriesInlined struct {
-	SyndicatedRegistry     *SyndicatedRegistry `json:"syndicatedRegistry,omitempty"`
-	SyndicatedRegistryGuid *string             `json:"syndicatedRegistryGuid,omitempty"`
+	RegistryId *string `json:"registryId,omitempty"`
 }

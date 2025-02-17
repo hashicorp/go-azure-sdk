@@ -18,6 +18,7 @@ type AccountsGetChangeKeyVaultInformationOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
+	Model        *GetKeyVaultStatusResponse
 }
 
 // AccountsGetChangeKeyVaultInformation ...
@@ -26,6 +27,7 @@ func (c NetAppAccountsClient) AccountsGetChangeKeyVaultInformation(ctx context.C
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
+			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
 		Path:       fmt.Sprintf("%s/getKeyVaultStatus", id.ID()),
