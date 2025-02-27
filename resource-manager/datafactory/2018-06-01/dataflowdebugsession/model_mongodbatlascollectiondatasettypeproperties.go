@@ -4,5 +4,5 @@ package dataflowdebugsession
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MongoDbAtlasCollectionDatasetTypeProperties struct {
-	Collection string `json:"collection"`
+	Collection interface{} `json:"collection"`
 }

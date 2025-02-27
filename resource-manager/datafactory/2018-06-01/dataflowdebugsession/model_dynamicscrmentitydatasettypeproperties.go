@@ -4,5 +4,5 @@ package dataflowdebugsession
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DynamicsCrmEntityDatasetTypeProperties struct {
-	EntityName *string `json:"entityName,omitempty"`
+	EntityName *interface{} `json:"entityName,omitempty"`
 }

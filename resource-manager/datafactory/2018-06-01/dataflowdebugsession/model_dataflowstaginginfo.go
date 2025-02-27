@@ -9,15 +9,15 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataFlowStagingInfo struct {
-	FolderPath    *string   `json:"folderPath,omitempty"`
-	LinkedService Reference `json:"linkedService"`
+	FolderPath    *interface{} `json:"folderPath,omitempty"`
+	LinkedService Reference    `json:"linkedService"`
 }
 
 var _ json.Unmarshaler = &DataFlowStagingInfo{}
 
 func (s *DataFlowStagingInfo) UnmarshalJSON(bytes []byte) error {
 	var decoded struct {
-		FolderPath *string `json:"folderPath,omitempty"`
+		FolderPath *interface{} `json:"folderPath,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
