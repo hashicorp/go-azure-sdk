@@ -12,7 +12,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TumblingWindowTriggerTypeProperties struct {
-	Delay          *string                 `json:"delay,omitempty"`
+	Delay          *interface{}            `json:"delay,omitempty"`
 	DependsOn      *[]DependencyReference  `json:"dependsOn,omitempty"`
 	EndTime        *string                 `json:"endTime,omitempty"`
 	Frequency      TumblingWindowFrequency `json:"frequency"`
@@ -47,7 +47,7 @@ var _ json.Unmarshaler = &TumblingWindowTriggerTypeProperties{}
 
 func (s *TumblingWindowTriggerTypeProperties) UnmarshalJSON(bytes []byte) error {
 	var decoded struct {
-		Delay          *string                 `json:"delay,omitempty"`
+		Delay          *interface{}            `json:"delay,omitempty"`
 		EndTime        *string                 `json:"endTime,omitempty"`
 		Frequency      TumblingWindowFrequency `json:"frequency"`
 		Interval       int64                   `json:"interval"`

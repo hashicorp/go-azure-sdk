@@ -4,5 +4,5 @@ package dataflowdebugsession
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureDataExplorerDatasetTypeProperties struct {
-	Table *string `json:"table,omitempty"`
+	Table *interface{} `json:"table,omitempty"`
 }
