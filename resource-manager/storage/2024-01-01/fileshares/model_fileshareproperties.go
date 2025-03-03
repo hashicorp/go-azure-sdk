@@ -74,42 +74,6 @@ func (o *FileShareProperties) SetLastModifiedTimeAsTime(input time.Time) {
 	o.LastModifiedTime = &formatted
 }
 
-func (o *FileShareProperties) GetNextAllowedProvisionedBandwidthDowngradeTimeAsTime() (*time.Time, error) {
-	if o.NextAllowedProvisionedBandwidthDowngradeTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.NextAllowedProvisionedBandwidthDowngradeTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *FileShareProperties) SetNextAllowedProvisionedBandwidthDowngradeTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.NextAllowedProvisionedBandwidthDowngradeTime = &formatted
-}
-
-func (o *FileShareProperties) GetNextAllowedProvisionedIopsDowngradeTimeAsTime() (*time.Time, error) {
-	if o.NextAllowedProvisionedIopsDowngradeTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.NextAllowedProvisionedIopsDowngradeTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *FileShareProperties) SetNextAllowedProvisionedIopsDowngradeTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.NextAllowedProvisionedIopsDowngradeTime = &formatted
-}
-
-func (o *FileShareProperties) GetNextAllowedQuotaDowngradeTimeAsTime() (*time.Time, error) {
-	if o.NextAllowedQuotaDowngradeTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.NextAllowedQuotaDowngradeTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *FileShareProperties) SetNextAllowedQuotaDowngradeTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.NextAllowedQuotaDowngradeTime = &formatted
-}
-
 func (o *FileShareProperties) GetSnapshotTimeAsTime() (*time.Time, error) {
 	if o.SnapshotTime == nil {
 		return nil, nil

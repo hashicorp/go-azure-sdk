@@ -1,0 +1,98 @@
+package proxy
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NameUnavailableReason string
+
+const (
+	NameUnavailableReasonAlreadyExists NameUnavailableReason = "AlreadyExists"
+	NameUnavailableReasonInvalid       NameUnavailableReason = "Invalid"
+)
+
+func PossibleValuesForNameUnavailableReason() []string {
+	return []string{
+		string(NameUnavailableReasonAlreadyExists),
+		string(NameUnavailableReasonInvalid),
+	}
+}
+
+func (s *NameUnavailableReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNameUnavailableReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseNameUnavailableReason(input string) (*NameUnavailableReason, error) {
+	vals := map[string]NameUnavailableReason{
+		"alreadyexists": NameUnavailableReasonAlreadyExists,
+		"invalid":       NameUnavailableReasonInvalid,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NameUnavailableReason(input)
+	return &out, nil
+}
+
+type SkuTier string
+
+const (
+	SkuTierBasic    SkuTier = "Basic"
+	SkuTierFree     SkuTier = "Free"
+	SkuTierPremium  SkuTier = "Premium"
+	SkuTierStandard SkuTier = "Standard"
+)
+
+func PossibleValuesForSkuTier() []string {
+	return []string{
+		string(SkuTierBasic),
+		string(SkuTierFree),
+		string(SkuTierPremium),
+		string(SkuTierStandard),
+	}
+}
+
+func (s *SkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseSkuTier(input string) (*SkuTier, error) {
+	vals := map[string]SkuTier{
+		"basic":    SkuTierBasic,
+		"free":     SkuTierFree,
+		"premium":  SkuTierPremium,
+		"standard": SkuTierStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuTier(input)
+	return &out, nil
+}
