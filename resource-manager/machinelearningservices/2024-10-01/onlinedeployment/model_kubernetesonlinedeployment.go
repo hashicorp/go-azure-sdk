@@ -32,6 +32,7 @@ type KubernetesOnlineDeployment struct {
 	ReadinessProbe            *ProbeSettings                 `json:"readinessProbe,omitempty"`
 	RequestSettings           *OnlineRequestSettings         `json:"requestSettings,omitempty"`
 	ScaleSettings             OnlineScaleSettings            `json:"scaleSettings"`
+	StartupProbe              *ProbeSettings                 `json:"startupProbe,omitempty"`
 }
 
 func (s KubernetesOnlineDeployment) OnlineDeployment() BaseOnlineDeploymentImpl {
@@ -53,6 +54,7 @@ func (s KubernetesOnlineDeployment) OnlineDeployment() BaseOnlineDeploymentImpl 
 		ReadinessProbe:            s.ReadinessProbe,
 		RequestSettings:           s.RequestSettings,
 		ScaleSettings:             s.ScaleSettings,
+		StartupProbe:              s.StartupProbe,
 	}
 }
 
@@ -102,6 +104,7 @@ func (s *KubernetesOnlineDeployment) UnmarshalJSON(bytes []byte) error {
 		ProvisioningState             *DeploymentProvisioningState   `json:"provisioningState,omitempty"`
 		ReadinessProbe                *ProbeSettings                 `json:"readinessProbe,omitempty"`
 		RequestSettings               *OnlineRequestSettings         `json:"requestSettings,omitempty"`
+		StartupProbe                  *ProbeSettings                 `json:"startupProbe,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
@@ -124,6 +127,7 @@ func (s *KubernetesOnlineDeployment) UnmarshalJSON(bytes []byte) error {
 	s.ProvisioningState = decoded.ProvisioningState
 	s.ReadinessProbe = decoded.ReadinessProbe
 	s.RequestSettings = decoded.RequestSettings
+	s.StartupProbe = decoded.StartupProbe
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
