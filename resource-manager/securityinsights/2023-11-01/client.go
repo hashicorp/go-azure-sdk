@@ -23,10 +23,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/incidentrelations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/incidents"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/metadata"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/repositories"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/securitymlanalyticssettings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/sentinelonboardingstates"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/sourcecontrols"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/threatintelligence"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/watchlistitems"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-11-01/watchlists"
@@ -52,10 +50,8 @@ type Client struct {
 	IncidentRelations           *incidentrelations.IncidentRelationsClient
 	Incidents                   *incidents.IncidentsClient
 	Metadata                    *metadata.MetadataClient
-	Repositories                *repositories.RepositoriesClient
 	SecurityMLAnalyticsSettings *securitymlanalyticssettings.SecurityMLAnalyticsSettingsClient
 	SentinelOnboardingStates    *sentinelonboardingstates.SentinelOnboardingStatesClient
-	SourceControls              *sourcecontrols.SourceControlsClient
 	ThreatIntelligence          *threatintelligence.ThreatIntelligenceClient
 	WatchlistItems              *watchlistitems.WatchlistItemsClient
 	Watchlists                  *watchlists.WatchlistsClient
@@ -164,12 +160,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(metadataClient.Client)
 
-	repositoriesClient, err := repositories.NewRepositoriesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Repositories client: %+v", err)
-	}
-	configureFunc(repositoriesClient.Client)
-
 	securityMLAnalyticsSettingsClient, err := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SecurityMLAnalyticsSettings client: %+v", err)
@@ -181,12 +171,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building SentinelOnboardingStates client: %+v", err)
 	}
 	configureFunc(sentinelOnboardingStatesClient.Client)
-
-	sourceControlsClient, err := sourcecontrols.NewSourceControlsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building SourceControls client: %+v", err)
-	}
-	configureFunc(sourceControlsClient.Client)
 
 	threatIntelligenceClient, err := threatintelligence.NewThreatIntelligenceClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -224,10 +208,8 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		IncidentRelations:           incidentRelationsClient,
 		Incidents:                   incidentsClient,
 		Metadata:                    metadataClient,
-		Repositories:                repositoriesClient,
 		SecurityMLAnalyticsSettings: securityMLAnalyticsSettingsClient,
 		SentinelOnboardingStates:    sentinelOnboardingStatesClient,
-		SourceControls:              sourceControlsClient,
 		ThreatIntelligence:          threatIntelligenceClient,
 		WatchlistItems:              watchlistItemsClient,
 		Watchlists:                  watchlistsClient,
