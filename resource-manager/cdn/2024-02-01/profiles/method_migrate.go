@@ -31,7 +31,7 @@ func (c ProfilesClient) Migrate(ctx context.Context, id commonids.ResourceGroupI
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CDN/migrate", id.ID()),
+		Path:       fmt.Sprintf("%s/providers/Microsoft.Cdn/migrate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

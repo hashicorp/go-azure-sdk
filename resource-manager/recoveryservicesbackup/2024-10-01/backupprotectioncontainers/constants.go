@@ -159,6 +159,7 @@ type OperationType string
 const (
 	OperationTypeInvalid    OperationType = "Invalid"
 	OperationTypeRegister   OperationType = "Register"
+	OperationTypeRehydrate  OperationType = "Rehydrate"
 	OperationTypeReregister OperationType = "Reregister"
 )
 
@@ -166,6 +167,7 @@ func PossibleValuesForOperationType() []string {
 	return []string{
 		string(OperationTypeInvalid),
 		string(OperationTypeRegister),
+		string(OperationTypeRehydrate),
 		string(OperationTypeReregister),
 	}
 }
@@ -174,6 +176,7 @@ func parseOperationType(input string) (*OperationType, error) {
 	vals := map[string]OperationType{
 		"invalid":    OperationTypeInvalid,
 		"register":   OperationTypeRegister,
+		"rehydrate":  OperationTypeRehydrate,
 		"reregister": OperationTypeReregister,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {

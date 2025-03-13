@@ -46,13 +46,15 @@ func NewConnection(t *testing.T) *Connection {
 			ClientCertificatePath:                      ClientCertificatePath,
 			ClientCertificatePassword:                  ClientCertPassword,
 			ClientSecret:                               ClientSecret,
-			GitHubOIDCTokenRequestURL:                  GitHubTokenURL,
-			GitHubOIDCTokenRequestToken:                GitHubToken,
+			OIDCTokenRequestURL:                        OIDCRequestURL,
+			OIDCTokenRequestToken:                      OIDCRequestToken,
 			OIDCAssertionToken:                         IdToken,
+			ADOPipelineServiceConnectionID:             ADOServiceConnectionId,
 			CustomManagedIdentityEndpoint:              CustomManagedIdentityEndpoint,
 			EnableAuthenticatingUsingClientCertificate: true,
 			EnableAuthenticatingUsingClientSecret:      true,
 			EnableAuthenticationUsingGitHubOIDC:        true,
+			EnableAuthenticationUsingADOPipelineOIDC:   true,
 		},
 	}
 }

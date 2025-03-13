@@ -45,7 +45,7 @@ func (c ProfilesClient) ListByResourceGroup(ctx context.Context, id commonids.Re
 		},
 		HttpMethod: http.MethodGet,
 		Pager:      &ListByResourceGroupCustomPager{},
-		Path:       fmt.Sprintf("%s/providers/Microsoft.CDN/profiles", id.ID()),
+		Path:       fmt.Sprintf("%s/providers/Microsoft.Cdn/profiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

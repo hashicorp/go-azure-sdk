@@ -23,17 +23,18 @@ func TestNewAuthorizerFromCredentials(t *testing.T) {
 			"00000000-2222-0000-0000-000000000000",
 			"00000000-3333-0000-0000-000000000000",
 		},
-		ClientCertificateData:         test.Base64DecodeCertificate(t, dummyClientCertificate),
-		ClientCertificatePassword:     "certpassword",
-		ClientCertificatePath:         "/path/to/cert",
-		ClientID:                      "11111111-0000-0000-0000-000000000000",
-		ClientSecret:                  "supersecret",
-		CustomManagedIdentityEndpoint: "https://endpoint",
-		Environment:                   *env,
-		GitHubOIDCTokenRequestToken:   "githubtoken",
-		GitHubOIDCTokenRequestURL:     "https://githubtokenendpoint",
-		OIDCAssertionToken:            "idtokenblurh",
-		TenantID:                      "00000000-1111-0000-0000-000000000000",
+		ClientCertificateData:          test.Base64DecodeCertificate(t, dummyClientCertificate),
+		ClientCertificatePassword:      "certpassword",
+		ClientCertificatePath:          "/path/to/cert",
+		ClientID:                       "11111111-0000-0000-0000-000000000000",
+		ClientSecret:                   "supersecret",
+		CustomManagedIdentityEndpoint:  "https://endpoint",
+		Environment:                    *env,
+		OIDCTokenRequestToken:          "githubtoken",
+		OIDCTokenRequestURL:            "https://githubtokenendpoint",
+		OIDCAssertionToken:             "idtokenblurh",
+		ADOPipelineServiceConnectionID: "my-sc",
+		TenantID:                       "00000000-1111-0000-0000-000000000000",
 	}
 
 	testCases := []struct {
@@ -124,6 +125,26 @@ func TestNewAuthorizerFromCredentials(t *testing.T) {
 		{
 			credentials: func() (ret auth.Credentials) {
 				ret = credentials
+				ret.EnableAuthenticationUsingADOPipelineOIDC = true
+				return
+			},
+			check: func(a auth.Authorizer) error {
+				b, ok := a.(*auth.CachedAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer was not an *auth.CachedAuthorizer")
+				}
+
+				_, ok = b.Source.(*auth.ADOPipelineOIDCAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer source was not an *auth.ADOPipelineOIDCAuthorizer")
+				}
+
+				return nil
+			},
+		},
+		{
+			credentials: func() (ret auth.Credentials) {
+				ret = credentials
 				ret.EnableAuthenticationUsingOIDC = true
 				return
 			},
@@ -182,18 +203,19 @@ func TestAccNewAuthorizerFromCredentials(t *testing.T) {
 	}
 
 	credentials := auth.Credentials{
-		AuxiliaryTenantIDs:            test.AuxiliaryTenantIds,
-		ClientCertificateData:         test.Base64DecodeCertificate(t, test.ClientCertificate),
-		ClientCertificatePassword:     test.ClientCertPassword,
-		ClientCertificatePath:         test.ClientCertificatePath,
-		ClientID:                      test.ClientId,
-		ClientSecret:                  test.ClientSecret,
-		CustomManagedIdentityEndpoint: test.CustomManagedIdentityEndpoint,
-		Environment:                   *env,
-		GitHubOIDCTokenRequestToken:   test.GitHubToken,
-		GitHubOIDCTokenRequestURL:     test.GitHubTokenURL,
-		OIDCAssertionToken:            test.IdToken,
-		TenantID:                      test.TenantId,
+		AuxiliaryTenantIDs:             test.AuxiliaryTenantIds,
+		ClientCertificateData:          test.Base64DecodeCertificate(t, test.ClientCertificate),
+		ClientCertificatePassword:      test.ClientCertPassword,
+		ClientCertificatePath:          test.ClientCertificatePath,
+		ClientID:                       test.ClientId,
+		ClientSecret:                   test.ClientSecret,
+		CustomManagedIdentityEndpoint:  test.CustomManagedIdentityEndpoint,
+		Environment:                    *env,
+		OIDCTokenRequestToken:          test.OIDCRequestToken,
+		OIDCTokenRequestURL:            test.OIDCRequestURL,
+		OIDCAssertionToken:             test.IdToken,
+		ADOPipelineServiceConnectionID: test.ADOServiceConnectionId,
+		TenantID:                       test.TenantId,
 	}
 
 	testCases := []struct {

@@ -29,7 +29,7 @@ func TestNewCdnWebApplicationFirewallPolicyID(t *testing.T) {
 
 func TestFormatCdnWebApplicationFirewallPolicyID(t *testing.T) {
 	actual := NewCdnWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cdnWebApplicationFirewallPolicyName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName"
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -73,17 +73,17 @@ func TestParseCdnWebApplicationFirewallPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/cdnWebApplicationFirewallPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/cdnWebApplicationFirewallPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName",
 			Expected: &CdnWebApplicationFirewallPolicyId{
 				SubscriptionId:                      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                   "example-resource-group",
@@ -92,7 +92,7 @@ func TestParseCdnWebApplicationFirewallPolicyID(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName/extra",
 			Error: true,
 		},
 	}
@@ -189,7 +189,7 @@ func TestParseCdnWebApplicationFirewallPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn",
 			Error: true,
 		},
 		{
@@ -199,7 +199,7 @@ func TestParseCdnWebApplicationFirewallPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/cdnWebApplicationFirewallPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/cdnWebApplicationFirewallPolicies",
 			Error: true,
 		},
 		{
@@ -209,7 +209,7 @@ func TestParseCdnWebApplicationFirewallPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName",
 			Expected: &CdnWebApplicationFirewallPolicyId{
 				SubscriptionId:                      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:                   "example-resource-group",
@@ -218,7 +218,7 @@ func TestParseCdnWebApplicationFirewallPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/cdnWebApplicationFirewallPolicies/cdnWebApplicationFirewallPolicyName/extra",
 			Error: true,
 		},
 		{

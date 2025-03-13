@@ -37,7 +37,7 @@ func TestNewOriginGroupOriginID(t *testing.T) {
 
 func TestFormatOriginGroupOriginID(t *testing.T) {
 	actual := NewOriginGroupOriginID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName", "originGroupName", "originName").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups/originGroupName/origins/originName"
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups/originGroupName/origins/originName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -81,37 +81,37 @@ func TestParseOriginGroupOriginID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups/originGroupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups/originGroupName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups/originGroupName/origins",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups/originGroupName/origins",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups/originGroupName/origins/originName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups/originGroupName/origins/originName",
 			Expected: &OriginGroupOriginId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
@@ -122,7 +122,7 @@ func TestParseOriginGroupOriginID(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups/originGroupName/origins/originName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups/originGroupName/origins/originName/extra",
 			Error: true,
 		},
 	}
@@ -227,7 +227,7 @@ func TestParseOriginGroupOriginIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn",
 			Error: true,
 		},
 		{
@@ -237,7 +237,7 @@ func TestParseOriginGroupOriginIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles",
 			Error: true,
 		},
 		{
@@ -247,7 +247,7 @@ func TestParseOriginGroupOriginIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName",
 			Error: true,
 		},
 		{
@@ -257,7 +257,7 @@ func TestParseOriginGroupOriginIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups",
 			Error: true,
 		},
 		{
@@ -267,7 +267,7 @@ func TestParseOriginGroupOriginIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups/originGroupName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups/originGroupName",
 			Error: true,
 		},
 		{
@@ -277,7 +277,7 @@ func TestParseOriginGroupOriginIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups/originGroupName/origins",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups/originGroupName/origins",
 			Error: true,
 		},
 		{
@@ -287,7 +287,7 @@ func TestParseOriginGroupOriginIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups/originGroupName/origins/originName",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups/originGroupName/origins/originName",
 			Expected: &OriginGroupOriginId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
@@ -298,7 +298,7 @@ func TestParseOriginGroupOriginIDInsensitively(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CDN/profiles/profileName/originGroups/originGroupName/origins/originName/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cdn/profiles/profileName/originGroups/originGroupName/origins/originName/extra",
 			Error: true,
 		},
 		{

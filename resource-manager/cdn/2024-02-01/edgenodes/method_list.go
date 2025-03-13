@@ -44,7 +44,7 @@ func (c EdgenodesClient) List(ctx context.Context) (result ListOperationResponse
 		},
 		HttpMethod: http.MethodGet,
 		Pager:      &ListCustomPager{},
-		Path:       "/providers/Microsoft.CDN/edgenodes",
+		Path:       "/providers/Microsoft.Cdn/edgenodes",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

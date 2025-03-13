@@ -107,7 +107,7 @@ func ValidateEndpointID(input interface{}, key string) (warnings []string, error
 
 // ID returns the formatted Endpoint ID
 func (id EndpointId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.CDN/profiles/%s/endpoints/%s"
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Cdn/profiles/%s/endpoints/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ProfileName, id.EndpointName)
 }
 
@@ -119,7 +119,7 @@ func (id EndpointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticMicrosoftCDN", "Microsoft.CDN", "Microsoft.CDN"),
+		resourceids.ResourceProviderSegment("staticMicrosoftCdn", "Microsoft.Cdn", "Microsoft.Cdn"),
 		resourceids.StaticSegment("staticProfiles", "profiles", "profiles"),
 		resourceids.UserSpecifiedSegment("profileName", "profileName"),
 		resourceids.StaticSegment("staticEndpoints", "endpoints", "endpoints"),

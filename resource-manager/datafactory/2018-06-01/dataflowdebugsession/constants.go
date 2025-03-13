@@ -686,6 +686,44 @@ func parseGoogleBigQueryV2AuthenticationType(input string) (*GoogleBigQueryV2Aut
 	return &out, nil
 }
 
+type GreenplumAuthenticationType string
+
+const (
+	GreenplumAuthenticationTypeBasic GreenplumAuthenticationType = "Basic"
+)
+
+func PossibleValuesForGreenplumAuthenticationType() []string {
+	return []string{
+		string(GreenplumAuthenticationTypeBasic),
+	}
+}
+
+func (s *GreenplumAuthenticationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGreenplumAuthenticationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseGreenplumAuthenticationType(input string) (*GreenplumAuthenticationType, error) {
+	vals := map[string]GreenplumAuthenticationType{
+		"basic": GreenplumAuthenticationTypeBasic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GreenplumAuthenticationType(input)
+	return &out, nil
+}
+
 type HBaseAuthenticationType string
 
 const (
@@ -1399,6 +1437,44 @@ func parseODataAuthenticationType(input string) (*ODataAuthenticationType, error
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := ODataAuthenticationType(input)
+	return &out, nil
+}
+
+type OracleAuthenticationType string
+
+const (
+	OracleAuthenticationTypeBasic OracleAuthenticationType = "Basic"
+)
+
+func PossibleValuesForOracleAuthenticationType() []string {
+	return []string{
+		string(OracleAuthenticationTypeBasic),
+	}
+}
+
+func (s *OracleAuthenticationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOracleAuthenticationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseOracleAuthenticationType(input string) (*OracleAuthenticationType, error) {
+	vals := map[string]OracleAuthenticationType{
+		"basic": OracleAuthenticationTypeBasic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OracleAuthenticationType(input)
 	return &out, nil
 }
 
@@ -2147,6 +2223,47 @@ func parseTeradataAuthenticationType(input string) (*TeradataAuthenticationType,
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := TeradataAuthenticationType(input)
+	return &out, nil
+}
+
+type ValueType string
+
+const (
+	ValueTypeActual  ValueType = "actual"
+	ValueTypeDisplay ValueType = "display"
+)
+
+func PossibleValuesForValueType() []string {
+	return []string{
+		string(ValueTypeActual),
+		string(ValueTypeDisplay),
+	}
+}
+
+func (s *ValueType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseValueType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseValueType(input string) (*ValueType, error) {
+	vals := map[string]ValueType{
+		"actual":  ValueTypeActual,
+		"display": ValueTypeDisplay,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ValueType(input)
 	return &out, nil
 }
 

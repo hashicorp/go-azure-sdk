@@ -4,5 +4,6 @@ package registeredserverresource
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RegisteredServerUpdateProperties struct {
-	Identity *bool `json:"identity,omitempty"`
+	ApplicationId *string `json:"applicationId,omitempty"`
+	Identity      *bool   `json:"identity,omitempty"`
 }

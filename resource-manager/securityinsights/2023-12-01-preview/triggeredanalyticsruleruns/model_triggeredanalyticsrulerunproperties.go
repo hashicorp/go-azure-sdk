@@ -1,0 +1,27 @@
+package triggeredanalyticsruleruns
+
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TriggeredAnalyticsRuleRunProperties struct {
+	ExecutionTimeUtc            string                  `json:"executionTimeUtc"`
+	ProvisioningState           ProvisioningState       `json:"provisioningState"`
+	RuleId                      string                  `json:"ruleId"`
+	RuleRunAdditionalData       *map[string]interface{} `json:"ruleRunAdditionalData,omitempty"`
+	TriggeredAnalyticsRuleRunId string                  `json:"triggeredAnalyticsRuleRunId"`
+}
+
+func (o *TriggeredAnalyticsRuleRunProperties) GetExecutionTimeUtcAsTime() (*time.Time, error) {
+	return dates.ParseAsFormat(&o.ExecutionTimeUtc, "2006-01-02T15:04:05Z07:00")
+}
+
+func (o *TriggeredAnalyticsRuleRunProperties) SetExecutionTimeUtcAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.ExecutionTimeUtc = formatted
+}

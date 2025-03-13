@@ -16,13 +16,13 @@ type CopySink interface {
 var _ CopySink = BaseCopySinkImpl{}
 
 type BaseCopySinkImpl struct {
-	DisableMetricsCollection *bool   `json:"disableMetricsCollection,omitempty"`
-	MaxConcurrentConnections *int64  `json:"maxConcurrentConnections,omitempty"`
-	SinkRetryCount           *int64  `json:"sinkRetryCount,omitempty"`
-	SinkRetryWait            *string `json:"sinkRetryWait,omitempty"`
-	Type                     string  `json:"type"`
-	WriteBatchSize           *int64  `json:"writeBatchSize,omitempty"`
-	WriteBatchTimeout        *string `json:"writeBatchTimeout,omitempty"`
+	DisableMetricsCollection *bool        `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64       `json:"maxConcurrentConnections,omitempty"`
+	SinkRetryCount           *int64       `json:"sinkRetryCount,omitempty"`
+	SinkRetryWait            *interface{} `json:"sinkRetryWait,omitempty"`
+	Type                     string       `json:"type"`
+	WriteBatchSize           *int64       `json:"writeBatchSize,omitempty"`
+	WriteBatchTimeout        *interface{} `json:"writeBatchTimeout,omitempty"`
 }
 
 func (s BaseCopySinkImpl) CopySink() BaseCopySinkImpl {
@@ -407,6 +407,14 @@ func UnmarshalCopySinkImplementation(input []byte) (CopySink, error) {
 		var out SqlSink
 		if err := json.Unmarshal(input, &out); err != nil {
 			return nil, fmt.Errorf("unmarshaling into SqlSink: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "TeradataSink") {
+		var out TeradataSink
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TeradataSink: %+v", err)
 		}
 		return out, nil
 	}
