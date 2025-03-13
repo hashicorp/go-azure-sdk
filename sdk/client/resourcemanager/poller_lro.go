@@ -190,11 +190,10 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		}
 
 		if result.Status == pollers.PollingStatusFailed {
-			lroError, parseError := parseErrorFromApiResponse(*result.HttpResponse.Response)
+			lroError, parseError := parseErrorFromApiResponse(result.HttpResponse.Response)
 			if parseError != nil {
 				return nil, parseError
 			}
-			result.HttpResponse.Body = io.NopCloser(bytes.NewReader(respBody))
 
 			err = pollers.PollingFailedError{
 				HttpResponse: result.HttpResponse,
@@ -203,11 +202,10 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		}
 
 		if result.Status == pollers.PollingStatusCancelled {
-			lroError, parseError := parseErrorFromApiResponse(*result.HttpResponse.Response)
+			lroError, parseError := parseErrorFromApiResponse(result.HttpResponse.Response)
 			if parseError != nil {
 				return nil, parseError
 			}
-			result.HttpResponse.Body = io.NopCloser(bytes.NewReader(respBody))
 
 			err = pollers.PollingCancelledError{
 				HttpResponse: result.HttpResponse,
