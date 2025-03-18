@@ -11,6 +11,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"github.com/hashicorp/go-retryablehttp"
 	"io"
 	"log"
 	"math"
@@ -26,7 +27,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/accept"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
-	"github.com/hashicorp/go-retryablehttp"
 )
 
 // RetryOn404ConsistencyFailureFunc can be used to retry a request when a 404 response is received
@@ -320,6 +320,10 @@ type Client struct {
 	ResponseMiddlewares *[]ResponseMiddleware
 }
 
+type rawDetailsError struct {
+	Message string `json:"message"`
+}
+
 // NewClient returns a new Client configured with sensible defaults
 func NewClient(baseUri string, serviceName, apiVersion string) *Client {
 	segments := []string{
@@ -558,6 +562,18 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 			switch {
 			case resp.OData != nil && resp.OData.Error != nil && resp.OData.Error.String() != "":
 				errText = fmt.Sprintf("error: %s", resp.OData.Error)
+				if rawDetails := resp.OData.Error.RawDetails; rawDetails != nil {
+					var rawDetailsErr []rawDetailsError
+					if err = json.Unmarshal(*rawDetails, &rawDetailsErr); err == nil {
+						messages := []string{}
+						for _, v := range rawDetailsErr {
+							if v.Message != "" {
+								messages = append(messages, v.Message)
+							}
+						}
+						errText += strings.Join(messages, "\n")
+					}
+				}
 
 			default:
 				defer resp.Body.Close()
