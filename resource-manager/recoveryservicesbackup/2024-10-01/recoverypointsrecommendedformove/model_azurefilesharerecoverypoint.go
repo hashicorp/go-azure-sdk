@@ -11,11 +11,12 @@ import (
 var _ RecoveryPoint = AzureFileShareRecoveryPoint{}
 
 type AzureFileShareRecoveryPoint struct {
-	FileShareSnapshotUri    *string                  `json:"fileShareSnapshotUri,omitempty"`
-	RecoveryPointProperties *RecoveryPointProperties `json:"recoveryPointProperties,omitempty"`
-	RecoveryPointSizeInGB   *int64                   `json:"recoveryPointSizeInGB,omitempty"`
-	RecoveryPointTime       *string                  `json:"recoveryPointTime,omitempty"`
-	RecoveryPointType       *string                  `json:"recoveryPointType,omitempty"`
+	FileShareSnapshotUri     *string                         `json:"fileShareSnapshotUri,omitempty"`
+	RecoveryPointProperties  *RecoveryPointProperties        `json:"recoveryPointProperties,omitempty"`
+	RecoveryPointSizeInGB    *int64                          `json:"recoveryPointSizeInGB,omitempty"`
+	RecoveryPointTierDetails *[]RecoveryPointTierInformation `json:"recoveryPointTierDetails,omitempty"`
+	RecoveryPointTime        *string                         `json:"recoveryPointTime,omitempty"`
+	RecoveryPointType        *string                         `json:"recoveryPointType,omitempty"`
 
 	// Fields inherited from RecoveryPoint
 
