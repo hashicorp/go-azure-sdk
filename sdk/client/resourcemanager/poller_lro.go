@@ -190,7 +190,7 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		}
 
 		if result.Status == pollers.PollingStatusFailed {
-			lroError, parseError := parseErrorFromApiResponse(*result.HttpResponse.Response)
+			lroError, parseError := parseErrorFromApiResponse(result.HttpResponse.Response)
 			if parseError != nil {
 				return nil, parseError
 			}
@@ -202,7 +202,7 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		}
 
 		if result.Status == pollers.PollingStatusCancelled {
-			lroError, parseError := parseErrorFromApiResponse(*result.HttpResponse.Response)
+			lroError, parseError := parseErrorFromApiResponse(result.HttpResponse.Response)
 			if parseError != nil {
 				return nil, parseError
 			}
