@@ -12,14 +12,14 @@ import (
 type SourceType string
 
 const (
-	SourceTypeLocalFile     SourceType = "Local file"
-	SourceTypeRemoteStorage SourceType = "Remote storage"
+	SourceTypeAzureStorage SourceType = "AzureStorage"
+	SourceTypeLocal        SourceType = "Local"
 )
 
 func PossibleValuesForSourceType() []string {
 	return []string{
-		string(SourceTypeLocalFile),
-		string(SourceTypeRemoteStorage),
+		string(SourceTypeAzureStorage),
+		string(SourceTypeLocal),
 	}
 }
 
@@ -38,8 +38,8 @@ func (s *SourceType) UnmarshalJSON(bytes []byte) error {
 
 func parseSourceType(input string) (*SourceType, error) {
 	vals := map[string]SourceType{
-		"local file":     SourceTypeLocalFile,
-		"remote storage": SourceTypeRemoteStorage,
+		"azurestorage": SourceTypeAzureStorage,
+		"local":        SourceTypeLocal,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

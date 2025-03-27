@@ -23,34 +23,6 @@ type ListCompleteResult struct {
 	Items              []Usage
 }
 
-type ListOperationOptions struct {
-	Filter *string
-}
-
-func DefaultListOperationOptions() ListOperationOptions {
-	return ListOperationOptions{}
-}
-
-func (o ListOperationOptions) ToHeaders() *client.Headers {
-	out := client.Headers{}
-
-	return &out
-}
-
-func (o ListOperationOptions) ToOData() *odata.Query {
-	out := odata.Query{}
-
-	return &out
-}
-
-func (o ListOperationOptions) ToQuery() *client.QueryParams {
-	out := client.QueryParams{}
-	if o.Filter != nil {
-		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
-	}
-	return &out
-}
-
 type ListCustomPager struct {
 	NextLink *odata.Link `json:"nextLink"`
 }
@@ -64,16 +36,15 @@ func (p *ListCustomPager) NextPageLink() *odata.Link {
 }
 
 // List ...
-func (c UsagesClient) List(ctx context.Context, id LocationId, options ListOperationOptions) (result ListOperationResponse, err error) {
+func (c UsagesClient) List(ctx context.Context, id LocationId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
-		OptionsObject: options,
-		Pager:         &ListCustomPager{},
-		Path:          fmt.Sprintf("%s/usages", id.ID()),
+		HttpMethod: http.MethodGet,
+		Pager:      &ListCustomPager{},
+		Path:       fmt.Sprintf("%s/usages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -104,15 +75,15 @@ func (c UsagesClient) List(ctx context.Context, id LocationId, options ListOpera
 }
 
 // ListComplete retrieves all the results into a single object
-func (c UsagesClient) ListComplete(ctx context.Context, id LocationId, options ListOperationOptions) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, options, UsageOperationPredicate{})
+func (c UsagesClient) ListComplete(ctx context.Context, id LocationId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, UsageOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c UsagesClient) ListCompleteMatchingPredicate(ctx context.Context, id LocationId, options ListOperationOptions, predicate UsageOperationPredicate) (result ListCompleteResult, err error) {
+func (c UsagesClient) ListCompleteMatchingPredicate(ctx context.Context, id LocationId, predicate UsageOperationPredicate) (result ListCompleteResult, err error) {
 	items := make([]Usage, 0)
 
-	resp, err := c.List(ctx, id, options)
+	resp, err := c.List(ctx, id)
 	if err != nil {
 		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)

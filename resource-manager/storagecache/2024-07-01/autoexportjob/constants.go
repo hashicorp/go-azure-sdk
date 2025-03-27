@@ -12,14 +12,14 @@ import (
 type AutoExportJobAdminStatus string
 
 const (
-	AutoExportJobAdminStatusActive AutoExportJobAdminStatus = "Active"
-	AutoExportJobAdminStatusCancel AutoExportJobAdminStatus = "Cancel"
+	AutoExportJobAdminStatusDisable AutoExportJobAdminStatus = "Disable"
+	AutoExportJobAdminStatusEnable  AutoExportJobAdminStatus = "Enable"
 )
 
 func PossibleValuesForAutoExportJobAdminStatus() []string {
 	return []string{
-		string(AutoExportJobAdminStatusActive),
-		string(AutoExportJobAdminStatusCancel),
+		string(AutoExportJobAdminStatusDisable),
+		string(AutoExportJobAdminStatusEnable),
 	}
 }
 
@@ -38,8 +38,8 @@ func (s *AutoExportJobAdminStatus) UnmarshalJSON(bytes []byte) error {
 
 func parseAutoExportJobAdminStatus(input string) (*AutoExportJobAdminStatus, error) {
 	vals := map[string]AutoExportJobAdminStatus{
-		"active": AutoExportJobAdminStatusActive,
-		"cancel": AutoExportJobAdminStatusCancel,
+		"disable": AutoExportJobAdminStatusDisable,
+		"enable":  AutoExportJobAdminStatusEnable,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

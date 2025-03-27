@@ -7,4 +7,5 @@ type InferenceContainerProperties struct {
 	LivenessRoute  *Route `json:"livenessRoute,omitempty"`
 	ReadinessRoute *Route `json:"readinessRoute,omitempty"`
 	ScoringRoute   *Route `json:"scoringRoute,omitempty"`
+	StartupRoute   *Route `json:"startupRoute,omitempty"`
 }
