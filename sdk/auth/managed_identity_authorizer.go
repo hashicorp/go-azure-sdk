@@ -11,6 +11,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"strconv"
 	"time"
 
@@ -137,6 +138,15 @@ type managedIdentityConfig struct {
 // clientId and objectId can be left blank when a single managed identity is available
 func newManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint string) (*managedIdentityConfig, error) {
 	endpoint := msiDefaultEndpoint
+
+	// If MSI_ENDPOINT and MSI_SECRET are present then we are running in Azure APP Service like environment.
+	// In this case, we need to use the MSI_ENDPOINT and newer version of API.
+	apiVersion := msiDefaultApiVersion
+	if os.Getenv("MSI_ENDPOINT") != "" && os.Getenv("MSI_SECRET") != "" {
+		endpoint = os.Getenv("MSI_ENDPOINT")
+		apiVersion = "2019-08-01"
+	}
+
 	if customManagedIdentityEndpoint != "" {
 		endpoint = customManagedIdentityEndpoint
 	}
@@ -144,7 +154,7 @@ func newManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint 
 	return &managedIdentityConfig{
 		ClientID:      clientId,
 		Resource:      resource,
-		MsiApiVersion: msiDefaultApiVersion,
+		MsiApiVersion: apiVersion,
 		MsiEndpoint:   endpoint,
 	}, nil
 }
@@ -162,9 +172,22 @@ func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
 	if err != nil {
 		return
 	}
-	req.Header = http.Header{
+
+	headers := http.Header{
 		"Metadata": []string{"true"},
 	}
+
+	// If IDENTITY_HEADER is set, we are running in Azure APP Service like environment.
+	// In this case, we need to pass identity header to http request. New version of API requires this header.
+	identityHeader := os.Getenv("IDENTITY_HEADER")
+	if identityHeader != "" {
+		headers = http.Header{
+			"Metadata":          []string{"true"},
+			"x-identity-header": []string{identityHeader},
+		}
+	}
+
+	req.Header = headers
 
 	var resp *http.Response
 	log.Printf("[DEBUG] Performing %s Request to %q", req.Method, url)
