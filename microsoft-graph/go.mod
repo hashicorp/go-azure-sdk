@@ -2,8 +2,6 @@ module github.com/hashicorp/go-azure-sdk/microsoft-graph
 
 go 1.22
 
-toolchain go1.22.7
-
 require github.com/hashicorp/go-azure-sdk/sdk v0.20250331.1124517
 
 require (
@@ -13,7 +11,7 @@ require (
 	github.com/hashicorp/go-retryablehttp v0.7.7 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/hashicorp/go-version v1.6.0 // indirect
-	golang.org/x/crypto v0.21.0 // indirect
+	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/net v0.23.0 // indirect
 	golang.org/x/oauth2 v0.16.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
