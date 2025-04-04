@@ -24,7 +24,7 @@ func TestParseErrorFromApiResponse_LongRunningOperation(t *testing.T) {
 		Message:      "The specified name is already in use.",
 		Status:       "Failed",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
@@ -33,6 +33,13 @@ func TestParseErrorFromApiResponse_LongRunningOperation(t *testing.T) {
 	}
 	if !reflect.DeepEqual(*actual, expected) {
 		t.Fatalf("expected and actual didn't match. Expected: %+v\n\n Actual: %+v", expected, actual)
+	}
+	b, err := io.ReadAll(input.Body)
+	if err != nil {
+		t.Fatalf("reading the response body after parsing: %v", err)
+	}
+	if !reflect.DeepEqual(string(b), body) {
+		t.Fatalf("expected and actual didn't match. Expected: %+v\n\n Actual: %+v", body, string(b))
 	}
 }
 
@@ -49,7 +56,7 @@ func TestParseErrorFromApiResponse_ResourceManagerType1(t *testing.T) {
 		Message:      "Cannot update the site 'func-tfbug-b78d100425' because it uses AlwaysOn feature which is not allowed in the target compute mode.",
 		Status:       "Unknown",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
@@ -74,7 +81,7 @@ func TestParseErrorFromApiResponse_ResourceManagerType2(t *testing.T) {
 		Message:      "Failed to start operation. Verify input and try operation again.\nFailed to start operation. Verify input and try operation again.\nPossible Causes: \"Invalid parameters were specified.\"\nRecommended Action: \"Verify the input and try again.\"",
 		Status:       "BadRequest",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
@@ -98,7 +105,7 @@ func TestParseErrorFromApiResponse_ResourceManagerType2Alt(t *testing.T) {
 		Message:      "The request is not valid.\nResource name is not valid. It must be between 3 and 26 characters and can only include alphanumeric characters and hyphens.",
 		Status:       "ValidationError",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
@@ -123,7 +130,7 @@ func TestParseErrorFromApiResponse_ResourceManagerType3(t *testing.T) {
 		Message:      "Outbound Trust/Untrust certificate can not be deleted from rule stack SUBSCRIPTION~XXXXXXXX-XXXX-XXXX-XXXXXXXXXXXX~RG~acctestRG-PAN-230725055238618023~STACK~testAcc-palrs-230725055238618023 as associated rule list(s) already has SSL outbound inspection set with status code BadRequest",
 		Status:       "Failed",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
@@ -147,7 +154,7 @@ func TestParseErrorFromApiResponse_EmptyResponseShouldOutputHttpResponseAnyway(t
 		Message:      "Couldn't parse Azure API Response into a friendly error - please see the original HTTP Response for more details (and file a bug so we can fix this!).",
 		Status:       "Unknown",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
@@ -172,7 +179,7 @@ func TestParseErrorFromApiResponse_UnexpectedHtmlShouldOutputHttpResponseAnyway(
 		Message:      "Couldn't parse Azure API Response into a friendly error - please see the original HTTP Response for more details (and file a bug so we can fix this!).",
 		Status:       "Unknown",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
@@ -197,7 +204,7 @@ func TestParseErrorFromApiResponse_UnexpectedLiteralStringShouldOutputHttpRespon
 		Message:      "Couldn't parse Azure API Response into a friendly error - please see the original HTTP Response for more details (and file a bug so we can fix this!).",
 		Status:       "Unknown",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
@@ -222,7 +229,7 @@ func TestParseErrorFromApiResponse_UnexpectedLiteralQuotedStringShouldOutputHttp
 		Message:      "Couldn't parse Azure API Response into a friendly error - please see the original HTTP Response for more details (and file a bug so we can fix this!).",
 		Status:       "Unknown",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
@@ -246,7 +253,7 @@ func TestParseErrorFromApiResponse_UnexpectedShouldOutputHttpResponseAnyway(t *t
 		Message:      "Couldn't parse Azure API Response into a friendly error - please see the original HTTP Response for more details (and file a bug so we can fix this!).",
 		Status:       "Unknown",
 	}
-	actual, err := parseErrorFromApiResponse(input)
+	actual, err := parseErrorFromApiResponse(&input)
 	if err != nil {
 		t.Fatalf("parsing error from api response: %+v", err)
 	}
