@@ -318,6 +318,9 @@ type Client struct {
 
 	// ResponseMiddlewares is a slice of functions that are called in order before a response is parsed and returned
 	ResponseMiddlewares *[]ResponseMiddleware
+
+	// apiVersion is the date-based API version in use by this Client
+	apiVersion string
 }
 
 // NewClient returns a new Client configured with sensible defaults
@@ -326,9 +329,11 @@ func NewClient(baseUri string, serviceName, apiVersion string) *Client {
 		"Go-http-Client/1.1",
 		fmt.Sprintf("%s/%s", serviceName, apiVersion),
 	}
+
 	return &Client{
-		BaseUri:   baseUri,
-		UserAgent: fmt.Sprintf("HashiCorp/go-azure-sdk (%s)", strings.Join(segments, " ")),
+		BaseUri:    baseUri,
+		UserAgent:  fmt.Sprintf("HashiCorp/go-azure-sdk (%s)", strings.Join(segments, " ")),
+		apiVersion: apiVersion,
 	}
 }
 
@@ -345,6 +350,10 @@ func (c *Client) SetUserAgent(userAgent string) {
 // GetUserAgent retrieves the configured user agent for the client
 func (c *Client) GetUserAgent() string {
 	return c.UserAgent
+}
+
+func (c *Client) GetAPIVersion() string {
+	return c.apiVersion
 }
 
 // AppendRequestMiddleware appends a request middleware function for the client
