@@ -50,6 +50,30 @@ if err := client.DeleteThenPoll(ctx, id, workspaces.DefaultDeleteOperationOption
 ```
 
 
+### Example Usage: `WorkspacesClient.Failback`
+
+```go
+ctx := context.TODO()
+id := workspaces.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName")
+
+if err := client.FailbackThenPoll(ctx, id); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `WorkspacesClient.Failover`
+
+```go
+ctx := context.TODO()
+id := workspaces.NewLocationWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationName", "workspaceName")
+
+if err := client.FailoverThenPoll(ctx, id); err != nil {
+	// handle the error
+}
+```
+
+
 ### Example Usage: `WorkspacesClient.GatewaysDelete`
 
 ```go
