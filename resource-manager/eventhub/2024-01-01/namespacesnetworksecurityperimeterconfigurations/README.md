@@ -46,3 +46,19 @@ if err := client.NetworkSecurityPerimeterConfigurationsCreateOrUpdateThenPoll(ct
 	// handle the error
 }
 ```
+
+
+### Example Usage: `NamespacesNetworkSecurityPerimeterConfigurationsClient.NetworkSecurityPerimeterConfigurationsresourceAssociationName`
+
+```go
+ctx := context.TODO()
+id := namespacesnetworksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "networkSecurityPerimeterConfigurationName")
+
+read, err := client.NetworkSecurityPerimeterConfigurationsresourceAssociationName(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
