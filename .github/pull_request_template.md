@@ -12,15 +12,6 @@
 If this is a breaking change for users please detail how it cannot be avoided and why it should be made in a minor version of the provider -->
 
 
-## Change Log
-
-Below please provide what should go into the changelog (if anything) conforming to the [Changelog Format documented here](../blob/main/contributing/topics/maintainer-changelog.md).
-
-<!-- Replace the changelog example below with your entry. One resource per line. -->
-
-* `azurerm_resource` - support for the `thing1` property [GH-00000]
-
-
 <!-- What type of PR is this? -->
 This is a (please select all that apply):
 
@@ -28,6 +19,10 @@ This is a (please select all that apply):
 - [ ] New Feature
 - [ ] Enhancement
 - [ ] Breaking Change
+
+## Related Issue(s)
+Fixes #0000
+
 
 <!-- heimdall_github_prtemplate:grc-pci_dss-2024-01-05 -->
 
