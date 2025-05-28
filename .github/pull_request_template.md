@@ -29,10 +29,6 @@ This is a (please select all that apply):
 - [ ] Enhancement
 - [ ] Breaking Change
 
-
-## Related Issue(s)
-Fixes #0000
-
 <!-- heimdall_github_prtemplate:grc-pci_dss-2024-01-05 -->
 
 ## Rollback Plan
