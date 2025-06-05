@@ -10,5 +10,6 @@ type Registry struct {
 	MlFlowRegistryUri                  *string                              `json:"mlFlowRegistryUri,omitempty"`
 	PublicNetworkAccess                *string                              `json:"publicNetworkAccess,omitempty"`
 	RegionDetails                      *[]RegistryRegionArmDetails          `json:"regionDetails,omitempty"`
+	RegistryId                         *string                              `json:"registryId,omitempty"`
 	RegistryPrivateEndpointConnections *[]RegistryPrivateEndpointConnection `json:"registryPrivateEndpointConnections,omitempty"`
 }
