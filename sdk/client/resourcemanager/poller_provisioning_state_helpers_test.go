@@ -79,7 +79,7 @@ func (e *provisioningStateEndpoint) endpoint(t *testing.T) func(w http.ResponseW
 		w.Header().Set("Content-Type", "application/json")
 		if err := json.NewEncoder(w).Encode(payload); err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
-			t.Fatalf(err.Error())
+			t.Fatal(err.Error())
 			return
 		}
 	}

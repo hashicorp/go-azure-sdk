@@ -40,7 +40,7 @@ func TestPollerProvisioningState_InProvisioningState_Immediate(t *testing.T) {
 	}
 	actual, err := poller.Poll(ctx)
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatal(err.Error())
 	}
 	if actual.Status != pollers.PollingStatusSucceeded {
 		t.Fatalf("expected %q but got %q", string(pollers.PollingStatusSucceeded), string(actual.Status))
@@ -72,7 +72,7 @@ func TestPollerProvisioningState_InStatus_Immediate(t *testing.T) {
 	}
 	actual, err := poller.Poll(ctx)
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatal(err.Error())
 	}
 	if actual.Status != pollers.PollingStatusSucceeded {
 		t.Fatalf("expected %q but got %q", string(pollers.PollingStatusSucceeded), string(actual.Status))
@@ -105,7 +105,7 @@ func TestPollerProvisioningState_OkWithNoBody_Immediate(t *testing.T) {
 	}
 	actual, err := poller.Poll(ctx)
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatal(err.Error())
 	}
 	if actual.Status != pollers.PollingStatusSucceeded {
 		t.Fatalf("expected %q but got %q", string(pollers.PollingStatusSucceeded), string(actual.Status))
@@ -148,7 +148,7 @@ func TestPollerProvisioningState_OkWithNoBody_AfterPolling(t *testing.T) {
 		t.Logf("Poll %d..", i)
 		actual, err := poller.Poll(ctx)
 		if err != nil {
-			t.Fatalf(err.Error())
+			t.Fatal(err.Error())
 		}
 		if actual.Status != expected {
 			t.Fatalf("expected %q but got %q", string(expected), string(actual.Status))
@@ -290,7 +290,7 @@ func TestPollerProvisioningState_InProvisioningState_Poll(t *testing.T) {
 		t.Logf("Poll %d..", i)
 		actual, err := poller.Poll(ctx)
 		if err != nil {
-			t.Fatalf(err.Error())
+			t.Fatal(err.Error())
 		}
 		if actual.Status != expected {
 			t.Fatalf("expected %q but got %q", string(expected), string(actual.Status))
@@ -333,7 +333,7 @@ func TestPollerProvisioningState_InStatus_Poll(t *testing.T) {
 		t.Logf("Poll %d..", i)
 		actual, err := poller.Poll(ctx)
 		if err != nil {
-			t.Fatalf(err.Error())
+			t.Fatal(err.Error())
 		}
 		if actual.Status != expected {
 			t.Fatalf("expected %q but got %q", string(expected), string(actual.Status))
