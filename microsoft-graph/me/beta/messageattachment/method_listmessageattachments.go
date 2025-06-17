@@ -98,7 +98,7 @@ func (p *ListMessageAttachmentsCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListMessageAttachments - List attachments. Retrieve a list of attachment objects attached to a message.
+// ListMessageAttachments - List attachments. Retrieve a list of attachment objects.
 func (c MessageAttachmentClient) ListMessageAttachments(ctx context.Context, id beta.MeMessageId, options ListMessageAttachmentsOperationOptions) (result ListMessageAttachmentsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

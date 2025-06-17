@@ -119,66 +119,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ManagedDeviceClient.CreateManagedDeviceBulkReprovisionCloudPC`
-
-```go
-ctx := context.TODO()
-
-payload := manageddevice.CreateManagedDeviceBulkReprovisionCloudPCRequest{
-	// ...
-}
-
-
-read, err := client.CreateManagedDeviceBulkReprovisionCloudPC(ctx, payload, manageddevice.DefaultCreateManagedDeviceBulkReprovisionCloudPCOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ManagedDeviceClient.CreateManagedDeviceBulkRestoreCloudPC`
-
-```go
-ctx := context.TODO()
-
-payload := manageddevice.CreateManagedDeviceBulkRestoreCloudPCRequest{
-	// ...
-}
-
-
-read, err := client.CreateManagedDeviceBulkRestoreCloudPC(ctx, payload, manageddevice.DefaultCreateManagedDeviceBulkRestoreCloudPCOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ManagedDeviceClient.CreateManagedDeviceBulkSetCloudPCReviewStatus`
-
-```go
-ctx := context.TODO()
-
-payload := manageddevice.CreateManagedDeviceBulkSetCloudPCReviewStatusRequest{
-	// ...
-}
-
-
-read, err := client.CreateManagedDeviceBulkSetCloudPCReviewStatus(ctx, payload, manageddevice.DefaultCreateManagedDeviceBulkSetCloudPCReviewStatusOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `ManagedDeviceClient.CreateManagedDeviceDeprovision`
 
 ```go
@@ -211,6 +151,26 @@ payload := manageddevice.CreateManagedDeviceDownloadAppDiagnosticRequest{
 
 
 read, err := client.CreateManagedDeviceDownloadAppDiagnostic(ctx, payload, manageddevice.DefaultCreateManagedDeviceDownloadAppDiagnosticOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ManagedDeviceClient.CreateManagedDeviceDownloadPowerliftAppDiagnostic`
+
+```go
+ctx := context.TODO()
+
+payload := manageddevice.CreateManagedDeviceDownloadPowerliftAppDiagnosticRequest{
+	// ...
+}
+
+
+read, err := client.CreateManagedDeviceDownloadPowerliftAppDiagnostic(ctx, payload, manageddevice.DefaultCreateManagedDeviceDownloadPowerliftAppDiagnosticOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -770,22 +730,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ManagedDeviceClient.ReprovisionManagedDeviceCloudPC`
-
-```go
-ctx := context.TODO()
-id := manageddevice.NewDeviceManagementManagedDeviceID("managedDeviceId")
-
-read, err := client.ReprovisionManagedDeviceCloudPC(ctx, id, manageddevice.DefaultReprovisionManagedDeviceCloudPCOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `ManagedDeviceClient.RequestManagedDeviceRemoteAssistance`
 
 ```go
@@ -809,48 +753,6 @@ ctx := context.TODO()
 id := manageddevice.NewDeviceManagementManagedDeviceID("managedDeviceId")
 
 read, err := client.ResetManagedDevicePasscode(ctx, id, manageddevice.DefaultResetManagedDevicePasscodeOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ManagedDeviceClient.ResizeManagedDeviceCloudPC`
-
-```go
-ctx := context.TODO()
-id := manageddevice.NewDeviceManagementManagedDeviceID("managedDeviceId")
-
-payload := manageddevice.ResizeManagedDeviceCloudPCRequest{
-	// ...
-}
-
-
-read, err := client.ResizeManagedDeviceCloudPC(ctx, id, payload, manageddevice.DefaultResizeManagedDeviceCloudPCOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ManagedDeviceClient.RestoreManagedDeviceCloudPC`
-
-```go
-ctx := context.TODO()
-id := manageddevice.NewDeviceManagementManagedDeviceID("managedDeviceId")
-
-payload := manageddevice.RestoreManagedDeviceCloudPCRequest{
-	// ...
-}
-
-
-read, err := client.RestoreManagedDeviceCloudPC(ctx, id, payload, manageddevice.DefaultRestoreManagedDeviceCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -904,27 +806,6 @@ payload := manageddevice.SendManagedDeviceCustomNotificationToCompanyPortalReque
 
 
 read, err := client.SendManagedDeviceCustomNotificationToCompanyPortal(ctx, id, payload, manageddevice.DefaultSendManagedDeviceCustomNotificationToCompanyPortalOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ManagedDeviceClient.SetManagedDeviceCloudPCReviewStatus`
-
-```go
-ctx := context.TODO()
-id := manageddevice.NewDeviceManagementManagedDeviceID("managedDeviceId")
-
-payload := manageddevice.SetManagedDeviceCloudPCReviewStatusRequest{
-	// ...
-}
-
-
-read, err := client.SetManagedDeviceCloudPCReviewStatus(ctx, id, payload, manageddevice.DefaultSetManagedDeviceCloudPCReviewStatusOperationOptions())
 if err != nil {
 	// handle the error
 }

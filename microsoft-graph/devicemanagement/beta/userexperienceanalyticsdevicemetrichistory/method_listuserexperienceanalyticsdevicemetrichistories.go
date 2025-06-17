@@ -98,7 +98,9 @@ func (p *ListUserExperienceAnalyticsDeviceMetricHistoriesCustomPager) NextPageLi
 }
 
 // ListUserExperienceAnalyticsDeviceMetricHistories - Get userExperienceAnalyticsDeviceMetricHistory from
-// deviceManagement. User experience analytics device metric history
+// deviceManagement. User experience analytics device metric history. The report will be retired on December 31, 2024.
+// You can start using the Cloud PC connection quality report now via
+// https://learn.microsoft.com/windows-365/enterprise/report-cloud-pc-connection-quality.
 func (c UserExperienceAnalyticsDeviceMetricHistoryClient) ListUserExperienceAnalyticsDeviceMetricHistories(ctx context.Context, options ListUserExperienceAnalyticsDeviceMetricHistoriesOperationOptions) (result ListUserExperienceAnalyticsDeviceMetricHistoriesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

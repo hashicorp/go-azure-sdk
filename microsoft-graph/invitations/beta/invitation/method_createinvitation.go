@@ -48,8 +48,9 @@ func (o CreateInvitationOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CreateInvitation - Create invitation. Create a new invitation or reset the redemption status for a guest user who
-// already redeemed their invitation. The invitation adds an external user to the organization. The following options
-// are available for creating an invitation
+// already redeemed their invitation. The invitation adds the external user to the organization as part of B2B
+// collaboration. B2B collaboration is supported in both Microsoft Entra External ID in workforce and external tenants.
+// The following options are available for creating an invitation
 func (c InvitationClient) CreateInvitation(ctx context.Context, input beta.Invitation, options CreateInvitationOperationOptions) (result CreateInvitationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

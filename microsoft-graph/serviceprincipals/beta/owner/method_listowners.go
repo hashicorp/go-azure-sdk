@@ -102,7 +102,9 @@ func (p *ListOwnersCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListOwners - servicePrincipals: List owners. Retrieve a list of owners of the servicePrincipal.
+// ListOwners - Get owners from servicePrincipals. Directory objects that are owners of this servicePrincipal. The
+// owners are a set of nonadmin users or servicePrincipals who are allowed to modify this object. Supports $expand and
+// $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
 func (c OwnerClient) ListOwners(ctx context.Context, id beta.ServicePrincipalId, options ListOwnersOperationOptions) (result ListOwnersOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

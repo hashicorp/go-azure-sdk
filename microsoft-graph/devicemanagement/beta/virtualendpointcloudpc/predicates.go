@@ -13,14 +13,6 @@ func (p CloudPCOperationPredicate) Matches(input beta.CloudPC) bool {
 	return true
 }
 
-type CloudPCRemoteActionResultOperationPredicate struct {
-}
-
-func (p CloudPCRemoteActionResultOperationPredicate) Matches(input beta.CloudPCRemoteActionResult) bool {
-
-	return true
-}
-
 type CloudPCResizeValidationResultOperationPredicate struct {
 }
 

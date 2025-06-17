@@ -57,8 +57,8 @@ func (o GetDomainNameReferenceOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // GetDomainNameReference - Get domainNameReferences from domains. The objects such as users and groups that reference
-// the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example,
-// /domains/{domainId}/domainNameReferences/microsoft.graph.user and
+// the domain ID. Read-only, Nullable. Doesn't support $expand. Supports $filter by the OData type of objects returned.
+// For example, /domains/{domainId}/domainNameReferences/microsoft.graph.user and
 // /domains/{domainId}/domainNameReferences/microsoft.graph.group.
 func (c DomainNameReferenceClient) GetDomainNameReference(ctx context.Context, id stable.DomainIdDomainNameReferenceId, options GetDomainNameReferenceOperationOptions) (result GetDomainNameReferenceOperationResponse, err error) {
 	opts := client.RequestOptions{

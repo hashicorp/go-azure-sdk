@@ -98,8 +98,8 @@ func (p *ListDeviceCompliancePoliciesCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListDeviceCompliancePolicies - List windows10MobileCompliancePolicies. List properties and relationships of the
-// windows10MobileCompliancePolicy objects.
+// ListDeviceCompliancePolicies - List deviceCompliancePolicies. List properties and relationships of the
+// deviceCompliancePolicy objects.
 func (c DeviceCompliancePolicyClient) ListDeviceCompliancePolicies(ctx context.Context, options ListDeviceCompliancePoliciesOperationOptions) (result ListDeviceCompliancePoliciesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

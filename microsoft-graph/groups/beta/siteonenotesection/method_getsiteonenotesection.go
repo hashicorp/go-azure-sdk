@@ -55,8 +55,8 @@ func (o GetSiteOnenoteSectionOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetSiteOnenoteSection - Get sections from groups. The sections in all OneNote notebooks that are owned by the user or
-// group. Read-only. Nullable.
+// GetSiteOnenoteSection - Get sections from groups. The sections in all OneNote notebooks that the user or group owns.
+// Read-only. Nullable.
 func (c SiteOnenoteSectionClient) GetSiteOnenoteSection(ctx context.Context, id beta.GroupIdSiteIdOnenoteSectionId, options GetSiteOnenoteSectionOperationOptions) (result GetSiteOnenoteSectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -56,8 +56,7 @@ func (o GetSecurityInformationProtectionSensitivityLabelParentOperationOptions) 
 	return &out
 }
 
-// GetSecurityInformationProtectionSensitivityLabelParent - Get parent from users. The parent label associated with a
-// child label. Null if the label has no parent.
+// GetSecurityInformationProtectionSensitivityLabelParent - Get parent from users
 func (c SecurityInformationProtectionSensitivityLabelParentClient) GetSecurityInformationProtectionSensitivityLabelParent(ctx context.Context, id beta.UserIdSecurityInformationProtectionSensitivityLabelId, options GetSecurityInformationProtectionSensitivityLabelParentOperationOptions) (result GetSecurityInformationProtectionSensitivityLabelParentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

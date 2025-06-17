@@ -46,8 +46,8 @@ func (o UpdateActivityHistoryItemOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
-// UpdateActivityHistoryItem - Delete an activityHistoryItem. Delete an existing history item for an existing user
-// activity.
+// UpdateActivityHistoryItem - Create or replace an activityHistoryItem. Create a new or replace an existing history
+// item for an existing user activity.
 func (c ActivityHistoryItemClient) UpdateActivityHistoryItem(ctx context.Context, id stable.MeActivityIdHistoryItemId, input stable.ActivityHistoryItem, options UpdateActivityHistoryItemOperationOptions) (result UpdateActivityHistoryItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

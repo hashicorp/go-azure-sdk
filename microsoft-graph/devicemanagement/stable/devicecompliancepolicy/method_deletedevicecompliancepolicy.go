@@ -50,8 +50,7 @@ func (o DeleteDeviceCompliancePolicyOperationOptions) ToQuery() *client.QueryPar
 	return &out
 }
 
-// DeleteDeviceCompliancePolicy - Delete androidWorkProfileCompliancePolicy. Deletes a
-// androidWorkProfileCompliancePolicy.
+// DeleteDeviceCompliancePolicy - Delete macOSCompliancePolicy. Deletes a macOSCompliancePolicy.
 func (c DeviceCompliancePolicyClient) DeleteDeviceCompliancePolicy(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyId, options DeleteDeviceCompliancePolicyOperationOptions) (result DeleteDeviceCompliancePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

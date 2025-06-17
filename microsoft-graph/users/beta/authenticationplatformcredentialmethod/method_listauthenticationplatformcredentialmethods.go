@@ -97,7 +97,8 @@ func (p *ListAuthenticationPlatformCredentialMethodsCustomPager) NextPageLink() 
 	return p.NextLink
 }
 
-// ListAuthenticationPlatformCredentialMethods - Get platformCredentialMethods from users
+// ListAuthenticationPlatformCredentialMethods - Get platformCredentialMethods from users. Represents a platform
+// credential instance registered to a user on Mac OS.
 func (c AuthenticationPlatformCredentialMethodClient) ListAuthenticationPlatformCredentialMethods(ctx context.Context, id beta.UserId, options ListAuthenticationPlatformCredentialMethodsOperationOptions) (result ListAuthenticationPlatformCredentialMethodsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

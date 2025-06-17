@@ -49,7 +49,7 @@ func (o CreateVirtualEndpointCloudPCSnapshotOperationOptions) ToQuery() *client.
 
 // CreateVirtualEndpointCloudPCSnapshot - Invoke action createSnapshot. Create a snapshot for a specific Cloud PC
 // device.
-func (c VirtualEndpointCloudPCClient) CreateVirtualEndpointCloudPCSnapshot(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options CreateVirtualEndpointCloudPCSnapshotOperationOptions) (result CreateVirtualEndpointCloudPCSnapshotOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) CreateVirtualEndpointCloudPCSnapshot(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, input CreateVirtualEndpointCloudPCSnapshotRequest, options CreateVirtualEndpointCloudPCSnapshotOperationOptions) (result CreateVirtualEndpointCloudPCSnapshotOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -66,6 +66,10 @@ func (c VirtualEndpointCloudPCClient) CreateVirtualEndpointCloudPCSnapshot(ctx c
 
 	req, err := c.Client.NewRequest(ctx, opts)
 	if err != nil {
+		return
+	}
+
+	if err = req.Marshal(input); err != nil {
 		return
 	}
 

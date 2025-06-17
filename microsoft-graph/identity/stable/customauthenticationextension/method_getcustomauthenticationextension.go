@@ -57,7 +57,7 @@ func (o GetCustomAuthenticationExtensionOperationOptions) ToQuery() *client.Quer
 }
 
 // GetCustomAuthenticationExtension - Get customAuthenticationExtension. Read the properties and relationships of a
-// customAuthenticationExtension object.
+// customAuthenticationExtension object. The following derived types are currently supported.
 func (c CustomAuthenticationExtensionClient) GetCustomAuthenticationExtension(ctx context.Context, id stable.IdentityCustomAuthenticationExtensionId, options GetCustomAuthenticationExtensionOperationOptions) (result GetCustomAuthenticationExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

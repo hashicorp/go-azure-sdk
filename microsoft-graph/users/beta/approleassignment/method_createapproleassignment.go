@@ -48,8 +48,8 @@ func (o CreateAppRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// CreateAppRoleAssignment - Grant an appRoleAssignment to a user. Use this API to assign an app role to a user. To
-// grant an app role assignment to a user, you need three identifiers
+// CreateAppRoleAssignment - Grant an appRoleAssignment to a user. Use this API to assign an app role to a user,
+// creating an appRoleAssignment object. To grant an app role assignment to a user, you need three identifiers
 func (c AppRoleAssignmentClient) CreateAppRoleAssignment(ctx context.Context, id beta.UserId, input beta.AppRoleAssignment, options CreateAppRoleAssignmentOperationOptions) (result CreateAppRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

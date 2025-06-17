@@ -62,6 +62,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `MailFolderChildFolderClient.CreateMailFolderChildFolderPermanentDelete`
+
+```go
+ctx := context.TODO()
+id := mailfolderchildfolder.NewUserIdMailFolderIdChildFolderID("userId", "mailFolderId", "mailFolderId1")
+
+read, err := client.CreateMailFolderChildFolderPermanentDelete(ctx, id, mailfolderchildfolder.DefaultCreateMailFolderChildFolderPermanentDeleteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `MailFolderChildFolderClient.DeleteMailFolderChildFolder`
 
 ```go
@@ -160,6 +176,27 @@ payload := mailfolderchildfolder.MailFolder{
 
 
 read, err := client.UpdateMailFolderChildFolder(ctx, id, payload, mailfolderchildfolder.DefaultUpdateMailFolderChildFolderOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `MailFolderChildFolderClient.UpdateMailFolderChildFolderAllMessagesReadState`
+
+```go
+ctx := context.TODO()
+id := mailfolderchildfolder.NewUserIdMailFolderIdChildFolderID("userId", "mailFolderId", "mailFolderId1")
+
+payload := mailfolderchildfolder.UpdateMailFolderChildFolderAllMessagesReadStateRequest{
+	// ...
+}
+
+
+read, err := client.UpdateMailFolderChildFolderAllMessagesReadState(ctx, id, payload, mailfolderchildfolder.DefaultUpdateMailFolderChildFolderAllMessagesReadStateOperationOptions())
 if err != nil {
 	// handle the error
 }

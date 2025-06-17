@@ -67,7 +67,12 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := cloudpc.NewMeCloudPCID("cloudPCId")
 
-read, err := client.CreateCloudPCSnapshot(ctx, id, cloudpc.DefaultCreateCloudPCSnapshotOperationOptions())
+payload := cloudpc.CreateCloudPCSnapshotRequest{
+	// ...
+}
+
+
+read, err := client.CreateCloudPCSnapshot(ctx, id, payload, cloudpc.DefaultCreateCloudPCSnapshotOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -137,27 +142,6 @@ if err != nil {
 }
 if model := read.Model; model != nil {
 	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `CloudPCClient.ListCloudPCBulkResizes`
-
-```go
-ctx := context.TODO()
-
-payload := cloudpc.ListCloudPCBulkResizesRequest{
-	// ...
-}
-
-
-// alternatively `client.ListCloudPCBulkResizes(ctx, payload, cloudpc.DefaultListCloudPCBulkResizesOperationOptions())` can be used to do batched pagination
-items, err := client.ListCloudPCBulkResizesComplete(ctx, payload, cloudpc.DefaultListCloudPCBulkResizesOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
 }
 ```
 

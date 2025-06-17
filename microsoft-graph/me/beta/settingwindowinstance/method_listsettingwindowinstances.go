@@ -97,8 +97,8 @@ func (p *ListSettingWindowInstancesCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListSettingWindowInstances - List Windows setting instances. Get a list of windowsSettingInstance objects and their
-// properties for the signed-in user.
+// ListSettingWindowInstances - List instances. Get a list of windowsSettingInstance objects and their properties for a
+// user.
 func (c SettingWindowInstanceClient) ListSettingWindowInstances(ctx context.Context, id beta.MeSettingWindowId, options ListSettingWindowInstancesOperationOptions) (result ListSettingWindowInstancesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

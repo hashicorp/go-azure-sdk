@@ -47,7 +47,8 @@ func (o UpdateSettingItemInsightOperationOptions) ToQuery() *client.QueryParams 
 	return &out
 }
 
-// UpdateSettingItemInsight - Update the navigation property itemInsights in users
+// UpdateSettingItemInsight - Update userInsightsSettings. Update the privacy settings for itemInsights and meeting
+// hours insights of a user.
 func (c SettingItemInsightClient) UpdateSettingItemInsight(ctx context.Context, id stable.UserId, input stable.UserInsightsSettings, options UpdateSettingItemInsightOperationOptions) (result UpdateSettingItemInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

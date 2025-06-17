@@ -97,12 +97,12 @@ func (p *ListEntitlementManagementAssignmentPoliciesCustomPager) NextPageLink() 
 	return p.NextLink
 }
 
-// ListEntitlementManagementAssignmentPolicies - List assignmentPolicies. In Microsoft Entra entitlement management,
-// retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting
-// list includes all the assignment policies that the caller has access to read, across all catalogs and access
-// packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the
-// policies for the access packages they can read with list accessPackages by including $expand=assignmentPolicies as a
-// query parameter.
+// ListEntitlementManagementAssignmentPolicies - List assignmentPolicies. Retrieve a list of
+// accessPackageAssignmentPolicy objects in Microsoft Entra entitlement management. If the delegated user is in a
+// directory role, the resulting list includes all the assignment policies that the caller has access to read, across
+// all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should
+// instead retrieve the policies for the access packages they can read with list accessPackages by including
+// $expand=assignmentPolicies as a query parameter.
 func (c EntitlementManagementAssignmentPolicyClient) ListEntitlementManagementAssignmentPolicies(ctx context.Context, options ListEntitlementManagementAssignmentPoliciesOperationOptions) (result ListEntitlementManagementAssignmentPoliciesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

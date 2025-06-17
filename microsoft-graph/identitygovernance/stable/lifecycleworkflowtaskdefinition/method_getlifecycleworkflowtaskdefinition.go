@@ -55,7 +55,8 @@ func (o GetLifecycleWorkflowTaskDefinitionOperationOptions) ToQuery() *client.Qu
 	return &out
 }
 
-// GetLifecycleWorkflowTaskDefinition - Get taskDefinition. Read the details of a built-in workflow task.
+// GetLifecycleWorkflowTaskDefinition - Get taskDefinition. Read the details of a built-in workflow task in Lifecycle
+// Workflows.
 func (c LifecycleWorkflowTaskDefinitionClient) GetLifecycleWorkflowTaskDefinition(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowTaskDefinitionId, options GetLifecycleWorkflowTaskDefinitionOperationOptions) (result GetLifecycleWorkflowTaskDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

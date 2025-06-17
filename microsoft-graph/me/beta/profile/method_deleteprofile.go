@@ -49,7 +49,7 @@ func (o DeleteProfileOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// DeleteProfile - Delete profile. Deletes a profile object from a user's account.
+// DeleteProfile - Delete profile. Delete a profile object from a user's account.
 func (c ProfileClient) DeleteProfile(ctx context.Context, options DeleteProfileOperationOptions) (result DeleteProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

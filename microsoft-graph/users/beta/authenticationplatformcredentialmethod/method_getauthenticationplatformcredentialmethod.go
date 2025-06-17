@@ -55,7 +55,8 @@ func (o GetAuthenticationPlatformCredentialMethodOperationOptions) ToQuery() *cl
 	return &out
 }
 
-// GetAuthenticationPlatformCredentialMethod - Get platformCredentialMethods from users
+// GetAuthenticationPlatformCredentialMethod - Get platformCredentialMethods from users. Represents a platform
+// credential instance registered to a user on Mac OS.
 func (c AuthenticationPlatformCredentialMethodClient) GetAuthenticationPlatformCredentialMethod(ctx context.Context, id beta.UserIdAuthenticationPlatformCredentialMethodId, options GetAuthenticationPlatformCredentialMethodOperationOptions) (result GetAuthenticationPlatformCredentialMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

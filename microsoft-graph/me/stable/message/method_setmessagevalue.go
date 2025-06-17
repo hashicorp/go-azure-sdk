@@ -48,7 +48,7 @@ func (o SetMessageValueOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// SetMessageValue - Update message. Update the properties of a message object.
+// SetMessageValue - Update eventMessage. Update the properties of an eventMessage object.
 func (c MessageClient) SetMessageValue(ctx context.Context, id stable.MeMessageId, input []byte, options SetMessageValueOperationOptions) (result SetMessageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: options.ContentType,

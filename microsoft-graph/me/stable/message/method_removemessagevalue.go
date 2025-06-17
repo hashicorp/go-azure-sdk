@@ -50,7 +50,8 @@ func (o RemoveMessageValueOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// RemoveMessageValue - Delete eventMessage. Delete eventMessage.
+// RemoveMessageValue - Delete message. Delete a message in the specified user's mailbox, or delete a relationship of
+// the message.
 func (c MessageClient) RemoveMessageValue(ctx context.Context, id stable.MeMessageId, options RemoveMessageValueOperationOptions) (result RemoveMessageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

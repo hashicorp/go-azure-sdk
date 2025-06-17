@@ -41,6 +41,27 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `SiteInformationProtectionSensitivityLabelSublabelClient.CreateSiteInformationProtectionSensitivityLabelSublabelComputeRightsAndInheritance`
+
+```go
+ctx := context.TODO()
+id := siteinformationprotectionsensitivitylabelsublabel.NewGroupIdSiteIdInformationProtectionSensitivityLabelID("groupId", "siteId", "sensitivityLabelId")
+
+payload := siteinformationprotectionsensitivitylabelsublabel.CreateSiteInformationProtectionSensitivityLabelSublabelComputeRightsAndInheritanceRequest{
+	// ...
+}
+
+
+read, err := client.CreateSiteInformationProtectionSensitivityLabelSublabelComputeRightsAndInheritance(ctx, id, payload, siteinformationprotectionsensitivitylabelsublabel.DefaultCreateSiteInformationProtectionSensitivityLabelSublabelComputeRightsAndInheritanceOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `SiteInformationProtectionSensitivityLabelSublabelClient.DeleteSiteInformationProtectionSensitivityLabelSublabel`
 
 ```go

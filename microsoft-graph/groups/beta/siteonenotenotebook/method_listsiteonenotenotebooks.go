@@ -97,8 +97,8 @@ func (p *ListSiteOnenoteNotebooksCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListSiteOnenoteNotebooks - Get notebooks from groups. The collection of OneNote notebooks that are owned by the user
-// or group. Read-only. Nullable.
+// ListSiteOnenoteNotebooks - Get notebooks from groups. The collection of OneNote notebooks that the user or group
+// owns. Read-only. Nullable.
 func (c SiteOnenoteNotebookClient) ListSiteOnenoteNotebooks(ctx context.Context, id beta.GroupIdSiteId, options ListSiteOnenoteNotebooksOperationOptions) (result ListSiteOnenoteNotebooksOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

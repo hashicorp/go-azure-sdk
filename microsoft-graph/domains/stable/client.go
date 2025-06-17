@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/domain"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/domainnamereference"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/federationconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/rootdomain"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/serviceconfigurationrecord"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/verificationdnsrecord"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
@@ -19,6 +20,7 @@ type Client struct {
 	Domain                     *domain.DomainClient
 	DomainNameReference        *domainnamereference.DomainNameReferenceClient
 	FederationConfiguration    *federationconfiguration.FederationConfigurationClient
+	RootDomain                 *rootdomain.RootDomainClient
 	ServiceConfigurationRecord *serviceconfigurationrecord.ServiceConfigurationRecordClient
 	VerificationDnsRecord      *verificationdnsrecord.VerificationDnsRecordClient
 }
@@ -42,6 +44,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(federationConfigurationClient.Client)
 
+	rootDomainClient, err := rootdomain.NewRootDomainClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RootDomain client: %+v", err)
+	}
+	configureFunc(rootDomainClient.Client)
+
 	serviceConfigurationRecordClient, err := serviceconfigurationrecord.NewServiceConfigurationRecordClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServiceConfigurationRecord client: %+v", err)
@@ -58,6 +66,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		Domain:                     domainClient,
 		DomainNameReference:        domainNameReferenceClient,
 		FederationConfiguration:    federationConfigurationClient,
+		RootDomain:                 rootDomainClient,
 		ServiceConfigurationRecord: serviceConfigurationRecordClient,
 		VerificationDnsRecord:      verificationDnsRecordClient,
 	}, nil

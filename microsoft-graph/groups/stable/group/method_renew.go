@@ -47,8 +47,8 @@ func (o RenewOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// Renew - Invoke action renew. Renews a group's expiration. When a group is renewed, the group expiration is extended
-// by the number of days defined in the policy.
+// Renew - Invoke action renew. Renew a group's expiration. When a group is renewed, the group expiration is extended by
+// the number of days defined in the policy.
 func (c GroupClient) Renew(ctx context.Context, id stable.GroupId, options RenewOperationOptions) (result RenewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

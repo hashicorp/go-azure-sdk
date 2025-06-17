@@ -11,65 +11,12 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendar"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarpermission"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarview"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewexceptionoccurrenceinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarcalendarviewinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarevent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventattachment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventexceptionoccurrenceinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarview"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewexceptionoccurrenceinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/conversation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/conversationthread"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/conversationthreadpost"
@@ -114,6 +61,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitemcreatedbyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitemcreatedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitemcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitemextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitemlastmodifiedbyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitemlastmodifiedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitemlastmodifiedbyuserserviceprovisioningerror"
@@ -209,6 +157,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driverootcreatedbyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driverootcreatedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driverootcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driverootextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driverootlastmodifiedbyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driverootlastmodifiedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driverootlastmodifiedbyuserserviceprovisioningerror"
@@ -247,23 +196,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/event"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventattachment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventexceptionoccurrenceinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/extension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/group"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/grouplifecyclepolicy"
@@ -367,7 +301,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionpolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionpolicylabel"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionsensitivitylabel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionsensitivitylabelright"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionsensitivitylabelsublabel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionsensitivitylabelsublabelright"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionsensitivitypolicysetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionthreatassessmentrequest"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionthreatassessmentrequestresult"
@@ -471,6 +407,33 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagelastmodifiedbyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagelastmodifiedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagelastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecanvaslayout"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecanvaslayouthorizontalsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecanvaslayouthorizontalsectioncolumn"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecanvaslayouthorizontalsectioncolumnwebpart"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecanvaslayoutverticalsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecanvaslayoutverticalsectionwebpart"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecreatedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecreatedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagelastmodifiedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagelastmodifiedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagelastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagewebpart"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecanvaslayout"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecanvaslayouthorizontalsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecanvaslayouthorizontalsectioncolumn"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecanvaslayouthorizontalsectioncolumnwebpart"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecanvaslayoutverticalsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecanvaslayoutverticalsectionwebpart"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecreatedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecreatedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatelastmodifiedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatelastmodifiedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatelastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatewebpart"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepermission"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siterecyclebin"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siterecyclebincreatedbyuser"
@@ -490,6 +453,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/team"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamallchannel"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelallmember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelfilesfolder"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelfilesfoldercontent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelfilesfoldercontentstream"
@@ -498,6 +462,20 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelmessagehostedcontent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelmessagereply"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelmessagereplyhostedcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplanner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplan"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplanbucket"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplanbuckettask"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplanbuckettaskassignedtotaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplanbuckettaskbuckettaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplanbuckettaskdetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplanbuckettaskprogresstaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplandetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplantask"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplantaskassignedtotaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplantaskbuckettaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplantaskdetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplantaskprogresstaskboardformat"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelsharedwithteam"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelsharedwithteamallowedmember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelsharedwithteamteam"
@@ -517,6 +495,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teampermissiongrant"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamphoto"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelallmember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelfilesfolder"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelfilesfoldercontent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelfilesfoldercontentstream"
@@ -525,6 +504,20 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelmessagehostedcontent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelmessagereply"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelmessagereplyhostedcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplanner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplan"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplanbucket"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplanbuckettask"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplanbuckettaskassignedtotaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplanbuckettaskbuckettaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplanbuckettaskdetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplanbuckettaskprogresstaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplandetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplantask"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplantaskassignedtotaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplantaskbuckettaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplantaskdetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplantaskprogresstaskboardformat"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelsharedwithteam"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelsharedwithteamallowedmember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelsharedwithteamteam"
@@ -568,65 +561,12 @@ type Client struct {
 	Calendar                                                         *calendar.CalendarClient
 	CalendarCalendarPermission                                       *calendarcalendarpermission.CalendarCalendarPermissionClient
 	CalendarCalendarView                                             *calendarcalendarview.CalendarCalendarViewClient
-	CalendarCalendarViewAttachment                                   *calendarcalendarviewattachment.CalendarCalendarViewAttachmentClient
-	CalendarCalendarViewCalendar                                     *calendarcalendarviewcalendar.CalendarCalendarViewCalendarClient
-	CalendarCalendarViewExceptionOccurrence                          *calendarcalendarviewexceptionoccurrence.CalendarCalendarViewExceptionOccurrenceClient
-	CalendarCalendarViewExceptionOccurrenceAttachment                *calendarcalendarviewexceptionoccurrenceattachment.CalendarCalendarViewExceptionOccurrenceAttachmentClient
-	CalendarCalendarViewExceptionOccurrenceCalendar                  *calendarcalendarviewexceptionoccurrencecalendar.CalendarCalendarViewExceptionOccurrenceCalendarClient
-	CalendarCalendarViewExceptionOccurrenceExtension                 *calendarcalendarviewexceptionoccurrenceextension.CalendarCalendarViewExceptionOccurrenceExtensionClient
-	CalendarCalendarViewExceptionOccurrenceInstance                  *calendarcalendarviewexceptionoccurrenceinstance.CalendarCalendarViewExceptionOccurrenceInstanceClient
-	CalendarCalendarViewExceptionOccurrenceInstanceAttachment        *calendarcalendarviewexceptionoccurrenceinstanceattachment.CalendarCalendarViewExceptionOccurrenceInstanceAttachmentClient
-	CalendarCalendarViewExceptionOccurrenceInstanceCalendar          *calendarcalendarviewexceptionoccurrenceinstancecalendar.CalendarCalendarViewExceptionOccurrenceInstanceCalendarClient
-	CalendarCalendarViewExceptionOccurrenceInstanceExtension         *calendarcalendarviewexceptionoccurrenceinstanceextension.CalendarCalendarViewExceptionOccurrenceInstanceExtensionClient
-	CalendarCalendarViewExtension                                    *calendarcalendarviewextension.CalendarCalendarViewExtensionClient
-	CalendarCalendarViewInstance                                     *calendarcalendarviewinstance.CalendarCalendarViewInstanceClient
-	CalendarCalendarViewInstanceAttachment                           *calendarcalendarviewinstanceattachment.CalendarCalendarViewInstanceAttachmentClient
-	CalendarCalendarViewInstanceCalendar                             *calendarcalendarviewinstancecalendar.CalendarCalendarViewInstanceCalendarClient
-	CalendarCalendarViewInstanceExceptionOccurrence                  *calendarcalendarviewinstanceexceptionoccurrence.CalendarCalendarViewInstanceExceptionOccurrenceClient
-	CalendarCalendarViewInstanceExceptionOccurrenceAttachment        *calendarcalendarviewinstanceexceptionoccurrenceattachment.CalendarCalendarViewInstanceExceptionOccurrenceAttachmentClient
-	CalendarCalendarViewInstanceExceptionOccurrenceCalendar          *calendarcalendarviewinstanceexceptionoccurrencecalendar.CalendarCalendarViewInstanceExceptionOccurrenceCalendarClient
-	CalendarCalendarViewInstanceExceptionOccurrenceExtension         *calendarcalendarviewinstanceexceptionoccurrenceextension.CalendarCalendarViewInstanceExceptionOccurrenceExtensionClient
-	CalendarCalendarViewInstanceExtension                            *calendarcalendarviewinstanceextension.CalendarCalendarViewInstanceExtensionClient
 	CalendarEvent                                                    *calendarevent.CalendarEventClient
 	CalendarEventAttachment                                          *calendareventattachment.CalendarEventAttachmentClient
 	CalendarEventCalendar                                            *calendareventcalendar.CalendarEventCalendarClient
-	CalendarEventExceptionOccurrence                                 *calendareventexceptionoccurrence.CalendarEventExceptionOccurrenceClient
-	CalendarEventExceptionOccurrenceAttachment                       *calendareventexceptionoccurrenceattachment.CalendarEventExceptionOccurrenceAttachmentClient
-	CalendarEventExceptionOccurrenceCalendar                         *calendareventexceptionoccurrencecalendar.CalendarEventExceptionOccurrenceCalendarClient
-	CalendarEventExceptionOccurrenceExtension                        *calendareventexceptionoccurrenceextension.CalendarEventExceptionOccurrenceExtensionClient
-	CalendarEventExceptionOccurrenceInstance                         *calendareventexceptionoccurrenceinstance.CalendarEventExceptionOccurrenceInstanceClient
-	CalendarEventExceptionOccurrenceInstanceAttachment               *calendareventexceptionoccurrenceinstanceattachment.CalendarEventExceptionOccurrenceInstanceAttachmentClient
-	CalendarEventExceptionOccurrenceInstanceCalendar                 *calendareventexceptionoccurrenceinstancecalendar.CalendarEventExceptionOccurrenceInstanceCalendarClient
-	CalendarEventExceptionOccurrenceInstanceExtension                *calendareventexceptionoccurrenceinstanceextension.CalendarEventExceptionOccurrenceInstanceExtensionClient
 	CalendarEventExtension                                           *calendareventextension.CalendarEventExtensionClient
 	CalendarEventInstance                                            *calendareventinstance.CalendarEventInstanceClient
-	CalendarEventInstanceAttachment                                  *calendareventinstanceattachment.CalendarEventInstanceAttachmentClient
-	CalendarEventInstanceCalendar                                    *calendareventinstancecalendar.CalendarEventInstanceCalendarClient
-	CalendarEventInstanceExceptionOccurrence                         *calendareventinstanceexceptionoccurrence.CalendarEventInstanceExceptionOccurrenceClient
-	CalendarEventInstanceExceptionOccurrenceAttachment               *calendareventinstanceexceptionoccurrenceattachment.CalendarEventInstanceExceptionOccurrenceAttachmentClient
-	CalendarEventInstanceExceptionOccurrenceCalendar                 *calendareventinstanceexceptionoccurrencecalendar.CalendarEventInstanceExceptionOccurrenceCalendarClient
-	CalendarEventInstanceExceptionOccurrenceExtension                *calendareventinstanceexceptionoccurrenceextension.CalendarEventInstanceExceptionOccurrenceExtensionClient
-	CalendarEventInstanceExtension                                   *calendareventinstanceextension.CalendarEventInstanceExtensionClient
 	CalendarView                                                     *calendarview.CalendarViewClient
-	CalendarViewAttachment                                           *calendarviewattachment.CalendarViewAttachmentClient
-	CalendarViewCalendar                                             *calendarviewcalendar.CalendarViewCalendarClient
-	CalendarViewExceptionOccurrence                                  *calendarviewexceptionoccurrence.CalendarViewExceptionOccurrenceClient
-	CalendarViewExceptionOccurrenceAttachment                        *calendarviewexceptionoccurrenceattachment.CalendarViewExceptionOccurrenceAttachmentClient
-	CalendarViewExceptionOccurrenceCalendar                          *calendarviewexceptionoccurrencecalendar.CalendarViewExceptionOccurrenceCalendarClient
-	CalendarViewExceptionOccurrenceExtension                         *calendarviewexceptionoccurrenceextension.CalendarViewExceptionOccurrenceExtensionClient
-	CalendarViewExceptionOccurrenceInstance                          *calendarviewexceptionoccurrenceinstance.CalendarViewExceptionOccurrenceInstanceClient
-	CalendarViewExceptionOccurrenceInstanceAttachment                *calendarviewexceptionoccurrenceinstanceattachment.CalendarViewExceptionOccurrenceInstanceAttachmentClient
-	CalendarViewExceptionOccurrenceInstanceCalendar                  *calendarviewexceptionoccurrenceinstancecalendar.CalendarViewExceptionOccurrenceInstanceCalendarClient
-	CalendarViewExceptionOccurrenceInstanceExtension                 *calendarviewexceptionoccurrenceinstanceextension.CalendarViewExceptionOccurrenceInstanceExtensionClient
-	CalendarViewExtension                                            *calendarviewextension.CalendarViewExtensionClient
-	CalendarViewInstance                                             *calendarviewinstance.CalendarViewInstanceClient
-	CalendarViewInstanceAttachment                                   *calendarviewinstanceattachment.CalendarViewInstanceAttachmentClient
-	CalendarViewInstanceCalendar                                     *calendarviewinstancecalendar.CalendarViewInstanceCalendarClient
-	CalendarViewInstanceExceptionOccurrence                          *calendarviewinstanceexceptionoccurrence.CalendarViewInstanceExceptionOccurrenceClient
-	CalendarViewInstanceExceptionOccurrenceAttachment                *calendarviewinstanceexceptionoccurrenceattachment.CalendarViewInstanceExceptionOccurrenceAttachmentClient
-	CalendarViewInstanceExceptionOccurrenceCalendar                  *calendarviewinstanceexceptionoccurrencecalendar.CalendarViewInstanceExceptionOccurrenceCalendarClient
-	CalendarViewInstanceExceptionOccurrenceExtension                 *calendarviewinstanceexceptionoccurrenceextension.CalendarViewInstanceExceptionOccurrenceExtensionClient
-	CalendarViewInstanceExtension                                    *calendarviewinstanceextension.CalendarViewInstanceExtensionClient
 	Conversation                                                     *conversation.ConversationClient
 	ConversationThread                                               *conversationthread.ConversationThreadClient
 	ConversationThreadPost                                           *conversationthreadpost.ConversationThreadPostClient
@@ -671,6 +611,7 @@ type Client struct {
 	DriveItemCreatedByUser                                           *driveitemcreatedbyuser.DriveItemCreatedByUserClient
 	DriveItemCreatedByUserMailboxSetting                             *driveitemcreatedbyusermailboxsetting.DriveItemCreatedByUserMailboxSettingClient
 	DriveItemCreatedByUserServiceProvisioningError                   *driveitemcreatedbyuserserviceprovisioningerror.DriveItemCreatedByUserServiceProvisioningErrorClient
+	DriveItemExtension                                               *driveitemextension.DriveItemExtensionClient
 	DriveItemLastModifiedByUser                                      *driveitemlastmodifiedbyuser.DriveItemLastModifiedByUserClient
 	DriveItemLastModifiedByUserMailboxSetting                        *driveitemlastmodifiedbyusermailboxsetting.DriveItemLastModifiedByUserMailboxSettingClient
 	DriveItemLastModifiedByUserServiceProvisioningError              *driveitemlastmodifiedbyuserserviceprovisioningerror.DriveItemLastModifiedByUserServiceProvisioningErrorClient
@@ -766,6 +707,7 @@ type Client struct {
 	DriveRootCreatedByUser                                           *driverootcreatedbyuser.DriveRootCreatedByUserClient
 	DriveRootCreatedByUserMailboxSetting                             *driverootcreatedbyusermailboxsetting.DriveRootCreatedByUserMailboxSettingClient
 	DriveRootCreatedByUserServiceProvisioningError                   *driverootcreatedbyuserserviceprovisioningerror.DriveRootCreatedByUserServiceProvisioningErrorClient
+	DriveRootExtension                                               *driverootextension.DriveRootExtensionClient
 	DriveRootLastModifiedByUser                                      *driverootlastmodifiedbyuser.DriveRootLastModifiedByUserClient
 	DriveRootLastModifiedByUserMailboxSetting                        *driverootlastmodifiedbyusermailboxsetting.DriveRootLastModifiedByUserMailboxSettingClient
 	DriveRootLastModifiedByUserServiceProvisioningError              *driverootlastmodifiedbyuserserviceprovisioningerror.DriveRootLastModifiedByUserServiceProvisioningErrorClient
@@ -804,23 +746,8 @@ type Client struct {
 	Event                                                            *event.EventClient
 	EventAttachment                                                  *eventattachment.EventAttachmentClient
 	EventCalendar                                                    *eventcalendar.EventCalendarClient
-	EventExceptionOccurrence                                         *eventexceptionoccurrence.EventExceptionOccurrenceClient
-	EventExceptionOccurrenceAttachment                               *eventexceptionoccurrenceattachment.EventExceptionOccurrenceAttachmentClient
-	EventExceptionOccurrenceCalendar                                 *eventexceptionoccurrencecalendar.EventExceptionOccurrenceCalendarClient
-	EventExceptionOccurrenceExtension                                *eventexceptionoccurrenceextension.EventExceptionOccurrenceExtensionClient
-	EventExceptionOccurrenceInstance                                 *eventexceptionoccurrenceinstance.EventExceptionOccurrenceInstanceClient
-	EventExceptionOccurrenceInstanceAttachment                       *eventexceptionoccurrenceinstanceattachment.EventExceptionOccurrenceInstanceAttachmentClient
-	EventExceptionOccurrenceInstanceCalendar                         *eventexceptionoccurrenceinstancecalendar.EventExceptionOccurrenceInstanceCalendarClient
-	EventExceptionOccurrenceInstanceExtension                        *eventexceptionoccurrenceinstanceextension.EventExceptionOccurrenceInstanceExtensionClient
 	EventExtension                                                   *eventextension.EventExtensionClient
 	EventInstance                                                    *eventinstance.EventInstanceClient
-	EventInstanceAttachment                                          *eventinstanceattachment.EventInstanceAttachmentClient
-	EventInstanceCalendar                                            *eventinstancecalendar.EventInstanceCalendarClient
-	EventInstanceExceptionOccurrence                                 *eventinstanceexceptionoccurrence.EventInstanceExceptionOccurrenceClient
-	EventInstanceExceptionOccurrenceAttachment                       *eventinstanceexceptionoccurrenceattachment.EventInstanceExceptionOccurrenceAttachmentClient
-	EventInstanceExceptionOccurrenceCalendar                         *eventinstanceexceptionoccurrencecalendar.EventInstanceExceptionOccurrenceCalendarClient
-	EventInstanceExceptionOccurrenceExtension                        *eventinstanceexceptionoccurrenceextension.EventInstanceExceptionOccurrenceExtensionClient
-	EventInstanceExtension                                           *eventinstanceextension.EventInstanceExtensionClient
 	Extension                                                        *extension.ExtensionClient
 	Group                                                            *group.GroupClient
 	GroupLifecyclePolicy                                             *grouplifecyclepolicy.GroupLifecyclePolicyClient
@@ -924,7 +851,9 @@ type Client struct {
 	SiteInformationProtectionPolicy                                  *siteinformationprotectionpolicy.SiteInformationProtectionPolicyClient
 	SiteInformationProtectionPolicyLabel                             *siteinformationprotectionpolicylabel.SiteInformationProtectionPolicyLabelClient
 	SiteInformationProtectionSensitivityLabel                        *siteinformationprotectionsensitivitylabel.SiteInformationProtectionSensitivityLabelClient
+	SiteInformationProtectionSensitivityLabelRight                   *siteinformationprotectionsensitivitylabelright.SiteInformationProtectionSensitivityLabelRightClient
 	SiteInformationProtectionSensitivityLabelSublabel                *siteinformationprotectionsensitivitylabelsublabel.SiteInformationProtectionSensitivityLabelSublabelClient
+	SiteInformationProtectionSensitivityLabelSublabelRight           *siteinformationprotectionsensitivitylabelsublabelright.SiteInformationProtectionSensitivityLabelSublabelRightClient
 	SiteInformationProtectionSensitivityPolicySetting                *siteinformationprotectionsensitivitypolicysetting.SiteInformationProtectionSensitivityPolicySettingClient
 	SiteInformationProtectionThreatAssessmentRequest                 *siteinformationprotectionthreatassessmentrequest.SiteInformationProtectionThreatAssessmentRequestClient
 	SiteInformationProtectionThreatAssessmentRequestResult           *siteinformationprotectionthreatassessmentrequestresult.SiteInformationProtectionThreatAssessmentRequestResultClient
@@ -1028,6 +957,33 @@ type Client struct {
 	SitePageLastModifiedByUser                                       *sitepagelastmodifiedbyuser.SitePageLastModifiedByUserClient
 	SitePageLastModifiedByUserMailboxSetting                         *sitepagelastmodifiedbyusermailboxsetting.SitePageLastModifiedByUserMailboxSettingClient
 	SitePageLastModifiedByUserServiceProvisioningError               *sitepagelastmodifiedbyuserserviceprovisioningerror.SitePageLastModifiedByUserServiceProvisioningErrorClient
+	SitePageSitePageCanvasLayout                                     *sitepagesitepagecanvaslayout.SitePageSitePageCanvasLayoutClient
+	SitePageSitePageCanvasLayoutHorizontalSection                    *sitepagesitepagecanvaslayouthorizontalsection.SitePageSitePageCanvasLayoutHorizontalSectionClient
+	SitePageSitePageCanvasLayoutHorizontalSectionColumn              *sitepagesitepagecanvaslayouthorizontalsectioncolumn.SitePageSitePageCanvasLayoutHorizontalSectionColumnClient
+	SitePageSitePageCanvasLayoutHorizontalSectionColumnWebpart       *sitepagesitepagecanvaslayouthorizontalsectioncolumnwebpart.SitePageSitePageCanvasLayoutHorizontalSectionColumnWebpartClient
+	SitePageSitePageCanvasLayoutVerticalSection                      *sitepagesitepagecanvaslayoutverticalsection.SitePageSitePageCanvasLayoutVerticalSectionClient
+	SitePageSitePageCanvasLayoutVerticalSectionWebpart               *sitepagesitepagecanvaslayoutverticalsectionwebpart.SitePageSitePageCanvasLayoutVerticalSectionWebpartClient
+	SitePageSitePageCreatedByUser                                    *sitepagesitepagecreatedbyuser.SitePageSitePageCreatedByUserClient
+	SitePageSitePageCreatedByUserMailboxSetting                      *sitepagesitepagecreatedbyusermailboxsetting.SitePageSitePageCreatedByUserMailboxSettingClient
+	SitePageSitePageCreatedByUserServiceProvisioningError            *sitepagesitepagecreatedbyuserserviceprovisioningerror.SitePageSitePageCreatedByUserServiceProvisioningErrorClient
+	SitePageSitePageLastModifiedByUser                               *sitepagesitepagelastmodifiedbyuser.SitePageSitePageLastModifiedByUserClient
+	SitePageSitePageLastModifiedByUserMailboxSetting                 *sitepagesitepagelastmodifiedbyusermailboxsetting.SitePageSitePageLastModifiedByUserMailboxSettingClient
+	SitePageSitePageLastModifiedByUserServiceProvisioningError       *sitepagesitepagelastmodifiedbyuserserviceprovisioningerror.SitePageSitePageLastModifiedByUserServiceProvisioningErrorClient
+	SitePageSitePageWebPart                                          *sitepagesitepagewebpart.SitePageSitePageWebPartClient
+	SitePageTemplate                                                 *sitepagetemplate.SitePageTemplateClient
+	SitePageTemplateCanvasLayout                                     *sitepagetemplatecanvaslayout.SitePageTemplateCanvasLayoutClient
+	SitePageTemplateCanvasLayoutHorizontalSection                    *sitepagetemplatecanvaslayouthorizontalsection.SitePageTemplateCanvasLayoutHorizontalSectionClient
+	SitePageTemplateCanvasLayoutHorizontalSectionColumn              *sitepagetemplatecanvaslayouthorizontalsectioncolumn.SitePageTemplateCanvasLayoutHorizontalSectionColumnClient
+	SitePageTemplateCanvasLayoutHorizontalSectionColumnWebpart       *sitepagetemplatecanvaslayouthorizontalsectioncolumnwebpart.SitePageTemplateCanvasLayoutHorizontalSectionColumnWebpartClient
+	SitePageTemplateCanvasLayoutVerticalSection                      *sitepagetemplatecanvaslayoutverticalsection.SitePageTemplateCanvasLayoutVerticalSectionClient
+	SitePageTemplateCanvasLayoutVerticalSectionWebpart               *sitepagetemplatecanvaslayoutverticalsectionwebpart.SitePageTemplateCanvasLayoutVerticalSectionWebpartClient
+	SitePageTemplateCreatedByUser                                    *sitepagetemplatecreatedbyuser.SitePageTemplateCreatedByUserClient
+	SitePageTemplateCreatedByUserMailboxSetting                      *sitepagetemplatecreatedbyusermailboxsetting.SitePageTemplateCreatedByUserMailboxSettingClient
+	SitePageTemplateCreatedByUserServiceProvisioningError            *sitepagetemplatecreatedbyuserserviceprovisioningerror.SitePageTemplateCreatedByUserServiceProvisioningErrorClient
+	SitePageTemplateLastModifiedByUser                               *sitepagetemplatelastmodifiedbyuser.SitePageTemplateLastModifiedByUserClient
+	SitePageTemplateLastModifiedByUserMailboxSetting                 *sitepagetemplatelastmodifiedbyusermailboxsetting.SitePageTemplateLastModifiedByUserMailboxSettingClient
+	SitePageTemplateLastModifiedByUserServiceProvisioningError       *sitepagetemplatelastmodifiedbyuserserviceprovisioningerror.SitePageTemplateLastModifiedByUserServiceProvisioningErrorClient
+	SitePageTemplateWebPart                                          *sitepagetemplatewebpart.SitePageTemplateWebPartClient
 	SitePermission                                                   *sitepermission.SitePermissionClient
 	SiteRecycleBin                                                   *siterecyclebin.SiteRecycleBinClient
 	SiteRecycleBinCreatedByUser                                      *siterecyclebincreatedbyuser.SiteRecycleBinCreatedByUserClient
@@ -1047,6 +1003,7 @@ type Client struct {
 	Team                                                             *team.TeamClient
 	TeamAllChannel                                                   *teamallchannel.TeamAllChannelClient
 	TeamChannel                                                      *teamchannel.TeamChannelClient
+	TeamChannelAllMember                                             *teamchannelallmember.TeamChannelAllMemberClient
 	TeamChannelFilesFolder                                           *teamchannelfilesfolder.TeamChannelFilesFolderClient
 	TeamChannelFilesFolderContent                                    *teamchannelfilesfoldercontent.TeamChannelFilesFolderContentClient
 	TeamChannelFilesFolderContentStream                              *teamchannelfilesfoldercontentstream.TeamChannelFilesFolderContentStreamClient
@@ -1055,6 +1012,20 @@ type Client struct {
 	TeamChannelMessageHostedContent                                  *teamchannelmessagehostedcontent.TeamChannelMessageHostedContentClient
 	TeamChannelMessageReply                                          *teamchannelmessagereply.TeamChannelMessageReplyClient
 	TeamChannelMessageReplyHostedContent                             *teamchannelmessagereplyhostedcontent.TeamChannelMessageReplyHostedContentClient
+	TeamChannelPlanner                                               *teamchannelplanner.TeamChannelPlannerClient
+	TeamChannelPlannerPlan                                           *teamchannelplannerplan.TeamChannelPlannerPlanClient
+	TeamChannelPlannerPlanBucket                                     *teamchannelplannerplanbucket.TeamChannelPlannerPlanBucketClient
+	TeamChannelPlannerPlanBucketTask                                 *teamchannelplannerplanbuckettask.TeamChannelPlannerPlanBucketTaskClient
+	TeamChannelPlannerPlanBucketTaskAssignedToTaskBoardFormat        *teamchannelplannerplanbuckettaskassignedtotaskboardformat.TeamChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient
+	TeamChannelPlannerPlanBucketTaskBucketTaskBoardFormat            *teamchannelplannerplanbuckettaskbuckettaskboardformat.TeamChannelPlannerPlanBucketTaskBucketTaskBoardFormatClient
+	TeamChannelPlannerPlanBucketTaskDetail                           *teamchannelplannerplanbuckettaskdetail.TeamChannelPlannerPlanBucketTaskDetailClient
+	TeamChannelPlannerPlanBucketTaskProgressTaskBoardFormat          *teamchannelplannerplanbuckettaskprogresstaskboardformat.TeamChannelPlannerPlanBucketTaskProgressTaskBoardFormatClient
+	TeamChannelPlannerPlanDetail                                     *teamchannelplannerplandetail.TeamChannelPlannerPlanDetailClient
+	TeamChannelPlannerPlanTask                                       *teamchannelplannerplantask.TeamChannelPlannerPlanTaskClient
+	TeamChannelPlannerPlanTaskAssignedToTaskBoardFormat              *teamchannelplannerplantaskassignedtotaskboardformat.TeamChannelPlannerPlanTaskAssignedToTaskBoardFormatClient
+	TeamChannelPlannerPlanTaskBucketTaskBoardFormat                  *teamchannelplannerplantaskbuckettaskboardformat.TeamChannelPlannerPlanTaskBucketTaskBoardFormatClient
+	TeamChannelPlannerPlanTaskDetail                                 *teamchannelplannerplantaskdetail.TeamChannelPlannerPlanTaskDetailClient
+	TeamChannelPlannerPlanTaskProgressTaskBoardFormat                *teamchannelplannerplantaskprogresstaskboardformat.TeamChannelPlannerPlanTaskProgressTaskBoardFormatClient
 	TeamChannelSharedWithTeam                                        *teamchannelsharedwithteam.TeamChannelSharedWithTeamClient
 	TeamChannelSharedWithTeamAllowedMember                           *teamchannelsharedwithteamallowedmember.TeamChannelSharedWithTeamAllowedMemberClient
 	TeamChannelSharedWithTeamTeam                                    *teamchannelsharedwithteamteam.TeamChannelSharedWithTeamTeamClient
@@ -1074,6 +1045,7 @@ type Client struct {
 	TeamPermissionGrant                                              *teampermissiongrant.TeamPermissionGrantClient
 	TeamPhoto                                                        *teamphoto.TeamPhotoClient
 	TeamPrimaryChannel                                               *teamprimarychannel.TeamPrimaryChannelClient
+	TeamPrimaryChannelAllMember                                      *teamprimarychannelallmember.TeamPrimaryChannelAllMemberClient
 	TeamPrimaryChannelFilesFolder                                    *teamprimarychannelfilesfolder.TeamPrimaryChannelFilesFolderClient
 	TeamPrimaryChannelFilesFolderContent                             *teamprimarychannelfilesfoldercontent.TeamPrimaryChannelFilesFolderContentClient
 	TeamPrimaryChannelFilesFolderContentStream                       *teamprimarychannelfilesfoldercontentstream.TeamPrimaryChannelFilesFolderContentStreamClient
@@ -1082,6 +1054,20 @@ type Client struct {
 	TeamPrimaryChannelMessageHostedContent                           *teamprimarychannelmessagehostedcontent.TeamPrimaryChannelMessageHostedContentClient
 	TeamPrimaryChannelMessageReply                                   *teamprimarychannelmessagereply.TeamPrimaryChannelMessageReplyClient
 	TeamPrimaryChannelMessageReplyHostedContent                      *teamprimarychannelmessagereplyhostedcontent.TeamPrimaryChannelMessageReplyHostedContentClient
+	TeamPrimaryChannelPlanner                                        *teamprimarychannelplanner.TeamPrimaryChannelPlannerClient
+	TeamPrimaryChannelPlannerPlan                                    *teamprimarychannelplannerplan.TeamPrimaryChannelPlannerPlanClient
+	TeamPrimaryChannelPlannerPlanBucket                              *teamprimarychannelplannerplanbucket.TeamPrimaryChannelPlannerPlanBucketClient
+	TeamPrimaryChannelPlannerPlanBucketTask                          *teamprimarychannelplannerplanbuckettask.TeamPrimaryChannelPlannerPlanBucketTaskClient
+	TeamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormat *teamprimarychannelplannerplanbuckettaskassignedtotaskboardformat.TeamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient
+	TeamPrimaryChannelPlannerPlanBucketTaskBucketTaskBoardFormat     *teamprimarychannelplannerplanbuckettaskbuckettaskboardformat.TeamPrimaryChannelPlannerPlanBucketTaskBucketTaskBoardFormatClient
+	TeamPrimaryChannelPlannerPlanBucketTaskDetail                    *teamprimarychannelplannerplanbuckettaskdetail.TeamPrimaryChannelPlannerPlanBucketTaskDetailClient
+	TeamPrimaryChannelPlannerPlanBucketTaskProgressTaskBoardFormat   *teamprimarychannelplannerplanbuckettaskprogresstaskboardformat.TeamPrimaryChannelPlannerPlanBucketTaskProgressTaskBoardFormatClient
+	TeamPrimaryChannelPlannerPlanDetail                              *teamprimarychannelplannerplandetail.TeamPrimaryChannelPlannerPlanDetailClient
+	TeamPrimaryChannelPlannerPlanTask                                *teamprimarychannelplannerplantask.TeamPrimaryChannelPlannerPlanTaskClient
+	TeamPrimaryChannelPlannerPlanTaskAssignedToTaskBoardFormat       *teamprimarychannelplannerplantaskassignedtotaskboardformat.TeamPrimaryChannelPlannerPlanTaskAssignedToTaskBoardFormatClient
+	TeamPrimaryChannelPlannerPlanTaskBucketTaskBoardFormat           *teamprimarychannelplannerplantaskbuckettaskboardformat.TeamPrimaryChannelPlannerPlanTaskBucketTaskBoardFormatClient
+	TeamPrimaryChannelPlannerPlanTaskDetail                          *teamprimarychannelplannerplantaskdetail.TeamPrimaryChannelPlannerPlanTaskDetailClient
+	TeamPrimaryChannelPlannerPlanTaskProgressTaskBoardFormat         *teamprimarychannelplannerplantaskprogresstaskboardformat.TeamPrimaryChannelPlannerPlanTaskProgressTaskBoardFormatClient
 	TeamPrimaryChannelSharedWithTeam                                 *teamprimarychannelsharedwithteam.TeamPrimaryChannelSharedWithTeamClient
 	TeamPrimaryChannelSharedWithTeamAllowedMember                    *teamprimarychannelsharedwithteamallowedmember.TeamPrimaryChannelSharedWithTeamAllowedMemberClient
 	TeamPrimaryChannelSharedWithTeamTeam                             *teamprimarychannelsharedwithteamteam.TeamPrimaryChannelSharedWithTeamTeamClient
@@ -1136,125 +1122,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(calendarCalendarPermissionClient.Client)
 
-	calendarCalendarViewAttachmentClient, err := calendarcalendarviewattachment.NewCalendarCalendarViewAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewAttachmentClient.Client)
-
-	calendarCalendarViewCalendarClient, err := calendarcalendarviewcalendar.NewCalendarCalendarViewCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewCalendarClient.Client)
-
 	calendarCalendarViewClient, err := calendarcalendarview.NewCalendarCalendarViewClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CalendarCalendarView client: %+v", err)
 	}
 	configureFunc(calendarCalendarViewClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceAttachmentClient, err := calendarcalendarviewexceptionoccurrenceattachment.NewCalendarCalendarViewExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceAttachmentClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceCalendarClient, err := calendarcalendarviewexceptionoccurrencecalendar.NewCalendarCalendarViewExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceCalendarClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceClient, err := calendarcalendarviewexceptionoccurrence.NewCalendarCalendarViewExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceExtensionClient, err := calendarcalendarviewexceptionoccurrenceextension.NewCalendarCalendarViewExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceExtensionClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceInstanceAttachmentClient, err := calendarcalendarviewexceptionoccurrenceinstanceattachment.NewCalendarCalendarViewExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceInstanceCalendarClient, err := calendarcalendarviewexceptionoccurrenceinstancecalendar.NewCalendarCalendarViewExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceInstanceCalendarClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceInstanceClient, err := calendarcalendarviewexceptionoccurrenceinstance.NewCalendarCalendarViewExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceInstanceClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceInstanceExtensionClient, err := calendarcalendarviewexceptionoccurrenceinstanceextension.NewCalendarCalendarViewExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceInstanceExtensionClient.Client)
-
-	calendarCalendarViewExtensionClient, err := calendarcalendarviewextension.NewCalendarCalendarViewExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExtensionClient.Client)
-
-	calendarCalendarViewInstanceAttachmentClient, err := calendarcalendarviewinstanceattachment.NewCalendarCalendarViewInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceAttachmentClient.Client)
-
-	calendarCalendarViewInstanceCalendarClient, err := calendarcalendarviewinstancecalendar.NewCalendarCalendarViewInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceCalendarClient.Client)
-
-	calendarCalendarViewInstanceClient, err := calendarcalendarviewinstance.NewCalendarCalendarViewInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstance client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceClient.Client)
-
-	calendarCalendarViewInstanceExceptionOccurrenceAttachmentClient, err := calendarcalendarviewinstanceexceptionoccurrenceattachment.NewCalendarCalendarViewInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	calendarCalendarViewInstanceExceptionOccurrenceCalendarClient, err := calendarcalendarviewinstanceexceptionoccurrencecalendar.NewCalendarCalendarViewInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExceptionOccurrenceCalendarClient.Client)
-
-	calendarCalendarViewInstanceExceptionOccurrenceClient, err := calendarcalendarviewinstanceexceptionoccurrence.NewCalendarCalendarViewInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExceptionOccurrenceClient.Client)
-
-	calendarCalendarViewInstanceExceptionOccurrenceExtensionClient, err := calendarcalendarviewinstanceexceptionoccurrenceextension.NewCalendarCalendarViewInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExceptionOccurrenceExtensionClient.Client)
-
-	calendarCalendarViewInstanceExtensionClient, err := calendarcalendarviewinstanceextension.NewCalendarCalendarViewInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExtensionClient.Client)
 
 	calendarClient, err := calendar.NewCalendarClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1280,71 +1152,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(calendarEventClient.Client)
 
-	calendarEventExceptionOccurrenceAttachmentClient, err := calendareventexceptionoccurrenceattachment.NewCalendarEventExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceAttachmentClient.Client)
-
-	calendarEventExceptionOccurrenceCalendarClient, err := calendareventexceptionoccurrencecalendar.NewCalendarEventExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceCalendarClient.Client)
-
-	calendarEventExceptionOccurrenceClient, err := calendareventexceptionoccurrence.NewCalendarEventExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceClient.Client)
-
-	calendarEventExceptionOccurrenceExtensionClient, err := calendareventexceptionoccurrenceextension.NewCalendarEventExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceExtensionClient.Client)
-
-	calendarEventExceptionOccurrenceInstanceAttachmentClient, err := calendareventexceptionoccurrenceinstanceattachment.NewCalendarEventExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	calendarEventExceptionOccurrenceInstanceCalendarClient, err := calendareventexceptionoccurrenceinstancecalendar.NewCalendarEventExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceInstanceCalendarClient.Client)
-
-	calendarEventExceptionOccurrenceInstanceClient, err := calendareventexceptionoccurrenceinstance.NewCalendarEventExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceInstanceClient.Client)
-
-	calendarEventExceptionOccurrenceInstanceExtensionClient, err := calendareventexceptionoccurrenceinstanceextension.NewCalendarEventExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceInstanceExtensionClient.Client)
-
 	calendarEventExtensionClient, err := calendareventextension.NewCalendarEventExtensionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CalendarEventExtension client: %+v", err)
 	}
 	configureFunc(calendarEventExtensionClient.Client)
-
-	calendarEventInstanceAttachmentClient, err := calendareventinstanceattachment.NewCalendarEventInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceAttachmentClient.Client)
-
-	calendarEventInstanceCalendarClient, err := calendareventinstancecalendar.NewCalendarEventInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceCalendarClient.Client)
 
 	calendarEventInstanceClient, err := calendareventinstance.NewCalendarEventInstanceClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1352,155 +1164,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(calendarEventInstanceClient.Client)
 
-	calendarEventInstanceExceptionOccurrenceAttachmentClient, err := calendareventinstanceexceptionoccurrenceattachment.NewCalendarEventInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	calendarEventInstanceExceptionOccurrenceCalendarClient, err := calendareventinstanceexceptionoccurrencecalendar.NewCalendarEventInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExceptionOccurrenceCalendarClient.Client)
-
-	calendarEventInstanceExceptionOccurrenceClient, err := calendareventinstanceexceptionoccurrence.NewCalendarEventInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExceptionOccurrenceClient.Client)
-
-	calendarEventInstanceExceptionOccurrenceExtensionClient, err := calendareventinstanceexceptionoccurrenceextension.NewCalendarEventInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExceptionOccurrenceExtensionClient.Client)
-
-	calendarEventInstanceExtensionClient, err := calendareventinstanceextension.NewCalendarEventInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExtensionClient.Client)
-
-	calendarViewAttachmentClient, err := calendarviewattachment.NewCalendarViewAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewAttachmentClient.Client)
-
-	calendarViewCalendarClient, err := calendarviewcalendar.NewCalendarViewCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewCalendarClient.Client)
-
 	calendarViewClient, err := calendarview.NewCalendarViewClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CalendarView client: %+v", err)
 	}
 	configureFunc(calendarViewClient.Client)
-
-	calendarViewExceptionOccurrenceAttachmentClient, err := calendarviewexceptionoccurrenceattachment.NewCalendarViewExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceAttachmentClient.Client)
-
-	calendarViewExceptionOccurrenceCalendarClient, err := calendarviewexceptionoccurrencecalendar.NewCalendarViewExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceCalendarClient.Client)
-
-	calendarViewExceptionOccurrenceClient, err := calendarviewexceptionoccurrence.NewCalendarViewExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceClient.Client)
-
-	calendarViewExceptionOccurrenceExtensionClient, err := calendarviewexceptionoccurrenceextension.NewCalendarViewExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceExtensionClient.Client)
-
-	calendarViewExceptionOccurrenceInstanceAttachmentClient, err := calendarviewexceptionoccurrenceinstanceattachment.NewCalendarViewExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	calendarViewExceptionOccurrenceInstanceCalendarClient, err := calendarviewexceptionoccurrenceinstancecalendar.NewCalendarViewExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceInstanceCalendarClient.Client)
-
-	calendarViewExceptionOccurrenceInstanceClient, err := calendarviewexceptionoccurrenceinstance.NewCalendarViewExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceInstanceClient.Client)
-
-	calendarViewExceptionOccurrenceInstanceExtensionClient, err := calendarviewexceptionoccurrenceinstanceextension.NewCalendarViewExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceInstanceExtensionClient.Client)
-
-	calendarViewExtensionClient, err := calendarviewextension.NewCalendarViewExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExtension client: %+v", err)
-	}
-	configureFunc(calendarViewExtensionClient.Client)
-
-	calendarViewInstanceAttachmentClient, err := calendarviewinstanceattachment.NewCalendarViewInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceAttachmentClient.Client)
-
-	calendarViewInstanceCalendarClient, err := calendarviewinstancecalendar.NewCalendarViewInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceCalendarClient.Client)
-
-	calendarViewInstanceClient, err := calendarviewinstance.NewCalendarViewInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstance client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceClient.Client)
-
-	calendarViewInstanceExceptionOccurrenceAttachmentClient, err := calendarviewinstanceexceptionoccurrenceattachment.NewCalendarViewInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	calendarViewInstanceExceptionOccurrenceCalendarClient, err := calendarviewinstanceexceptionoccurrencecalendar.NewCalendarViewInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExceptionOccurrenceCalendarClient.Client)
-
-	calendarViewInstanceExceptionOccurrenceClient, err := calendarviewinstanceexceptionoccurrence.NewCalendarViewInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExceptionOccurrenceClient.Client)
-
-	calendarViewInstanceExceptionOccurrenceExtensionClient, err := calendarviewinstanceexceptionoccurrenceextension.NewCalendarViewInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExceptionOccurrenceExtensionClient.Client)
-
-	calendarViewInstanceExtensionClient, err := calendarviewinstanceextension.NewCalendarViewInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExtensionClient.Client)
 
 	conversationClient, err := conversation.NewConversationClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1765,6 +1433,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building DriveItemCreatedByUserServiceProvisioningError client: %+v", err)
 	}
 	configureFunc(driveItemCreatedByUserServiceProvisioningErrorClient.Client)
+
+	driveItemExtensionClient, err := driveitemextension.NewDriveItemExtensionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DriveItemExtension client: %+v", err)
+	}
+	configureFunc(driveItemExtensionClient.Client)
 
 	driveItemLastModifiedByUserClient, err := driveitemlastmodifiedbyuser.NewDriveItemLastModifiedByUserClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -2336,6 +2010,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(driveRootCreatedByUserServiceProvisioningErrorClient.Client)
 
+	driveRootExtensionClient, err := driverootextension.NewDriveRootExtensionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DriveRootExtension client: %+v", err)
+	}
+	configureFunc(driveRootExtensionClient.Client)
+
 	driveRootLastModifiedByUserClient, err := driverootlastmodifiedbyuser.NewDriveRootLastModifiedByUserClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DriveRootLastModifiedByUser client: %+v", err)
@@ -2564,107 +2244,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(eventClient.Client)
 
-	eventExceptionOccurrenceAttachmentClient, err := eventexceptionoccurrenceattachment.NewEventExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceAttachmentClient.Client)
-
-	eventExceptionOccurrenceCalendarClient, err := eventexceptionoccurrencecalendar.NewEventExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceCalendarClient.Client)
-
-	eventExceptionOccurrenceClient, err := eventexceptionoccurrence.NewEventExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceClient.Client)
-
-	eventExceptionOccurrenceExtensionClient, err := eventexceptionoccurrenceextension.NewEventExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceExtensionClient.Client)
-
-	eventExceptionOccurrenceInstanceAttachmentClient, err := eventexceptionoccurrenceinstanceattachment.NewEventExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	eventExceptionOccurrenceInstanceCalendarClient, err := eventexceptionoccurrenceinstancecalendar.NewEventExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceInstanceCalendarClient.Client)
-
-	eventExceptionOccurrenceInstanceClient, err := eventexceptionoccurrenceinstance.NewEventExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceInstanceClient.Client)
-
-	eventExceptionOccurrenceInstanceExtensionClient, err := eventexceptionoccurrenceinstanceextension.NewEventExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceInstanceExtensionClient.Client)
-
 	eventExtensionClient, err := eventextension.NewEventExtensionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventExtension client: %+v", err)
 	}
 	configureFunc(eventExtensionClient.Client)
 
-	eventInstanceAttachmentClient, err := eventinstanceattachment.NewEventInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceAttachment client: %+v", err)
-	}
-	configureFunc(eventInstanceAttachmentClient.Client)
-
-	eventInstanceCalendarClient, err := eventinstancecalendar.NewEventInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceCalendar client: %+v", err)
-	}
-	configureFunc(eventInstanceCalendarClient.Client)
-
 	eventInstanceClient, err := eventinstance.NewEventInstanceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventInstance client: %+v", err)
 	}
 	configureFunc(eventInstanceClient.Client)
-
-	eventInstanceExceptionOccurrenceAttachmentClient, err := eventinstanceexceptionoccurrenceattachment.NewEventInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(eventInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	eventInstanceExceptionOccurrenceCalendarClient, err := eventinstanceexceptionoccurrencecalendar.NewEventInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(eventInstanceExceptionOccurrenceCalendarClient.Client)
-
-	eventInstanceExceptionOccurrenceClient, err := eventinstanceexceptionoccurrence.NewEventInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(eventInstanceExceptionOccurrenceClient.Client)
-
-	eventInstanceExceptionOccurrenceExtensionClient, err := eventinstanceexceptionoccurrenceextension.NewEventInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(eventInstanceExceptionOccurrenceExtensionClient.Client)
-
-	eventInstanceExtensionClient, err := eventinstanceextension.NewEventInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExtension client: %+v", err)
-	}
-	configureFunc(eventInstanceExtensionClient.Client)
 
 	extensionClient, err := extension.NewExtensionClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -3284,11 +2874,23 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(siteInformationProtectionSensitivityLabelClient.Client)
 
+	siteInformationProtectionSensitivityLabelRightClient, err := siteinformationprotectionsensitivitylabelright.NewSiteInformationProtectionSensitivityLabelRightClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteInformationProtectionSensitivityLabelRight client: %+v", err)
+	}
+	configureFunc(siteInformationProtectionSensitivityLabelRightClient.Client)
+
 	siteInformationProtectionSensitivityLabelSublabelClient, err := siteinformationprotectionsensitivitylabelsublabel.NewSiteInformationProtectionSensitivityLabelSublabelClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SiteInformationProtectionSensitivityLabelSublabel client: %+v", err)
 	}
 	configureFunc(siteInformationProtectionSensitivityLabelSublabelClient.Client)
+
+	siteInformationProtectionSensitivityLabelSublabelRightClient, err := siteinformationprotectionsensitivitylabelsublabelright.NewSiteInformationProtectionSensitivityLabelSublabelRightClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteInformationProtectionSensitivityLabelSublabelRight client: %+v", err)
+	}
+	configureFunc(siteInformationProtectionSensitivityLabelSublabelRightClient.Client)
 
 	siteInformationProtectionSensitivityPolicySettingClient, err := siteinformationprotectionsensitivitypolicysetting.NewSiteInformationProtectionSensitivityPolicySettingClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -3908,6 +3510,168 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(sitePageLastModifiedByUserServiceProvisioningErrorClient.Client)
 
+	sitePageSitePageCanvasLayoutClient, err := sitepagesitepagecanvaslayout.NewSitePageSitePageCanvasLayoutClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageCanvasLayout client: %+v", err)
+	}
+	configureFunc(sitePageSitePageCanvasLayoutClient.Client)
+
+	sitePageSitePageCanvasLayoutHorizontalSectionClient, err := sitepagesitepagecanvaslayouthorizontalsection.NewSitePageSitePageCanvasLayoutHorizontalSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageCanvasLayoutHorizontalSection client: %+v", err)
+	}
+	configureFunc(sitePageSitePageCanvasLayoutHorizontalSectionClient.Client)
+
+	sitePageSitePageCanvasLayoutHorizontalSectionColumnClient, err := sitepagesitepagecanvaslayouthorizontalsectioncolumn.NewSitePageSitePageCanvasLayoutHorizontalSectionColumnClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageCanvasLayoutHorizontalSectionColumn client: %+v", err)
+	}
+	configureFunc(sitePageSitePageCanvasLayoutHorizontalSectionColumnClient.Client)
+
+	sitePageSitePageCanvasLayoutHorizontalSectionColumnWebpartClient, err := sitepagesitepagecanvaslayouthorizontalsectioncolumnwebpart.NewSitePageSitePageCanvasLayoutHorizontalSectionColumnWebpartClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageCanvasLayoutHorizontalSectionColumnWebpart client: %+v", err)
+	}
+	configureFunc(sitePageSitePageCanvasLayoutHorizontalSectionColumnWebpartClient.Client)
+
+	sitePageSitePageCanvasLayoutVerticalSectionClient, err := sitepagesitepagecanvaslayoutverticalsection.NewSitePageSitePageCanvasLayoutVerticalSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageCanvasLayoutVerticalSection client: %+v", err)
+	}
+	configureFunc(sitePageSitePageCanvasLayoutVerticalSectionClient.Client)
+
+	sitePageSitePageCanvasLayoutVerticalSectionWebpartClient, err := sitepagesitepagecanvaslayoutverticalsectionwebpart.NewSitePageSitePageCanvasLayoutVerticalSectionWebpartClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageCanvasLayoutVerticalSectionWebpart client: %+v", err)
+	}
+	configureFunc(sitePageSitePageCanvasLayoutVerticalSectionWebpartClient.Client)
+
+	sitePageSitePageCreatedByUserClient, err := sitepagesitepagecreatedbyuser.NewSitePageSitePageCreatedByUserClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageCreatedByUser client: %+v", err)
+	}
+	configureFunc(sitePageSitePageCreatedByUserClient.Client)
+
+	sitePageSitePageCreatedByUserMailboxSettingClient, err := sitepagesitepagecreatedbyusermailboxsetting.NewSitePageSitePageCreatedByUserMailboxSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageCreatedByUserMailboxSetting client: %+v", err)
+	}
+	configureFunc(sitePageSitePageCreatedByUserMailboxSettingClient.Client)
+
+	sitePageSitePageCreatedByUserServiceProvisioningErrorClient, err := sitepagesitepagecreatedbyuserserviceprovisioningerror.NewSitePageSitePageCreatedByUserServiceProvisioningErrorClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageCreatedByUserServiceProvisioningError client: %+v", err)
+	}
+	configureFunc(sitePageSitePageCreatedByUserServiceProvisioningErrorClient.Client)
+
+	sitePageSitePageLastModifiedByUserClient, err := sitepagesitepagelastmodifiedbyuser.NewSitePageSitePageLastModifiedByUserClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageLastModifiedByUser client: %+v", err)
+	}
+	configureFunc(sitePageSitePageLastModifiedByUserClient.Client)
+
+	sitePageSitePageLastModifiedByUserMailboxSettingClient, err := sitepagesitepagelastmodifiedbyusermailboxsetting.NewSitePageSitePageLastModifiedByUserMailboxSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageLastModifiedByUserMailboxSetting client: %+v", err)
+	}
+	configureFunc(sitePageSitePageLastModifiedByUserMailboxSettingClient.Client)
+
+	sitePageSitePageLastModifiedByUserServiceProvisioningErrorClient, err := sitepagesitepagelastmodifiedbyuserserviceprovisioningerror.NewSitePageSitePageLastModifiedByUserServiceProvisioningErrorClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageLastModifiedByUserServiceProvisioningError client: %+v", err)
+	}
+	configureFunc(sitePageSitePageLastModifiedByUserServiceProvisioningErrorClient.Client)
+
+	sitePageSitePageWebPartClient, err := sitepagesitepagewebpart.NewSitePageSitePageWebPartClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageSitePageWebPart client: %+v", err)
+	}
+	configureFunc(sitePageSitePageWebPartClient.Client)
+
+	sitePageTemplateCanvasLayoutClient, err := sitepagetemplatecanvaslayout.NewSitePageTemplateCanvasLayoutClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateCanvasLayout client: %+v", err)
+	}
+	configureFunc(sitePageTemplateCanvasLayoutClient.Client)
+
+	sitePageTemplateCanvasLayoutHorizontalSectionClient, err := sitepagetemplatecanvaslayouthorizontalsection.NewSitePageTemplateCanvasLayoutHorizontalSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateCanvasLayoutHorizontalSection client: %+v", err)
+	}
+	configureFunc(sitePageTemplateCanvasLayoutHorizontalSectionClient.Client)
+
+	sitePageTemplateCanvasLayoutHorizontalSectionColumnClient, err := sitepagetemplatecanvaslayouthorizontalsectioncolumn.NewSitePageTemplateCanvasLayoutHorizontalSectionColumnClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateCanvasLayoutHorizontalSectionColumn client: %+v", err)
+	}
+	configureFunc(sitePageTemplateCanvasLayoutHorizontalSectionColumnClient.Client)
+
+	sitePageTemplateCanvasLayoutHorizontalSectionColumnWebpartClient, err := sitepagetemplatecanvaslayouthorizontalsectioncolumnwebpart.NewSitePageTemplateCanvasLayoutHorizontalSectionColumnWebpartClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateCanvasLayoutHorizontalSectionColumnWebpart client: %+v", err)
+	}
+	configureFunc(sitePageTemplateCanvasLayoutHorizontalSectionColumnWebpartClient.Client)
+
+	sitePageTemplateCanvasLayoutVerticalSectionClient, err := sitepagetemplatecanvaslayoutverticalsection.NewSitePageTemplateCanvasLayoutVerticalSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateCanvasLayoutVerticalSection client: %+v", err)
+	}
+	configureFunc(sitePageTemplateCanvasLayoutVerticalSectionClient.Client)
+
+	sitePageTemplateCanvasLayoutVerticalSectionWebpartClient, err := sitepagetemplatecanvaslayoutverticalsectionwebpart.NewSitePageTemplateCanvasLayoutVerticalSectionWebpartClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateCanvasLayoutVerticalSectionWebpart client: %+v", err)
+	}
+	configureFunc(sitePageTemplateCanvasLayoutVerticalSectionWebpartClient.Client)
+
+	sitePageTemplateClient, err := sitepagetemplate.NewSitePageTemplateClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplate client: %+v", err)
+	}
+	configureFunc(sitePageTemplateClient.Client)
+
+	sitePageTemplateCreatedByUserClient, err := sitepagetemplatecreatedbyuser.NewSitePageTemplateCreatedByUserClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateCreatedByUser client: %+v", err)
+	}
+	configureFunc(sitePageTemplateCreatedByUserClient.Client)
+
+	sitePageTemplateCreatedByUserMailboxSettingClient, err := sitepagetemplatecreatedbyusermailboxsetting.NewSitePageTemplateCreatedByUserMailboxSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateCreatedByUserMailboxSetting client: %+v", err)
+	}
+	configureFunc(sitePageTemplateCreatedByUserMailboxSettingClient.Client)
+
+	sitePageTemplateCreatedByUserServiceProvisioningErrorClient, err := sitepagetemplatecreatedbyuserserviceprovisioningerror.NewSitePageTemplateCreatedByUserServiceProvisioningErrorClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateCreatedByUserServiceProvisioningError client: %+v", err)
+	}
+	configureFunc(sitePageTemplateCreatedByUserServiceProvisioningErrorClient.Client)
+
+	sitePageTemplateLastModifiedByUserClient, err := sitepagetemplatelastmodifiedbyuser.NewSitePageTemplateLastModifiedByUserClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateLastModifiedByUser client: %+v", err)
+	}
+	configureFunc(sitePageTemplateLastModifiedByUserClient.Client)
+
+	sitePageTemplateLastModifiedByUserMailboxSettingClient, err := sitepagetemplatelastmodifiedbyusermailboxsetting.NewSitePageTemplateLastModifiedByUserMailboxSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateLastModifiedByUserMailboxSetting client: %+v", err)
+	}
+	configureFunc(sitePageTemplateLastModifiedByUserMailboxSettingClient.Client)
+
+	sitePageTemplateLastModifiedByUserServiceProvisioningErrorClient, err := sitepagetemplatelastmodifiedbyuserserviceprovisioningerror.NewSitePageTemplateLastModifiedByUserServiceProvisioningErrorClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateLastModifiedByUserServiceProvisioningError client: %+v", err)
+	}
+	configureFunc(sitePageTemplateLastModifiedByUserServiceProvisioningErrorClient.Client)
+
+	sitePageTemplateWebPartClient, err := sitepagetemplatewebpart.NewSitePageTemplateWebPartClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SitePageTemplateWebPart client: %+v", err)
+	}
+	configureFunc(sitePageTemplateWebPartClient.Client)
+
 	sitePermissionClient, err := sitepermission.NewSitePermissionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SitePermission client: %+v", err)
@@ -4010,6 +3774,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(teamAllChannelClient.Client)
 
+	teamChannelAllMemberClient, err := teamchannelallmember.NewTeamChannelAllMemberClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelAllMember client: %+v", err)
+	}
+	configureFunc(teamChannelAllMemberClient.Client)
+
 	teamChannelClient, err := teamchannel.NewTeamChannelClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TeamChannel client: %+v", err)
@@ -4063,6 +3833,90 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building TeamChannelMessageReplyHostedContent client: %+v", err)
 	}
 	configureFunc(teamChannelMessageReplyHostedContentClient.Client)
+
+	teamChannelPlannerClient, err := teamchannelplanner.NewTeamChannelPlannerClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlanner client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerClient.Client)
+
+	teamChannelPlannerPlanBucketClient, err := teamchannelplannerplanbucket.NewTeamChannelPlannerPlanBucketClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanBucket client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanBucketClient.Client)
+
+	teamChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient, err := teamchannelplannerplanbuckettaskassignedtotaskboardformat.NewTeamChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanBucketTaskAssignedToTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient.Client)
+
+	teamChannelPlannerPlanBucketTaskBucketTaskBoardFormatClient, err := teamchannelplannerplanbuckettaskbuckettaskboardformat.NewTeamChannelPlannerPlanBucketTaskBucketTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanBucketTaskBucketTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanBucketTaskBucketTaskBoardFormatClient.Client)
+
+	teamChannelPlannerPlanBucketTaskClient, err := teamchannelplannerplanbuckettask.NewTeamChannelPlannerPlanBucketTaskClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanBucketTask client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanBucketTaskClient.Client)
+
+	teamChannelPlannerPlanBucketTaskDetailClient, err := teamchannelplannerplanbuckettaskdetail.NewTeamChannelPlannerPlanBucketTaskDetailClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanBucketTaskDetail client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanBucketTaskDetailClient.Client)
+
+	teamChannelPlannerPlanBucketTaskProgressTaskBoardFormatClient, err := teamchannelplannerplanbuckettaskprogresstaskboardformat.NewTeamChannelPlannerPlanBucketTaskProgressTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanBucketTaskProgressTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanBucketTaskProgressTaskBoardFormatClient.Client)
+
+	teamChannelPlannerPlanClient, err := teamchannelplannerplan.NewTeamChannelPlannerPlanClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlan client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanClient.Client)
+
+	teamChannelPlannerPlanDetailClient, err := teamchannelplannerplandetail.NewTeamChannelPlannerPlanDetailClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanDetail client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanDetailClient.Client)
+
+	teamChannelPlannerPlanTaskAssignedToTaskBoardFormatClient, err := teamchannelplannerplantaskassignedtotaskboardformat.NewTeamChannelPlannerPlanTaskAssignedToTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanTaskAssignedToTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanTaskAssignedToTaskBoardFormatClient.Client)
+
+	teamChannelPlannerPlanTaskBucketTaskBoardFormatClient, err := teamchannelplannerplantaskbuckettaskboardformat.NewTeamChannelPlannerPlanTaskBucketTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanTaskBucketTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanTaskBucketTaskBoardFormatClient.Client)
+
+	teamChannelPlannerPlanTaskClient, err := teamchannelplannerplantask.NewTeamChannelPlannerPlanTaskClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanTask client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanTaskClient.Client)
+
+	teamChannelPlannerPlanTaskDetailClient, err := teamchannelplannerplantaskdetail.NewTeamChannelPlannerPlanTaskDetailClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanTaskDetail client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanTaskDetailClient.Client)
+
+	teamChannelPlannerPlanTaskProgressTaskBoardFormatClient, err := teamchannelplannerplantaskprogresstaskboardformat.NewTeamChannelPlannerPlanTaskProgressTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamChannelPlannerPlanTaskProgressTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamChannelPlannerPlanTaskProgressTaskBoardFormatClient.Client)
 
 	teamChannelSharedWithTeamAllowedMemberClient, err := teamchannelsharedwithteamallowedmember.NewTeamChannelSharedWithTeamAllowedMemberClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -4178,6 +4032,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(teamPhotoClient.Client)
 
+	teamPrimaryChannelAllMemberClient, err := teamprimarychannelallmember.NewTeamPrimaryChannelAllMemberClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelAllMember client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelAllMemberClient.Client)
+
 	teamPrimaryChannelClient, err := teamprimarychannel.NewTeamPrimaryChannelClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TeamPrimaryChannel client: %+v", err)
@@ -4231,6 +4091,90 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building TeamPrimaryChannelMessageReplyHostedContent client: %+v", err)
 	}
 	configureFunc(teamPrimaryChannelMessageReplyHostedContentClient.Client)
+
+	teamPrimaryChannelPlannerClient, err := teamprimarychannelplanner.NewTeamPrimaryChannelPlannerClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlanner client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerClient.Client)
+
+	teamPrimaryChannelPlannerPlanBucketClient, err := teamprimarychannelplannerplanbucket.NewTeamPrimaryChannelPlannerPlanBucketClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanBucket client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanBucketClient.Client)
+
+	teamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient, err := teamprimarychannelplannerplanbuckettaskassignedtotaskboardformat.NewTeamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient.Client)
+
+	teamPrimaryChannelPlannerPlanBucketTaskBucketTaskBoardFormatClient, err := teamprimarychannelplannerplanbuckettaskbuckettaskboardformat.NewTeamPrimaryChannelPlannerPlanBucketTaskBucketTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanBucketTaskBucketTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanBucketTaskBucketTaskBoardFormatClient.Client)
+
+	teamPrimaryChannelPlannerPlanBucketTaskClient, err := teamprimarychannelplannerplanbuckettask.NewTeamPrimaryChannelPlannerPlanBucketTaskClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanBucketTask client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanBucketTaskClient.Client)
+
+	teamPrimaryChannelPlannerPlanBucketTaskDetailClient, err := teamprimarychannelplannerplanbuckettaskdetail.NewTeamPrimaryChannelPlannerPlanBucketTaskDetailClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanBucketTaskDetail client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanBucketTaskDetailClient.Client)
+
+	teamPrimaryChannelPlannerPlanBucketTaskProgressTaskBoardFormatClient, err := teamprimarychannelplannerplanbuckettaskprogresstaskboardformat.NewTeamPrimaryChannelPlannerPlanBucketTaskProgressTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanBucketTaskProgressTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanBucketTaskProgressTaskBoardFormatClient.Client)
+
+	teamPrimaryChannelPlannerPlanClient, err := teamprimarychannelplannerplan.NewTeamPrimaryChannelPlannerPlanClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlan client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanClient.Client)
+
+	teamPrimaryChannelPlannerPlanDetailClient, err := teamprimarychannelplannerplandetail.NewTeamPrimaryChannelPlannerPlanDetailClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanDetail client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanDetailClient.Client)
+
+	teamPrimaryChannelPlannerPlanTaskAssignedToTaskBoardFormatClient, err := teamprimarychannelplannerplantaskassignedtotaskboardformat.NewTeamPrimaryChannelPlannerPlanTaskAssignedToTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanTaskAssignedToTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanTaskAssignedToTaskBoardFormatClient.Client)
+
+	teamPrimaryChannelPlannerPlanTaskBucketTaskBoardFormatClient, err := teamprimarychannelplannerplantaskbuckettaskboardformat.NewTeamPrimaryChannelPlannerPlanTaskBucketTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanTaskBucketTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanTaskBucketTaskBoardFormatClient.Client)
+
+	teamPrimaryChannelPlannerPlanTaskClient, err := teamprimarychannelplannerplantask.NewTeamPrimaryChannelPlannerPlanTaskClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanTask client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanTaskClient.Client)
+
+	teamPrimaryChannelPlannerPlanTaskDetailClient, err := teamprimarychannelplannerplantaskdetail.NewTeamPrimaryChannelPlannerPlanTaskDetailClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanTaskDetail client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanTaskDetailClient.Client)
+
+	teamPrimaryChannelPlannerPlanTaskProgressTaskBoardFormatClient, err := teamprimarychannelplannerplantaskprogresstaskboardformat.NewTeamPrimaryChannelPlannerPlanTaskProgressTaskBoardFormatClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TeamPrimaryChannelPlannerPlanTaskProgressTaskBoardFormat client: %+v", err)
+	}
+	configureFunc(teamPrimaryChannelPlannerPlanTaskProgressTaskBoardFormatClient.Client)
 
 	teamPrimaryChannelSharedWithTeamAllowedMemberClient, err := teamprimarychannelsharedwithteamallowedmember.NewTeamPrimaryChannelSharedWithTeamAllowedMemberClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -4431,103 +4375,50 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	configureFunc(transitiveMemberOfClient.Client)
 
 	return &Client{
-		AcceptedSender:                                                   acceptedSenderClient,
-		AppRoleAssignment:                                                appRoleAssignmentClient,
-		Calendar:                                                         calendarClient,
-		CalendarCalendarPermission:                                       calendarCalendarPermissionClient,
-		CalendarCalendarView:                                             calendarCalendarViewClient,
-		CalendarCalendarViewAttachment:                                   calendarCalendarViewAttachmentClient,
-		CalendarCalendarViewCalendar:                                     calendarCalendarViewCalendarClient,
-		CalendarCalendarViewExceptionOccurrence:                          calendarCalendarViewExceptionOccurrenceClient,
-		CalendarCalendarViewExceptionOccurrenceAttachment:                calendarCalendarViewExceptionOccurrenceAttachmentClient,
-		CalendarCalendarViewExceptionOccurrenceCalendar:                  calendarCalendarViewExceptionOccurrenceCalendarClient,
-		CalendarCalendarViewExceptionOccurrenceExtension:                 calendarCalendarViewExceptionOccurrenceExtensionClient,
-		CalendarCalendarViewExceptionOccurrenceInstance:                  calendarCalendarViewExceptionOccurrenceInstanceClient,
-		CalendarCalendarViewExceptionOccurrenceInstanceAttachment:        calendarCalendarViewExceptionOccurrenceInstanceAttachmentClient,
-		CalendarCalendarViewExceptionOccurrenceInstanceCalendar:          calendarCalendarViewExceptionOccurrenceInstanceCalendarClient,
-		CalendarCalendarViewExceptionOccurrenceInstanceExtension:         calendarCalendarViewExceptionOccurrenceInstanceExtensionClient,
-		CalendarCalendarViewExtension:                                    calendarCalendarViewExtensionClient,
-		CalendarCalendarViewInstance:                                     calendarCalendarViewInstanceClient,
-		CalendarCalendarViewInstanceAttachment:                           calendarCalendarViewInstanceAttachmentClient,
-		CalendarCalendarViewInstanceCalendar:                             calendarCalendarViewInstanceCalendarClient,
-		CalendarCalendarViewInstanceExceptionOccurrence:                  calendarCalendarViewInstanceExceptionOccurrenceClient,
-		CalendarCalendarViewInstanceExceptionOccurrenceAttachment:        calendarCalendarViewInstanceExceptionOccurrenceAttachmentClient,
-		CalendarCalendarViewInstanceExceptionOccurrenceCalendar:          calendarCalendarViewInstanceExceptionOccurrenceCalendarClient,
-		CalendarCalendarViewInstanceExceptionOccurrenceExtension:         calendarCalendarViewInstanceExceptionOccurrenceExtensionClient,
-		CalendarCalendarViewInstanceExtension:                            calendarCalendarViewInstanceExtensionClient,
-		CalendarEvent:                                                    calendarEventClient,
-		CalendarEventAttachment:                                          calendarEventAttachmentClient,
-		CalendarEventCalendar:                                            calendarEventCalendarClient,
-		CalendarEventExceptionOccurrence:                                 calendarEventExceptionOccurrenceClient,
-		CalendarEventExceptionOccurrenceAttachment:                       calendarEventExceptionOccurrenceAttachmentClient,
-		CalendarEventExceptionOccurrenceCalendar:                         calendarEventExceptionOccurrenceCalendarClient,
-		CalendarEventExceptionOccurrenceExtension:                        calendarEventExceptionOccurrenceExtensionClient,
-		CalendarEventExceptionOccurrenceInstance:                         calendarEventExceptionOccurrenceInstanceClient,
-		CalendarEventExceptionOccurrenceInstanceAttachment:               calendarEventExceptionOccurrenceInstanceAttachmentClient,
-		CalendarEventExceptionOccurrenceInstanceCalendar:                 calendarEventExceptionOccurrenceInstanceCalendarClient,
-		CalendarEventExceptionOccurrenceInstanceExtension:                calendarEventExceptionOccurrenceInstanceExtensionClient,
-		CalendarEventExtension:                                           calendarEventExtensionClient,
-		CalendarEventInstance:                                            calendarEventInstanceClient,
-		CalendarEventInstanceAttachment:                                  calendarEventInstanceAttachmentClient,
-		CalendarEventInstanceCalendar:                                    calendarEventInstanceCalendarClient,
-		CalendarEventInstanceExceptionOccurrence:                         calendarEventInstanceExceptionOccurrenceClient,
-		CalendarEventInstanceExceptionOccurrenceAttachment:               calendarEventInstanceExceptionOccurrenceAttachmentClient,
-		CalendarEventInstanceExceptionOccurrenceCalendar:                 calendarEventInstanceExceptionOccurrenceCalendarClient,
-		CalendarEventInstanceExceptionOccurrenceExtension:                calendarEventInstanceExceptionOccurrenceExtensionClient,
-		CalendarEventInstanceExtension:                                   calendarEventInstanceExtensionClient,
-		CalendarView:                                                     calendarViewClient,
-		CalendarViewAttachment:                                           calendarViewAttachmentClient,
-		CalendarViewCalendar:                                             calendarViewCalendarClient,
-		CalendarViewExceptionOccurrence:                                  calendarViewExceptionOccurrenceClient,
-		CalendarViewExceptionOccurrenceAttachment:                        calendarViewExceptionOccurrenceAttachmentClient,
-		CalendarViewExceptionOccurrenceCalendar:                          calendarViewExceptionOccurrenceCalendarClient,
-		CalendarViewExceptionOccurrenceExtension:                         calendarViewExceptionOccurrenceExtensionClient,
-		CalendarViewExceptionOccurrenceInstance:                          calendarViewExceptionOccurrenceInstanceClient,
-		CalendarViewExceptionOccurrenceInstanceAttachment:                calendarViewExceptionOccurrenceInstanceAttachmentClient,
-		CalendarViewExceptionOccurrenceInstanceCalendar:                  calendarViewExceptionOccurrenceInstanceCalendarClient,
-		CalendarViewExceptionOccurrenceInstanceExtension:                 calendarViewExceptionOccurrenceInstanceExtensionClient,
-		CalendarViewExtension:                                            calendarViewExtensionClient,
-		CalendarViewInstance:                                             calendarViewInstanceClient,
-		CalendarViewInstanceAttachment:                                   calendarViewInstanceAttachmentClient,
-		CalendarViewInstanceCalendar:                                     calendarViewInstanceCalendarClient,
-		CalendarViewInstanceExceptionOccurrence:                          calendarViewInstanceExceptionOccurrenceClient,
-		CalendarViewInstanceExceptionOccurrenceAttachment:                calendarViewInstanceExceptionOccurrenceAttachmentClient,
-		CalendarViewInstanceExceptionOccurrenceCalendar:                  calendarViewInstanceExceptionOccurrenceCalendarClient,
-		CalendarViewInstanceExceptionOccurrenceExtension:                 calendarViewInstanceExceptionOccurrenceExtensionClient,
-		CalendarViewInstanceExtension:                                    calendarViewInstanceExtensionClient,
-		Conversation:                                                     conversationClient,
-		ConversationThread:                                               conversationThreadClient,
-		ConversationThreadPost:                                           conversationThreadPostClient,
-		ConversationThreadPostAttachment:                                 conversationThreadPostAttachmentClient,
-		ConversationThreadPostExtension:                                  conversationThreadPostExtensionClient,
-		ConversationThreadPostInReplyTo:                                  conversationThreadPostInReplyToClient,
-		ConversationThreadPostInReplyToAttachment:                        conversationThreadPostInReplyToAttachmentClient,
-		ConversationThreadPostInReplyToExtension:                         conversationThreadPostInReplyToExtensionClient,
-		ConversationThreadPostInReplyToMention:                           conversationThreadPostInReplyToMentionClient,
-		ConversationThreadPostMention:                                    conversationThreadPostMentionClient,
-		CreatedOnBehalfOf:                                                createdOnBehalfOfClient,
-		Drive:                                                            driveClient,
-		DriveActivity:                                                    driveActivityClient,
-		DriveActivityDriveItem:                                           driveActivityDriveItemClient,
-		DriveActivityDriveItemContent:                                    driveActivityDriveItemContentClient,
-		DriveActivityDriveItemContentStream:                              driveActivityDriveItemContentStreamClient,
-		DriveActivityListItem:                                            driveActivityListItemClient,
-		DriveBundle:                                                      driveBundleClient,
-		DriveBundleContent:                                               driveBundleContentClient,
-		DriveBundleContentStream:                                         driveBundleContentStreamClient,
-		DriveCreatedByUser:                                               driveCreatedByUserClient,
-		DriveCreatedByUserMailboxSetting:                                 driveCreatedByUserMailboxSettingClient,
-		DriveCreatedByUserServiceProvisioningError:                       driveCreatedByUserServiceProvisioningErrorClient,
-		DriveFollowing:                                                   driveFollowingClient,
-		DriveFollowingContent:                                            driveFollowingContentClient,
-		DriveFollowingContentStream:                                      driveFollowingContentStreamClient,
-		DriveItem:                                                        driveItemClient,
-		DriveItemActivity:                                                driveItemActivityClient,
-		DriveItemAnalytics:                                               driveItemAnalyticsClient,
-		DriveItemAnalyticsAllTime:                                        driveItemAnalyticsAllTimeClient,
-		DriveItemAnalyticsItemActivityStat:                               driveItemAnalyticsItemActivityStatClient,
-		DriveItemAnalyticsItemActivityStatActivity:                       driveItemAnalyticsItemActivityStatActivityClient,
-		DriveItemAnalyticsItemActivityStatActivityDriveItem:              driveItemAnalyticsItemActivityStatActivityDriveItemClient,
+		AcceptedSender:                                      acceptedSenderClient,
+		AppRoleAssignment:                                   appRoleAssignmentClient,
+		Calendar:                                            calendarClient,
+		CalendarCalendarPermission:                          calendarCalendarPermissionClient,
+		CalendarCalendarView:                                calendarCalendarViewClient,
+		CalendarEvent:                                       calendarEventClient,
+		CalendarEventAttachment:                             calendarEventAttachmentClient,
+		CalendarEventCalendar:                               calendarEventCalendarClient,
+		CalendarEventExtension:                              calendarEventExtensionClient,
+		CalendarEventInstance:                               calendarEventInstanceClient,
+		CalendarView:                                        calendarViewClient,
+		Conversation:                                        conversationClient,
+		ConversationThread:                                  conversationThreadClient,
+		ConversationThreadPost:                              conversationThreadPostClient,
+		ConversationThreadPostAttachment:                    conversationThreadPostAttachmentClient,
+		ConversationThreadPostExtension:                     conversationThreadPostExtensionClient,
+		ConversationThreadPostInReplyTo:                     conversationThreadPostInReplyToClient,
+		ConversationThreadPostInReplyToAttachment:           conversationThreadPostInReplyToAttachmentClient,
+		ConversationThreadPostInReplyToExtension:            conversationThreadPostInReplyToExtensionClient,
+		ConversationThreadPostInReplyToMention:              conversationThreadPostInReplyToMentionClient,
+		ConversationThreadPostMention:                       conversationThreadPostMentionClient,
+		CreatedOnBehalfOf:                                   createdOnBehalfOfClient,
+		Drive:                                               driveClient,
+		DriveActivity:                                       driveActivityClient,
+		DriveActivityDriveItem:                              driveActivityDriveItemClient,
+		DriveActivityDriveItemContent:                       driveActivityDriveItemContentClient,
+		DriveActivityDriveItemContentStream:                 driveActivityDriveItemContentStreamClient,
+		DriveActivityListItem:                               driveActivityListItemClient,
+		DriveBundle:                                         driveBundleClient,
+		DriveBundleContent:                                  driveBundleContentClient,
+		DriveBundleContentStream:                            driveBundleContentStreamClient,
+		DriveCreatedByUser:                                  driveCreatedByUserClient,
+		DriveCreatedByUserMailboxSetting:                    driveCreatedByUserMailboxSettingClient,
+		DriveCreatedByUserServiceProvisioningError:          driveCreatedByUserServiceProvisioningErrorClient,
+		DriveFollowing:                                      driveFollowingClient,
+		DriveFollowingContent:                               driveFollowingContentClient,
+		DriveFollowingContentStream:                         driveFollowingContentStreamClient,
+		DriveItem:                                           driveItemClient,
+		DriveItemActivity:                                   driveItemActivityClient,
+		DriveItemAnalytics:                                  driveItemAnalyticsClient,
+		DriveItemAnalyticsAllTime:                           driveItemAnalyticsAllTimeClient,
+		DriveItemAnalyticsItemActivityStat:                  driveItemAnalyticsItemActivityStatClient,
+		DriveItemAnalyticsItemActivityStatActivity:          driveItemAnalyticsItemActivityStatActivityClient,
+		DriveItemAnalyticsItemActivityStatActivityDriveItem: driveItemAnalyticsItemActivityStatActivityDriveItemClient,
 		DriveItemAnalyticsItemActivityStatActivityDriveItemContent:       driveItemAnalyticsItemActivityStatActivityDriveItemContentClient,
 		DriveItemAnalyticsItemActivityStatActivityDriveItemContentStream: driveItemAnalyticsItemActivityStatActivityDriveItemContentStreamClient,
 		DriveItemAnalyticsLastSevenDay:                                   driveItemAnalyticsLastSevenDayClient,
@@ -4539,6 +4430,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		DriveItemCreatedByUser:                                           driveItemCreatedByUserClient,
 		DriveItemCreatedByUserMailboxSetting:                             driveItemCreatedByUserMailboxSettingClient,
 		DriveItemCreatedByUserServiceProvisioningError:                   driveItemCreatedByUserServiceProvisioningErrorClient,
+		DriveItemExtension:                                               driveItemExtensionClient,
 		DriveItemLastModifiedByUser:                                      driveItemLastModifiedByUserClient,
 		DriveItemLastModifiedByUserMailboxSetting:                        driveItemLastModifiedByUserMailboxSettingClient,
 		DriveItemLastModifiedByUserServiceProvisioningError:              driveItemLastModifiedByUserServiceProvisioningErrorClient,
@@ -4634,6 +4526,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		DriveRootCreatedByUser:                                           driveRootCreatedByUserClient,
 		DriveRootCreatedByUserMailboxSetting:                             driveRootCreatedByUserMailboxSettingClient,
 		DriveRootCreatedByUserServiceProvisioningError:                   driveRootCreatedByUserServiceProvisioningErrorClient,
+		DriveRootExtension:                                               driveRootExtensionClient,
 		DriveRootLastModifiedByUser:                                      driveRootLastModifiedByUserClient,
 		DriveRootLastModifiedByUserMailboxSetting:                        driveRootLastModifiedByUserMailboxSettingClient,
 		DriveRootLastModifiedByUserServiceProvisioningError:              driveRootLastModifiedByUserServiceProvisioningErrorClient,
@@ -4672,23 +4565,8 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		Event:                                                            eventClient,
 		EventAttachment:                                                  eventAttachmentClient,
 		EventCalendar:                                                    eventCalendarClient,
-		EventExceptionOccurrence:                                         eventExceptionOccurrenceClient,
-		EventExceptionOccurrenceAttachment:                               eventExceptionOccurrenceAttachmentClient,
-		EventExceptionOccurrenceCalendar:                                 eventExceptionOccurrenceCalendarClient,
-		EventExceptionOccurrenceExtension:                                eventExceptionOccurrenceExtensionClient,
-		EventExceptionOccurrenceInstance:                                 eventExceptionOccurrenceInstanceClient,
-		EventExceptionOccurrenceInstanceAttachment:                       eventExceptionOccurrenceInstanceAttachmentClient,
-		EventExceptionOccurrenceInstanceCalendar:                         eventExceptionOccurrenceInstanceCalendarClient,
-		EventExceptionOccurrenceInstanceExtension:                        eventExceptionOccurrenceInstanceExtensionClient,
 		EventExtension:                                                   eventExtensionClient,
 		EventInstance:                                                    eventInstanceClient,
-		EventInstanceAttachment:                                          eventInstanceAttachmentClient,
-		EventInstanceCalendar:                                            eventInstanceCalendarClient,
-		EventInstanceExceptionOccurrence:                                 eventInstanceExceptionOccurrenceClient,
-		EventInstanceExceptionOccurrenceAttachment:                       eventInstanceExceptionOccurrenceAttachmentClient,
-		EventInstanceExceptionOccurrenceCalendar:                         eventInstanceExceptionOccurrenceCalendarClient,
-		EventInstanceExceptionOccurrenceExtension:                        eventInstanceExceptionOccurrenceExtensionClient,
-		EventInstanceExtension:                                           eventInstanceExtensionClient,
 		Extension:                                                        extensionClient,
 		Group:                                                            groupClient,
 		GroupLifecyclePolicy:                                             groupLifecyclePolicyClient,
@@ -4792,7 +4670,9 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		SiteInformationProtectionPolicy:                                  siteInformationProtectionPolicyClient,
 		SiteInformationProtectionPolicyLabel:                             siteInformationProtectionPolicyLabelClient,
 		SiteInformationProtectionSensitivityLabel:                        siteInformationProtectionSensitivityLabelClient,
+		SiteInformationProtectionSensitivityLabelRight:                   siteInformationProtectionSensitivityLabelRightClient,
 		SiteInformationProtectionSensitivityLabelSublabel:                siteInformationProtectionSensitivityLabelSublabelClient,
+		SiteInformationProtectionSensitivityLabelSublabelRight:           siteInformationProtectionSensitivityLabelSublabelRightClient,
 		SiteInformationProtectionSensitivityPolicySetting:                siteInformationProtectionSensitivityPolicySettingClient,
 		SiteInformationProtectionThreatAssessmentRequest:                 siteInformationProtectionThreatAssessmentRequestClient,
 		SiteInformationProtectionThreatAssessmentRequestResult:           siteInformationProtectionThreatAssessmentRequestResultClient,
@@ -4896,6 +4776,33 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		SitePageLastModifiedByUser:                                   sitePageLastModifiedByUserClient,
 		SitePageLastModifiedByUserMailboxSetting:                     sitePageLastModifiedByUserMailboxSettingClient,
 		SitePageLastModifiedByUserServiceProvisioningError:           sitePageLastModifiedByUserServiceProvisioningErrorClient,
+		SitePageSitePageCanvasLayout:                                 sitePageSitePageCanvasLayoutClient,
+		SitePageSitePageCanvasLayoutHorizontalSection:                sitePageSitePageCanvasLayoutHorizontalSectionClient,
+		SitePageSitePageCanvasLayoutHorizontalSectionColumn:          sitePageSitePageCanvasLayoutHorizontalSectionColumnClient,
+		SitePageSitePageCanvasLayoutHorizontalSectionColumnWebpart:   sitePageSitePageCanvasLayoutHorizontalSectionColumnWebpartClient,
+		SitePageSitePageCanvasLayoutVerticalSection:                  sitePageSitePageCanvasLayoutVerticalSectionClient,
+		SitePageSitePageCanvasLayoutVerticalSectionWebpart:           sitePageSitePageCanvasLayoutVerticalSectionWebpartClient,
+		SitePageSitePageCreatedByUser:                                sitePageSitePageCreatedByUserClient,
+		SitePageSitePageCreatedByUserMailboxSetting:                  sitePageSitePageCreatedByUserMailboxSettingClient,
+		SitePageSitePageCreatedByUserServiceProvisioningError:        sitePageSitePageCreatedByUserServiceProvisioningErrorClient,
+		SitePageSitePageLastModifiedByUser:                           sitePageSitePageLastModifiedByUserClient,
+		SitePageSitePageLastModifiedByUserMailboxSetting:             sitePageSitePageLastModifiedByUserMailboxSettingClient,
+		SitePageSitePageLastModifiedByUserServiceProvisioningError:   sitePageSitePageLastModifiedByUserServiceProvisioningErrorClient,
+		SitePageSitePageWebPart:                                      sitePageSitePageWebPartClient,
+		SitePageTemplate:                                             sitePageTemplateClient,
+		SitePageTemplateCanvasLayout:                                 sitePageTemplateCanvasLayoutClient,
+		SitePageTemplateCanvasLayoutHorizontalSection:                sitePageTemplateCanvasLayoutHorizontalSectionClient,
+		SitePageTemplateCanvasLayoutHorizontalSectionColumn:          sitePageTemplateCanvasLayoutHorizontalSectionColumnClient,
+		SitePageTemplateCanvasLayoutHorizontalSectionColumnWebpart:   sitePageTemplateCanvasLayoutHorizontalSectionColumnWebpartClient,
+		SitePageTemplateCanvasLayoutVerticalSection:                  sitePageTemplateCanvasLayoutVerticalSectionClient,
+		SitePageTemplateCanvasLayoutVerticalSectionWebpart:           sitePageTemplateCanvasLayoutVerticalSectionWebpartClient,
+		SitePageTemplateCreatedByUser:                                sitePageTemplateCreatedByUserClient,
+		SitePageTemplateCreatedByUserMailboxSetting:                  sitePageTemplateCreatedByUserMailboxSettingClient,
+		SitePageTemplateCreatedByUserServiceProvisioningError:        sitePageTemplateCreatedByUserServiceProvisioningErrorClient,
+		SitePageTemplateLastModifiedByUser:                           sitePageTemplateLastModifiedByUserClient,
+		SitePageTemplateLastModifiedByUserMailboxSetting:             sitePageTemplateLastModifiedByUserMailboxSettingClient,
+		SitePageTemplateLastModifiedByUserServiceProvisioningError:   sitePageTemplateLastModifiedByUserServiceProvisioningErrorClient,
+		SitePageTemplateWebPart:                                      sitePageTemplateWebPartClient,
 		SitePermission:                                               sitePermissionClient,
 		SiteRecycleBin:                                               siteRecycleBinClient,
 		SiteRecycleBinCreatedByUser:                                  siteRecycleBinCreatedByUserClient,
@@ -4911,77 +4818,107 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		SiteRecycleBinLastModifiedByUser:                             siteRecycleBinLastModifiedByUserClient,
 		SiteRecycleBinLastModifiedByUserMailboxSetting:               siteRecycleBinLastModifiedByUserMailboxSettingClient,
 		SiteRecycleBinLastModifiedByUserServiceProvisioningError:     siteRecycleBinLastModifiedByUserServiceProvisioningErrorClient,
-		SiteSite:                                      siteSiteClient,
-		Team:                                          teamClient,
-		TeamAllChannel:                                teamAllChannelClient,
-		TeamChannel:                                   teamChannelClient,
-		TeamChannelFilesFolder:                        teamChannelFilesFolderClient,
-		TeamChannelFilesFolderContent:                 teamChannelFilesFolderContentClient,
-		TeamChannelFilesFolderContentStream:           teamChannelFilesFolderContentStreamClient,
-		TeamChannelMember:                             teamChannelMemberClient,
-		TeamChannelMessage:                            teamChannelMessageClient,
-		TeamChannelMessageHostedContent:               teamChannelMessageHostedContentClient,
-		TeamChannelMessageReply:                       teamChannelMessageReplyClient,
-		TeamChannelMessageReplyHostedContent:          teamChannelMessageReplyHostedContentClient,
-		TeamChannelSharedWithTeam:                     teamChannelSharedWithTeamClient,
-		TeamChannelSharedWithTeamAllowedMember:        teamChannelSharedWithTeamAllowedMemberClient,
-		TeamChannelSharedWithTeamTeam:                 teamChannelSharedWithTeamTeamClient,
-		TeamChannelTab:                                teamChannelTabClient,
-		TeamChannelTabTeamsApp:                        teamChannelTabTeamsAppClient,
-		TeamGroup:                                     teamGroupClient,
-		TeamGroupServiceProvisioningError:             teamGroupServiceProvisioningErrorClient,
-		TeamIncomingChannel:                           teamIncomingChannelClient,
-		TeamInstalledApp:                              teamInstalledAppClient,
-		TeamInstalledAppTeamsApp:                      teamInstalledAppTeamsAppClient,
-		TeamInstalledAppTeamsAppDefinition:            teamInstalledAppTeamsAppDefinitionClient,
-		TeamMember:                                    teamMemberClient,
-		TeamOperation:                                 teamOperationClient,
-		TeamOwner:                                     teamOwnerClient,
-		TeamOwnerMailboxSetting:                       teamOwnerMailboxSettingClient,
-		TeamOwnerServiceProvisioningError:             teamOwnerServiceProvisioningErrorClient,
-		TeamPermissionGrant:                           teamPermissionGrantClient,
-		TeamPhoto:                                     teamPhotoClient,
-		TeamPrimaryChannel:                            teamPrimaryChannelClient,
-		TeamPrimaryChannelFilesFolder:                 teamPrimaryChannelFilesFolderClient,
-		TeamPrimaryChannelFilesFolderContent:          teamPrimaryChannelFilesFolderContentClient,
-		TeamPrimaryChannelFilesFolderContentStream:    teamPrimaryChannelFilesFolderContentStreamClient,
-		TeamPrimaryChannelMember:                      teamPrimaryChannelMemberClient,
-		TeamPrimaryChannelMessage:                     teamPrimaryChannelMessageClient,
-		TeamPrimaryChannelMessageHostedContent:        teamPrimaryChannelMessageHostedContentClient,
-		TeamPrimaryChannelMessageReply:                teamPrimaryChannelMessageReplyClient,
-		TeamPrimaryChannelMessageReplyHostedContent:   teamPrimaryChannelMessageReplyHostedContentClient,
-		TeamPrimaryChannelSharedWithTeam:              teamPrimaryChannelSharedWithTeamClient,
-		TeamPrimaryChannelSharedWithTeamAllowedMember: teamPrimaryChannelSharedWithTeamAllowedMemberClient,
-		TeamPrimaryChannelSharedWithTeamTeam:          teamPrimaryChannelSharedWithTeamTeamClient,
-		TeamPrimaryChannelTab:                         teamPrimaryChannelTabClient,
-		TeamPrimaryChannelTabTeamsApp:                 teamPrimaryChannelTabTeamsAppClient,
-		TeamSchedule:                                  teamScheduleClient,
-		TeamScheduleDayNote:                           teamScheduleDayNoteClient,
-		TeamScheduleOfferShiftRequest:                 teamScheduleOfferShiftRequestClient,
-		TeamScheduleOpenShift:                         teamScheduleOpenShiftClient,
-		TeamScheduleOpenShiftChangeRequest:            teamScheduleOpenShiftChangeRequestClient,
-		TeamScheduleSchedulingGroup:                   teamScheduleSchedulingGroupClient,
-		TeamScheduleShift:                             teamScheduleShiftClient,
-		TeamScheduleShiftsRoleDefinition:              teamScheduleShiftsRoleDefinitionClient,
-		TeamScheduleSwapShiftsChangeRequest:           teamScheduleSwapShiftsChangeRequestClient,
-		TeamScheduleTimeCard:                          teamScheduleTimeCardClient,
-		TeamScheduleTimeOffReason:                     teamScheduleTimeOffReasonClient,
-		TeamScheduleTimeOffRequest:                    teamScheduleTimeOffRequestClient,
-		TeamScheduleTimesOff:                          teamScheduleTimesOffClient,
-		TeamTag:                                       teamTagClient,
-		TeamTagMember:                                 teamTagMemberClient,
-		TeamTemplate:                                  teamTemplateClient,
-		TeamTemplateDefinition:                        teamTemplateDefinitionClient,
-		Thread:                                        threadClient,
-		ThreadPost:                                    threadPostClient,
-		ThreadPostAttachment:                          threadPostAttachmentClient,
-		ThreadPostExtension:                           threadPostExtensionClient,
-		ThreadPostInReplyTo:                           threadPostInReplyToClient,
-		ThreadPostInReplyToAttachment:                 threadPostInReplyToAttachmentClient,
-		ThreadPostInReplyToExtension:                  threadPostInReplyToExtensionClient,
-		ThreadPostInReplyToMention:                    threadPostInReplyToMentionClient,
-		ThreadPostMention:                             threadPostMentionClient,
-		TransitiveMember:                              transitiveMemberClient,
-		TransitiveMemberOf:                            transitiveMemberOfClient,
+		SiteSite:                             siteSiteClient,
+		Team:                                 teamClient,
+		TeamAllChannel:                       teamAllChannelClient,
+		TeamChannel:                          teamChannelClient,
+		TeamChannelAllMember:                 teamChannelAllMemberClient,
+		TeamChannelFilesFolder:               teamChannelFilesFolderClient,
+		TeamChannelFilesFolderContent:        teamChannelFilesFolderContentClient,
+		TeamChannelFilesFolderContentStream:  teamChannelFilesFolderContentStreamClient,
+		TeamChannelMember:                    teamChannelMemberClient,
+		TeamChannelMessage:                   teamChannelMessageClient,
+		TeamChannelMessageHostedContent:      teamChannelMessageHostedContentClient,
+		TeamChannelMessageReply:              teamChannelMessageReplyClient,
+		TeamChannelMessageReplyHostedContent: teamChannelMessageReplyHostedContentClient,
+		TeamChannelPlanner:                   teamChannelPlannerClient,
+		TeamChannelPlannerPlan:               teamChannelPlannerPlanClient,
+		TeamChannelPlannerPlanBucket:         teamChannelPlannerPlanBucketClient,
+		TeamChannelPlannerPlanBucketTask:     teamChannelPlannerPlanBucketTaskClient,
+		TeamChannelPlannerPlanBucketTaskAssignedToTaskBoardFormat:        teamChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient,
+		TeamChannelPlannerPlanBucketTaskBucketTaskBoardFormat:            teamChannelPlannerPlanBucketTaskBucketTaskBoardFormatClient,
+		TeamChannelPlannerPlanBucketTaskDetail:                           teamChannelPlannerPlanBucketTaskDetailClient,
+		TeamChannelPlannerPlanBucketTaskProgressTaskBoardFormat:          teamChannelPlannerPlanBucketTaskProgressTaskBoardFormatClient,
+		TeamChannelPlannerPlanDetail:                                     teamChannelPlannerPlanDetailClient,
+		TeamChannelPlannerPlanTask:                                       teamChannelPlannerPlanTaskClient,
+		TeamChannelPlannerPlanTaskAssignedToTaskBoardFormat:              teamChannelPlannerPlanTaskAssignedToTaskBoardFormatClient,
+		TeamChannelPlannerPlanTaskBucketTaskBoardFormat:                  teamChannelPlannerPlanTaskBucketTaskBoardFormatClient,
+		TeamChannelPlannerPlanTaskDetail:                                 teamChannelPlannerPlanTaskDetailClient,
+		TeamChannelPlannerPlanTaskProgressTaskBoardFormat:                teamChannelPlannerPlanTaskProgressTaskBoardFormatClient,
+		TeamChannelSharedWithTeam:                                        teamChannelSharedWithTeamClient,
+		TeamChannelSharedWithTeamAllowedMember:                           teamChannelSharedWithTeamAllowedMemberClient,
+		TeamChannelSharedWithTeamTeam:                                    teamChannelSharedWithTeamTeamClient,
+		TeamChannelTab:                                                   teamChannelTabClient,
+		TeamChannelTabTeamsApp:                                           teamChannelTabTeamsAppClient,
+		TeamGroup:                                                        teamGroupClient,
+		TeamGroupServiceProvisioningError:                                teamGroupServiceProvisioningErrorClient,
+		TeamIncomingChannel:                                              teamIncomingChannelClient,
+		TeamInstalledApp:                                                 teamInstalledAppClient,
+		TeamInstalledAppTeamsApp:                                         teamInstalledAppTeamsAppClient,
+		TeamInstalledAppTeamsAppDefinition:                               teamInstalledAppTeamsAppDefinitionClient,
+		TeamMember:                                                       teamMemberClient,
+		TeamOperation:                                                    teamOperationClient,
+		TeamOwner:                                                        teamOwnerClient,
+		TeamOwnerMailboxSetting:                                          teamOwnerMailboxSettingClient,
+		TeamOwnerServiceProvisioningError:                                teamOwnerServiceProvisioningErrorClient,
+		TeamPermissionGrant:                                              teamPermissionGrantClient,
+		TeamPhoto:                                                        teamPhotoClient,
+		TeamPrimaryChannel:                                               teamPrimaryChannelClient,
+		TeamPrimaryChannelAllMember:                                      teamPrimaryChannelAllMemberClient,
+		TeamPrimaryChannelFilesFolder:                                    teamPrimaryChannelFilesFolderClient,
+		TeamPrimaryChannelFilesFolderContent:                             teamPrimaryChannelFilesFolderContentClient,
+		TeamPrimaryChannelFilesFolderContentStream:                       teamPrimaryChannelFilesFolderContentStreamClient,
+		TeamPrimaryChannelMember:                                         teamPrimaryChannelMemberClient,
+		TeamPrimaryChannelMessage:                                        teamPrimaryChannelMessageClient,
+		TeamPrimaryChannelMessageHostedContent:                           teamPrimaryChannelMessageHostedContentClient,
+		TeamPrimaryChannelMessageReply:                                   teamPrimaryChannelMessageReplyClient,
+		TeamPrimaryChannelMessageReplyHostedContent:                      teamPrimaryChannelMessageReplyHostedContentClient,
+		TeamPrimaryChannelPlanner:                                        teamPrimaryChannelPlannerClient,
+		TeamPrimaryChannelPlannerPlan:                                    teamPrimaryChannelPlannerPlanClient,
+		TeamPrimaryChannelPlannerPlanBucket:                              teamPrimaryChannelPlannerPlanBucketClient,
+		TeamPrimaryChannelPlannerPlanBucketTask:                          teamPrimaryChannelPlannerPlanBucketTaskClient,
+		TeamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormat: teamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient,
+		TeamPrimaryChannelPlannerPlanBucketTaskBucketTaskBoardFormat:     teamPrimaryChannelPlannerPlanBucketTaskBucketTaskBoardFormatClient,
+		TeamPrimaryChannelPlannerPlanBucketTaskDetail:                    teamPrimaryChannelPlannerPlanBucketTaskDetailClient,
+		TeamPrimaryChannelPlannerPlanBucketTaskProgressTaskBoardFormat:   teamPrimaryChannelPlannerPlanBucketTaskProgressTaskBoardFormatClient,
+		TeamPrimaryChannelPlannerPlanDetail:                              teamPrimaryChannelPlannerPlanDetailClient,
+		TeamPrimaryChannelPlannerPlanTask:                                teamPrimaryChannelPlannerPlanTaskClient,
+		TeamPrimaryChannelPlannerPlanTaskAssignedToTaskBoardFormat:       teamPrimaryChannelPlannerPlanTaskAssignedToTaskBoardFormatClient,
+		TeamPrimaryChannelPlannerPlanTaskBucketTaskBoardFormat:           teamPrimaryChannelPlannerPlanTaskBucketTaskBoardFormatClient,
+		TeamPrimaryChannelPlannerPlanTaskDetail:                          teamPrimaryChannelPlannerPlanTaskDetailClient,
+		TeamPrimaryChannelPlannerPlanTaskProgressTaskBoardFormat:         teamPrimaryChannelPlannerPlanTaskProgressTaskBoardFormatClient,
+		TeamPrimaryChannelSharedWithTeam:                                 teamPrimaryChannelSharedWithTeamClient,
+		TeamPrimaryChannelSharedWithTeamAllowedMember:                    teamPrimaryChannelSharedWithTeamAllowedMemberClient,
+		TeamPrimaryChannelSharedWithTeamTeam:                             teamPrimaryChannelSharedWithTeamTeamClient,
+		TeamPrimaryChannelTab:                                            teamPrimaryChannelTabClient,
+		TeamPrimaryChannelTabTeamsApp:                                    teamPrimaryChannelTabTeamsAppClient,
+		TeamSchedule:                                                     teamScheduleClient,
+		TeamScheduleDayNote:                                              teamScheduleDayNoteClient,
+		TeamScheduleOfferShiftRequest:                                    teamScheduleOfferShiftRequestClient,
+		TeamScheduleOpenShift:                                            teamScheduleOpenShiftClient,
+		TeamScheduleOpenShiftChangeRequest:                               teamScheduleOpenShiftChangeRequestClient,
+		TeamScheduleSchedulingGroup:                                      teamScheduleSchedulingGroupClient,
+		TeamScheduleShift:                                                teamScheduleShiftClient,
+		TeamScheduleShiftsRoleDefinition:                                 teamScheduleShiftsRoleDefinitionClient,
+		TeamScheduleSwapShiftsChangeRequest:                              teamScheduleSwapShiftsChangeRequestClient,
+		TeamScheduleTimeCard:                                             teamScheduleTimeCardClient,
+		TeamScheduleTimeOffReason:                                        teamScheduleTimeOffReasonClient,
+		TeamScheduleTimeOffRequest:                                       teamScheduleTimeOffRequestClient,
+		TeamScheduleTimesOff:                                             teamScheduleTimesOffClient,
+		TeamTag:                                                          teamTagClient,
+		TeamTagMember:                                                    teamTagMemberClient,
+		TeamTemplate:                                                     teamTemplateClient,
+		TeamTemplateDefinition:                                           teamTemplateDefinitionClient,
+		Thread:                                                           threadClient,
+		ThreadPost:                                                       threadPostClient,
+		ThreadPostAttachment:                                             threadPostAttachmentClient,
+		ThreadPostExtension:                                              threadPostExtensionClient,
+		ThreadPostInReplyTo:                                              threadPostInReplyToClient,
+		ThreadPostInReplyToAttachment:                                    threadPostInReplyToAttachmentClient,
+		ThreadPostInReplyToExtension:                                     threadPostInReplyToExtensionClient,
+		ThreadPostInReplyToMention:                                       threadPostInReplyToMentionClient,
+		ThreadPostMention:                                                threadPostMentionClient,
+		TransitiveMember:                                                 transitiveMemberClient,
+		TransitiveMemberOf:                                               transitiveMemberOfClient,
 	}, nil
 }

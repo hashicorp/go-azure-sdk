@@ -50,7 +50,7 @@ func (o DeleteEntitlementManagementAccessPackageResourceRoleScopeOperationOption
 	return &out
 }
 
-// DeleteEntitlementManagementAccessPackageResourceRoleScope - Remove resourceRoleScope from an accessPackage. Remove a
+// DeleteEntitlementManagementAccessPackageResourceRoleScope - Remove resourceRoleScope from an accessPackage. Remove an
 // accessPackageResourceRoleScope from an accessPackage list of resource role scopes.
 func (c EntitlementManagementAccessPackageResourceRoleScopeClient) DeleteEntitlementManagementAccessPackageResourceRoleScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageIdResourceRoleScopeId, options DeleteEntitlementManagementAccessPackageResourceRoleScopeOperationOptions) (result DeleteEntitlementManagementAccessPackageResourceRoleScopeOperationResponse, err error) {
 	opts := client.RequestOptions{

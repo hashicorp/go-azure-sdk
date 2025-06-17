@@ -50,6 +50,7 @@ func (o UpdateAuthenticationPhoneMethodOperationOptions) ToQuery() *client.Query
 // phone authentication method object. You can't change a phone's type. To change a phone's type, add a new number of
 // the desired type and then delete the object with the original type. If a user is enabled by policy to use SMS to sign
 // in and the mobile number is changed, the system will attempt to register the number for use in that system.
+// Self-service operations aren't supported.
 func (c AuthenticationPhoneMethodClient) UpdateAuthenticationPhoneMethod(ctx context.Context, id stable.UserIdAuthenticationPhoneMethodId, input stable.PhoneAuthenticationMethod, options UpdateAuthenticationPhoneMethodOperationOptions) (result UpdateAuthenticationPhoneMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

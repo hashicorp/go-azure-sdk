@@ -83,6 +83,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `MailFolderChildFolderMessageClient.CreateMailFolderChildFolderMessagePermanentDelete`
+
+```go
+ctx := context.TODO()
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
+
+read, err := client.CreateMailFolderChildFolderMessagePermanentDelete(ctx, id, mailfolderchildfoldermessage.DefaultCreateMailFolderChildFolderMessagePermanentDeleteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `MailFolderChildFolderMessageClient.CreateMailFolderChildFolderMessageReply`
 
 ```go

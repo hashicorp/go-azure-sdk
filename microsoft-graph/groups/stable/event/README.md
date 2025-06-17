@@ -83,6 +83,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `EventClient.CreateEventPermanentDelete`
+
+```go
+ctx := context.TODO()
+id := event.NewGroupIdEventID("groupId", "eventId")
+
+read, err := client.CreateEventPermanentDelete(ctx, id, event.DefaultCreateEventPermanentDeleteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `EventClient.DeclineEvent`
 
 ```go

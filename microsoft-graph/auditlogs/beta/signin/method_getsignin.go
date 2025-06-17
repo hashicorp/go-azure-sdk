@@ -55,8 +55,9 @@ func (o GetSignInOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetSignIn - Get signIn. Get a signIn object that contains a specific user sign-in event for your tenant that includes
-// sign-ins where a user is asked to enter a username or password, and session tokens.
+// GetSignIn - Get signIn. Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are
+// interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins
+// are currently included in the sign-in logs.
 func (c SignInClient) GetSignIn(ctx context.Context, id beta.AuditLogSignInId, options GetSignInOperationOptions) (result GetSignInOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

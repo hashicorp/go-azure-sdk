@@ -2,6 +2,7 @@ package outlooktaskattachment
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 
@@ -16,7 +17,7 @@ import (
 type CreateOutlookTaskAttachmentsUploadSessionOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *beta.UploadSession
+	Model        beta.UploadSession
 }
 
 type CreateOutlookTaskAttachmentsUploadSessionOperationOptions struct {
@@ -91,11 +92,15 @@ func (c OutlookTaskAttachmentClient) CreateOutlookTaskAttachmentsUploadSession(c
 		return
 	}
 
-	var model beta.UploadSession
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var respObj json.RawMessage
+	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
+	model, err := beta.UnmarshalUploadSessionImplementation(respObj)
+	if err != nil {
+		return
+	}
+	result.Model = model
 
 	return
 }

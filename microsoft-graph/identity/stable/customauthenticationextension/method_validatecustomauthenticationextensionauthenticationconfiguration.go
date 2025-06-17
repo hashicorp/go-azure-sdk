@@ -49,7 +49,8 @@ func (o ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperatio
 }
 
 // ValidateCustomAuthenticationExtensionAuthenticationConfiguration - Invoke action validateAuthenticationConfiguration.
-// An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension.
+// An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension
+// object, which can represent one of the following derived types
 func (c CustomAuthenticationExtensionClient) ValidateCustomAuthenticationExtensionAuthenticationConfiguration(ctx context.Context, id stable.IdentityCustomAuthenticationExtensionId, options ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions) (result ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

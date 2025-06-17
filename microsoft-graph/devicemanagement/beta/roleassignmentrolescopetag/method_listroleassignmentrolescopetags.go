@@ -97,8 +97,9 @@ func (p *ListRoleAssignmentRoleScopeTagsCustomPager) NextPageLink() *odata.Link 
 	return p.NextLink
 }
 
-// ListRoleAssignmentRoleScopeTags - Get roleScopeTags from deviceManagement. The set of Role Scope Tags defined on the
-// Role Assignment.
+// ListRoleAssignmentRoleScopeTags - Get roleScopeTags from deviceManagement. Indicates the set of scope tags for the
+// role assignment. These scope tags will limit the visibility of any Intune resources to those that match any of the
+// scope tags in this collection.
 func (c RoleAssignmentRoleScopeTagClient) ListRoleAssignmentRoleScopeTags(ctx context.Context, id beta.DeviceManagementRoleAssignmentId, options ListRoleAssignmentRoleScopeTagsOperationOptions) (result ListRoleAssignmentRoleScopeTagsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

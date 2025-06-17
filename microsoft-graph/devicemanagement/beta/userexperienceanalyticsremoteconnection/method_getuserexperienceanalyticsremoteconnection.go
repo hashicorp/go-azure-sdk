@@ -56,7 +56,9 @@ func (o GetUserExperienceAnalyticsRemoteConnectionOperationOptions) ToQuery() *c
 }
 
 // GetUserExperienceAnalyticsRemoteConnection - Get userExperienceAnalyticsRemoteConnection from deviceManagement. User
-// experience analytics remote connection
+// experience analytics remote connection. The report will be retired on December 31, 2024. You can start using the
+// Cloud PC connection quality report now via
+// https://learn.microsoft.com/windows-365/enterprise/report-cloud-pc-connection-quality.
 func (c UserExperienceAnalyticsRemoteConnectionClient) GetUserExperienceAnalyticsRemoteConnection(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsRemoteConnectionId, options GetUserExperienceAnalyticsRemoteConnectionOperationOptions) (result GetUserExperienceAnalyticsRemoteConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

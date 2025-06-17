@@ -55,7 +55,7 @@ func (o GetVirtualEndpointSnapshotOperationOptions) ToQuery() *client.QueryParam
 	return &out
 }
 
-// GetVirtualEndpointSnapshot - Get cloudPcSnapshot. Read the properties and relationships of a cloudPcSnapshot object.
+// GetVirtualEndpointSnapshot - Get snapshots from deviceManagement. Cloud PC snapshots.
 func (c VirtualEndpointSnapshotClient) GetVirtualEndpointSnapshot(ctx context.Context, id beta.DeviceManagementVirtualEndpointSnapshotId, options GetVirtualEndpointSnapshotOperationOptions) (result GetVirtualEndpointSnapshotOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -47,9 +47,9 @@ func (o CreateEntitlementManagementAssignmentPolicyOperationOptions) ToQuery() *
 	return &out
 }
 
-// CreateEntitlementManagementAssignmentPolicy - Create assignmentPolicies. In Microsoft Entra entitlement management,
-// create a new accessPackageAssignmentPolicy object. The request will include a reference to the accessPackage that
-// will contain this policy, which must already exist.
+// CreateEntitlementManagementAssignmentPolicy - Create assignmentPolicies. Create a new accessPackageAssignmentPolicy
+// object in Microsoft Entra entitlement management. The request includes a reference to the accessPackage that contains
+// this policy, which must already exist.
 func (c EntitlementManagementAssignmentPolicyClient) CreateEntitlementManagementAssignmentPolicy(ctx context.Context, input stable.AccessPackageAssignmentPolicy, options CreateEntitlementManagementAssignmentPolicyOperationOptions) (result CreateEntitlementManagementAssignmentPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

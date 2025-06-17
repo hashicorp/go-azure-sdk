@@ -56,7 +56,9 @@ func (o GetSettingItemInsightOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetSettingItemInsight - Get itemInsights from users
+// GetSettingItemInsight - Get itemInsights from users. The user's settings for the visibility of meeting hour insights,
+// and insights derived between a user and other items in Microsoft 365, such as documents or sites. Get
+// userInsightsSettings through this navigation property.
 func (c SettingItemInsightClient) GetSettingItemInsight(ctx context.Context, id stable.UserId, options GetSettingItemInsightOperationOptions) (result GetSettingItemInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

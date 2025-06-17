@@ -50,7 +50,7 @@ func (o DeleteAuthenticationMicrosoftAuthenticatorMethodOperationOptions) ToQuer
 	return &out
 }
 
-// DeleteAuthenticationMicrosoftAuthenticatorMethod - Delete microsoftAuthenticatorAuthenticationMethod. Deletes a
+// DeleteAuthenticationMicrosoftAuthenticatorMethod - Delete microsoftAuthenticatorAuthenticationMethod. Delete a
 // microsoftAuthenticatorAuthenticationMethod object.
 func (c AuthenticationMicrosoftAuthenticatorMethodClient) DeleteAuthenticationMicrosoftAuthenticatorMethod(ctx context.Context, id beta.UserIdAuthenticationMicrosoftAuthenticatorMethodId, options DeleteAuthenticationMicrosoftAuthenticatorMethodOperationOptions) (result DeleteAuthenticationMicrosoftAuthenticatorMethodOperationResponse, err error) {
 	opts := client.RequestOptions{

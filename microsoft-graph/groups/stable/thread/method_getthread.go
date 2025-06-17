@@ -55,7 +55,8 @@ func (o GetThreadOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetThread - Get conversation thread. Get a thread object.
+// GetThread - Get conversationThread. Get a specific thread that belongs to a group. You can specify both the parent
+// conversation and the thread, or, you can specify the thread without referencing the parent conversation.
 func (c ThreadClient) GetThread(ctx context.Context, id stable.GroupIdThreadId, options GetThreadOperationOptions) (result GetThreadOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

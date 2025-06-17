@@ -56,9 +56,10 @@ func (o GetOnlineMeetingTranscriptOperationOptions) ToQuery() *client.QueryParam
 }
 
 // GetOnlineMeetingTranscript - Get callTranscript. Retrieve a callTranscript object associated with a scheduled
-// onlineMeeting. This API doesn't support getting call transcripts from channel meetings. Retrieving the transcript
-// returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the
-// transcript returns the stream of text associated with the transcript.
+// onlineMeeting. This API supports the retrieval of call transcripts from private chat meetings and channel meetings.
+// However, private channel meetings are not supported at this time. Retrieving the transcript returns the metadata of
+// the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream
+// of text associated with the transcript.
 func (c OnlineMeetingTranscriptClient) GetOnlineMeetingTranscript(ctx context.Context, id stable.UserIdOnlineMeetingIdTranscriptId, options GetOnlineMeetingTranscriptOperationOptions) (result GetOnlineMeetingTranscriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

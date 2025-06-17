@@ -12,6 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/directoryprovisioning"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/provisioning"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/signin"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/signup"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -23,6 +24,7 @@ type Client struct {
 	DirectoryProvisioning        *directoryprovisioning.DirectoryProvisioningClient
 	Provisioning                 *provisioning.ProvisioningClient
 	SignIn                       *signin.SignInClient
+	SignUp                       *signup.SignUpClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Client)) (*Client, error) {
@@ -62,6 +64,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(signInClient.Client)
 
+	signUpClient, err := signup.NewSignUpClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SignUp client: %+v", err)
+	}
+	configureFunc(signUpClient.Client)
+
 	return &Client{
 		AuditLog:                     auditLogClient,
 		CustomSecurityAttributeAudit: customSecurityAttributeAuditClient,
@@ -69,5 +77,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		DirectoryProvisioning:        directoryProvisioningClient,
 		Provisioning:                 provisioningClient,
 		SignIn:                       signInClient,
+		SignUp:                       signUpClient,
 	}, nil
 }

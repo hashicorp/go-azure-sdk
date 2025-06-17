@@ -97,7 +97,7 @@ func (p *ListVirtualEndpointSnapshotsCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListVirtualEndpointSnapshots - List snapshots. Get a list of cloudPcSnapshot objects and their properties.
+// ListVirtualEndpointSnapshots - Get snapshots from deviceManagement. Cloud PC snapshots.
 func (c VirtualEndpointSnapshotClient) ListVirtualEndpointSnapshots(ctx context.Context, options ListVirtualEndpointSnapshotsOperationOptions) (result ListVirtualEndpointSnapshotsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

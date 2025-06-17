@@ -57,7 +57,8 @@ func (o GetAuthenticationEventsFlowConditionOperationOptions) ToQuery() *client.
 }
 
 // GetAuthenticationEventsFlowCondition - Get conditions property value. The conditions representing the context of the
-// authentication request that's used to decide whether the events policy is invoked.
+// authentication request that's used to decide whether the events policy is invoked. Supports $filter (eq). See support
+// for filtering on user flows for syntax information.
 func (c AuthenticationEventsFlowConditionClient) GetAuthenticationEventsFlowCondition(ctx context.Context, id stable.IdentityAuthenticationEventsFlowId, options GetAuthenticationEventsFlowConditionOperationOptions) (result GetAuthenticationEventsFlowConditionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

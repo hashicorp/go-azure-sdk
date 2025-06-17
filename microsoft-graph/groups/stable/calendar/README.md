@@ -20,6 +20,22 @@ client.Client.Authorizer = authorizer
 ```
 
 
+### Example Usage: `CalendarClient.CreateCalendarPermanentDelete`
+
+```go
+ctx := context.TODO()
+id := calendar.NewGroupID("groupId")
+
+read, err := client.CreateCalendarPermanentDelete(ctx, id, calendar.DefaultCreateCalendarPermanentDeleteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `CalendarClient.GetCalendar`
 
 ```go

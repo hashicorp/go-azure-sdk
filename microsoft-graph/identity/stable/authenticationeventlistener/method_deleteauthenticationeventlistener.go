@@ -51,6 +51,7 @@ func (o DeleteAuthenticationEventListenerOperationOptions) ToQuery() *client.Que
 }
 
 // DeleteAuthenticationEventListener - Delete authenticationEventListener. Delete an authenticationEventListener object.
+// The following derived types are currently supported.
 func (c AuthenticationEventListenerClient) DeleteAuthenticationEventListener(ctx context.Context, id stable.IdentityAuthenticationEventListenerId, options DeleteAuthenticationEventListenerOperationOptions) (result DeleteAuthenticationEventListenerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

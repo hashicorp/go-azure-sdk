@@ -12,3 +12,11 @@ func (p DirectoryObjectOperationPredicate) Matches(input stable.DirectoryObject)
 
 	return true
 }
+
+type ServicePrincipalOperationPredicate struct {
+}
+
+func (p ServicePrincipalOperationPredicate) Matches(input stable.ServicePrincipal) bool {
+
+	return true
+}

@@ -48,9 +48,8 @@ func (o AddGroupLifecyclePolicyGroupOperationOptions) ToQuery() *client.QueryPar
 	return &out
 }
 
-// AddGroupLifecyclePolicyGroup - Invoke action addGroup. Adds specific groups to a lifecycle policy. This action limits
-// the group lifecycle policy to a set of groups only if the managedGroupTypes property of groupLifecyclePolicy is set
-// to Selected.
+// AddGroupLifecyclePolicyGroup - Invoke action addGroup. Add a group to a groupLifecyclePolicy. This action is
+// supported only if the managedGroupTypes property of the policy is set to Selected.
 func (c GroupLifecyclePolicyClient) AddGroupLifecyclePolicyGroup(ctx context.Context, id stable.GroupIdGroupLifecyclePolicyId, input AddGroupLifecyclePolicyGroupRequest, options AddGroupLifecyclePolicyGroupOperationOptions) (result AddGroupLifecyclePolicyGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

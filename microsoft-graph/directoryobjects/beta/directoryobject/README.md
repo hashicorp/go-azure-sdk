@@ -260,12 +260,7 @@ for _, item := range items {
 ctx := context.TODO()
 id := directoryobject.NewDirectoryObjectID("directoryObjectId")
 
-payload := directoryobject.RestoreRequest{
-	// ...
-}
-
-
-read, err := client.Restore(ctx, id, payload, directoryobject.DefaultRestoreOperationOptions())
+read, err := client.Restore(ctx, id, directoryobject.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }

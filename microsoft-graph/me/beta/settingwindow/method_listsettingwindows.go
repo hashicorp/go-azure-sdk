@@ -97,8 +97,7 @@ func (p *ListSettingWindowsCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListSettingWindows - List Windows settings. Get a list of windowsSetting objects and their properties for the signed
-// in user.
+// ListSettingWindows - List Windows settings. Get a list of windowsSetting objects and their properties for a user.
 func (c SettingWindowClient) ListSettingWindows(ctx context.Context, options ListSettingWindowsOperationOptions) (result ListSettingWindowsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

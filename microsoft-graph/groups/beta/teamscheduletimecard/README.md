@@ -99,6 +99,27 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `TeamScheduleTimeCardClient.CreateTeamScheduleTimeCardConfirmForUser`
+
+```go
+ctx := context.TODO()
+id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupId", "timeCardId")
+
+payload := teamscheduletimecard.CreateTeamScheduleTimeCardConfirmForUserRequest{
+	// ...
+}
+
+
+read, err := client.CreateTeamScheduleTimeCardConfirmForUser(ctx, id, payload, teamscheduletimecard.DefaultCreateTeamScheduleTimeCardConfirmForUserOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `TeamScheduleTimeCardClient.DeleteTeamScheduleTimeCard`
 
 ```go

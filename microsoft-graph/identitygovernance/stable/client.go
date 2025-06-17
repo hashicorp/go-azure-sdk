@@ -239,6 +239,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowdeleteditemworkflowversiontasktaskprocessingresultsubjectmailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowdeleteditemworkflowversiontasktaskprocessingresultsubjectserviceprovisioningerror"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowdeleteditemworkflowversiontasktaskprocessingresulttask"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowinsight"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowtaskdefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowworkflow"
@@ -585,6 +586,7 @@ type Client struct {
 	LifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultSubjectMailboxSetting                       *lifecycleworkflowdeleteditemworkflowversiontasktaskprocessingresultsubjectmailboxsetting.LifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultSubjectMailboxSettingClient
 	LifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultSubjectServiceProvisioningError             *lifecycleworkflowdeleteditemworkflowversiontasktaskprocessingresultsubjectserviceprovisioningerror.LifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultSubjectServiceProvisioningErrorClient
 	LifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultTask                                        *lifecycleworkflowdeleteditemworkflowversiontasktaskprocessingresulttask.LifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultTaskClient
+	LifecycleWorkflowInsight                                                                                       *lifecycleworkflowinsight.LifecycleWorkflowInsightClient
 	LifecycleWorkflowSetting                                                                                       *lifecycleworkflowsetting.LifecycleWorkflowSettingClient
 	LifecycleWorkflowTaskDefinition                                                                                *lifecycleworkflowtaskdefinition.LifecycleWorkflowTaskDefinitionClient
 	LifecycleWorkflowWorkflow                                                                                      *lifecycleworkflowworkflow.LifecycleWorkflowWorkflowClient
@@ -2094,6 +2096,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(lifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultTaskClient.Client)
 
+	lifecycleWorkflowInsightClient, err := lifecycleworkflowinsight.NewLifecycleWorkflowInsightClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building LifecycleWorkflowInsight client: %+v", err)
+	}
+	configureFunc(lifecycleWorkflowInsightClient.Client)
+
 	lifecycleWorkflowSettingClient, err := lifecycleworkflowsetting.NewLifecycleWorkflowSettingClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building LifecycleWorkflowSetting client: %+v", err)
@@ -2976,6 +2984,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		LifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultSubjectMailboxSetting:                       lifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultSubjectMailboxSettingClient,
 		LifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultSubjectServiceProvisioningError:             lifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultSubjectServiceProvisioningErrorClient,
 		LifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultTask:                                        lifecycleWorkflowDeletedItemWorkflowVersionTaskTaskProcessingResultTaskClient,
+		LifecycleWorkflowInsight:                                                                                       lifecycleWorkflowInsightClient,
 		LifecycleWorkflowSetting:                                                                                       lifecycleWorkflowSettingClient,
 		LifecycleWorkflowTaskDefinition:                                                                                lifecycleWorkflowTaskDefinitionClient,
 		LifecycleWorkflowWorkflow:                                                                                      lifecycleWorkflowWorkflowClient,

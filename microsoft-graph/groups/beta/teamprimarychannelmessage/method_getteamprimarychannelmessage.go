@@ -55,8 +55,7 @@ func (o GetTeamPrimaryChannelMessageOperationOptions) ToQuery() *client.QueryPar
 	return &out
 }
 
-// GetTeamPrimaryChannelMessage - Get messages from groups. A collection of all the messages in the channel. A
-// navigation property. Nullable.
+// GetTeamPrimaryChannelMessage - Get messages from groups. A collection of all the messages in the channel. Nullable.
 func (c TeamPrimaryChannelMessageClient) GetTeamPrimaryChannelMessage(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageId, options GetTeamPrimaryChannelMessageOperationOptions) (result GetTeamPrimaryChannelMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

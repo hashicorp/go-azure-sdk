@@ -50,8 +50,8 @@ func (o DeleteOnlineMeetingRegistrationOperationOptions) ToQuery() *client.Query
 	return &out
 }
 
-// DeleteOnlineMeetingRegistration - Delete externalMeetingRegistration (deprecated). Disable and delete the
-// externalMeetingRegistration of an onlineMeeting.
+// DeleteOnlineMeetingRegistration - Delete meetingRegistration (deprecated). Disable and delete the meetingRegistration
+// of an onlineMeeting on behalf of the organizer.
 func (c OnlineMeetingRegistrationClient) DeleteOnlineMeetingRegistration(ctx context.Context, id beta.MeOnlineMeetingId, options DeleteOnlineMeetingRegistrationOperationOptions) (result DeleteOnlineMeetingRegistrationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

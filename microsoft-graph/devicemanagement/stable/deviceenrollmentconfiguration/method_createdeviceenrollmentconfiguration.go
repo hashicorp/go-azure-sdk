@@ -48,8 +48,8 @@ func (o CreateDeviceEnrollmentConfigurationOperationOptions) ToQuery() *client.Q
 	return &out
 }
 
-// CreateDeviceEnrollmentConfiguration - Create deviceEnrollmentWindowsHelloForBusinessConfiguration. Create a new
-// deviceEnrollmentWindowsHelloForBusinessConfiguration object.
+// CreateDeviceEnrollmentConfiguration - Create deviceEnrollmentPlatformRestrictionsConfiguration. Create a new
+// deviceEnrollmentPlatformRestrictionsConfiguration object.
 func (c DeviceEnrollmentConfigurationClient) CreateDeviceEnrollmentConfiguration(ctx context.Context, input stable.DeviceEnrollmentConfiguration, options CreateDeviceEnrollmentConfigurationOperationOptions) (result CreateDeviceEnrollmentConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

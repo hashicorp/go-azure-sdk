@@ -97,7 +97,7 @@ func (p *ListSiteOnenotePagesCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListSiteOnenotePages - Get pages from groups. The pages in all OneNote notebooks that are owned by the user or group.
+// ListSiteOnenotePages - Get pages from groups. The pages in all OneNote notebooks that the user or group owns.
 // Read-only. Nullable.
 func (c SiteOnenotePageClient) ListSiteOnenotePages(ctx context.Context, id beta.GroupIdSiteId, options ListSiteOnenotePagesOperationOptions) (result ListSiteOnenotePagesOperationResponse, err error) {
 	opts := client.RequestOptions{

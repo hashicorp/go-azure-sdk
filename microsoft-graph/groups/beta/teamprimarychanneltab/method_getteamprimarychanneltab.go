@@ -55,7 +55,7 @@ func (o GetTeamPrimaryChannelTabOperationOptions) ToQuery() *client.QueryParams 
 	return &out
 }
 
-// GetTeamPrimaryChannelTab - Get tabs from groups. A collection of all the tabs in the channel. A navigation property.
+// GetTeamPrimaryChannelTab - Get tabs from groups. A collection of all the tabs in the channel.
 func (c TeamPrimaryChannelTabClient) GetTeamPrimaryChannelTab(ctx context.Context, id beta.GroupIdTeamPrimaryChannelTabId, options GetTeamPrimaryChannelTabOperationOptions) (result GetTeamPrimaryChannelTabOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

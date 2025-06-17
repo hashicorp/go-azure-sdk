@@ -50,7 +50,7 @@ func (o DeleteThreadOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// DeleteThread - Delete conversationThread. Delete conversationThread.
+// DeleteThread - Delete conversation thread. Delete a thread object.
 func (c ThreadClient) DeleteThread(ctx context.Context, id beta.GroupIdThreadId, options DeleteThreadOperationOptions) (result DeleteThreadOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

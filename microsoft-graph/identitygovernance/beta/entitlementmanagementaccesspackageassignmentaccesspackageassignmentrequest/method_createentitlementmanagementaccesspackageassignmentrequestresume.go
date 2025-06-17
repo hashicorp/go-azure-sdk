@@ -47,10 +47,11 @@ func (o CreateEntitlementManagementAccessPackageAssignmentRequestResumeOperation
 	return &out
 }
 
-// CreateEntitlementManagementAccessPackageAssignmentRequestResume - Invoke action resume. In Microsoft Entra
-// entitlement management, when an access package policy has been enabled to call out a custom extension and the request
-// processing is waiting for the callback from the customer, the customer can initiate a resume action. It is performed
-// on an accessPackageAssignmentRequest object whose requestStatus is in a WaitingForCallback state.
+// CreateEntitlementManagementAccessPackageAssignmentRequestResume - Invoke action resume. Resume a user's access
+// package request after waiting for a callback from a custom extension. In Microsoft Entra entitlement management, when
+// an access package policy has been enabled to call out a custom extension and the request processing is waiting for
+// the callback from the customer, the customer can initiate a resume action. It's performed on an
+// accessPackageAssignmentRequest object whose requestStatus is in a WaitingForCallback state.
 func (c EntitlementManagementAccessPackageAssignmentAccessPackageAssignmentRequestClient) CreateEntitlementManagementAccessPackageAssignmentRequestResume(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentRequestId, input CreateEntitlementManagementAccessPackageAssignmentRequestResumeRequest, options CreateEntitlementManagementAccessPackageAssignmentRequestResumeOperationOptions) (result CreateEntitlementManagementAccessPackageAssignmentRequestResumeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

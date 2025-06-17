@@ -23,6 +23,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/owner"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/permissiongrantpreapprovalpolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/remotedesktopsecurityconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/remotedesktopsecurityconfigurationapprovedclientapp"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/remotedesktopsecurityconfigurationtargetdevicegroup"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/serviceprincipal"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronization"
@@ -59,6 +60,7 @@ type Client struct {
 	Owner                                               *owner.OwnerClient
 	PermissionGrantPreApprovalPolicy                    *permissiongrantpreapprovalpolicy.PermissionGrantPreApprovalPolicyClient
 	RemoteDesktopSecurityConfiguration                  *remotedesktopsecurityconfiguration.RemoteDesktopSecurityConfigurationClient
+	RemoteDesktopSecurityConfigurationApprovedClientApp *remotedesktopsecurityconfigurationapprovedclientapp.RemoteDesktopSecurityConfigurationApprovedClientAppClient
 	RemoteDesktopSecurityConfigurationTargetDeviceGroup *remotedesktopsecurityconfigurationtargetdevicegroup.RemoteDesktopSecurityConfigurationTargetDeviceGroupClient
 	ServicePrincipal                                    *serviceprincipal.ServicePrincipalClient
 	Synchronization                                     *synchronization.SynchronizationClient
@@ -172,6 +174,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(permissionGrantPreApprovalPolicyClient.Client)
 
+	remoteDesktopSecurityConfigurationApprovedClientAppClient, err := remotedesktopsecurityconfigurationapprovedclientapp.NewRemoteDesktopSecurityConfigurationApprovedClientAppClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RemoteDesktopSecurityConfigurationApprovedClientApp client: %+v", err)
+	}
+	configureFunc(remoteDesktopSecurityConfigurationApprovedClientAppClient.Client)
+
 	remoteDesktopSecurityConfigurationClient, err := remotedesktopsecurityconfiguration.NewRemoteDesktopSecurityConfigurationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RemoteDesktopSecurityConfiguration client: %+v", err)
@@ -280,6 +288,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		Owner:                              ownerClient,
 		PermissionGrantPreApprovalPolicy:   permissionGrantPreApprovalPolicyClient,
 		RemoteDesktopSecurityConfiguration: remoteDesktopSecurityConfigurationClient,
+		RemoteDesktopSecurityConfigurationApprovedClientApp: remoteDesktopSecurityConfigurationApprovedClientAppClient,
 		RemoteDesktopSecurityConfigurationTargetDeviceGroup: remoteDesktopSecurityConfigurationTargetDeviceGroupClient,
 		ServicePrincipal:                       servicePrincipalClient,
 		Synchronization:                        synchronizationClient,

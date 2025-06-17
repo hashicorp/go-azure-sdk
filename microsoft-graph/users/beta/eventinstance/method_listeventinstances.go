@@ -105,8 +105,8 @@ func (p *ListEventInstancesCustomPager) NextPageLink() *odata.Link {
 }
 
 // ListEventInstances - Get instances from users. The occurrences of a recurring series, if the event is a series
-// master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been
-// modified, but doesn't include occurrences that have been canceled from the series. Navigation property. Read-only.
+// master. This property includes occurrences that are part of the recurrence pattern and exceptions that have been
+// modified. It doesn't include occurrences that have been canceled from the series. Navigation property. Read-only.
 // Nullable.
 func (c EventInstanceClient) ListEventInstances(ctx context.Context, id beta.UserIdEventId, options ListEventInstancesOperationOptions) (result ListEventInstancesOperationResponse, err error) {
 	opts := client.RequestOptions{

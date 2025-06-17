@@ -55,7 +55,8 @@ func (o GetInsightOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetInsight - Get insights from me
+// GetInsight - Get insights from me. Represents relationships between a user and items such as OneDrive for work or
+// school documents, calculated using advanced analytics and machine learning techniques. Read-only. Nullable.
 func (c InsightClient) GetInsight(ctx context.Context, options GetInsightOperationOptions) (result GetInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

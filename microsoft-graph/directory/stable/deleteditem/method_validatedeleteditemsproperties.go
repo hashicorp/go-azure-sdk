@@ -52,7 +52,7 @@ func (o ValidateDeletedItemsPropertiesOperationOptions) ToQuery() *client.QueryP
 // nickname properties: 1. Validate the prefix and suffix naming policy 2. Validate the custom banned words policy 3.
 // Validate that the mail nickname is unique This API only returns the first validation failure that is encountered. If
 // the properties fail multiple validations, only the first validation failure is returned. However, you can validate
-// both the mail nickname and the display name and receive a collection of validation errors if you are only validating
+// both the mail nickname and the display name and receive a collection of validation errors if you're only validating
 // the prefix and suffix naming policy. To learn more about configuring naming policies, see Configure naming policy.
 func (c DeletedItemClient) ValidateDeletedItemsProperties(ctx context.Context, input ValidateDeletedItemsPropertiesRequest, options ValidateDeletedItemsPropertiesOperationOptions) (result ValidateDeletedItemsPropertiesOperationResponse, err error) {
 	opts := client.RequestOptions{

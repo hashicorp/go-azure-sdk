@@ -16,5 +16,6 @@ type GetReportsGroupPolicySettingsDeviceSettingsReportRequest struct {
 	Select    *[]string             `json:"select,omitempty"`
 	SessionId nullable.Type[string] `json:"sessionId,omitempty"`
 	Skip      nullable.Type[int64]  `json:"skip,omitempty"`
+	Skiptoken nullable.Type[string] `json:"skiptoken,omitempty"`
 	Top       nullable.Type[int64]  `json:"top,omitempty"`
 }

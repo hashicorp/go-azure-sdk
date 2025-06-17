@@ -97,7 +97,7 @@ func (p *ListPermissionGrantsCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListPermissionGrants - List permissionGrants of a group. List all resource-specific permission grants on the group.
+// ListPermissionGrants - List permissionGrants of a group. List all resource-specific permission grants on a group.
 // This list specifies the Microsoft Entra apps that have access to the group, along with the corresponding kind of
 // resource-specific access that each app has.
 func (c PermissionGrantClient) ListPermissionGrants(ctx context.Context, id beta.GroupId, options ListPermissionGrantsOperationOptions) (result ListPermissionGrantsOperationResponse, err error) {

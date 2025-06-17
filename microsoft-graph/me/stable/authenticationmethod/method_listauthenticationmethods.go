@@ -103,8 +103,7 @@ func (p *ListAuthenticationMethodsCustomPager) NextPageLink() *odata.Link {
 // methods supported on this API version. See Microsoft Entra authentication methods API overview for a list of
 // currently supported methods. We don't recommend using the authentication methods APIs for scenarios where you need to
 // iterate over your entire user population for auditing or security check purposes. For these types of scenarios, we
-// recommend using the authentication method registration and usage reporting APIs (available on the beta endpoint
-// only).
+// recommend using the authentication method registration and usage reporting APIs.
 func (c AuthenticationMethodClient) ListAuthenticationMethods(ctx context.Context, options ListAuthenticationMethodsOperationOptions) (result ListAuthenticationMethodsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

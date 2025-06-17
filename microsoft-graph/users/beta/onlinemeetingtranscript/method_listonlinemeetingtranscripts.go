@@ -98,7 +98,8 @@ func (p *ListOnlineMeetingTranscriptsCustomPager) NextPageLink() *odata.Link {
 }
 
 // ListOnlineMeetingTranscripts - List transcripts. Retrieve the list of callTranscript objects associated with a
-// scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings.
+// scheduled onlineMeeting. This API supports the retrieval of call transcripts from private chat meetings and channel
+// meetings. However, private channel meetings are not supported at this time.
 func (c OnlineMeetingTranscriptClient) ListOnlineMeetingTranscripts(ctx context.Context, id beta.UserIdOnlineMeetingId, options ListOnlineMeetingTranscriptsOperationOptions) (result ListOnlineMeetingTranscriptsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

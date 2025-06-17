@@ -57,7 +57,7 @@ func (o GetSettingWindowInstanceOperationOptions) ToQuery() *client.QueryParams 
 
 // GetSettingWindowInstance - Get windowsSettingInstance. Read the properties and relationships of a
 // windowsSettingInstance object by passing the Windows setting ID and Windows setting instance ID in the URL. This
-// method gets a windowsSettingInstance for the signed-in user.
+// method gets a windowsSettingInstance for a user.
 func (c SettingWindowInstanceClient) GetSettingWindowInstance(ctx context.Context, id beta.MeSettingWindowIdInstanceId, options GetSettingWindowInstanceOperationOptions) (result GetSettingWindowInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

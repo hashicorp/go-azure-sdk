@@ -55,7 +55,7 @@ func (o GetSiteOnenotePageOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetSiteOnenotePage - Get pages from groups. The pages in all OneNote notebooks that are owned by the user or group.
+// GetSiteOnenotePage - Get pages from groups. The pages in all OneNote notebooks that the user or group owns.
 // Read-only. Nullable.
 func (c SiteOnenotePageClient) GetSiteOnenotePage(ctx context.Context, id beta.GroupIdSiteIdOnenotePageId, options GetSiteOnenotePageOperationOptions) (result GetSiteOnenotePageOperationResponse, err error) {
 	opts := client.RequestOptions{

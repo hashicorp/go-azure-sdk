@@ -55,7 +55,8 @@ func (o GetCertificateAuthorityOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetCertificateAuthority - Get certificateAuthorities from directory
+// GetCertificateAuthority - Get certificateAuthorities from directory. Container for certificate authorities-related
+// configurations for applications in the tenant.
 func (c CertificateAuthorityClient) GetCertificateAuthority(ctx context.Context, options GetCertificateAuthorityOperationOptions) (result GetCertificateAuthorityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

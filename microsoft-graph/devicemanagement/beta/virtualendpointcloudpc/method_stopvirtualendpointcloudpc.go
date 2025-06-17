@@ -47,8 +47,8 @@ func (o StopVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParam
 	return &out
 }
 
-// StopVirtualEndpointCloudPC - Invoke action stop. Stop a specific Cloud PC for a user. Currently, only Windows 365
-// Frontline Cloud PCs are supported.
+// StopVirtualEndpointCloudPC - Invoke action stop. Stop a specific Cloud PC. Currently, only Windows 365 Frontline
+// Cloud PCs are supported.
 func (c VirtualEndpointCloudPCClient) StopVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options StopVirtualEndpointCloudPCOperationOptions) (result StopVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

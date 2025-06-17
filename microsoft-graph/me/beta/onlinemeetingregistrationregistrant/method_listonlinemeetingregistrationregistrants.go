@@ -98,9 +98,8 @@ func (p *ListOnlineMeetingRegistrationRegistrantsCustomPager) NextPageLink() *od
 	return p.NextLink
 }
 
-// ListOnlineMeetingRegistrationRegistrants - List registrants (deprecated). Get a list of the meetingRegistrants of an
-// onlineMeeting on behalf of the organizer. You can use this method to get the registration report for a Microsoft
-// Teams webinar.
+// ListOnlineMeetingRegistrationRegistrants - List externalMeetingRegistrants (deprecated). Get a list of the
+// externalMeetingRegistrants of an onlineMeeting.
 func (c OnlineMeetingRegistrationRegistrantClient) ListOnlineMeetingRegistrationRegistrants(ctx context.Context, id beta.MeOnlineMeetingId, options ListOnlineMeetingRegistrationRegistrantsOperationOptions) (result ListOnlineMeetingRegistrationRegistrantsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

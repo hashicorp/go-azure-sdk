@@ -194,6 +194,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `DriveItemClient.DiscardDriveItemCheckout`
+
+```go
+ctx := context.TODO()
+id := driveitem.NewGroupIdDriveIdItemID("groupId", "driveId", "driveItemId")
+
+read, err := client.DiscardDriveItemCheckout(ctx, id, driveitem.DefaultDiscardDriveItemCheckoutOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `DriveItemClient.ExtractDriveItemSensitivityLabels`
 
 ```go

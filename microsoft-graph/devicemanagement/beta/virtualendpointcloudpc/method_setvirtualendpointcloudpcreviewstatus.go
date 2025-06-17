@@ -47,7 +47,9 @@ func (o SetVirtualEndpointCloudPCReviewStatusOperationOptions) ToQuery() *client
 	return &out
 }
 
-// SetVirtualEndpointCloudPCReviewStatus - Invoke action setReviewStatus
+// SetVirtualEndpointCloudPCReviewStatus - Invoke action setReviewStatus. Set the review status of a specific Cloud PC
+// device using the Cloud PC ID. Use this API to set the review status of a Cloud PC to in review if you consider a
+// Cloud PC suspicious. After the review is completed, use this API again to set the Cloud PC back to a normal state.
 func (c VirtualEndpointCloudPCClient) SetVirtualEndpointCloudPCReviewStatus(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, input SetVirtualEndpointCloudPCReviewStatusRequest, options SetVirtualEndpointCloudPCReviewStatusOperationOptions) (result SetVirtualEndpointCloudPCReviewStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

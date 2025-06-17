@@ -16,6 +16,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/dailyprintusagebyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/dailyprintusagesummariesbyprinter"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/dailyprintusagesummariesbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/healthmonitoring"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/healthmonitoringalert"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/healthmonitoringalertconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/monthlyprintusagebyprinter"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/monthlyprintusagebyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/monthlyprintusagesummariesbyprinter"
@@ -26,6 +29,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingoperation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingreconciliation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingreconciliationbilled"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingreconciliationunbilled"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingusage"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingusagebilled"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingusageunbilled"
@@ -43,6 +47,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailyinactiveuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailyinactiveusersbyapplication"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailymfacompletion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailymfatelecomfraud"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailysignup"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailysummary"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailyusercount"
@@ -52,6 +57,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlyinactiveuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlyinactiveusersbyapplication"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlymfacompletion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlymfaregistereduser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlyrequest"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlysignup"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlysummary"
@@ -70,6 +76,9 @@ type Client struct {
 	DailyPrintUsageByUser                        *dailyprintusagebyuser.DailyPrintUsageByUserClient
 	DailyPrintUsageSummariesByPrinter            *dailyprintusagesummariesbyprinter.DailyPrintUsageSummariesByPrinterClient
 	DailyPrintUsageSummariesByUser               *dailyprintusagesummariesbyuser.DailyPrintUsageSummariesByUserClient
+	HealthMonitoring                             *healthmonitoring.HealthMonitoringClient
+	HealthMonitoringAlert                        *healthmonitoringalert.HealthMonitoringAlertClient
+	HealthMonitoringAlertConfiguration           *healthmonitoringalertconfiguration.HealthMonitoringAlertConfigurationClient
 	MonthlyPrintUsageByPrinter                   *monthlyprintusagebyprinter.MonthlyPrintUsageByPrinterClient
 	MonthlyPrintUsageByUser                      *monthlyprintusagebyuser.MonthlyPrintUsageByUserClient
 	MonthlyPrintUsageSummariesByPrinter          *monthlyprintusagesummariesbyprinter.MonthlyPrintUsageSummariesByPrinterClient
@@ -80,6 +89,7 @@ type Client struct {
 	PartnerBillingOperation                      *partnerbillingoperation.PartnerBillingOperationClient
 	PartnerBillingReconciliation                 *partnerbillingreconciliation.PartnerBillingReconciliationClient
 	PartnerBillingReconciliationBilled           *partnerbillingreconciliationbilled.PartnerBillingReconciliationBilledClient
+	PartnerBillingReconciliationUnbilled         *partnerbillingreconciliationunbilled.PartnerBillingReconciliationUnbilledClient
 	PartnerBillingUsage                          *partnerbillingusage.PartnerBillingUsageClient
 	PartnerBillingUsageBilled                    *partnerbillingusagebilled.PartnerBillingUsageBilledClient
 	PartnerBillingUsageUnbilled                  *partnerbillingusageunbilled.PartnerBillingUsageUnbilledClient
@@ -97,6 +107,7 @@ type Client struct {
 	UserInsightDailyInactiveUser                 *userinsightdailyinactiveuser.UserInsightDailyInactiveUserClient
 	UserInsightDailyInactiveUsersByApplication   *userinsightdailyinactiveusersbyapplication.UserInsightDailyInactiveUsersByApplicationClient
 	UserInsightDailyMfaCompletion                *userinsightdailymfacompletion.UserInsightDailyMfaCompletionClient
+	UserInsightDailyMfaTelecomFraud              *userinsightdailymfatelecomfraud.UserInsightDailyMfaTelecomFraudClient
 	UserInsightDailySignUp                       *userinsightdailysignup.UserInsightDailySignUpClient
 	UserInsightDailySummary                      *userinsightdailysummary.UserInsightDailySummaryClient
 	UserInsightDailyUserCount                    *userinsightdailyusercount.UserInsightDailyUserCountClient
@@ -106,6 +117,7 @@ type Client struct {
 	UserInsightMonthlyInactiveUser               *userinsightmonthlyinactiveuser.UserInsightMonthlyInactiveUserClient
 	UserInsightMonthlyInactiveUsersByApplication *userinsightmonthlyinactiveusersbyapplication.UserInsightMonthlyInactiveUsersByApplicationClient
 	UserInsightMonthlyMfaCompletion              *userinsightmonthlymfacompletion.UserInsightMonthlyMfaCompletionClient
+	UserInsightMonthlyMfaRegisteredUser          *userinsightmonthlymfaregistereduser.UserInsightMonthlyMfaRegisteredUserClient
 	UserInsightMonthlyRequest                    *userinsightmonthlyrequest.UserInsightMonthlyRequestClient
 	UserInsightMonthlySignUp                     *userinsightmonthlysignup.UserInsightMonthlySignUpClient
 	UserInsightMonthlySummary                    *userinsightmonthlysummary.UserInsightMonthlySummaryClient
@@ -172,6 +184,24 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(dailyPrintUsageSummariesByUserClient.Client)
 
+	healthMonitoringAlertClient, err := healthmonitoringalert.NewHealthMonitoringAlertClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building HealthMonitoringAlert client: %+v", err)
+	}
+	configureFunc(healthMonitoringAlertClient.Client)
+
+	healthMonitoringAlertConfigurationClient, err := healthmonitoringalertconfiguration.NewHealthMonitoringAlertConfigurationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building HealthMonitoringAlertConfiguration client: %+v", err)
+	}
+	configureFunc(healthMonitoringAlertConfigurationClient.Client)
+
+	healthMonitoringClient, err := healthmonitoring.NewHealthMonitoringClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building HealthMonitoring client: %+v", err)
+	}
+	configureFunc(healthMonitoringClient.Client)
+
 	monthlyPrintUsageByPrinterClient, err := monthlyprintusagebyprinter.NewMonthlyPrintUsageByPrinterClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MonthlyPrintUsageByPrinter client: %+v", err)
@@ -225,6 +255,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building PartnerBillingReconciliation client: %+v", err)
 	}
 	configureFunc(partnerBillingReconciliationClient.Client)
+
+	partnerBillingReconciliationUnbilledClient, err := partnerbillingreconciliationunbilled.NewPartnerBillingReconciliationUnbilledClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PartnerBillingReconciliationUnbilled client: %+v", err)
+	}
+	configureFunc(partnerBillingReconciliationUnbilledClient.Client)
 
 	partnerBillingUsageBilledClient, err := partnerbillingusagebilled.NewPartnerBillingUsageBilledClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -334,6 +370,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(userInsightDailyMfaCompletionClient.Client)
 
+	userInsightDailyMfaTelecomFraudClient, err := userinsightdailymfatelecomfraud.NewUserInsightDailyMfaTelecomFraudClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building UserInsightDailyMfaTelecomFraud client: %+v", err)
+	}
+	configureFunc(userInsightDailyMfaTelecomFraudClient.Client)
+
 	userInsightDailySignUpClient, err := userinsightdailysignup.NewUserInsightDailySignUpClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building UserInsightDailySignUp client: %+v", err)
@@ -388,6 +430,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(userInsightMonthlyMfaCompletionClient.Client)
 
+	userInsightMonthlyMfaRegisteredUserClient, err := userinsightmonthlymfaregistereduser.NewUserInsightMonthlyMfaRegisteredUserClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building UserInsightMonthlyMfaRegisteredUser client: %+v", err)
+	}
+	configureFunc(userInsightMonthlyMfaRegisteredUserClient.Client)
+
 	userInsightMonthlyRequestClient, err := userinsightmonthlyrequest.NewUserInsightMonthlyRequestClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building UserInsightMonthlyRequest client: %+v", err)
@@ -417,6 +465,9 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		DailyPrintUsageByUser:                        dailyPrintUsageByUserClient,
 		DailyPrintUsageSummariesByPrinter:            dailyPrintUsageSummariesByPrinterClient,
 		DailyPrintUsageSummariesByUser:               dailyPrintUsageSummariesByUserClient,
+		HealthMonitoring:                             healthMonitoringClient,
+		HealthMonitoringAlert:                        healthMonitoringAlertClient,
+		HealthMonitoringAlertConfiguration:           healthMonitoringAlertConfigurationClient,
 		MonthlyPrintUsageByPrinter:                   monthlyPrintUsageByPrinterClient,
 		MonthlyPrintUsageByUser:                      monthlyPrintUsageByUserClient,
 		MonthlyPrintUsageSummariesByPrinter:          monthlyPrintUsageSummariesByPrinterClient,
@@ -427,6 +478,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		PartnerBillingOperation:                      partnerBillingOperationClient,
 		PartnerBillingReconciliation:                 partnerBillingReconciliationClient,
 		PartnerBillingReconciliationBilled:           partnerBillingReconciliationBilledClient,
+		PartnerBillingReconciliationUnbilled:         partnerBillingReconciliationUnbilledClient,
 		PartnerBillingUsage:                          partnerBillingUsageClient,
 		PartnerBillingUsageBilled:                    partnerBillingUsageBilledClient,
 		PartnerBillingUsageUnbilled:                  partnerBillingUsageUnbilledClient,
@@ -444,6 +496,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		UserInsightDailyInactiveUser:                 userInsightDailyInactiveUserClient,
 		UserInsightDailyInactiveUsersByApplication:   userInsightDailyInactiveUsersByApplicationClient,
 		UserInsightDailyMfaCompletion:                userInsightDailyMfaCompletionClient,
+		UserInsightDailyMfaTelecomFraud:              userInsightDailyMfaTelecomFraudClient,
 		UserInsightDailySignUp:                       userInsightDailySignUpClient,
 		UserInsightDailySummary:                      userInsightDailySummaryClient,
 		UserInsightDailyUserCount:                    userInsightDailyUserCountClient,
@@ -453,6 +506,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		UserInsightMonthlyInactiveUser:               userInsightMonthlyInactiveUserClient,
 		UserInsightMonthlyInactiveUsersByApplication: userInsightMonthlyInactiveUsersByApplicationClient,
 		UserInsightMonthlyMfaCompletion:              userInsightMonthlyMfaCompletionClient,
+		UserInsightMonthlyMfaRegisteredUser:          userInsightMonthlyMfaRegisteredUserClient,
 		UserInsightMonthlyRequest:                    userInsightMonthlyRequestClient,
 		UserInsightMonthlySignUp:                     userInsightMonthlySignUpClient,
 		UserInsightMonthlySummary:                    userInsightMonthlySummaryClient,

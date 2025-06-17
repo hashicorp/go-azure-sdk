@@ -20,6 +20,26 @@ client.Client.Authorizer = authorizer
 ```
 
 
+### Example Usage: `ReportClient.CreateReportRetrieveDeviceAppInstallationStatusReport`
+
+```go
+ctx := context.TODO()
+
+payload := report.CreateReportRetrieveDeviceAppInstallationStatusReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateReportRetrieveDeviceAppInstallationStatusReport(ctx, payload, report.DefaultCreateReportRetrieveDeviceAppInstallationStatusReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `ReportClient.DeleteReport`
 
 ```go

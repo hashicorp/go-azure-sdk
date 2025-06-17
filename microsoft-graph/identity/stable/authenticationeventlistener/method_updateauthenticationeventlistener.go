@@ -48,7 +48,7 @@ func (o UpdateAuthenticationEventListenerOperationOptions) ToQuery() *client.Que
 
 // UpdateAuthenticationEventListener - Update authenticationEventListener. Update the properties of an
 // authenticationEventListener object. You must specify the @odata.type property and the value of the
-// authenticationEventListener object type to update.
+// authenticationEventListener object type to update. The following derived types are currently supported.
 func (c AuthenticationEventListenerClient) UpdateAuthenticationEventListener(ctx context.Context, id stable.IdentityAuthenticationEventListenerId, input stable.AuthenticationEventListener, options UpdateAuthenticationEventListenerOperationOptions) (result UpdateAuthenticationEventListenerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

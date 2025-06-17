@@ -50,7 +50,7 @@ func (o DeleteAppRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// DeleteAppRoleAssignment - Delete appRoleAssignment. Deletes an appRoleAssignment that a group has been granted.
+// DeleteAppRoleAssignment - Delete appRoleAssignment. Delete an appRoleAssignment that a group has been granted.
 func (c AppRoleAssignmentClient) DeleteAppRoleAssignment(ctx context.Context, id beta.GroupIdAppRoleAssignmentId, options DeleteAppRoleAssignmentOperationOptions) (result DeleteAppRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

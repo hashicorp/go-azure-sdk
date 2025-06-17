@@ -48,7 +48,7 @@ func (o CreateCloudPCSnapshotOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CreateCloudPCSnapshot - Invoke action createSnapshot. Create a snapshot for a specific Cloud PC device.
-func (c CloudPCClient) CreateCloudPCSnapshot(ctx context.Context, id beta.UserIdCloudPCId, options CreateCloudPCSnapshotOperationOptions) (result CreateCloudPCSnapshotOperationResponse, err error) {
+func (c CloudPCClient) CreateCloudPCSnapshot(ctx context.Context, id beta.UserIdCloudPCId, input CreateCloudPCSnapshotRequest, options CreateCloudPCSnapshotOperationOptions) (result CreateCloudPCSnapshotOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -65,6 +65,10 @@ func (c CloudPCClient) CreateCloudPCSnapshot(ctx context.Context, id beta.UserId
 
 	req, err := c.Client.NewRequest(ctx, opts)
 	if err != nil {
+		return
+	}
+
+	if err = req.Marshal(input); err != nil {
 		return
 	}
 

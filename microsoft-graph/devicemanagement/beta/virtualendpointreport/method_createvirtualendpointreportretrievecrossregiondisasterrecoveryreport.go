@@ -48,9 +48,8 @@ func (o CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOper
 
 // CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReport - Invoke action
 // retrieveCrossRegionDisasterRecoveryReport. Retrieve the Windows 365 cross-region disaster recovery report, including
-// CloudPcId, UserId, DeviceId, CloudPCDeviceDisplayName, UserPrincipalName, IsCrossRegionEnabled,
-// CrossRegionHealthStatus, LicenseType, DisasterRecoveryStatus, CurrentRestorePointDateTime, and
-// ActivationExpirationDateTime.
+// cloudPcId, userId, deviceId, cloudPCDeviceDisplayName, userPrincipalName, enabledDRType, disasterRecoveryStatus,
+// licenseType, drHealthStatus, currentRestorePointDateTime, backupCloudPcStatus, and activationExpirationDateTime.
 func (c VirtualEndpointReportClient) CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReport(ctx context.Context, input CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportRequest, options CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions) (result CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",

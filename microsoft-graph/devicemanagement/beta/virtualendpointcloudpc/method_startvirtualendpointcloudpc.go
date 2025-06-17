@@ -47,8 +47,8 @@ func (o StartVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryPara
 	return &out
 }
 
-// StartVirtualEndpointCloudPC - Invoke action start. Start a specific Cloud PC for a user. Currently, only Windows 365
-// Frontline Cloud PCs are supported.
+// StartVirtualEndpointCloudPC - Invoke action start. Start a specific Cloud PC. Currently, only Windows 365 Frontline
+// Cloud PCs are supported.
 func (c VirtualEndpointCloudPCClient) StartVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options StartVirtualEndpointCloudPCOperationOptions) (result StartVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

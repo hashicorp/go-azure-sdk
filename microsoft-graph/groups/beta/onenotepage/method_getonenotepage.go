@@ -55,8 +55,8 @@ func (o GetOnenotePageOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetOnenotePage - Get pages from groups. The pages in all OneNote notebooks that are owned by the user or group.
-// Read-only. Nullable.
+// GetOnenotePage - Get pages from groups. The pages in all OneNote notebooks that the user or group owns. Read-only.
+// Nullable.
 func (c OnenotePageClient) GetOnenotePage(ctx context.Context, id beta.GroupIdOnenotePageId, options GetOnenotePageOperationOptions) (result GetOnenotePageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

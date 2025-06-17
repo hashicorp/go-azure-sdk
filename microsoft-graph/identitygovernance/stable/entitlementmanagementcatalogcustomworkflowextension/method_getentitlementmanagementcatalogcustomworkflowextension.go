@@ -56,8 +56,8 @@ func (o GetEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) 
 	return &out
 }
 
-// GetEntitlementManagementCatalogCustomWorkflowExtension - Get accessPackageAssignmentRequestWorkflowExtension. Read
-// the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
+// GetEntitlementManagementCatalogCustomWorkflowExtension - Get accessPackageAssignmentWorkflowExtension. Read the
+// properties and relationships of an accessPackageAssignmentWorkflowExtension object.
 func (c EntitlementManagementCatalogCustomWorkflowExtensionClient) GetEntitlementManagementCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdCustomWorkflowExtensionId, options GetEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) (result GetEntitlementManagementCatalogCustomWorkflowExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -56,8 +56,8 @@ func (o GetDeviceCompliancePolicyOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
-// GetDeviceCompliancePolicy - Get deviceCompliancePolicy. Read properties and relationships of the
-// deviceCompliancePolicy object.
+// GetDeviceCompliancePolicy - Get macOSCompliancePolicy. Read properties and relationships of the macOSCompliancePolicy
+// object.
 func (c DeviceCompliancePolicyClient) GetDeviceCompliancePolicy(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyId, options GetDeviceCompliancePolicyOperationOptions) (result GetDeviceCompliancePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

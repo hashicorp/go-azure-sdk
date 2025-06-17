@@ -47,8 +47,8 @@ func (o StartCloudPCOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// StartCloudPC - Invoke action start. Start a specific Cloud PC for a user. Currently, only Windows 365 Frontline Cloud
-// PCs are supported.
+// StartCloudPC - Invoke action start. Start a specific Cloud PC. Currently, only Windows 365 Frontline Cloud PCs are
+// supported.
 func (c CloudPCClient) StartCloudPC(ctx context.Context, id beta.UserIdCloudPCId, options StartCloudPCOperationOptions) (result StartCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

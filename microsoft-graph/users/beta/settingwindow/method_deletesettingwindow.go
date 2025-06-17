@@ -50,7 +50,7 @@ func (o DeleteSettingWindowOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// DeleteSettingWindow - Delete navigation property windows for users
+// DeleteSettingWindow - Delete windowsSetting. Delete all windowsSetting objects of a user.
 func (c SettingWindowClient) DeleteSettingWindow(ctx context.Context, id beta.UserIdSettingWindowId, options DeleteSettingWindowOperationOptions) (result DeleteSettingWindowOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

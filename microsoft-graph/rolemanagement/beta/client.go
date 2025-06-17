@@ -18,6 +18,18 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/cloudpcroleassignmentroledefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/cloudpcroledefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/cloudpcroledefinitioninheritspermissionsfrom"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defender"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderresourcenamespace"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderresourcenamespaceresourceaction"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderresourcenamespaceresourceactionauthenticationcontext"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderresourcenamespaceresourceactionresourcescope"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderroleassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderroleassignmentappscope"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderroleassignmentdirectoryscope"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderroleassignmentprincipal"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderroleassignmentroledefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderroledefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderroledefinitioninheritspermissionsfrom"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/devicemanagement"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/devicemanagementresourcenamespace"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/devicemanagementresourcenamespaceresourceaction"
@@ -228,6 +240,18 @@ type Client struct {
 	CloudPCRoleAssignmentRoleDefinition                                       *cloudpcroleassignmentroledefinition.CloudPCRoleAssignmentRoleDefinitionClient
 	CloudPCRoleDefinition                                                     *cloudpcroledefinition.CloudPCRoleDefinitionClient
 	CloudPCRoleDefinitionInheritsPermissionsFrom                              *cloudpcroledefinitioninheritspermissionsfrom.CloudPCRoleDefinitionInheritsPermissionsFromClient
+	Defender                                                                  *defender.DefenderClient
+	DefenderResourceNamespace                                                 *defenderresourcenamespace.DefenderResourceNamespaceClient
+	DefenderResourceNamespaceResourceAction                                   *defenderresourcenamespaceresourceaction.DefenderResourceNamespaceResourceActionClient
+	DefenderResourceNamespaceResourceActionAuthenticationContext              *defenderresourcenamespaceresourceactionauthenticationcontext.DefenderResourceNamespaceResourceActionAuthenticationContextClient
+	DefenderResourceNamespaceResourceActionResourceScope                      *defenderresourcenamespaceresourceactionresourcescope.DefenderResourceNamespaceResourceActionResourceScopeClient
+	DefenderRoleAssignment                                                    *defenderroleassignment.DefenderRoleAssignmentClient
+	DefenderRoleAssignmentAppScope                                            *defenderroleassignmentappscope.DefenderRoleAssignmentAppScopeClient
+	DefenderRoleAssignmentDirectoryScope                                      *defenderroleassignmentdirectoryscope.DefenderRoleAssignmentDirectoryScopeClient
+	DefenderRoleAssignmentPrincipal                                           *defenderroleassignmentprincipal.DefenderRoleAssignmentPrincipalClient
+	DefenderRoleAssignmentRoleDefinition                                      *defenderroleassignmentroledefinition.DefenderRoleAssignmentRoleDefinitionClient
+	DefenderRoleDefinition                                                    *defenderroledefinition.DefenderRoleDefinitionClient
+	DefenderRoleDefinitionInheritsPermissionsFrom                             *defenderroledefinitioninheritspermissionsfrom.DefenderRoleDefinitionInheritsPermissionsFromClient
 	DeviceManagement                                                          *devicemanagement.DeviceManagementClient
 	DeviceManagementResourceNamespace                                         *devicemanagementresourcenamespace.DeviceManagementResourceNamespaceClient
 	DeviceManagementResourceNamespaceResourceAction                           *devicemanagementresourcenamespaceresourceaction.DeviceManagementResourceNamespaceResourceActionClient
@@ -495,6 +519,78 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building CloudPCRoleDefinitionInheritsPermissionsFrom client: %+v", err)
 	}
 	configureFunc(cloudPCRoleDefinitionInheritsPermissionsFromClient.Client)
+
+	defenderClient, err := defender.NewDefenderClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Defender client: %+v", err)
+	}
+	configureFunc(defenderClient.Client)
+
+	defenderResourceNamespaceClient, err := defenderresourcenamespace.NewDefenderResourceNamespaceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderResourceNamespace client: %+v", err)
+	}
+	configureFunc(defenderResourceNamespaceClient.Client)
+
+	defenderResourceNamespaceResourceActionAuthenticationContextClient, err := defenderresourcenamespaceresourceactionauthenticationcontext.NewDefenderResourceNamespaceResourceActionAuthenticationContextClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderResourceNamespaceResourceActionAuthenticationContext client: %+v", err)
+	}
+	configureFunc(defenderResourceNamespaceResourceActionAuthenticationContextClient.Client)
+
+	defenderResourceNamespaceResourceActionClient, err := defenderresourcenamespaceresourceaction.NewDefenderResourceNamespaceResourceActionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderResourceNamespaceResourceAction client: %+v", err)
+	}
+	configureFunc(defenderResourceNamespaceResourceActionClient.Client)
+
+	defenderResourceNamespaceResourceActionResourceScopeClient, err := defenderresourcenamespaceresourceactionresourcescope.NewDefenderResourceNamespaceResourceActionResourceScopeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderResourceNamespaceResourceActionResourceScope client: %+v", err)
+	}
+	configureFunc(defenderResourceNamespaceResourceActionResourceScopeClient.Client)
+
+	defenderRoleAssignmentAppScopeClient, err := defenderroleassignmentappscope.NewDefenderRoleAssignmentAppScopeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderRoleAssignmentAppScope client: %+v", err)
+	}
+	configureFunc(defenderRoleAssignmentAppScopeClient.Client)
+
+	defenderRoleAssignmentClient, err := defenderroleassignment.NewDefenderRoleAssignmentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderRoleAssignment client: %+v", err)
+	}
+	configureFunc(defenderRoleAssignmentClient.Client)
+
+	defenderRoleAssignmentDirectoryScopeClient, err := defenderroleassignmentdirectoryscope.NewDefenderRoleAssignmentDirectoryScopeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderRoleAssignmentDirectoryScope client: %+v", err)
+	}
+	configureFunc(defenderRoleAssignmentDirectoryScopeClient.Client)
+
+	defenderRoleAssignmentPrincipalClient, err := defenderroleassignmentprincipal.NewDefenderRoleAssignmentPrincipalClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderRoleAssignmentPrincipal client: %+v", err)
+	}
+	configureFunc(defenderRoleAssignmentPrincipalClient.Client)
+
+	defenderRoleAssignmentRoleDefinitionClient, err := defenderroleassignmentroledefinition.NewDefenderRoleAssignmentRoleDefinitionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderRoleAssignmentRoleDefinition client: %+v", err)
+	}
+	configureFunc(defenderRoleAssignmentRoleDefinitionClient.Client)
+
+	defenderRoleDefinitionClient, err := defenderroledefinition.NewDefenderRoleDefinitionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderRoleDefinition client: %+v", err)
+	}
+	configureFunc(defenderRoleDefinitionClient.Client)
+
+	defenderRoleDefinitionInheritsPermissionsFromClient, err := defenderroledefinitioninheritspermissionsfrom.NewDefenderRoleDefinitionInheritsPermissionsFromClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DefenderRoleDefinitionInheritsPermissionsFrom client: %+v", err)
+	}
+	configureFunc(defenderRoleDefinitionInheritsPermissionsFromClient.Client)
 
 	deviceManagementClient, err := devicemanagement.NewDeviceManagementClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1660,13 +1756,25 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		CloudPCResourceNamespaceResourceAction: cloudPCResourceNamespaceResourceActionClient,
 		CloudPCResourceNamespaceResourceActionAuthenticationContext: cloudPCResourceNamespaceResourceActionAuthenticationContextClient,
 		CloudPCResourceNamespaceResourceActionResourceScope:         cloudPCResourceNamespaceResourceActionResourceScopeClient,
-		CloudPCRoleAssignment:                                                cloudPCRoleAssignmentClient,
-		CloudPCRoleAssignmentAppScope:                                        cloudPCRoleAssignmentAppScopeClient,
-		CloudPCRoleAssignmentDirectoryScope:                                  cloudPCRoleAssignmentDirectoryScopeClient,
-		CloudPCRoleAssignmentPrincipal:                                       cloudPCRoleAssignmentPrincipalClient,
-		CloudPCRoleAssignmentRoleDefinition:                                  cloudPCRoleAssignmentRoleDefinitionClient,
-		CloudPCRoleDefinition:                                                cloudPCRoleDefinitionClient,
-		CloudPCRoleDefinitionInheritsPermissionsFrom:                         cloudPCRoleDefinitionInheritsPermissionsFromClient,
+		CloudPCRoleAssignment:                        cloudPCRoleAssignmentClient,
+		CloudPCRoleAssignmentAppScope:                cloudPCRoleAssignmentAppScopeClient,
+		CloudPCRoleAssignmentDirectoryScope:          cloudPCRoleAssignmentDirectoryScopeClient,
+		CloudPCRoleAssignmentPrincipal:               cloudPCRoleAssignmentPrincipalClient,
+		CloudPCRoleAssignmentRoleDefinition:          cloudPCRoleAssignmentRoleDefinitionClient,
+		CloudPCRoleDefinition:                        cloudPCRoleDefinitionClient,
+		CloudPCRoleDefinitionInheritsPermissionsFrom: cloudPCRoleDefinitionInheritsPermissionsFromClient,
+		Defender:                                defenderClient,
+		DefenderResourceNamespace:               defenderResourceNamespaceClient,
+		DefenderResourceNamespaceResourceAction: defenderResourceNamespaceResourceActionClient,
+		DefenderResourceNamespaceResourceActionAuthenticationContext: defenderResourceNamespaceResourceActionAuthenticationContextClient,
+		DefenderResourceNamespaceResourceActionResourceScope:         defenderResourceNamespaceResourceActionResourceScopeClient,
+		DefenderRoleAssignment:                                               defenderRoleAssignmentClient,
+		DefenderRoleAssignmentAppScope:                                       defenderRoleAssignmentAppScopeClient,
+		DefenderRoleAssignmentDirectoryScope:                                 defenderRoleAssignmentDirectoryScopeClient,
+		DefenderRoleAssignmentPrincipal:                                      defenderRoleAssignmentPrincipalClient,
+		DefenderRoleAssignmentRoleDefinition:                                 defenderRoleAssignmentRoleDefinitionClient,
+		DefenderRoleDefinition:                                               defenderRoleDefinitionClient,
+		DefenderRoleDefinitionInheritsPermissionsFrom:                        defenderRoleDefinitionInheritsPermissionsFromClient,
 		DeviceManagement:                                                     deviceManagementClient,
 		DeviceManagementResourceNamespace:                                    deviceManagementResourceNamespaceClient,
 		DeviceManagementResourceNamespaceResourceAction:                      deviceManagementResourceNamespaceResourceActionClient,

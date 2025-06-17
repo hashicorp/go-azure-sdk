@@ -55,9 +55,8 @@ func (o GetEntitlementManagementAccessPackageOperationOptions) ToQuery() *client
 	return &out
 }
 
-// GetEntitlementManagementAccessPackage - List resourceRoleScopes. Retrieve an access package with a list of
-// accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to
-// each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
+// GetEntitlementManagementAccessPackage - Get accessPackage. Retrieve the properties and relationships of an
+// accessPackage object.
 func (c EntitlementManagementAccessPackageClient) GetEntitlementManagementAccessPackage(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageId, options GetEntitlementManagementAccessPackageOperationOptions) (result GetEntitlementManagementAccessPackageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

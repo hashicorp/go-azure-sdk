@@ -47,8 +47,8 @@ func (o EndSolutionWorkingTimeScheduleWorkingTimeOperationOptions) ToQuery() *cl
 	return &out
 }
 
-// EndSolutionWorkingTimeScheduleWorkingTime - Invoke action endWorkingTime. Triggers the policies associated with the
-// end of working hours.
+// EndSolutionWorkingTimeScheduleWorkingTime - Invoke action endWorkingTime. Trigger the policies associated with the
+// end of working hours for a specific user.
 func (c SolutionWorkingTimeScheduleClient) EndSolutionWorkingTimeScheduleWorkingTime(ctx context.Context, id beta.UserId, options EndSolutionWorkingTimeScheduleWorkingTimeOperationOptions) (result EndSolutionWorkingTimeScheduleWorkingTimeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

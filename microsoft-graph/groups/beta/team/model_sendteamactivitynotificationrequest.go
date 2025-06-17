@@ -11,6 +11,7 @@ import (
 type SendTeamActivityNotificationRequest struct {
 	ActivityType       nullable.Type[string]               `json:"activityType,omitempty"`
 	ChainId            nullable.Type[int64]                `json:"chainId,omitempty"`
+	IconId             nullable.Type[string]               `json:"iconId,omitempty"`
 	PreviewText        *beta.ItemBody                      `json:"previewText,omitempty"`
 	Recipient          *beta.TeamworkNotificationRecipient `json:"recipient,omitempty"`
 	TeamsAppId         nullable.Type[string]               `json:"teamsAppId,omitempty"`

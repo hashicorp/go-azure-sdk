@@ -46,7 +46,8 @@ func (o GetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions) ToQue
 	return &out
 }
 
-// GetVirtualEndpointReportsCloudPCPerformanceReport - Invoke action getCloudPcPerformanceReport
+// GetVirtualEndpointReportsCloudPCPerformanceReport - Invoke action getCloudPcPerformanceReport. Get a report related
+// to the performance of Cloud PCs.
 func (c VirtualEndpointReportClient) GetVirtualEndpointReportsCloudPCPerformanceReport(ctx context.Context, input GetVirtualEndpointReportsCloudPCPerformanceReportRequest, options GetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions) (result GetVirtualEndpointReportsCloudPCPerformanceReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",

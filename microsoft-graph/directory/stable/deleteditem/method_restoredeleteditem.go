@@ -51,7 +51,7 @@ func (o RestoreDeletedItemOperationOptions) ToQuery() *client.QueryParams {
 
 // RestoreDeletedItem - Invoke action restore. Restore a recently deleted application, group, servicePrincipal,
 // administrative unit, or user object from deleted items. If an item was accidentally deleted, you can fully restore
-// the item. However, security groups cannot be restored. Also, restoring an application doesn't restore the associated
+// the item. However, security groups can't be restored. Also, restoring an application doesn't restore the associated
 // service principal automatically. You must call this API to explicitly restore the deleted service principal. A
 // recently deleted item remains available for up to 30 days. After 30 days, the item is permanently deleted.
 func (c DeletedItemClient) RestoreDeletedItem(ctx context.Context, id stable.DirectoryDeletedItemId, options RestoreDeletedItemOperationOptions) (result RestoreDeletedItemOperationResponse, err error) {

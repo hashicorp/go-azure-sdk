@@ -36,6 +36,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `DeviceManagementClient.EnableEndpointPrivilegeManagement`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.EnableEndpointPrivilegeManagement(ctx, devicemanagement.DefaultEnableEndpointPrivilegeManagementOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `DeviceManagementClient.EnableLegacyPcManagement`
 
 ```go

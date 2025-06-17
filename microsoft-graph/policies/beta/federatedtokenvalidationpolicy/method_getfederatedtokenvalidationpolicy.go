@@ -55,8 +55,8 @@ func (o GetFederatedTokenValidationPolicyOperationOptions) ToQuery() *client.Que
 	return &out
 }
 
-// GetFederatedTokenValidationPolicy - Get federatedTokenValidationPolicy. Read the properties and relationships of a
-// federatedTokenValidationPolicy object.
+// GetFederatedTokenValidationPolicy - List federatedTokenValidationPolicy. Get a list of the
+// federatedTokenValidationPolicy objects and their properties.
 func (c FederatedTokenValidationPolicyClient) GetFederatedTokenValidationPolicy(ctx context.Context, options GetFederatedTokenValidationPolicyOperationOptions) (result GetFederatedTokenValidationPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

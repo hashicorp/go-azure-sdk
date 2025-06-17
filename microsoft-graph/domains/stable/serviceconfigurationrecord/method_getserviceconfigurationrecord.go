@@ -57,8 +57,8 @@ func (o GetServiceConfigurationRecordOperationOptions) ToQuery() *client.QueryPa
 }
 
 // GetServiceConfigurationRecord - Get serviceConfigurationRecords from domains. DNS records the customer adds to the
-// DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Supports
-// $expand.
+// DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Doesn't
+// support $expand.
 func (c ServiceConfigurationRecordClient) GetServiceConfigurationRecord(ctx context.Context, id stable.DomainIdServiceConfigurationRecordId, options GetServiceConfigurationRecordOperationOptions) (result GetServiceConfigurationRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

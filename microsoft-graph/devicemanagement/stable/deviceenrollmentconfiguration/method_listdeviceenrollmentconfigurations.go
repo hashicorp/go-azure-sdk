@@ -98,8 +98,8 @@ func (p *ListDeviceEnrollmentConfigurationsCustomPager) NextPageLink() *odata.Li
 	return p.NextLink
 }
 
-// ListDeviceEnrollmentConfigurations - List deviceEnrollmentWindowsHelloForBusinessConfigurations. List properties and
-// relationships of the deviceEnrollmentWindowsHelloForBusinessConfiguration objects.
+// ListDeviceEnrollmentConfigurations - List deviceEnrollmentPlatformRestrictionsConfigurations. List properties and
+// relationships of the deviceEnrollmentPlatformRestrictionsConfiguration objects.
 func (c DeviceEnrollmentConfigurationClient) ListDeviceEnrollmentConfigurations(ctx context.Context, options ListDeviceEnrollmentConfigurationsOperationOptions) (result ListDeviceEnrollmentConfigurationsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

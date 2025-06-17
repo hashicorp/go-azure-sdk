@@ -48,8 +48,7 @@ func (o CreateDeviceConfigurationOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
-// CreateDeviceConfiguration - Create windows10EnterpriseModernAppManagementConfiguration. Create a new
-// windows10EnterpriseModernAppManagementConfiguration object.
+// CreateDeviceConfiguration - Create iosCustomConfiguration. Create a new iosCustomConfiguration object.
 func (c DeviceConfigurationClient) CreateDeviceConfiguration(ctx context.Context, input stable.DeviceConfiguration, options CreateDeviceConfigurationOperationOptions) (result CreateDeviceConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

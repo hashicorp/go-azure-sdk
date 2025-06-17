@@ -57,8 +57,8 @@ func (o GetRoleAssignmentRoleDefinitionOperationOptions) ToQuery() *client.Query
 	return &out
 }
 
-// GetRoleAssignmentRoleDefinition - Get roleDefinition from deviceManagement. Role definition this assignment is part
-// of.
+// GetRoleAssignmentRoleDefinition - Get roleDefinition from deviceManagement. Indicates the role definition for this
+// role assignment.
 func (c RoleAssignmentRoleDefinitionClient) GetRoleAssignmentRoleDefinition(ctx context.Context, id beta.DeviceManagementRoleAssignmentId, options GetRoleAssignmentRoleDefinitionOperationOptions) (result GetRoleAssignmentRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

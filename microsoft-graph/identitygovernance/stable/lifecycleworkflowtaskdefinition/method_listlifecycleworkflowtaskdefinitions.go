@@ -97,8 +97,8 @@ func (p *ListLifecycleWorkflowTaskDefinitionsCustomPager) NextPageLink() *odata.
 	return p.NextLink
 }
 
-// ListLifecycleWorkflowTaskDefinitions - List taskDefinitions. Get a list of the taskDefinition objects and their
-// properties.
+// ListLifecycleWorkflowTaskDefinitions - List taskDefinitions. Get a list of built-in tasks in Lifecycle Workflows. A
+// task is represented by the taskDefinition object.
 func (c LifecycleWorkflowTaskDefinitionClient) ListLifecycleWorkflowTaskDefinitions(ctx context.Context, options ListLifecycleWorkflowTaskDefinitionsOperationOptions) (result ListLifecycleWorkflowTaskDefinitionsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

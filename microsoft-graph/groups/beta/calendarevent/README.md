@@ -83,6 +83,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `CalendarEventClient.CreateCalendarEventPermanentDelete`
+
+```go
+ctx := context.TODO()
+id := calendarevent.NewGroupIdCalendarEventID("groupId", "eventId")
+
+read, err := client.CreateCalendarEventPermanentDelete(ctx, id, calendarevent.DefaultCreateCalendarEventPermanentDeleteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `CalendarEventClient.DeclineCalendarEvent`
 
 ```go

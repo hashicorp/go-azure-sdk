@@ -102,6 +102,27 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `VirtualEndpointProvisioningPolicyClient.CreateVirtualEndpointProvisioningPolicySchedulePolicyApplyTask`
+
+```go
+ctx := context.TODO()
+id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyId")
+
+payload := virtualendpointprovisioningpolicy.CreateVirtualEndpointProvisioningPolicySchedulePolicyApplyTaskRequest{
+	// ...
+}
+
+
+read, err := client.CreateVirtualEndpointProvisioningPolicySchedulePolicyApplyTask(ctx, id, payload, virtualendpointprovisioningpolicy.DefaultCreateVirtualEndpointProvisioningPolicySchedulePolicyApplyTaskOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `VirtualEndpointProvisioningPolicyClient.DeleteVirtualEndpointProvisioningPolicy`
 
 ```go

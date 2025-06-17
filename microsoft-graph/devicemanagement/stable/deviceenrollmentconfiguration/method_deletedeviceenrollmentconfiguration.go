@@ -50,8 +50,8 @@ func (o DeleteDeviceEnrollmentConfigurationOperationOptions) ToQuery() *client.Q
 	return &out
 }
 
-// DeleteDeviceEnrollmentConfiguration - Delete deviceEnrollmentLimitConfiguration. Deletes a
-// deviceEnrollmentLimitConfiguration.
+// DeleteDeviceEnrollmentConfiguration - Delete deviceEnrollmentWindowsHelloForBusinessConfiguration. Deletes a
+// deviceEnrollmentWindowsHelloForBusinessConfiguration.
 func (c DeviceEnrollmentConfigurationClient) DeleteDeviceEnrollmentConfiguration(ctx context.Context, id stable.DeviceManagementDeviceEnrollmentConfigurationId, options DeleteDeviceEnrollmentConfigurationOperationOptions) (result DeleteDeviceEnrollmentConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

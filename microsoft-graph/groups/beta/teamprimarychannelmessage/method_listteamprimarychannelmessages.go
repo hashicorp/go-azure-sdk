@@ -97,8 +97,7 @@ func (p *ListTeamPrimaryChannelMessagesCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListTeamPrimaryChannelMessages - Get messages from groups. A collection of all the messages in the channel. A
-// navigation property. Nullable.
+// ListTeamPrimaryChannelMessages - Get messages from groups. A collection of all the messages in the channel. Nullable.
 func (c TeamPrimaryChannelMessageClient) ListTeamPrimaryChannelMessages(ctx context.Context, id beta.GroupId, options ListTeamPrimaryChannelMessagesOperationOptions) (result ListTeamPrimaryChannelMessagesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

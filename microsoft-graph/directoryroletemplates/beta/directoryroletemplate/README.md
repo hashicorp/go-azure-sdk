@@ -260,12 +260,7 @@ for _, item := range items {
 ctx := context.TODO()
 id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
-payload := directoryroletemplate.RestoreRequest{
-	// ...
-}
-
-
-read, err := client.Restore(ctx, id, payload, directoryroletemplate.DefaultRestoreOperationOptions())
+read, err := client.Restore(ctx, id, directoryroletemplate.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
