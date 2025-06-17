@@ -173,6 +173,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `DriveRootClient.DiscardDriveRootCheckout`
+
+```go
+ctx := context.TODO()
+id := driveroot.NewGroupIdDriveID("groupId", "driveId")
+
+read, err := client.DiscardDriveRootCheckout(ctx, id, driveroot.DefaultDiscardDriveRootCheckoutOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `DriveRootClient.ExtractDriveRootSensitivityLabels`
 
 ```go

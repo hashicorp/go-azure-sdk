@@ -12,3 +12,11 @@ func (p AuthenticationEventsFlowOperationPredicate) Matches(input stable.Authent
 
 	return true
 }
+
+type ExternalUsersSelfServiceSignUpEventsFlowOperationPredicate struct {
+}
+
+func (p ExternalUsersSelfServiceSignUpEventsFlowOperationPredicate) Matches(input stable.ExternalUsersSelfServiceSignUpEventsFlow) bool {
+
+	return true
+}

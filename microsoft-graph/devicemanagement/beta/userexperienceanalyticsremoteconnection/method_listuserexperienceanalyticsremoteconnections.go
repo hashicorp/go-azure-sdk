@@ -98,7 +98,9 @@ func (p *ListUserExperienceAnalyticsRemoteConnectionsCustomPager) NextPageLink()
 }
 
 // ListUserExperienceAnalyticsRemoteConnections - Get userExperienceAnalyticsRemoteConnection from deviceManagement.
-// User experience analytics remote connection
+// User experience analytics remote connection. The report will be retired on December 31, 2024. You can start using the
+// Cloud PC connection quality report now via
+// https://learn.microsoft.com/windows-365/enterprise/report-cloud-pc-connection-quality.
 func (c UserExperienceAnalyticsRemoteConnectionClient) ListUserExperienceAnalyticsRemoteConnections(ctx context.Context, options ListUserExperienceAnalyticsRemoteConnectionsOperationOptions) (result ListUserExperienceAnalyticsRemoteConnectionsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

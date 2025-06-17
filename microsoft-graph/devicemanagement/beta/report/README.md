@@ -20,17 +20,97 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `ReportClient.CreateReportRetrieveAssignedApplicationsReport`
+### Example Usage: `ReportClient.CreateReportRetrieveAndroidWorkProfileDeviceMigrationStatus`
 
 ```go
 ctx := context.TODO()
 
-payload := report.CreateReportRetrieveAssignedApplicationsReportRequest{
+payload := report.CreateReportRetrieveAndroidWorkProfileDeviceMigrationStatusRequest{
 	// ...
 }
 
 
-read, err := client.CreateReportRetrieveAssignedApplicationsReport(ctx, payload, report.DefaultCreateReportRetrieveAssignedApplicationsReportOperationOptions())
+read, err := client.CreateReportRetrieveAndroidWorkProfileDeviceMigrationStatus(ctx, payload, report.DefaultCreateReportRetrieveAndroidWorkProfileDeviceMigrationStatusOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ReportClient.CreateReportRetrieveCloudPkiLeafCertificateReport`
+
+```go
+ctx := context.TODO()
+
+payload := report.CreateReportRetrieveCloudPkiLeafCertificateReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateReportRetrieveCloudPkiLeafCertificateReport(ctx, payload, report.DefaultCreateReportRetrieveCloudPkiLeafCertificateReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ReportClient.CreateReportRetrieveCloudPkiLeafCertificateSummaryReport`
+
+```go
+ctx := context.TODO()
+
+payload := report.CreateReportRetrieveCloudPkiLeafCertificateSummaryReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateReportRetrieveCloudPkiLeafCertificateSummaryReport(ctx, payload, report.DefaultCreateReportRetrieveCloudPkiLeafCertificateSummaryReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ReportClient.CreateReportRetrieveDeviceAppInstallationStatusReport`
+
+```go
+ctx := context.TODO()
+
+payload := report.CreateReportRetrieveDeviceAppInstallationStatusReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateReportRetrieveDeviceAppInstallationStatusReport(ctx, payload, report.DefaultCreateReportRetrieveDeviceAppInstallationStatusReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ReportClient.CreateReportRetrieveSecurityTaskAppsReport`
+
+```go
+ctx := context.TODO()
+
+payload := report.CreateReportRetrieveSecurityTaskAppsReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateReportRetrieveSecurityTaskAppsReport(ctx, payload, report.DefaultCreateReportRetrieveSecurityTaskAppsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -623,26 +703,6 @@ payload := report.GetReportsDeviceConfigurationPolicyStatusSummaryRequest{
 
 
 read, err := client.GetReportsDeviceConfigurationPolicyStatusSummary(ctx, payload, report.DefaultGetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ReportClient.GetReportsDeviceInstallStatusReport`
-
-```go
-ctx := context.TODO()
-
-payload := report.GetReportsDeviceInstallStatusReportRequest{
-	// ...
-}
-
-
-read, err := client.GetReportsDeviceInstallStatusReport(ctx, payload, report.DefaultGetReportsDeviceInstallStatusReportOperationOptions())
 if err != nil {
 	// handle the error
 }

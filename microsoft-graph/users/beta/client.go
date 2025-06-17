@@ -20,9 +20,18 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/approleassignment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/approval"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/approvalstep"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/assignuserauthenticationhardwareoathmethoddevicehardwareoathdeviceto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/assignuserauthenticationhardwareoathmethoddeviceto"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authentication"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationemailmethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationfido2method"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationhardwareoathmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationhardwareoathmethoddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationhardwareoathmethoddeviceassigntomailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationhardwareoathmethoddeviceassigntoserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationhardwareoathmethoddevicehardwareoathdevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationhardwareoathmethoddevicehardwareoathdeviceassigntomailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationhardwareoathmethoddevicehardwareoathdeviceassigntoserviceprovisioningerror"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationmethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationmicrosoftauthenticatormethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationmicrosoftauthenticatormethoddevice"
@@ -33,6 +42,11 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationphonemethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationplatformcredentialmethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationplatformcredentialmethoddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationqrcodepinmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationqrcodepinmethodpin"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationqrcodepinmethodstandardqrcode"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationqrcodepinmethodtemporaryqrcode"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationrequirement"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationsigninpreference"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationsoftwareoathmethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationtemporaryaccesspassmethod"
@@ -57,6 +71,10 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/cloudclipboard"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/cloudclipboarditem"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/cloudpc"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/communication"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/communicationcallsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/communicationcallsettingdelegate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/communicationcallsettingdelegator"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/contact"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/contactextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/contactfolder"
@@ -69,9 +87,18 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/contactfoldercontactphoto"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/contactphoto"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/createdobject"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernanceactivity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernanceactivitycontentactivity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernanceprotectionscope"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernancesensitivitylabel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernancesensitivitylabelright"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernancesensitivitylabelsublabel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernancesensitivitylabelsublabelright"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/device"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/devicecommand"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/devicecommandresponsepayload"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/devicedevicetemplate"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/deviceenrollmentconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/deviceenrollmentconfigurationassignment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/deviceextension"
@@ -115,6 +142,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveitemcreatedbyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveitemcreatedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveitemcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveitemextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveitemlastmodifiedbyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveitemlastmodifiedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveitemlastmodifiedbyuserserviceprovisioningerror"
@@ -210,6 +238,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootcreatedbyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootcreatedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootlastmodifiedbyuser"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootlastmodifiedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootlastmodifiedbyuserserviceprovisioningerror"
@@ -245,27 +274,17 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/drivespecialcontent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/drivespecialcontentstream"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/employeeexperience"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/employeeexperienceassignedrole"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/employeeexperienceassignedrolemember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/employeeexperienceassignedrolememberuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/employeeexperienceassignedrolememberusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/employeeexperienceassignedrolememberuserserviceprovisioningerror"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/employeeexperiencelearningcourseactivity"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/event"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventattachment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexceptionoccurrenceinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/extension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/followedsite"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/inferenceclassification"
@@ -277,7 +296,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionpolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionpolicylabel"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionsensitivitylabel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionsensitivitylabelright"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionsensitivitylabelsublabel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionsensitivitylabelsublabelright"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionsensitivitypolicysetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionthreatassessmentrequest"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionthreatassessmentrequestresult"
@@ -301,12 +322,14 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfolderchildfoldermessageextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfolderchildfoldermessagemention"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfolderchildfoldermessagerule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfolderchildfolderoperation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfolderchildfolderuserconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfoldermessage"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfoldermessageattachment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfoldermessageextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfoldermessagemention"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfoldermessagerule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfolderoperation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfolderuserconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/managedapplogcollectionrequest"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/managedappregistration"
@@ -382,6 +405,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectionparentnotebook"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectionparentsectiongroup"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onlinemeeting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onlinemeetingaiinsight"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onlinemeetingalternativerecording"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onlinemeetingattendancereport"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onlinemeetingattendancereportattendancerecord"
@@ -485,6 +509,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/serviceprovisioningerror"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/setting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/settingcontactmergesuggestion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/settingexchange"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/settingiteminsight"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/settingregionalandlanguagesetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/settingshiftpreference"
@@ -525,520 +550,545 @@ import (
 )
 
 type Client struct {
-	Activity                                                                 *activity.ActivityClient
-	ActivityHistoryItem                                                      *activityhistoryitem.ActivityHistoryItemClient
-	ActivityHistoryItemActivity                                              *activityhistoryitemactivity.ActivityHistoryItemActivityClient
-	AgreementAcceptance                                                      *agreementacceptance.AgreementAcceptanceClient
-	Analytics                                                                *analytics.AnalyticsClient
-	AnalyticsActivityStatistic                                               *analyticsactivitystatistic.AnalyticsActivityStatisticClient
-	AppConsentRequestsForApproval                                            *appconsentrequestsforapproval.AppConsentRequestsForApprovalClient
-	AppConsentRequestsForApprovalUserConsentRequest                          *appconsentrequestsforapprovaluserconsentrequest.AppConsentRequestsForApprovalUserConsentRequestClient
-	AppConsentRequestsForApprovalUserConsentRequestApproval                  *appconsentrequestsforapprovaluserconsentrequestapproval.AppConsentRequestsForApprovalUserConsentRequestApprovalClient
-	AppConsentRequestsForApprovalUserConsentRequestApprovalStep              *appconsentrequestsforapprovaluserconsentrequestapprovalstep.AppConsentRequestsForApprovalUserConsentRequestApprovalStepClient
-	AppRoleAssignedResource                                                  *approleassignedresource.AppRoleAssignedResourceClient
-	AppRoleAssignment                                                        *approleassignment.AppRoleAssignmentClient
-	Approval                                                                 *approval.ApprovalClient
-	ApprovalStep                                                             *approvalstep.ApprovalStepClient
-	Authentication                                                           *authentication.AuthenticationClient
-	AuthenticationEmailMethod                                                *authenticationemailmethod.AuthenticationEmailMethodClient
-	AuthenticationFido2Method                                                *authenticationfido2method.AuthenticationFido2MethodClient
-	AuthenticationMethod                                                     *authenticationmethod.AuthenticationMethodClient
-	AuthenticationMicrosoftAuthenticatorMethod                               *authenticationmicrosoftauthenticatormethod.AuthenticationMicrosoftAuthenticatorMethodClient
-	AuthenticationMicrosoftAuthenticatorMethodDevice                         *authenticationmicrosoftauthenticatormethoddevice.AuthenticationMicrosoftAuthenticatorMethodDeviceClient
-	AuthenticationOperation                                                  *authenticationoperation.AuthenticationOperationClient
-	AuthenticationPasswordMethod                                             *authenticationpasswordmethod.AuthenticationPasswordMethodClient
-	AuthenticationPasswordlessMicrosoftAuthenticatorMethod                   *authenticationpasswordlessmicrosoftauthenticatormethod.AuthenticationPasswordlessMicrosoftAuthenticatorMethodClient
-	AuthenticationPasswordlessMicrosoftAuthenticatorMethodDevice             *authenticationpasswordlessmicrosoftauthenticatormethoddevice.AuthenticationPasswordlessMicrosoftAuthenticatorMethodDeviceClient
-	AuthenticationPhoneMethod                                                *authenticationphonemethod.AuthenticationPhoneMethodClient
-	AuthenticationPlatformCredentialMethod                                   *authenticationplatformcredentialmethod.AuthenticationPlatformCredentialMethodClient
-	AuthenticationPlatformCredentialMethodDevice                             *authenticationplatformcredentialmethoddevice.AuthenticationPlatformCredentialMethodDeviceClient
-	AuthenticationSignInPreference                                           *authenticationsigninpreference.AuthenticationSignInPreferenceClient
-	AuthenticationSoftwareOathMethod                                         *authenticationsoftwareoathmethod.AuthenticationSoftwareOathMethodClient
-	AuthenticationTemporaryAccessPassMethod                                  *authenticationtemporaryaccesspassmethod.AuthenticationTemporaryAccessPassMethodClient
-	AuthenticationWindowsHelloForBusinessMethod                              *authenticationwindowshelloforbusinessmethod.AuthenticationWindowsHelloForBusinessMethodClient
-	AuthenticationWindowsHelloForBusinessMethodDevice                        *authenticationwindowshelloforbusinessmethoddevice.AuthenticationWindowsHelloForBusinessMethodDeviceClient
-	Chat                                                                     *chat.ChatClient
-	ChatInstalledApp                                                         *chatinstalledapp.ChatInstalledAppClient
-	ChatInstalledAppTeamsApp                                                 *chatinstalledappteamsapp.ChatInstalledAppTeamsAppClient
-	ChatInstalledAppTeamsAppDefinition                                       *chatinstalledappteamsappdefinition.ChatInstalledAppTeamsAppDefinitionClient
-	ChatLastMessagePreview                                                   *chatlastmessagepreview.ChatLastMessagePreviewClient
-	ChatMember                                                               *chatmember.ChatMemberClient
-	ChatMessage                                                              *chatmessage.ChatMessageClient
-	ChatMessageHostedContent                                                 *chatmessagehostedcontent.ChatMessageHostedContentClient
-	ChatMessageReply                                                         *chatmessagereply.ChatMessageReplyClient
-	ChatMessageReplyHostedContent                                            *chatmessagereplyhostedcontent.ChatMessageReplyHostedContentClient
-	ChatOperation                                                            *chatoperation.ChatOperationClient
-	ChatPermissionGrant                                                      *chatpermissiongrant.ChatPermissionGrantClient
-	ChatPinnedMessage                                                        *chatpinnedmessage.ChatPinnedMessageClient
-	ChatPinnedMessageMessage                                                 *chatpinnedmessagemessage.ChatPinnedMessageMessageClient
-	ChatTab                                                                  *chattab.ChatTabClient
-	ChatTabTeamsApp                                                          *chattabteamsapp.ChatTabTeamsAppClient
-	CloudClipboard                                                           *cloudclipboard.CloudClipboardClient
-	CloudClipboardItem                                                       *cloudclipboarditem.CloudClipboardItemClient
-	CloudPC                                                                  *cloudpc.CloudPCClient
-	Contact                                                                  *contact.ContactClient
-	ContactExtension                                                         *contactextension.ContactExtensionClient
-	ContactFolder                                                            *contactfolder.ContactFolderClient
-	ContactFolderChildFolder                                                 *contactfolderchildfolder.ContactFolderChildFolderClient
-	ContactFolderChildFolderContact                                          *contactfolderchildfoldercontact.ContactFolderChildFolderContactClient
-	ContactFolderChildFolderContactExtension                                 *contactfolderchildfoldercontactextension.ContactFolderChildFolderContactExtensionClient
-	ContactFolderChildFolderContactPhoto                                     *contactfolderchildfoldercontactphoto.ContactFolderChildFolderContactPhotoClient
-	ContactFolderContact                                                     *contactfoldercontact.ContactFolderContactClient
-	ContactFolderContactExtension                                            *contactfoldercontactextension.ContactFolderContactExtensionClient
-	ContactFolderContactPhoto                                                *contactfoldercontactphoto.ContactFolderContactPhotoClient
-	ContactPhoto                                                             *contactphoto.ContactPhotoClient
-	CreatedObject                                                            *createdobject.CreatedObjectClient
-	Device                                                                   *device.DeviceClient
-	DeviceCommand                                                            *devicecommand.DeviceCommandClient
-	DeviceCommandResponsepayload                                             *devicecommandresponsepayload.DeviceCommandResponsepayloadClient
-	DeviceEnrollmentConfiguration                                            *deviceenrollmentconfiguration.DeviceEnrollmentConfigurationClient
-	DeviceEnrollmentConfigurationAssignment                                  *deviceenrollmentconfigurationassignment.DeviceEnrollmentConfigurationAssignmentClient
-	DeviceExtension                                                          *deviceextension.DeviceExtensionClient
-	DeviceManagementTroubleshootingEvent                                     *devicemanagementtroubleshootingevent.DeviceManagementTroubleshootingEventClient
-	DeviceMemberOf                                                           *devicememberof.DeviceMemberOfClient
-	DeviceRegisteredOwner                                                    *deviceregisteredowner.DeviceRegisteredOwnerClient
-	DeviceRegisteredUser                                                     *deviceregistereduser.DeviceRegisteredUserClient
-	DeviceTransitiveMemberOf                                                 *devicetransitivememberof.DeviceTransitiveMemberOfClient
-	DeviceUsageRight                                                         *deviceusageright.DeviceUsageRightClient
-	DirectReport                                                             *directreport.DirectReportClient
-	Drive                                                                    *drive.DriveClient
-	DriveActivity                                                            *driveactivity.DriveActivityClient
-	DriveActivityDriveItem                                                   *driveactivitydriveitem.DriveActivityDriveItemClient
-	DriveActivityDriveItemContent                                            *driveactivitydriveitemcontent.DriveActivityDriveItemContentClient
-	DriveActivityDriveItemContentStream                                      *driveactivitydriveitemcontentstream.DriveActivityDriveItemContentStreamClient
-	DriveActivityListItem                                                    *driveactivitylistitem.DriveActivityListItemClient
-	DriveBundle                                                              *drivebundle.DriveBundleClient
-	DriveBundleContent                                                       *drivebundlecontent.DriveBundleContentClient
-	DriveBundleContentStream                                                 *drivebundlecontentstream.DriveBundleContentStreamClient
-	DriveCreatedByUser                                                       *drivecreatedbyuser.DriveCreatedByUserClient
-	DriveCreatedByUserMailboxSetting                                         *drivecreatedbyusermailboxsetting.DriveCreatedByUserMailboxSettingClient
-	DriveCreatedByUserServiceProvisioningError                               *drivecreatedbyuserserviceprovisioningerror.DriveCreatedByUserServiceProvisioningErrorClient
-	DriveFollowing                                                           *drivefollowing.DriveFollowingClient
-	DriveFollowingContent                                                    *drivefollowingcontent.DriveFollowingContentClient
-	DriveFollowingContentStream                                              *drivefollowingcontentstream.DriveFollowingContentStreamClient
-	DriveItem                                                                *driveitem.DriveItemClient
-	DriveItemActivity                                                        *driveitemactivity.DriveItemActivityClient
-	DriveItemAnalytics                                                       *driveitemanalytics.DriveItemAnalyticsClient
-	DriveItemAnalyticsAllTime                                                *driveitemanalyticsalltime.DriveItemAnalyticsAllTimeClient
-	DriveItemAnalyticsItemActivityStat                                       *driveitemanalyticsitemactivitystat.DriveItemAnalyticsItemActivityStatClient
-	DriveItemAnalyticsItemActivityStatActivity                               *driveitemanalyticsitemactivitystatactivity.DriveItemAnalyticsItemActivityStatActivityClient
-	DriveItemAnalyticsItemActivityStatActivityDriveItem                      *driveitemanalyticsitemactivitystatactivitydriveitem.DriveItemAnalyticsItemActivityStatActivityDriveItemClient
-	DriveItemAnalyticsItemActivityStatActivityDriveItemContent               *driveitemanalyticsitemactivitystatactivitydriveitemcontent.DriveItemAnalyticsItemActivityStatActivityDriveItemContentClient
-	DriveItemAnalyticsItemActivityStatActivityDriveItemContentStream         *driveitemanalyticsitemactivitystatactivitydriveitemcontentstream.DriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamClient
-	DriveItemAnalyticsLastSevenDay                                           *driveitemanalyticslastsevenday.DriveItemAnalyticsLastSevenDayClient
-	DriveItemChild                                                           *driveitemchild.DriveItemChildClient
-	DriveItemChildContent                                                    *driveitemchildcontent.DriveItemChildContentClient
-	DriveItemChildContentStream                                              *driveitemchildcontentstream.DriveItemChildContentStreamClient
-	DriveItemContent                                                         *driveitemcontent.DriveItemContentClient
-	DriveItemContentStream                                                   *driveitemcontentstream.DriveItemContentStreamClient
-	DriveItemCreatedByUser                                                   *driveitemcreatedbyuser.DriveItemCreatedByUserClient
-	DriveItemCreatedByUserMailboxSetting                                     *driveitemcreatedbyusermailboxsetting.DriveItemCreatedByUserMailboxSettingClient
-	DriveItemCreatedByUserServiceProvisioningError                           *driveitemcreatedbyuserserviceprovisioningerror.DriveItemCreatedByUserServiceProvisioningErrorClient
-	DriveItemLastModifiedByUser                                              *driveitemlastmodifiedbyuser.DriveItemLastModifiedByUserClient
-	DriveItemLastModifiedByUserMailboxSetting                                *driveitemlastmodifiedbyusermailboxsetting.DriveItemLastModifiedByUserMailboxSettingClient
-	DriveItemLastModifiedByUserServiceProvisioningError                      *driveitemlastmodifiedbyuserserviceprovisioningerror.DriveItemLastModifiedByUserServiceProvisioningErrorClient
-	DriveItemListItem                                                        *driveitemlistitem.DriveItemListItemClient
-	DriveItemListItemActivity                                                *driveitemlistitemactivity.DriveItemListItemActivityClient
-	DriveItemListItemActivityDriveItem                                       *driveitemlistitemactivitydriveitem.DriveItemListItemActivityDriveItemClient
-	DriveItemListItemActivityDriveItemContent                                *driveitemlistitemactivitydriveitemcontent.DriveItemListItemActivityDriveItemContentClient
-	DriveItemListItemActivityDriveItemContentStream                          *driveitemlistitemactivitydriveitemcontentstream.DriveItemListItemActivityDriveItemContentStreamClient
-	DriveItemListItemActivityListItem                                        *driveitemlistitemactivitylistitem.DriveItemListItemActivityListItemClient
-	DriveItemListItemAnalytics                                               *driveitemlistitemanalytics.DriveItemListItemAnalyticsClient
-	DriveItemListItemCreatedByUser                                           *driveitemlistitemcreatedbyuser.DriveItemListItemCreatedByUserClient
-	DriveItemListItemCreatedByUserMailboxSetting                             *driveitemlistitemcreatedbyusermailboxsetting.DriveItemListItemCreatedByUserMailboxSettingClient
-	DriveItemListItemCreatedByUserServiceProvisioningError                   *driveitemlistitemcreatedbyuserserviceprovisioningerror.DriveItemListItemCreatedByUserServiceProvisioningErrorClient
-	DriveItemListItemDocumentSetVersion                                      *driveitemlistitemdocumentsetversion.DriveItemListItemDocumentSetVersionClient
-	DriveItemListItemDocumentSetVersionField                                 *driveitemlistitemdocumentsetversionfield.DriveItemListItemDocumentSetVersionFieldClient
-	DriveItemListItemDriveItem                                               *driveitemlistitemdriveitem.DriveItemListItemDriveItemClient
-	DriveItemListItemDriveItemContent                                        *driveitemlistitemdriveitemcontent.DriveItemListItemDriveItemContentClient
-	DriveItemListItemDriveItemContentStream                                  *driveitemlistitemdriveitemcontentstream.DriveItemListItemDriveItemContentStreamClient
-	DriveItemListItemField                                                   *driveitemlistitemfield.DriveItemListItemFieldClient
-	DriveItemListItemLastModifiedByUser                                      *driveitemlistitemlastmodifiedbyuser.DriveItemListItemLastModifiedByUserClient
-	DriveItemListItemLastModifiedByUserMailboxSetting                        *driveitemlistitemlastmodifiedbyusermailboxsetting.DriveItemListItemLastModifiedByUserMailboxSettingClient
-	DriveItemListItemLastModifiedByUserServiceProvisioningError              *driveitemlistitemlastmodifiedbyuserserviceprovisioningerror.DriveItemListItemLastModifiedByUserServiceProvisioningErrorClient
-	DriveItemListItemPermission                                              *driveitemlistitempermission.DriveItemListItemPermissionClient
-	DriveItemListItemVersion                                                 *driveitemlistitemversion.DriveItemListItemVersionClient
-	DriveItemListItemVersionField                                            *driveitemlistitemversionfield.DriveItemListItemVersionFieldClient
-	DriveItemPermission                                                      *driveitempermission.DriveItemPermissionClient
-	DriveItemRetentionLabel                                                  *driveitemretentionlabel.DriveItemRetentionLabelClient
-	DriveItemSubscription                                                    *driveitemsubscription.DriveItemSubscriptionClient
-	DriveItemThumbnail                                                       *driveitemthumbnail.DriveItemThumbnailClient
-	DriveItemVersion                                                         *driveitemversion.DriveItemVersionClient
-	DriveItemVersionContent                                                  *driveitemversioncontent.DriveItemVersionContentClient
-	DriveLastModifiedByUser                                                  *drivelastmodifiedbyuser.DriveLastModifiedByUserClient
-	DriveLastModifiedByUserMailboxSetting                                    *drivelastmodifiedbyusermailboxsetting.DriveLastModifiedByUserMailboxSettingClient
-	DriveLastModifiedByUserServiceProvisioningError                          *drivelastmodifiedbyuserserviceprovisioningerror.DriveLastModifiedByUserServiceProvisioningErrorClient
-	DriveList                                                                *drivelist.DriveListClient
-	DriveListActivity                                                        *drivelistactivity.DriveListActivityClient
-	DriveListColumn                                                          *drivelistcolumn.DriveListColumnClient
-	DriveListColumnSourceColumn                                              *drivelistcolumnsourcecolumn.DriveListColumnSourceColumnClient
-	DriveListContentType                                                     *drivelistcontenttype.DriveListContentTypeClient
-	DriveListContentTypeBase                                                 *drivelistcontenttypebase.DriveListContentTypeBaseClient
-	DriveListContentTypeBaseType                                             *drivelistcontenttypebasetype.DriveListContentTypeBaseTypeClient
-	DriveListContentTypeColumn                                               *drivelistcontenttypecolumn.DriveListContentTypeColumnClient
-	DriveListContentTypeColumnLink                                           *drivelistcontenttypecolumnlink.DriveListContentTypeColumnLinkClient
-	DriveListContentTypeColumnPosition                                       *drivelistcontenttypecolumnposition.DriveListContentTypeColumnPositionClient
-	DriveListContentTypeColumnSourceColumn                                   *drivelistcontenttypecolumnsourcecolumn.DriveListContentTypeColumnSourceColumnClient
-	DriveListCreatedByUser                                                   *drivelistcreatedbyuser.DriveListCreatedByUserClient
-	DriveListCreatedByUserMailboxSetting                                     *drivelistcreatedbyusermailboxsetting.DriveListCreatedByUserMailboxSettingClient
-	DriveListCreatedByUserServiceProvisioningError                           *drivelistcreatedbyuserserviceprovisioningerror.DriveListCreatedByUserServiceProvisioningErrorClient
-	DriveListDrive                                                           *drivelistdrive.DriveListDriveClient
-	DriveListItem                                                            *drivelistitem.DriveListItemClient
-	DriveListItemActivity                                                    *drivelistitemactivity.DriveListItemActivityClient
-	DriveListItemActivityDriveItem                                           *drivelistitemactivitydriveitem.DriveListItemActivityDriveItemClient
-	DriveListItemActivityDriveItemContent                                    *drivelistitemactivitydriveitemcontent.DriveListItemActivityDriveItemContentClient
-	DriveListItemActivityDriveItemContentStream                              *drivelistitemactivitydriveitemcontentstream.DriveListItemActivityDriveItemContentStreamClient
-	DriveListItemActivityListItem                                            *drivelistitemactivitylistitem.DriveListItemActivityListItemClient
-	DriveListItemAnalytics                                                   *drivelistitemanalytics.DriveListItemAnalyticsClient
-	DriveListItemCreatedByUser                                               *drivelistitemcreatedbyuser.DriveListItemCreatedByUserClient
-	DriveListItemCreatedByUserMailboxSetting                                 *drivelistitemcreatedbyusermailboxsetting.DriveListItemCreatedByUserMailboxSettingClient
-	DriveListItemCreatedByUserServiceProvisioningError                       *drivelistitemcreatedbyuserserviceprovisioningerror.DriveListItemCreatedByUserServiceProvisioningErrorClient
-	DriveListItemDocumentSetVersion                                          *drivelistitemdocumentsetversion.DriveListItemDocumentSetVersionClient
-	DriveListItemDocumentSetVersionField                                     *drivelistitemdocumentsetversionfield.DriveListItemDocumentSetVersionFieldClient
-	DriveListItemDriveItem                                                   *drivelistitemdriveitem.DriveListItemDriveItemClient
-	DriveListItemDriveItemContent                                            *drivelistitemdriveitemcontent.DriveListItemDriveItemContentClient
-	DriveListItemDriveItemContentStream                                      *drivelistitemdriveitemcontentstream.DriveListItemDriveItemContentStreamClient
-	DriveListItemField                                                       *drivelistitemfield.DriveListItemFieldClient
-	DriveListItemLastModifiedByUser                                          *drivelistitemlastmodifiedbyuser.DriveListItemLastModifiedByUserClient
-	DriveListItemLastModifiedByUserMailboxSetting                            *drivelistitemlastmodifiedbyusermailboxsetting.DriveListItemLastModifiedByUserMailboxSettingClient
-	DriveListItemLastModifiedByUserServiceProvisioningError                  *drivelistitemlastmodifiedbyuserserviceprovisioningerror.DriveListItemLastModifiedByUserServiceProvisioningErrorClient
-	DriveListItemPermission                                                  *drivelistitempermission.DriveListItemPermissionClient
-	DriveListItemVersion                                                     *drivelistitemversion.DriveListItemVersionClient
-	DriveListItemVersionField                                                *drivelistitemversionfield.DriveListItemVersionFieldClient
-	DriveListLastModifiedByUser                                              *drivelistlastmodifiedbyuser.DriveListLastModifiedByUserClient
-	DriveListLastModifiedByUserMailboxSetting                                *drivelistlastmodifiedbyusermailboxsetting.DriveListLastModifiedByUserMailboxSettingClient
-	DriveListLastModifiedByUserServiceProvisioningError                      *drivelistlastmodifiedbyuserserviceprovisioningerror.DriveListLastModifiedByUserServiceProvisioningErrorClient
-	DriveListOperation                                                       *drivelistoperation.DriveListOperationClient
-	DriveListPermission                                                      *drivelistpermission.DriveListPermissionClient
-	DriveListSubscription                                                    *drivelistsubscription.DriveListSubscriptionClient
-	DriveRoot                                                                *driveroot.DriveRootClient
-	DriveRootActivity                                                        *driverootactivity.DriveRootActivityClient
-	DriveRootAnalytics                                                       *driverootanalytics.DriveRootAnalyticsClient
-	DriveRootAnalyticsAllTime                                                *driverootanalyticsalltime.DriveRootAnalyticsAllTimeClient
-	DriveRootAnalyticsItemActivityStat                                       *driverootanalyticsitemactivitystat.DriveRootAnalyticsItemActivityStatClient
-	DriveRootAnalyticsItemActivityStatActivity                               *driverootanalyticsitemactivitystatactivity.DriveRootAnalyticsItemActivityStatActivityClient
-	DriveRootAnalyticsItemActivityStatActivityDriveItem                      *driverootanalyticsitemactivitystatactivitydriveitem.DriveRootAnalyticsItemActivityStatActivityDriveItemClient
-	DriveRootAnalyticsItemActivityStatActivityDriveItemContent               *driverootanalyticsitemactivitystatactivitydriveitemcontent.DriveRootAnalyticsItemActivityStatActivityDriveItemContentClient
-	DriveRootAnalyticsItemActivityStatActivityDriveItemContentStream         *driverootanalyticsitemactivitystatactivitydriveitemcontentstream.DriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamClient
-	DriveRootAnalyticsLastSevenDay                                           *driverootanalyticslastsevenday.DriveRootAnalyticsLastSevenDayClient
-	DriveRootChild                                                           *driverootchild.DriveRootChildClient
-	DriveRootChildContent                                                    *driverootchildcontent.DriveRootChildContentClient
-	DriveRootChildContentStream                                              *driverootchildcontentstream.DriveRootChildContentStreamClient
-	DriveRootContent                                                         *driverootcontent.DriveRootContentClient
-	DriveRootContentStream                                                   *driverootcontentstream.DriveRootContentStreamClient
-	DriveRootCreatedByUser                                                   *driverootcreatedbyuser.DriveRootCreatedByUserClient
-	DriveRootCreatedByUserMailboxSetting                                     *driverootcreatedbyusermailboxsetting.DriveRootCreatedByUserMailboxSettingClient
-	DriveRootCreatedByUserServiceProvisioningError                           *driverootcreatedbyuserserviceprovisioningerror.DriveRootCreatedByUserServiceProvisioningErrorClient
-	DriveRootLastModifiedByUser                                              *driverootlastmodifiedbyuser.DriveRootLastModifiedByUserClient
-	DriveRootLastModifiedByUserMailboxSetting                                *driverootlastmodifiedbyusermailboxsetting.DriveRootLastModifiedByUserMailboxSettingClient
-	DriveRootLastModifiedByUserServiceProvisioningError                      *driverootlastmodifiedbyuserserviceprovisioningerror.DriveRootLastModifiedByUserServiceProvisioningErrorClient
-	DriveRootListItem                                                        *driverootlistitem.DriveRootListItemClient
-	DriveRootListItemActivity                                                *driverootlistitemactivity.DriveRootListItemActivityClient
-	DriveRootListItemActivityDriveItem                                       *driverootlistitemactivitydriveitem.DriveRootListItemActivityDriveItemClient
-	DriveRootListItemActivityDriveItemContent                                *driverootlistitemactivitydriveitemcontent.DriveRootListItemActivityDriveItemContentClient
-	DriveRootListItemActivityDriveItemContentStream                          *driverootlistitemactivitydriveitemcontentstream.DriveRootListItemActivityDriveItemContentStreamClient
-	DriveRootListItemActivityListItem                                        *driverootlistitemactivitylistitem.DriveRootListItemActivityListItemClient
-	DriveRootListItemAnalytics                                               *driverootlistitemanalytics.DriveRootListItemAnalyticsClient
-	DriveRootListItemCreatedByUser                                           *driverootlistitemcreatedbyuser.DriveRootListItemCreatedByUserClient
-	DriveRootListItemCreatedByUserMailboxSetting                             *driverootlistitemcreatedbyusermailboxsetting.DriveRootListItemCreatedByUserMailboxSettingClient
-	DriveRootListItemCreatedByUserServiceProvisioningError                   *driverootlistitemcreatedbyuserserviceprovisioningerror.DriveRootListItemCreatedByUserServiceProvisioningErrorClient
-	DriveRootListItemDocumentSetVersion                                      *driverootlistitemdocumentsetversion.DriveRootListItemDocumentSetVersionClient
-	DriveRootListItemDocumentSetVersionField                                 *driverootlistitemdocumentsetversionfield.DriveRootListItemDocumentSetVersionFieldClient
-	DriveRootListItemDriveItem                                               *driverootlistitemdriveitem.DriveRootListItemDriveItemClient
-	DriveRootListItemDriveItemContent                                        *driverootlistitemdriveitemcontent.DriveRootListItemDriveItemContentClient
-	DriveRootListItemDriveItemContentStream                                  *driverootlistitemdriveitemcontentstream.DriveRootListItemDriveItemContentStreamClient
-	DriveRootListItemField                                                   *driverootlistitemfield.DriveRootListItemFieldClient
-	DriveRootListItemLastModifiedByUser                                      *driverootlistitemlastmodifiedbyuser.DriveRootListItemLastModifiedByUserClient
-	DriveRootListItemLastModifiedByUserMailboxSetting                        *driverootlistitemlastmodifiedbyusermailboxsetting.DriveRootListItemLastModifiedByUserMailboxSettingClient
-	DriveRootListItemLastModifiedByUserServiceProvisioningError              *driverootlistitemlastmodifiedbyuserserviceprovisioningerror.DriveRootListItemLastModifiedByUserServiceProvisioningErrorClient
-	DriveRootListItemPermission                                              *driverootlistitempermission.DriveRootListItemPermissionClient
-	DriveRootListItemVersion                                                 *driverootlistitemversion.DriveRootListItemVersionClient
-	DriveRootListItemVersionField                                            *driverootlistitemversionfield.DriveRootListItemVersionFieldClient
-	DriveRootPermission                                                      *driverootpermission.DriveRootPermissionClient
-	DriveRootRetentionLabel                                                  *driverootretentionlabel.DriveRootRetentionLabelClient
-	DriveRootSubscription                                                    *driverootsubscription.DriveRootSubscriptionClient
-	DriveRootThumbnail                                                       *driverootthumbnail.DriveRootThumbnailClient
-	DriveRootVersion                                                         *driverootversion.DriveRootVersionClient
-	DriveRootVersionContent                                                  *driverootversioncontent.DriveRootVersionContentClient
-	DriveSpecial                                                             *drivespecial.DriveSpecialClient
-	DriveSpecialContent                                                      *drivespecialcontent.DriveSpecialContentClient
-	DriveSpecialContentStream                                                *drivespecialcontentstream.DriveSpecialContentStreamClient
-	EmployeeExperience                                                       *employeeexperience.EmployeeExperienceClient
-	EmployeeExperienceLearningCourseActivity                                 *employeeexperiencelearningcourseactivity.EmployeeExperienceLearningCourseActivityClient
-	Event                                                                    *event.EventClient
-	EventAttachment                                                          *eventattachment.EventAttachmentClient
-	EventCalendar                                                            *eventcalendar.EventCalendarClient
-	EventExceptionOccurrence                                                 *eventexceptionoccurrence.EventExceptionOccurrenceClient
-	EventExceptionOccurrenceAttachment                                       *eventexceptionoccurrenceattachment.EventExceptionOccurrenceAttachmentClient
-	EventExceptionOccurrenceCalendar                                         *eventexceptionoccurrencecalendar.EventExceptionOccurrenceCalendarClient
-	EventExceptionOccurrenceExtension                                        *eventexceptionoccurrenceextension.EventExceptionOccurrenceExtensionClient
-	EventExceptionOccurrenceInstance                                         *eventexceptionoccurrenceinstance.EventExceptionOccurrenceInstanceClient
-	EventExceptionOccurrenceInstanceAttachment                               *eventexceptionoccurrenceinstanceattachment.EventExceptionOccurrenceInstanceAttachmentClient
-	EventExceptionOccurrenceInstanceCalendar                                 *eventexceptionoccurrenceinstancecalendar.EventExceptionOccurrenceInstanceCalendarClient
-	EventExceptionOccurrenceInstanceExtension                                *eventexceptionoccurrenceinstanceextension.EventExceptionOccurrenceInstanceExtensionClient
-	EventExtension                                                           *eventextension.EventExtensionClient
-	EventInstance                                                            *eventinstance.EventInstanceClient
-	EventInstanceAttachment                                                  *eventinstanceattachment.EventInstanceAttachmentClient
-	EventInstanceCalendar                                                    *eventinstancecalendar.EventInstanceCalendarClient
-	EventInstanceExceptionOccurrence                                         *eventinstanceexceptionoccurrence.EventInstanceExceptionOccurrenceClient
-	EventInstanceExceptionOccurrenceAttachment                               *eventinstanceexceptionoccurrenceattachment.EventInstanceExceptionOccurrenceAttachmentClient
-	EventInstanceExceptionOccurrenceCalendar                                 *eventinstanceexceptionoccurrencecalendar.EventInstanceExceptionOccurrenceCalendarClient
-	EventInstanceExceptionOccurrenceExtension                                *eventinstanceexceptionoccurrenceextension.EventInstanceExceptionOccurrenceExtensionClient
-	EventInstanceExtension                                                   *eventinstanceextension.EventInstanceExtensionClient
-	Extension                                                                *extension.ExtensionClient
-	FollowedSite                                                             *followedsite.FollowedSiteClient
-	InferenceClassification                                                  *inferenceclassification.InferenceClassificationClient
-	InferenceClassificationOverride                                          *inferenceclassificationoverride.InferenceClassificationOverrideClient
-	InformationProtection                                                    *informationprotection.InformationProtectionClient
-	InformationProtectionBitlocker                                           *informationprotectionbitlocker.InformationProtectionBitlockerClient
-	InformationProtectionBitlockerRecoveryKey                                *informationprotectionbitlockerrecoverykey.InformationProtectionBitlockerRecoveryKeyClient
-	InformationProtectionDataLossPreventionPolicy                            *informationprotectiondatalosspreventionpolicy.InformationProtectionDataLossPreventionPolicyClient
-	InformationProtectionPolicy                                              *informationprotectionpolicy.InformationProtectionPolicyClient
-	InformationProtectionPolicyLabel                                         *informationprotectionpolicylabel.InformationProtectionPolicyLabelClient
-	InformationProtectionSensitivityLabel                                    *informationprotectionsensitivitylabel.InformationProtectionSensitivityLabelClient
-	InformationProtectionSensitivityLabelSublabel                            *informationprotectionsensitivitylabelsublabel.InformationProtectionSensitivityLabelSublabelClient
-	InformationProtectionSensitivityPolicySetting                            *informationprotectionsensitivitypolicysetting.InformationProtectionSensitivityPolicySettingClient
-	InformationProtectionThreatAssessmentRequest                             *informationprotectionthreatassessmentrequest.InformationProtectionThreatAssessmentRequestClient
-	InformationProtectionThreatAssessmentRequestResult                       *informationprotectionthreatassessmentrequestresult.InformationProtectionThreatAssessmentRequestResultClient
-	Insight                                                                  *insight.InsightClient
-	InsightShared                                                            *insightshared.InsightSharedClient
-	InsightSharedLastSharedMethod                                            *insightsharedlastsharedmethod.InsightSharedLastSharedMethodClient
-	InsightSharedResource                                                    *insightsharedresource.InsightSharedResourceClient
-	InsightTrending                                                          *insighttrending.InsightTrendingClient
-	InsightTrendingResource                                                  *insighttrendingresource.InsightTrendingResourceClient
-	InsightUsed                                                              *insightused.InsightUsedClient
-	InsightUsedResource                                                      *insightusedresource.InsightUsedResourceClient
-	InvitedBy                                                                *invitedby.InvitedByClient
-	JoinedGroup                                                              *joinedgroup.JoinedGroupClient
-	JoinedTeam                                                               *joinedteam.JoinedTeamClient
-	LicenseDetail                                                            *licensedetail.LicenseDetailClient
-	MailFolder                                                               *mailfolder.MailFolderClient
-	MailFolderChildFolder                                                    *mailfolderchildfolder.MailFolderChildFolderClient
-	MailFolderChildFolderMessage                                             *mailfolderchildfoldermessage.MailFolderChildFolderMessageClient
-	MailFolderChildFolderMessageAttachment                                   *mailfolderchildfoldermessageattachment.MailFolderChildFolderMessageAttachmentClient
-	MailFolderChildFolderMessageExtension                                    *mailfolderchildfoldermessageextension.MailFolderChildFolderMessageExtensionClient
-	MailFolderChildFolderMessageMention                                      *mailfolderchildfoldermessagemention.MailFolderChildFolderMessageMentionClient
-	MailFolderChildFolderMessageRule                                         *mailfolderchildfoldermessagerule.MailFolderChildFolderMessageRuleClient
-	MailFolderChildFolderUserConfiguration                                   *mailfolderchildfolderuserconfiguration.MailFolderChildFolderUserConfigurationClient
-	MailFolderMessage                                                        *mailfoldermessage.MailFolderMessageClient
-	MailFolderMessageAttachment                                              *mailfoldermessageattachment.MailFolderMessageAttachmentClient
-	MailFolderMessageExtension                                               *mailfoldermessageextension.MailFolderMessageExtensionClient
-	MailFolderMessageMention                                                 *mailfoldermessagemention.MailFolderMessageMentionClient
-	MailFolderMessageRule                                                    *mailfoldermessagerule.MailFolderMessageRuleClient
-	MailFolderUserConfiguration                                              *mailfolderuserconfiguration.MailFolderUserConfigurationClient
-	MailboxSetting                                                           *mailboxsetting.MailboxSettingClient
-	ManagedAppLogCollectionRequest                                           *managedapplogcollectionrequest.ManagedAppLogCollectionRequestClient
-	ManagedAppRegistration                                                   *managedappregistration.ManagedAppRegistrationClient
-	ManagedDevice                                                            *manageddevice.ManagedDeviceClient
-	ManagedDeviceAssignmentFilterEvaluationStatusDetail                      *manageddeviceassignmentfilterevaluationstatusdetail.ManagedDeviceAssignmentFilterEvaluationStatusDetailClient
-	ManagedDeviceDetectedApp                                                 *manageddevicedetectedapp.ManagedDeviceDetectedAppClient
-	ManagedDeviceDeviceCategory                                              *manageddevicedevicecategory.ManagedDeviceDeviceCategoryClient
-	ManagedDeviceDeviceCompliancePolicyState                                 *manageddevicedevicecompliancepolicystate.ManagedDeviceDeviceCompliancePolicyStateClient
-	ManagedDeviceDeviceConfigurationState                                    *manageddevicedeviceconfigurationstate.ManagedDeviceDeviceConfigurationStateClient
-	ManagedDeviceDeviceHealthScriptState                                     *manageddevicedevicehealthscriptstate.ManagedDeviceDeviceHealthScriptStateClient
-	ManagedDeviceDeviceHealthScriptStateIdIdPolicyIdPolicyIdDeviceIdDeviceId *manageddevicedevicehealthscriptstateididpolicyidpolicyiddeviceiddeviceid.ManagedDeviceDeviceHealthScriptStateIdIdPolicyIdPolicyIdDeviceIdDeviceIdClient
-	ManagedDeviceLogCollectionRequest                                        *manageddevicelogcollectionrequest.ManagedDeviceLogCollectionRequestClient
-	ManagedDeviceManagedDeviceMobileAppConfigurationState                    *manageddevicemanageddevicemobileappconfigurationstate.ManagedDeviceManagedDeviceMobileAppConfigurationStateClient
-	ManagedDeviceSecurityBaselineState                                       *manageddevicesecuritybaselinestate.ManagedDeviceSecurityBaselineStateClient
-	ManagedDeviceSecurityBaselineStateSettingState                           *manageddevicesecuritybaselinestatesettingstate.ManagedDeviceSecurityBaselineStateSettingStateClient
-	ManagedDeviceUser                                                        *manageddeviceuser.ManagedDeviceUserClient
-	ManagedDeviceWindowsProtectionState                                      *manageddevicewindowsprotectionstate.ManagedDeviceWindowsProtectionStateClient
-	ManagedDeviceWindowsProtectionStateDetectedMalwareState                  *manageddevicewindowsprotectionstatedetectedmalwarestate.ManagedDeviceWindowsProtectionStateDetectedMalwareStateClient
-	Manager                                                                  *manager.ManagerClient
-	MemberOf                                                                 *memberof.MemberOfClient
-	Message                                                                  *message.MessageClient
-	MessageAttachment                                                        *messageattachment.MessageAttachmentClient
-	MessageExtension                                                         *messageextension.MessageExtensionClient
-	MessageMention                                                           *messagemention.MessageMentionClient
-	MobileAppIntentAndState                                                  *mobileappintentandstate.MobileAppIntentAndStateClient
-	MobileAppTroubleshootingEvent                                            *mobileapptroubleshootingevent.MobileAppTroubleshootingEventClient
-	MobileAppTroubleshootingEventAppLogCollectionRequest                     *mobileapptroubleshootingeventapplogcollectionrequest.MobileAppTroubleshootingEventAppLogCollectionRequestClient
-	Notification                                                             *notification.NotificationClient
-	OAuth2PermissionGrant                                                    *oauth2permissiongrant.OAuth2PermissionGrantClient
-	Onenote                                                                  *onenote.OnenoteClient
-	OnenoteNotebook                                                          *onenotenotebook.OnenoteNotebookClient
-	OnenoteNotebookSection                                                   *onenotenotebooksection.OnenoteNotebookSectionClient
-	OnenoteNotebookSectionGroup                                              *onenotenotebooksectiongroup.OnenoteNotebookSectionGroupClient
-	OnenoteNotebookSectionGroupParentNotebook                                *onenotenotebooksectiongroupparentnotebook.OnenoteNotebookSectionGroupParentNotebookClient
-	OnenoteNotebookSectionGroupParentSectionGroup                            *onenotenotebooksectiongroupparentsectiongroup.OnenoteNotebookSectionGroupParentSectionGroupClient
-	OnenoteNotebookSectionGroupSection                                       *onenotenotebooksectiongroupsection.OnenoteNotebookSectionGroupSectionClient
-	OnenoteNotebookSectionGroupSectionGroup                                  *onenotenotebooksectiongroupsectiongroup.OnenoteNotebookSectionGroupSectionGroupClient
-	OnenoteNotebookSectionGroupSectionPage                                   *onenotenotebooksectiongroupsectionpage.OnenoteNotebookSectionGroupSectionPageClient
-	OnenoteNotebookSectionGroupSectionPageContent                            *onenotenotebooksectiongroupsectionpagecontent.OnenoteNotebookSectionGroupSectionPageContentClient
-	OnenoteNotebookSectionGroupSectionPageParentNotebook                     *onenotenotebooksectiongroupsectionpageparentnotebook.OnenoteNotebookSectionGroupSectionPageParentNotebookClient
-	OnenoteNotebookSectionGroupSectionPageParentSection                      *onenotenotebooksectiongroupsectionpageparentsection.OnenoteNotebookSectionGroupSectionPageParentSectionClient
-	OnenoteNotebookSectionGroupSectionParentNotebook                         *onenotenotebooksectiongroupsectionparentnotebook.OnenoteNotebookSectionGroupSectionParentNotebookClient
-	OnenoteNotebookSectionGroupSectionParentSectionGroup                     *onenotenotebooksectiongroupsectionparentsectiongroup.OnenoteNotebookSectionGroupSectionParentSectionGroupClient
-	OnenoteNotebookSectionPage                                               *onenotenotebooksectionpage.OnenoteNotebookSectionPageClient
-	OnenoteNotebookSectionPageContent                                        *onenotenotebooksectionpagecontent.OnenoteNotebookSectionPageContentClient
-	OnenoteNotebookSectionPageParentNotebook                                 *onenotenotebooksectionpageparentnotebook.OnenoteNotebookSectionPageParentNotebookClient
-	OnenoteNotebookSectionPageParentSection                                  *onenotenotebooksectionpageparentsection.OnenoteNotebookSectionPageParentSectionClient
-	OnenoteNotebookSectionParentNotebook                                     *onenotenotebooksectionparentnotebook.OnenoteNotebookSectionParentNotebookClient
-	OnenoteNotebookSectionParentSectionGroup                                 *onenotenotebooksectionparentsectiongroup.OnenoteNotebookSectionParentSectionGroupClient
-	OnenoteOperation                                                         *onenoteoperation.OnenoteOperationClient
-	OnenotePage                                                              *onenotepage.OnenotePageClient
-	OnenotePageContent                                                       *onenotepagecontent.OnenotePageContentClient
-	OnenotePageParentNotebook                                                *onenotepageparentnotebook.OnenotePageParentNotebookClient
-	OnenotePageParentSection                                                 *onenotepageparentsection.OnenotePageParentSectionClient
-	OnenoteResource                                                          *onenoteresource.OnenoteResourceClient
-	OnenoteResourceContent                                                   *onenoteresourcecontent.OnenoteResourceContentClient
-	OnenoteSection                                                           *onenotesection.OnenoteSectionClient
-	OnenoteSectionGroup                                                      *onenotesectiongroup.OnenoteSectionGroupClient
-	OnenoteSectionGroupParentNotebook                                        *onenotesectiongroupparentnotebook.OnenoteSectionGroupParentNotebookClient
-	OnenoteSectionGroupParentSectionGroup                                    *onenotesectiongroupparentsectiongroup.OnenoteSectionGroupParentSectionGroupClient
-	OnenoteSectionGroupSection                                               *onenotesectiongroupsection.OnenoteSectionGroupSectionClient
-	OnenoteSectionGroupSectionGroup                                          *onenotesectiongroupsectiongroup.OnenoteSectionGroupSectionGroupClient
-	OnenoteSectionGroupSectionPage                                           *onenotesectiongroupsectionpage.OnenoteSectionGroupSectionPageClient
-	OnenoteSectionGroupSectionPageContent                                    *onenotesectiongroupsectionpagecontent.OnenoteSectionGroupSectionPageContentClient
-	OnenoteSectionGroupSectionPageParentNotebook                             *onenotesectiongroupsectionpageparentnotebook.OnenoteSectionGroupSectionPageParentNotebookClient
-	OnenoteSectionGroupSectionPageParentSection                              *onenotesectiongroupsectionpageparentsection.OnenoteSectionGroupSectionPageParentSectionClient
-	OnenoteSectionGroupSectionParentNotebook                                 *onenotesectiongroupsectionparentnotebook.OnenoteSectionGroupSectionParentNotebookClient
-	OnenoteSectionGroupSectionParentSectionGroup                             *onenotesectiongroupsectionparentsectiongroup.OnenoteSectionGroupSectionParentSectionGroupClient
-	OnenoteSectionPage                                                       *onenotesectionpage.OnenoteSectionPageClient
-	OnenoteSectionPageContent                                                *onenotesectionpagecontent.OnenoteSectionPageContentClient
-	OnenoteSectionPageParentNotebook                                         *onenotesectionpageparentnotebook.OnenoteSectionPageParentNotebookClient
-	OnenoteSectionPageParentSection                                          *onenotesectionpageparentsection.OnenoteSectionPageParentSectionClient
-	OnenoteSectionParentNotebook                                             *onenotesectionparentnotebook.OnenoteSectionParentNotebookClient
-	OnenoteSectionParentSectionGroup                                         *onenotesectionparentsectiongroup.OnenoteSectionParentSectionGroupClient
-	OnlineMeeting                                                            *onlinemeeting.OnlineMeetingClient
-	OnlineMeetingAlternativeRecording                                        *onlinemeetingalternativerecording.OnlineMeetingAlternativeRecordingClient
-	OnlineMeetingAttendanceReport                                            *onlinemeetingattendancereport.OnlineMeetingAttendanceReportClient
-	OnlineMeetingAttendanceReportAttendanceRecord                            *onlinemeetingattendancereportattendancerecord.OnlineMeetingAttendanceReportAttendanceRecordClient
-	OnlineMeetingAttendeeReport                                              *onlinemeetingattendeereport.OnlineMeetingAttendeeReportClient
-	OnlineMeetingBroadcastRecording                                          *onlinemeetingbroadcastrecording.OnlineMeetingBroadcastRecordingClient
-	OnlineMeetingMeetingAttendanceReport                                     *onlinemeetingmeetingattendancereport.OnlineMeetingMeetingAttendanceReportClient
-	OnlineMeetingMeetingAttendanceReportAttendanceRecord                     *onlinemeetingmeetingattendancereportattendancerecord.OnlineMeetingMeetingAttendanceReportAttendanceRecordClient
-	OnlineMeetingRecording                                                   *onlinemeetingrecording.OnlineMeetingRecordingClient
-	OnlineMeetingRecordingContent                                            *onlinemeetingrecordingcontent.OnlineMeetingRecordingContentClient
-	OnlineMeetingRegistration                                                *onlinemeetingregistration.OnlineMeetingRegistrationClient
-	OnlineMeetingRegistrationCustomQuestion                                  *onlinemeetingregistrationcustomquestion.OnlineMeetingRegistrationCustomQuestionClient
-	OnlineMeetingRegistrationRegistrant                                      *onlinemeetingregistrationregistrant.OnlineMeetingRegistrationRegistrantClient
-	OnlineMeetingTranscript                                                  *onlinemeetingtranscript.OnlineMeetingTranscriptClient
-	OnlineMeetingTranscriptContent                                           *onlinemeetingtranscriptcontent.OnlineMeetingTranscriptContentClient
-	OnlineMeetingTranscriptMetadataContent                                   *onlinemeetingtranscriptmetadatacontent.OnlineMeetingTranscriptMetadataContentClient
-	Outlook                                                                  *outlook.OutlookClient
-	OutlookMasterCategory                                                    *outlookmastercategory.OutlookMasterCategoryClient
-	OutlookTask                                                              *outlooktask.OutlookTaskClient
-	OutlookTaskAttachment                                                    *outlooktaskattachment.OutlookTaskAttachmentClient
-	OutlookTaskFolder                                                        *outlooktaskfolder.OutlookTaskFolderClient
-	OutlookTaskFolderTask                                                    *outlooktaskfoldertask.OutlookTaskFolderTaskClient
-	OutlookTaskFolderTaskAttachment                                          *outlooktaskfoldertaskattachment.OutlookTaskFolderTaskAttachmentClient
-	OutlookTaskGroup                                                         *outlooktaskgroup.OutlookTaskGroupClient
-	OutlookTaskGroupTaskFolder                                               *outlooktaskgrouptaskfolder.OutlookTaskGroupTaskFolderClient
-	OutlookTaskGroupTaskFolderTask                                           *outlooktaskgrouptaskfoldertask.OutlookTaskGroupTaskFolderTaskClient
-	OutlookTaskGroupTaskFolderTaskAttachment                                 *outlooktaskgrouptaskfoldertaskattachment.OutlookTaskGroupTaskFolderTaskAttachmentClient
-	OwnedDevice                                                              *owneddevice.OwnedDeviceClient
-	OwnedObject                                                              *ownedobject.OwnedObjectClient
-	PendingAccessReviewInstance                                              *pendingaccessreviewinstance.PendingAccessReviewInstanceClient
-	PendingAccessReviewInstanceContactedReviewer                             *pendingaccessreviewinstancecontactedreviewer.PendingAccessReviewInstanceContactedReviewerClient
-	PendingAccessReviewInstanceDecision                                      *pendingaccessreviewinstancedecision.PendingAccessReviewInstanceDecisionClient
-	PendingAccessReviewInstanceDecisionInsight                               *pendingaccessreviewinstancedecisioninsight.PendingAccessReviewInstanceDecisionInsightClient
-	PendingAccessReviewInstanceDecisionInstance                              *pendingaccessreviewinstancedecisioninstance.PendingAccessReviewInstanceDecisionInstanceClient
-	PendingAccessReviewInstanceDecisionInstanceContactedReviewer             *pendingaccessreviewinstancedecisioninstancecontactedreviewer.PendingAccessReviewInstanceDecisionInstanceContactedReviewerClient
-	PendingAccessReviewInstanceDecisionInstanceDefinition                    *pendingaccessreviewinstancedecisioninstancedefinition.PendingAccessReviewInstanceDecisionInstanceDefinitionClient
-	PendingAccessReviewInstanceDecisionInstanceStage                         *pendingaccessreviewinstancedecisioninstancestage.PendingAccessReviewInstanceDecisionInstanceStageClient
-	PendingAccessReviewInstanceDecisionInstanceStageDecision                 *pendingaccessreviewinstancedecisioninstancestagedecision.PendingAccessReviewInstanceDecisionInstanceStageDecisionClient
-	PendingAccessReviewInstanceDefinition                                    *pendingaccessreviewinstancedefinition.PendingAccessReviewInstanceDefinitionClient
-	PendingAccessReviewInstanceStage                                         *pendingaccessreviewinstancestage.PendingAccessReviewInstanceStageClient
-	PendingAccessReviewInstanceStageDecision                                 *pendingaccessreviewinstancestagedecision.PendingAccessReviewInstanceStageDecisionClient
-	PendingAccessReviewInstanceStageDecisionInsight                          *pendingaccessreviewinstancestagedecisioninsight.PendingAccessReviewInstanceStageDecisionInsightClient
-	PendingAccessReviewInstanceStageDecisionInstance                         *pendingaccessreviewinstancestagedecisioninstance.PendingAccessReviewInstanceStageDecisionInstanceClient
-	PendingAccessReviewInstanceStageDecisionInstanceContactedReviewer        *pendingaccessreviewinstancestagedecisioninstancecontactedreviewer.PendingAccessReviewInstanceStageDecisionInstanceContactedReviewerClient
-	PendingAccessReviewInstanceStageDecisionInstanceDecision                 *pendingaccessreviewinstancestagedecisioninstancedecision.PendingAccessReviewInstanceStageDecisionInstanceDecisionClient
-	PendingAccessReviewInstanceStageDecisionInstanceDefinition               *pendingaccessreviewinstancestagedecisioninstancedefinition.PendingAccessReviewInstanceStageDecisionInstanceDefinitionClient
-	PermissionGrant                                                          *permissiongrant.PermissionGrantClient
-	Person                                                                   *person.PersonClient
-	Photo                                                                    *photo.PhotoClient
-	Planner                                                                  *planner.PlannerClient
-	PlannerAll                                                               *plannerall.PlannerAllClient
-	PlannerFavoritePlan                                                      *plannerfavoriteplan.PlannerFavoritePlanClient
-	PlannerMyDayTask                                                         *plannermydaytask.PlannerMyDayTaskClient
-	PlannerPlan                                                              *plannerplan.PlannerPlanClient
-	PlannerPlanBucket                                                        *plannerplanbucket.PlannerPlanBucketClient
-	PlannerPlanBucketTask                                                    *plannerplanbuckettask.PlannerPlanBucketTaskClient
-	PlannerPlanBucketTaskAssignedToTaskBoardFormat                           *plannerplanbuckettaskassignedtotaskboardformat.PlannerPlanBucketTaskAssignedToTaskBoardFormatClient
-	PlannerPlanBucketTaskBucketTaskBoardFormat                               *plannerplanbuckettaskbuckettaskboardformat.PlannerPlanBucketTaskBucketTaskBoardFormatClient
-	PlannerPlanBucketTaskDetail                                              *plannerplanbuckettaskdetail.PlannerPlanBucketTaskDetailClient
-	PlannerPlanBucketTaskProgressTaskBoardFormat                             *plannerplanbuckettaskprogresstaskboardformat.PlannerPlanBucketTaskProgressTaskBoardFormatClient
-	PlannerPlanDetail                                                        *plannerplandetail.PlannerPlanDetailClient
-	PlannerPlanTask                                                          *plannerplantask.PlannerPlanTaskClient
-	PlannerPlanTaskAssignedToTaskBoardFormat                                 *plannerplantaskassignedtotaskboardformat.PlannerPlanTaskAssignedToTaskBoardFormatClient
-	PlannerPlanTaskBucketTaskBoardFormat                                     *plannerplantaskbuckettaskboardformat.PlannerPlanTaskBucketTaskBoardFormatClient
-	PlannerPlanTaskDetail                                                    *plannerplantaskdetail.PlannerPlanTaskDetailClient
-	PlannerPlanTaskProgressTaskBoardFormat                                   *plannerplantaskprogresstaskboardformat.PlannerPlanTaskProgressTaskBoardFormatClient
-	PlannerRecentPlan                                                        *plannerrecentplan.PlannerRecentPlanClient
-	PlannerRosterPlan                                                        *plannerrosterplan.PlannerRosterPlanClient
-	PlannerTask                                                              *plannertask.PlannerTaskClient
-	PlannerTaskAssignedToTaskBoardFormat                                     *plannertaskassignedtotaskboardformat.PlannerTaskAssignedToTaskBoardFormatClient
-	PlannerTaskBucketTaskBoardFormat                                         *plannertaskbuckettaskboardformat.PlannerTaskBucketTaskBoardFormatClient
-	PlannerTaskDetail                                                        *plannertaskdetail.PlannerTaskDetailClient
-	PlannerTaskProgressTaskBoardFormat                                       *plannertaskprogresstaskboardformat.PlannerTaskProgressTaskBoardFormatClient
-	Presence                                                                 *presence.PresenceClient
-	Profile                                                                  *profile.ProfileClient
-	ProfileAccount                                                           *profileaccount.ProfileAccountClient
-	ProfileAddress                                                           *profileaddress.ProfileAddressClient
-	ProfileAnniversary                                                       *profileanniversary.ProfileAnniversaryClient
-	ProfileAward                                                             *profileaward.ProfileAwardClient
-	ProfileCertification                                                     *profilecertification.ProfileCertificationClient
-	ProfileEducationalActivity                                               *profileeducationalactivity.ProfileEducationalActivityClient
-	ProfileEmail                                                             *profileemail.ProfileEmailClient
-	ProfileInterest                                                          *profileinterest.ProfileInterestClient
-	ProfileLanguage                                                          *profilelanguage.ProfileLanguageClient
-	ProfileName                                                              *profilename.ProfileNameClient
-	ProfileNote                                                              *profilenote.ProfileNoteClient
-	ProfilePatent                                                            *profilepatent.ProfilePatentClient
-	ProfilePhone                                                             *profilephone.ProfilePhoneClient
-	ProfilePosition                                                          *profileposition.ProfilePositionClient
-	ProfileProject                                                           *profileproject.ProfileProjectClient
-	ProfilePublication                                                       *profilepublication.ProfilePublicationClient
-	ProfileSkill                                                             *profileskill.ProfileSkillClient
-	ProfileWebAccount                                                        *profilewebaccount.ProfileWebAccountClient
-	ProfileWebsite                                                           *profilewebsite.ProfileWebsiteClient
-	RegisteredDevice                                                         *registereddevice.RegisteredDeviceClient
-	ScopedRoleMemberOf                                                       *scopedrolememberof.ScopedRoleMemberOfClient
-	Security                                                                 *security.SecurityClient
-	SecurityInformationProtection                                            *securityinformationprotection.SecurityInformationProtectionClient
-	SecurityInformationProtectionLabelPolicySetting                          *securityinformationprotectionlabelpolicysetting.SecurityInformationProtectionLabelPolicySettingClient
-	SecurityInformationProtectionSensitivityLabel                            *securityinformationprotectionsensitivitylabel.SecurityInformationProtectionSensitivityLabelClient
-	SecurityInformationProtectionSensitivityLabelParent                      *securityinformationprotectionsensitivitylabelparent.SecurityInformationProtectionSensitivityLabelParentClient
-	ServiceProvisioningError                                                 *serviceprovisioningerror.ServiceProvisioningErrorClient
-	Setting                                                                  *setting.SettingClient
-	SettingContactMergeSuggestion                                            *settingcontactmergesuggestion.SettingContactMergeSuggestionClient
-	SettingItemInsight                                                       *settingiteminsight.SettingItemInsightClient
-	SettingRegionalAndLanguageSetting                                        *settingregionalandlanguagesetting.SettingRegionalAndLanguageSettingClient
-	SettingShiftPreference                                                   *settingshiftpreference.SettingShiftPreferenceClient
-	SettingStorage                                                           *settingstorage.SettingStorageClient
-	SettingStorageQuota                                                      *settingstoragequota.SettingStorageQuotaClient
-	SettingStorageQuotaService                                               *settingstoragequotaservice.SettingStorageQuotaServiceClient
-	SettingWindow                                                            *settingwindow.SettingWindowClient
-	SettingWindowInstance                                                    *settingwindowinstance.SettingWindowInstanceClient
-	Solution                                                                 *solution.SolutionClient
-	SolutionWorkingTimeSchedule                                              *solutionworkingtimeschedule.SolutionWorkingTimeScheduleClient
-	Sponsor                                                                  *sponsor.SponsorClient
-	Teamwork                                                                 *teamwork.TeamworkClient
-	TeamworkAssociatedTeam                                                   *teamworkassociatedteam.TeamworkAssociatedTeamClient
-	TeamworkAssociatedTeamTeam                                               *teamworkassociatedteamteam.TeamworkAssociatedTeamTeamClient
-	TeamworkInstalledApp                                                     *teamworkinstalledapp.TeamworkInstalledAppClient
-	TeamworkInstalledAppChat                                                 *teamworkinstalledappchat.TeamworkInstalledAppChatClient
-	TeamworkInstalledAppTeamsApp                                             *teamworkinstalledappteamsapp.TeamworkInstalledAppTeamsAppClient
-	TeamworkInstalledAppTeamsAppDefinition                                   *teamworkinstalledappteamsappdefinition.TeamworkInstalledAppTeamsAppDefinitionClient
-	Todo                                                                     *todo.TodoClient
-	TodoList                                                                 *todolist.TodoListClient
-	TodoListExtension                                                        *todolistextension.TodoListExtensionClient
-	TodoListTask                                                             *todolisttask.TodoListTaskClient
-	TodoListTaskAttachment                                                   *todolisttaskattachment.TodoListTaskAttachmentClient
-	TodoListTaskAttachmentSession                                            *todolisttaskattachmentsession.TodoListTaskAttachmentSessionClient
-	TodoListTaskAttachmentSessionContent                                     *todolisttaskattachmentsessioncontent.TodoListTaskAttachmentSessionContentClient
-	TodoListTaskChecklistItem                                                *todolisttaskchecklistitem.TodoListTaskChecklistItemClient
-	TodoListTaskExtension                                                    *todolisttaskextension.TodoListTaskExtensionClient
-	TodoListTaskLinkedResource                                               *todolisttasklinkedresource.TodoListTaskLinkedResourceClient
-	TransitiveMemberOf                                                       *transitivememberof.TransitiveMemberOfClient
-	TransitiveReport                                                         *transitivereport.TransitiveReportClient
-	UsageRight                                                               *usageright.UsageRightClient
-	User                                                                     *user.UserClient
-	VirtualEvent                                                             *virtualevent.VirtualEventClient
-	VirtualEventWebinar                                                      *virtualeventwebinar.VirtualEventWebinarClient
-	WindowsInformationProtectionDeviceRegistration                           *windowsinformationprotectiondeviceregistration.WindowsInformationProtectionDeviceRegistrationClient
+	Activity                                                                                 *activity.ActivityClient
+	ActivityHistoryItem                                                                      *activityhistoryitem.ActivityHistoryItemClient
+	ActivityHistoryItemActivity                                                              *activityhistoryitemactivity.ActivityHistoryItemActivityClient
+	AgreementAcceptance                                                                      *agreementacceptance.AgreementAcceptanceClient
+	Analytics                                                                                *analytics.AnalyticsClient
+	AnalyticsActivityStatistic                                                               *analyticsactivitystatistic.AnalyticsActivityStatisticClient
+	AppConsentRequestsForApproval                                                            *appconsentrequestsforapproval.AppConsentRequestsForApprovalClient
+	AppConsentRequestsForApprovalUserConsentRequest                                          *appconsentrequestsforapprovaluserconsentrequest.AppConsentRequestsForApprovalUserConsentRequestClient
+	AppConsentRequestsForApprovalUserConsentRequestApproval                                  *appconsentrequestsforapprovaluserconsentrequestapproval.AppConsentRequestsForApprovalUserConsentRequestApprovalClient
+	AppConsentRequestsForApprovalUserConsentRequestApprovalStep                              *appconsentrequestsforapprovaluserconsentrequestapprovalstep.AppConsentRequestsForApprovalUserConsentRequestApprovalStepClient
+	AppRoleAssignedResource                                                                  *approleassignedresource.AppRoleAssignedResourceClient
+	AppRoleAssignment                                                                        *approleassignment.AppRoleAssignmentClient
+	Approval                                                                                 *approval.ApprovalClient
+	ApprovalStep                                                                             *approvalstep.ApprovalStepClient
+	AssignUserAuthenticationHardwareOathMethodDeviceHardwareOathDeviceTo                     *assignuserauthenticationhardwareoathmethoddevicehardwareoathdeviceto.AssignUserAuthenticationHardwareOathMethodDeviceHardwareOathDeviceToClient
+	AssignUserAuthenticationHardwareOathMethodDeviceTo                                       *assignuserauthenticationhardwareoathmethoddeviceto.AssignUserAuthenticationHardwareOathMethodDeviceToClient
+	Authentication                                                                           *authentication.AuthenticationClient
+	AuthenticationEmailMethod                                                                *authenticationemailmethod.AuthenticationEmailMethodClient
+	AuthenticationFido2Method                                                                *authenticationfido2method.AuthenticationFido2MethodClient
+	AuthenticationHardwareOathMethod                                                         *authenticationhardwareoathmethod.AuthenticationHardwareOathMethodClient
+	AuthenticationHardwareOathMethodDevice                                                   *authenticationhardwareoathmethoddevice.AuthenticationHardwareOathMethodDeviceClient
+	AuthenticationHardwareOathMethodDeviceAssignToMailboxSetting                             *authenticationhardwareoathmethoddeviceassigntomailboxsetting.AuthenticationHardwareOathMethodDeviceAssignToMailboxSettingClient
+	AuthenticationHardwareOathMethodDeviceAssignToServiceProvisioningError                   *authenticationhardwareoathmethoddeviceassigntoserviceprovisioningerror.AuthenticationHardwareOathMethodDeviceAssignToServiceProvisioningErrorClient
+	AuthenticationHardwareOathMethodDeviceHardwareOathDevice                                 *authenticationhardwareoathmethoddevicehardwareoathdevice.AuthenticationHardwareOathMethodDeviceHardwareOathDeviceClient
+	AuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToMailboxSetting           *authenticationhardwareoathmethoddevicehardwareoathdeviceassigntomailboxsetting.AuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient
+	AuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToServiceProvisioningError *authenticationhardwareoathmethoddevicehardwareoathdeviceassigntoserviceprovisioningerror.AuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClient
+	AuthenticationMethod                                                                     *authenticationmethod.AuthenticationMethodClient
+	AuthenticationMicrosoftAuthenticatorMethod                                               *authenticationmicrosoftauthenticatormethod.AuthenticationMicrosoftAuthenticatorMethodClient
+	AuthenticationMicrosoftAuthenticatorMethodDevice                                         *authenticationmicrosoftauthenticatormethoddevice.AuthenticationMicrosoftAuthenticatorMethodDeviceClient
+	AuthenticationOperation                                                                  *authenticationoperation.AuthenticationOperationClient
+	AuthenticationPasswordMethod                                                             *authenticationpasswordmethod.AuthenticationPasswordMethodClient
+	AuthenticationPasswordlessMicrosoftAuthenticatorMethod                                   *authenticationpasswordlessmicrosoftauthenticatormethod.AuthenticationPasswordlessMicrosoftAuthenticatorMethodClient
+	AuthenticationPasswordlessMicrosoftAuthenticatorMethodDevice                             *authenticationpasswordlessmicrosoftauthenticatormethoddevice.AuthenticationPasswordlessMicrosoftAuthenticatorMethodDeviceClient
+	AuthenticationPhoneMethod                                                                *authenticationphonemethod.AuthenticationPhoneMethodClient
+	AuthenticationPlatformCredentialMethod                                                   *authenticationplatformcredentialmethod.AuthenticationPlatformCredentialMethodClient
+	AuthenticationPlatformCredentialMethodDevice                                             *authenticationplatformcredentialmethoddevice.AuthenticationPlatformCredentialMethodDeviceClient
+	AuthenticationQrCodePinMethod                                                            *authenticationqrcodepinmethod.AuthenticationQrCodePinMethodClient
+	AuthenticationQrCodePinMethodPin                                                         *authenticationqrcodepinmethodpin.AuthenticationQrCodePinMethodPinClient
+	AuthenticationQrCodePinMethodStandardQRCode                                              *authenticationqrcodepinmethodstandardqrcode.AuthenticationQrCodePinMethodStandardQRCodeClient
+	AuthenticationQrCodePinMethodTemporaryQRCode                                             *authenticationqrcodepinmethodtemporaryqrcode.AuthenticationQrCodePinMethodTemporaryQRCodeClient
+	AuthenticationRequirement                                                                *authenticationrequirement.AuthenticationRequirementClient
+	AuthenticationSignInPreference                                                           *authenticationsigninpreference.AuthenticationSignInPreferenceClient
+	AuthenticationSoftwareOathMethod                                                         *authenticationsoftwareoathmethod.AuthenticationSoftwareOathMethodClient
+	AuthenticationTemporaryAccessPassMethod                                                  *authenticationtemporaryaccesspassmethod.AuthenticationTemporaryAccessPassMethodClient
+	AuthenticationWindowsHelloForBusinessMethod                                              *authenticationwindowshelloforbusinessmethod.AuthenticationWindowsHelloForBusinessMethodClient
+	AuthenticationWindowsHelloForBusinessMethodDevice                                        *authenticationwindowshelloforbusinessmethoddevice.AuthenticationWindowsHelloForBusinessMethodDeviceClient
+	Chat                                                                                     *chat.ChatClient
+	ChatInstalledApp                                                                         *chatinstalledapp.ChatInstalledAppClient
+	ChatInstalledAppTeamsApp                                                                 *chatinstalledappteamsapp.ChatInstalledAppTeamsAppClient
+	ChatInstalledAppTeamsAppDefinition                                                       *chatinstalledappteamsappdefinition.ChatInstalledAppTeamsAppDefinitionClient
+	ChatLastMessagePreview                                                                   *chatlastmessagepreview.ChatLastMessagePreviewClient
+	ChatMember                                                                               *chatmember.ChatMemberClient
+	ChatMessage                                                                              *chatmessage.ChatMessageClient
+	ChatMessageHostedContent                                                                 *chatmessagehostedcontent.ChatMessageHostedContentClient
+	ChatMessageReply                                                                         *chatmessagereply.ChatMessageReplyClient
+	ChatMessageReplyHostedContent                                                            *chatmessagereplyhostedcontent.ChatMessageReplyHostedContentClient
+	ChatOperation                                                                            *chatoperation.ChatOperationClient
+	ChatPermissionGrant                                                                      *chatpermissiongrant.ChatPermissionGrantClient
+	ChatPinnedMessage                                                                        *chatpinnedmessage.ChatPinnedMessageClient
+	ChatPinnedMessageMessage                                                                 *chatpinnedmessagemessage.ChatPinnedMessageMessageClient
+	ChatTab                                                                                  *chattab.ChatTabClient
+	ChatTabTeamsApp                                                                          *chattabteamsapp.ChatTabTeamsAppClient
+	CloudClipboard                                                                           *cloudclipboard.CloudClipboardClient
+	CloudClipboardItem                                                                       *cloudclipboarditem.CloudClipboardItemClient
+	CloudPC                                                                                  *cloudpc.CloudPCClient
+	Communication                                                                            *communication.CommunicationClient
+	CommunicationCallSetting                                                                 *communicationcallsetting.CommunicationCallSettingClient
+	CommunicationCallSettingDelegate                                                         *communicationcallsettingdelegate.CommunicationCallSettingDelegateClient
+	CommunicationCallSettingDelegator                                                        *communicationcallsettingdelegator.CommunicationCallSettingDelegatorClient
+	Contact                                                                                  *contact.ContactClient
+	ContactExtension                                                                         *contactextension.ContactExtensionClient
+	ContactFolder                                                                            *contactfolder.ContactFolderClient
+	ContactFolderChildFolder                                                                 *contactfolderchildfolder.ContactFolderChildFolderClient
+	ContactFolderChildFolderContact                                                          *contactfolderchildfoldercontact.ContactFolderChildFolderContactClient
+	ContactFolderChildFolderContactExtension                                                 *contactfolderchildfoldercontactextension.ContactFolderChildFolderContactExtensionClient
+	ContactFolderChildFolderContactPhoto                                                     *contactfolderchildfoldercontactphoto.ContactFolderChildFolderContactPhotoClient
+	ContactFolderContact                                                                     *contactfoldercontact.ContactFolderContactClient
+	ContactFolderContactExtension                                                            *contactfoldercontactextension.ContactFolderContactExtensionClient
+	ContactFolderContactPhoto                                                                *contactfoldercontactphoto.ContactFolderContactPhotoClient
+	ContactPhoto                                                                             *contactphoto.ContactPhotoClient
+	CreatedObject                                                                            *createdobject.CreatedObjectClient
+	DataSecurityAndGovernance                                                                *datasecurityandgovernance.DataSecurityAndGovernanceClient
+	DataSecurityAndGovernanceActivity                                                        *datasecurityandgovernanceactivity.DataSecurityAndGovernanceActivityClient
+	DataSecurityAndGovernanceActivityContentActivity                                         *datasecurityandgovernanceactivitycontentactivity.DataSecurityAndGovernanceActivityContentActivityClient
+	DataSecurityAndGovernanceProtectionScope                                                 *datasecurityandgovernanceprotectionscope.DataSecurityAndGovernanceProtectionScopeClient
+	DataSecurityAndGovernanceSensitivityLabel                                                *datasecurityandgovernancesensitivitylabel.DataSecurityAndGovernanceSensitivityLabelClient
+	DataSecurityAndGovernanceSensitivityLabelRight                                           *datasecurityandgovernancesensitivitylabelright.DataSecurityAndGovernanceSensitivityLabelRightClient
+	DataSecurityAndGovernanceSensitivityLabelSublabel                                        *datasecurityandgovernancesensitivitylabelsublabel.DataSecurityAndGovernanceSensitivityLabelSublabelClient
+	DataSecurityAndGovernanceSensitivityLabelSublabelRight                                   *datasecurityandgovernancesensitivitylabelsublabelright.DataSecurityAndGovernanceSensitivityLabelSublabelRightClient
+	Device                                                                                   *device.DeviceClient
+	DeviceCommand                                                                            *devicecommand.DeviceCommandClient
+	DeviceCommandResponsepayload                                                             *devicecommandresponsepayload.DeviceCommandResponsepayloadClient
+	DeviceDeviceTemplate                                                                     *devicedevicetemplate.DeviceDeviceTemplateClient
+	DeviceEnrollmentConfiguration                                                            *deviceenrollmentconfiguration.DeviceEnrollmentConfigurationClient
+	DeviceEnrollmentConfigurationAssignment                                                  *deviceenrollmentconfigurationassignment.DeviceEnrollmentConfigurationAssignmentClient
+	DeviceExtension                                                                          *deviceextension.DeviceExtensionClient
+	DeviceManagementTroubleshootingEvent                                                     *devicemanagementtroubleshootingevent.DeviceManagementTroubleshootingEventClient
+	DeviceMemberOf                                                                           *devicememberof.DeviceMemberOfClient
+	DeviceRegisteredOwner                                                                    *deviceregisteredowner.DeviceRegisteredOwnerClient
+	DeviceRegisteredUser                                                                     *deviceregistereduser.DeviceRegisteredUserClient
+	DeviceTransitiveMemberOf                                                                 *devicetransitivememberof.DeviceTransitiveMemberOfClient
+	DeviceUsageRight                                                                         *deviceusageright.DeviceUsageRightClient
+	DirectReport                                                                             *directreport.DirectReportClient
+	Drive                                                                                    *drive.DriveClient
+	DriveActivity                                                                            *driveactivity.DriveActivityClient
+	DriveActivityDriveItem                                                                   *driveactivitydriveitem.DriveActivityDriveItemClient
+	DriveActivityDriveItemContent                                                            *driveactivitydriveitemcontent.DriveActivityDriveItemContentClient
+	DriveActivityDriveItemContentStream                                                      *driveactivitydriveitemcontentstream.DriveActivityDriveItemContentStreamClient
+	DriveActivityListItem                                                                    *driveactivitylistitem.DriveActivityListItemClient
+	DriveBundle                                                                              *drivebundle.DriveBundleClient
+	DriveBundleContent                                                                       *drivebundlecontent.DriveBundleContentClient
+	DriveBundleContentStream                                                                 *drivebundlecontentstream.DriveBundleContentStreamClient
+	DriveCreatedByUser                                                                       *drivecreatedbyuser.DriveCreatedByUserClient
+	DriveCreatedByUserMailboxSetting                                                         *drivecreatedbyusermailboxsetting.DriveCreatedByUserMailboxSettingClient
+	DriveCreatedByUserServiceProvisioningError                                               *drivecreatedbyuserserviceprovisioningerror.DriveCreatedByUserServiceProvisioningErrorClient
+	DriveFollowing                                                                           *drivefollowing.DriveFollowingClient
+	DriveFollowingContent                                                                    *drivefollowingcontent.DriveFollowingContentClient
+	DriveFollowingContentStream                                                              *drivefollowingcontentstream.DriveFollowingContentStreamClient
+	DriveItem                                                                                *driveitem.DriveItemClient
+	DriveItemActivity                                                                        *driveitemactivity.DriveItemActivityClient
+	DriveItemAnalytics                                                                       *driveitemanalytics.DriveItemAnalyticsClient
+	DriveItemAnalyticsAllTime                                                                *driveitemanalyticsalltime.DriveItemAnalyticsAllTimeClient
+	DriveItemAnalyticsItemActivityStat                                                       *driveitemanalyticsitemactivitystat.DriveItemAnalyticsItemActivityStatClient
+	DriveItemAnalyticsItemActivityStatActivity                                               *driveitemanalyticsitemactivitystatactivity.DriveItemAnalyticsItemActivityStatActivityClient
+	DriveItemAnalyticsItemActivityStatActivityDriveItem                                      *driveitemanalyticsitemactivitystatactivitydriveitem.DriveItemAnalyticsItemActivityStatActivityDriveItemClient
+	DriveItemAnalyticsItemActivityStatActivityDriveItemContent                               *driveitemanalyticsitemactivitystatactivitydriveitemcontent.DriveItemAnalyticsItemActivityStatActivityDriveItemContentClient
+	DriveItemAnalyticsItemActivityStatActivityDriveItemContentStream                         *driveitemanalyticsitemactivitystatactivitydriveitemcontentstream.DriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamClient
+	DriveItemAnalyticsLastSevenDay                                                           *driveitemanalyticslastsevenday.DriveItemAnalyticsLastSevenDayClient
+	DriveItemChild                                                                           *driveitemchild.DriveItemChildClient
+	DriveItemChildContent                                                                    *driveitemchildcontent.DriveItemChildContentClient
+	DriveItemChildContentStream                                                              *driveitemchildcontentstream.DriveItemChildContentStreamClient
+	DriveItemContent                                                                         *driveitemcontent.DriveItemContentClient
+	DriveItemContentStream                                                                   *driveitemcontentstream.DriveItemContentStreamClient
+	DriveItemCreatedByUser                                                                   *driveitemcreatedbyuser.DriveItemCreatedByUserClient
+	DriveItemCreatedByUserMailboxSetting                                                     *driveitemcreatedbyusermailboxsetting.DriveItemCreatedByUserMailboxSettingClient
+	DriveItemCreatedByUserServiceProvisioningError                                           *driveitemcreatedbyuserserviceprovisioningerror.DriveItemCreatedByUserServiceProvisioningErrorClient
+	DriveItemExtension                                                                       *driveitemextension.DriveItemExtensionClient
+	DriveItemLastModifiedByUser                                                              *driveitemlastmodifiedbyuser.DriveItemLastModifiedByUserClient
+	DriveItemLastModifiedByUserMailboxSetting                                                *driveitemlastmodifiedbyusermailboxsetting.DriveItemLastModifiedByUserMailboxSettingClient
+	DriveItemLastModifiedByUserServiceProvisioningError                                      *driveitemlastmodifiedbyuserserviceprovisioningerror.DriveItemLastModifiedByUserServiceProvisioningErrorClient
+	DriveItemListItem                                                                        *driveitemlistitem.DriveItemListItemClient
+	DriveItemListItemActivity                                                                *driveitemlistitemactivity.DriveItemListItemActivityClient
+	DriveItemListItemActivityDriveItem                                                       *driveitemlistitemactivitydriveitem.DriveItemListItemActivityDriveItemClient
+	DriveItemListItemActivityDriveItemContent                                                *driveitemlistitemactivitydriveitemcontent.DriveItemListItemActivityDriveItemContentClient
+	DriveItemListItemActivityDriveItemContentStream                                          *driveitemlistitemactivitydriveitemcontentstream.DriveItemListItemActivityDriveItemContentStreamClient
+	DriveItemListItemActivityListItem                                                        *driveitemlistitemactivitylistitem.DriveItemListItemActivityListItemClient
+	DriveItemListItemAnalytics                                                               *driveitemlistitemanalytics.DriveItemListItemAnalyticsClient
+	DriveItemListItemCreatedByUser                                                           *driveitemlistitemcreatedbyuser.DriveItemListItemCreatedByUserClient
+	DriveItemListItemCreatedByUserMailboxSetting                                             *driveitemlistitemcreatedbyusermailboxsetting.DriveItemListItemCreatedByUserMailboxSettingClient
+	DriveItemListItemCreatedByUserServiceProvisioningError                                   *driveitemlistitemcreatedbyuserserviceprovisioningerror.DriveItemListItemCreatedByUserServiceProvisioningErrorClient
+	DriveItemListItemDocumentSetVersion                                                      *driveitemlistitemdocumentsetversion.DriveItemListItemDocumentSetVersionClient
+	DriveItemListItemDocumentSetVersionField                                                 *driveitemlistitemdocumentsetversionfield.DriveItemListItemDocumentSetVersionFieldClient
+	DriveItemListItemDriveItem                                                               *driveitemlistitemdriveitem.DriveItemListItemDriveItemClient
+	DriveItemListItemDriveItemContent                                                        *driveitemlistitemdriveitemcontent.DriveItemListItemDriveItemContentClient
+	DriveItemListItemDriveItemContentStream                                                  *driveitemlistitemdriveitemcontentstream.DriveItemListItemDriveItemContentStreamClient
+	DriveItemListItemField                                                                   *driveitemlistitemfield.DriveItemListItemFieldClient
+	DriveItemListItemLastModifiedByUser                                                      *driveitemlistitemlastmodifiedbyuser.DriveItemListItemLastModifiedByUserClient
+	DriveItemListItemLastModifiedByUserMailboxSetting                                        *driveitemlistitemlastmodifiedbyusermailboxsetting.DriveItemListItemLastModifiedByUserMailboxSettingClient
+	DriveItemListItemLastModifiedByUserServiceProvisioningError                              *driveitemlistitemlastmodifiedbyuserserviceprovisioningerror.DriveItemListItemLastModifiedByUserServiceProvisioningErrorClient
+	DriveItemListItemPermission                                                              *driveitemlistitempermission.DriveItemListItemPermissionClient
+	DriveItemListItemVersion                                                                 *driveitemlistitemversion.DriveItemListItemVersionClient
+	DriveItemListItemVersionField                                                            *driveitemlistitemversionfield.DriveItemListItemVersionFieldClient
+	DriveItemPermission                                                                      *driveitempermission.DriveItemPermissionClient
+	DriveItemRetentionLabel                                                                  *driveitemretentionlabel.DriveItemRetentionLabelClient
+	DriveItemSubscription                                                                    *driveitemsubscription.DriveItemSubscriptionClient
+	DriveItemThumbnail                                                                       *driveitemthumbnail.DriveItemThumbnailClient
+	DriveItemVersion                                                                         *driveitemversion.DriveItemVersionClient
+	DriveItemVersionContent                                                                  *driveitemversioncontent.DriveItemVersionContentClient
+	DriveLastModifiedByUser                                                                  *drivelastmodifiedbyuser.DriveLastModifiedByUserClient
+	DriveLastModifiedByUserMailboxSetting                                                    *drivelastmodifiedbyusermailboxsetting.DriveLastModifiedByUserMailboxSettingClient
+	DriveLastModifiedByUserServiceProvisioningError                                          *drivelastmodifiedbyuserserviceprovisioningerror.DriveLastModifiedByUserServiceProvisioningErrorClient
+	DriveList                                                                                *drivelist.DriveListClient
+	DriveListActivity                                                                        *drivelistactivity.DriveListActivityClient
+	DriveListColumn                                                                          *drivelistcolumn.DriveListColumnClient
+	DriveListColumnSourceColumn                                                              *drivelistcolumnsourcecolumn.DriveListColumnSourceColumnClient
+	DriveListContentType                                                                     *drivelistcontenttype.DriveListContentTypeClient
+	DriveListContentTypeBase                                                                 *drivelistcontenttypebase.DriveListContentTypeBaseClient
+	DriveListContentTypeBaseType                                                             *drivelistcontenttypebasetype.DriveListContentTypeBaseTypeClient
+	DriveListContentTypeColumn                                                               *drivelistcontenttypecolumn.DriveListContentTypeColumnClient
+	DriveListContentTypeColumnLink                                                           *drivelistcontenttypecolumnlink.DriveListContentTypeColumnLinkClient
+	DriveListContentTypeColumnPosition                                                       *drivelistcontenttypecolumnposition.DriveListContentTypeColumnPositionClient
+	DriveListContentTypeColumnSourceColumn                                                   *drivelistcontenttypecolumnsourcecolumn.DriveListContentTypeColumnSourceColumnClient
+	DriveListCreatedByUser                                                                   *drivelistcreatedbyuser.DriveListCreatedByUserClient
+	DriveListCreatedByUserMailboxSetting                                                     *drivelistcreatedbyusermailboxsetting.DriveListCreatedByUserMailboxSettingClient
+	DriveListCreatedByUserServiceProvisioningError                                           *drivelistcreatedbyuserserviceprovisioningerror.DriveListCreatedByUserServiceProvisioningErrorClient
+	DriveListDrive                                                                           *drivelistdrive.DriveListDriveClient
+	DriveListItem                                                                            *drivelistitem.DriveListItemClient
+	DriveListItemActivity                                                                    *drivelistitemactivity.DriveListItemActivityClient
+	DriveListItemActivityDriveItem                                                           *drivelistitemactivitydriveitem.DriveListItemActivityDriveItemClient
+	DriveListItemActivityDriveItemContent                                                    *drivelistitemactivitydriveitemcontent.DriveListItemActivityDriveItemContentClient
+	DriveListItemActivityDriveItemContentStream                                              *drivelistitemactivitydriveitemcontentstream.DriveListItemActivityDriveItemContentStreamClient
+	DriveListItemActivityListItem                                                            *drivelistitemactivitylistitem.DriveListItemActivityListItemClient
+	DriveListItemAnalytics                                                                   *drivelistitemanalytics.DriveListItemAnalyticsClient
+	DriveListItemCreatedByUser                                                               *drivelistitemcreatedbyuser.DriveListItemCreatedByUserClient
+	DriveListItemCreatedByUserMailboxSetting                                                 *drivelistitemcreatedbyusermailboxsetting.DriveListItemCreatedByUserMailboxSettingClient
+	DriveListItemCreatedByUserServiceProvisioningError                                       *drivelistitemcreatedbyuserserviceprovisioningerror.DriveListItemCreatedByUserServiceProvisioningErrorClient
+	DriveListItemDocumentSetVersion                                                          *drivelistitemdocumentsetversion.DriveListItemDocumentSetVersionClient
+	DriveListItemDocumentSetVersionField                                                     *drivelistitemdocumentsetversionfield.DriveListItemDocumentSetVersionFieldClient
+	DriveListItemDriveItem                                                                   *drivelistitemdriveitem.DriveListItemDriveItemClient
+	DriveListItemDriveItemContent                                                            *drivelistitemdriveitemcontent.DriveListItemDriveItemContentClient
+	DriveListItemDriveItemContentStream                                                      *drivelistitemdriveitemcontentstream.DriveListItemDriveItemContentStreamClient
+	DriveListItemField                                                                       *drivelistitemfield.DriveListItemFieldClient
+	DriveListItemLastModifiedByUser                                                          *drivelistitemlastmodifiedbyuser.DriveListItemLastModifiedByUserClient
+	DriveListItemLastModifiedByUserMailboxSetting                                            *drivelistitemlastmodifiedbyusermailboxsetting.DriveListItemLastModifiedByUserMailboxSettingClient
+	DriveListItemLastModifiedByUserServiceProvisioningError                                  *drivelistitemlastmodifiedbyuserserviceprovisioningerror.DriveListItemLastModifiedByUserServiceProvisioningErrorClient
+	DriveListItemPermission                                                                  *drivelistitempermission.DriveListItemPermissionClient
+	DriveListItemVersion                                                                     *drivelistitemversion.DriveListItemVersionClient
+	DriveListItemVersionField                                                                *drivelistitemversionfield.DriveListItemVersionFieldClient
+	DriveListLastModifiedByUser                                                              *drivelistlastmodifiedbyuser.DriveListLastModifiedByUserClient
+	DriveListLastModifiedByUserMailboxSetting                                                *drivelistlastmodifiedbyusermailboxsetting.DriveListLastModifiedByUserMailboxSettingClient
+	DriveListLastModifiedByUserServiceProvisioningError                                      *drivelistlastmodifiedbyuserserviceprovisioningerror.DriveListLastModifiedByUserServiceProvisioningErrorClient
+	DriveListOperation                                                                       *drivelistoperation.DriveListOperationClient
+	DriveListPermission                                                                      *drivelistpermission.DriveListPermissionClient
+	DriveListSubscription                                                                    *drivelistsubscription.DriveListSubscriptionClient
+	DriveRoot                                                                                *driveroot.DriveRootClient
+	DriveRootActivity                                                                        *driverootactivity.DriveRootActivityClient
+	DriveRootAnalytics                                                                       *driverootanalytics.DriveRootAnalyticsClient
+	DriveRootAnalyticsAllTime                                                                *driverootanalyticsalltime.DriveRootAnalyticsAllTimeClient
+	DriveRootAnalyticsItemActivityStat                                                       *driverootanalyticsitemactivitystat.DriveRootAnalyticsItemActivityStatClient
+	DriveRootAnalyticsItemActivityStatActivity                                               *driverootanalyticsitemactivitystatactivity.DriveRootAnalyticsItemActivityStatActivityClient
+	DriveRootAnalyticsItemActivityStatActivityDriveItem                                      *driverootanalyticsitemactivitystatactivitydriveitem.DriveRootAnalyticsItemActivityStatActivityDriveItemClient
+	DriveRootAnalyticsItemActivityStatActivityDriveItemContent                               *driverootanalyticsitemactivitystatactivitydriveitemcontent.DriveRootAnalyticsItemActivityStatActivityDriveItemContentClient
+	DriveRootAnalyticsItemActivityStatActivityDriveItemContentStream                         *driverootanalyticsitemactivitystatactivitydriveitemcontentstream.DriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamClient
+	DriveRootAnalyticsLastSevenDay                                                           *driverootanalyticslastsevenday.DriveRootAnalyticsLastSevenDayClient
+	DriveRootChild                                                                           *driverootchild.DriveRootChildClient
+	DriveRootChildContent                                                                    *driverootchildcontent.DriveRootChildContentClient
+	DriveRootChildContentStream                                                              *driverootchildcontentstream.DriveRootChildContentStreamClient
+	DriveRootContent                                                                         *driverootcontent.DriveRootContentClient
+	DriveRootContentStream                                                                   *driverootcontentstream.DriveRootContentStreamClient
+	DriveRootCreatedByUser                                                                   *driverootcreatedbyuser.DriveRootCreatedByUserClient
+	DriveRootCreatedByUserMailboxSetting                                                     *driverootcreatedbyusermailboxsetting.DriveRootCreatedByUserMailboxSettingClient
+	DriveRootCreatedByUserServiceProvisioningError                                           *driverootcreatedbyuserserviceprovisioningerror.DriveRootCreatedByUserServiceProvisioningErrorClient
+	DriveRootExtension                                                                       *driverootextension.DriveRootExtensionClient
+	DriveRootLastModifiedByUser                                                              *driverootlastmodifiedbyuser.DriveRootLastModifiedByUserClient
+	DriveRootLastModifiedByUserMailboxSetting                                                *driverootlastmodifiedbyusermailboxsetting.DriveRootLastModifiedByUserMailboxSettingClient
+	DriveRootLastModifiedByUserServiceProvisioningError                                      *driverootlastmodifiedbyuserserviceprovisioningerror.DriveRootLastModifiedByUserServiceProvisioningErrorClient
+	DriveRootListItem                                                                        *driverootlistitem.DriveRootListItemClient
+	DriveRootListItemActivity                                                                *driverootlistitemactivity.DriveRootListItemActivityClient
+	DriveRootListItemActivityDriveItem                                                       *driverootlistitemactivitydriveitem.DriveRootListItemActivityDriveItemClient
+	DriveRootListItemActivityDriveItemContent                                                *driverootlistitemactivitydriveitemcontent.DriveRootListItemActivityDriveItemContentClient
+	DriveRootListItemActivityDriveItemContentStream                                          *driverootlistitemactivitydriveitemcontentstream.DriveRootListItemActivityDriveItemContentStreamClient
+	DriveRootListItemActivityListItem                                                        *driverootlistitemactivitylistitem.DriveRootListItemActivityListItemClient
+	DriveRootListItemAnalytics                                                               *driverootlistitemanalytics.DriveRootListItemAnalyticsClient
+	DriveRootListItemCreatedByUser                                                           *driverootlistitemcreatedbyuser.DriveRootListItemCreatedByUserClient
+	DriveRootListItemCreatedByUserMailboxSetting                                             *driverootlistitemcreatedbyusermailboxsetting.DriveRootListItemCreatedByUserMailboxSettingClient
+	DriveRootListItemCreatedByUserServiceProvisioningError                                   *driverootlistitemcreatedbyuserserviceprovisioningerror.DriveRootListItemCreatedByUserServiceProvisioningErrorClient
+	DriveRootListItemDocumentSetVersion                                                      *driverootlistitemdocumentsetversion.DriveRootListItemDocumentSetVersionClient
+	DriveRootListItemDocumentSetVersionField                                                 *driverootlistitemdocumentsetversionfield.DriveRootListItemDocumentSetVersionFieldClient
+	DriveRootListItemDriveItem                                                               *driverootlistitemdriveitem.DriveRootListItemDriveItemClient
+	DriveRootListItemDriveItemContent                                                        *driverootlistitemdriveitemcontent.DriveRootListItemDriveItemContentClient
+	DriveRootListItemDriveItemContentStream                                                  *driverootlistitemdriveitemcontentstream.DriveRootListItemDriveItemContentStreamClient
+	DriveRootListItemField                                                                   *driverootlistitemfield.DriveRootListItemFieldClient
+	DriveRootListItemLastModifiedByUser                                                      *driverootlistitemlastmodifiedbyuser.DriveRootListItemLastModifiedByUserClient
+	DriveRootListItemLastModifiedByUserMailboxSetting                                        *driverootlistitemlastmodifiedbyusermailboxsetting.DriveRootListItemLastModifiedByUserMailboxSettingClient
+	DriveRootListItemLastModifiedByUserServiceProvisioningError                              *driverootlistitemlastmodifiedbyuserserviceprovisioningerror.DriveRootListItemLastModifiedByUserServiceProvisioningErrorClient
+	DriveRootListItemPermission                                                              *driverootlistitempermission.DriveRootListItemPermissionClient
+	DriveRootListItemVersion                                                                 *driverootlistitemversion.DriveRootListItemVersionClient
+	DriveRootListItemVersionField                                                            *driverootlistitemversionfield.DriveRootListItemVersionFieldClient
+	DriveRootPermission                                                                      *driverootpermission.DriveRootPermissionClient
+	DriveRootRetentionLabel                                                                  *driverootretentionlabel.DriveRootRetentionLabelClient
+	DriveRootSubscription                                                                    *driverootsubscription.DriveRootSubscriptionClient
+	DriveRootThumbnail                                                                       *driverootthumbnail.DriveRootThumbnailClient
+	DriveRootVersion                                                                         *driverootversion.DriveRootVersionClient
+	DriveRootVersionContent                                                                  *driverootversioncontent.DriveRootVersionContentClient
+	DriveSpecial                                                                             *drivespecial.DriveSpecialClient
+	DriveSpecialContent                                                                      *drivespecialcontent.DriveSpecialContentClient
+	DriveSpecialContentStream                                                                *drivespecialcontentstream.DriveSpecialContentStreamClient
+	EmployeeExperience                                                                       *employeeexperience.EmployeeExperienceClient
+	EmployeeExperienceAssignedRole                                                           *employeeexperienceassignedrole.EmployeeExperienceAssignedRoleClient
+	EmployeeExperienceAssignedRoleMember                                                     *employeeexperienceassignedrolemember.EmployeeExperienceAssignedRoleMemberClient
+	EmployeeExperienceAssignedRoleMemberUser                                                 *employeeexperienceassignedrolememberuser.EmployeeExperienceAssignedRoleMemberUserClient
+	EmployeeExperienceAssignedRoleMemberUserMailboxSetting                                   *employeeexperienceassignedrolememberusermailboxsetting.EmployeeExperienceAssignedRoleMemberUserMailboxSettingClient
+	EmployeeExperienceAssignedRoleMemberUserServiceProvisioningError                         *employeeexperienceassignedrolememberuserserviceprovisioningerror.EmployeeExperienceAssignedRoleMemberUserServiceProvisioningErrorClient
+	EmployeeExperienceLearningCourseActivity                                                 *employeeexperiencelearningcourseactivity.EmployeeExperienceLearningCourseActivityClient
+	Event                                                                                    *event.EventClient
+	EventAttachment                                                                          *eventattachment.EventAttachmentClient
+	EventCalendar                                                                            *eventcalendar.EventCalendarClient
+	EventExtension                                                                           *eventextension.EventExtensionClient
+	EventInstance                                                                            *eventinstance.EventInstanceClient
+	Extension                                                                                *extension.ExtensionClient
+	FollowedSite                                                                             *followedsite.FollowedSiteClient
+	InferenceClassification                                                                  *inferenceclassification.InferenceClassificationClient
+	InferenceClassificationOverride                                                          *inferenceclassificationoverride.InferenceClassificationOverrideClient
+	InformationProtection                                                                    *informationprotection.InformationProtectionClient
+	InformationProtectionBitlocker                                                           *informationprotectionbitlocker.InformationProtectionBitlockerClient
+	InformationProtectionBitlockerRecoveryKey                                                *informationprotectionbitlockerrecoverykey.InformationProtectionBitlockerRecoveryKeyClient
+	InformationProtectionDataLossPreventionPolicy                                            *informationprotectiondatalosspreventionpolicy.InformationProtectionDataLossPreventionPolicyClient
+	InformationProtectionPolicy                                                              *informationprotectionpolicy.InformationProtectionPolicyClient
+	InformationProtectionPolicyLabel                                                         *informationprotectionpolicylabel.InformationProtectionPolicyLabelClient
+	InformationProtectionSensitivityLabel                                                    *informationprotectionsensitivitylabel.InformationProtectionSensitivityLabelClient
+	InformationProtectionSensitivityLabelRight                                               *informationprotectionsensitivitylabelright.InformationProtectionSensitivityLabelRightClient
+	InformationProtectionSensitivityLabelSublabel                                            *informationprotectionsensitivitylabelsublabel.InformationProtectionSensitivityLabelSublabelClient
+	InformationProtectionSensitivityLabelSublabelRight                                       *informationprotectionsensitivitylabelsublabelright.InformationProtectionSensitivityLabelSublabelRightClient
+	InformationProtectionSensitivityPolicySetting                                            *informationprotectionsensitivitypolicysetting.InformationProtectionSensitivityPolicySettingClient
+	InformationProtectionThreatAssessmentRequest                                             *informationprotectionthreatassessmentrequest.InformationProtectionThreatAssessmentRequestClient
+	InformationProtectionThreatAssessmentRequestResult                                       *informationprotectionthreatassessmentrequestresult.InformationProtectionThreatAssessmentRequestResultClient
+	Insight                                                                                  *insight.InsightClient
+	InsightShared                                                                            *insightshared.InsightSharedClient
+	InsightSharedLastSharedMethod                                                            *insightsharedlastsharedmethod.InsightSharedLastSharedMethodClient
+	InsightSharedResource                                                                    *insightsharedresource.InsightSharedResourceClient
+	InsightTrending                                                                          *insighttrending.InsightTrendingClient
+	InsightTrendingResource                                                                  *insighttrendingresource.InsightTrendingResourceClient
+	InsightUsed                                                                              *insightused.InsightUsedClient
+	InsightUsedResource                                                                      *insightusedresource.InsightUsedResourceClient
+	InvitedBy                                                                                *invitedby.InvitedByClient
+	JoinedGroup                                                                              *joinedgroup.JoinedGroupClient
+	JoinedTeam                                                                               *joinedteam.JoinedTeamClient
+	LicenseDetail                                                                            *licensedetail.LicenseDetailClient
+	MailFolder                                                                               *mailfolder.MailFolderClient
+	MailFolderChildFolder                                                                    *mailfolderchildfolder.MailFolderChildFolderClient
+	MailFolderChildFolderMessage                                                             *mailfolderchildfoldermessage.MailFolderChildFolderMessageClient
+	MailFolderChildFolderMessageAttachment                                                   *mailfolderchildfoldermessageattachment.MailFolderChildFolderMessageAttachmentClient
+	MailFolderChildFolderMessageExtension                                                    *mailfolderchildfoldermessageextension.MailFolderChildFolderMessageExtensionClient
+	MailFolderChildFolderMessageMention                                                      *mailfolderchildfoldermessagemention.MailFolderChildFolderMessageMentionClient
+	MailFolderChildFolderMessageRule                                                         *mailfolderchildfoldermessagerule.MailFolderChildFolderMessageRuleClient
+	MailFolderChildFolderOperation                                                           *mailfolderchildfolderoperation.MailFolderChildFolderOperationClient
+	MailFolderChildFolderUserConfiguration                                                   *mailfolderchildfolderuserconfiguration.MailFolderChildFolderUserConfigurationClient
+	MailFolderMessage                                                                        *mailfoldermessage.MailFolderMessageClient
+	MailFolderMessageAttachment                                                              *mailfoldermessageattachment.MailFolderMessageAttachmentClient
+	MailFolderMessageExtension                                                               *mailfoldermessageextension.MailFolderMessageExtensionClient
+	MailFolderMessageMention                                                                 *mailfoldermessagemention.MailFolderMessageMentionClient
+	MailFolderMessageRule                                                                    *mailfoldermessagerule.MailFolderMessageRuleClient
+	MailFolderOperation                                                                      *mailfolderoperation.MailFolderOperationClient
+	MailFolderUserConfiguration                                                              *mailfolderuserconfiguration.MailFolderUserConfigurationClient
+	MailboxSetting                                                                           *mailboxsetting.MailboxSettingClient
+	ManagedAppLogCollectionRequest                                                           *managedapplogcollectionrequest.ManagedAppLogCollectionRequestClient
+	ManagedAppRegistration                                                                   *managedappregistration.ManagedAppRegistrationClient
+	ManagedDevice                                                                            *manageddevice.ManagedDeviceClient
+	ManagedDeviceAssignmentFilterEvaluationStatusDetail                                      *manageddeviceassignmentfilterevaluationstatusdetail.ManagedDeviceAssignmentFilterEvaluationStatusDetailClient
+	ManagedDeviceDetectedApp                                                                 *manageddevicedetectedapp.ManagedDeviceDetectedAppClient
+	ManagedDeviceDeviceCategory                                                              *manageddevicedevicecategory.ManagedDeviceDeviceCategoryClient
+	ManagedDeviceDeviceCompliancePolicyState                                                 *manageddevicedevicecompliancepolicystate.ManagedDeviceDeviceCompliancePolicyStateClient
+	ManagedDeviceDeviceConfigurationState                                                    *manageddevicedeviceconfigurationstate.ManagedDeviceDeviceConfigurationStateClient
+	ManagedDeviceDeviceHealthScriptState                                                     *manageddevicedevicehealthscriptstate.ManagedDeviceDeviceHealthScriptStateClient
+	ManagedDeviceDeviceHealthScriptStateIdIdPolicyIdPolicyIdDeviceIdDeviceId                 *manageddevicedevicehealthscriptstateididpolicyidpolicyiddeviceiddeviceid.ManagedDeviceDeviceHealthScriptStateIdIdPolicyIdPolicyIdDeviceIdDeviceIdClient
+	ManagedDeviceLogCollectionRequest                                                        *manageddevicelogcollectionrequest.ManagedDeviceLogCollectionRequestClient
+	ManagedDeviceManagedDeviceMobileAppConfigurationState                                    *manageddevicemanageddevicemobileappconfigurationstate.ManagedDeviceManagedDeviceMobileAppConfigurationStateClient
+	ManagedDeviceSecurityBaselineState                                                       *manageddevicesecuritybaselinestate.ManagedDeviceSecurityBaselineStateClient
+	ManagedDeviceSecurityBaselineStateSettingState                                           *manageddevicesecuritybaselinestatesettingstate.ManagedDeviceSecurityBaselineStateSettingStateClient
+	ManagedDeviceUser                                                                        *manageddeviceuser.ManagedDeviceUserClient
+	ManagedDeviceWindowsProtectionState                                                      *manageddevicewindowsprotectionstate.ManagedDeviceWindowsProtectionStateClient
+	ManagedDeviceWindowsProtectionStateDetectedMalwareState                                  *manageddevicewindowsprotectionstatedetectedmalwarestate.ManagedDeviceWindowsProtectionStateDetectedMalwareStateClient
+	Manager                                                                                  *manager.ManagerClient
+	MemberOf                                                                                 *memberof.MemberOfClient
+	Message                                                                                  *message.MessageClient
+	MessageAttachment                                                                        *messageattachment.MessageAttachmentClient
+	MessageExtension                                                                         *messageextension.MessageExtensionClient
+	MessageMention                                                                           *messagemention.MessageMentionClient
+	MobileAppIntentAndState                                                                  *mobileappintentandstate.MobileAppIntentAndStateClient
+	MobileAppTroubleshootingEvent                                                            *mobileapptroubleshootingevent.MobileAppTroubleshootingEventClient
+	MobileAppTroubleshootingEventAppLogCollectionRequest                                     *mobileapptroubleshootingeventapplogcollectionrequest.MobileAppTroubleshootingEventAppLogCollectionRequestClient
+	Notification                                                                             *notification.NotificationClient
+	OAuth2PermissionGrant                                                                    *oauth2permissiongrant.OAuth2PermissionGrantClient
+	Onenote                                                                                  *onenote.OnenoteClient
+	OnenoteNotebook                                                                          *onenotenotebook.OnenoteNotebookClient
+	OnenoteNotebookSection                                                                   *onenotenotebooksection.OnenoteNotebookSectionClient
+	OnenoteNotebookSectionGroup                                                              *onenotenotebooksectiongroup.OnenoteNotebookSectionGroupClient
+	OnenoteNotebookSectionGroupParentNotebook                                                *onenotenotebooksectiongroupparentnotebook.OnenoteNotebookSectionGroupParentNotebookClient
+	OnenoteNotebookSectionGroupParentSectionGroup                                            *onenotenotebooksectiongroupparentsectiongroup.OnenoteNotebookSectionGroupParentSectionGroupClient
+	OnenoteNotebookSectionGroupSection                                                       *onenotenotebooksectiongroupsection.OnenoteNotebookSectionGroupSectionClient
+	OnenoteNotebookSectionGroupSectionGroup                                                  *onenotenotebooksectiongroupsectiongroup.OnenoteNotebookSectionGroupSectionGroupClient
+	OnenoteNotebookSectionGroupSectionPage                                                   *onenotenotebooksectiongroupsectionpage.OnenoteNotebookSectionGroupSectionPageClient
+	OnenoteNotebookSectionGroupSectionPageContent                                            *onenotenotebooksectiongroupsectionpagecontent.OnenoteNotebookSectionGroupSectionPageContentClient
+	OnenoteNotebookSectionGroupSectionPageParentNotebook                                     *onenotenotebooksectiongroupsectionpageparentnotebook.OnenoteNotebookSectionGroupSectionPageParentNotebookClient
+	OnenoteNotebookSectionGroupSectionPageParentSection                                      *onenotenotebooksectiongroupsectionpageparentsection.OnenoteNotebookSectionGroupSectionPageParentSectionClient
+	OnenoteNotebookSectionGroupSectionParentNotebook                                         *onenotenotebooksectiongroupsectionparentnotebook.OnenoteNotebookSectionGroupSectionParentNotebookClient
+	OnenoteNotebookSectionGroupSectionParentSectionGroup                                     *onenotenotebooksectiongroupsectionparentsectiongroup.OnenoteNotebookSectionGroupSectionParentSectionGroupClient
+	OnenoteNotebookSectionPage                                                               *onenotenotebooksectionpage.OnenoteNotebookSectionPageClient
+	OnenoteNotebookSectionPageContent                                                        *onenotenotebooksectionpagecontent.OnenoteNotebookSectionPageContentClient
+	OnenoteNotebookSectionPageParentNotebook                                                 *onenotenotebooksectionpageparentnotebook.OnenoteNotebookSectionPageParentNotebookClient
+	OnenoteNotebookSectionPageParentSection                                                  *onenotenotebooksectionpageparentsection.OnenoteNotebookSectionPageParentSectionClient
+	OnenoteNotebookSectionParentNotebook                                                     *onenotenotebooksectionparentnotebook.OnenoteNotebookSectionParentNotebookClient
+	OnenoteNotebookSectionParentSectionGroup                                                 *onenotenotebooksectionparentsectiongroup.OnenoteNotebookSectionParentSectionGroupClient
+	OnenoteOperation                                                                         *onenoteoperation.OnenoteOperationClient
+	OnenotePage                                                                              *onenotepage.OnenotePageClient
+	OnenotePageContent                                                                       *onenotepagecontent.OnenotePageContentClient
+	OnenotePageParentNotebook                                                                *onenotepageparentnotebook.OnenotePageParentNotebookClient
+	OnenotePageParentSection                                                                 *onenotepageparentsection.OnenotePageParentSectionClient
+	OnenoteResource                                                                          *onenoteresource.OnenoteResourceClient
+	OnenoteResourceContent                                                                   *onenoteresourcecontent.OnenoteResourceContentClient
+	OnenoteSection                                                                           *onenotesection.OnenoteSectionClient
+	OnenoteSectionGroup                                                                      *onenotesectiongroup.OnenoteSectionGroupClient
+	OnenoteSectionGroupParentNotebook                                                        *onenotesectiongroupparentnotebook.OnenoteSectionGroupParentNotebookClient
+	OnenoteSectionGroupParentSectionGroup                                                    *onenotesectiongroupparentsectiongroup.OnenoteSectionGroupParentSectionGroupClient
+	OnenoteSectionGroupSection                                                               *onenotesectiongroupsection.OnenoteSectionGroupSectionClient
+	OnenoteSectionGroupSectionGroup                                                          *onenotesectiongroupsectiongroup.OnenoteSectionGroupSectionGroupClient
+	OnenoteSectionGroupSectionPage                                                           *onenotesectiongroupsectionpage.OnenoteSectionGroupSectionPageClient
+	OnenoteSectionGroupSectionPageContent                                                    *onenotesectiongroupsectionpagecontent.OnenoteSectionGroupSectionPageContentClient
+	OnenoteSectionGroupSectionPageParentNotebook                                             *onenotesectiongroupsectionpageparentnotebook.OnenoteSectionGroupSectionPageParentNotebookClient
+	OnenoteSectionGroupSectionPageParentSection                                              *onenotesectiongroupsectionpageparentsection.OnenoteSectionGroupSectionPageParentSectionClient
+	OnenoteSectionGroupSectionParentNotebook                                                 *onenotesectiongroupsectionparentnotebook.OnenoteSectionGroupSectionParentNotebookClient
+	OnenoteSectionGroupSectionParentSectionGroup                                             *onenotesectiongroupsectionparentsectiongroup.OnenoteSectionGroupSectionParentSectionGroupClient
+	OnenoteSectionPage                                                                       *onenotesectionpage.OnenoteSectionPageClient
+	OnenoteSectionPageContent                                                                *onenotesectionpagecontent.OnenoteSectionPageContentClient
+	OnenoteSectionPageParentNotebook                                                         *onenotesectionpageparentnotebook.OnenoteSectionPageParentNotebookClient
+	OnenoteSectionPageParentSection                                                          *onenotesectionpageparentsection.OnenoteSectionPageParentSectionClient
+	OnenoteSectionParentNotebook                                                             *onenotesectionparentnotebook.OnenoteSectionParentNotebookClient
+	OnenoteSectionParentSectionGroup                                                         *onenotesectionparentsectiongroup.OnenoteSectionParentSectionGroupClient
+	OnlineMeeting                                                                            *onlinemeeting.OnlineMeetingClient
+	OnlineMeetingAiInsight                                                                   *onlinemeetingaiinsight.OnlineMeetingAiInsightClient
+	OnlineMeetingAlternativeRecording                                                        *onlinemeetingalternativerecording.OnlineMeetingAlternativeRecordingClient
+	OnlineMeetingAttendanceReport                                                            *onlinemeetingattendancereport.OnlineMeetingAttendanceReportClient
+	OnlineMeetingAttendanceReportAttendanceRecord                                            *onlinemeetingattendancereportattendancerecord.OnlineMeetingAttendanceReportAttendanceRecordClient
+	OnlineMeetingAttendeeReport                                                              *onlinemeetingattendeereport.OnlineMeetingAttendeeReportClient
+	OnlineMeetingBroadcastRecording                                                          *onlinemeetingbroadcastrecording.OnlineMeetingBroadcastRecordingClient
+	OnlineMeetingMeetingAttendanceReport                                                     *onlinemeetingmeetingattendancereport.OnlineMeetingMeetingAttendanceReportClient
+	OnlineMeetingMeetingAttendanceReportAttendanceRecord                                     *onlinemeetingmeetingattendancereportattendancerecord.OnlineMeetingMeetingAttendanceReportAttendanceRecordClient
+	OnlineMeetingRecording                                                                   *onlinemeetingrecording.OnlineMeetingRecordingClient
+	OnlineMeetingRecordingContent                                                            *onlinemeetingrecordingcontent.OnlineMeetingRecordingContentClient
+	OnlineMeetingRegistration                                                                *onlinemeetingregistration.OnlineMeetingRegistrationClient
+	OnlineMeetingRegistrationCustomQuestion                                                  *onlinemeetingregistrationcustomquestion.OnlineMeetingRegistrationCustomQuestionClient
+	OnlineMeetingRegistrationRegistrant                                                      *onlinemeetingregistrationregistrant.OnlineMeetingRegistrationRegistrantClient
+	OnlineMeetingTranscript                                                                  *onlinemeetingtranscript.OnlineMeetingTranscriptClient
+	OnlineMeetingTranscriptContent                                                           *onlinemeetingtranscriptcontent.OnlineMeetingTranscriptContentClient
+	OnlineMeetingTranscriptMetadataContent                                                   *onlinemeetingtranscriptmetadatacontent.OnlineMeetingTranscriptMetadataContentClient
+	Outlook                                                                                  *outlook.OutlookClient
+	OutlookMasterCategory                                                                    *outlookmastercategory.OutlookMasterCategoryClient
+	OutlookTask                                                                              *outlooktask.OutlookTaskClient
+	OutlookTaskAttachment                                                                    *outlooktaskattachment.OutlookTaskAttachmentClient
+	OutlookTaskFolder                                                                        *outlooktaskfolder.OutlookTaskFolderClient
+	OutlookTaskFolderTask                                                                    *outlooktaskfoldertask.OutlookTaskFolderTaskClient
+	OutlookTaskFolderTaskAttachment                                                          *outlooktaskfoldertaskattachment.OutlookTaskFolderTaskAttachmentClient
+	OutlookTaskGroup                                                                         *outlooktaskgroup.OutlookTaskGroupClient
+	OutlookTaskGroupTaskFolder                                                               *outlooktaskgrouptaskfolder.OutlookTaskGroupTaskFolderClient
+	OutlookTaskGroupTaskFolderTask                                                           *outlooktaskgrouptaskfoldertask.OutlookTaskGroupTaskFolderTaskClient
+	OutlookTaskGroupTaskFolderTaskAttachment                                                 *outlooktaskgrouptaskfoldertaskattachment.OutlookTaskGroupTaskFolderTaskAttachmentClient
+	OwnedDevice                                                                              *owneddevice.OwnedDeviceClient
+	OwnedObject                                                                              *ownedobject.OwnedObjectClient
+	PendingAccessReviewInstance                                                              *pendingaccessreviewinstance.PendingAccessReviewInstanceClient
+	PendingAccessReviewInstanceContactedReviewer                                             *pendingaccessreviewinstancecontactedreviewer.PendingAccessReviewInstanceContactedReviewerClient
+	PendingAccessReviewInstanceDecision                                                      *pendingaccessreviewinstancedecision.PendingAccessReviewInstanceDecisionClient
+	PendingAccessReviewInstanceDecisionInsight                                               *pendingaccessreviewinstancedecisioninsight.PendingAccessReviewInstanceDecisionInsightClient
+	PendingAccessReviewInstanceDecisionInstance                                              *pendingaccessreviewinstancedecisioninstance.PendingAccessReviewInstanceDecisionInstanceClient
+	PendingAccessReviewInstanceDecisionInstanceContactedReviewer                             *pendingaccessreviewinstancedecisioninstancecontactedreviewer.PendingAccessReviewInstanceDecisionInstanceContactedReviewerClient
+	PendingAccessReviewInstanceDecisionInstanceDefinition                                    *pendingaccessreviewinstancedecisioninstancedefinition.PendingAccessReviewInstanceDecisionInstanceDefinitionClient
+	PendingAccessReviewInstanceDecisionInstanceStage                                         *pendingaccessreviewinstancedecisioninstancestage.PendingAccessReviewInstanceDecisionInstanceStageClient
+	PendingAccessReviewInstanceDecisionInstanceStageDecision                                 *pendingaccessreviewinstancedecisioninstancestagedecision.PendingAccessReviewInstanceDecisionInstanceStageDecisionClient
+	PendingAccessReviewInstanceDefinition                                                    *pendingaccessreviewinstancedefinition.PendingAccessReviewInstanceDefinitionClient
+	PendingAccessReviewInstanceStage                                                         *pendingaccessreviewinstancestage.PendingAccessReviewInstanceStageClient
+	PendingAccessReviewInstanceStageDecision                                                 *pendingaccessreviewinstancestagedecision.PendingAccessReviewInstanceStageDecisionClient
+	PendingAccessReviewInstanceStageDecisionInsight                                          *pendingaccessreviewinstancestagedecisioninsight.PendingAccessReviewInstanceStageDecisionInsightClient
+	PendingAccessReviewInstanceStageDecisionInstance                                         *pendingaccessreviewinstancestagedecisioninstance.PendingAccessReviewInstanceStageDecisionInstanceClient
+	PendingAccessReviewInstanceStageDecisionInstanceContactedReviewer                        *pendingaccessreviewinstancestagedecisioninstancecontactedreviewer.PendingAccessReviewInstanceStageDecisionInstanceContactedReviewerClient
+	PendingAccessReviewInstanceStageDecisionInstanceDecision                                 *pendingaccessreviewinstancestagedecisioninstancedecision.PendingAccessReviewInstanceStageDecisionInstanceDecisionClient
+	PendingAccessReviewInstanceStageDecisionInstanceDefinition                               *pendingaccessreviewinstancestagedecisioninstancedefinition.PendingAccessReviewInstanceStageDecisionInstanceDefinitionClient
+	PermissionGrant                                                                          *permissiongrant.PermissionGrantClient
+	Person                                                                                   *person.PersonClient
+	Photo                                                                                    *photo.PhotoClient
+	Planner                                                                                  *planner.PlannerClient
+	PlannerAll                                                                               *plannerall.PlannerAllClient
+	PlannerFavoritePlan                                                                      *plannerfavoriteplan.PlannerFavoritePlanClient
+	PlannerMyDayTask                                                                         *plannermydaytask.PlannerMyDayTaskClient
+	PlannerPlan                                                                              *plannerplan.PlannerPlanClient
+	PlannerPlanBucket                                                                        *plannerplanbucket.PlannerPlanBucketClient
+	PlannerPlanBucketTask                                                                    *plannerplanbuckettask.PlannerPlanBucketTaskClient
+	PlannerPlanBucketTaskAssignedToTaskBoardFormat                                           *plannerplanbuckettaskassignedtotaskboardformat.PlannerPlanBucketTaskAssignedToTaskBoardFormatClient
+	PlannerPlanBucketTaskBucketTaskBoardFormat                                               *plannerplanbuckettaskbuckettaskboardformat.PlannerPlanBucketTaskBucketTaskBoardFormatClient
+	PlannerPlanBucketTaskDetail                                                              *plannerplanbuckettaskdetail.PlannerPlanBucketTaskDetailClient
+	PlannerPlanBucketTaskProgressTaskBoardFormat                                             *plannerplanbuckettaskprogresstaskboardformat.PlannerPlanBucketTaskProgressTaskBoardFormatClient
+	PlannerPlanDetail                                                                        *plannerplandetail.PlannerPlanDetailClient
+	PlannerPlanTask                                                                          *plannerplantask.PlannerPlanTaskClient
+	PlannerPlanTaskAssignedToTaskBoardFormat                                                 *plannerplantaskassignedtotaskboardformat.PlannerPlanTaskAssignedToTaskBoardFormatClient
+	PlannerPlanTaskBucketTaskBoardFormat                                                     *plannerplantaskbuckettaskboardformat.PlannerPlanTaskBucketTaskBoardFormatClient
+	PlannerPlanTaskDetail                                                                    *plannerplantaskdetail.PlannerPlanTaskDetailClient
+	PlannerPlanTaskProgressTaskBoardFormat                                                   *plannerplantaskprogresstaskboardformat.PlannerPlanTaskProgressTaskBoardFormatClient
+	PlannerRecentPlan                                                                        *plannerrecentplan.PlannerRecentPlanClient
+	PlannerRosterPlan                                                                        *plannerrosterplan.PlannerRosterPlanClient
+	PlannerTask                                                                              *plannertask.PlannerTaskClient
+	PlannerTaskAssignedToTaskBoardFormat                                                     *plannertaskassignedtotaskboardformat.PlannerTaskAssignedToTaskBoardFormatClient
+	PlannerTaskBucketTaskBoardFormat                                                         *plannertaskbuckettaskboardformat.PlannerTaskBucketTaskBoardFormatClient
+	PlannerTaskDetail                                                                        *plannertaskdetail.PlannerTaskDetailClient
+	PlannerTaskProgressTaskBoardFormat                                                       *plannertaskprogresstaskboardformat.PlannerTaskProgressTaskBoardFormatClient
+	Presence                                                                                 *presence.PresenceClient
+	Profile                                                                                  *profile.ProfileClient
+	ProfileAccount                                                                           *profileaccount.ProfileAccountClient
+	ProfileAddress                                                                           *profileaddress.ProfileAddressClient
+	ProfileAnniversary                                                                       *profileanniversary.ProfileAnniversaryClient
+	ProfileAward                                                                             *profileaward.ProfileAwardClient
+	ProfileCertification                                                                     *profilecertification.ProfileCertificationClient
+	ProfileEducationalActivity                                                               *profileeducationalactivity.ProfileEducationalActivityClient
+	ProfileEmail                                                                             *profileemail.ProfileEmailClient
+	ProfileInterest                                                                          *profileinterest.ProfileInterestClient
+	ProfileLanguage                                                                          *profilelanguage.ProfileLanguageClient
+	ProfileName                                                                              *profilename.ProfileNameClient
+	ProfileNote                                                                              *profilenote.ProfileNoteClient
+	ProfilePatent                                                                            *profilepatent.ProfilePatentClient
+	ProfilePhone                                                                             *profilephone.ProfilePhoneClient
+	ProfilePosition                                                                          *profileposition.ProfilePositionClient
+	ProfileProject                                                                           *profileproject.ProfileProjectClient
+	ProfilePublication                                                                       *profilepublication.ProfilePublicationClient
+	ProfileSkill                                                                             *profileskill.ProfileSkillClient
+	ProfileWebAccount                                                                        *profilewebaccount.ProfileWebAccountClient
+	ProfileWebsite                                                                           *profilewebsite.ProfileWebsiteClient
+	RegisteredDevice                                                                         *registereddevice.RegisteredDeviceClient
+	ScopedRoleMemberOf                                                                       *scopedrolememberof.ScopedRoleMemberOfClient
+	Security                                                                                 *security.SecurityClient
+	SecurityInformationProtection                                                            *securityinformationprotection.SecurityInformationProtectionClient
+	SecurityInformationProtectionLabelPolicySetting                                          *securityinformationprotectionlabelpolicysetting.SecurityInformationProtectionLabelPolicySettingClient
+	SecurityInformationProtectionSensitivityLabel                                            *securityinformationprotectionsensitivitylabel.SecurityInformationProtectionSensitivityLabelClient
+	SecurityInformationProtectionSensitivityLabelParent                                      *securityinformationprotectionsensitivitylabelparent.SecurityInformationProtectionSensitivityLabelParentClient
+	ServiceProvisioningError                                                                 *serviceprovisioningerror.ServiceProvisioningErrorClient
+	Setting                                                                                  *setting.SettingClient
+	SettingContactMergeSuggestion                                                            *settingcontactmergesuggestion.SettingContactMergeSuggestionClient
+	SettingExchange                                                                          *settingexchange.SettingExchangeClient
+	SettingItemInsight                                                                       *settingiteminsight.SettingItemInsightClient
+	SettingRegionalAndLanguageSetting                                                        *settingregionalandlanguagesetting.SettingRegionalAndLanguageSettingClient
+	SettingShiftPreference                                                                   *settingshiftpreference.SettingShiftPreferenceClient
+	SettingStorage                                                                           *settingstorage.SettingStorageClient
+	SettingStorageQuota                                                                      *settingstoragequota.SettingStorageQuotaClient
+	SettingStorageQuotaService                                                               *settingstoragequotaservice.SettingStorageQuotaServiceClient
+	SettingWindow                                                                            *settingwindow.SettingWindowClient
+	SettingWindowInstance                                                                    *settingwindowinstance.SettingWindowInstanceClient
+	Solution                                                                                 *solution.SolutionClient
+	SolutionWorkingTimeSchedule                                                              *solutionworkingtimeschedule.SolutionWorkingTimeScheduleClient
+	Sponsor                                                                                  *sponsor.SponsorClient
+	Teamwork                                                                                 *teamwork.TeamworkClient
+	TeamworkAssociatedTeam                                                                   *teamworkassociatedteam.TeamworkAssociatedTeamClient
+	TeamworkAssociatedTeamTeam                                                               *teamworkassociatedteamteam.TeamworkAssociatedTeamTeamClient
+	TeamworkInstalledApp                                                                     *teamworkinstalledapp.TeamworkInstalledAppClient
+	TeamworkInstalledAppChat                                                                 *teamworkinstalledappchat.TeamworkInstalledAppChatClient
+	TeamworkInstalledAppTeamsApp                                                             *teamworkinstalledappteamsapp.TeamworkInstalledAppTeamsAppClient
+	TeamworkInstalledAppTeamsAppDefinition                                                   *teamworkinstalledappteamsappdefinition.TeamworkInstalledAppTeamsAppDefinitionClient
+	Todo                                                                                     *todo.TodoClient
+	TodoList                                                                                 *todolist.TodoListClient
+	TodoListExtension                                                                        *todolistextension.TodoListExtensionClient
+	TodoListTask                                                                             *todolisttask.TodoListTaskClient
+	TodoListTaskAttachment                                                                   *todolisttaskattachment.TodoListTaskAttachmentClient
+	TodoListTaskAttachmentSession                                                            *todolisttaskattachmentsession.TodoListTaskAttachmentSessionClient
+	TodoListTaskAttachmentSessionContent                                                     *todolisttaskattachmentsessioncontent.TodoListTaskAttachmentSessionContentClient
+	TodoListTaskChecklistItem                                                                *todolisttaskchecklistitem.TodoListTaskChecklistItemClient
+	TodoListTaskExtension                                                                    *todolisttaskextension.TodoListTaskExtensionClient
+	TodoListTaskLinkedResource                                                               *todolisttasklinkedresource.TodoListTaskLinkedResourceClient
+	TransitiveMemberOf                                                                       *transitivememberof.TransitiveMemberOfClient
+	TransitiveReport                                                                         *transitivereport.TransitiveReportClient
+	UsageRight                                                                               *usageright.UsageRightClient
+	User                                                                                     *user.UserClient
+	VirtualEvent                                                                             *virtualevent.VirtualEventClient
+	VirtualEventWebinar                                                                      *virtualeventwebinar.VirtualEventWebinarClient
+	WindowsInformationProtectionDeviceRegistration                                           *windowsinformationprotectiondeviceregistration.WindowsInformationProtectionDeviceRegistrationClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Client)) (*Client, error) {
@@ -1126,6 +1176,18 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(approvalStepClient.Client)
 
+	assignUserAuthenticationHardwareOathMethodDeviceHardwareOathDeviceToClient, err := assignuserauthenticationhardwareoathmethoddevicehardwareoathdeviceto.NewAssignUserAuthenticationHardwareOathMethodDeviceHardwareOathDeviceToClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AssignUserAuthenticationHardwareOathMethodDeviceHardwareOathDeviceTo client: %+v", err)
+	}
+	configureFunc(assignUserAuthenticationHardwareOathMethodDeviceHardwareOathDeviceToClient.Client)
+
+	assignUserAuthenticationHardwareOathMethodDeviceToClient, err := assignuserauthenticationhardwareoathmethoddeviceto.NewAssignUserAuthenticationHardwareOathMethodDeviceToClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AssignUserAuthenticationHardwareOathMethodDeviceTo client: %+v", err)
+	}
+	configureFunc(assignUserAuthenticationHardwareOathMethodDeviceToClient.Client)
+
 	authenticationClient, err := authentication.NewAuthenticationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Authentication client: %+v", err)
@@ -1143,6 +1205,48 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building AuthenticationFido2Method client: %+v", err)
 	}
 	configureFunc(authenticationFido2MethodClient.Client)
+
+	authenticationHardwareOathMethodClient, err := authenticationhardwareoathmethod.NewAuthenticationHardwareOathMethodClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationHardwareOathMethod client: %+v", err)
+	}
+	configureFunc(authenticationHardwareOathMethodClient.Client)
+
+	authenticationHardwareOathMethodDeviceAssignToMailboxSettingClient, err := authenticationhardwareoathmethoddeviceassigntomailboxsetting.NewAuthenticationHardwareOathMethodDeviceAssignToMailboxSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationHardwareOathMethodDeviceAssignToMailboxSetting client: %+v", err)
+	}
+	configureFunc(authenticationHardwareOathMethodDeviceAssignToMailboxSettingClient.Client)
+
+	authenticationHardwareOathMethodDeviceAssignToServiceProvisioningErrorClient, err := authenticationhardwareoathmethoddeviceassigntoserviceprovisioningerror.NewAuthenticationHardwareOathMethodDeviceAssignToServiceProvisioningErrorClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationHardwareOathMethodDeviceAssignToServiceProvisioningError client: %+v", err)
+	}
+	configureFunc(authenticationHardwareOathMethodDeviceAssignToServiceProvisioningErrorClient.Client)
+
+	authenticationHardwareOathMethodDeviceClient, err := authenticationhardwareoathmethoddevice.NewAuthenticationHardwareOathMethodDeviceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationHardwareOathMethodDevice client: %+v", err)
+	}
+	configureFunc(authenticationHardwareOathMethodDeviceClient.Client)
+
+	authenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient, err := authenticationhardwareoathmethoddevicehardwareoathdeviceassigntomailboxsetting.NewAuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToMailboxSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToMailboxSetting client: %+v", err)
+	}
+	configureFunc(authenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient.Client)
+
+	authenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClient, err := authenticationhardwareoathmethoddevicehardwareoathdeviceassigntoserviceprovisioningerror.NewAuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToServiceProvisioningError client: %+v", err)
+	}
+	configureFunc(authenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClient.Client)
+
+	authenticationHardwareOathMethodDeviceHardwareOathDeviceClient, err := authenticationhardwareoathmethoddevicehardwareoathdevice.NewAuthenticationHardwareOathMethodDeviceHardwareOathDeviceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationHardwareOathMethodDeviceHardwareOathDevice client: %+v", err)
+	}
+	configureFunc(authenticationHardwareOathMethodDeviceHardwareOathDeviceClient.Client)
 
 	authenticationMethodClient, err := authenticationmethod.NewAuthenticationMethodClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1203,6 +1307,36 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building AuthenticationPlatformCredentialMethodDevice client: %+v", err)
 	}
 	configureFunc(authenticationPlatformCredentialMethodDeviceClient.Client)
+
+	authenticationQrCodePinMethodClient, err := authenticationqrcodepinmethod.NewAuthenticationQrCodePinMethodClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationQrCodePinMethod client: %+v", err)
+	}
+	configureFunc(authenticationQrCodePinMethodClient.Client)
+
+	authenticationQrCodePinMethodPinClient, err := authenticationqrcodepinmethodpin.NewAuthenticationQrCodePinMethodPinClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationQrCodePinMethodPin client: %+v", err)
+	}
+	configureFunc(authenticationQrCodePinMethodPinClient.Client)
+
+	authenticationQrCodePinMethodStandardQRCodeClient, err := authenticationqrcodepinmethodstandardqrcode.NewAuthenticationQrCodePinMethodStandardQRCodeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationQrCodePinMethodStandardQRCode client: %+v", err)
+	}
+	configureFunc(authenticationQrCodePinMethodStandardQRCodeClient.Client)
+
+	authenticationQrCodePinMethodTemporaryQRCodeClient, err := authenticationqrcodepinmethodtemporaryqrcode.NewAuthenticationQrCodePinMethodTemporaryQRCodeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationQrCodePinMethodTemporaryQRCode client: %+v", err)
+	}
+	configureFunc(authenticationQrCodePinMethodTemporaryQRCodeClient.Client)
+
+	authenticationRequirementClient, err := authenticationrequirement.NewAuthenticationRequirementClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationRequirement client: %+v", err)
+	}
+	configureFunc(authenticationRequirementClient.Client)
 
 	authenticationSignInPreferenceClient, err := authenticationsigninpreference.NewAuthenticationSignInPreferenceClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1348,6 +1482,30 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(cloudPCClient.Client)
 
+	communicationCallSettingClient, err := communicationcallsetting.NewCommunicationCallSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CommunicationCallSetting client: %+v", err)
+	}
+	configureFunc(communicationCallSettingClient.Client)
+
+	communicationCallSettingDelegateClient, err := communicationcallsettingdelegate.NewCommunicationCallSettingDelegateClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CommunicationCallSettingDelegate client: %+v", err)
+	}
+	configureFunc(communicationCallSettingDelegateClient.Client)
+
+	communicationCallSettingDelegatorClient, err := communicationcallsettingdelegator.NewCommunicationCallSettingDelegatorClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CommunicationCallSettingDelegator client: %+v", err)
+	}
+	configureFunc(communicationCallSettingDelegatorClient.Client)
+
+	communicationClient, err := communication.NewCommunicationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Communication client: %+v", err)
+	}
+	configureFunc(communicationClient.Client)
+
 	contactClient, err := contact.NewContactClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Contact client: %+v", err)
@@ -1420,6 +1578,54 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(createdObjectClient.Client)
 
+	dataSecurityAndGovernanceActivityClient, err := datasecurityandgovernanceactivity.NewDataSecurityAndGovernanceActivityClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DataSecurityAndGovernanceActivity client: %+v", err)
+	}
+	configureFunc(dataSecurityAndGovernanceActivityClient.Client)
+
+	dataSecurityAndGovernanceActivityContentActivityClient, err := datasecurityandgovernanceactivitycontentactivity.NewDataSecurityAndGovernanceActivityContentActivityClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DataSecurityAndGovernanceActivityContentActivity client: %+v", err)
+	}
+	configureFunc(dataSecurityAndGovernanceActivityContentActivityClient.Client)
+
+	dataSecurityAndGovernanceClient, err := datasecurityandgovernance.NewDataSecurityAndGovernanceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DataSecurityAndGovernance client: %+v", err)
+	}
+	configureFunc(dataSecurityAndGovernanceClient.Client)
+
+	dataSecurityAndGovernanceProtectionScopeClient, err := datasecurityandgovernanceprotectionscope.NewDataSecurityAndGovernanceProtectionScopeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DataSecurityAndGovernanceProtectionScope client: %+v", err)
+	}
+	configureFunc(dataSecurityAndGovernanceProtectionScopeClient.Client)
+
+	dataSecurityAndGovernanceSensitivityLabelClient, err := datasecurityandgovernancesensitivitylabel.NewDataSecurityAndGovernanceSensitivityLabelClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DataSecurityAndGovernanceSensitivityLabel client: %+v", err)
+	}
+	configureFunc(dataSecurityAndGovernanceSensitivityLabelClient.Client)
+
+	dataSecurityAndGovernanceSensitivityLabelRightClient, err := datasecurityandgovernancesensitivitylabelright.NewDataSecurityAndGovernanceSensitivityLabelRightClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DataSecurityAndGovernanceSensitivityLabelRight client: %+v", err)
+	}
+	configureFunc(dataSecurityAndGovernanceSensitivityLabelRightClient.Client)
+
+	dataSecurityAndGovernanceSensitivityLabelSublabelClient, err := datasecurityandgovernancesensitivitylabelsublabel.NewDataSecurityAndGovernanceSensitivityLabelSublabelClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DataSecurityAndGovernanceSensitivityLabelSublabel client: %+v", err)
+	}
+	configureFunc(dataSecurityAndGovernanceSensitivityLabelSublabelClient.Client)
+
+	dataSecurityAndGovernanceSensitivityLabelSublabelRightClient, err := datasecurityandgovernancesensitivitylabelsublabelright.NewDataSecurityAndGovernanceSensitivityLabelSublabelRightClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DataSecurityAndGovernanceSensitivityLabelSublabelRight client: %+v", err)
+	}
+	configureFunc(dataSecurityAndGovernanceSensitivityLabelSublabelRightClient.Client)
+
 	deviceClient, err := device.NewDeviceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Device client: %+v", err)
@@ -1437,6 +1643,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building DeviceCommandResponsepayload client: %+v", err)
 	}
 	configureFunc(deviceCommandResponsepayloadClient.Client)
+
+	deviceDeviceTemplateClient, err := devicedevicetemplate.NewDeviceDeviceTemplateClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DeviceDeviceTemplate client: %+v", err)
+	}
+	configureFunc(deviceDeviceTemplateClient.Client)
 
 	deviceEnrollmentConfigurationAssignmentClient, err := deviceenrollmentconfigurationassignment.NewDeviceEnrollmentConfigurationAssignmentClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1695,6 +1907,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building DriveItemCreatedByUserServiceProvisioningError client: %+v", err)
 	}
 	configureFunc(driveItemCreatedByUserServiceProvisioningErrorClient.Client)
+
+	driveItemExtensionClient, err := driveitemextension.NewDriveItemExtensionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DriveItemExtension client: %+v", err)
+	}
+	configureFunc(driveItemExtensionClient.Client)
 
 	driveItemLastModifiedByUserClient, err := driveitemlastmodifiedbyuser.NewDriveItemLastModifiedByUserClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -2266,6 +2484,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(driveRootCreatedByUserServiceProvisioningErrorClient.Client)
 
+	driveRootExtensionClient, err := driverootextension.NewDriveRootExtensionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DriveRootExtension client: %+v", err)
+	}
+	configureFunc(driveRootExtensionClient.Client)
+
 	driveRootLastModifiedByUserClient, err := driverootlastmodifiedbyuser.NewDriveRootLastModifiedByUserClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DriveRootLastModifiedByUser client: %+v", err)
@@ -2470,6 +2694,36 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(driveSpecialContentStreamClient.Client)
 
+	employeeExperienceAssignedRoleClient, err := employeeexperienceassignedrole.NewEmployeeExperienceAssignedRoleClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EmployeeExperienceAssignedRole client: %+v", err)
+	}
+	configureFunc(employeeExperienceAssignedRoleClient.Client)
+
+	employeeExperienceAssignedRoleMemberClient, err := employeeexperienceassignedrolemember.NewEmployeeExperienceAssignedRoleMemberClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EmployeeExperienceAssignedRoleMember client: %+v", err)
+	}
+	configureFunc(employeeExperienceAssignedRoleMemberClient.Client)
+
+	employeeExperienceAssignedRoleMemberUserClient, err := employeeexperienceassignedrolememberuser.NewEmployeeExperienceAssignedRoleMemberUserClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EmployeeExperienceAssignedRoleMemberUser client: %+v", err)
+	}
+	configureFunc(employeeExperienceAssignedRoleMemberUserClient.Client)
+
+	employeeExperienceAssignedRoleMemberUserMailboxSettingClient, err := employeeexperienceassignedrolememberusermailboxsetting.NewEmployeeExperienceAssignedRoleMemberUserMailboxSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EmployeeExperienceAssignedRoleMemberUserMailboxSetting client: %+v", err)
+	}
+	configureFunc(employeeExperienceAssignedRoleMemberUserMailboxSettingClient.Client)
+
+	employeeExperienceAssignedRoleMemberUserServiceProvisioningErrorClient, err := employeeexperienceassignedrolememberuserserviceprovisioningerror.NewEmployeeExperienceAssignedRoleMemberUserServiceProvisioningErrorClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EmployeeExperienceAssignedRoleMemberUserServiceProvisioningError client: %+v", err)
+	}
+	configureFunc(employeeExperienceAssignedRoleMemberUserServiceProvisioningErrorClient.Client)
+
 	employeeExperienceClient, err := employeeexperience.NewEmployeeExperienceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EmployeeExperience client: %+v", err)
@@ -2500,107 +2754,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(eventClient.Client)
 
-	eventExceptionOccurrenceAttachmentClient, err := eventexceptionoccurrenceattachment.NewEventExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceAttachmentClient.Client)
-
-	eventExceptionOccurrenceCalendarClient, err := eventexceptionoccurrencecalendar.NewEventExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceCalendarClient.Client)
-
-	eventExceptionOccurrenceClient, err := eventexceptionoccurrence.NewEventExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceClient.Client)
-
-	eventExceptionOccurrenceExtensionClient, err := eventexceptionoccurrenceextension.NewEventExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceExtensionClient.Client)
-
-	eventExceptionOccurrenceInstanceAttachmentClient, err := eventexceptionoccurrenceinstanceattachment.NewEventExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	eventExceptionOccurrenceInstanceCalendarClient, err := eventexceptionoccurrenceinstancecalendar.NewEventExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceInstanceCalendarClient.Client)
-
-	eventExceptionOccurrenceInstanceClient, err := eventexceptionoccurrenceinstance.NewEventExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceInstanceClient.Client)
-
-	eventExceptionOccurrenceInstanceExtensionClient, err := eventexceptionoccurrenceinstanceextension.NewEventExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(eventExceptionOccurrenceInstanceExtensionClient.Client)
-
 	eventExtensionClient, err := eventextension.NewEventExtensionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventExtension client: %+v", err)
 	}
 	configureFunc(eventExtensionClient.Client)
 
-	eventInstanceAttachmentClient, err := eventinstanceattachment.NewEventInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceAttachment client: %+v", err)
-	}
-	configureFunc(eventInstanceAttachmentClient.Client)
-
-	eventInstanceCalendarClient, err := eventinstancecalendar.NewEventInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceCalendar client: %+v", err)
-	}
-	configureFunc(eventInstanceCalendarClient.Client)
-
 	eventInstanceClient, err := eventinstance.NewEventInstanceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventInstance client: %+v", err)
 	}
 	configureFunc(eventInstanceClient.Client)
-
-	eventInstanceExceptionOccurrenceAttachmentClient, err := eventinstanceexceptionoccurrenceattachment.NewEventInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(eventInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	eventInstanceExceptionOccurrenceCalendarClient, err := eventinstanceexceptionoccurrencecalendar.NewEventInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(eventInstanceExceptionOccurrenceCalendarClient.Client)
-
-	eventInstanceExceptionOccurrenceClient, err := eventinstanceexceptionoccurrence.NewEventInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(eventInstanceExceptionOccurrenceClient.Client)
-
-	eventInstanceExceptionOccurrenceExtensionClient, err := eventinstanceexceptionoccurrenceextension.NewEventInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(eventInstanceExceptionOccurrenceExtensionClient.Client)
-
-	eventInstanceExtensionClient, err := eventinstanceextension.NewEventInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExtension client: %+v", err)
-	}
-	configureFunc(eventInstanceExtensionClient.Client)
 
 	extensionClient, err := extension.NewExtensionClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -2668,11 +2832,23 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(informationProtectionSensitivityLabelClient.Client)
 
+	informationProtectionSensitivityLabelRightClient, err := informationprotectionsensitivitylabelright.NewInformationProtectionSensitivityLabelRightClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building InformationProtectionSensitivityLabelRight client: %+v", err)
+	}
+	configureFunc(informationProtectionSensitivityLabelRightClient.Client)
+
 	informationProtectionSensitivityLabelSublabelClient, err := informationprotectionsensitivitylabelsublabel.NewInformationProtectionSensitivityLabelSublabelClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building InformationProtectionSensitivityLabelSublabel client: %+v", err)
 	}
 	configureFunc(informationProtectionSensitivityLabelSublabelClient.Client)
+
+	informationProtectionSensitivityLabelSublabelRightClient, err := informationprotectionsensitivitylabelsublabelright.NewInformationProtectionSensitivityLabelSublabelRightClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building InformationProtectionSensitivityLabelSublabelRight client: %+v", err)
+	}
+	configureFunc(informationProtectionSensitivityLabelSublabelRightClient.Client)
 
 	informationProtectionSensitivityPolicySettingClient, err := informationprotectionsensitivitypolicysetting.NewInformationProtectionSensitivityPolicySettingClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -2800,6 +2976,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(mailFolderChildFolderMessageRuleClient.Client)
 
+	mailFolderChildFolderOperationClient, err := mailfolderchildfolderoperation.NewMailFolderChildFolderOperationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building MailFolderChildFolderOperation client: %+v", err)
+	}
+	configureFunc(mailFolderChildFolderOperationClient.Client)
+
 	mailFolderChildFolderUserConfigurationClient, err := mailfolderchildfolderuserconfiguration.NewMailFolderChildFolderUserConfigurationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MailFolderChildFolderUserConfiguration client: %+v", err)
@@ -2841,6 +3023,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building MailFolderMessageRule client: %+v", err)
 	}
 	configureFunc(mailFolderMessageRuleClient.Client)
+
+	mailFolderOperationClient, err := mailfolderoperation.NewMailFolderOperationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building MailFolderOperation client: %+v", err)
+	}
+	configureFunc(mailFolderOperationClient.Client)
 
 	mailFolderUserConfigurationClient, err := mailfolderuserconfiguration.NewMailFolderUserConfigurationClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -3291,6 +3479,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building OnenoteSectionParentSectionGroup client: %+v", err)
 	}
 	configureFunc(onenoteSectionParentSectionGroupClient.Client)
+
+	onlineMeetingAiInsightClient, err := onlinemeetingaiinsight.NewOnlineMeetingAiInsightClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnlineMeetingAiInsight client: %+v", err)
+	}
+	configureFunc(onlineMeetingAiInsightClient.Client)
 
 	onlineMeetingAlternativeRecordingClient, err := onlinemeetingalternativerecording.NewOnlineMeetingAlternativeRecordingClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -3916,6 +4110,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(settingContactMergeSuggestionClient.Client)
 
+	settingExchangeClient, err := settingexchange.NewSettingExchangeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SettingExchange client: %+v", err)
+	}
+	configureFunc(settingExchangeClient.Client)
+
 	settingItemInsightClient, err := settingiteminsight.NewSettingItemInsightClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SettingItemInsight client: %+v", err)
@@ -4134,65 +4334,92 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		Analytics:                     analyticsClient,
 		AnalyticsActivityStatistic:    analyticsActivityStatisticClient,
 		AppConsentRequestsForApproval: appConsentRequestsForApprovalClient,
-		AppConsentRequestsForApprovalUserConsentRequest:              appConsentRequestsForApprovalUserConsentRequestClient,
-		AppConsentRequestsForApprovalUserConsentRequestApproval:      appConsentRequestsForApprovalUserConsentRequestApprovalClient,
-		AppConsentRequestsForApprovalUserConsentRequestApprovalStep:  appConsentRequestsForApprovalUserConsentRequestApprovalStepClient,
-		AppRoleAssignedResource:                                      appRoleAssignedResourceClient,
-		AppRoleAssignment:                                            appRoleAssignmentClient,
-		Approval:                                                     approvalClient,
-		ApprovalStep:                                                 approvalStepClient,
-		Authentication:                                               authenticationClient,
-		AuthenticationEmailMethod:                                    authenticationEmailMethodClient,
-		AuthenticationFido2Method:                                    authenticationFido2MethodClient,
-		AuthenticationMethod:                                         authenticationMethodClient,
-		AuthenticationMicrosoftAuthenticatorMethod:                   authenticationMicrosoftAuthenticatorMethodClient,
-		AuthenticationMicrosoftAuthenticatorMethodDevice:             authenticationMicrosoftAuthenticatorMethodDeviceClient,
-		AuthenticationOperation:                                      authenticationOperationClient,
-		AuthenticationPasswordMethod:                                 authenticationPasswordMethodClient,
-		AuthenticationPasswordlessMicrosoftAuthenticatorMethod:       authenticationPasswordlessMicrosoftAuthenticatorMethodClient,
-		AuthenticationPasswordlessMicrosoftAuthenticatorMethodDevice: authenticationPasswordlessMicrosoftAuthenticatorMethodDeviceClient,
-		AuthenticationPhoneMethod:                                    authenticationPhoneMethodClient,
-		AuthenticationPlatformCredentialMethod:                       authenticationPlatformCredentialMethodClient,
-		AuthenticationPlatformCredentialMethodDevice:                 authenticationPlatformCredentialMethodDeviceClient,
-		AuthenticationSignInPreference:                               authenticationSignInPreferenceClient,
-		AuthenticationSoftwareOathMethod:                             authenticationSoftwareOathMethodClient,
-		AuthenticationTemporaryAccessPassMethod:                      authenticationTemporaryAccessPassMethodClient,
-		AuthenticationWindowsHelloForBusinessMethod:                  authenticationWindowsHelloForBusinessMethodClient,
-		AuthenticationWindowsHelloForBusinessMethodDevice:            authenticationWindowsHelloForBusinessMethodDeviceClient,
-		Chat:                                       chatClient,
-		ChatInstalledApp:                           chatInstalledAppClient,
-		ChatInstalledAppTeamsApp:                   chatInstalledAppTeamsAppClient,
-		ChatInstalledAppTeamsAppDefinition:         chatInstalledAppTeamsAppDefinitionClient,
-		ChatLastMessagePreview:                     chatLastMessagePreviewClient,
-		ChatMember:                                 chatMemberClient,
-		ChatMessage:                                chatMessageClient,
-		ChatMessageHostedContent:                   chatMessageHostedContentClient,
-		ChatMessageReply:                           chatMessageReplyClient,
-		ChatMessageReplyHostedContent:              chatMessageReplyHostedContentClient,
-		ChatOperation:                              chatOperationClient,
-		ChatPermissionGrant:                        chatPermissionGrantClient,
-		ChatPinnedMessage:                          chatPinnedMessageClient,
-		ChatPinnedMessageMessage:                   chatPinnedMessageMessageClient,
-		ChatTab:                                    chatTabClient,
-		ChatTabTeamsApp:                            chatTabTeamsAppClient,
-		CloudClipboard:                             cloudClipboardClient,
-		CloudClipboardItem:                         cloudClipboardItemClient,
-		CloudPC:                                    cloudPCClient,
-		Contact:                                    contactClient,
-		ContactExtension:                           contactExtensionClient,
-		ContactFolder:                              contactFolderClient,
-		ContactFolderChildFolder:                   contactFolderChildFolderClient,
-		ContactFolderChildFolderContact:            contactFolderChildFolderContactClient,
-		ContactFolderChildFolderContactExtension:   contactFolderChildFolderContactExtensionClient,
-		ContactFolderChildFolderContactPhoto:       contactFolderChildFolderContactPhotoClient,
-		ContactFolderContact:                       contactFolderContactClient,
-		ContactFolderContactExtension:              contactFolderContactExtensionClient,
-		ContactFolderContactPhoto:                  contactFolderContactPhotoClient,
-		ContactPhoto:                               contactPhotoClient,
-		CreatedObject:                              createdObjectClient,
+		AppConsentRequestsForApprovalUserConsentRequest:             appConsentRequestsForApprovalUserConsentRequestClient,
+		AppConsentRequestsForApprovalUserConsentRequestApproval:     appConsentRequestsForApprovalUserConsentRequestApprovalClient,
+		AppConsentRequestsForApprovalUserConsentRequestApprovalStep: appConsentRequestsForApprovalUserConsentRequestApprovalStepClient,
+		AppRoleAssignedResource:                                     appRoleAssignedResourceClient,
+		AppRoleAssignment:                                           appRoleAssignmentClient,
+		Approval:                                                    approvalClient,
+		ApprovalStep:                                                approvalStepClient,
+		AssignUserAuthenticationHardwareOathMethodDeviceHardwareOathDeviceTo: assignUserAuthenticationHardwareOathMethodDeviceHardwareOathDeviceToClient,
+		AssignUserAuthenticationHardwareOathMethodDeviceTo:                   assignUserAuthenticationHardwareOathMethodDeviceToClient,
+		Authentication:                                                                           authenticationClient,
+		AuthenticationEmailMethod:                                                                authenticationEmailMethodClient,
+		AuthenticationFido2Method:                                                                authenticationFido2MethodClient,
+		AuthenticationHardwareOathMethod:                                                         authenticationHardwareOathMethodClient,
+		AuthenticationHardwareOathMethodDevice:                                                   authenticationHardwareOathMethodDeviceClient,
+		AuthenticationHardwareOathMethodDeviceAssignToMailboxSetting:                             authenticationHardwareOathMethodDeviceAssignToMailboxSettingClient,
+		AuthenticationHardwareOathMethodDeviceAssignToServiceProvisioningError:                   authenticationHardwareOathMethodDeviceAssignToServiceProvisioningErrorClient,
+		AuthenticationHardwareOathMethodDeviceHardwareOathDevice:                                 authenticationHardwareOathMethodDeviceHardwareOathDeviceClient,
+		AuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToMailboxSetting:           authenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient,
+		AuthenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToServiceProvisioningError: authenticationHardwareOathMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClient,
+		AuthenticationMethod:                                                                     authenticationMethodClient,
+		AuthenticationMicrosoftAuthenticatorMethod:                                               authenticationMicrosoftAuthenticatorMethodClient,
+		AuthenticationMicrosoftAuthenticatorMethodDevice:                                         authenticationMicrosoftAuthenticatorMethodDeviceClient,
+		AuthenticationOperation:                                                                  authenticationOperationClient,
+		AuthenticationPasswordMethod:                                                             authenticationPasswordMethodClient,
+		AuthenticationPasswordlessMicrosoftAuthenticatorMethod:                                   authenticationPasswordlessMicrosoftAuthenticatorMethodClient,
+		AuthenticationPasswordlessMicrosoftAuthenticatorMethodDevice:                             authenticationPasswordlessMicrosoftAuthenticatorMethodDeviceClient,
+		AuthenticationPhoneMethod:                                                                authenticationPhoneMethodClient,
+		AuthenticationPlatformCredentialMethod:                                                   authenticationPlatformCredentialMethodClient,
+		AuthenticationPlatformCredentialMethodDevice:                                             authenticationPlatformCredentialMethodDeviceClient,
+		AuthenticationQrCodePinMethod:                                                            authenticationQrCodePinMethodClient,
+		AuthenticationQrCodePinMethodPin:                                                         authenticationQrCodePinMethodPinClient,
+		AuthenticationQrCodePinMethodStandardQRCode:                                              authenticationQrCodePinMethodStandardQRCodeClient,
+		AuthenticationQrCodePinMethodTemporaryQRCode:                                             authenticationQrCodePinMethodTemporaryQRCodeClient,
+		AuthenticationRequirement:                                                                authenticationRequirementClient,
+		AuthenticationSignInPreference:                                                           authenticationSignInPreferenceClient,
+		AuthenticationSoftwareOathMethod:                                                         authenticationSoftwareOathMethodClient,
+		AuthenticationTemporaryAccessPassMethod:                                                  authenticationTemporaryAccessPassMethodClient,
+		AuthenticationWindowsHelloForBusinessMethod:                                              authenticationWindowsHelloForBusinessMethodClient,
+		AuthenticationWindowsHelloForBusinessMethodDevice:                                        authenticationWindowsHelloForBusinessMethodDeviceClient,
+		Chat:                                     chatClient,
+		ChatInstalledApp:                         chatInstalledAppClient,
+		ChatInstalledAppTeamsApp:                 chatInstalledAppTeamsAppClient,
+		ChatInstalledAppTeamsAppDefinition:       chatInstalledAppTeamsAppDefinitionClient,
+		ChatLastMessagePreview:                   chatLastMessagePreviewClient,
+		ChatMember:                               chatMemberClient,
+		ChatMessage:                              chatMessageClient,
+		ChatMessageHostedContent:                 chatMessageHostedContentClient,
+		ChatMessageReply:                         chatMessageReplyClient,
+		ChatMessageReplyHostedContent:            chatMessageReplyHostedContentClient,
+		ChatOperation:                            chatOperationClient,
+		ChatPermissionGrant:                      chatPermissionGrantClient,
+		ChatPinnedMessage:                        chatPinnedMessageClient,
+		ChatPinnedMessageMessage:                 chatPinnedMessageMessageClient,
+		ChatTab:                                  chatTabClient,
+		ChatTabTeamsApp:                          chatTabTeamsAppClient,
+		CloudClipboard:                           cloudClipboardClient,
+		CloudClipboardItem:                       cloudClipboardItemClient,
+		CloudPC:                                  cloudPCClient,
+		Communication:                            communicationClient,
+		CommunicationCallSetting:                 communicationCallSettingClient,
+		CommunicationCallSettingDelegate:         communicationCallSettingDelegateClient,
+		CommunicationCallSettingDelegator:        communicationCallSettingDelegatorClient,
+		Contact:                                  contactClient,
+		ContactExtension:                         contactExtensionClient,
+		ContactFolder:                            contactFolderClient,
+		ContactFolderChildFolder:                 contactFolderChildFolderClient,
+		ContactFolderChildFolderContact:          contactFolderChildFolderContactClient,
+		ContactFolderChildFolderContactExtension: contactFolderChildFolderContactExtensionClient,
+		ContactFolderChildFolderContactPhoto:     contactFolderChildFolderContactPhotoClient,
+		ContactFolderContact:                     contactFolderContactClient,
+		ContactFolderContactExtension:            contactFolderContactExtensionClient,
+		ContactFolderContactPhoto:                contactFolderContactPhotoClient,
+		ContactPhoto:                             contactPhotoClient,
+		CreatedObject:                            createdObjectClient,
+		DataSecurityAndGovernance:                dataSecurityAndGovernanceClient,
+		DataSecurityAndGovernanceActivity:        dataSecurityAndGovernanceActivityClient,
+		DataSecurityAndGovernanceActivityContentActivity:       dataSecurityAndGovernanceActivityContentActivityClient,
+		DataSecurityAndGovernanceProtectionScope:               dataSecurityAndGovernanceProtectionScopeClient,
+		DataSecurityAndGovernanceSensitivityLabel:              dataSecurityAndGovernanceSensitivityLabelClient,
+		DataSecurityAndGovernanceSensitivityLabelRight:         dataSecurityAndGovernanceSensitivityLabelRightClient,
+		DataSecurityAndGovernanceSensitivityLabelSublabel:      dataSecurityAndGovernanceSensitivityLabelSublabelClient,
+		DataSecurityAndGovernanceSensitivityLabelSublabelRight: dataSecurityAndGovernanceSensitivityLabelSublabelRightClient,
 		Device:                                     deviceClient,
 		DeviceCommand:                              deviceCommandClient,
 		DeviceCommandResponsepayload:               deviceCommandResponsepayloadClient,
+		DeviceDeviceTemplate:                       deviceDeviceTemplateClient,
 		DeviceEnrollmentConfiguration:              deviceEnrollmentConfigurationClient,
 		DeviceEnrollmentConfigurationAssignment:    deviceEnrollmentConfigurationAssignmentClient,
 		DeviceExtension:                            deviceExtensionClient,
@@ -4236,6 +4463,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		DriveItemCreatedByUser:                                           driveItemCreatedByUserClient,
 		DriveItemCreatedByUserMailboxSetting:                             driveItemCreatedByUserMailboxSettingClient,
 		DriveItemCreatedByUserServiceProvisioningError:                   driveItemCreatedByUserServiceProvisioningErrorClient,
+		DriveItemExtension:                                               driveItemExtensionClient,
 		DriveItemLastModifiedByUser:                                      driveItemLastModifiedByUserClient,
 		DriveItemLastModifiedByUserMailboxSetting:                        driveItemLastModifiedByUserMailboxSettingClient,
 		DriveItemLastModifiedByUserServiceProvisioningError:              driveItemLastModifiedByUserServiceProvisioningErrorClient,
@@ -4331,6 +4559,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		DriveRootCreatedByUser:                                           driveRootCreatedByUserClient,
 		DriveRootCreatedByUserMailboxSetting:                             driveRootCreatedByUserMailboxSettingClient,
 		DriveRootCreatedByUserServiceProvisioningError:                   driveRootCreatedByUserServiceProvisioningErrorClient,
+		DriveRootExtension:                                               driveRootExtensionClient,
 		DriveRootLastModifiedByUser:                                      driveRootLastModifiedByUserClient,
 		DriveRootLastModifiedByUserMailboxSetting:                        driveRootLastModifiedByUserMailboxSettingClient,
 		DriveRootLastModifiedByUserServiceProvisioningError:              driveRootLastModifiedByUserServiceProvisioningErrorClient,
@@ -4366,27 +4595,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		DriveSpecialContent:                                              driveSpecialContentClient,
 		DriveSpecialContentStream:                                        driveSpecialContentStreamClient,
 		EmployeeExperience:                                               employeeExperienceClient,
+		EmployeeExperienceAssignedRole:                                   employeeExperienceAssignedRoleClient,
+		EmployeeExperienceAssignedRoleMember:                             employeeExperienceAssignedRoleMemberClient,
+		EmployeeExperienceAssignedRoleMemberUser:                         employeeExperienceAssignedRoleMemberUserClient,
+		EmployeeExperienceAssignedRoleMemberUserMailboxSetting:           employeeExperienceAssignedRoleMemberUserMailboxSettingClient,
+		EmployeeExperienceAssignedRoleMemberUserServiceProvisioningError: employeeExperienceAssignedRoleMemberUserServiceProvisioningErrorClient,
 		EmployeeExperienceLearningCourseActivity:                         employeeExperienceLearningCourseActivityClient,
 		Event:                                                            eventClient,
 		EventAttachment:                                                  eventAttachmentClient,
 		EventCalendar:                                                    eventCalendarClient,
-		EventExceptionOccurrence:                                         eventExceptionOccurrenceClient,
-		EventExceptionOccurrenceAttachment:                               eventExceptionOccurrenceAttachmentClient,
-		EventExceptionOccurrenceCalendar:                                 eventExceptionOccurrenceCalendarClient,
-		EventExceptionOccurrenceExtension:                                eventExceptionOccurrenceExtensionClient,
-		EventExceptionOccurrenceInstance:                                 eventExceptionOccurrenceInstanceClient,
-		EventExceptionOccurrenceInstanceAttachment:                       eventExceptionOccurrenceInstanceAttachmentClient,
-		EventExceptionOccurrenceInstanceCalendar:                         eventExceptionOccurrenceInstanceCalendarClient,
-		EventExceptionOccurrenceInstanceExtension:                        eventExceptionOccurrenceInstanceExtensionClient,
 		EventExtension:                                                   eventExtensionClient,
 		EventInstance:                                                    eventInstanceClient,
-		EventInstanceAttachment:                                          eventInstanceAttachmentClient,
-		EventInstanceCalendar:                                            eventInstanceCalendarClient,
-		EventInstanceExceptionOccurrence:                                 eventInstanceExceptionOccurrenceClient,
-		EventInstanceExceptionOccurrenceAttachment:                       eventInstanceExceptionOccurrenceAttachmentClient,
-		EventInstanceExceptionOccurrenceCalendar:                         eventInstanceExceptionOccurrenceCalendarClient,
-		EventInstanceExceptionOccurrenceExtension:                        eventInstanceExceptionOccurrenceExtensionClient,
-		EventInstanceExtension:                                           eventInstanceExtensionClient,
 		Extension:                                                        extensionClient,
 		FollowedSite:                                                     followedSiteClient,
 		InferenceClassification:                                          inferenceClassificationClient,
@@ -4398,7 +4617,9 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		InformationProtectionPolicy:                                      informationProtectionPolicyClient,
 		InformationProtectionPolicyLabel:                                 informationProtectionPolicyLabelClient,
 		InformationProtectionSensitivityLabel:                            informationProtectionSensitivityLabelClient,
+		InformationProtectionSensitivityLabelRight:                       informationProtectionSensitivityLabelRightClient,
 		InformationProtectionSensitivityLabelSublabel:                    informationProtectionSensitivityLabelSublabelClient,
+		InformationProtectionSensitivityLabelSublabelRight:               informationProtectionSensitivityLabelSublabelRightClient,
 		InformationProtectionSensitivityPolicySetting:                    informationProtectionSensitivityPolicySettingClient,
 		InformationProtectionThreatAssessmentRequest:                     informationProtectionThreatAssessmentRequestClient,
 		InformationProtectionThreatAssessmentRequestResult:               informationProtectionThreatAssessmentRequestResultClient,
@@ -4421,12 +4642,14 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		MailFolderChildFolderMessageExtension:  mailFolderChildFolderMessageExtensionClient,
 		MailFolderChildFolderMessageMention:    mailFolderChildFolderMessageMentionClient,
 		MailFolderChildFolderMessageRule:       mailFolderChildFolderMessageRuleClient,
+		MailFolderChildFolderOperation:         mailFolderChildFolderOperationClient,
 		MailFolderChildFolderUserConfiguration: mailFolderChildFolderUserConfigurationClient,
 		MailFolderMessage:                      mailFolderMessageClient,
 		MailFolderMessageAttachment:            mailFolderMessageAttachmentClient,
 		MailFolderMessageExtension:             mailFolderMessageExtensionClient,
 		MailFolderMessageMention:               mailFolderMessageMentionClient,
 		MailFolderMessageRule:                  mailFolderMessageRuleClient,
+		MailFolderOperation:                    mailFolderOperationClient,
 		MailFolderUserConfiguration:            mailFolderUserConfigurationClient,
 		MailboxSetting:                         mailboxSettingClient,
 		ManagedAppLogCollectionRequest:         managedAppLogCollectionRequestClient,
@@ -4503,6 +4726,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		OnenoteSectionParentNotebook:                                      onenoteSectionParentNotebookClient,
 		OnenoteSectionParentSectionGroup:                                  onenoteSectionParentSectionGroupClient,
 		OnlineMeeting:                                                     onlineMeetingClient,
+		OnlineMeetingAiInsight:                                            onlineMeetingAiInsightClient,
 		OnlineMeetingAlternativeRecording:                                 onlineMeetingAlternativeRecordingClient,
 		OnlineMeetingAttendanceReport:                                     onlineMeetingAttendanceReportClient,
 		OnlineMeetingAttendanceReportAttendanceRecord:                     onlineMeetingAttendanceReportAttendanceRecordClient,
@@ -4606,6 +4830,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		ServiceProvisioningError:                                          serviceProvisioningErrorClient,
 		Setting:                                                           settingClient,
 		SettingContactMergeSuggestion:                                     settingContactMergeSuggestionClient,
+		SettingExchange:                                                   settingExchangeClient,
 		SettingItemInsight:                                                settingItemInsightClient,
 		SettingRegionalAndLanguageSetting:                                 settingRegionalAndLanguageSettingClient,
 		SettingShiftPreference:                                            settingShiftPreferenceClient,

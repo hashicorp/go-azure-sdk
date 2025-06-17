@@ -27,6 +27,7 @@ type InMageRcmUpdateReplicationProtectedItemInput struct {
 	TargetVMTags                          *[]UserCreatedResourceTag `json:"targetVmTags,omitempty"`
 	TestNetworkId                         *string                   `json:"testNetworkId,omitempty"`
 	UserSelectedOSName                    *string                   `json:"userSelectedOSName,omitempty"`
+	VMDisks                               *[]UpdateDiskInput        `json:"vmDisks,omitempty"`
 	VMNics                                *[]InMageRcmNicInput      `json:"vmNics,omitempty"`
 
 	// Fields inherited from UpdateReplicationProtectedItemProviderInput

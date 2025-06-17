@@ -89,6 +89,28 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `ChatMessageReplyClient.ForwardChatMessageRepliesToChats`
+
+```go
+ctx := context.TODO()
+id := chatmessagereply.NewUserIdChatIdMessageID("userId", "chatId", "chatMessageId")
+
+payload := chatmessagereply.ForwardChatMessageRepliesToChatsRequest{
+	// ...
+}
+
+
+// alternatively `client.ForwardChatMessageRepliesToChats(ctx, id, payload, chatmessagereply.DefaultForwardChatMessageRepliesToChatsOperationOptions())` can be used to do batched pagination
+items, err := client.ForwardChatMessageRepliesToChatsComplete(ctx, id, payload, chatmessagereply.DefaultForwardChatMessageRepliesToChatsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `ChatMessageReplyClient.GetChatMessageRepliesCount`
 
 ```go
@@ -134,6 +156,27 @@ if err != nil {
 }
 for _, item := range items {
 	// do something
+}
+```
+
+
+### Example Usage: `ChatMessageReplyClient.ReplyChatMessageRepliesWithQuote`
+
+```go
+ctx := context.TODO()
+id := chatmessagereply.NewUserIdChatIdMessageID("userId", "chatId", "chatMessageId")
+
+payload := chatmessagereply.ReplyChatMessageRepliesWithQuoteRequest{
+	// ...
+}
+
+
+read, err := client.ReplyChatMessageRepliesWithQuote(ctx, id, payload, chatmessagereply.DefaultReplyChatMessageRepliesWithQuoteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
 }
 ```
 

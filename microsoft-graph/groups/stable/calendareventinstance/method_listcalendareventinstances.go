@@ -105,9 +105,8 @@ func (p *ListCalendarEventInstancesCustomPager) NextPageLink() *odata.Link {
 }
 
 // ListCalendarEventInstances - Get instances from groups. The occurrences of a recurring series, if the event is a
-// series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have
-// been modified, but does not include occurrences that have been cancelled from the series. Navigation property.
-// Read-only. Nullable.
+// series master. This property includes occurrences that are part of the recurrence pattern, and exceptions modified,
+// but doesn't include occurrences canceled from the series. Navigation property. Read-only. Nullable.
 func (c CalendarEventInstanceClient) ListCalendarEventInstances(ctx context.Context, id stable.GroupIdCalendarEventId, options ListCalendarEventInstancesOperationOptions) (result ListCalendarEventInstancesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

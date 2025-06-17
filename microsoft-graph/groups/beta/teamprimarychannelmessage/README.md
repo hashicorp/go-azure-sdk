@@ -89,6 +89,28 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `TeamPrimaryChannelMessageClient.ForwardTeamPrimaryChannelMessagesToChats`
+
+```go
+ctx := context.TODO()
+id := teamprimarychannelmessage.NewGroupID("groupId")
+
+payload := teamprimarychannelmessage.ForwardTeamPrimaryChannelMessagesToChatsRequest{
+	// ...
+}
+
+
+// alternatively `client.ForwardTeamPrimaryChannelMessagesToChats(ctx, id, payload, teamprimarychannelmessage.DefaultForwardTeamPrimaryChannelMessagesToChatsOperationOptions())` can be used to do batched pagination
+items, err := client.ForwardTeamPrimaryChannelMessagesToChatsComplete(ctx, id, payload, teamprimarychannelmessage.DefaultForwardTeamPrimaryChannelMessagesToChatsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `TeamPrimaryChannelMessageClient.GetTeamPrimaryChannelMessage`
 
 ```go
@@ -134,6 +156,27 @@ if err != nil {
 }
 for _, item := range items {
 	// do something
+}
+```
+
+
+### Example Usage: `TeamPrimaryChannelMessageClient.ReplyTeamPrimaryChannelMessagesWithQuote`
+
+```go
+ctx := context.TODO()
+id := teamprimarychannelmessage.NewGroupID("groupId")
+
+payload := teamprimarychannelmessage.ReplyTeamPrimaryChannelMessagesWithQuoteRequest{
+	// ...
+}
+
+
+read, err := client.ReplyTeamPrimaryChannelMessagesWithQuote(ctx, id, payload, teamprimarychannelmessage.DefaultReplyTeamPrimaryChannelMessagesWithQuoteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
 }
 ```
 

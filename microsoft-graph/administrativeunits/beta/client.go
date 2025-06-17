@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/administrativeunits/beta/administrativeunit"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/administrativeunits/beta/deletedmember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/administrativeunits/beta/extension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/administrativeunits/beta/member"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/administrativeunits/beta/scopedrolemember"
@@ -16,6 +17,7 @@ import (
 
 type Client struct {
 	AdministrativeUnit *administrativeunit.AdministrativeUnitClient
+	DeletedMember      *deletedmember.DeletedMemberClient
 	Extension          *extension.ExtensionClient
 	Member             *member.MemberClient
 	ScopedRoleMember   *scopedrolemember.ScopedRoleMemberClient
@@ -27,6 +29,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building AdministrativeUnit client: %+v", err)
 	}
 	configureFunc(administrativeUnitClient.Client)
+
+	deletedMemberClient, err := deletedmember.NewDeletedMemberClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DeletedMember client: %+v", err)
+	}
+	configureFunc(deletedMemberClient.Client)
 
 	extensionClient, err := extension.NewExtensionClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -48,6 +56,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 
 	return &Client{
 		AdministrativeUnit: administrativeUnitClient,
+		DeletedMember:      deletedMemberClient,
 		Extension:          extensionClient,
 		Member:             memberClient,
 		ScopedRoleMember:   scopedRoleMemberClient,

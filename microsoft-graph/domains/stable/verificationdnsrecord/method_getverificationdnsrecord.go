@@ -58,7 +58,7 @@ func (o GetVerificationDnsRecordOperationOptions) ToQuery() *client.QueryParams 
 
 // GetVerificationDnsRecord - Get verificationDnsRecords from domains. DNS records that the customer adds to the DNS
 // zone file of the domain before the customer can complete domain ownership verification with Microsoft Entra ID.
-// Read-only, Nullable. Supports $expand.
+// Read-only, Nullable. Doesn't support $expand.
 func (c VerificationDnsRecordClient) GetVerificationDnsRecord(ctx context.Context, id stable.DomainIdVerificationDnsRecordId, options GetVerificationDnsRecordOperationOptions) (result GetVerificationDnsRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

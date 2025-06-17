@@ -22,7 +22,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/b2cauthenticationmethodspolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/claimsmappingpolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/claimsmappingpolicyappliesto"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/conditionalaccesspolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicydefault"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicypartner"
@@ -84,7 +83,6 @@ type Client struct {
 	B2cAuthenticationMethodsPolicy                                                *b2cauthenticationmethodspolicy.B2cAuthenticationMethodsPolicyClient
 	ClaimsMappingPolicy                                                           *claimsmappingpolicy.ClaimsMappingPolicyClient
 	ClaimsMappingPolicyAppliesTo                                                  *claimsmappingpolicyappliesto.ClaimsMappingPolicyAppliesToClient
-	ConditionalAccessPolicy                                                       *conditionalaccesspolicy.ConditionalAccessPolicyClient
 	CrossTenantAccessPolicy                                                       *crosstenantaccesspolicy.CrossTenantAccessPolicyClient
 	CrossTenantAccessPolicyDefault                                                *crosstenantaccesspolicydefault.CrossTenantAccessPolicyDefaultClient
 	CrossTenantAccessPolicyPartner                                                *crosstenantaccesspolicypartner.CrossTenantAccessPolicyPartnerClient
@@ -223,12 +221,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building ClaimsMappingPolicy client: %+v", err)
 	}
 	configureFunc(claimsMappingPolicyClient.Client)
-
-	conditionalAccessPolicyClient, err := conditionalaccesspolicy.NewConditionalAccessPolicyClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ConditionalAccessPolicy client: %+v", err)
-	}
-	configureFunc(conditionalAccessPolicyClient.Client)
 
 	crossTenantAccessPolicyClient, err := crosstenantaccesspolicy.NewCrossTenantAccessPolicyClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -487,7 +479,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		B2cAuthenticationMethodsPolicy:                               b2cAuthenticationMethodsPolicyClient,
 		ClaimsMappingPolicy:                                          claimsMappingPolicyClient,
 		ClaimsMappingPolicyAppliesTo:                                 claimsMappingPolicyAppliesToClient,
-		ConditionalAccessPolicy:                                      conditionalAccessPolicyClient,
 		CrossTenantAccessPolicy:                                      crossTenantAccessPolicyClient,
 		CrossTenantAccessPolicyDefault:                               crossTenantAccessPolicyDefaultClient,
 		CrossTenantAccessPolicyPartner:                               crossTenantAccessPolicyPartnerClient,

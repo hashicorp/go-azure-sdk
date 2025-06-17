@@ -7,13 +7,20 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunit"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunitdeletedmember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunitextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunitmember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunitscopedrolemember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/assigndirectoryauthenticationmethoddevicehardwareoathdeviceto"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/attributeset"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/authenticationmethoddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/authenticationmethoddevicehardwareoathdevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/authenticationmethoddevicehardwareoathdeviceassigntomailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/authenticationmethoddevicehardwareoathdeviceassigntoserviceprovisioningerror"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/certificateauthority"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/certificateauthoritycertificatebasedapplicationconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/certificateauthoritycertificatebasedapplicationconfigurationtrustedcertificateauthority"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/certificateauthoritymutualtlsoauthconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/customsecurityattributedefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/customsecurityattributedefinitionallowedvalue"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/deleteditem"
@@ -29,23 +36,38 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/outboundshareduserprofile"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/outboundshareduserprofiletenant"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/pendingexternaluserprofile"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/publickeyinfrastructure"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/publickeyinfrastructurecertificatebasedauthconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recommendation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recommendationconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recommendationimpactedresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/sharedemaildomain"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/subscription"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/template"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/templatedevicetemplate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/templatedevicetemplatedeviceinstance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/templatedevicetemplateowner"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	AdministrativeUnit                                                                      *administrativeunit.AdministrativeUnitClient
+	AdministrativeUnitDeletedMember                                                         *administrativeunitdeletedmember.AdministrativeUnitDeletedMemberClient
 	AdministrativeUnitExtension                                                             *administrativeunitextension.AdministrativeUnitExtensionClient
 	AdministrativeUnitMember                                                                *administrativeunitmember.AdministrativeUnitMemberClient
 	AdministrativeUnitScopedRoleMember                                                      *administrativeunitscopedrolemember.AdministrativeUnitScopedRoleMemberClient
+	AssignDirectoryAuthenticationMethodDeviceHardwareOathDeviceTo                           *assigndirectoryauthenticationmethoddevicehardwareoathdeviceto.AssignDirectoryAuthenticationMethodDeviceHardwareOathDeviceToClient
 	AttributeSet                                                                            *attributeset.AttributeSetClient
+	AuthenticationMethodDevice                                                              *authenticationmethoddevice.AuthenticationMethodDeviceClient
+	AuthenticationMethodDeviceHardwareOathDevice                                            *authenticationmethoddevicehardwareoathdevice.AuthenticationMethodDeviceHardwareOathDeviceClient
+	AuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSetting                      *authenticationmethoddevicehardwareoathdeviceassigntomailboxsetting.AuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient
+	AuthenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningError            *authenticationmethoddevicehardwareoathdeviceassigntoserviceprovisioningerror.AuthenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClient
 	CertificateAuthority                                                                    *certificateauthority.CertificateAuthorityClient
 	CertificateAuthorityCertificateBasedApplicationConfiguration                            *certificateauthoritycertificatebasedapplicationconfiguration.CertificateAuthorityCertificateBasedApplicationConfigurationClient
 	CertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthority *certificateauthoritycertificatebasedapplicationconfigurationtrustedcertificateauthority.CertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityClient
+	CertificateAuthorityMutualTlsOauthConfiguration                                         *certificateauthoritymutualtlsoauthconfiguration.CertificateAuthorityMutualTlsOauthConfigurationClient
 	CustomSecurityAttributeDefinition                                                       *customsecurityattributedefinition.CustomSecurityAttributeDefinitionClient
 	CustomSecurityAttributeDefinitionAllowedValue                                           *customsecurityattributedefinitionallowedvalue.CustomSecurityAttributeDefinitionAllowedValueClient
 	DeletedItem                                                                             *deleteditem.DeletedItemClient
@@ -61,10 +83,18 @@ type Client struct {
 	OutboundSharedUserProfile                                                               *outboundshareduserprofile.OutboundSharedUserProfileClient
 	OutboundSharedUserProfileTenant                                                         *outboundshareduserprofiletenant.OutboundSharedUserProfileTenantClient
 	PendingExternalUserProfile                                                              *pendingexternaluserprofile.PendingExternalUserProfileClient
+	PublicKeyInfrastructure                                                                 *publickeyinfrastructure.PublicKeyInfrastructureClient
+	PublicKeyInfrastructureCertificateBasedAuthConfiguration                                *publickeyinfrastructurecertificatebasedauthconfiguration.PublicKeyInfrastructureCertificateBasedAuthConfigurationClient
+	PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthority            *publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority.PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient
 	Recommendation                                                                          *recommendation.RecommendationClient
+	RecommendationConfiguration                                                             *recommendationconfiguration.RecommendationConfigurationClient
 	RecommendationImpactedResource                                                          *recommendationimpactedresource.RecommendationImpactedResourceClient
 	SharedEmailDomain                                                                       *sharedemaildomain.SharedEmailDomainClient
 	Subscription                                                                            *subscription.SubscriptionClient
+	Template                                                                                *template.TemplateClient
+	TemplateDeviceTemplate                                                                  *templatedevicetemplate.TemplateDeviceTemplateClient
+	TemplateDeviceTemplateDeviceInstance                                                    *templatedevicetemplatedeviceinstance.TemplateDeviceTemplateDeviceInstanceClient
+	TemplateDeviceTemplateOwner                                                             *templatedevicetemplateowner.TemplateDeviceTemplateOwnerClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Client)) (*Client, error) {
@@ -73,6 +103,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building AdministrativeUnit client: %+v", err)
 	}
 	configureFunc(administrativeUnitClient.Client)
+
+	administrativeUnitDeletedMemberClient, err := administrativeunitdeletedmember.NewAdministrativeUnitDeletedMemberClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AdministrativeUnitDeletedMember client: %+v", err)
+	}
+	configureFunc(administrativeUnitDeletedMemberClient.Client)
 
 	administrativeUnitExtensionClient, err := administrativeunitextension.NewAdministrativeUnitExtensionClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -92,11 +128,41 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(administrativeUnitScopedRoleMemberClient.Client)
 
+	assignDirectoryAuthenticationMethodDeviceHardwareOathDeviceToClient, err := assigndirectoryauthenticationmethoddevicehardwareoathdeviceto.NewAssignDirectoryAuthenticationMethodDeviceHardwareOathDeviceToClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AssignDirectoryAuthenticationMethodDeviceHardwareOathDeviceTo client: %+v", err)
+	}
+	configureFunc(assignDirectoryAuthenticationMethodDeviceHardwareOathDeviceToClient.Client)
+
 	attributeSetClient, err := attributeset.NewAttributeSetClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AttributeSet client: %+v", err)
 	}
 	configureFunc(attributeSetClient.Client)
+
+	authenticationMethodDeviceClient, err := authenticationmethoddevice.NewAuthenticationMethodDeviceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationMethodDevice client: %+v", err)
+	}
+	configureFunc(authenticationMethodDeviceClient.Client)
+
+	authenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient, err := authenticationmethoddevicehardwareoathdeviceassigntomailboxsetting.NewAuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSetting client: %+v", err)
+	}
+	configureFunc(authenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient.Client)
+
+	authenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClient, err := authenticationmethoddevicehardwareoathdeviceassigntoserviceprovisioningerror.NewAuthenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningError client: %+v", err)
+	}
+	configureFunc(authenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClient.Client)
+
+	authenticationMethodDeviceHardwareOathDeviceClient, err := authenticationmethoddevicehardwareoathdevice.NewAuthenticationMethodDeviceHardwareOathDeviceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationMethodDeviceHardwareOathDevice client: %+v", err)
+	}
+	configureFunc(authenticationMethodDeviceHardwareOathDeviceClient.Client)
 
 	certificateAuthorityCertificateBasedApplicationConfigurationClient, err := certificateauthoritycertificatebasedapplicationconfiguration.NewCertificateAuthorityCertificateBasedApplicationConfigurationClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -115,6 +181,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building CertificateAuthority client: %+v", err)
 	}
 	configureFunc(certificateAuthorityClient.Client)
+
+	certificateAuthorityMutualTlsOauthConfigurationClient, err := certificateauthoritymutualtlsoauthconfiguration.NewCertificateAuthorityMutualTlsOauthConfigurationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CertificateAuthorityMutualTlsOauthConfiguration client: %+v", err)
+	}
+	configureFunc(certificateAuthorityMutualTlsOauthConfigurationClient.Client)
 
 	customSecurityAttributeDefinitionAllowedValueClient, err := customsecurityattributedefinitionallowedvalue.NewCustomSecurityAttributeDefinitionAllowedValueClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -206,11 +278,35 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(pendingExternalUserProfileClient.Client)
 
+	publicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient, err := publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority.NewPublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthority client: %+v", err)
+	}
+	configureFunc(publicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient.Client)
+
+	publicKeyInfrastructureCertificateBasedAuthConfigurationClient, err := publickeyinfrastructurecertificatebasedauthconfiguration.NewPublicKeyInfrastructureCertificateBasedAuthConfigurationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PublicKeyInfrastructureCertificateBasedAuthConfiguration client: %+v", err)
+	}
+	configureFunc(publicKeyInfrastructureCertificateBasedAuthConfigurationClient.Client)
+
+	publicKeyInfrastructureClient, err := publickeyinfrastructure.NewPublicKeyInfrastructureClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PublicKeyInfrastructure client: %+v", err)
+	}
+	configureFunc(publicKeyInfrastructureClient.Client)
+
 	recommendationClient, err := recommendation.NewRecommendationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Recommendation client: %+v", err)
 	}
 	configureFunc(recommendationClient.Client)
+
+	recommendationConfigurationClient, err := recommendationconfiguration.NewRecommendationConfigurationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RecommendationConfiguration client: %+v", err)
+	}
+	configureFunc(recommendationConfigurationClient.Client)
 
 	recommendationImpactedResourceClient, err := recommendationimpactedresource.NewRecommendationImpactedResourceClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -230,15 +326,46 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(subscriptionClient.Client)
 
+	templateClient, err := template.NewTemplateClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Template client: %+v", err)
+	}
+	configureFunc(templateClient.Client)
+
+	templateDeviceTemplateClient, err := templatedevicetemplate.NewTemplateDeviceTemplateClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TemplateDeviceTemplate client: %+v", err)
+	}
+	configureFunc(templateDeviceTemplateClient.Client)
+
+	templateDeviceTemplateDeviceInstanceClient, err := templatedevicetemplatedeviceinstance.NewTemplateDeviceTemplateDeviceInstanceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TemplateDeviceTemplateDeviceInstance client: %+v", err)
+	}
+	configureFunc(templateDeviceTemplateDeviceInstanceClient.Client)
+
+	templateDeviceTemplateOwnerClient, err := templatedevicetemplateowner.NewTemplateDeviceTemplateOwnerClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TemplateDeviceTemplateOwner client: %+v", err)
+	}
+	configureFunc(templateDeviceTemplateOwnerClient.Client)
+
 	return &Client{
-		AdministrativeUnit:                 administrativeUnitClient,
-		AdministrativeUnitExtension:        administrativeUnitExtensionClient,
-		AdministrativeUnitMember:           administrativeUnitMemberClient,
-		AdministrativeUnitScopedRoleMember: administrativeUnitScopedRoleMemberClient,
-		AttributeSet:                       attributeSetClient,
-		CertificateAuthority:               certificateAuthorityClient,
+		AdministrativeUnit:                                            administrativeUnitClient,
+		AdministrativeUnitDeletedMember:                               administrativeUnitDeletedMemberClient,
+		AdministrativeUnitExtension:                                   administrativeUnitExtensionClient,
+		AdministrativeUnitMember:                                      administrativeUnitMemberClient,
+		AdministrativeUnitScopedRoleMember:                            administrativeUnitScopedRoleMemberClient,
+		AssignDirectoryAuthenticationMethodDeviceHardwareOathDeviceTo: assignDirectoryAuthenticationMethodDeviceHardwareOathDeviceToClient,
+		AttributeSet:                                 attributeSetClient,
+		AuthenticationMethodDevice:                   authenticationMethodDeviceClient,
+		AuthenticationMethodDeviceHardwareOathDevice: authenticationMethodDeviceHardwareOathDeviceClient,
+		AuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSetting:           authenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient,
+		AuthenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningError: authenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClient,
+		CertificateAuthority: certificateAuthorityClient,
 		CertificateAuthorityCertificateBasedApplicationConfiguration:                            certificateAuthorityCertificateBasedApplicationConfigurationClient,
 		CertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthority: certificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityClient,
+		CertificateAuthorityMutualTlsOauthConfiguration:                                         certificateAuthorityMutualTlsOauthConfigurationClient,
 		CustomSecurityAttributeDefinition:                                                       customSecurityAttributeDefinitionClient,
 		CustomSecurityAttributeDefinitionAllowedValue:                                           customSecurityAttributeDefinitionAllowedValueClient,
 		DeletedItem:                     deletedItemClient,
@@ -254,9 +381,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		OutboundSharedUserProfile:       outboundSharedUserProfileClient,
 		OutboundSharedUserProfileTenant: outboundSharedUserProfileTenantClient,
 		PendingExternalUserProfile:      pendingExternalUserProfileClient,
-		Recommendation:                  recommendationClient,
-		RecommendationImpactedResource:  recommendationImpactedResourceClient,
-		SharedEmailDomain:               sharedEmailDomainClient,
-		Subscription:                    subscriptionClient,
+		PublicKeyInfrastructure:         publicKeyInfrastructureClient,
+		PublicKeyInfrastructureCertificateBasedAuthConfiguration:                     publicKeyInfrastructureCertificateBasedAuthConfigurationClient,
+		PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthority: publicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient,
+		Recommendation:                       recommendationClient,
+		RecommendationConfiguration:          recommendationConfigurationClient,
+		RecommendationImpactedResource:       recommendationImpactedResourceClient,
+		SharedEmailDomain:                    sharedEmailDomainClient,
+		Subscription:                         subscriptionClient,
+		Template:                             templateClient,
+		TemplateDeviceTemplate:               templateDeviceTemplateClient,
+		TemplateDeviceTemplateDeviceInstance: templateDeviceTemplateDeviceInstanceClient,
+		TemplateDeviceTemplateOwner:          templateDeviceTemplateOwnerClient,
 	}, nil
 }

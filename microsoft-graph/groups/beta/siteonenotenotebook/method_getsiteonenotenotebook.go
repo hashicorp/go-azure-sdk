@@ -55,8 +55,8 @@ func (o GetSiteOnenoteNotebookOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetSiteOnenoteNotebook - Get notebooks from groups. The collection of OneNote notebooks that are owned by the user or
-// group. Read-only. Nullable.
+// GetSiteOnenoteNotebook - Get notebooks from groups. The collection of OneNote notebooks that the user or group owns.
+// Read-only. Nullable.
 func (c SiteOnenoteNotebookClient) GetSiteOnenoteNotebook(ctx context.Context, id beta.GroupIdSiteIdOnenoteNotebookId, options GetSiteOnenoteNotebookOperationOptions) (result GetSiteOnenoteNotebookOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

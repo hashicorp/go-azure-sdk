@@ -50,8 +50,7 @@ func (o DeleteMessageOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// DeleteMessage - Delete message. Delete a message in the specified user's mailbox, or delete a relationship of the
-// message. For example, you can delete a specific @-mention of the specified user in the message.
+// DeleteMessage - Delete eventMessage. Delete eventMessage.
 func (c MessageClient) DeleteMessage(ctx context.Context, id beta.MeMessageId, options DeleteMessageOperationOptions) (result DeleteMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

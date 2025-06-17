@@ -97,12 +97,12 @@ func (p *ListEntitlementManagementAccessPackageAssignmentsCustomPager) NextPageL
 	return p.NextLink
 }
 
-// ListEntitlementManagementAccessPackageAssignments - List accessPackageAssignments. In Microsoft Entra entitlement
-// management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list
-// includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs
-// and access packages. If the caller is on behalf of a delegated user who is assigned only to catalog-specific
-// delegated administrative roles, the request must supply a filter to indicate a specific access package, such as:
-// $filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'.
+// ListEntitlementManagementAccessPackageAssignments - List accessPackageAssignments. Retrieve a list of
+// accessPackageAssignment objects in Microsoft Entra entitlement management. For directory-wide administrators, the
+// resulting list includes all the assignments, current and well as expired, that the caller has access to read, across
+// all catalogs and access packages. If the caller is on behalf of a delegated user who is assigned only to
+// catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access
+// package, such as: $filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'.
 func (c EntitlementManagementAccessPackageAssignmentClient) ListEntitlementManagementAccessPackageAssignments(ctx context.Context, options ListEntitlementManagementAccessPackageAssignmentsOperationOptions) (result ListEntitlementManagementAccessPackageAssignmentsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

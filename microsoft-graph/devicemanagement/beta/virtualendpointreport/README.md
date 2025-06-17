@@ -20,6 +20,106 @@ client.Client.Authorizer = authorizer
 ```
 
 
+### Example Usage: `VirtualEndpointReportClient.CreateVirtualEndpointReportRetrieveBulkActionStatusReport`
+
+```go
+ctx := context.TODO()
+
+payload := virtualendpointreport.CreateVirtualEndpointReportRetrieveBulkActionStatusReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateVirtualEndpointReportRetrieveBulkActionStatusReport(ctx, payload, virtualendpointreport.DefaultCreateVirtualEndpointReportRetrieveBulkActionStatusReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `VirtualEndpointReportClient.CreateVirtualEndpointReportRetrieveCloudPCRecommendationReport`
+
+```go
+ctx := context.TODO()
+
+payload := virtualendpointreport.CreateVirtualEndpointReportRetrieveCloudPCRecommendationReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateVirtualEndpointReportRetrieveCloudPCRecommendationReport(ctx, payload, virtualendpointreport.DefaultCreateVirtualEndpointReportRetrieveCloudPCRecommendationReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `VirtualEndpointReportClient.CreateVirtualEndpointReportRetrieveCloudPCTenantMetricsReport`
+
+```go
+ctx := context.TODO()
+
+payload := virtualendpointreport.CreateVirtualEndpointReportRetrieveCloudPCTenantMetricsReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateVirtualEndpointReportRetrieveCloudPCTenantMetricsReport(ctx, payload, virtualendpointreport.DefaultCreateVirtualEndpointReportRetrieveCloudPCTenantMetricsReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `VirtualEndpointReportClient.CreateVirtualEndpointReportRetrieveCloudPCTroubleshootReport`
+
+```go
+ctx := context.TODO()
+
+payload := virtualendpointreport.CreateVirtualEndpointReportRetrieveCloudPCTroubleshootReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateVirtualEndpointReportRetrieveCloudPCTroubleshootReport(ctx, payload, virtualendpointreport.DefaultCreateVirtualEndpointReportRetrieveCloudPCTroubleshootReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `VirtualEndpointReportClient.CreateVirtualEndpointReportRetrieveConnectionQualityReport`
+
+```go
+ctx := context.TODO()
+
+payload := virtualendpointreport.CreateVirtualEndpointReportRetrieveConnectionQualityReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateVirtualEndpointReportRetrieveConnectionQualityReport(ctx, payload, virtualendpointreport.DefaultCreateVirtualEndpointReportRetrieveConnectionQualityReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `VirtualEndpointReportClient.CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReport`
 
 ```go
@@ -31,6 +131,26 @@ payload := virtualendpointreport.CreateVirtualEndpointReportRetrieveCrossRegionD
 
 
 read, err := client.CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReport(ctx, payload, virtualendpointreport.DefaultCreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `VirtualEndpointReportClient.CreateVirtualEndpointReportRetrieveFrontlineReport`
+
+```go
+ctx := context.TODO()
+
+payload := virtualendpointreport.CreateVirtualEndpointReportRetrieveFrontlineReportRequest{
+	// ...
+}
+
+
+read, err := client.CreateVirtualEndpointReportRetrieveFrontlineReport(ctx, payload, virtualendpointreport.DefaultCreateVirtualEndpointReportRetrieveFrontlineReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -243,26 +363,6 @@ payload := virtualendpointreport.GetVirtualEndpointReportsRemoteConnectionHistor
 
 
 read, err := client.GetVirtualEndpointReportsRemoteConnectionHistoricalReports(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsRemoteConnectionHistoricalReportsOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsSharedUseLicenseUsageReport`
-
-```go
-ctx := context.TODO()
-
-payload := virtualendpointreport.GetVirtualEndpointReportsSharedUseLicenseUsageReportRequest{
-	// ...
-}
-
-
-read, err := client.GetVirtualEndpointReportsSharedUseLicenseUsageReport(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions())
 if err != nil {
 	// handle the error
 }

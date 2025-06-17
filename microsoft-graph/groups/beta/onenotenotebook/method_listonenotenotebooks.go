@@ -97,8 +97,8 @@ func (p *ListOnenoteNotebooksCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListOnenoteNotebooks - Get notebooks from groups. The collection of OneNote notebooks that are owned by the user or
-// group. Read-only. Nullable.
+// ListOnenoteNotebooks - Get notebooks from groups. The collection of OneNote notebooks that the user or group owns.
+// Read-only. Nullable.
 func (c OnenoteNotebookClient) ListOnenoteNotebooks(ctx context.Context, id beta.GroupId, options ListOnenoteNotebooksOperationOptions) (result ListOnenoteNotebooksOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

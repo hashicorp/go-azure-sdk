@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/intelligencepacks"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/linkedservices"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/linkedstorageaccounts"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/networksecurityperimeterconfigurations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/querypackqueries"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/querypacks"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/savedsearches"
@@ -25,20 +26,21 @@ import (
 )
 
 type Client struct {
-	AvailableServiceTiers *availableservicetiers.AvailableServiceTiersClient
-	Clusters              *clusters.ClustersClient
-	DataExport            *dataexport.DataExportClient
-	DataSources           *datasources.DataSourcesClient
-	DeletedWorkspaces     *deletedworkspaces.DeletedWorkspacesClient
-	IntelligencePacks     *intelligencepacks.IntelligencePacksClient
-	LinkedServices        *linkedservices.LinkedServicesClient
-	LinkedStorageAccounts *linkedstorageaccounts.LinkedStorageAccountsClient
-	QueryPackQueries      *querypackqueries.QueryPackQueriesClient
-	QueryPacks            *querypacks.QueryPacksClient
-	SavedSearches         *savedsearches.SavedSearchesClient
-	StorageInsights       *storageinsights.StorageInsightsClient
-	Tables                *tables.TablesClient
-	Workspaces            *workspaces.WorkspacesClient
+	AvailableServiceTiers                  *availableservicetiers.AvailableServiceTiersClient
+	Clusters                               *clusters.ClustersClient
+	DataExport                             *dataexport.DataExportClient
+	DataSources                            *datasources.DataSourcesClient
+	DeletedWorkspaces                      *deletedworkspaces.DeletedWorkspacesClient
+	IntelligencePacks                      *intelligencepacks.IntelligencePacksClient
+	LinkedServices                         *linkedservices.LinkedServicesClient
+	LinkedStorageAccounts                  *linkedstorageaccounts.LinkedStorageAccountsClient
+	NetworkSecurityPerimeterConfigurations *networksecurityperimeterconfigurations.NetworkSecurityPerimeterConfigurationsClient
+	QueryPackQueries                       *querypackqueries.QueryPackQueriesClient
+	QueryPacks                             *querypacks.QueryPacksClient
+	SavedSearches                          *savedsearches.SavedSearchesClient
+	StorageInsights                        *storageinsights.StorageInsightsClient
+	Tables                                 *tables.TablesClient
+	Workspaces                             *workspaces.WorkspacesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -90,6 +92,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(linkedStorageAccountsClient.Client)
 
+	networkSecurityPerimeterConfigurationsClient, err := networksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building NetworkSecurityPerimeterConfigurations client: %+v", err)
+	}
+	configureFunc(networkSecurityPerimeterConfigurationsClient.Client)
+
 	queryPackQueriesClient, err := querypackqueries.NewQueryPackQueriesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building QueryPackQueries client: %+v", err)
@@ -127,19 +135,20 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(workspacesClient.Client)
 
 	return &Client{
-		AvailableServiceTiers: availableServiceTiersClient,
-		Clusters:              clustersClient,
-		DataExport:            dataExportClient,
-		DataSources:           dataSourcesClient,
-		DeletedWorkspaces:     deletedWorkspacesClient,
-		IntelligencePacks:     intelligencePacksClient,
-		LinkedServices:        linkedServicesClient,
-		LinkedStorageAccounts: linkedStorageAccountsClient,
-		QueryPackQueries:      queryPackQueriesClient,
-		QueryPacks:            queryPacksClient,
-		SavedSearches:         savedSearchesClient,
-		StorageInsights:       storageInsightsClient,
-		Tables:                tablesClient,
-		Workspaces:            workspacesClient,
+		AvailableServiceTiers:                  availableServiceTiersClient,
+		Clusters:                               clustersClient,
+		DataExport:                             dataExportClient,
+		DataSources:                            dataSourcesClient,
+		DeletedWorkspaces:                      deletedWorkspacesClient,
+		IntelligencePacks:                      intelligencePacksClient,
+		LinkedServices:                         linkedServicesClient,
+		LinkedStorageAccounts:                  linkedStorageAccountsClient,
+		NetworkSecurityPerimeterConfigurations: networkSecurityPerimeterConfigurationsClient,
+		QueryPackQueries:                       queryPackQueriesClient,
+		QueryPacks:                             queryPacksClient,
+		SavedSearches:                          savedSearchesClient,
+		StorageInsights:                        storageInsightsClient,
+		Tables:                                 tablesClient,
+		Workspaces:                             workspacesClient,
 	}, nil
 }

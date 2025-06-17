@@ -5,6 +5,14 @@ package teamchannelmessage
 
 import "github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 
+type ActionResultPartOperationPredicate struct {
+}
+
+func (p ActionResultPartOperationPredicate) Matches(input beta.ActionResultPart) bool {
+
+	return true
+}
+
 type ChatMessageOperationPredicate struct {
 }
 

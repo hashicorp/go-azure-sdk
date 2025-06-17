@@ -55,8 +55,8 @@ func (o GetMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions)
 	return &out
 }
 
-// GetMobileAppTroubleshootingEventAppLogCollectionRequest - Get appLogCollectionRequests from users. Indicates
-// collection of App Log Upload Request.
+// GetMobileAppTroubleshootingEventAppLogCollectionRequest - Get appLogCollectionRequests from users. The collection
+// property of AppLogUploadRequest.
 func (c MobileAppTroubleshootingEventAppLogCollectionRequestClient) GetMobileAppTroubleshootingEventAppLogCollectionRequest(ctx context.Context, id beta.UserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestId, options GetMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions) (result GetMobileAppTroubleshootingEventAppLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

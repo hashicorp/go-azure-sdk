@@ -46,8 +46,8 @@ func (o UpdateOnlineMeetingOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// UpdateOnlineMeeting - Update onlineMeeting. Update the properties of the specified onlineMeeting object. Please see
-// Request body section for the list of properties that support updating.
+// UpdateOnlineMeeting - Update onlineMeeting. Update the properties of the specified onlineMeeting object. For the list
+// of properties that support updating, see the Request body section.
 func (c OnlineMeetingClient) UpdateOnlineMeeting(ctx context.Context, id beta.MeOnlineMeetingId, input beta.OnlineMeeting, options UpdateOnlineMeetingOperationOptions) (result UpdateOnlineMeetingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -82,6 +82,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `MessageClient.CreateMessagePermanentDelete`
+
+```go
+ctx := context.TODO()
+id := message.NewMeMessageID("messageId")
+
+read, err := client.CreateMessagePermanentDelete(ctx, id, message.DefaultCreateMessagePermanentDeleteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `MessageClient.CreateMessageReply`
 
 ```go

@@ -89,6 +89,28 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `ChatMessageClient.ForwardChatMessagesToChats`
+
+```go
+ctx := context.TODO()
+id := chatmessage.NewUserIdChatID("userId", "chatId")
+
+payload := chatmessage.ForwardChatMessagesToChatsRequest{
+	// ...
+}
+
+
+// alternatively `client.ForwardChatMessagesToChats(ctx, id, payload, chatmessage.DefaultForwardChatMessagesToChatsOperationOptions())` can be used to do batched pagination
+items, err := client.ForwardChatMessagesToChatsComplete(ctx, id, payload, chatmessage.DefaultForwardChatMessagesToChatsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `ChatMessageClient.GetChatMessage`
 
 ```go
@@ -134,6 +156,27 @@ if err != nil {
 }
 for _, item := range items {
 	// do something
+}
+```
+
+
+### Example Usage: `ChatMessageClient.ReplyChatMessagesWithQuote`
+
+```go
+ctx := context.TODO()
+id := chatmessage.NewUserIdChatID("userId", "chatId")
+
+payload := chatmessage.ReplyChatMessagesWithQuoteRequest{
+	// ...
+}
+
+
+read, err := client.ReplyChatMessagesWithQuote(ctx, id, payload, chatmessage.DefaultReplyChatMessagesWithQuoteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
 }
 ```
 

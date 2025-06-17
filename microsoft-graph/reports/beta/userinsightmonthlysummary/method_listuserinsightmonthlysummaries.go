@@ -97,8 +97,8 @@ func (p *ListUserInsightMonthlySummariesCustomPager) NextPageLink() *odata.Link 
 	return p.NextLink
 }
 
-// ListUserInsightMonthlySummaries - Get summary from reports. Summary of all usage insights on apps registered in the
-// tenant for a specified period.
+// ListUserInsightMonthlySummaries - List monthly summary. Get a list of monthly insightSummary objects on apps
+// registered in your tenant configured for Microsoft Entra External ID for customers.
 func (c UserInsightMonthlySummaryClient) ListUserInsightMonthlySummaries(ctx context.Context, options ListUserInsightMonthlySummariesOperationOptions) (result ListUserInsightMonthlySummariesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

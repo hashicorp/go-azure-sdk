@@ -55,7 +55,7 @@ func (o GetReportOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetReport - Get reports from deviceManagement. Reports singleton
+// GetReport - Get reports from deviceManagement
 func (c ReportClient) GetReport(ctx context.Context, options GetReportOperationOptions) (result GetReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

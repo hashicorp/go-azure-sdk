@@ -46,9 +46,9 @@ func (o UpdateConditionalAccessAuthenticationContextClassReferenceOperationOptio
 	return &out
 }
 
-// UpdateConditionalAccessAuthenticationContextClassReference - Update authenticationContextClassReference. Create an
-// authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the
-// authenticationContextClassReference object.
+// UpdateConditionalAccessAuthenticationContextClassReference - Create or Update authenticationContextClassReference.
+// Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call
+// updates the authenticationContextClassReference object.
 func (c ConditionalAccessAuthenticationContextClassReferenceClient) UpdateConditionalAccessAuthenticationContextClassReference(ctx context.Context, id stable.IdentityConditionalAccessAuthenticationContextClassReferenceId, input stable.AuthenticationContextClassReference, options UpdateConditionalAccessAuthenticationContextClassReferenceOperationOptions) (result UpdateConditionalAccessAuthenticationContextClassReferenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

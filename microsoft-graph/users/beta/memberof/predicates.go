@@ -5,10 +5,34 @@ package memberof
 
 import "github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 
+type AdministrativeUnitOperationPredicate struct {
+}
+
+func (p AdministrativeUnitOperationPredicate) Matches(input beta.AdministrativeUnit) bool {
+
+	return true
+}
+
 type DirectoryObjectOperationPredicate struct {
 }
 
 func (p DirectoryObjectOperationPredicate) Matches(input beta.DirectoryObject) bool {
+
+	return true
+}
+
+type DirectoryRoleOperationPredicate struct {
+}
+
+func (p DirectoryRoleOperationPredicate) Matches(input beta.DirectoryRole) bool {
+
+	return true
+}
+
+type GroupOperationPredicate struct {
+}
+
+func (p GroupOperationPredicate) Matches(input beta.Group) bool {
 
 	return true
 }

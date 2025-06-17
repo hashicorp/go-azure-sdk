@@ -48,10 +48,7 @@ func (o CreateConversationOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// CreateConversation - Create open extension. Create an open extension (openTypeExtension object) and add custom
-// properties in a new or existing instance of a resource. You can create an open extension in a resource instance and
-// store custom data to it all in the same operation, except for specific resources. The table in the Permissions
-// section lists the resources that support open extensions.
+// CreateConversation - Create conversation. Use reply thread or reply post to further post to that conversation.
 func (c ConversationClient) CreateConversation(ctx context.Context, id stable.GroupId, input stable.Conversation, options CreateConversationOperationOptions) (result CreateConversationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

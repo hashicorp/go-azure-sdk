@@ -97,8 +97,7 @@ func (p *ListTeamPrimaryChannelTabsCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListTeamPrimaryChannelTabs - Get tabs from groups. A collection of all the tabs in the channel. A navigation
-// property.
+// ListTeamPrimaryChannelTabs - Get tabs from groups. A collection of all the tabs in the channel.
 func (c TeamPrimaryChannelTabClient) ListTeamPrimaryChannelTabs(ctx context.Context, id beta.GroupId, options ListTeamPrimaryChannelTabsOperationOptions) (result ListTeamPrimaryChannelTabsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -61,6 +61,27 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `WindowsQualityUpdatePolicyClient.CreateWindowsQualityUpdatePolicyBulkAction`
+
+```go
+ctx := context.TODO()
+id := windowsqualityupdatepolicy.NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyId")
+
+payload := windowsqualityupdatepolicy.CreateWindowsQualityUpdatePolicyBulkActionRequest{
+	// ...
+}
+
+
+read, err := client.CreateWindowsQualityUpdatePolicyBulkAction(ctx, id, payload, windowsqualityupdatepolicy.DefaultCreateWindowsQualityUpdatePolicyBulkActionOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `WindowsQualityUpdatePolicyClient.DeleteWindowsQualityUpdatePolicy`
 
 ```go

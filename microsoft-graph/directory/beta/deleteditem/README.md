@@ -96,6 +96,134 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `DeletedItemClient.GetDeletedItemAdministrativeUnit`
+
+```go
+ctx := context.TODO()
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
+
+read, err := client.GetDeletedItemAdministrativeUnit(ctx, id, deleteditem.DefaultGetDeletedItemAdministrativeUnitOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemAdministrativeUnitCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetDeletedItemAdministrativeUnitCount(ctx, deleteditem.DefaultGetDeletedItemAdministrativeUnitCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemApplication`
+
+```go
+ctx := context.TODO()
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
+
+read, err := client.GetDeletedItemApplication(ctx, id, deleteditem.DefaultGetDeletedItemApplicationOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemApplicationCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetDeletedItemApplicationCount(ctx, deleteditem.DefaultGetDeletedItemApplicationCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemDevice`
+
+```go
+ctx := context.TODO()
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
+
+read, err := client.GetDeletedItemDevice(ctx, id, deleteditem.DefaultGetDeletedItemDeviceOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemDeviceCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetDeletedItemDeviceCount(ctx, deleteditem.DefaultGetDeletedItemDeviceCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemGroup`
+
+```go
+ctx := context.TODO()
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
+
+read, err := client.GetDeletedItemGroup(ctx, id, deleteditem.DefaultGetDeletedItemGroupOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemGroupCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetDeletedItemGroupCount(ctx, deleteditem.DefaultGetDeletedItemGroupCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `DeletedItemClient.GetDeletedItemMemberGroups`
 
 ```go
@@ -140,6 +268,70 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `DeletedItemClient.GetDeletedItemServicePrincipal`
+
+```go
+ctx := context.TODO()
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
+
+read, err := client.GetDeletedItemServicePrincipal(ctx, id, deleteditem.DefaultGetDeletedItemServicePrincipalOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemServicePrincipalCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetDeletedItemServicePrincipalCount(ctx, deleteditem.DefaultGetDeletedItemServicePrincipalCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemUser`
+
+```go
+ctx := context.TODO()
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
+
+read, err := client.GetDeletedItemUser(ctx, id, deleteditem.DefaultGetDeletedItemUserOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeletedItemClient.GetDeletedItemUserCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetDeletedItemUserCount(ctx, deleteditem.DefaultGetDeletedItemUserCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `DeletedItemClient.GetDeletedItemsByIds`
 
 ```go
@@ -177,6 +369,108 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `DeletedItemClient.ListDeletedItemAdministrativeUnits`
+
+```go
+ctx := context.TODO()
+
+
+// alternatively `client.ListDeletedItemAdministrativeUnits(ctx, deleteditem.DefaultListDeletedItemAdministrativeUnitsOperationOptions())` can be used to do batched pagination
+items, err := client.ListDeletedItemAdministrativeUnitsComplete(ctx, deleteditem.DefaultListDeletedItemAdministrativeUnitsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `DeletedItemClient.ListDeletedItemApplications`
+
+```go
+ctx := context.TODO()
+
+
+// alternatively `client.ListDeletedItemApplications(ctx, deleteditem.DefaultListDeletedItemApplicationsOperationOptions())` can be used to do batched pagination
+items, err := client.ListDeletedItemApplicationsComplete(ctx, deleteditem.DefaultListDeletedItemApplicationsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `DeletedItemClient.ListDeletedItemDevices`
+
+```go
+ctx := context.TODO()
+
+
+// alternatively `client.ListDeletedItemDevices(ctx, deleteditem.DefaultListDeletedItemDevicesOperationOptions())` can be used to do batched pagination
+items, err := client.ListDeletedItemDevicesComplete(ctx, deleteditem.DefaultListDeletedItemDevicesOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `DeletedItemClient.ListDeletedItemGroups`
+
+```go
+ctx := context.TODO()
+
+
+// alternatively `client.ListDeletedItemGroups(ctx, deleteditem.DefaultListDeletedItemGroupsOperationOptions())` can be used to do batched pagination
+items, err := client.ListDeletedItemGroupsComplete(ctx, deleteditem.DefaultListDeletedItemGroupsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `DeletedItemClient.ListDeletedItemServicePrincipals`
+
+```go
+ctx := context.TODO()
+
+
+// alternatively `client.ListDeletedItemServicePrincipals(ctx, deleteditem.DefaultListDeletedItemServicePrincipalsOperationOptions())` can be used to do batched pagination
+items, err := client.ListDeletedItemServicePrincipalsComplete(ctx, deleteditem.DefaultListDeletedItemServicePrincipalsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `DeletedItemClient.ListDeletedItemUsers`
+
+```go
+ctx := context.TODO()
+
+
+// alternatively `client.ListDeletedItemUsers(ctx, deleteditem.DefaultListDeletedItemUsersOperationOptions())` can be used to do batched pagination
+items, err := client.ListDeletedItemUsersComplete(ctx, deleteditem.DefaultListDeletedItemUsersOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `DeletedItemClient.ListDeletedItems`
 
 ```go
@@ -200,12 +494,7 @@ for _, item := range items {
 ctx := context.TODO()
 id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
 
-payload := deleteditem.RestoreDeletedItemRequest{
-	// ...
-}
-
-
-read, err := client.RestoreDeletedItem(ctx, id, payload, deleteditem.DefaultRestoreDeletedItemOperationOptions())
+read, err := client.RestoreDeletedItem(ctx, id, deleteditem.DefaultRestoreDeletedItemOperationOptions())
 if err != nil {
 	// handle the error
 }

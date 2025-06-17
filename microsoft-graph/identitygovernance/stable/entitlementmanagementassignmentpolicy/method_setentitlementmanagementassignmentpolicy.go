@@ -46,7 +46,9 @@ func (o SetEntitlementManagementAssignmentPolicyOperationOptions) ToQuery() *cli
 	return &out
 }
 
-// SetEntitlementManagementAssignmentPolicy - Update the navigation property assignmentPolicies in identityGovernance
+// SetEntitlementManagementAssignmentPolicy - Update accessPackageAssignmentPolicy. Update an existing
+// accessPackageAssignmentPolicy object to change one or more of its properties, such as the display name or
+// description.
 func (c EntitlementManagementAssignmentPolicyClient) SetEntitlementManagementAssignmentPolicy(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAssignmentPolicyId, input stable.AccessPackageAssignmentPolicy, options SetEntitlementManagementAssignmentPolicyOperationOptions) (result SetEntitlementManagementAssignmentPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

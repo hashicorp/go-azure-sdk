@@ -128,6 +128,28 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `JoinedTeamMemberClient.RemoveJoinedTeamMembers`
+
+```go
+ctx := context.TODO()
+id := joinedteammember.NewMeJoinedTeamID("teamId")
+
+payload := joinedteammember.RemoveJoinedTeamMembersRequest{
+	// ...
+}
+
+
+// alternatively `client.RemoveJoinedTeamMembers(ctx, id, payload, joinedteammember.DefaultRemoveJoinedTeamMembersOperationOptions())` can be used to do batched pagination
+items, err := client.RemoveJoinedTeamMembersComplete(ctx, id, payload, joinedteammember.DefaultRemoveJoinedTeamMembersOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `JoinedTeamMemberClient.UpdateJoinedTeamMember`
 
 ```go

@@ -41,6 +41,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `ChatClient.CreateChatCompleteMigration`
+
+```go
+ctx := context.TODO()
+id := chat.NewUserIdChatID("userId", "chatId")
+
+read, err := client.CreateChatCompleteMigration(ctx, id, chat.DefaultCreateChatCompleteMigrationOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `ChatClient.DeleteChat`
 
 ```go

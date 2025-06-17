@@ -20,6 +20,22 @@ client.Client.Authorizer = authorizer
 ```
 
 
+### Example Usage: `AndroidDeviceOwnerEnrollmentProfileClient.ClearAndroidDeviceOwnerEnrollmentProfileEnrollmentTimeDeviceMembershipTarget`
+
+```go
+ctx := context.TODO()
+id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
+
+read, err := client.ClearAndroidDeviceOwnerEnrollmentProfileEnrollmentTimeDeviceMembershipTarget(ctx, id, androiddeviceownerenrollmentprofile.DefaultClearAndroidDeviceOwnerEnrollmentProfileEnrollmentTimeDeviceMembershipTargetOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `AndroidDeviceOwnerEnrollmentProfileClient.CreateAndroidDeviceOwnerEnrollmentProfile`
 
 ```go
@@ -31,6 +47,22 @@ payload := androiddeviceownerenrollmentprofile.AndroidDeviceOwnerEnrollmentProfi
 
 
 read, err := client.CreateAndroidDeviceOwnerEnrollmentProfile(ctx, payload, androiddeviceownerenrollmentprofile.DefaultCreateAndroidDeviceOwnerEnrollmentProfileOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `AndroidDeviceOwnerEnrollmentProfileClient.CreateAndroidDeviceOwnerEnrollmentProfileRetrieveEnrollmentTimeDeviceMembershipTarget`
+
+```go
+ctx := context.TODO()
+id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
+
+read, err := client.CreateAndroidDeviceOwnerEnrollmentProfileRetrieveEnrollmentTimeDeviceMembershipTarget(ctx, id, androiddeviceownerenrollmentprofile.DefaultCreateAndroidDeviceOwnerEnrollmentProfileRetrieveEnrollmentTimeDeviceMembershipTargetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -133,6 +165,27 @@ ctx := context.TODO()
 id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
 
 read, err := client.RevokeAndroidDeviceOwnerEnrollmentProfileToken(ctx, id, androiddeviceownerenrollmentprofile.DefaultRevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `AndroidDeviceOwnerEnrollmentProfileClient.SetAndroidDeviceOwnerEnrollmentProfileEnrollmentTimeDeviceMembershipTarget`
+
+```go
+ctx := context.TODO()
+id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
+
+payload := androiddeviceownerenrollmentprofile.SetAndroidDeviceOwnerEnrollmentProfileEnrollmentTimeDeviceMembershipTargetRequest{
+	// ...
+}
+
+
+read, err := client.SetAndroidDeviceOwnerEnrollmentProfileEnrollmentTimeDeviceMembershipTarget(ctx, id, payload, androiddeviceownerenrollmentprofile.DefaultSetAndroidDeviceOwnerEnrollmentProfileEnrollmentTimeDeviceMembershipTargetOperationOptions())
 if err != nil {
 	// handle the error
 }

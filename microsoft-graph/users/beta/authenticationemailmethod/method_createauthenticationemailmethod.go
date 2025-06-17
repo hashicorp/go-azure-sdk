@@ -50,6 +50,7 @@ func (o CreateAuthenticationEmailMethodOperationOptions) ToQuery() *client.Query
 
 // CreateAuthenticationEmailMethod - Create emailAuthenticationMethod. Set a user's emailAuthenticationMethod object.
 // Email authentication is a self-service password reset method. A user may only have one email authentication method.
+// Self-service operations aren't supported.
 func (c AuthenticationEmailMethodClient) CreateAuthenticationEmailMethod(ctx context.Context, id beta.UserId, input beta.EmailAuthenticationMethod, options CreateAuthenticationEmailMethodOperationOptions) (result CreateAuthenticationEmailMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

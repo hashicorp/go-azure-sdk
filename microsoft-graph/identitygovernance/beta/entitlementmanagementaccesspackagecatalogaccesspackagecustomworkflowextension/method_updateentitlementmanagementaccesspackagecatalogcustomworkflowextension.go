@@ -47,8 +47,8 @@ func (o UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOp
 }
 
 // UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtension - Update
-// accessPackageAssignmentRequestWorkflowExtension. Update the properties of an
-// accessPackageAssignmentRequestWorkflowExtension object.
+// accessPackageAssignmentWorkflowExtension. Update the properties of an accessPackageAssignmentWorkflowExtension
+// object.
 func (c EntitlementManagementAccessPackageCatalogAccessPackageCustomWorkflowExtensionClient) UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtension(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageCustomWorkflowExtensionId, input beta.CustomCalloutExtension, options UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) (result UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

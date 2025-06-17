@@ -11,6 +11,12 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflow"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflowcondition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflowconditionapplicationincludeapplication"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflowexternalusersselfservicesignupeventsflowcondition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflowexternalusersselfservicesignupeventsflowconditionapplicationincludeapplication"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflowexternalusersselfservicesignupeventsflowonattributecollection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflowexternalusersselfservicesignupeventsflowonattributecollectiononattributecollectionexternalusersselfservicesignupattribute"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflowexternalusersselfservicesignupeventsflowonauthenticationmethodloadstart"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflowexternalusersselfservicesignupeventsflowonauthenticationmethodloadstartonauthenticationmethodloadstartexternalusersselfservicesignupidentityprovider"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflow"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowapiconnectorconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowapiconnectorconfigurationpostattributecollection"
@@ -39,34 +45,40 @@ import (
 )
 
 type Client struct {
-	ApiConnector                                                          *apiconnector.ApiConnectorClient
-	AuthenticationEventListener                                           *authenticationeventlistener.AuthenticationEventListenerClient
-	AuthenticationEventsFlow                                              *authenticationeventsflow.AuthenticationEventsFlowClient
-	AuthenticationEventsFlowCondition                                     *authenticationeventsflowcondition.AuthenticationEventsFlowConditionClient
-	AuthenticationEventsFlowConditionApplicationIncludeApplication        *authenticationeventsflowconditionapplicationincludeapplication.AuthenticationEventsFlowConditionApplicationIncludeApplicationClient
-	B2xUserFlow                                                           *b2xuserflow.B2xUserFlowClient
-	B2xUserFlowApiConnectorConfiguration                                  *b2xuserflowapiconnectorconfiguration.B2xUserFlowApiConnectorConfigurationClient
-	B2xUserFlowApiConnectorConfigurationPostAttributeCollection           *b2xuserflowapiconnectorconfigurationpostattributecollection.B2xUserFlowApiConnectorConfigurationPostAttributeCollectionClient
-	B2xUserFlowApiConnectorConfigurationPostFederationSignup              *b2xuserflowapiconnectorconfigurationpostfederationsignup.B2xUserFlowApiConnectorConfigurationPostFederationSignupClient
-	B2xUserFlowIdentityProvider                                           *b2xuserflowidentityprovider.B2xUserFlowIdentityProviderClient
-	B2xUserFlowLanguage                                                   *b2xuserflowlanguage.B2xUserFlowLanguageClient
-	B2xUserFlowLanguageDefaultPage                                        *b2xuserflowlanguagedefaultpage.B2xUserFlowLanguageDefaultPageClient
-	B2xUserFlowLanguageOverridesPage                                      *b2xuserflowlanguageoverridespage.B2xUserFlowLanguageOverridesPageClient
-	B2xUserFlowUserAttributeAssignment                                    *b2xuserflowuserattributeassignment.B2xUserFlowUserAttributeAssignmentClient
-	B2xUserFlowUserAttributeAssignmentUserAttribute                       *b2xuserflowuserattributeassignmentuserattribute.B2xUserFlowUserAttributeAssignmentUserAttributeClient
-	B2xUserFlowUserFlowIdentityProvider                                   *b2xuserflowuserflowidentityprovider.B2xUserFlowUserFlowIdentityProviderClient
-	ConditionalAccessAuthenticationContextClassReference                  *conditionalaccessauthenticationcontextclassreference.ConditionalAccessAuthenticationContextClassReferenceClient
-	ConditionalAccessAuthenticationStrength                               *conditionalaccessauthenticationstrength.ConditionalAccessAuthenticationStrengthClient
-	ConditionalAccessAuthenticationStrengthAuthenticationMethodMode       *conditionalaccessauthenticationstrengthauthenticationmethodmode.ConditionalAccessAuthenticationStrengthAuthenticationMethodModeClient
-	ConditionalAccessAuthenticationStrengthPolicy                         *conditionalaccessauthenticationstrengthpolicy.ConditionalAccessAuthenticationStrengthPolicyClient
-	ConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration *conditionalaccessauthenticationstrengthpolicycombinationconfiguration.ConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClient
-	ConditionalAccessNamedLocation                                        *conditionalaccessnamedlocation.ConditionalAccessNamedLocationClient
-	ConditionalAccessPolicy                                               *conditionalaccesspolicy.ConditionalAccessPolicyClient
-	ConditionalAccessTemplate                                             *conditionalaccesstemplate.ConditionalAccessTemplateClient
-	CustomAuthenticationExtension                                         *customauthenticationextension.CustomAuthenticationExtensionClient
-	Identity                                                              *identity.IdentityClient
-	IdentityProvider                                                      *identityprovider.IdentityProviderClient
-	UserFlowAttribute                                                     *userflowattribute.UserFlowAttributeClient
+	ApiConnector                                                                                                                                                                 *apiconnector.ApiConnectorClient
+	AuthenticationEventListener                                                                                                                                                  *authenticationeventlistener.AuthenticationEventListenerClient
+	AuthenticationEventsFlow                                                                                                                                                     *authenticationeventsflow.AuthenticationEventsFlowClient
+	AuthenticationEventsFlowCondition                                                                                                                                            *authenticationeventsflowcondition.AuthenticationEventsFlowConditionClient
+	AuthenticationEventsFlowConditionApplicationIncludeApplication                                                                                                               *authenticationeventsflowconditionapplicationincludeapplication.AuthenticationEventsFlowConditionApplicationIncludeApplicationClient
+	AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowCondition                                                                                                    *authenticationeventsflowexternalusersselfservicesignupeventsflowcondition.AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionClient
+	AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionApplicationIncludeApplication                                                                       *authenticationeventsflowexternalusersselfservicesignupeventsflowconditionapplicationincludeapplication.AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionApplicationIncludeApplicationClient
+	AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollection                                                                                        *authenticationeventsflowexternalusersselfservicesignupeventsflowonattributecollection.AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionClient
+	AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionOnAttributeCollectionExternalUsersSelfServiceSignUpAttribute                            *authenticationeventsflowexternalusersselfservicesignupeventsflowonattributecollectiononattributecollectionexternalusersselfservicesignupattribute.AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionOnAttributeCollectionExternalUsersSelfServiceSignUpAttributeClient
+	AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStart                                                                              *authenticationeventsflowexternalusersselfservicesignupeventsflowonauthenticationmethodloadstart.AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartClient
+	AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUpIdentityProvider *authenticationeventsflowexternalusersselfservicesignupeventsflowonauthenticationmethodloadstartonauthenticationmethodloadstartexternalusersselfservicesignupidentityprovider.AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUpIdentityProviderClient
+	B2xUserFlow                                                                                                                                                                  *b2xuserflow.B2xUserFlowClient
+	B2xUserFlowApiConnectorConfiguration                                                                                                                                         *b2xuserflowapiconnectorconfiguration.B2xUserFlowApiConnectorConfigurationClient
+	B2xUserFlowApiConnectorConfigurationPostAttributeCollection                                                                                                                  *b2xuserflowapiconnectorconfigurationpostattributecollection.B2xUserFlowApiConnectorConfigurationPostAttributeCollectionClient
+	B2xUserFlowApiConnectorConfigurationPostFederationSignup                                                                                                                     *b2xuserflowapiconnectorconfigurationpostfederationsignup.B2xUserFlowApiConnectorConfigurationPostFederationSignupClient
+	B2xUserFlowIdentityProvider                                                                                                                                                  *b2xuserflowidentityprovider.B2xUserFlowIdentityProviderClient
+	B2xUserFlowLanguage                                                                                                                                                          *b2xuserflowlanguage.B2xUserFlowLanguageClient
+	B2xUserFlowLanguageDefaultPage                                                                                                                                               *b2xuserflowlanguagedefaultpage.B2xUserFlowLanguageDefaultPageClient
+	B2xUserFlowLanguageOverridesPage                                                                                                                                             *b2xuserflowlanguageoverridespage.B2xUserFlowLanguageOverridesPageClient
+	B2xUserFlowUserAttributeAssignment                                                                                                                                           *b2xuserflowuserattributeassignment.B2xUserFlowUserAttributeAssignmentClient
+	B2xUserFlowUserAttributeAssignmentUserAttribute                                                                                                                              *b2xuserflowuserattributeassignmentuserattribute.B2xUserFlowUserAttributeAssignmentUserAttributeClient
+	B2xUserFlowUserFlowIdentityProvider                                                                                                                                          *b2xuserflowuserflowidentityprovider.B2xUserFlowUserFlowIdentityProviderClient
+	ConditionalAccessAuthenticationContextClassReference                                                                                                                         *conditionalaccessauthenticationcontextclassreference.ConditionalAccessAuthenticationContextClassReferenceClient
+	ConditionalAccessAuthenticationStrength                                                                                                                                      *conditionalaccessauthenticationstrength.ConditionalAccessAuthenticationStrengthClient
+	ConditionalAccessAuthenticationStrengthAuthenticationMethodMode                                                                                                              *conditionalaccessauthenticationstrengthauthenticationmethodmode.ConditionalAccessAuthenticationStrengthAuthenticationMethodModeClient
+	ConditionalAccessAuthenticationStrengthPolicy                                                                                                                                *conditionalaccessauthenticationstrengthpolicy.ConditionalAccessAuthenticationStrengthPolicyClient
+	ConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration                                                                                                        *conditionalaccessauthenticationstrengthpolicycombinationconfiguration.ConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClient
+	ConditionalAccessNamedLocation                                                                                                                                               *conditionalaccessnamedlocation.ConditionalAccessNamedLocationClient
+	ConditionalAccessPolicy                                                                                                                                                      *conditionalaccesspolicy.ConditionalAccessPolicyClient
+	ConditionalAccessTemplate                                                                                                                                                    *conditionalaccesstemplate.ConditionalAccessTemplateClient
+	CustomAuthenticationExtension                                                                                                                                                *customauthenticationextension.CustomAuthenticationExtensionClient
+	Identity                                                                                                                                                                     *identity.IdentityClient
+	IdentityProvider                                                                                                                                                             *identityprovider.IdentityProviderClient
+	UserFlowAttribute                                                                                                                                                            *userflowattribute.UserFlowAttributeClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Client)) (*Client, error) {
@@ -99,6 +111,42 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building AuthenticationEventsFlowCondition client: %+v", err)
 	}
 	configureFunc(authenticationEventsFlowConditionClient.Client)
+
+	authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionApplicationIncludeApplicationClient, err := authenticationeventsflowexternalusersselfservicesignupeventsflowconditionapplicationincludeapplication.NewAuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionApplicationIncludeApplicationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionApplicationIncludeApplication client: %+v", err)
+	}
+	configureFunc(authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionApplicationIncludeApplicationClient.Client)
+
+	authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionClient, err := authenticationeventsflowexternalusersselfservicesignupeventsflowcondition.NewAuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowCondition client: %+v", err)
+	}
+	configureFunc(authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionClient.Client)
+
+	authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionClient, err := authenticationeventsflowexternalusersselfservicesignupeventsflowonattributecollection.NewAuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollection client: %+v", err)
+	}
+	configureFunc(authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionClient.Client)
+
+	authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionOnAttributeCollectionExternalUsersSelfServiceSignUpAttributeClient, err := authenticationeventsflowexternalusersselfservicesignupeventsflowonattributecollectiononattributecollectionexternalusersselfservicesignupattribute.NewAuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionOnAttributeCollectionExternalUsersSelfServiceSignUpAttributeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionOnAttributeCollectionExternalUsersSelfServiceSignUpAttribute client: %+v", err)
+	}
+	configureFunc(authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionOnAttributeCollectionExternalUsersSelfServiceSignUpAttributeClient.Client)
+
+	authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartClient, err := authenticationeventsflowexternalusersselfservicesignupeventsflowonauthenticationmethodloadstart.NewAuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStart client: %+v", err)
+	}
+	configureFunc(authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartClient.Client)
+
+	authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUpIdentityProviderClient, err := authenticationeventsflowexternalusersselfservicesignupeventsflowonauthenticationmethodloadstartonauthenticationmethodloadstartexternalusersselfservicesignupidentityprovider.NewAuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUpIdentityProviderClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUpIdentityProvider client: %+v", err)
+	}
+	configureFunc(authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUpIdentityProviderClient.Client)
 
 	b2xUserFlowApiConnectorConfigurationClient, err := b2xuserflowapiconnectorconfiguration.NewB2xUserFlowApiConnectorConfigurationClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -243,7 +291,13 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		AuthenticationEventListener:       authenticationEventListenerClient,
 		AuthenticationEventsFlow:          authenticationEventsFlowClient,
 		AuthenticationEventsFlowCondition: authenticationEventsFlowConditionClient,
-		AuthenticationEventsFlowConditionApplicationIncludeApplication: authenticationEventsFlowConditionApplicationIncludeApplicationClient,
+		AuthenticationEventsFlowConditionApplicationIncludeApplication:                                                                                                               authenticationEventsFlowConditionApplicationIncludeApplicationClient,
+		AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowCondition:                                                                                                    authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionClient,
+		AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionApplicationIncludeApplication:                                                                       authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionApplicationIncludeApplicationClient,
+		AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollection:                                                                                        authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionClient,
+		AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionOnAttributeCollectionExternalUsersSelfServiceSignUpAttribute:                            authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionOnAttributeCollectionExternalUsersSelfServiceSignUpAttributeClient,
+		AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStart:                                                                              authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartClient,
+		AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUpIdentityProvider: authenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowOnAuthenticationMethodLoadStartOnAuthenticationMethodLoadStartExternalUsersSelfServiceSignUpIdentityProviderClient,
 		B2xUserFlow:                          b2xUserFlowClient,
 		B2xUserFlowApiConnectorConfiguration: b2xUserFlowApiConnectorConfigurationClient,
 		B2xUserFlowApiConnectorConfigurationPostAttributeCollection:           b2xUserFlowApiConnectorConfigurationPostAttributeCollectionClient,

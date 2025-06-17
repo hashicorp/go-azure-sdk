@@ -50,7 +50,7 @@ func (o DeleteRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// DeleteRoleDefinition - Delete deviceAndAppManagementRoleDefinition. Deletes a deviceAndAppManagementRoleDefinition.
+// DeleteRoleDefinition - Delete roleDefinition. Deletes a roleDefinition.
 func (c RoleDefinitionClient) DeleteRoleDefinition(ctx context.Context, id stable.DeviceManagementRoleDefinitionId, options DeleteRoleDefinitionOperationOptions) (result DeleteRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

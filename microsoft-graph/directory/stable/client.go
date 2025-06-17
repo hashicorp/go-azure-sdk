@@ -18,25 +18,31 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/directory"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/federationconfiguration"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/onpremisessynchronization"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/publickeyinfrastructure"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/publickeyinfrastructurecertificatebasedauthconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/subscription"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	AdministrativeUnit                            *administrativeunit.AdministrativeUnitClient
-	AdministrativeUnitExtension                   *administrativeunitextension.AdministrativeUnitExtensionClient
-	AdministrativeUnitMember                      *administrativeunitmember.AdministrativeUnitMemberClient
-	AdministrativeUnitScopedRoleMember            *administrativeunitscopedrolemember.AdministrativeUnitScopedRoleMemberClient
-	AttributeSet                                  *attributeset.AttributeSetClient
-	CustomSecurityAttributeDefinition             *customsecurityattributedefinition.CustomSecurityAttributeDefinitionClient
-	CustomSecurityAttributeDefinitionAllowedValue *customsecurityattributedefinitionallowedvalue.CustomSecurityAttributeDefinitionAllowedValueClient
-	DeletedItem                                   *deleteditem.DeletedItemClient
-	DeviceLocalCredential                         *devicelocalcredential.DeviceLocalCredentialClient
-	Directory                                     *directory.DirectoryClient
-	FederationConfiguration                       *federationconfiguration.FederationConfigurationClient
-	OnPremisesSynchronization                     *onpremisessynchronization.OnPremisesSynchronizationClient
-	Subscription                                  *subscription.SubscriptionClient
+	AdministrativeUnit                                                           *administrativeunit.AdministrativeUnitClient
+	AdministrativeUnitExtension                                                  *administrativeunitextension.AdministrativeUnitExtensionClient
+	AdministrativeUnitMember                                                     *administrativeunitmember.AdministrativeUnitMemberClient
+	AdministrativeUnitScopedRoleMember                                           *administrativeunitscopedrolemember.AdministrativeUnitScopedRoleMemberClient
+	AttributeSet                                                                 *attributeset.AttributeSetClient
+	CustomSecurityAttributeDefinition                                            *customsecurityattributedefinition.CustomSecurityAttributeDefinitionClient
+	CustomSecurityAttributeDefinitionAllowedValue                                *customsecurityattributedefinitionallowedvalue.CustomSecurityAttributeDefinitionAllowedValueClient
+	DeletedItem                                                                  *deleteditem.DeletedItemClient
+	DeviceLocalCredential                                                        *devicelocalcredential.DeviceLocalCredentialClient
+	Directory                                                                    *directory.DirectoryClient
+	FederationConfiguration                                                      *federationconfiguration.FederationConfigurationClient
+	OnPremisesSynchronization                                                    *onpremisessynchronization.OnPremisesSynchronizationClient
+	PublicKeyInfrastructure                                                      *publickeyinfrastructure.PublicKeyInfrastructureClient
+	PublicKeyInfrastructureCertificateBasedAuthConfiguration                     *publickeyinfrastructurecertificatebasedauthconfiguration.PublicKeyInfrastructureCertificateBasedAuthConfigurationClient
+	PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthority *publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority.PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient
+	Subscription                                                                 *subscription.SubscriptionClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Client)) (*Client, error) {
@@ -112,6 +118,24 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(onPremisesSynchronizationClient.Client)
 
+	publicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient, err := publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority.NewPublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthority client: %+v", err)
+	}
+	configureFunc(publicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient.Client)
+
+	publicKeyInfrastructureCertificateBasedAuthConfigurationClient, err := publickeyinfrastructurecertificatebasedauthconfiguration.NewPublicKeyInfrastructureCertificateBasedAuthConfigurationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PublicKeyInfrastructureCertificateBasedAuthConfiguration client: %+v", err)
+	}
+	configureFunc(publicKeyInfrastructureCertificateBasedAuthConfigurationClient.Client)
+
+	publicKeyInfrastructureClient, err := publickeyinfrastructure.NewPublicKeyInfrastructureClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PublicKeyInfrastructure client: %+v", err)
+	}
+	configureFunc(publicKeyInfrastructureClient.Client)
+
 	subscriptionClient, err := subscription.NewSubscriptionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Subscription client: %+v", err)
@@ -131,6 +155,9 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		Directory:                                     directoryClient,
 		FederationConfiguration:                       federationConfigurationClient,
 		OnPremisesSynchronization:                     onPremisesSynchronizationClient,
-		Subscription:                                  subscriptionClient,
+		PublicKeyInfrastructure:                       publicKeyInfrastructureClient,
+		PublicKeyInfrastructureCertificateBasedAuthConfiguration:                     publicKeyInfrastructureCertificateBasedAuthConfigurationClient,
+		PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthority: publicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient,
+		Subscription: subscriptionClient,
 	}, nil
 }

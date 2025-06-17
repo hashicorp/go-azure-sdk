@@ -48,8 +48,7 @@ func (o CopyDriveRootOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// CopyDriveRoot - Invoke action copy. Asynchronously creates a copy of an driveItem (including any children), under a
-// new parent item or with a new name.
+// CopyDriveRoot - Invoke action copy
 func (c DriveRootClient) CopyDriveRoot(ctx context.Context, id stable.UserIdDriveId, input CopyDriveRootRequest, options CopyDriveRootOperationOptions) (result CopyDriveRootOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

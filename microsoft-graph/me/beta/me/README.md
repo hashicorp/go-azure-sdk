@@ -347,12 +347,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 
-payload := me.RestoreRequest{
-	// ...
-}
 
-
-read, err := client.Restore(ctx, payload, me.DefaultRestoreOperationOptions())
+read, err := client.Restore(ctx, me.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }

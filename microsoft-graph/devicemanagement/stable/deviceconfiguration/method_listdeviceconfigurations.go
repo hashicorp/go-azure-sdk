@@ -98,8 +98,8 @@ func (p *ListDeviceConfigurationsCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListDeviceConfigurations - List iosUpdateConfigurations. List properties and relationships of the
-// iosUpdateConfiguration objects.
+// ListDeviceConfigurations - List macOSDeviceFeaturesConfigurations. List properties and relationships of the
+// macOSDeviceFeaturesConfiguration objects.
 func (c DeviceConfigurationClient) ListDeviceConfigurations(ctx context.Context, options ListDeviceConfigurationsOperationOptions) (result ListDeviceConfigurationsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

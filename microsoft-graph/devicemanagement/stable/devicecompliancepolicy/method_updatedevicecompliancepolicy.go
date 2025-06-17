@@ -46,8 +46,8 @@ func (o UpdateDeviceCompliancePolicyOperationOptions) ToQuery() *client.QueryPar
 	return &out
 }
 
-// UpdateDeviceCompliancePolicy - Update windows10MobileCompliancePolicy. Update the properties of a
-// windows10MobileCompliancePolicy object.
+// UpdateDeviceCompliancePolicy - Update androidWorkProfileCompliancePolicy. Update the properties of a
+// androidWorkProfileCompliancePolicy object.
 func (c DeviceCompliancePolicyClient) UpdateDeviceCompliancePolicy(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyId, input stable.DeviceCompliancePolicy, options UpdateDeviceCompliancePolicyOperationOptions) (result UpdateDeviceCompliancePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

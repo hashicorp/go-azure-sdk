@@ -5,10 +5,34 @@ package registereddevice
 
 import "github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 
+type AppRoleAssignmentOperationPredicate struct {
+}
+
+func (p AppRoleAssignmentOperationPredicate) Matches(input beta.AppRoleAssignment) bool {
+
+	return true
+}
+
+type DeviceOperationPredicate struct {
+}
+
+func (p DeviceOperationPredicate) Matches(input beta.Device) bool {
+
+	return true
+}
+
 type DirectoryObjectOperationPredicate struct {
 }
 
 func (p DirectoryObjectOperationPredicate) Matches(input beta.DirectoryObject) bool {
+
+	return true
+}
+
+type EndpointOperationPredicate struct {
+}
+
+func (p EndpointOperationPredicate) Matches(input beta.Endpoint) bool {
 
 	return true
 }

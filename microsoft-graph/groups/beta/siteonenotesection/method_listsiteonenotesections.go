@@ -97,8 +97,8 @@ func (p *ListSiteOnenoteSectionsCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListSiteOnenoteSections - Get sections from groups. The sections in all OneNote notebooks that are owned by the user
-// or group. Read-only. Nullable.
+// ListSiteOnenoteSections - Get sections from groups. The sections in all OneNote notebooks that the user or group
+// owns. Read-only. Nullable.
 func (c SiteOnenoteSectionClient) ListSiteOnenoteSections(ctx context.Context, id beta.GroupIdSiteId, options ListSiteOnenoteSectionsOperationOptions) (result ListSiteOnenoteSectionsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -20,6 +20,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/authenticationoperation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/authenticationpasswordmethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/authenticationphonemethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/authenticationplatformcredentialmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/authenticationplatformcredentialmethoddevice"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/authenticationsoftwareoathmethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/authenticationtemporaryaccesspassmethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/authenticationwindowshelloforbusinessmethod"
@@ -185,9 +187,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/eventcalendar"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/eventextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/eventinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/eventinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/eventinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/eventinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/extension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/followedsite"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/inferenceclassification"
@@ -203,6 +202,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteam"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamallchannel"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamchannel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamchannelallmember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamchannelfilesfolder"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamchannelfilesfoldercontent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamchannelmember"
@@ -226,6 +226,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteampermissiongrant"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamphoto"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamprimarychannel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamprimarychannelallmember"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamprimarychannelfilesfolder"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamprimarychannelfilesfoldercontent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamprimarychannelmember"
@@ -239,12 +240,14 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamprimarychanneltab"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamprimarychanneltabteamsapp"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamschedule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduledaynote"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduleoffershiftrequest"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduleopenshift"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduleopenshiftchangerequest"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduleschedulinggroup"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduleshift"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduleswapshiftschangerequest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduletimecard"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduletimeoffreason"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduletimeoffrequest"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduletimesoff"
@@ -370,6 +373,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/settingstoragequotaservice"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/settingwindow"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/settingwindowinstance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/solution"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/solutionworkingtimeschedule"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/sponsor"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/teamwork"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/teamworkassociatedteam"
@@ -409,6 +414,8 @@ type Client struct {
 	AuthenticationOperation                                     *authenticationoperation.AuthenticationOperationClient
 	AuthenticationPasswordMethod                                *authenticationpasswordmethod.AuthenticationPasswordMethodClient
 	AuthenticationPhoneMethod                                   *authenticationphonemethod.AuthenticationPhoneMethodClient
+	AuthenticationPlatformCredentialMethod                      *authenticationplatformcredentialmethod.AuthenticationPlatformCredentialMethodClient
+	AuthenticationPlatformCredentialMethodDevice                *authenticationplatformcredentialmethoddevice.AuthenticationPlatformCredentialMethodDeviceClient
 	AuthenticationSoftwareOathMethod                            *authenticationsoftwareoathmethod.AuthenticationSoftwareOathMethodClient
 	AuthenticationTemporaryAccessPassMethod                     *authenticationtemporaryaccesspassmethod.AuthenticationTemporaryAccessPassMethodClient
 	AuthenticationWindowsHelloForBusinessMethod                 *authenticationwindowshelloforbusinessmethod.AuthenticationWindowsHelloForBusinessMethodClient
@@ -574,9 +581,6 @@ type Client struct {
 	EventCalendar                                               *eventcalendar.EventCalendarClient
 	EventExtension                                              *eventextension.EventExtensionClient
 	EventInstance                                               *eventinstance.EventInstanceClient
-	EventInstanceAttachment                                     *eventinstanceattachment.EventInstanceAttachmentClient
-	EventInstanceCalendar                                       *eventinstancecalendar.EventInstanceCalendarClient
-	EventInstanceExtension                                      *eventinstanceextension.EventInstanceExtensionClient
 	Extension                                                   *extension.ExtensionClient
 	FollowedSite                                                *followedsite.FollowedSiteClient
 	InferenceClassification                                     *inferenceclassification.InferenceClassificationClient
@@ -592,6 +596,7 @@ type Client struct {
 	JoinedTeam                                                  *joinedteam.JoinedTeamClient
 	JoinedTeamAllChannel                                        *joinedteamallchannel.JoinedTeamAllChannelClient
 	JoinedTeamChannel                                           *joinedteamchannel.JoinedTeamChannelClient
+	JoinedTeamChannelAllMember                                  *joinedteamchannelallmember.JoinedTeamChannelAllMemberClient
 	JoinedTeamChannelFilesFolder                                *joinedteamchannelfilesfolder.JoinedTeamChannelFilesFolderClient
 	JoinedTeamChannelFilesFolderContent                         *joinedteamchannelfilesfoldercontent.JoinedTeamChannelFilesFolderContentClient
 	JoinedTeamChannelMember                                     *joinedteamchannelmember.JoinedTeamChannelMemberClient
@@ -615,6 +620,7 @@ type Client struct {
 	JoinedTeamPermissionGrant                                   *joinedteampermissiongrant.JoinedTeamPermissionGrantClient
 	JoinedTeamPhoto                                             *joinedteamphoto.JoinedTeamPhotoClient
 	JoinedTeamPrimaryChannel                                    *joinedteamprimarychannel.JoinedTeamPrimaryChannelClient
+	JoinedTeamPrimaryChannelAllMember                           *joinedteamprimarychannelallmember.JoinedTeamPrimaryChannelAllMemberClient
 	JoinedTeamPrimaryChannelFilesFolder                         *joinedteamprimarychannelfilesfolder.JoinedTeamPrimaryChannelFilesFolderClient
 	JoinedTeamPrimaryChannelFilesFolderContent                  *joinedteamprimarychannelfilesfoldercontent.JoinedTeamPrimaryChannelFilesFolderContentClient
 	JoinedTeamPrimaryChannelMember                              *joinedteamprimarychannelmember.JoinedTeamPrimaryChannelMemberClient
@@ -628,12 +634,14 @@ type Client struct {
 	JoinedTeamPrimaryChannelTab                                 *joinedteamprimarychanneltab.JoinedTeamPrimaryChannelTabClient
 	JoinedTeamPrimaryChannelTabTeamsApp                         *joinedteamprimarychanneltabteamsapp.JoinedTeamPrimaryChannelTabTeamsAppClient
 	JoinedTeamSchedule                                          *joinedteamschedule.JoinedTeamScheduleClient
+	JoinedTeamScheduleDayNote                                   *joinedteamscheduledaynote.JoinedTeamScheduleDayNoteClient
 	JoinedTeamScheduleOfferShiftRequest                         *joinedteamscheduleoffershiftrequest.JoinedTeamScheduleOfferShiftRequestClient
 	JoinedTeamScheduleOpenShift                                 *joinedteamscheduleopenshift.JoinedTeamScheduleOpenShiftClient
 	JoinedTeamScheduleOpenShiftChangeRequest                    *joinedteamscheduleopenshiftchangerequest.JoinedTeamScheduleOpenShiftChangeRequestClient
 	JoinedTeamScheduleSchedulingGroup                           *joinedteamscheduleschedulinggroup.JoinedTeamScheduleSchedulingGroupClient
 	JoinedTeamScheduleShift                                     *joinedteamscheduleshift.JoinedTeamScheduleShiftClient
 	JoinedTeamScheduleSwapShiftsChangeRequest                   *joinedteamscheduleswapshiftschangerequest.JoinedTeamScheduleSwapShiftsChangeRequestClient
+	JoinedTeamScheduleTimeCard                                  *joinedteamscheduletimecard.JoinedTeamScheduleTimeCardClient
 	JoinedTeamScheduleTimeOffReason                             *joinedteamscheduletimeoffreason.JoinedTeamScheduleTimeOffReasonClient
 	JoinedTeamScheduleTimeOffRequest                            *joinedteamscheduletimeoffrequest.JoinedTeamScheduleTimeOffRequestClient
 	JoinedTeamScheduleTimesOff                                  *joinedteamscheduletimesoff.JoinedTeamScheduleTimesOffClient
@@ -759,6 +767,8 @@ type Client struct {
 	SettingStorageQuotaService                                  *settingstoragequotaservice.SettingStorageQuotaServiceClient
 	SettingWindow                                               *settingwindow.SettingWindowClient
 	SettingWindowInstance                                       *settingwindowinstance.SettingWindowInstanceClient
+	Solution                                                    *solution.SolutionClient
+	SolutionWorkingTimeSchedule                                 *solutionworkingtimeschedule.SolutionWorkingTimeScheduleClient
 	Sponsor                                                     *sponsor.SponsorClient
 	Teamwork                                                    *teamwork.TeamworkClient
 	TeamworkAssociatedTeam                                      *teamworkassociatedteam.TeamworkAssociatedTeamClient
@@ -865,6 +875,18 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building AuthenticationPhoneMethod client: %+v", err)
 	}
 	configureFunc(authenticationPhoneMethodClient.Client)
+
+	authenticationPlatformCredentialMethodClient, err := authenticationplatformcredentialmethod.NewAuthenticationPlatformCredentialMethodClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationPlatformCredentialMethod client: %+v", err)
+	}
+	configureFunc(authenticationPlatformCredentialMethodClient.Client)
+
+	authenticationPlatformCredentialMethodDeviceClient, err := authenticationplatformcredentialmethoddevice.NewAuthenticationPlatformCredentialMethodDeviceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AuthenticationPlatformCredentialMethodDevice client: %+v", err)
+	}
+	configureFunc(authenticationPlatformCredentialMethodDeviceClient.Client)
 
 	authenticationSoftwareOathMethodClient, err := authenticationsoftwareoathmethod.NewAuthenticationSoftwareOathMethodClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1850,29 +1872,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(eventExtensionClient.Client)
 
-	eventInstanceAttachmentClient, err := eventinstanceattachment.NewEventInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceAttachment client: %+v", err)
-	}
-	configureFunc(eventInstanceAttachmentClient.Client)
-
-	eventInstanceCalendarClient, err := eventinstancecalendar.NewEventInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceCalendar client: %+v", err)
-	}
-	configureFunc(eventInstanceCalendarClient.Client)
-
 	eventInstanceClient, err := eventinstance.NewEventInstanceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventInstance client: %+v", err)
 	}
 	configureFunc(eventInstanceClient.Client)
-
-	eventInstanceExtensionClient, err := eventinstanceextension.NewEventInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building EventInstanceExtension client: %+v", err)
-	}
-	configureFunc(eventInstanceExtensionClient.Client)
 
 	extensionClient, err := extension.NewExtensionClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1951,6 +1955,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building JoinedTeamAllChannel client: %+v", err)
 	}
 	configureFunc(joinedTeamAllChannelClient.Client)
+
+	joinedTeamChannelAllMemberClient, err := joinedteamchannelallmember.NewJoinedTeamChannelAllMemberClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building JoinedTeamChannelAllMember client: %+v", err)
+	}
+	configureFunc(joinedTeamChannelAllMemberClient.Client)
 
 	joinedTeamChannelClient, err := joinedteamchannel.NewJoinedTeamChannelClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -2096,6 +2106,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(joinedTeamPhotoClient.Client)
 
+	joinedTeamPrimaryChannelAllMemberClient, err := joinedteamprimarychannelallmember.NewJoinedTeamPrimaryChannelAllMemberClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building JoinedTeamPrimaryChannelAllMember client: %+v", err)
+	}
+	configureFunc(joinedTeamPrimaryChannelAllMemberClient.Client)
+
 	joinedTeamPrimaryChannelClient, err := joinedteamprimarychannel.NewJoinedTeamPrimaryChannelClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JoinedTeamPrimaryChannel client: %+v", err)
@@ -2180,6 +2196,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(joinedTeamScheduleClient.Client)
 
+	joinedTeamScheduleDayNoteClient, err := joinedteamscheduledaynote.NewJoinedTeamScheduleDayNoteClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building JoinedTeamScheduleDayNote client: %+v", err)
+	}
+	configureFunc(joinedTeamScheduleDayNoteClient.Client)
+
 	joinedTeamScheduleOfferShiftRequestClient, err := joinedteamscheduleoffershiftrequest.NewJoinedTeamScheduleOfferShiftRequestClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JoinedTeamScheduleOfferShiftRequest client: %+v", err)
@@ -2215,6 +2237,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building JoinedTeamScheduleSwapShiftsChangeRequest client: %+v", err)
 	}
 	configureFunc(joinedTeamScheduleSwapShiftsChangeRequestClient.Client)
+
+	joinedTeamScheduleTimeCardClient, err := joinedteamscheduletimecard.NewJoinedTeamScheduleTimeCardClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building JoinedTeamScheduleTimeCard client: %+v", err)
+	}
+	configureFunc(joinedTeamScheduleTimeCardClient.Client)
 
 	joinedTeamScheduleTimeOffReasonClient, err := joinedteamscheduletimeoffreason.NewJoinedTeamScheduleTimeOffReasonClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -2966,6 +2994,18 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(settingWindowInstanceClient.Client)
 
+	solutionClient, err := solution.NewSolutionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Solution client: %+v", err)
+	}
+	configureFunc(solutionClient.Client)
+
+	solutionWorkingTimeScheduleClient, err := solutionworkingtimeschedule.NewSolutionWorkingTimeScheduleClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SolutionWorkingTimeSchedule client: %+v", err)
+	}
+	configureFunc(solutionWorkingTimeScheduleClient.Client)
+
 	sponsorClient, err := sponsor.NewSponsorClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Sponsor client: %+v", err)
@@ -3101,6 +3141,8 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		AuthenticationOperation:                           authenticationOperationClient,
 		AuthenticationPasswordMethod:                      authenticationPasswordMethodClient,
 		AuthenticationPhoneMethod:                         authenticationPhoneMethodClient,
+		AuthenticationPlatformCredentialMethod:            authenticationPlatformCredentialMethodClient,
+		AuthenticationPlatformCredentialMethodDevice:      authenticationPlatformCredentialMethodDeviceClient,
 		AuthenticationSoftwareOathMethod:                  authenticationSoftwareOathMethodClient,
 		AuthenticationTemporaryAccessPassMethod:           authenticationTemporaryAccessPassMethodClient,
 		AuthenticationWindowsHelloForBusinessMethod:       authenticationWindowsHelloForBusinessMethodClient,
@@ -3266,9 +3308,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		EventCalendar:                                               eventCalendarClient,
 		EventExtension:                                              eventExtensionClient,
 		EventInstance:                                               eventInstanceClient,
-		EventInstanceAttachment:                                     eventInstanceAttachmentClient,
-		EventInstanceCalendar:                                       eventInstanceCalendarClient,
-		EventInstanceExtension:                                      eventInstanceExtensionClient,
 		Extension:                                                   extensionClient,
 		FollowedSite:                                                followedSiteClient,
 		InferenceClassification:                                     inferenceClassificationClient,
@@ -3284,6 +3323,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		JoinedTeam:                                                  joinedTeamClient,
 		JoinedTeamAllChannel:                                        joinedTeamAllChannelClient,
 		JoinedTeamChannel:                                           joinedTeamChannelClient,
+		JoinedTeamChannelAllMember:                                  joinedTeamChannelAllMemberClient,
 		JoinedTeamChannelFilesFolder:                                joinedTeamChannelFilesFolderClient,
 		JoinedTeamChannelFilesFolderContent:                         joinedTeamChannelFilesFolderContentClient,
 		JoinedTeamChannelMember:                                     joinedTeamChannelMemberClient,
@@ -3307,6 +3347,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		JoinedTeamPermissionGrant:                                   joinedTeamPermissionGrantClient,
 		JoinedTeamPhoto:                                             joinedTeamPhotoClient,
 		JoinedTeamPrimaryChannel:                                    joinedTeamPrimaryChannelClient,
+		JoinedTeamPrimaryChannelAllMember:                           joinedTeamPrimaryChannelAllMemberClient,
 		JoinedTeamPrimaryChannelFilesFolder:                         joinedTeamPrimaryChannelFilesFolderClient,
 		JoinedTeamPrimaryChannelFilesFolderContent:                  joinedTeamPrimaryChannelFilesFolderContentClient,
 		JoinedTeamPrimaryChannelMember:                              joinedTeamPrimaryChannelMemberClient,
@@ -3320,12 +3361,14 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		JoinedTeamPrimaryChannelTab:                                 joinedTeamPrimaryChannelTabClient,
 		JoinedTeamPrimaryChannelTabTeamsApp:                         joinedTeamPrimaryChannelTabTeamsAppClient,
 		JoinedTeamSchedule:                                          joinedTeamScheduleClient,
+		JoinedTeamScheduleDayNote:                                   joinedTeamScheduleDayNoteClient,
 		JoinedTeamScheduleOfferShiftRequest:                         joinedTeamScheduleOfferShiftRequestClient,
 		JoinedTeamScheduleOpenShift:                                 joinedTeamScheduleOpenShiftClient,
 		JoinedTeamScheduleOpenShiftChangeRequest:                    joinedTeamScheduleOpenShiftChangeRequestClient,
 		JoinedTeamScheduleSchedulingGroup:                           joinedTeamScheduleSchedulingGroupClient,
 		JoinedTeamScheduleShift:                                     joinedTeamScheduleShiftClient,
 		JoinedTeamScheduleSwapShiftsChangeRequest:                   joinedTeamScheduleSwapShiftsChangeRequestClient,
+		JoinedTeamScheduleTimeCard:                                  joinedTeamScheduleTimeCardClient,
 		JoinedTeamScheduleTimeOffReason:                             joinedTeamScheduleTimeOffReasonClient,
 		JoinedTeamScheduleTimeOffRequest:                            joinedTeamScheduleTimeOffRequestClient,
 		JoinedTeamScheduleTimesOff:                                  joinedTeamScheduleTimesOffClient,
@@ -3451,6 +3494,8 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		SettingStorageQuotaService:                           settingStorageQuotaServiceClient,
 		SettingWindow:                                        settingWindowClient,
 		SettingWindowInstance:                                settingWindowInstanceClient,
+		Solution:                                             solutionClient,
+		SolutionWorkingTimeSchedule:                          solutionWorkingTimeScheduleClient,
 		Sponsor:                                              sponsorClient,
 		Teamwork:                                             teamworkClient,
 		TeamworkAssociatedTeam:                               teamworkAssociatedTeamClient,

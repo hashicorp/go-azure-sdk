@@ -47,8 +47,7 @@ func (o UpdateClaimsPolicyOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// UpdateClaimsPolicy - Create or replace claimsPolicy. Create a new customClaimsPolicy object if it doesn't exist, or
-// replace an existing one.
+// UpdateClaimsPolicy - Update customClaimsPolicy. Update a customClaimsPolicy object.
 func (c ClaimsPolicyClient) UpdateClaimsPolicy(ctx context.Context, id beta.ServicePrincipalId, input beta.CustomClaimsPolicy, options UpdateClaimsPolicyOperationOptions) (result UpdateClaimsPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -55,7 +55,7 @@ func (o GetSlaOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetSla - Get sla from reports. Reports that relate to tenant-level Microsoft Entra SLA attainment.
+// GetSla - Get sla from reports. Reports that relate to tenant-level Microsoft Entra Health SLA attainment.
 func (c SlaClient) GetSla(ctx context.Context, options GetSlaOperationOptions) (result GetSlaOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

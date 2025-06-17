@@ -56,10 +56,9 @@ func (o GetMessageOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetMessage - Get message. Retrieve the properties and relationships of a message object. You can use the $value
-// parameter to get the MIME content of a message. See also an example below. There are two scenarios where an app can
-// get a message in another user's mail folder: Since the message resource supports extensions, you can also use the GET
-// operation to get custom properties and extension data in a message instance.
+// GetMessage - Get open extension. Get an open extension (openTypeExtension object) identified by name or fully
+// qualified name. The table in the Permissions section lists the resources that support open extensions. The following
+// table lists the three scenarios where you can get an open extension from a supported resource instance.
 func (c MessageClient) GetMessage(ctx context.Context, id stable.MeMessageId, options GetMessageOperationOptions) (result GetMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

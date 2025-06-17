@@ -50,8 +50,8 @@ func (o DeleteDeviceConfigurationOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
-// DeleteDeviceConfiguration - Delete windows10EndpointProtectionConfiguration. Deletes a
-// windows10EndpointProtectionConfiguration.
+// DeleteDeviceConfiguration - Delete androidWorkProfileCustomConfiguration. Deletes a
+// androidWorkProfileCustomConfiguration.
 func (c DeviceConfigurationClient) DeleteDeviceConfiguration(ctx context.Context, id stable.DeviceManagementDeviceConfigurationId, options DeleteDeviceConfigurationOperationOptions) (result DeleteDeviceConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

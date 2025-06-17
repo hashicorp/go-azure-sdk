@@ -46,7 +46,7 @@ func (o UpdateMessageOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// UpdateMessage - Update message. Update the properties of a message object.
+// UpdateMessage - Update eventMessage. Update the properties of an eventMessage object.
 func (c MessageClient) UpdateMessage(ctx context.Context, id stable.MeMessageId, input stable.Message, options UpdateMessageOperationOptions) (result UpdateMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -56,8 +56,8 @@ func (o GetOnlineMeetingOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // GetOnlineMeeting - Get onlineMeeting. Retrieve the properties and relationships of an onlineMeeting object. For
-// example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see
-// Online meeting artifacts and permissions.
+// example, you can: Teams live event attendee report (deprecated) and Teams live event recordings (deprecated) are
+// online meeting artifacts. For more information, see Online meeting artifacts and permissions.
 func (c OnlineMeetingClient) GetOnlineMeeting(ctx context.Context, id stable.MeOnlineMeetingId, options GetOnlineMeetingOperationOptions) (result GetOnlineMeetingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

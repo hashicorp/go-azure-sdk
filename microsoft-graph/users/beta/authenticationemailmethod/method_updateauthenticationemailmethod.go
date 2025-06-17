@@ -47,7 +47,7 @@ func (o UpdateAuthenticationEmailMethodOperationOptions) ToQuery() *client.Query
 }
 
 // UpdateAuthenticationEmailMethod - Update emailAuthenticationMethod. Update a user's email address associated with an
-// email Authentication Method object.
+// email Authentication Method object. Self-service operations aren't supported.
 func (c AuthenticationEmailMethodClient) UpdateAuthenticationEmailMethod(ctx context.Context, id beta.UserIdAuthenticationEmailMethodId, input beta.EmailAuthenticationMethod, options UpdateAuthenticationEmailMethodOperationOptions) (result UpdateAuthenticationEmailMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

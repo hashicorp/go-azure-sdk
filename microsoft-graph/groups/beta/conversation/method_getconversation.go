@@ -55,7 +55,7 @@ func (o GetConversationOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetConversation - Get conversation. Get a group's conversation object.
+// GetConversation - Get conversation. Retrieve the properties and relationships of conversation object.
 func (c ConversationClient) GetConversation(ctx context.Context, id beta.GroupIdConversationId, options GetConversationOperationOptions) (result GetConversationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

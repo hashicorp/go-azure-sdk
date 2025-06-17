@@ -67,7 +67,12 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := virtualendpointcloudpc.NewDeviceManagementVirtualEndpointCloudPCID("cloudPCId")
 
-read, err := client.CreateVirtualEndpointCloudPCSnapshot(ctx, id, virtualendpointcloudpc.DefaultCreateVirtualEndpointCloudPCSnapshotOperationOptions())
+payload := virtualendpointcloudpc.CreateVirtualEndpointCloudPCSnapshotRequest{
+	// ...
+}
+
+
+read, err := client.CreateVirtualEndpointCloudPCSnapshot(ctx, id, payload, virtualendpointcloudpc.DefaultCreateVirtualEndpointCloudPCSnapshotOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -137,27 +142,6 @@ if err != nil {
 }
 if model := read.Model; model != nil {
 	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `VirtualEndpointCloudPCClient.ListVirtualEndpointCloudPCBulkResizes`
-
-```go
-ctx := context.TODO()
-
-payload := virtualendpointcloudpc.ListVirtualEndpointCloudPCBulkResizesRequest{
-	// ...
-}
-
-
-// alternatively `client.ListVirtualEndpointCloudPCBulkResizes(ctx, payload, virtualendpointcloudpc.DefaultListVirtualEndpointCloudPCBulkResizesOperationOptions())` can be used to do batched pagination
-items, err := client.ListVirtualEndpointCloudPCBulkResizesComplete(ctx, payload, virtualendpointcloudpc.DefaultListVirtualEndpointCloudPCBulkResizesOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
 }
 ```
 

@@ -97,7 +97,8 @@ func (p *ListAgreementAcceptancesCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListAgreementAcceptances - List agreementAcceptances. Retrieve the signed-in user's agreementAcceptance objects.
+// ListAgreementAcceptances - List agreementAcceptances. Allows the signed-in user to retrieve their agreementAcceptance
+// objects.
 func (c AgreementAcceptanceClient) ListAgreementAcceptances(ctx context.Context, options ListAgreementAcceptancesOperationOptions) (result ListAgreementAcceptancesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

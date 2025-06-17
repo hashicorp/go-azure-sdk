@@ -55,7 +55,8 @@ func (o GetTermsOfUseAgreementOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetTermsOfUseAgreement - Get agreement. Retrieve the properties and relationships of an agreement object.
+// GetTermsOfUseAgreement - List files (terms of use agreement files). Retrieve all files related to an agreement. This
+// includes the default file and all localized files.
 func (c TermsOfUseAgreementClient) GetTermsOfUseAgreement(ctx context.Context, id beta.IdentityGovernanceTermsOfUseAgreementId, options GetTermsOfUseAgreementOperationOptions) (result GetTermsOfUseAgreementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -58,7 +58,7 @@ func (o GetAuthenticationEventListenerOperationOptions) ToQuery() *client.QueryP
 
 // GetAuthenticationEventListener - Get authenticationEventListener. Read the properties and relationships of an
 // authenticationEventListener object. The @odata.type property in the response object indicates the type of the
-// authenticationEventListener object.
+// authenticationEventListener object. The following derived types are currently supported.
 func (c AuthenticationEventListenerClient) GetAuthenticationEventListener(ctx context.Context, id stable.IdentityAuthenticationEventListenerId, options GetAuthenticationEventListenerOperationOptions) (result GetAuthenticationEventListenerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

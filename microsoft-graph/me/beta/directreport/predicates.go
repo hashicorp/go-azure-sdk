@@ -12,3 +12,19 @@ func (p DirectoryObjectOperationPredicate) Matches(input beta.DirectoryObject) b
 
 	return true
 }
+
+type OrgContactOperationPredicate struct {
+}
+
+func (p OrgContactOperationPredicate) Matches(input beta.OrgContact) bool {
+
+	return true
+}
+
+type UserOperationPredicate struct {
+}
+
+func (p UserOperationPredicate) Matches(input beta.User) bool {
+
+	return true
+}

@@ -97,8 +97,8 @@ func (p *ListMobileAppTroubleshootingEventAppLogCollectionRequestsCustomPager) N
 	return p.NextLink
 }
 
-// ListMobileAppTroubleshootingEventAppLogCollectionRequests - Get appLogCollectionRequests from deviceManagement.
-// Indicates collection of App Log Upload Request.
+// ListMobileAppTroubleshootingEventAppLogCollectionRequests - Get appLogCollectionRequests from deviceManagement. The
+// collection property of AppLogUploadRequest.
 func (c MobileAppTroubleshootingEventAppLogCollectionRequestClient) ListMobileAppTroubleshootingEventAppLogCollectionRequests(ctx context.Context, id beta.DeviceManagementMobileAppTroubleshootingEventId, options ListMobileAppTroubleshootingEventAppLogCollectionRequestsOperationOptions) (result ListMobileAppTroubleshootingEventAppLogCollectionRequestsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

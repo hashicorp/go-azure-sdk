@@ -46,8 +46,8 @@ func (o UpdateDeviceConfigurationOperationOptions) ToQuery() *client.QueryParams
 	return &out
 }
 
-// UpdateDeviceConfiguration - Update editionUpgradeConfiguration. Update the properties of a
-// editionUpgradeConfiguration object.
+// UpdateDeviceConfiguration - Update windows10TeamGeneralConfiguration. Update the properties of a
+// windows10TeamGeneralConfiguration object.
 func (c DeviceConfigurationClient) UpdateDeviceConfiguration(ctx context.Context, id stable.DeviceManagementDeviceConfigurationId, input stable.DeviceConfiguration, options UpdateDeviceConfigurationOperationOptions) (result UpdateDeviceConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

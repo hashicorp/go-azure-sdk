@@ -50,7 +50,8 @@ func (o CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOper
 
 // CreateAuthenticationEventsFlowConditionApplicationIncludeApplication - Add includeApplication (to a user flow). Add
 // or link an application to a user flow, or authenticationEventsFlow. This enables the authentication experience
-// defined by the user flow to be enabled for the application. An application can only be linked to one user flow.
+// defined by the user flow to be enabled for the application. An application can only be linked to one user flow. The
+// app must have an associated service principal in the tenant.
 func (c AuthenticationEventsFlowConditionApplicationIncludeApplicationClient) CreateAuthenticationEventsFlowConditionApplicationIncludeApplication(ctx context.Context, id stable.IdentityAuthenticationEventsFlowId, input stable.AuthenticationConditionApplication, options CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions) (result CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

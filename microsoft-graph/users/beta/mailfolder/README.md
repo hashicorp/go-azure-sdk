@@ -62,6 +62,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `MailFolderClient.CreateMailFolderPermanentDelete`
+
+```go
+ctx := context.TODO()
+id := mailfolder.NewUserIdMailFolderID("userId", "mailFolderId")
+
+read, err := client.CreateMailFolderPermanentDelete(ctx, id, mailfolder.DefaultCreateMailFolderPermanentDeleteOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `MailFolderClient.DeleteMailFolder`
 
 ```go
@@ -160,6 +176,27 @@ payload := mailfolder.MailFolder{
 
 
 read, err := client.UpdateMailFolder(ctx, id, payload, mailfolder.DefaultUpdateMailFolderOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `MailFolderClient.UpdateMailFolderAllMessagesReadState`
+
+```go
+ctx := context.TODO()
+id := mailfolder.NewUserIdMailFolderID("userId", "mailFolderId")
+
+payload := mailfolder.UpdateMailFolderAllMessagesReadStateRequest{
+	// ...
+}
+
+
+read, err := client.UpdateMailFolderAllMessagesReadState(ctx, id, payload, mailfolder.DefaultUpdateMailFolderAllMessagesReadStateOperationOptions())
 if err != nil {
 	// handle the error
 }

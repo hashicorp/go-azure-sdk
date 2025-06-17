@@ -55,7 +55,8 @@ func (o GetSettingItemInsightOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetSettingItemInsight - Get itemInsights from me
+// GetSettingItemInsight - Get userInsightsSettings. Get the user-customizable privacy settings for itemInsights and
+// meeting hours insights.
 func (c SettingItemInsightClient) GetSettingItemInsight(ctx context.Context, options GetSettingItemInsightOperationOptions) (result GetSettingItemInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

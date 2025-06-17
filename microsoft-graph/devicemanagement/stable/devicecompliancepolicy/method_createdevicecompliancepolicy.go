@@ -48,8 +48,7 @@ func (o CreateDeviceCompliancePolicyOperationOptions) ToQuery() *client.QueryPar
 	return &out
 }
 
-// CreateDeviceCompliancePolicy - Create androidWorkProfileCompliancePolicy. Create a new
-// androidWorkProfileCompliancePolicy object.
+// CreateDeviceCompliancePolicy - Create macOSCompliancePolicy. Create a new macOSCompliancePolicy object.
 func (c DeviceCompliancePolicyClient) CreateDeviceCompliancePolicy(ctx context.Context, input stable.DeviceCompliancePolicy, options CreateDeviceCompliancePolicyOperationOptions) (result CreateDeviceCompliancePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -128,6 +128,28 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `ChatMemberClient.RemoveChatMembers`
+
+```go
+ctx := context.TODO()
+id := chatmember.NewMeChatID("chatId")
+
+payload := chatmember.RemoveChatMembersRequest{
+	// ...
+}
+
+
+// alternatively `client.RemoveChatMembers(ctx, id, payload, chatmember.DefaultRemoveChatMembersOperationOptions())` can be used to do batched pagination
+items, err := client.RemoveChatMembersComplete(ctx, id, payload, chatmember.DefaultRemoveChatMembersOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `ChatMemberClient.UpdateChatMember`
 
 ```go

@@ -51,7 +51,7 @@ func (o DeleteCustomAuthenticationExtensionOperationOptions) ToQuery() *client.Q
 }
 
 // DeleteCustomAuthenticationExtension - Delete customAuthenticationExtension. Delete a customAuthenticationExtension
-// object.
+// object. The following derived types are currently supported.
 func (c CustomAuthenticationExtensionClient) DeleteCustomAuthenticationExtension(ctx context.Context, id stable.IdentityCustomAuthenticationExtensionId, options DeleteCustomAuthenticationExtensionOperationOptions) (result DeleteCustomAuthenticationExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

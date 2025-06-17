@@ -55,7 +55,8 @@ func (o GetSolutionWorkingTimeScheduleOperationOptions) ToQuery() *client.QueryP
 	return &out
 }
 
-// GetSolutionWorkingTimeSchedule - Get workingTimeSchedule from me
+// GetSolutionWorkingTimeSchedule - Get workingTimeSchedule from me. The working time schedule entity associated with
+// the solution.
 func (c SolutionWorkingTimeScheduleClient) GetSolutionWorkingTimeSchedule(ctx context.Context, options GetSolutionWorkingTimeScheduleOperationOptions) (result GetSolutionWorkingTimeScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

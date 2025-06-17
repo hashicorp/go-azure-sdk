@@ -42,6 +42,38 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `SiteClient.CreateSiteArchive`
+
+```go
+ctx := context.TODO()
+id := site.NewGroupIdSiteID("groupId", "siteId")
+
+read, err := client.CreateSiteArchive(ctx, id, site.DefaultCreateSiteArchiveOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `SiteClient.CreateSiteUnarchive`
+
+```go
+ctx := context.TODO()
+id := site.NewGroupIdSiteID("groupId", "siteId")
+
+read, err := client.CreateSiteUnarchive(ctx, id, site.DefaultCreateSiteUnarchiveOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `SiteClient.GetSite`
 
 ```go

@@ -102,7 +102,7 @@ func (p *ListTransitiveMemberOfsCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListTransitiveMemberOfs - List group transitive memberOf. Get groups and administrative units that the group is a
+// ListTransitiveMemberOfs - List group transitive memberOf. Get groups and administrative units that a group is a
 // member of. This operation is transitive and will also include all groups that this group is a nested member of.
 // Unlike getting a user's Microsoft 365 groups, this returns all types of groups, not just Microsoft 365 groups.
 func (c TransitiveMemberOfClient) ListTransitiveMemberOfs(ctx context.Context, id beta.GroupId, options ListTransitiveMemberOfsOperationOptions) (result ListTransitiveMemberOfsOperationResponse, err error) {

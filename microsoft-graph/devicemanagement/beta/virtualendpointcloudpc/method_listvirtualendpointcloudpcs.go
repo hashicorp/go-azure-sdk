@@ -97,7 +97,7 @@ func (p *ListVirtualEndpointCloudPCSCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListVirtualEndpointCloudPCS - Get cloudPC. Read the properties and relationships of a specific cloudPC object.
+// ListVirtualEndpointCloudPCS - List cloudPCs. List the cloudPC devices in a tenant.
 func (c VirtualEndpointCloudPCClient) ListVirtualEndpointCloudPCS(ctx context.Context, options ListVirtualEndpointCloudPCSOperationOptions) (result ListVirtualEndpointCloudPCSOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

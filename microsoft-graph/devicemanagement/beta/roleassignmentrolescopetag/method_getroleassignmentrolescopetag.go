@@ -55,8 +55,9 @@ func (o GetRoleAssignmentRoleScopeTagOperationOptions) ToQuery() *client.QueryPa
 	return &out
 }
 
-// GetRoleAssignmentRoleScopeTag - Get roleScopeTags from deviceManagement. The set of Role Scope Tags defined on the
-// Role Assignment.
+// GetRoleAssignmentRoleScopeTag - Get roleScopeTags from deviceManagement. Indicates the set of scope tags for the role
+// assignment. These scope tags will limit the visibility of any Intune resources to those that match any of the scope
+// tags in this collection.
 func (c RoleAssignmentRoleScopeTagClient) GetRoleAssignmentRoleScopeTag(ctx context.Context, id beta.DeviceManagementRoleAssignmentIdRoleScopeTagId, options GetRoleAssignmentRoleScopeTagOperationOptions) (result GetRoleAssignmentRoleScopeTagOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

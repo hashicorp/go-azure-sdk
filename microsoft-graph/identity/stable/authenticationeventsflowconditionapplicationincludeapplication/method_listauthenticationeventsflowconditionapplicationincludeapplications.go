@@ -98,8 +98,10 @@ func (p *ListAuthenticationEventsFlowConditionApplicationIncludeApplicationsCust
 }
 
 // ListAuthenticationEventsFlowConditionApplicationIncludeApplications - List includeApplications (for a user flow).
-// List the applications linked to an authenticationEventsFlow. These are the applications for which the authentication
-// experience defined by the user flow is enabled.
+// List the applications linked to an external identities self-service sign up user flow that's represented by an
+// externalUsersSelfServiceSignupEventsFlow object. These are the applications for which the authentication experience
+// that's defined by the user flow is enabled. To find the user flow that's linked to an application, see Example 4:
+// List user flow associated with specific application ID.
 func (c AuthenticationEventsFlowConditionApplicationIncludeApplicationClient) ListAuthenticationEventsFlowConditionApplicationIncludeApplications(ctx context.Context, id stable.IdentityAuthenticationEventsFlowId, options ListAuthenticationEventsFlowConditionApplicationIncludeApplicationsOperationOptions) (result ListAuthenticationEventsFlowConditionApplicationIncludeApplicationsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

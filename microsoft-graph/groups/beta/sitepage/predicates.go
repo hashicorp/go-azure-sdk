@@ -12,3 +12,11 @@ func (p BaseSitePageOperationPredicate) Matches(input beta.BaseSitePage) bool {
 
 	return true
 }
+
+type SitePageOperationPredicate struct {
+}
+
+func (p SitePageOperationPredicate) Matches(input beta.SitePage) bool {
+
+	return true
+}

@@ -56,7 +56,7 @@ func (o GetSolutionOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetSolution - Get solutions from users
+// GetSolution - Get solutions from users. Represents a user's custom solution entity. Read-Only. Nullable.
 func (c SolutionClient) GetSolution(ctx context.Context, id beta.UserId, options GetSolutionOperationOptions) (result GetSolutionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

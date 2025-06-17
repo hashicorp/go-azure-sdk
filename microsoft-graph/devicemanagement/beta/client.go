@@ -20,12 +20,14 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/assignmentfilter"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/auditevent"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/autopilotevent"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/autopiloteventpolicystatusdetail"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/carttoclassassociation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/category"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/categorysettingdefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/certificateconnectordetail"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/chromeosonboardingsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/cloudcertificationauthority"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/cloudcertificationauthoritycloudcertificationauthorityleafcertificate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/cloudcertificationauthorityleafcertificate"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/cloudpcconnectivityissue"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddevice"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddeviceassignmentfilterevaluationstatusdetail"
@@ -67,6 +69,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingdefaultiosenrollmentprofile"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingdefaultmacosenrollmentprofile"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingdefaulttvosenrollmentprofile"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingdefaultvisionosenrollmentprofile"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingenrollmentprofile"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingimportedappledeviceidentity"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/derivedcredential"
@@ -99,7 +103,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationdevicestatusoverview"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationgroupassignment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationgroupassignmentdeviceconfiguration"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationprofile"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationrestrictedappsviolation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationsallmanageddevicecertificatestate"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationuserstatesummary"
@@ -429,12 +432,14 @@ type Client struct {
 	AssignmentFilter                                                                                   *assignmentfilter.AssignmentFilterClient
 	AuditEvent                                                                                         *auditevent.AuditEventClient
 	AutopilotEvent                                                                                     *autopilotevent.AutopilotEventClient
-	AutopilotEventPolicyStatusDetail                                                                   *autopiloteventpolicystatusdetail.AutopilotEventPolicyStatusDetailClient
 	CartToClassAssociation                                                                             *carttoclassassociation.CartToClassAssociationClient
 	Category                                                                                           *category.CategoryClient
 	CategorySettingDefinition                                                                          *categorysettingdefinition.CategorySettingDefinitionClient
 	CertificateConnectorDetail                                                                         *certificateconnectordetail.CertificateConnectorDetailClient
 	ChromeOSOnboardingSetting                                                                          *chromeosonboardingsetting.ChromeOSOnboardingSettingClient
+	CloudCertificationAuthority                                                                        *cloudcertificationauthority.CloudCertificationAuthorityClient
+	CloudCertificationAuthorityCloudCertificationAuthorityLeafCertificate                              *cloudcertificationauthoritycloudcertificationauthorityleafcertificate.CloudCertificationAuthorityCloudCertificationAuthorityLeafCertificateClient
+	CloudCertificationAuthorityLeafCertificate                                                         *cloudcertificationauthorityleafcertificate.CloudCertificationAuthorityLeafCertificateClient
 	CloudPCConnectivityIssue                                                                           *cloudpcconnectivityissue.CloudPCConnectivityIssueClient
 	ComanagedDevice                                                                                    *comanageddevice.ComanagedDeviceClient
 	ComanagedDeviceAssignmentFilterEvaluationStatusDetail                                              *comanageddeviceassignmentfilterevaluationstatusdetail.ComanagedDeviceAssignmentFilterEvaluationStatusDetailClient
@@ -476,6 +481,8 @@ type Client struct {
 	DepOnboardingSetting                                                                               *deponboardingsetting.DepOnboardingSettingClient
 	DepOnboardingSettingDefaultIosEnrollmentProfile                                                    *deponboardingsettingdefaultiosenrollmentprofile.DepOnboardingSettingDefaultIosEnrollmentProfileClient
 	DepOnboardingSettingDefaultMacOsEnrollmentProfile                                                  *deponboardingsettingdefaultmacosenrollmentprofile.DepOnboardingSettingDefaultMacOsEnrollmentProfileClient
+	DepOnboardingSettingDefaultTvOSEnrollmentProfile                                                   *deponboardingsettingdefaulttvosenrollmentprofile.DepOnboardingSettingDefaultTvOSEnrollmentProfileClient
+	DepOnboardingSettingDefaultVisionOSEnrollmentProfile                                               *deponboardingsettingdefaultvisionosenrollmentprofile.DepOnboardingSettingDefaultVisionOSEnrollmentProfileClient
 	DepOnboardingSettingEnrollmentProfile                                                              *deponboardingsettingenrollmentprofile.DepOnboardingSettingEnrollmentProfileClient
 	DepOnboardingSettingImportedAppleDeviceIdentity                                                    *deponboardingsettingimportedappledeviceidentity.DepOnboardingSettingImportedAppleDeviceIdentityClient
 	DerivedCredential                                                                                  *derivedcredential.DerivedCredentialClient
@@ -508,7 +515,6 @@ type Client struct {
 	DeviceConfigurationDeviceStatusOverview                                                            *deviceconfigurationdevicestatusoverview.DeviceConfigurationDeviceStatusOverviewClient
 	DeviceConfigurationGroupAssignment                                                                 *deviceconfigurationgroupassignment.DeviceConfigurationGroupAssignmentClient
 	DeviceConfigurationGroupAssignmentDeviceConfiguration                                              *deviceconfigurationgroupassignmentdeviceconfiguration.DeviceConfigurationGroupAssignmentDeviceConfigurationClient
-	DeviceConfigurationProfile                                                                         *deviceconfigurationprofile.DeviceConfigurationProfileClient
 	DeviceConfigurationRestrictedAppsViolation                                                         *deviceconfigurationrestrictedappsviolation.DeviceConfigurationRestrictedAppsViolationClient
 	DeviceConfigurationUserStateSummary                                                                *deviceconfigurationuserstatesummary.DeviceConfigurationUserStateSummaryClient
 	DeviceConfigurationUserStatus                                                                      *deviceconfigurationuserstatus.DeviceConfigurationUserStatusClient
@@ -906,12 +912,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(autopilotEventClient.Client)
 
-	autopilotEventPolicyStatusDetailClient, err := autopiloteventpolicystatusdetail.NewAutopilotEventPolicyStatusDetailClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building AutopilotEventPolicyStatusDetail client: %+v", err)
-	}
-	configureFunc(autopilotEventPolicyStatusDetailClient.Client)
-
 	cartToClassAssociationClient, err := carttoclassassociation.NewCartToClassAssociationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CartToClassAssociation client: %+v", err)
@@ -941,6 +941,24 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building ChromeOSOnboardingSetting client: %+v", err)
 	}
 	configureFunc(chromeOSOnboardingSettingClient.Client)
+
+	cloudCertificationAuthorityClient, err := cloudcertificationauthority.NewCloudCertificationAuthorityClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CloudCertificationAuthority client: %+v", err)
+	}
+	configureFunc(cloudCertificationAuthorityClient.Client)
+
+	cloudCertificationAuthorityCloudCertificationAuthorityLeafCertificateClient, err := cloudcertificationauthoritycloudcertificationauthorityleafcertificate.NewCloudCertificationAuthorityCloudCertificationAuthorityLeafCertificateClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CloudCertificationAuthorityCloudCertificationAuthorityLeafCertificate client: %+v", err)
+	}
+	configureFunc(cloudCertificationAuthorityCloudCertificationAuthorityLeafCertificateClient.Client)
+
+	cloudCertificationAuthorityLeafCertificateClient, err := cloudcertificationauthorityleafcertificate.NewCloudCertificationAuthorityLeafCertificateClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CloudCertificationAuthorityLeafCertificate client: %+v", err)
+	}
+	configureFunc(cloudCertificationAuthorityLeafCertificateClient.Client)
 
 	cloudPCConnectivityIssueClient, err := cloudpcconnectivityissue.NewCloudPCConnectivityIssueClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1188,6 +1206,18 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(depOnboardingSettingDefaultMacOsEnrollmentProfileClient.Client)
 
+	depOnboardingSettingDefaultTvOSEnrollmentProfileClient, err := deponboardingsettingdefaulttvosenrollmentprofile.NewDepOnboardingSettingDefaultTvOSEnrollmentProfileClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DepOnboardingSettingDefaultTvOSEnrollmentProfile client: %+v", err)
+	}
+	configureFunc(depOnboardingSettingDefaultTvOSEnrollmentProfileClient.Client)
+
+	depOnboardingSettingDefaultVisionOSEnrollmentProfileClient, err := deponboardingsettingdefaultvisionosenrollmentprofile.NewDepOnboardingSettingDefaultVisionOSEnrollmentProfileClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DepOnboardingSettingDefaultVisionOSEnrollmentProfile client: %+v", err)
+	}
+	configureFunc(depOnboardingSettingDefaultVisionOSEnrollmentProfileClient.Client)
+
 	depOnboardingSettingEnrollmentProfileClient, err := deponboardingsettingenrollmentprofile.NewDepOnboardingSettingEnrollmentProfileClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DepOnboardingSettingEnrollmentProfile client: %+v", err)
@@ -1379,12 +1409,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building DeviceConfigurationGroupAssignmentDeviceConfiguration client: %+v", err)
 	}
 	configureFunc(deviceConfigurationGroupAssignmentDeviceConfigurationClient.Client)
-
-	deviceConfigurationProfileClient, err := deviceconfigurationprofile.NewDeviceConfigurationProfileClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building DeviceConfigurationProfile client: %+v", err)
-	}
-	configureFunc(deviceConfigurationProfileClient.Client)
 
 	deviceConfigurationRestrictedAppsViolationClient, err := deviceconfigurationrestrictedappsviolation.NewDeviceConfigurationRestrictedAppsViolationClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -3261,162 +3285,165 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		AssignmentFilter:                                                                                   assignmentFilterClient,
 		AuditEvent:                                                                                         auditEventClient,
 		AutopilotEvent:                                                                                     autopilotEventClient,
-		AutopilotEventPolicyStatusDetail:                                                                   autopilotEventPolicyStatusDetailClient,
 		CartToClassAssociation:                                                                             cartToClassAssociationClient,
 		Category:                                                                                           categoryClient,
 		CategorySettingDefinition:                                                                          categorySettingDefinitionClient,
 		CertificateConnectorDetail:                                                                         certificateConnectorDetailClient,
 		ChromeOSOnboardingSetting:                                                                          chromeOSOnboardingSettingClient,
-		CloudPCConnectivityIssue:                                                                           cloudPCConnectivityIssueClient,
-		ComanagedDevice:                                                                                    comanagedDeviceClient,
-		ComanagedDeviceAssignmentFilterEvaluationStatusDetail:                                              comanagedDeviceAssignmentFilterEvaluationStatusDetailClient,
-		ComanagedDeviceDetectedApp:                                                                         comanagedDeviceDetectedAppClient,
-		ComanagedDeviceDeviceCategory:                                                                      comanagedDeviceDeviceCategoryClient,
-		ComanagedDeviceDeviceCompliancePolicyState:                                                         comanagedDeviceDeviceCompliancePolicyStateClient,
-		ComanagedDeviceDeviceConfigurationState:                                                            comanagedDeviceDeviceConfigurationStateClient,
-		ComanagedDeviceDeviceHealthScriptState:                                                             comanagedDeviceDeviceHealthScriptStateClient,
-		ComanagedDeviceDeviceHealthScriptStateIdIdPolicyIdPolicyIdDeviceIdDeviceId: comanagedDeviceDeviceHealthScriptStateIdIdPolicyIdPolicyIdDeviceIdDeviceIdClient,
-		ComanagedDeviceLogCollectionRequest:                                        comanagedDeviceLogCollectionRequestClient,
-		ComanagedDeviceManagedDeviceMobileAppConfigurationState:                    comanagedDeviceManagedDeviceMobileAppConfigurationStateClient,
-		ComanagedDeviceSecurityBaselineState:                                       comanagedDeviceSecurityBaselineStateClient,
-		ComanagedDeviceSecurityBaselineStateSettingState:                           comanagedDeviceSecurityBaselineStateSettingStateClient,
-		ComanagedDeviceUser:                                                 comanagedDeviceUserClient,
-		ComanagedDeviceWindowsProtectionState:                               comanagedDeviceWindowsProtectionStateClient,
-		ComanagedDeviceWindowsProtectionStateDetectedMalwareState:           comanagedDeviceWindowsProtectionStateDetectedMalwareStateClient,
-		ComanagementEligibleDevice:                                          comanagementEligibleDeviceClient,
-		ComplianceCategory:                                                  complianceCategoryClient,
-		ComplianceManagementPartner:                                         complianceManagementPartnerClient,
-		CompliancePolicy:                                                    compliancePolicyClient,
-		CompliancePolicyAssignment:                                          compliancePolicyAssignmentClient,
-		CompliancePolicyScheduledActionsForRule:                             compliancePolicyScheduledActionsForRuleClient,
-		CompliancePolicyScheduledActionsForRuleScheduledActionConfiguration: compliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient,
-		CompliancePolicySetting:                                             compliancePolicySettingClient,
-		CompliancePolicySettingSettingDefinition:                            compliancePolicySettingSettingDefinitionClient,
-		ComplianceSetting:                                                   complianceSettingClient,
-		ConditionalAccessSetting:                                            conditionalAccessSettingClient,
-		ConfigManagerCollection:                                             configManagerCollectionClient,
-		ConfigurationCategory:                                               configurationCategoryClient,
-		ConfigurationPolicy:                                                 configurationPolicyClient,
-		ConfigurationPolicyAssignment:                                       configurationPolicyAssignmentClient,
-		ConfigurationPolicySetting:                                          configurationPolicySettingClient,
-		ConfigurationPolicySettingSettingDefinition:                         configurationPolicySettingSettingDefinitionClient,
-		ConfigurationPolicyTemplate:                                         configurationPolicyTemplateClient,
-		ConfigurationPolicyTemplateSettingTemplate:                          configurationPolicyTemplateSettingTemplateClient,
-		ConfigurationPolicyTemplateSettingTemplateSettingDefinition:         configurationPolicyTemplateSettingTemplateSettingDefinitionClient,
-		ConfigurationSetting:                                                configurationSettingClient,
-		DataSharingConsent:                                                  dataSharingConsentClient,
-		DepOnboardingSetting:                                                depOnboardingSettingClient,
-		DepOnboardingSettingDefaultIosEnrollmentProfile:                     depOnboardingSettingDefaultIosEnrollmentProfileClient,
-		DepOnboardingSettingDefaultMacOsEnrollmentProfile:                   depOnboardingSettingDefaultMacOsEnrollmentProfileClient,
-		DepOnboardingSettingEnrollmentProfile:                               depOnboardingSettingEnrollmentProfileClient,
-		DepOnboardingSettingImportedAppleDeviceIdentity:                     depOnboardingSettingImportedAppleDeviceIdentityClient,
-		DerivedCredential:                                                   derivedCredentialClient,
-		DetectedApp:                                                         detectedAppClient,
-		DetectedAppManagedDevice:                                            detectedAppManagedDeviceClient,
-		DeviceCategory:                                                      deviceCategoryClient,
-		DeviceCompliancePolicy:                                              deviceCompliancePolicyClient,
-		DeviceCompliancePolicyAssignment:                                    deviceCompliancePolicyAssignmentClient,
-		DeviceCompliancePolicyDeviceSettingStateSummary:                     deviceCompliancePolicyDeviceSettingStateSummaryClient,
-		DeviceCompliancePolicyDeviceStateSummary:                            deviceCompliancePolicyDeviceStateSummaryClient,
-		DeviceCompliancePolicyDeviceStatus:                                  deviceCompliancePolicyDeviceStatusClient,
-		DeviceCompliancePolicyDeviceStatusOverview:                          deviceCompliancePolicyDeviceStatusOverviewClient,
-		DeviceCompliancePolicyScheduledActionsForRule:                       deviceCompliancePolicyScheduledActionsForRuleClient,
-		DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfiguration:                 deviceCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient,
-		DeviceCompliancePolicySettingStateSummary:                                                 deviceCompliancePolicySettingStateSummaryClient,
-		DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingState:                     deviceCompliancePolicySettingStateSummaryDeviceComplianceSettingStateClient,
-		DeviceCompliancePolicyUserStatus:                                                          deviceCompliancePolicyUserStatusClient,
-		DeviceCompliancePolicyUserStatusOverview:                                                  deviceCompliancePolicyUserStatusOverviewClient,
-		DeviceComplianceScript:                                                                    deviceComplianceScriptClient,
-		DeviceComplianceScriptAssignment:                                                          deviceComplianceScriptAssignmentClient,
-		DeviceComplianceScriptDeviceRunState:                                                      deviceComplianceScriptDeviceRunStateClient,
-		DeviceComplianceScriptDeviceRunStateManagedDevice:                                         deviceComplianceScriptDeviceRunStateManagedDeviceClient,
-		DeviceComplianceScriptRunSummary:                                                          deviceComplianceScriptRunSummaryClient,
-		DeviceConfiguration:                                                                       deviceConfigurationClient,
-		DeviceConfigurationAssignment:                                                             deviceConfigurationAssignmentClient,
-		DeviceConfigurationConflictSummary:                                                        deviceConfigurationConflictSummaryClient,
-		DeviceConfigurationDeviceSettingStateSummary:                                              deviceConfigurationDeviceSettingStateSummaryClient,
-		DeviceConfigurationDeviceStateSummary:                                                     deviceConfigurationDeviceStateSummaryClient,
-		DeviceConfigurationDeviceStatus:                                                           deviceConfigurationDeviceStatusClient,
-		DeviceConfigurationDeviceStatusOverview:                                                   deviceConfigurationDeviceStatusOverviewClient,
-		DeviceConfigurationGroupAssignment:                                                        deviceConfigurationGroupAssignmentClient,
-		DeviceConfigurationGroupAssignmentDeviceConfiguration:                                     deviceConfigurationGroupAssignmentDeviceConfigurationClient,
-		DeviceConfigurationProfile:                                                                deviceConfigurationProfileClient,
-		DeviceConfigurationRestrictedAppsViolation:                                                deviceConfigurationRestrictedAppsViolationClient,
-		DeviceConfigurationUserStateSummary:                                                       deviceConfigurationUserStateSummaryClient,
-		DeviceConfigurationUserStatus:                                                             deviceConfigurationUserStatusClient,
-		DeviceConfigurationUserStatusOverview:                                                     deviceConfigurationUserStatusOverviewClient,
-		DeviceConfigurationsAllManagedDeviceCertificateState:                                      deviceConfigurationsAllManagedDeviceCertificateStateClient,
-		DeviceCustomAttributeShellScript:                                                          deviceCustomAttributeShellScriptClient,
-		DeviceCustomAttributeShellScriptAssignment:                                                deviceCustomAttributeShellScriptAssignmentClient,
-		DeviceCustomAttributeShellScriptDeviceRunState:                                            deviceCustomAttributeShellScriptDeviceRunStateClient,
-		DeviceCustomAttributeShellScriptDeviceRunStateManagedDevice:                               deviceCustomAttributeShellScriptDeviceRunStateManagedDeviceClient,
-		DeviceCustomAttributeShellScriptGroupAssignment:                                           deviceCustomAttributeShellScriptGroupAssignmentClient,
-		DeviceCustomAttributeShellScriptRunSummary:                                                deviceCustomAttributeShellScriptRunSummaryClient,
-		DeviceCustomAttributeShellScriptUserRunState:                                              deviceCustomAttributeShellScriptUserRunStateClient,
-		DeviceCustomAttributeShellScriptUserRunStateDeviceRunState:                                deviceCustomAttributeShellScriptUserRunStateDeviceRunStateClient,
-		DeviceCustomAttributeShellScriptUserRunStateDeviceRunStateManagedDevice:                   deviceCustomAttributeShellScriptUserRunStateDeviceRunStateManagedDeviceClient,
-		DeviceEnrollmentConfiguration:                                                             deviceEnrollmentConfigurationClient,
-		DeviceEnrollmentConfigurationAssignment:                                                   deviceEnrollmentConfigurationAssignmentClient,
-		DeviceHealthScript:                                                                        deviceHealthScriptClient,
-		DeviceHealthScriptAssignment:                                                              deviceHealthScriptAssignmentClient,
-		DeviceHealthScriptDeviceRunState:                                                          deviceHealthScriptDeviceRunStateClient,
-		DeviceHealthScriptDeviceRunStateManagedDevice:                                             deviceHealthScriptDeviceRunStateManagedDeviceClient,
-		DeviceHealthScriptRunSummary:                                                              deviceHealthScriptRunSummaryClient,
-		DeviceManagement:                                                                          deviceManagementClient,
-		DeviceManagementPartner:                                                                   deviceManagementPartnerClient,
-		DeviceManagementScript:                                                                    deviceManagementScriptClient,
-		DeviceManagementScriptAssignment:                                                          deviceManagementScriptAssignmentClient,
-		DeviceManagementScriptDeviceRunState:                                                      deviceManagementScriptDeviceRunStateClient,
-		DeviceManagementScriptDeviceRunStateManagedDevice:                                         deviceManagementScriptDeviceRunStateManagedDeviceClient,
-		DeviceManagementScriptGroupAssignment:                                                     deviceManagementScriptGroupAssignmentClient,
-		DeviceManagementScriptRunSummary:                                                          deviceManagementScriptRunSummaryClient,
-		DeviceManagementScriptUserRunState:                                                        deviceManagementScriptUserRunStateClient,
-		DeviceManagementScriptUserRunStateDeviceRunState:                                          deviceManagementScriptUserRunStateDeviceRunStateClient,
-		DeviceManagementScriptUserRunStateDeviceRunStateManagedDevice:                             deviceManagementScriptUserRunStateDeviceRunStateManagedDeviceClient,
-		DeviceShellScript:                                                                         deviceShellScriptClient,
-		DeviceShellScriptAssignment:                                                               deviceShellScriptAssignmentClient,
-		DeviceShellScriptDeviceRunState:                                                           deviceShellScriptDeviceRunStateClient,
-		DeviceShellScriptDeviceRunStateManagedDevice:                                              deviceShellScriptDeviceRunStateManagedDeviceClient,
-		DeviceShellScriptGroupAssignment:                                                          deviceShellScriptGroupAssignmentClient,
-		DeviceShellScriptRunSummary:                                                               deviceShellScriptRunSummaryClient,
-		DeviceShellScriptUserRunState:                                                             deviceShellScriptUserRunStateClient,
-		DeviceShellScriptUserRunStateDeviceRunState:                                               deviceShellScriptUserRunStateDeviceRunStateClient,
-		DeviceShellScriptUserRunStateDeviceRunStateManagedDevice:                                  deviceShellScriptUserRunStateDeviceRunStateManagedDeviceClient,
-		DomainJoinConnector:                                                                       domainJoinConnectorClient,
-		ElevationRequest:                                                                          elevationRequestClient,
-		EmbeddedSIMActivationCodePool:                                                             embeddedSIMActivationCodePoolClient,
-		EmbeddedSIMActivationCodePoolAssignment:                                                   embeddedSIMActivationCodePoolAssignmentClient,
-		EmbeddedSIMActivationCodePoolDeviceState:                                                  embeddedSIMActivationCodePoolDeviceStateClient,
-		EndpointPrivilegeManagementProvisioningStatus:                                             endpointPrivilegeManagementProvisioningStatusClient,
-		ExchangeConnector:                                                                         exchangeConnectorClient,
-		ExchangeOnPremisesPolicy:                                                                  exchangeOnPremisesPolicyClient,
-		ExchangeOnPremisesPolicyConditionalAccessSetting:                                          exchangeOnPremisesPolicyConditionalAccessSettingClient,
-		GroupPolicyCategory:                                                                       groupPolicyCategoryClient,
-		GroupPolicyCategoryChild:                                                                  groupPolicyCategoryChildClient,
-		GroupPolicyCategoryDefinition:                                                             groupPolicyCategoryDefinitionClient,
-		GroupPolicyCategoryDefinitionFile:                                                         groupPolicyCategoryDefinitionFileClient,
-		GroupPolicyCategoryParent:                                                                 groupPolicyCategoryParentClient,
-		GroupPolicyConfiguration:                                                                  groupPolicyConfigurationClient,
-		GroupPolicyConfigurationAssignment:                                                        groupPolicyConfigurationAssignmentClient,
-		GroupPolicyConfigurationDefinitionValue:                                                   groupPolicyConfigurationDefinitionValueClient,
-		GroupPolicyConfigurationDefinitionValueDefinition:                                         groupPolicyConfigurationDefinitionValueDefinitionClient,
-		GroupPolicyConfigurationDefinitionValuePresentationValue:                                  groupPolicyConfigurationDefinitionValuePresentationValueClient,
-		GroupPolicyConfigurationDefinitionValuePresentationValueDefinitionValue:                   groupPolicyConfigurationDefinitionValuePresentationValueDefinitionValueClient,
-		GroupPolicyConfigurationDefinitionValuePresentationValuePresentation:                      groupPolicyConfigurationDefinitionValuePresentationValuePresentationClient,
-		GroupPolicyDefinition:                                                                     groupPolicyDefinitionClient,
-		GroupPolicyDefinitionCategory:                                                             groupPolicyDefinitionCategoryClient,
-		GroupPolicyDefinitionDefinitionFile:                                                       groupPolicyDefinitionDefinitionFileClient,
-		GroupPolicyDefinitionFile:                                                                 groupPolicyDefinitionFileClient,
-		GroupPolicyDefinitionFileDefinition:                                                       groupPolicyDefinitionFileDefinitionClient,
-		GroupPolicyDefinitionNextVersionDefinition:                                                groupPolicyDefinitionNextVersionDefinitionClient,
-		GroupPolicyDefinitionNextVersionDefinitionCategory:                                        groupPolicyDefinitionNextVersionDefinitionCategoryClient,
-		GroupPolicyDefinitionNextVersionDefinitionDefinitionFile:                                  groupPolicyDefinitionNextVersionDefinitionDefinitionFileClient,
-		GroupPolicyDefinitionNextVersionDefinitionPresentation:                                    groupPolicyDefinitionNextVersionDefinitionPresentationClient,
-		GroupPolicyDefinitionNextVersionDefinitionPresentationDefinition:                          groupPolicyDefinitionNextVersionDefinitionPresentationDefinitionClient,
-		GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinition:                       groupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionClient,
-		GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionCategory:               groupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionCategoryClient,
-		GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionDefinitionFile:         groupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionDefinitionFileClient,
-		GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionPresentation:           groupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionPresentationClient,
+		CloudCertificationAuthority:                                                                        cloudCertificationAuthorityClient,
+		CloudCertificationAuthorityCloudCertificationAuthorityLeafCertificate:             cloudCertificationAuthorityCloudCertificationAuthorityLeafCertificateClient,
+		CloudCertificationAuthorityLeafCertificate:                                        cloudCertificationAuthorityLeafCertificateClient,
+		CloudPCConnectivityIssue:                                                          cloudPCConnectivityIssueClient,
+		ComanagedDevice:                                                                   comanagedDeviceClient,
+		ComanagedDeviceAssignmentFilterEvaluationStatusDetail:                             comanagedDeviceAssignmentFilterEvaluationStatusDetailClient,
+		ComanagedDeviceDetectedApp:                                                        comanagedDeviceDetectedAppClient,
+		ComanagedDeviceDeviceCategory:                                                     comanagedDeviceDeviceCategoryClient,
+		ComanagedDeviceDeviceCompliancePolicyState:                                        comanagedDeviceDeviceCompliancePolicyStateClient,
+		ComanagedDeviceDeviceConfigurationState:                                           comanagedDeviceDeviceConfigurationStateClient,
+		ComanagedDeviceDeviceHealthScriptState:                                            comanagedDeviceDeviceHealthScriptStateClient,
+		ComanagedDeviceDeviceHealthScriptStateIdIdPolicyIdPolicyIdDeviceIdDeviceId:        comanagedDeviceDeviceHealthScriptStateIdIdPolicyIdPolicyIdDeviceIdDeviceIdClient,
+		ComanagedDeviceLogCollectionRequest:                                               comanagedDeviceLogCollectionRequestClient,
+		ComanagedDeviceManagedDeviceMobileAppConfigurationState:                           comanagedDeviceManagedDeviceMobileAppConfigurationStateClient,
+		ComanagedDeviceSecurityBaselineState:                                              comanagedDeviceSecurityBaselineStateClient,
+		ComanagedDeviceSecurityBaselineStateSettingState:                                  comanagedDeviceSecurityBaselineStateSettingStateClient,
+		ComanagedDeviceUser:                                                               comanagedDeviceUserClient,
+		ComanagedDeviceWindowsProtectionState:                                             comanagedDeviceWindowsProtectionStateClient,
+		ComanagedDeviceWindowsProtectionStateDetectedMalwareState:                         comanagedDeviceWindowsProtectionStateDetectedMalwareStateClient,
+		ComanagementEligibleDevice:                                                        comanagementEligibleDeviceClient,
+		ComplianceCategory:                                                                complianceCategoryClient,
+		ComplianceManagementPartner:                                                       complianceManagementPartnerClient,
+		CompliancePolicy:                                                                  compliancePolicyClient,
+		CompliancePolicyAssignment:                                                        compliancePolicyAssignmentClient,
+		CompliancePolicyScheduledActionsForRule:                                           compliancePolicyScheduledActionsForRuleClient,
+		CompliancePolicyScheduledActionsForRuleScheduledActionConfiguration:               compliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient,
+		CompliancePolicySetting:                                                           compliancePolicySettingClient,
+		CompliancePolicySettingSettingDefinition:                                          compliancePolicySettingSettingDefinitionClient,
+		ComplianceSetting:                                                                 complianceSettingClient,
+		ConditionalAccessSetting:                                                          conditionalAccessSettingClient,
+		ConfigManagerCollection:                                                           configManagerCollectionClient,
+		ConfigurationCategory:                                                             configurationCategoryClient,
+		ConfigurationPolicy:                                                               configurationPolicyClient,
+		ConfigurationPolicyAssignment:                                                     configurationPolicyAssignmentClient,
+		ConfigurationPolicySetting:                                                        configurationPolicySettingClient,
+		ConfigurationPolicySettingSettingDefinition:                                       configurationPolicySettingSettingDefinitionClient,
+		ConfigurationPolicyTemplate:                                                       configurationPolicyTemplateClient,
+		ConfigurationPolicyTemplateSettingTemplate:                                        configurationPolicyTemplateSettingTemplateClient,
+		ConfigurationPolicyTemplateSettingTemplateSettingDefinition:                       configurationPolicyTemplateSettingTemplateSettingDefinitionClient,
+		ConfigurationSetting:                                                              configurationSettingClient,
+		DataSharingConsent:                                                                dataSharingConsentClient,
+		DepOnboardingSetting:                                                              depOnboardingSettingClient,
+		DepOnboardingSettingDefaultIosEnrollmentProfile:                                   depOnboardingSettingDefaultIosEnrollmentProfileClient,
+		DepOnboardingSettingDefaultMacOsEnrollmentProfile:                                 depOnboardingSettingDefaultMacOsEnrollmentProfileClient,
+		DepOnboardingSettingDefaultTvOSEnrollmentProfile:                                  depOnboardingSettingDefaultTvOSEnrollmentProfileClient,
+		DepOnboardingSettingDefaultVisionOSEnrollmentProfile:                              depOnboardingSettingDefaultVisionOSEnrollmentProfileClient,
+		DepOnboardingSettingEnrollmentProfile:                                             depOnboardingSettingEnrollmentProfileClient,
+		DepOnboardingSettingImportedAppleDeviceIdentity:                                   depOnboardingSettingImportedAppleDeviceIdentityClient,
+		DerivedCredential:                                                                 derivedCredentialClient,
+		DetectedApp:                                                                       detectedAppClient,
+		DetectedAppManagedDevice:                                                          detectedAppManagedDeviceClient,
+		DeviceCategory:                                                                    deviceCategoryClient,
+		DeviceCompliancePolicy:                                                            deviceCompliancePolicyClient,
+		DeviceCompliancePolicyAssignment:                                                  deviceCompliancePolicyAssignmentClient,
+		DeviceCompliancePolicyDeviceSettingStateSummary:                                   deviceCompliancePolicyDeviceSettingStateSummaryClient,
+		DeviceCompliancePolicyDeviceStateSummary:                                          deviceCompliancePolicyDeviceStateSummaryClient,
+		DeviceCompliancePolicyDeviceStatus:                                                deviceCompliancePolicyDeviceStatusClient,
+		DeviceCompliancePolicyDeviceStatusOverview:                                        deviceCompliancePolicyDeviceStatusOverviewClient,
+		DeviceCompliancePolicyScheduledActionsForRule:                                     deviceCompliancePolicyScheduledActionsForRuleClient,
+		DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfiguration:         deviceCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient,
+		DeviceCompliancePolicySettingStateSummary:                                         deviceCompliancePolicySettingStateSummaryClient,
+		DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingState:             deviceCompliancePolicySettingStateSummaryDeviceComplianceSettingStateClient,
+		DeviceCompliancePolicyUserStatus:                                                  deviceCompliancePolicyUserStatusClient,
+		DeviceCompliancePolicyUserStatusOverview:                                          deviceCompliancePolicyUserStatusOverviewClient,
+		DeviceComplianceScript:                                                            deviceComplianceScriptClient,
+		DeviceComplianceScriptAssignment:                                                  deviceComplianceScriptAssignmentClient,
+		DeviceComplianceScriptDeviceRunState:                                              deviceComplianceScriptDeviceRunStateClient,
+		DeviceComplianceScriptDeviceRunStateManagedDevice:                                 deviceComplianceScriptDeviceRunStateManagedDeviceClient,
+		DeviceComplianceScriptRunSummary:                                                  deviceComplianceScriptRunSummaryClient,
+		DeviceConfiguration:                                                               deviceConfigurationClient,
+		DeviceConfigurationAssignment:                                                     deviceConfigurationAssignmentClient,
+		DeviceConfigurationConflictSummary:                                                deviceConfigurationConflictSummaryClient,
+		DeviceConfigurationDeviceSettingStateSummary:                                      deviceConfigurationDeviceSettingStateSummaryClient,
+		DeviceConfigurationDeviceStateSummary:                                             deviceConfigurationDeviceStateSummaryClient,
+		DeviceConfigurationDeviceStatus:                                                   deviceConfigurationDeviceStatusClient,
+		DeviceConfigurationDeviceStatusOverview:                                           deviceConfigurationDeviceStatusOverviewClient,
+		DeviceConfigurationGroupAssignment:                                                deviceConfigurationGroupAssignmentClient,
+		DeviceConfigurationGroupAssignmentDeviceConfiguration:                             deviceConfigurationGroupAssignmentDeviceConfigurationClient,
+		DeviceConfigurationRestrictedAppsViolation:                                        deviceConfigurationRestrictedAppsViolationClient,
+		DeviceConfigurationUserStateSummary:                                               deviceConfigurationUserStateSummaryClient,
+		DeviceConfigurationUserStatus:                                                     deviceConfigurationUserStatusClient,
+		DeviceConfigurationUserStatusOverview:                                             deviceConfigurationUserStatusOverviewClient,
+		DeviceConfigurationsAllManagedDeviceCertificateState:                              deviceConfigurationsAllManagedDeviceCertificateStateClient,
+		DeviceCustomAttributeShellScript:                                                  deviceCustomAttributeShellScriptClient,
+		DeviceCustomAttributeShellScriptAssignment:                                        deviceCustomAttributeShellScriptAssignmentClient,
+		DeviceCustomAttributeShellScriptDeviceRunState:                                    deviceCustomAttributeShellScriptDeviceRunStateClient,
+		DeviceCustomAttributeShellScriptDeviceRunStateManagedDevice:                       deviceCustomAttributeShellScriptDeviceRunStateManagedDeviceClient,
+		DeviceCustomAttributeShellScriptGroupAssignment:                                   deviceCustomAttributeShellScriptGroupAssignmentClient,
+		DeviceCustomAttributeShellScriptRunSummary:                                        deviceCustomAttributeShellScriptRunSummaryClient,
+		DeviceCustomAttributeShellScriptUserRunState:                                      deviceCustomAttributeShellScriptUserRunStateClient,
+		DeviceCustomAttributeShellScriptUserRunStateDeviceRunState:                        deviceCustomAttributeShellScriptUserRunStateDeviceRunStateClient,
+		DeviceCustomAttributeShellScriptUserRunStateDeviceRunStateManagedDevice:           deviceCustomAttributeShellScriptUserRunStateDeviceRunStateManagedDeviceClient,
+		DeviceEnrollmentConfiguration:                                                     deviceEnrollmentConfigurationClient,
+		DeviceEnrollmentConfigurationAssignment:                                           deviceEnrollmentConfigurationAssignmentClient,
+		DeviceHealthScript:                                                                deviceHealthScriptClient,
+		DeviceHealthScriptAssignment:                                                      deviceHealthScriptAssignmentClient,
+		DeviceHealthScriptDeviceRunState:                                                  deviceHealthScriptDeviceRunStateClient,
+		DeviceHealthScriptDeviceRunStateManagedDevice:                                     deviceHealthScriptDeviceRunStateManagedDeviceClient,
+		DeviceHealthScriptRunSummary:                                                      deviceHealthScriptRunSummaryClient,
+		DeviceManagement:                                                                  deviceManagementClient,
+		DeviceManagementPartner:                                                           deviceManagementPartnerClient,
+		DeviceManagementScript:                                                            deviceManagementScriptClient,
+		DeviceManagementScriptAssignment:                                                  deviceManagementScriptAssignmentClient,
+		DeviceManagementScriptDeviceRunState:                                              deviceManagementScriptDeviceRunStateClient,
+		DeviceManagementScriptDeviceRunStateManagedDevice:                                 deviceManagementScriptDeviceRunStateManagedDeviceClient,
+		DeviceManagementScriptGroupAssignment:                                             deviceManagementScriptGroupAssignmentClient,
+		DeviceManagementScriptRunSummary:                                                  deviceManagementScriptRunSummaryClient,
+		DeviceManagementScriptUserRunState:                                                deviceManagementScriptUserRunStateClient,
+		DeviceManagementScriptUserRunStateDeviceRunState:                                  deviceManagementScriptUserRunStateDeviceRunStateClient,
+		DeviceManagementScriptUserRunStateDeviceRunStateManagedDevice:                     deviceManagementScriptUserRunStateDeviceRunStateManagedDeviceClient,
+		DeviceShellScript:                                                                 deviceShellScriptClient,
+		DeviceShellScriptAssignment:                                                       deviceShellScriptAssignmentClient,
+		DeviceShellScriptDeviceRunState:                                                   deviceShellScriptDeviceRunStateClient,
+		DeviceShellScriptDeviceRunStateManagedDevice:                                      deviceShellScriptDeviceRunStateManagedDeviceClient,
+		DeviceShellScriptGroupAssignment:                                                  deviceShellScriptGroupAssignmentClient,
+		DeviceShellScriptRunSummary:                                                       deviceShellScriptRunSummaryClient,
+		DeviceShellScriptUserRunState:                                                     deviceShellScriptUserRunStateClient,
+		DeviceShellScriptUserRunStateDeviceRunState:                                       deviceShellScriptUserRunStateDeviceRunStateClient,
+		DeviceShellScriptUserRunStateDeviceRunStateManagedDevice:                          deviceShellScriptUserRunStateDeviceRunStateManagedDeviceClient,
+		DomainJoinConnector:                                                               domainJoinConnectorClient,
+		ElevationRequest:                                                                  elevationRequestClient,
+		EmbeddedSIMActivationCodePool:                                                     embeddedSIMActivationCodePoolClient,
+		EmbeddedSIMActivationCodePoolAssignment:                                           embeddedSIMActivationCodePoolAssignmentClient,
+		EmbeddedSIMActivationCodePoolDeviceState:                                          embeddedSIMActivationCodePoolDeviceStateClient,
+		EndpointPrivilegeManagementProvisioningStatus:                                     endpointPrivilegeManagementProvisioningStatusClient,
+		ExchangeConnector:                                                                 exchangeConnectorClient,
+		ExchangeOnPremisesPolicy:                                                          exchangeOnPremisesPolicyClient,
+		ExchangeOnPremisesPolicyConditionalAccessSetting:                                  exchangeOnPremisesPolicyConditionalAccessSettingClient,
+		GroupPolicyCategory:                                                               groupPolicyCategoryClient,
+		GroupPolicyCategoryChild:                                                          groupPolicyCategoryChildClient,
+		GroupPolicyCategoryDefinition:                                                     groupPolicyCategoryDefinitionClient,
+		GroupPolicyCategoryDefinitionFile:                                                 groupPolicyCategoryDefinitionFileClient,
+		GroupPolicyCategoryParent:                                                         groupPolicyCategoryParentClient,
+		GroupPolicyConfiguration:                                                          groupPolicyConfigurationClient,
+		GroupPolicyConfigurationAssignment:                                                groupPolicyConfigurationAssignmentClient,
+		GroupPolicyConfigurationDefinitionValue:                                           groupPolicyConfigurationDefinitionValueClient,
+		GroupPolicyConfigurationDefinitionValueDefinition:                                 groupPolicyConfigurationDefinitionValueDefinitionClient,
+		GroupPolicyConfigurationDefinitionValuePresentationValue:                          groupPolicyConfigurationDefinitionValuePresentationValueClient,
+		GroupPolicyConfigurationDefinitionValuePresentationValueDefinitionValue:           groupPolicyConfigurationDefinitionValuePresentationValueDefinitionValueClient,
+		GroupPolicyConfigurationDefinitionValuePresentationValuePresentation:              groupPolicyConfigurationDefinitionValuePresentationValuePresentationClient,
+		GroupPolicyDefinition:                                                             groupPolicyDefinitionClient,
+		GroupPolicyDefinitionCategory:                                                     groupPolicyDefinitionCategoryClient,
+		GroupPolicyDefinitionDefinitionFile:                                               groupPolicyDefinitionDefinitionFileClient,
+		GroupPolicyDefinitionFile:                                                         groupPolicyDefinitionFileClient,
+		GroupPolicyDefinitionFileDefinition:                                               groupPolicyDefinitionFileDefinitionClient,
+		GroupPolicyDefinitionNextVersionDefinition:                                        groupPolicyDefinitionNextVersionDefinitionClient,
+		GroupPolicyDefinitionNextVersionDefinitionCategory:                                groupPolicyDefinitionNextVersionDefinitionCategoryClient,
+		GroupPolicyDefinitionNextVersionDefinitionDefinitionFile:                          groupPolicyDefinitionNextVersionDefinitionDefinitionFileClient,
+		GroupPolicyDefinitionNextVersionDefinitionPresentation:                            groupPolicyDefinitionNextVersionDefinitionPresentationClient,
+		GroupPolicyDefinitionNextVersionDefinitionPresentationDefinition:                  groupPolicyDefinitionNextVersionDefinitionPresentationDefinitionClient,
+		GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinition:               groupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionClient,
+		GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionCategory:       groupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionCategoryClient,
+		GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionDefinitionFile: groupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionDefinitionFileClient,
+		GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionPresentation:   groupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionPresentationClient,
 		GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionPresentationDefinition: groupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionPresentationDefinitionClient,
 		GroupPolicyDefinitionPresentation:                                                         groupPolicyDefinitionPresentationClient,
 		GroupPolicyDefinitionPresentationDefinition:                                               groupPolicyDefinitionPresentationDefinitionClient,
@@ -3433,36 +3460,36 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		GroupPolicyMigrationReport:                                                                groupPolicyMigrationReportClient,
 		GroupPolicyMigrationReportGroupPolicySettingMapping:                                       groupPolicyMigrationReportGroupPolicySettingMappingClient,
 		GroupPolicyMigrationReportUnsupportedGroupPolicyExtension:                                 groupPolicyMigrationReportUnsupportedGroupPolicyExtensionClient,
-		GroupPolicyObjectFile:                                                                     groupPolicyObjectFileClient,
-		GroupPolicyUploadedDefinitionFile:                                                         groupPolicyUploadedDefinitionFileClient,
-		GroupPolicyUploadedDefinitionFileDefinition:                                               groupPolicyUploadedDefinitionFileDefinitionClient,
-		GroupPolicyUploadedDefinitionFileGroupPolicyOperation:                                     groupPolicyUploadedDefinitionFileGroupPolicyOperationClient,
-		HardwareConfiguration:                                                                     hardwareConfigurationClient,
-		HardwareConfigurationAssignment:                                                           hardwareConfigurationAssignmentClient,
-		HardwareConfigurationDeviceRunState:                                                       hardwareConfigurationDeviceRunStateClient,
-		HardwareConfigurationRunSummary:                                                           hardwareConfigurationRunSummaryClient,
-		HardwareConfigurationUserRunState:                                                         hardwareConfigurationUserRunStateClient,
-		HardwarePasswordDetail:                                                                    hardwarePasswordDetailClient,
-		HardwarePasswordInfo:                                                                      hardwarePasswordInfoClient,
-		ImportedDeviceIdentity:                                                                    importedDeviceIdentityClient,
-		ImportedWindowsAutopilotDeviceIdentity:                                                    importedWindowsAutopilotDeviceIdentityClient,
-		Intent:                                                                                    intentClient,
-		IntentAssignment:                                                                          intentAssignmentClient,
-		IntentCategory:                                                                            intentCategoryClient,
-		IntentCategorySetting:                                                                     intentCategorySettingClient,
-		IntentCategorySettingDefinition:                                                           intentCategorySettingDefinitionClient,
-		IntentDeviceSettingStateSummary:                                                           intentDeviceSettingStateSummaryClient,
-		IntentDeviceState:                                                                         intentDeviceStateClient,
-		IntentDeviceStateSummary:                                                                  intentDeviceStateSummaryClient,
-		IntentSetting:                                                                             intentSettingClient,
-		IntentUserState:                                                                           intentUserStateClient,
-		IntentUserStateSummary:                                                                    intentUserStateSummaryClient,
-		IntuneBrandingProfile:                                                                     intuneBrandingProfileClient,
-		IntuneBrandingProfileAssignment:                                                           intuneBrandingProfileAssignmentClient,
-		IosUpdateStatus:                                                                           iosUpdateStatusClient,
-		MacOSSoftwareUpdateAccountSummary:                                                         macOSSoftwareUpdateAccountSummaryClient,
-		MacOSSoftwareUpdateAccountSummaryCategorySummary:                                          macOSSoftwareUpdateAccountSummaryCategorySummaryClient,
-		MacOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummary:                        macOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummaryClient,
+		GroupPolicyObjectFile:                                 groupPolicyObjectFileClient,
+		GroupPolicyUploadedDefinitionFile:                     groupPolicyUploadedDefinitionFileClient,
+		GroupPolicyUploadedDefinitionFileDefinition:           groupPolicyUploadedDefinitionFileDefinitionClient,
+		GroupPolicyUploadedDefinitionFileGroupPolicyOperation: groupPolicyUploadedDefinitionFileGroupPolicyOperationClient,
+		HardwareConfiguration:                                 hardwareConfigurationClient,
+		HardwareConfigurationAssignment:                       hardwareConfigurationAssignmentClient,
+		HardwareConfigurationDeviceRunState:                   hardwareConfigurationDeviceRunStateClient,
+		HardwareConfigurationRunSummary:                       hardwareConfigurationRunSummaryClient,
+		HardwareConfigurationUserRunState:                     hardwareConfigurationUserRunStateClient,
+		HardwarePasswordDetail:                                hardwarePasswordDetailClient,
+		HardwarePasswordInfo:                                  hardwarePasswordInfoClient,
+		ImportedDeviceIdentity:                                importedDeviceIdentityClient,
+		ImportedWindowsAutopilotDeviceIdentity:                importedWindowsAutopilotDeviceIdentityClient,
+		Intent:                                                intentClient,
+		IntentAssignment:                                      intentAssignmentClient,
+		IntentCategory:                                        intentCategoryClient,
+		IntentCategorySetting:                                 intentCategorySettingClient,
+		IntentCategorySettingDefinition:                       intentCategorySettingDefinitionClient,
+		IntentDeviceSettingStateSummary:                       intentDeviceSettingStateSummaryClient,
+		IntentDeviceState:                                     intentDeviceStateClient,
+		IntentDeviceStateSummary:                              intentDeviceStateSummaryClient,
+		IntentSetting:                                         intentSettingClient,
+		IntentUserState:                                       intentUserStateClient,
+		IntentUserStateSummary:                                intentUserStateSummaryClient,
+		IntuneBrandingProfile:                                 intuneBrandingProfileClient,
+		IntuneBrandingProfileAssignment:                       intuneBrandingProfileAssignmentClient,
+		IosUpdateStatus:                                       iosUpdateStatusClient,
+		MacOSSoftwareUpdateAccountSummary:                     macOSSoftwareUpdateAccountSummaryClient,
+		MacOSSoftwareUpdateAccountSummaryCategorySummary:      macOSSoftwareUpdateAccountSummaryCategorySummaryClient,
+		MacOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummary: macOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummaryClient,
 		ManagedDevice: managedDeviceClient,
 		ManagedDeviceAssignmentFilterEvaluationStatusDetail:                      managedDeviceAssignmentFilterEvaluationStatusDetailClient,
 		ManagedDeviceCleanupRule:                                                 managedDeviceCleanupRuleClient,

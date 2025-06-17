@@ -49,9 +49,10 @@ func (o GetOnlineMeetingRecordingContentOperationOptions) ToQuery() *client.Quer
 }
 
 // GetOnlineMeetingRecordingContent - Get callRecording. Get a callRecording object associated with a scheduled
-// onlineMeeting. This API doesn't support getting call recordings from channel meetings. For a recording, this API
-// returns the metadata of the single recording associated with the online meeting. For the content of a recording, this
-// API returns the stream of bytes associated with the recording.
+// onlineMeeting. This API supports the retrieval of call recordings from private chat meetings and channel meetings.
+// However, private channel meetings are not supported at this time. For a recording, this API returns the metadata of
+// the single recording associated with the online meeting. For the content of a recording, this API returns the stream
+// of bytes associated with the recording.
 func (c OnlineMeetingRecordingContentClient) GetOnlineMeetingRecordingContent(ctx context.Context, id beta.UserIdOnlineMeetingIdRecordingId, options GetOnlineMeetingRecordingContentOperationOptions) (result GetOnlineMeetingRecordingContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",

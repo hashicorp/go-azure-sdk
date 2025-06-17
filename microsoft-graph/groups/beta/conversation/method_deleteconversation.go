@@ -50,7 +50,7 @@ func (o DeleteConversationOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// DeleteConversation - Delete conversation. Delete conversation.
+// DeleteConversation - Delete conversation. Delete a group's conversation object.
 func (c ConversationClient) DeleteConversation(ctx context.Context, id beta.GroupIdConversationId, options DeleteConversationOperationOptions) (result DeleteConversationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

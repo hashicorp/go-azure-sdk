@@ -98,7 +98,8 @@ func (p *ListDeviceCompliancePolicyScheduledActionsForRulesCustomPager) NextPage
 }
 
 // ListDeviceCompliancePolicyScheduledActionsForRules - Get scheduledActionsForRule from deviceManagement. The list of
-// scheduled action for this rule
+// scheduled action per rule for this compliance policy. This is a required property when creating any individual
+// per-platform compliance policies.
 func (c DeviceCompliancePolicyScheduledActionsForRuleClient) ListDeviceCompliancePolicyScheduledActionsForRules(ctx context.Context, id beta.DeviceManagementDeviceCompliancePolicyId, options ListDeviceCompliancePolicyScheduledActionsForRulesOperationOptions) (result ListDeviceCompliancePolicyScheduledActionsForRulesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

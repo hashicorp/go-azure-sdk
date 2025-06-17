@@ -46,8 +46,8 @@ func (o UpdateDeviceEnrollmentConfigurationOperationOptions) ToQuery() *client.Q
 	return &out
 }
 
-// UpdateDeviceEnrollmentConfiguration - Update deviceEnrollmentLimitConfiguration. Update the properties of a
-// deviceEnrollmentLimitConfiguration object.
+// UpdateDeviceEnrollmentConfiguration - Update deviceEnrollmentPlatformRestrictionsConfiguration. Update the properties
+// of a deviceEnrollmentPlatformRestrictionsConfiguration object.
 func (c DeviceEnrollmentConfigurationClient) UpdateDeviceEnrollmentConfiguration(ctx context.Context, id stable.DeviceManagementDeviceEnrollmentConfigurationId, input stable.DeviceEnrollmentConfiguration, options UpdateDeviceEnrollmentConfigurationOperationOptions) (result UpdateDeviceEnrollmentConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

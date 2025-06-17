@@ -20,10 +20,11 @@ type GetManagerOperationResponse struct {
 }
 
 type GetManagerOperationOptions struct {
-	Expand    *odata.Expand
-	Metadata  *odata.Metadata
-	RetryFunc client.RequestRetryFunc
-	Select    *[]string
+	ConsistencyLevel *odata.ConsistencyLevel
+	Expand           *odata.Expand
+	Metadata         *odata.Metadata
+	RetryFunc        client.RequestRetryFunc
+	Select           *[]string
 }
 
 func DefaultGetManagerOperationOptions() GetManagerOperationOptions {
@@ -38,6 +39,9 @@ func (o GetManagerOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetManagerOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.ConsistencyLevel != nil {
+		out.ConsistencyLevel = *o.ConsistencyLevel
+	}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}

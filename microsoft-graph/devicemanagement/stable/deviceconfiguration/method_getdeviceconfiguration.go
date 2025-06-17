@@ -56,8 +56,8 @@ func (o GetDeviceConfigurationOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetDeviceConfiguration - Get macOSGeneralDeviceConfiguration. Read properties and relationships of the
-// macOSGeneralDeviceConfiguration object.
+// GetDeviceConfiguration - Get deviceConfiguration. Read properties and relationships of the deviceConfiguration
+// object.
 func (c DeviceConfigurationClient) GetDeviceConfiguration(ctx context.Context, id stable.DeviceManagementDeviceConfigurationId, options GetDeviceConfigurationOperationOptions) (result GetDeviceConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
