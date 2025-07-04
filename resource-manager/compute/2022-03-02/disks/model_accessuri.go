@@ -4,6 +4,9 @@ package disks
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AccessUri struct {
-	AccessSAS             *string `json:"accessSAS,omitempty"`
-	SecurityDataAccessSAS *string `json:"securityDataAccessSAS,omitempty"`
+	StartTime  *string              `json:"startTime,omitempty"`
+	EndTime    *string              `json:"endTime,omitempty"`
+	Status     *string              `json:"status,omitempty"`
+	Name       *string              `json:"name,omitempty"`
+	Properties *AccessUriProperties `json:"properties,omitempty"`
 }
