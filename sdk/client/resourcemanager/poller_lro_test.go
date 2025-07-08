@@ -5,7 +5,6 @@ package resourcemanager
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -13,82 +12,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 )
-
-func TestPollerLRO_InProvisioningState_TerminalStates(t *testing.T) {
-	// This test ensures that each of the Custom Statuses works in the provisioningState field
-	ctx := context.TODO()
-	for state, expected := range longRunningOperationCustomStatuses {
-		t.Run(fmt.Sprintf("%s/%s", string(state), string(expected)), func(t *testing.T) {
-			helpers := newLongRunningOperationsEndpoint([]expectedResponse{
-				responseWithStatusInProvisioningState(state),
-			})
-			server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
-			defer server.Close()
-
-			response := &client.Response{
-				Response: helpers.response(),
-			}
-			client := client.NewClient(server.URL, "MyService", "2020-02-01")
-			poller, err := longRunningOperationPollerFromResponse(response, client)
-			if err != nil {
-				t.Fatal(err.Error())
-			}
-
-			t.Logf("Polling..")
-			result, err := poller.Poll(ctx)
-			if err != nil {
-				if expected == pollers.PollingStatusCancelled || expected == pollers.PollingStatusFailed {
-					return
-				}
-
-				t.Fatal(err.Error())
-			}
-			if result.Status != expected {
-				t.Fatalf("expected status to be %q but got %q", expected, result.Status)
-			}
-			// sanity-checking
-			helpers.assertCalled(t, 1)
-		})
-	}
-}
-
-func TestPollerLRO_InStatus_TerminalStates(t *testing.T) {
-	// This test ensures that each of the Custom Statuses works in the status field
-	ctx := context.TODO()
-	for state, expected := range longRunningOperationCustomStatuses {
-		t.Run(fmt.Sprintf("%s/%s", string(state), string(expected)), func(t *testing.T) {
-			helpers := newLongRunningOperationsEndpoint([]expectedResponse{
-				responseWithStatusInStatusField(state),
-			})
-			server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
-			defer server.Close()
-
-			response := &client.Response{
-				Response: helpers.response(),
-			}
-			client := client.NewClient(server.URL, "MyService", "2020-02-01")
-			poller, err := longRunningOperationPollerFromResponse(response, client)
-			if err != nil {
-				t.Fatal(err.Error())
-			}
-
-			t.Logf("Polling..")
-			result, err := poller.Poll(ctx)
-			if err != nil {
-				if expected == pollers.PollingStatusCancelled || expected == pollers.PollingStatusFailed {
-					return
-				}
-
-				t.Fatal(err.Error())
-			}
-			if result.Status != expected {
-				t.Fatalf("expected status to be %q but got %q", expected, result.Status)
-			}
-			// sanity-checking
-			helpers.assertCalled(t, 1)
-		})
-	}
-}
 
 func TestPollerLRO_InProvisioningState_ImmediateSuccess(t *testing.T) {
 	ctx := context.TODO()
@@ -302,6 +225,86 @@ func TestPollerLRO_InStatus_AcceptedThenInProgressThenSuccess(t *testing.T) {
 	}
 	// sanity-checking
 	helpers.assertCalled(t, 3)
+}
+
+func TestPollerLRO_NoTerminalStatusThenSuccess(t *testing.T) {
+	ctx := context.TODO()
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+		responseWithHttpStatusCode(http.StatusAccepted),
+		responseWithNoTerminalState(),
+		responseWithNoTerminalState(),
+		responseWithStatusInStatusField(statusSucceeded),
+	})
+	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
+	defer server.Close()
+
+	response := &client.Response{
+		Response: helpers.response(),
+	}
+	client := client.NewClient(server.URL, "MyService", "2020-02-01")
+	poller, err := longRunningOperationPollerFromResponse(response, client)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	expectedStatuses := []pollers.PollingStatus{
+		pollers.PollingStatusInProgress,
+		pollers.PollingStatusInProgress,
+		pollers.PollingStatusInProgress,
+		pollers.PollingStatusSucceeded,
+	}
+	for i, expected := range expectedStatuses {
+		t.Logf("Poll %d..", i)
+		result, err := poller.Poll(ctx)
+		if err != nil {
+			t.Fatal(err.Error())
+		}
+		if result.Status != expected {
+			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
+		}
+	}
+	// sanity-checking
+	helpers.assertCalled(t, 4)
+}
+
+func TestPollerLRO_ArbitraryStatusThenSuccess(t *testing.T) {
+	ctx := context.TODO()
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+		responseWithHttpStatusCode(http.StatusAccepted),
+		responseWithStatusInStatusField("Reticulating Splines"),
+		responseWithStatusInStatusField("Retracting Phong Shader"),
+		responseWithStatusInStatusField(statusSucceeded),
+	})
+	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
+	defer server.Close()
+
+	response := &client.Response{
+		Response: helpers.response(),
+	}
+	client := client.NewClient(server.URL, "MyService", "2020-02-01")
+	poller, err := longRunningOperationPollerFromResponse(response, client)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	expectedStatuses := []pollers.PollingStatus{
+		pollers.PollingStatusInProgress,
+		pollers.PollingStatusInProgress,
+		pollers.PollingStatusInProgress,
+		pollers.PollingStatusSucceeded,
+	}
+	for i, expected := range expectedStatuses {
+		t.Logf("Poll %d..", i)
+		result, err := poller.Poll(ctx)
+		if err != nil {
+			t.Fatal(err.Error())
+		}
+		if result.Status != expected {
+			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
+		}
+	}
+	// sanity-checking
+	helpers.assertCalled(t, 4)
 }
 
 func TestPollerLRO_InProvisioningState_AcceptedThenDroppedThenInProgressThenSuccess(t *testing.T) {
