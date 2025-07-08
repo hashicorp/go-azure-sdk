@@ -44,6 +44,12 @@ func responseWithHttpStatusCode(input int) expectedResponse {
 	}
 }
 
+func responseWithNoTerminalState() expectedResponse {
+	return expectedResponse{
+		status: pointer.ToEnum[status](""),
+	}
+}
+
 func dropConnection(t *testing.T, w http.ResponseWriter) {
 	httpHijacker, ok := w.(http.Hijacker)
 	if !ok {
