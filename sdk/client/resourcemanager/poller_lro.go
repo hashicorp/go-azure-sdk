@@ -184,6 +184,7 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 				HttpResponse: result.HttpResponse,
 				Message:      lroError.Error(),
 			}
+			return
 		}
 
 		if result.Status == pollers.PollingStatusCancelled || op.Status == statusCanceled || op.Properties.ProvisioningState == statusCanceled {
@@ -196,6 +197,7 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 				HttpResponse: result.HttpResponse,
 				Message:      lroError.Error(),
 			}
+			return
 		}
 
 		if result.Status == pollers.PollingStatusSucceeded || op.Status == statusSucceeded || op.Properties.ProvisioningState == statusSucceeded {
