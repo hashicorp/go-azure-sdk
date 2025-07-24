@@ -114,10 +114,8 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 		return nil, fmt.Errorf("unmarshaling result: %+v", err)
 	}
 
-	status := ""
-	if statusIsTerminal(result.Status) {
-		status = string(result.Status)
-	}
+	status := string(result.Status)
+	
 	// if the result has a provisioningState field, we should prioritise that
 	if statusIsTerminal(result.Properties.ProvisioningState) {
 		status = string(result.Properties.ProvisioningState)
