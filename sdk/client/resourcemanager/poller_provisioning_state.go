@@ -115,7 +115,7 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 	}
 
 	status := string(result.Status)
-	
+
 	// if the result has a provisioningState field, we should prioritise that
 	if statusIsTerminal(result.Properties.ProvisioningState) {
 		status = string(result.Properties.ProvisioningState)
