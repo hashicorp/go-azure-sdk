@@ -4,6 +4,6 @@ package artifacts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ArmTemplateInfo struct {
-	Parameters *interface{} `json:"parameters,omitempty"`
-	Template   *interface{} `json:"template,omitempty"`
+	Parameters *map[string]interface{} `json:"parameters,omitempty"`
+	Template   *map[string]interface{} `json:"template,omitempty"`
 }

@@ -74,13 +74,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `GuestConfigurationAssignmentsClient.List`
+### Example Usage: `GuestConfigurationAssignmentsClient.GuestConfigurationAssignmentReportsGet`
 
 ```go
 ctx := context.TODO()
-id := guestconfigurationassignments.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName")
+id := guestconfigurationassignments.NewProviders2GuestConfigurationAssignmentReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "guestConfigurationAssignmentName", "reportId")
 
-read, err := client.List(ctx, id)
+read, err := client.GuestConfigurationAssignmentReportsGet(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -90,18 +90,36 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `GuestConfigurationAssignmentsClient.RGList`
+### Example Usage: `GuestConfigurationAssignmentsClient.GuestConfigurationAssignmentReportsList`
 
 ```go
 ctx := context.TODO()
-id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := guestconfigurationassignments.NewVirtualMachineProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName", "guestConfigurationAssignmentName")
 
-read, err := client.RGList(ctx, id)
+// alternatively `client.GuestConfigurationAssignmentReportsList(ctx, id)` can be used to do batched pagination
+items, err := client.GuestConfigurationAssignmentReportsListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `GuestConfigurationAssignmentsClient.List`
+
+```go
+ctx := context.TODO()
+id := guestconfigurationassignments.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName")
+
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -112,80 +130,12 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-read, err := client.SubscriptionList(ctx, id)
+// alternatively `client.SubscriptionList(ctx, id)` can be used to do batched pagination
+items, err := client.SubscriptionListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `GuestConfigurationAssignmentsClient.VMSSCreateOrUpdate`
-
-```go
-ctx := context.TODO()
-id := guestconfigurationassignments.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "guestConfigurationAssignmentName")
-
-payload := guestconfigurationassignments.GuestConfigurationAssignment{
-	// ...
-}
-
-
-read, err := client.VMSSCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `GuestConfigurationAssignmentsClient.VMSSDelete`
-
-```go
-ctx := context.TODO()
-id := guestconfigurationassignments.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "guestConfigurationAssignmentName")
-
-read, err := client.VMSSDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `GuestConfigurationAssignmentsClient.VMSSGet`
-
-```go
-ctx := context.TODO()
-id := guestconfigurationassignments.NewGuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "guestConfigurationAssignmentName")
-
-read, err := client.VMSSGet(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `GuestConfigurationAssignmentsClient.VMSSList`
-
-```go
-ctx := context.TODO()
-id := guestconfigurationassignments.NewVirtualMachineScaleSetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName")
-
-read, err := client.VMSSList(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

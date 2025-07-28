@@ -225,24 +225,8 @@ for _, item := range items {
 ctx := context.TODO()
 id := virtualmachines.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineName")
 
-read, err := client.ListAvailableSizes(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `VirtualMachinesClient.ListByLocation`
-
-```go
-ctx := context.TODO()
-id := virtualmachines.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
-
-// alternatively `client.ListByLocation(ctx, id)` can be used to do batched pagination
-items, err := client.ListByLocationComplete(ctx, id)
+// alternatively `client.ListAvailableSizes(ctx, id)` can be used to do batched pagination
+items, err := client.ListAvailableSizesComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

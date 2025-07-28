@@ -4,6 +4,6 @@ package armtemplates
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ParametersValueFileInfo struct {
-	FileName            *string      `json:"fileName,omitempty"`
-	ParametersValueInfo *interface{} `json:"parametersValueInfo,omitempty"`
+	FileName            *string                 `json:"fileName,omitempty"`
+	ParametersValueInfo *map[string]interface{} `json:"parametersValueInfo,omitempty"`
 }

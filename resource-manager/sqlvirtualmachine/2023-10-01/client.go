@@ -9,16 +9,14 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/availabilitygrouplisteners"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/sqlvirtualmachinegroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/sqlvirtualmachines"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/sqlvirtualmachinetroubleshoot"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	AvailabilityGroupListeners    *availabilitygrouplisteners.AvailabilityGroupListenersClient
-	SqlVirtualMachineGroups       *sqlvirtualmachinegroups.SqlVirtualMachineGroupsClient
-	SqlVirtualMachineTroubleshoot *sqlvirtualmachinetroubleshoot.SqlVirtualMachineTroubleshootClient
-	SqlVirtualMachines            *sqlvirtualmachines.SqlVirtualMachinesClient
+	AvailabilityGroupListeners *availabilitygrouplisteners.AvailabilityGroupListenersClient
+	SqlVirtualMachineGroups    *sqlvirtualmachinegroups.SqlVirtualMachineGroupsClient
+	SqlVirtualMachines         *sqlvirtualmachines.SqlVirtualMachinesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -34,12 +32,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(sqlVirtualMachineGroupsClient.Client)
 
-	sqlVirtualMachineTroubleshootClient, err := sqlvirtualmachinetroubleshoot.NewSqlVirtualMachineTroubleshootClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building SqlVirtualMachineTroubleshoot client: %+v", err)
-	}
-	configureFunc(sqlVirtualMachineTroubleshootClient.Client)
-
 	sqlVirtualMachinesClient, err := sqlvirtualmachines.NewSqlVirtualMachinesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SqlVirtualMachines client: %+v", err)
@@ -47,9 +39,8 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(sqlVirtualMachinesClient.Client)
 
 	return &Client{
-		AvailabilityGroupListeners:    availabilityGroupListenersClient,
-		SqlVirtualMachineGroups:       sqlVirtualMachineGroupsClient,
-		SqlVirtualMachineTroubleshoot: sqlVirtualMachineTroubleshootClient,
-		SqlVirtualMachines:            sqlVirtualMachinesClient,
+		AvailabilityGroupListeners: availabilityGroupListenersClient,
+		SqlVirtualMachineGroups:    sqlVirtualMachineGroupsClient,
+		SqlVirtualMachines:         sqlVirtualMachinesClient,
 	}, nil
 }

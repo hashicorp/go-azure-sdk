@@ -12,13 +12,13 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/costs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/customimages"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/disks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/dtls"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/environments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/formulas"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/galleryimages"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/globalschedules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/labs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/notificationchannels"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/operations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/policies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/policysets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/schedules"
@@ -40,6 +40,7 @@ type Client struct {
 	Artifacts               *artifacts.ArtifactsClient
 	Costs                   *costs.CostsClient
 	CustomImages            *customimages.CustomImagesClient
+	DTLS                    *dtls.DTLSClient
 	Disks                   *disks.DisksClient
 	Environments            *environments.EnvironmentsClient
 	Formulas                *formulas.FormulasClient
@@ -47,7 +48,6 @@ type Client struct {
 	GlobalSchedules         *globalschedules.GlobalSchedulesClient
 	Labs                    *labs.LabsClient
 	NotificationChannels    *notificationchannels.NotificationChannelsClient
-	Operations              *operations.OperationsClient
 	Policies                *policies.PoliciesClient
 	PolicySets              *policysets.PolicySetsClient
 	Schedules               *schedules.SchedulesClient
@@ -92,6 +92,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(customImagesClient.Client)
 
+	dTLSClient, err := dtls.NewDTLSClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DTLS client: %+v", err)
+	}
+	configureFunc(dTLSClient.Client)
+
 	disksClient, err := disks.NewDisksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Disks client: %+v", err)
@@ -133,12 +139,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building NotificationChannels client: %+v", err)
 	}
 	configureFunc(notificationChannelsClient.Client)
-
-	operationsClient, err := operations.NewOperationsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Operations client: %+v", err)
-	}
-	configureFunc(operationsClient.Client)
 
 	policiesClient, err := policies.NewPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -212,6 +212,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		Artifacts:               artifactsClient,
 		Costs:                   costsClient,
 		CustomImages:            customImagesClient,
+		DTLS:                    dTLSClient,
 		Disks:                   disksClient,
 		Environments:            environmentsClient,
 		Formulas:                formulasClient,
@@ -219,7 +220,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		GlobalSchedules:         globalSchedulesClient,
 		Labs:                    labsClient,
 		NotificationChannels:    notificationChannelsClient,
-		Operations:              operationsClient,
 		Policies:                policiesClient,
 		PolicySets:              policySetsClient,
 		Schedules:               schedulesClient,

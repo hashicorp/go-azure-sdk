@@ -5,6 +5,6 @@ package policytokens
 
 type PolicyTokenOperation struct {
 	Content    *interface{} `json:"content,omitempty"`
-	HTTPMethod *string      `json:"httpMethod,omitempty"`
-	Uri        *string      `json:"uri,omitempty"`
+	HTTPMethod string       `json:"httpMethod"`
+	Uri        string       `json:"uri"`
 }
