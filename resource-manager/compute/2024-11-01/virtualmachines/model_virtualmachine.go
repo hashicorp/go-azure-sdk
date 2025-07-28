@@ -3,6 +3,7 @@ package virtualmachines
 import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
 )
 
@@ -21,6 +22,7 @@ type VirtualMachine struct {
 	Plan             *Plan                              `json:"plan,omitempty"`
 	Properties       *VirtualMachineProperties          `json:"properties,omitempty"`
 	Resources        *[]VirtualMachineExtension         `json:"resources,omitempty"`
+	SystemData       *systemdata.SystemData             `json:"systemData,omitempty"`
 	Tags             *map[string]string                 `json:"tags,omitempty"`
 	Type             *string                            `json:"type,omitempty"`
 	Zones            *zones.Schema                      `json:"zones,omitempty"`

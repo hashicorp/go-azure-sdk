@@ -53,24 +53,24 @@ func parseCachingTypes(input string) (*CachingTypes, error) {
 	return &out, nil
 }
 
-type ComponentNames string
+type ComponentName string
 
 const (
-	ComponentNamesMicrosoftNegativeWindowsNegativeShellNegativeSetup ComponentNames = "Microsoft-Windows-Shell-Setup"
+	ComponentNameMicrosoftNegativeWindowsNegativeShellNegativeSetup ComponentName = "Microsoft-Windows-Shell-Setup"
 )
 
-func PossibleValuesForComponentNames() []string {
+func PossibleValuesForComponentName() []string {
 	return []string{
-		string(ComponentNamesMicrosoftNegativeWindowsNegativeShellNegativeSetup),
+		string(ComponentNameMicrosoftNegativeWindowsNegativeShellNegativeSetup),
 	}
 }
 
-func (s *ComponentNames) UnmarshalJSON(bytes []byte) error {
+func (s *ComponentName) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseComponentNames(decoded)
+	out, err := parseComponentName(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -78,16 +78,16 @@ func (s *ComponentNames) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseComponentNames(input string) (*ComponentNames, error) {
-	vals := map[string]ComponentNames{
-		"microsoft-windows-shell-setup": ComponentNamesMicrosoftNegativeWindowsNegativeShellNegativeSetup,
+func parseComponentName(input string) (*ComponentName, error) {
+	vals := map[string]ComponentName{
+		"microsoft-windows-shell-setup": ComponentNameMicrosoftNegativeWindowsNegativeShellNegativeSetup,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := ComponentNames(input)
+	out := ComponentName(input)
 	return &out, nil
 }
 
@@ -1035,24 +1035,24 @@ func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
 	return &out, nil
 }
 
-type PassNames string
+type PassName string
 
 const (
-	PassNamesOobeSystem PassNames = "OobeSystem"
+	PassNameOobeSystem PassName = "OobeSystem"
 )
 
-func PossibleValuesForPassNames() []string {
+func PossibleValuesForPassName() []string {
 	return []string{
-		string(PassNamesOobeSystem),
+		string(PassNameOobeSystem),
 	}
 }
 
-func (s *PassNames) UnmarshalJSON(bytes []byte) error {
+func (s *PassName) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parsePassNames(decoded)
+	out, err := parsePassName(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -1060,16 +1060,16 @@ func (s *PassNames) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parsePassNames(input string) (*PassNames, error) {
-	vals := map[string]PassNames{
-		"oobesystem": PassNamesOobeSystem,
+func parsePassName(input string) (*PassName, error) {
+	vals := map[string]PassName{
+		"oobesystem": PassNameOobeSystem,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := PassNames(input)
+	out := PassName(input)
 	return &out, nil
 }
 

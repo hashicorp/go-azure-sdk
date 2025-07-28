@@ -53,14 +53,15 @@ func parseCopyMode(input string) (*CopyMode, error) {
 type JobRunStatus string
 
 const (
-	JobRunStatusCancelRequested JobRunStatus = "CancelRequested"
-	JobRunStatusCanceled        JobRunStatus = "Canceled"
-	JobRunStatusCanceling       JobRunStatus = "Canceling"
-	JobRunStatusFailed          JobRunStatus = "Failed"
-	JobRunStatusQueued          JobRunStatus = "Queued"
-	JobRunStatusRunning         JobRunStatus = "Running"
-	JobRunStatusStarted         JobRunStatus = "Started"
-	JobRunStatusSucceeded       JobRunStatus = "Succeeded"
+	JobRunStatusCancelRequested             JobRunStatus = "CancelRequested"
+	JobRunStatusCanceled                    JobRunStatus = "Canceled"
+	JobRunStatusCanceling                   JobRunStatus = "Canceling"
+	JobRunStatusFailed                      JobRunStatus = "Failed"
+	JobRunStatusPausedByBandwidthManagement JobRunStatus = "PausedByBandwidthManagement"
+	JobRunStatusQueued                      JobRunStatus = "Queued"
+	JobRunStatusRunning                     JobRunStatus = "Running"
+	JobRunStatusStarted                     JobRunStatus = "Started"
+	JobRunStatusSucceeded                   JobRunStatus = "Succeeded"
 )
 
 func PossibleValuesForJobRunStatus() []string {
@@ -69,6 +70,7 @@ func PossibleValuesForJobRunStatus() []string {
 		string(JobRunStatusCanceled),
 		string(JobRunStatusCanceling),
 		string(JobRunStatusFailed),
+		string(JobRunStatusPausedByBandwidthManagement),
 		string(JobRunStatusQueued),
 		string(JobRunStatusRunning),
 		string(JobRunStatusStarted),
@@ -91,14 +93,15 @@ func (s *JobRunStatus) UnmarshalJSON(bytes []byte) error {
 
 func parseJobRunStatus(input string) (*JobRunStatus, error) {
 	vals := map[string]JobRunStatus{
-		"cancelrequested": JobRunStatusCancelRequested,
-		"canceled":        JobRunStatusCanceled,
-		"canceling":       JobRunStatusCanceling,
-		"failed":          JobRunStatusFailed,
-		"queued":          JobRunStatusQueued,
-		"running":         JobRunStatusRunning,
-		"started":         JobRunStatusStarted,
-		"succeeded":       JobRunStatusSucceeded,
+		"cancelrequested":             JobRunStatusCancelRequested,
+		"canceled":                    JobRunStatusCanceled,
+		"canceling":                   JobRunStatusCanceling,
+		"failed":                      JobRunStatusFailed,
+		"pausedbybandwidthmanagement": JobRunStatusPausedByBandwidthManagement,
+		"queued":                      JobRunStatusQueued,
+		"running":                     JobRunStatusRunning,
+		"started":                     JobRunStatusStarted,
+		"succeeded":                   JobRunStatusSucceeded,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

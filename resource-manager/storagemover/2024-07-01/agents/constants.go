@@ -118,17 +118,17 @@ func parseDayOfWeek(input string) (*DayOfWeek, error) {
 	return &out, nil
 }
 
-type Minute int64
+type Minute float64
 
 const (
 	MinuteThreeZero Minute = 30
 	MinuteZero      Minute = 0
 )
 
-func PossibleValuesForMinute() []int64 {
-	return []int64{
-		int64(MinuteThreeZero),
-		int64(MinuteZero),
+func PossibleValuesForMinute() []float64 {
+	return []float64{
+		float64(MinuteThreeZero),
+		float64(MinuteZero),
 	}
 }
 

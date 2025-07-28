@@ -130,12 +130,13 @@ for _, item := range items {
 ctx := context.TODO()
 id := commonids.NewAvailabilitySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "availabilitySetName")
 
-read, err := client.ListAvailableSizes(ctx, id)
+// alternatively `client.ListAvailableSizes(ctx, id)` can be used to do batched pagination
+items, err := client.ListAvailableSizesComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 

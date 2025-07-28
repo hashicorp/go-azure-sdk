@@ -66,6 +66,64 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `DedicatedHostsClient.ListAvailableSizes`
+
+```go
+ctx := context.TODO()
+id := commonids.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupName", "hostName")
+
+// alternatively `client.ListAvailableSizes(ctx, id)` can be used to do batched pagination
+items, err := client.ListAvailableSizesComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `DedicatedHostsClient.ListByHostGroup`
+
+```go
+ctx := context.TODO()
+id := commonids.NewDedicatedHostGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupName")
+
+// alternatively `client.ListByHostGroup(ctx, id)` can be used to do batched pagination
+items, err := client.ListByHostGroupComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `DedicatedHostsClient.Redeploy`
+
+```go
+ctx := context.TODO()
+id := commonids.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupName", "hostName")
+
+if err := client.RedeployThenPoll(ctx, id); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `DedicatedHostsClient.Restart`
+
+```go
+ctx := context.TODO()
+id := commonids.NewDedicatedHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostGroupName", "hostName")
+
+if err := client.RestartThenPoll(ctx, id); err != nil {
+	// handle the error
+}
+```
+
+
 ### Example Usage: `DedicatedHostsClient.Update`
 
 ```go

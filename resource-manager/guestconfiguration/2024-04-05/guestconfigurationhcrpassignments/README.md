@@ -73,17 +73,51 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `GuestConfigurationHCRPAssignmentsClient.GuestConfigurationHCRPAssignmentReportsGet`
+
+```go
+ctx := context.TODO()
+id := guestconfigurationhcrpassignments.NewGuestConfigurationAssignmentReportID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "guestConfigurationAssignmentName", "reportId")
+
+read, err := client.GuestConfigurationHCRPAssignmentReportsGet(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `GuestConfigurationHCRPAssignmentsClient.GuestConfigurationHCRPAssignmentReportsList`
+
+```go
+ctx := context.TODO()
+id := guestconfigurationhcrpassignments.NewProviders2GuestConfigurationAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName", "guestConfigurationAssignmentName")
+
+// alternatively `client.GuestConfigurationHCRPAssignmentReportsList(ctx, id)` can be used to do batched pagination
+items, err := client.GuestConfigurationHCRPAssignmentReportsListComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `GuestConfigurationHCRPAssignmentsClient.List`
 
 ```go
 ctx := context.TODO()
 id := guestconfigurationhcrpassignments.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineName")
 
-read, err := client.List(ctx, id)
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

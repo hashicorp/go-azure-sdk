@@ -1,6 +1,7 @@
 package capacityreservations
 
 import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
 )
 
@@ -13,6 +14,7 @@ type CapacityReservation struct {
 	Name       *string                        `json:"name,omitempty"`
 	Properties *CapacityReservationProperties `json:"properties,omitempty"`
 	Sku        Sku                            `json:"sku"`
+	SystemData *systemdata.SystemData         `json:"systemData,omitempty"`
 	Tags       *map[string]string             `json:"tags,omitempty"`
 	Type       *string                        `json:"type,omitempty"`
 	Zones      *zones.Schema                  `json:"zones,omitempty"`

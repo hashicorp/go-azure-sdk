@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ArmTemplateProperties struct {
-	Contents                 *interface{}               `json:"contents,omitempty"`
+	Contents                 *map[string]interface{}    `json:"contents,omitempty"`
 	CreatedDate              *string                    `json:"createdDate,omitempty"`
 	Description              *string                    `json:"description,omitempty"`
 	DisplayName              *string                    `json:"displayName,omitempty"`
