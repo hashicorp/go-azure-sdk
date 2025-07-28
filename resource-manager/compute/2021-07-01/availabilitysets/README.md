@@ -124,23 +124,6 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `AvailabilitySetsClient.ResourceSkusList`
-
-```go
-ctx := context.TODO()
-id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
-
-// alternatively `client.ResourceSkusList(ctx, id, availabilitysets.DefaultResourceSkusListOperationOptions())` can be used to do batched pagination
-items, err := client.ResourceSkusListComplete(ctx, id, availabilitysets.DefaultResourceSkusListOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
 ### Example Usage: `AvailabilitySetsClient.Update`
 
 ```go

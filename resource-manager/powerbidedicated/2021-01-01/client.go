@@ -8,15 +8,15 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021-01-01/autoscalevcores"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021-01-01/capacities"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021-01-01/powerbidedicated"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021-01-01/openapis"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	AutoScaleVCores  *autoscalevcores.AutoScaleVCoresClient
-	Capacities       *capacities.CapacitiesClient
-	PowerBIDedicated *powerbidedicated.PowerBIDedicatedClient
+	AutoScaleVCores *autoscalevcores.AutoScaleVCoresClient
+	Capacities      *capacities.CapacitiesClient
+	Openapis        *openapis.OpenapisClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -32,15 +32,15 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(capacitiesClient.Client)
 
-	powerBIDedicatedClient, err := powerbidedicated.NewPowerBIDedicatedClientWithBaseURI(sdkApi)
+	openapisClient, err := openapis.NewOpenapisClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PowerBIDedicated client: %+v", err)
+		return nil, fmt.Errorf("building Openapis client: %+v", err)
 	}
-	configureFunc(powerBIDedicatedClient.Client)
+	configureFunc(openapisClient.Client)
 
 	return &Client{
-		AutoScaleVCores:  autoScaleVCoresClient,
-		Capacities:       capacitiesClient,
-		PowerBIDedicated: powerBIDedicatedClient,
+		AutoScaleVCores: autoScaleVCoresClient,
+		Capacities:      capacitiesClient,
+		Openapis:        openapisClient,
 	}, nil
 }

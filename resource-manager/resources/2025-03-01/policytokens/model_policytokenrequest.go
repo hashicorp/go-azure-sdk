@@ -4,6 +4,6 @@ package policytokens
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PolicyTokenRequest struct {
-	ChangeReference *string               `json:"changeReference,omitempty"`
-	Operation       *PolicyTokenOperation `json:"operation,omitempty"`
+	ChangeReference *string              `json:"changeReference,omitempty"`
+	Operation       PolicyTokenOperation `json:"operation"`
 }

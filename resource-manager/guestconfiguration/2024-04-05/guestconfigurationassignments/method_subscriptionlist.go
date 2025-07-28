@@ -16,7 +16,24 @@ import (
 type SubscriptionListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *GuestConfigurationAssignmentList
+	Model        *[]GuestConfigurationAssignment
+}
+
+type SubscriptionListCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []GuestConfigurationAssignment
+}
+
+type SubscriptionListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *SubscriptionListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
 }
 
 // SubscriptionList ...
@@ -28,6 +45,7 @@ func (c GuestConfigurationAssignmentsClient) SubscriptionList(ctx context.Contex
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &SubscriptionListCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.GuestConfiguration/guestConfigurationAssignments", id.ID()),
 	}
 
@@ -37,7 +55,7 @@ func (c GuestConfigurationAssignmentsClient) SubscriptionList(ctx context.Contex
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -46,11 +64,44 @@ func (c GuestConfigurationAssignmentsClient) SubscriptionList(ctx context.Contex
 		return
 	}
 
-	var model GuestConfigurationAssignmentList
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]GuestConfigurationAssignment `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// SubscriptionListComplete retrieves all the results into a single object
+func (c GuestConfigurationAssignmentsClient) SubscriptionListComplete(ctx context.Context, id commonids.SubscriptionId) (SubscriptionListCompleteResult, error) {
+	return c.SubscriptionListCompleteMatchingPredicate(ctx, id, GuestConfigurationAssignmentOperationPredicate{})
+}
+
+// SubscriptionListCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c GuestConfigurationAssignmentsClient) SubscriptionListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate GuestConfigurationAssignmentOperationPredicate) (result SubscriptionListCompleteResult, err error) {
+	items := make([]GuestConfigurationAssignment, 0)
+
+	resp, err := c.SubscriptionList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = SubscriptionListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

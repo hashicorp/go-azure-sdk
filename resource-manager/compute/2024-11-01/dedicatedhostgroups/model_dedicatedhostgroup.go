@@ -1,6 +1,7 @@
 package dedicatedhostgroups
 
 import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
 )
 
@@ -12,6 +13,7 @@ type DedicatedHostGroup struct {
 	Location   string                        `json:"location"`
 	Name       *string                       `json:"name,omitempty"`
 	Properties *DedicatedHostGroupProperties `json:"properties,omitempty"`
+	SystemData *systemdata.SystemData        `json:"systemData,omitempty"`
 	Tags       *map[string]string            `json:"tags,omitempty"`
 	Type       *string                       `json:"type,omitempty"`
 	Zones      *zones.Schema                 `json:"zones,omitempty"`

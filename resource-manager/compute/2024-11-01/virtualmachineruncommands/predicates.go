@@ -3,34 +3,6 @@ package virtualmachineruncommands
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type RunCommandDocumentBaseOperationPredicate struct {
-	Description *string
-	Id          *string
-	Label       *string
-	Schema      *string
-}
-
-func (p RunCommandDocumentBaseOperationPredicate) Matches(input RunCommandDocumentBase) bool {
-
-	if p.Description != nil && *p.Description != input.Description {
-		return false
-	}
-
-	if p.Id != nil && *p.Id != input.Id {
-		return false
-	}
-
-	if p.Label != nil && *p.Label != input.Label {
-		return false
-	}
-
-	if p.Schema != nil && *p.Schema != input.Schema {
-		return false
-	}
-
-	return true
-}
-
 type VirtualMachineRunCommandOperationPredicate struct {
 	Id       *string
 	Location *string

@@ -16,7 +16,24 @@ import (
 type ListByResourceGroupOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *AutoScaleVCoreListResult
+	Model        *[]AutoScaleVCore
+}
+
+type ListByResourceGroupCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []AutoScaleVCore
+}
+
+type ListByResourceGroupCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListByResourceGroupCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
 }
 
 // ListByResourceGroup ...
@@ -27,6 +44,7 @@ func (c AutoScaleVCoresClient) ListByResourceGroup(ctx context.Context, id commo
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListByResourceGroupCustomPager{},
 		Path:       fmt.Sprintf("%s/providers/Microsoft.PowerBIDedicated/autoScaleVCores", id.ID()),
 	}
 
@@ -36,7 +54,7 @@ func (c AutoScaleVCoresClient) ListByResourceGroup(ctx context.Context, id commo
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -45,11 +63,44 @@ func (c AutoScaleVCoresClient) ListByResourceGroup(ctx context.Context, id commo
 		return
 	}
 
-	var model AutoScaleVCoreListResult
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]AutoScaleVCore `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListByResourceGroupComplete retrieves all the results into a single object
+func (c AutoScaleVCoresClient) ListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (ListByResourceGroupCompleteResult, error) {
+	return c.ListByResourceGroupCompleteMatchingPredicate(ctx, id, AutoScaleVCoreOperationPredicate{})
+}
+
+// ListByResourceGroupCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c AutoScaleVCoresClient) ListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate AutoScaleVCoreOperationPredicate) (result ListByResourceGroupCompleteResult, err error) {
+	items := make([]AutoScaleVCore, 0)
+
+	resp, err := c.ListByResourceGroup(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByResourceGroupCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

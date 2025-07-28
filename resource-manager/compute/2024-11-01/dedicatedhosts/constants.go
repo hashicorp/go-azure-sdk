@@ -56,13 +56,15 @@ func parseDedicatedHostLicenseTypes(input string) (*DedicatedHostLicenseTypes, e
 type InstanceViewTypes string
 
 const (
-	InstanceViewTypesInstanceView InstanceViewTypes = "instanceView"
-	InstanceViewTypesUserData     InstanceViewTypes = "userData"
+	InstanceViewTypesInstanceView   InstanceViewTypes = "instanceView"
+	InstanceViewTypesResiliencyView InstanceViewTypes = "resiliencyView"
+	InstanceViewTypesUserData       InstanceViewTypes = "userData"
 )
 
 func PossibleValuesForInstanceViewTypes() []string {
 	return []string{
 		string(InstanceViewTypesInstanceView),
+		string(InstanceViewTypesResiliencyView),
 		string(InstanceViewTypesUserData),
 	}
 }
@@ -82,8 +84,9 @@ func (s *InstanceViewTypes) UnmarshalJSON(bytes []byte) error {
 
 func parseInstanceViewTypes(input string) (*InstanceViewTypes, error) {
 	vals := map[string]InstanceViewTypes{
-		"instanceview": InstanceViewTypesInstanceView,
-		"userdata":     InstanceViewTypesUserData,
+		"instanceview":   InstanceViewTypesInstanceView,
+		"resiliencyview": InstanceViewTypesResiliencyView,
+		"userdata":       InstanceViewTypesUserData,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
