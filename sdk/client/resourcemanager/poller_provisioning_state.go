@@ -116,6 +116,11 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 
 	s := string(result.Status)
 
+	// if the result has a provisioningState field, we should prioritise that
+	if statusIsTerminal(result.Properties.ProvisioningState) {
+		s = string(result.Properties.ProvisioningState)
+	}
+
 	if s == "" {
 		// Some Operations support both an LRO and immediate completion, but _don't_ return a provisioningState field
 		// since we're checking for a 200 OK, if we didn't get a provisioningState field, for the moment we have to
@@ -124,11 +129,6 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 			PollInterval: p.initialRetryDuration,
 			Status:       pollers.PollingStatusSucceeded,
 		}, nil
-	}
-
-	// if the result has a provisioningState field, we should prioritise that
-	if statusIsTerminal(result.Properties.ProvisioningState) {
-		s = string(result.Properties.ProvisioningState)
 	}
 
 	if strings.EqualFold(s, string(statusCanceled)) || strings.EqualFold(s, string(statusCancelled)) {
