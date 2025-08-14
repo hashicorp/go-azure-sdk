@@ -78,6 +78,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterloggingconfigurations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterprofiles"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterservicetags"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkvirtualappliances"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkwatchers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/p2svpngateways"
@@ -208,6 +209,7 @@ type Client struct {
 	NetworkSecurityPerimeterLinks                    *networksecurityperimeterlinks.NetworkSecurityPerimeterLinksClient
 	NetworkSecurityPerimeterLoggingConfigurations    *networksecurityperimeterloggingconfigurations.NetworkSecurityPerimeterLoggingConfigurationsClient
 	NetworkSecurityPerimeterProfiles                 *networksecurityperimeterprofiles.NetworkSecurityPerimeterProfilesClient
+	NetworkSecurityPerimeterServiceTags              *networksecurityperimeterservicetags.NetworkSecurityPerimeterServiceTagsClient
 	NetworkSecurityPerimeters                        *networksecurityperimeters.NetworkSecurityPerimetersClient
 	NetworkVirtualAppliances                         *networkvirtualappliances.NetworkVirtualAppliancesClient
 	NetworkWatchers                                  *networkwatchers.NetworkWatchersClient
@@ -692,6 +694,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(networkSecurityPerimeterProfilesClient.Client)
 
+	networkSecurityPerimeterServiceTagsClient, err := networksecurityperimeterservicetags.NewNetworkSecurityPerimeterServiceTagsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building NetworkSecurityPerimeterServiceTags client: %+v", err)
+	}
+	configureFunc(networkSecurityPerimeterServiceTagsClient.Client)
+
 	networkSecurityPerimetersClient, err := networksecurityperimeters.NewNetworkSecurityPerimetersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building NetworkSecurityPerimeters client: %+v", err)
@@ -1094,6 +1102,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		NetworkSecurityPerimeterLinks:                    networkSecurityPerimeterLinksClient,
 		NetworkSecurityPerimeterLoggingConfigurations:    networkSecurityPerimeterLoggingConfigurationsClient,
 		NetworkSecurityPerimeterProfiles:                 networkSecurityPerimeterProfilesClient,
+		NetworkSecurityPerimeterServiceTags:              networkSecurityPerimeterServiceTagsClient,
 		NetworkSecurityPerimeters:                        networkSecurityPerimetersClient,
 		NetworkVirtualAppliances:                         networkVirtualAppliancesClient,
 		NetworkWatchers:                                  networkWatchersClient,

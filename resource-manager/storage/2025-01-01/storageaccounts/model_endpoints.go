@@ -7,6 +7,7 @@ type Endpoints struct {
 	Blob               *string                           `json:"blob,omitempty"`
 	Dfs                *string                           `json:"dfs,omitempty"`
 	File               *string                           `json:"file,omitempty"`
+	IPv6Endpoints      *StorageAccountIPv6Endpoints      `json:"ipv6Endpoints,omitempty"`
 	InternetEndpoints  *StorageAccountInternetEndpoints  `json:"internetEndpoints,omitempty"`
 	MicrosoftEndpoints *StorageAccountMicrosoftEndpoints `json:"microsoftEndpoints,omitempty"`
 	Queue              *string                           `json:"queue,omitempty"`
