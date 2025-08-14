@@ -1,11 +1,5 @@
 package storageaccounts
 
-import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -18,8 +12,8 @@ type StorageAccountPropertiesCreateParameters struct {
 	AzureFilesIdentityBasedAuthentication *AzureFilesIdentityBasedAuthentication `json:"azureFilesIdentityBasedAuthentication,omitempty"`
 	CustomDomain                          *CustomDomain                          `json:"customDomain,omitempty"`
 	DefaultToOAuthAuthentication          *bool                                  `json:"defaultToOAuthAuthentication,omitempty"`
-	DeletedAccountCreationTime            *string                                `json:"deletedAccountCreationTime,omitempty"`
 	DnsEndpointType                       *DnsEndpointType                       `json:"dnsEndpointType,omitempty"`
+	DualStackEndpointPreference           *DualStackEndpointPreference           `json:"dualStackEndpointPreference,omitempty"`
 	EnableExtendedGroups                  *bool                                  `json:"enableExtendedGroups,omitempty"`
 	Encryption                            *Encryption                            `json:"encryption,omitempty"`
 	ImmutableStorageWithVersioning        *ImmutableStorageAccount               `json:"immutableStorageWithVersioning,omitempty"`
@@ -35,16 +29,4 @@ type StorageAccountPropertiesCreateParameters struct {
 	RoutingPreference                     *RoutingPreference                     `json:"routingPreference,omitempty"`
 	SasPolicy                             *SasPolicy                             `json:"sasPolicy,omitempty"`
 	SupportsHTTPSTrafficOnly              *bool                                  `json:"supportsHttpsTrafficOnly,omitempty"`
-}
-
-func (o *StorageAccountPropertiesCreateParameters) GetDeletedAccountCreationTimeAsTime() (*time.Time, error) {
-	if o.DeletedAccountCreationTime == nil {
-		return nil, nil
-	}
-	return dates.ParseAsFormat(o.DeletedAccountCreationTime, "2006-01-02T15:04:05Z07:00")
-}
-
-func (o *StorageAccountPropertiesCreateParameters) SetDeletedAccountCreationTimeAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.DeletedAccountCreationTime = &formatted
 }

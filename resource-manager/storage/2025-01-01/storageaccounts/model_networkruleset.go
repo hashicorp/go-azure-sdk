@@ -7,6 +7,7 @@ type NetworkRuleSet struct {
 	Bypass              *Bypass               `json:"bypass,omitempty"`
 	DefaultAction       DefaultAction         `json:"defaultAction"`
 	IPRules             *[]IPRule             `json:"ipRules,omitempty"`
+	IPv6Rules           *[]IPRule             `json:"ipv6Rules,omitempty"`
 	ResourceAccessRules *[]ResourceAccessRule `json:"resourceAccessRules,omitempty"`
 	VirtualNetworkRules *[]VirtualNetworkRule `json:"virtualNetworkRules,omitempty"`
 }

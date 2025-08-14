@@ -10,6 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/openapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/privatelinkresourceoperationgroup"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/vaultextendedinforesources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/vaults"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -19,6 +20,7 @@ type Client struct {
 	Openapis                          *openapis.OpenapisClient
 	PrivateLinkResourceOperationGroup *privatelinkresourceoperationgroup.PrivateLinkResourceOperationGroupClient
 	VaultExtendedInfoResources        *vaultextendedinforesources.VaultExtendedInfoResourcesClient
+	Vaults                            *vaults.VaultsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -46,10 +48,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(vaultExtendedInfoResourcesClient.Client)
 
+	vaultsClient, err := vaults.NewVaultsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Vaults client: %+v", err)
+	}
+	configureFunc(vaultsClient.Client)
+
 	return &Client{
 		GetOperationResult:                getOperationResultClient,
 		Openapis:                          openapisClient,
 		PrivateLinkResourceOperationGroup: privateLinkResourceOperationGroupClient,
 		VaultExtendedInfoResources:        vaultExtendedInfoResourcesClient,
+		Vaults:                            vaultsClient,
 	}, nil
 }
