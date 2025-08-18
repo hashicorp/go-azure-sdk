@@ -33,6 +33,8 @@ func AzurePublic() *Environment {
 	env.ManagedHSM = ManagedHSMAPI("https://managedhsm.azure.net", "managedhsm.azure.net")
 	env.MariaDB = MariaDBAPI("mariadb.database.azure.com").WithResourceIdentifier("https://ossrdbms-aad.database.windows.net")
 	env.MySql = MySqlAPI("mysql.database.azure.com").WithResourceIdentifier("https://ossrdbms-aad.database.windows.net")
+	env.Office365Compliance = Office365ComplianceAPI("https://ps.compliance.protection.outlook.com")
+	env.Office365ExchangeOnline = Office365ExchangeOnlineAPI("https://outlook.office365.com")
 	env.OperationalInsights = OperationalInsightsAPI().WithResourceIdentifier("https://api.loganalytics.io")
 	env.Postgresql = PostgresqlAPI("postgres.database.azure.com").WithResourceIdentifier("https://ossrdbms-aad.database.windows.net")
 	env.ServiceBus = ServiceBusAPI("https://servicebus.windows.net", "servicebus.windows.net").WithResourceIdentifier("https://servicebus.azure.net")

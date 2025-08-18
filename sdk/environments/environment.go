@@ -91,6 +91,7 @@ type Environment struct {
 	MySql                                             Api
 	OSSRDBMSPostgreSQLFlexibleServerAadAuthentication Api
 	OSSRDMBS                                          Api
+	Office365Compliance                               Api
 	Office365Connectors                               Api
 	Office365Demeter                                  Api
 	Office365DwEngineV2                               Api
