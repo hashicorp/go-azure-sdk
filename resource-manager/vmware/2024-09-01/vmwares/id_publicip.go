@@ -17,7 +17,7 @@ func init() {
 
 var _ resourceids.ResourceId = &PublicIPId{}
 
-// PublicIPId is a struct representing the Resource ID for a Public I P
+// PublicIPId is a struct representing the Resource ID for a Public IP
 type PublicIPId struct {
 	SubscriptionId    string
 	ResourceGroupName string
@@ -90,7 +90,7 @@ func (id *PublicIPId) FromParseResult(input resourceids.ParseResult) error {
 	return nil
 }
 
-// ValidatePublicIPID checks that 'input' can be parsed as a Public I P ID
+// ValidatePublicIPID checks that 'input' can be parsed as a Public IP ID
 func ValidatePublicIPID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
@@ -105,13 +105,13 @@ func ValidatePublicIPID(input interface{}, key string) (warnings []string, error
 	return
 }
 
-// ID returns the formatted Public I P ID
+// ID returns the formatted Public IP ID
 func (id PublicIPId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AVS/privateClouds/%s/workloadNetworks/default/publicIPs/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.PrivateCloudName, id.PublicIPId)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Public I P ID
+// Segments returns a slice of Resource ID Segments which comprise this Public IP ID
 func (id PublicIPId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
@@ -129,13 +129,13 @@ func (id PublicIPId) Segments() []resourceids.Segment {
 	}
 }
 
-// String returns a human-readable description of this Public I P ID
+// String returns a human-readable description of this Public IP ID
 func (id PublicIPId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Private Cloud Name: %q", id.PrivateCloudName),
-		fmt.Sprintf("Public I P: %q", id.PublicIPId),
+		fmt.Sprintf("Public IP: %q", id.PublicIPId),
 	}
-	return fmt.Sprintf("Public I P (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Public IP (%s)", strings.Join(components, "\n"))
 }
