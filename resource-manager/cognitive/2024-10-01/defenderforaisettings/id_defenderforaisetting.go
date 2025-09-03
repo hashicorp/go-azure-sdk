@@ -17,7 +17,7 @@ func init() {
 
 var _ resourceids.ResourceId = &DefenderForAISettingId{}
 
-// DefenderForAISettingId is a struct representing the Resource ID for a Defender For A I Setting
+// DefenderForAISettingId is a struct representing the Resource ID for a Defender For AI Setting
 type DefenderForAISettingId struct {
 	SubscriptionId           string
 	ResourceGroupName        string
@@ -90,7 +90,7 @@ func (id *DefenderForAISettingId) FromParseResult(input resourceids.ParseResult)
 	return nil
 }
 
-// ValidateDefenderForAISettingID checks that 'input' can be parsed as a Defender For A I Setting ID
+// ValidateDefenderForAISettingID checks that 'input' can be parsed as a Defender For AI Setting ID
 func ValidateDefenderForAISettingID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
@@ -105,13 +105,13 @@ func ValidateDefenderForAISettingID(input interface{}, key string) (warnings []s
 	return
 }
 
-// ID returns the formatted Defender For A I Setting ID
+// ID returns the formatted Defender For AI Setting ID
 func (id DefenderForAISettingId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.CognitiveServices/accounts/%s/defenderForAISettings/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.DefenderForAISettingName)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Defender For A I Setting ID
+// Segments returns a slice of Resource ID Segments which comprise this Defender For AI Setting ID
 func (id DefenderForAISettingId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
@@ -127,13 +127,13 @@ func (id DefenderForAISettingId) Segments() []resourceids.Segment {
 	}
 }
 
-// String returns a human-readable description of this Defender For A I Setting ID
+// String returns a human-readable description of this Defender For AI Setting ID
 func (id DefenderForAISettingId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Account Name: %q", id.AccountName),
-		fmt.Sprintf("Defender For A I Setting Name: %q", id.DefenderForAISettingName),
+		fmt.Sprintf("Defender For AI Setting Name: %q", id.DefenderForAISettingName),
 	}
-	return fmt.Sprintf("Defender For A I Setting (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Defender For AI Setting (%s)", strings.Join(components, "\n"))
 }

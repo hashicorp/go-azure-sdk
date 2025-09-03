@@ -17,7 +17,7 @@ func init() {
 
 var _ resourceids.ResourceId = &SecurityMLAnalyticsSettingId{}
 
-// SecurityMLAnalyticsSettingId is a struct representing the Resource ID for a Security M L Analytics Setting
+// SecurityMLAnalyticsSettingId is a struct representing the Resource ID for a Security ML Analytics Setting
 type SecurityMLAnalyticsSettingId struct {
 	SubscriptionId                 string
 	ResourceGroupName              string
@@ -90,7 +90,7 @@ func (id *SecurityMLAnalyticsSettingId) FromParseResult(input resourceids.ParseR
 	return nil
 }
 
-// ValidateSecurityMLAnalyticsSettingID checks that 'input' can be parsed as a Security M L Analytics Setting ID
+// ValidateSecurityMLAnalyticsSettingID checks that 'input' can be parsed as a Security ML Analytics Setting ID
 func ValidateSecurityMLAnalyticsSettingID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
@@ -105,13 +105,13 @@ func ValidateSecurityMLAnalyticsSettingID(input interface{}, key string) (warnin
 	return
 }
 
-// ID returns the formatted Security M L Analytics Setting ID
+// ID returns the formatted Security ML Analytics Setting ID
 func (id SecurityMLAnalyticsSettingId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.OperationalInsights/workspaces/%s/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.SecurityMLAnalyticsSettingName)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Security M L Analytics Setting ID
+// Segments returns a slice of Resource ID Segments which comprise this Security ML Analytics Setting ID
 func (id SecurityMLAnalyticsSettingId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
@@ -129,13 +129,13 @@ func (id SecurityMLAnalyticsSettingId) Segments() []resourceids.Segment {
 	}
 }
 
-// String returns a human-readable description of this Security M L Analytics Setting ID
+// String returns a human-readable description of this Security ML Analytics Setting ID
 func (id SecurityMLAnalyticsSettingId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Security M L Analytics Setting Name: %q", id.SecurityMLAnalyticsSettingName),
+		fmt.Sprintf("Security ML Analytics Setting Name: %q", id.SecurityMLAnalyticsSettingName),
 	}
-	return fmt.Sprintf("Security M L Analytics Setting (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Security ML Analytics Setting (%s)", strings.Join(components, "\n"))
 }

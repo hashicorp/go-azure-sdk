@@ -17,7 +17,7 @@ func init() {
 
 var _ resourceids.ResourceId = &DedicatedSQLMinimalTLSSettingId{}
 
-// DedicatedSQLMinimalTLSSettingId is a struct representing the Resource ID for a Dedicated S Q L Minimal T L S Setting
+// DedicatedSQLMinimalTLSSettingId is a struct representing the Resource ID for a Dedicated SQL Minimal TLS Setting
 type DedicatedSQLMinimalTLSSettingId struct {
 	SubscriptionId                    string
 	ResourceGroupName                 string
@@ -90,7 +90,7 @@ func (id *DedicatedSQLMinimalTLSSettingId) FromParseResult(input resourceids.Par
 	return nil
 }
 
-// ValidateDedicatedSQLMinimalTLSSettingID checks that 'input' can be parsed as a Dedicated S Q L Minimal T L S Setting ID
+// ValidateDedicatedSQLMinimalTLSSettingID checks that 'input' can be parsed as a Dedicated SQL Minimal TLS Setting ID
 func ValidateDedicatedSQLMinimalTLSSettingID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
@@ -105,13 +105,13 @@ func ValidateDedicatedSQLMinimalTLSSettingID(input interface{}, key string) (war
 	return
 }
 
-// ID returns the formatted Dedicated S Q L Minimal T L S Setting ID
+// ID returns the formatted Dedicated SQL Minimal TLS Setting ID
 func (id DedicatedSQLMinimalTLSSettingId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Synapse/workspaces/%s/dedicatedSQLMinimalTLSSettings/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.DedicatedSQLMinimalTLSSettingName)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Dedicated S Q L Minimal T L S Setting ID
+// Segments returns a slice of Resource ID Segments which comprise this Dedicated SQL Minimal TLS Setting ID
 func (id DedicatedSQLMinimalTLSSettingId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
@@ -127,13 +127,13 @@ func (id DedicatedSQLMinimalTLSSettingId) Segments() []resourceids.Segment {
 	}
 }
 
-// String returns a human-readable description of this Dedicated S Q L Minimal T L S Setting ID
+// String returns a human-readable description of this Dedicated SQL Minimal TLS Setting ID
 func (id DedicatedSQLMinimalTLSSettingId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Dedicated S Q L Minimal T L S Setting Name: %q", id.DedicatedSQLMinimalTLSSettingName),
+		fmt.Sprintf("Dedicated SQL Minimal TLS Setting Name: %q", id.DedicatedSQLMinimalTLSSettingName),
 	}
-	return fmt.Sprintf("Dedicated S Q L Minimal T L S Setting (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Dedicated SQL Minimal TLS Setting (%s)", strings.Join(components, "\n"))
 }

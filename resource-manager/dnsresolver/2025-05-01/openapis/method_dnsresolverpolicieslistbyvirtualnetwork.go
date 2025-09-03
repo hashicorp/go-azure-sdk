@@ -1,4 +1,4 @@
-package dnsresolverpolicies
+package openapis
 
 import (
 	"context"
@@ -13,22 +13,22 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type ListByVirtualNetworkOperationResponse struct {
+type DnsResolverPoliciesListByVirtualNetworkOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
 	Model        *[]SubResource
 }
 
-type ListByVirtualNetworkCompleteResult struct {
+type DnsResolverPoliciesListByVirtualNetworkCompleteResult struct {
 	LatestHttpResponse *http.Response
 	Items              []SubResource
 }
 
-type ListByVirtualNetworkCustomPager struct {
+type DnsResolverPoliciesListByVirtualNetworkCustomPager struct {
 	NextLink *odata.Link `json:"nextLink"`
 }
 
-func (p *ListByVirtualNetworkCustomPager) NextPageLink() *odata.Link {
+func (p *DnsResolverPoliciesListByVirtualNetworkCustomPager) NextPageLink() *odata.Link {
 	defer func() {
 		p.NextLink = nil
 	}()
@@ -36,15 +36,15 @@ func (p *ListByVirtualNetworkCustomPager) NextPageLink() *odata.Link {
 	return p.NextLink
 }
 
-// ListByVirtualNetwork ...
-func (c DnsResolverPoliciesClient) ListByVirtualNetwork(ctx context.Context, id commonids.VirtualNetworkId) (result ListByVirtualNetworkOperationResponse, err error) {
+// DnsResolverPoliciesListByVirtualNetwork ...
+func (c OpenapisClient) DnsResolverPoliciesListByVirtualNetwork(ctx context.Context, id commonids.VirtualNetworkId) (result DnsResolverPoliciesListByVirtualNetworkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Pager:      &ListByVirtualNetworkCustomPager{},
+		Pager:      &DnsResolverPoliciesListByVirtualNetworkCustomPager{},
 		Path:       fmt.Sprintf("%s/listDnsResolverPolicies", id.ID()),
 	}
 
@@ -75,16 +75,16 @@ func (c DnsResolverPoliciesClient) ListByVirtualNetwork(ctx context.Context, id 
 	return
 }
 
-// ListByVirtualNetworkComplete retrieves all the results into a single object
-func (c DnsResolverPoliciesClient) ListByVirtualNetworkComplete(ctx context.Context, id commonids.VirtualNetworkId) (ListByVirtualNetworkCompleteResult, error) {
-	return c.ListByVirtualNetworkCompleteMatchingPredicate(ctx, id, SubResourceOperationPredicate{})
+// DnsResolverPoliciesListByVirtualNetworkComplete retrieves all the results into a single object
+func (c OpenapisClient) DnsResolverPoliciesListByVirtualNetworkComplete(ctx context.Context, id commonids.VirtualNetworkId) (DnsResolverPoliciesListByVirtualNetworkCompleteResult, error) {
+	return c.DnsResolverPoliciesListByVirtualNetworkCompleteMatchingPredicate(ctx, id, SubResourceOperationPredicate{})
 }
 
-// ListByVirtualNetworkCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DnsResolverPoliciesClient) ListByVirtualNetworkCompleteMatchingPredicate(ctx context.Context, id commonids.VirtualNetworkId, predicate SubResourceOperationPredicate) (result ListByVirtualNetworkCompleteResult, err error) {
+// DnsResolverPoliciesListByVirtualNetworkCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c OpenapisClient) DnsResolverPoliciesListByVirtualNetworkCompleteMatchingPredicate(ctx context.Context, id commonids.VirtualNetworkId, predicate SubResourceOperationPredicate) (result DnsResolverPoliciesListByVirtualNetworkCompleteResult, err error) {
 	items := make([]SubResource, 0)
 
-	resp, err := c.ListByVirtualNetwork(ctx, id)
+	resp, err := c.DnsResolverPoliciesListByVirtualNetwork(ctx, id)
 	if err != nil {
 		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
@@ -98,7 +98,7 @@ func (c DnsResolverPoliciesClient) ListByVirtualNetworkCompleteMatchingPredicate
 		}
 	}
 
-	result = ListByVirtualNetworkCompleteResult{
+	result = DnsResolverPoliciesListByVirtualNetworkCompleteResult{
 		LatestHttpResponse: resp.HttpResponse,
 		Items:              items,
 	}

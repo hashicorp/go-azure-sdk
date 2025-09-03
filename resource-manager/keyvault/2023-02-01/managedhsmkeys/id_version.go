@@ -140,7 +140,7 @@ func (id VersionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Managed H S M Name: %q", id.ManagedHSMName),
+		fmt.Sprintf("Managed HSM Name: %q", id.ManagedHSMName),
 		fmt.Sprintf("Key Name: %q", id.KeyName),
 		fmt.Sprintf("Version Name: %q", id.VersionName),
 	}

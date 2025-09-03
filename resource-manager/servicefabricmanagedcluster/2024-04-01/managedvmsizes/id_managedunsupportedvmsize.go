@@ -17,7 +17,7 @@ func init() {
 
 var _ resourceids.ResourceId = &ManagedUnsupportedVMSizeId{}
 
-// ManagedUnsupportedVMSizeId is a struct representing the Resource ID for a Managed Unsupported V M Size
+// ManagedUnsupportedVMSizeId is a struct representing the Resource ID for a Managed Unsupported VM Size
 type ManagedUnsupportedVMSizeId struct {
 	SubscriptionId               string
 	LocationName                 string
@@ -84,7 +84,7 @@ func (id *ManagedUnsupportedVMSizeId) FromParseResult(input resourceids.ParseRes
 	return nil
 }
 
-// ValidateManagedUnsupportedVMSizeID checks that 'input' can be parsed as a Managed Unsupported V M Size ID
+// ValidateManagedUnsupportedVMSizeID checks that 'input' can be parsed as a Managed Unsupported VM Size ID
 func ValidateManagedUnsupportedVMSizeID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
@@ -99,13 +99,13 @@ func ValidateManagedUnsupportedVMSizeID(input interface{}, key string) (warnings
 	return
 }
 
-// ID returns the formatted Managed Unsupported V M Size ID
+// ID returns the formatted Managed Unsupported VM Size ID
 func (id ManagedUnsupportedVMSizeId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.ServiceFabric/locations/%s/managedUnsupportedVMSizes/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.ManagedUnsupportedVMSizeName)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Managed Unsupported V M Size ID
+// Segments returns a slice of Resource ID Segments which comprise this Managed Unsupported VM Size ID
 func (id ManagedUnsupportedVMSizeId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
@@ -119,12 +119,12 @@ func (id ManagedUnsupportedVMSizeId) Segments() []resourceids.Segment {
 	}
 }
 
-// String returns a human-readable description of this Managed Unsupported V M Size ID
+// String returns a human-readable description of this Managed Unsupported VM Size ID
 func (id ManagedUnsupportedVMSizeId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Location Name: %q", id.LocationName),
-		fmt.Sprintf("Managed Unsupported V M Size Name: %q", id.ManagedUnsupportedVMSizeName),
+		fmt.Sprintf("Managed Unsupported VM Size Name: %q", id.ManagedUnsupportedVMSizeName),
 	}
-	return fmt.Sprintf("Managed Unsupported V M Size (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Managed Unsupported VM Size (%s)", strings.Join(components, "\n"))
 }
