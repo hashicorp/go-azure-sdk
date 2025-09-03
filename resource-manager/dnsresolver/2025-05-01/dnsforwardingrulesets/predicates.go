@@ -35,16 +35,3 @@ func (p DnsForwardingRulesetOperationPredicate) Matches(input DnsForwardingRules
 
 	return true
 }
-
-type VirtualNetworkDnsForwardingRulesetOperationPredicate struct {
-	Id *string
-}
-
-func (p VirtualNetworkDnsForwardingRulesetOperationPredicate) Matches(input VirtualNetworkDnsForwardingRuleset) bool {
-
-	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
-		return false
-	}
-
-	return true
-}

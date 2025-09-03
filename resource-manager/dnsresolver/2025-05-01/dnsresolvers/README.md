@@ -100,23 +100,6 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `DnsResolversClient.ListByVirtualNetwork`
-
-```go
-ctx := context.TODO()
-id := commonids.NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkName")
-
-// alternatively `client.ListByVirtualNetwork(ctx, id, dnsresolvers.DefaultListByVirtualNetworkOperationOptions())` can be used to do batched pagination
-items, err := client.ListByVirtualNetworkComplete(ctx, id, dnsresolvers.DefaultListByVirtualNetworkOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
 ### Example Usage: `DnsResolversClient.Update`
 
 ```go

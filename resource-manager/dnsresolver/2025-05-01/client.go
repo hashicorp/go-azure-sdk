@@ -14,6 +14,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/dnssecurityrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/forwardingrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/inboundendpoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/openapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/outboundendpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/virtualnetworklinks"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -29,6 +30,7 @@ type Client struct {
 	DnsSecurityRules                     *dnssecurityrules.DnsSecurityRulesClient
 	ForwardingRules                      *forwardingrules.ForwardingRulesClient
 	InboundEndpoints                     *inboundendpoints.InboundEndpointsClient
+	Openapis                             *openapis.OpenapisClient
 	OutboundEndpoints                    *outboundendpoints.OutboundEndpointsClient
 	VirtualNetworkLinks                  *virtualnetworklinks.VirtualNetworkLinksClient
 }
@@ -82,6 +84,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(inboundEndpointsClient.Client)
 
+	openapisClient, err := openapis.NewOpenapisClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Openapis client: %+v", err)
+	}
+	configureFunc(openapisClient.Client)
+
 	outboundEndpointsClient, err := outboundendpoints.NewOutboundEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building OutboundEndpoints client: %+v", err)
@@ -103,6 +111,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		DnsSecurityRules:                     dnsSecurityRulesClient,
 		ForwardingRules:                      forwardingRulesClient,
 		InboundEndpoints:                     inboundEndpointsClient,
+		Openapis:                             openapisClient,
 		OutboundEndpoints:                    outboundEndpointsClient,
 		VirtualNetworkLinks:                  virtualNetworkLinksClient,
 	}, nil
