@@ -17,7 +17,7 @@ func init() {
 
 var _ resourceids.ResourceId = &OpenAIIntegrationId{}
 
-// OpenAIIntegrationId is a struct representing the Resource ID for a Open A I Integration
+// OpenAIIntegrationId is a struct representing the Resource ID for a Open AI Integration
 type OpenAIIntegrationId struct {
 	SubscriptionId        string
 	ResourceGroupName     string
@@ -90,7 +90,7 @@ func (id *OpenAIIntegrationId) FromParseResult(input resourceids.ParseResult) er
 	return nil
 }
 
-// ValidateOpenAIIntegrationID checks that 'input' can be parsed as a Open A I Integration ID
+// ValidateOpenAIIntegrationID checks that 'input' can be parsed as a Open AI Integration ID
 func ValidateOpenAIIntegrationID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
@@ -105,13 +105,13 @@ func ValidateOpenAIIntegrationID(input interface{}, key string) (warnings []stri
 	return
 }
 
-// ID returns the formatted Open A I Integration ID
+// ID returns the formatted Open AI Integration ID
 func (id OpenAIIntegrationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Elastic/monitors/%s/openAIIntegrations/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.MonitorName, id.OpenAIIntegrationName)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Open A I Integration ID
+// Segments returns a slice of Resource ID Segments which comprise this Open AI Integration ID
 func (id OpenAIIntegrationId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
@@ -127,13 +127,13 @@ func (id OpenAIIntegrationId) Segments() []resourceids.Segment {
 	}
 }
 
-// String returns a human-readable description of this Open A I Integration ID
+// String returns a human-readable description of this Open AI Integration ID
 func (id OpenAIIntegrationId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Monitor Name: %q", id.MonitorName),
-		fmt.Sprintf("Open A I Integration Name: %q", id.OpenAIIntegrationName),
+		fmt.Sprintf("Open AI Integration Name: %q", id.OpenAIIntegrationName),
 	}
-	return fmt.Sprintf("Open A I Integration (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Open AI Integration (%s)", strings.Join(components, "\n"))
 }

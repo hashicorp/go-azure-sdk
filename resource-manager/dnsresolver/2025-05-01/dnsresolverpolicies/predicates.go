@@ -35,16 +35,3 @@ func (p DnsResolverPolicyOperationPredicate) Matches(input DnsResolverPolicy) bo
 
 	return true
 }
-
-type SubResourceOperationPredicate struct {
-	Id *string
-}
-
-func (p SubResourceOperationPredicate) Matches(input SubResource) bool {
-
-	if p.Id != nil && *p.Id != input.Id {
-		return false
-	}
-
-	return true
-}

@@ -100,23 +100,6 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `DnsForwardingRulesetsClient.ListByVirtualNetwork`
-
-```go
-ctx := context.TODO()
-id := commonids.NewVirtualNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkName")
-
-// alternatively `client.ListByVirtualNetwork(ctx, id, dnsforwardingrulesets.DefaultListByVirtualNetworkOperationOptions())` can be used to do batched pagination
-items, err := client.ListByVirtualNetworkComplete(ctx, id, dnsforwardingrulesets.DefaultListByVirtualNetworkOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
 ### Example Usage: `DnsForwardingRulesetsClient.Update`
 
 ```go

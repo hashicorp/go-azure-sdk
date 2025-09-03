@@ -17,7 +17,7 @@ func init() {
 
 var _ resourceids.ResourceId = &VMGroupId{}
 
-// VMGroupId is a struct representing the Resource ID for a V M Group
+// VMGroupId is a struct representing the Resource ID for a VM Group
 type VMGroupId struct {
 	SubscriptionId    string
 	ResourceGroupName string
@@ -90,7 +90,7 @@ func (id *VMGroupId) FromParseResult(input resourceids.ParseResult) error {
 	return nil
 }
 
-// ValidateVMGroupID checks that 'input' can be parsed as a V M Group ID
+// ValidateVMGroupID checks that 'input' can be parsed as a VM Group ID
 func ValidateVMGroupID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
@@ -105,13 +105,13 @@ func ValidateVMGroupID(input interface{}, key string) (warnings []string, errors
 	return
 }
 
-// ID returns the formatted V M Group ID
+// ID returns the formatted VM Group ID
 func (id VMGroupId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AVS/privateClouds/%s/workloadNetworks/default/vmGroups/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.PrivateCloudName, id.VmGroupId)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this V M Group ID
+// Segments returns a slice of Resource ID Segments which comprise this VM Group ID
 func (id VMGroupId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
@@ -129,7 +129,7 @@ func (id VMGroupId) Segments() []resourceids.Segment {
 	}
 }
 
-// String returns a human-readable description of this V M Group ID
+// String returns a human-readable description of this VM Group ID
 func (id VMGroupId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
@@ -137,5 +137,5 @@ func (id VMGroupId) String() string {
 		fmt.Sprintf("Private Cloud Name: %q", id.PrivateCloudName),
 		fmt.Sprintf("Vm Group: %q", id.VmGroupId),
 	}
-	return fmt.Sprintf("V M Group (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("VM Group (%s)", strings.Join(components, "\n"))
 }
