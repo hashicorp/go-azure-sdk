@@ -19,7 +19,7 @@ jobs:
       latest_tag: ${{ steps.version-number.outputs.latest_tag }}
       should_update_azurerm: ${{ steps.results.outputs.should_update_azurerm }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
         with:
           token: ${{ secrets.SERVICE_ACCOUNT_GO_SDK_TOKEN }}
 
@@ -57,7 +57,7 @@ jobs:
     outputs:
       has_changes_to_push: ${{ steps.update-azurerm-provider.outputs.has_changes_to_push }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
         with:
           fetch-depth: 0
           token: ${{ secrets.SERVICE_ACCOUNT_GO_SDK_TOKEN }}
