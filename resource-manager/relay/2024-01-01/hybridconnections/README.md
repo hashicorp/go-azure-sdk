@@ -20,27 +20,6 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `HybridConnectionsClient.CreateOrUpdate`
-
-```go
-ctx := context.TODO()
-id := hybridconnections.NewHybridConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "hybridConnectionName")
-
-payload := hybridconnections.HybridConnection{
-	// ...
-}
-
-
-read, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `HybridConnectionsClient.CreateOrUpdateAuthorizationRule`
 
 ```go
@@ -62,22 +41,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `HybridConnectionsClient.Delete`
-
-```go
-ctx := context.TODO()
-id := hybridconnections.NewHybridConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "hybridConnectionName")
-
-read, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `HybridConnectionsClient.DeleteAuthorizationRule`
 
 ```go
@@ -85,22 +48,6 @@ ctx := context.TODO()
 id := hybridconnections.NewHybridConnectionAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "hybridConnectionName", "authorizationRuleName")
 
 read, err := client.DeleteAuthorizationRule(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `HybridConnectionsClient.Get`
-
-```go
-ctx := context.TODO()
-id := hybridconnections.NewHybridConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "hybridConnectionName")
-
-read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -134,23 +81,6 @@ id := hybridconnections.NewHybridConnectionID("12345678-1234-9876-4563-123456789
 
 // alternatively `client.ListAuthorizationRules(ctx, id)` can be used to do batched pagination
 items, err := client.ListAuthorizationRulesComplete(ctx, id)
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `HybridConnectionsClient.ListByNamespace`
-
-```go
-ctx := context.TODO()
-id := hybridconnections.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName")
-
-// alternatively `client.ListByNamespace(ctx, id)` can be used to do batched pagination
-items, err := client.ListByNamespaceComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

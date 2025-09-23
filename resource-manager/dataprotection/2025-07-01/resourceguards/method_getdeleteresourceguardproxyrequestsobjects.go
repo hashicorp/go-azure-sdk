@@ -15,12 +15,12 @@ import (
 type GetDeleteResourceGuardProxyRequestsObjectsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]DppBaseResource
+	Model        *[]Resource
 }
 
 type GetDeleteResourceGuardProxyRequestsObjectsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []DppBaseResource
+	Items              []Resource
 }
 
 type GetDeleteResourceGuardProxyRequestsObjectsCustomPager struct {
@@ -63,7 +63,7 @@ func (c ResourceGuardsClient) GetDeleteResourceGuardProxyRequestsObjects(ctx con
 	}
 
 	var values struct {
-		Values *[]DppBaseResource `json:"value"`
+		Values *[]Resource `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c ResourceGuardsClient) GetDeleteResourceGuardProxyRequestsObjects(ctx con
 
 // GetDeleteResourceGuardProxyRequestsObjectsComplete retrieves all the results into a single object
 func (c ResourceGuardsClient) GetDeleteResourceGuardProxyRequestsObjectsComplete(ctx context.Context, id ResourceGuardId) (GetDeleteResourceGuardProxyRequestsObjectsCompleteResult, error) {
-	return c.GetDeleteResourceGuardProxyRequestsObjectsCompleteMatchingPredicate(ctx, id, DppBaseResourceOperationPredicate{})
+	return c.GetDeleteResourceGuardProxyRequestsObjectsCompleteMatchingPredicate(ctx, id, ResourceOperationPredicate{})
 }
 
 // GetDeleteResourceGuardProxyRequestsObjectsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ResourceGuardsClient) GetDeleteResourceGuardProxyRequestsObjectsCompleteMatchingPredicate(ctx context.Context, id ResourceGuardId, predicate DppBaseResourceOperationPredicate) (result GetDeleteResourceGuardProxyRequestsObjectsCompleteResult, err error) {
-	items := make([]DppBaseResource, 0)
+func (c ResourceGuardsClient) GetDeleteResourceGuardProxyRequestsObjectsCompleteMatchingPredicate(ctx context.Context, id ResourceGuardId, predicate ResourceOperationPredicate) (result GetDeleteResourceGuardProxyRequestsObjectsCompleteResult, err error) {
+	items := make([]Resource, 0)
 
 	resp, err := c.GetDeleteResourceGuardProxyRequestsObjects(ctx, id)
 	if err != nil {

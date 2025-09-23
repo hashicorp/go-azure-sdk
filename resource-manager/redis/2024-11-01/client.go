@@ -6,43 +6,35 @@ package v2024_11_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/aad"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/firewallrules"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/patchschedules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/linkedserver"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/privateendpointconnections"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/redis"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/rediscacheaccesspolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/rediscacheaccesspolicyassignments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/redisfirewallrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/redispatchschedules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/redisresources"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	AAD                        *aad.AADClient
-	FirewallRules              *firewallrules.FirewallRulesClient
-	PatchSchedules             *patchschedules.PatchSchedulesClient
-	PrivateEndpointConnections *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources       *privatelinkresources.PrivateLinkResourcesClient
-	Redis                      *redis.RedisClient
+	LinkedServer                      *linkedserver.LinkedServerClient
+	PrivateEndpointConnections        *privateendpointconnections.PrivateEndpointConnectionsClient
+	Redis                             *redis.RedisClient
+	RedisCacheAccessPolicies          *rediscacheaccesspolicies.RedisCacheAccessPoliciesClient
+	RedisCacheAccessPolicyAssignments *rediscacheaccesspolicyassignments.RedisCacheAccessPolicyAssignmentsClient
+	RedisFirewallRules                *redisfirewallrules.RedisFirewallRulesClient
+	RedisPatchSchedules               *redispatchschedules.RedisPatchSchedulesClient
+	RedisResources                    *redisresources.RedisResourcesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	aADClient, err := aad.NewAADClientWithBaseURI(sdkApi)
+	linkedServerClient, err := linkedserver.NewLinkedServerClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building AAD client: %+v", err)
+		return nil, fmt.Errorf("building LinkedServer client: %+v", err)
 	}
-	configureFunc(aADClient.Client)
-
-	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building FirewallRules client: %+v", err)
-	}
-	configureFunc(firewallRulesClient.Client)
-
-	patchSchedulesClient, err := patchschedules.NewPatchSchedulesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building PatchSchedules client: %+v", err)
-	}
-	configureFunc(patchSchedulesClient.Client)
+	configureFunc(linkedServerClient.Client)
 
 	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -50,11 +42,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
+	redisCacheAccessPoliciesClient, err := rediscacheaccesspolicies.NewRedisCacheAccessPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
+		return nil, fmt.Errorf("building RedisCacheAccessPolicies client: %+v", err)
 	}
-	configureFunc(privateLinkResourcesClient.Client)
+	configureFunc(redisCacheAccessPoliciesClient.Client)
+
+	redisCacheAccessPolicyAssignmentsClient, err := rediscacheaccesspolicyassignments.NewRedisCacheAccessPolicyAssignmentsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RedisCacheAccessPolicyAssignments client: %+v", err)
+	}
+	configureFunc(redisCacheAccessPolicyAssignmentsClient.Client)
 
 	redisClient, err := redis.NewRedisClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -62,12 +60,32 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(redisClient.Client)
 
+	redisFirewallRulesClient, err := redisfirewallrules.NewRedisFirewallRulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RedisFirewallRules client: %+v", err)
+	}
+	configureFunc(redisFirewallRulesClient.Client)
+
+	redisPatchSchedulesClient, err := redispatchschedules.NewRedisPatchSchedulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RedisPatchSchedules client: %+v", err)
+	}
+	configureFunc(redisPatchSchedulesClient.Client)
+
+	redisResourcesClient, err := redisresources.NewRedisResourcesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RedisResources client: %+v", err)
+	}
+	configureFunc(redisResourcesClient.Client)
+
 	return &Client{
-		AAD:                        aADClient,
-		FirewallRules:              firewallRulesClient,
-		PatchSchedules:             patchSchedulesClient,
-		PrivateEndpointConnections: privateEndpointConnectionsClient,
-		PrivateLinkResources:       privateLinkResourcesClient,
-		Redis:                      redisClient,
+		LinkedServer:                      linkedServerClient,
+		PrivateEndpointConnections:        privateEndpointConnectionsClient,
+		Redis:                             redisClient,
+		RedisCacheAccessPolicies:          redisCacheAccessPoliciesClient,
+		RedisCacheAccessPolicyAssignments: redisCacheAccessPolicyAssignmentsClient,
+		RedisFirewallRules:                redisFirewallRulesClient,
+		RedisPatchSchedules:               redisPatchSchedulesClient,
+		RedisResources:                    redisResourcesClient,
 	}, nil
 }

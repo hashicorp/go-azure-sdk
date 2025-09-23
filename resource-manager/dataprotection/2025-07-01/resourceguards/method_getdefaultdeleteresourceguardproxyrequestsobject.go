@@ -14,7 +14,7 @@ import (
 type GetDefaultDeleteResourceGuardProxyRequestsObjectOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *DppBaseResource
+	Model        *Resource
 }
 
 // GetDefaultDeleteResourceGuardProxyRequestsObject ...
@@ -43,7 +43,7 @@ func (c ResourceGuardsClient) GetDefaultDeleteResourceGuardProxyRequestsObject(c
 		return
 	}
 
-	var model DppBaseResource
+	var model Resource
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

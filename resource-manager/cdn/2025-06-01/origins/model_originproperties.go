@@ -7,7 +7,7 @@ type OriginProperties struct {
 	Enabled                    *bool                    `json:"enabled,omitempty"`
 	HTTPPort                   *int64                   `json:"httpPort,omitempty"`
 	HTTPSPort                  *int64                   `json:"httpsPort,omitempty"`
-	HostName                   *string                  `json:"hostName,omitempty"`
+	HostName                   string                   `json:"hostName"`
 	OriginHostHeader           *string                  `json:"originHostHeader,omitempty"`
 	Priority                   *int64                   `json:"priority,omitempty"`
 	PrivateEndpointStatus      *PrivateEndpointStatus   `json:"privateEndpointStatus,omitempty"`

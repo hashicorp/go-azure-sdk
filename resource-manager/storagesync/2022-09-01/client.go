@@ -6,77 +6,35 @@ package v2022_09_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/actions"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/backuprestore"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/changedetection"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/cloudendpointresource"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/operationstatus"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/privateendpointconnectionresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/cloudendpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/privateendpointconnections"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/privatelinkresources"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/registeredserverresource"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/serverendpointresource"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/storagesyncservice"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/storagesyncservicesresource"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/syncgroupresource"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/workflowresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/registeredservers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/serverendpoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/storagesyncs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/storagesyncservices"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/syncgroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/workflows"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	Actions                           *actions.ActionsClient
-	BackupRestore                     *backuprestore.BackupRestoreClient
-	ChangeDetection                   *changedetection.ChangeDetectionClient
-	CloudEndpointResource             *cloudendpointresource.CloudEndpointResourceClient
-	OperationStatus                   *operationstatus.OperationStatusClient
-	PrivateEndpointConnectionResource *privateendpointconnectionresource.PrivateEndpointConnectionResourceClient
-	PrivateEndpointConnections        *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources              *privatelinkresources.PrivateLinkResourcesClient
-	RegisteredServerResource          *registeredserverresource.RegisteredServerResourceClient
-	ServerEndpointResource            *serverendpointresource.ServerEndpointResourceClient
-	StorageSyncService                *storagesyncservice.StorageSyncServiceClient
-	StorageSyncServicesResource       *storagesyncservicesresource.StorageSyncServicesResourceClient
-	SyncGroupResource                 *syncgroupresource.SyncGroupResourceClient
-	WorkflowResource                  *workflowresource.WorkflowResourceClient
+	CloudEndpoints             *cloudendpoints.CloudEndpointsClient
+	PrivateEndpointConnections *privateendpointconnections.PrivateEndpointConnectionsClient
+	RegisteredServers          *registeredservers.RegisteredServersClient
+	ServerEndpoints            *serverendpoints.ServerEndpointsClient
+	StorageSyncServices        *storagesyncservices.StorageSyncServicesClient
+	Storagesyncs               *storagesyncs.StoragesyncsClient
+	SyncGroups                 *syncgroups.SyncGroupsClient
+	Workflows                  *workflows.WorkflowsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	actionsClient, err := actions.NewActionsClientWithBaseURI(sdkApi)
+	cloudEndpointsClient, err := cloudendpoints.NewCloudEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Actions client: %+v", err)
+		return nil, fmt.Errorf("building CloudEndpoints client: %+v", err)
 	}
-	configureFunc(actionsClient.Client)
-
-	backupRestoreClient, err := backuprestore.NewBackupRestoreClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building BackupRestore client: %+v", err)
-	}
-	configureFunc(backupRestoreClient.Client)
-
-	changeDetectionClient, err := changedetection.NewChangeDetectionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ChangeDetection client: %+v", err)
-	}
-	configureFunc(changeDetectionClient.Client)
-
-	cloudEndpointResourceClient, err := cloudendpointresource.NewCloudEndpointResourceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CloudEndpointResource client: %+v", err)
-	}
-	configureFunc(cloudEndpointResourceClient.Client)
-
-	operationStatusClient, err := operationstatus.NewOperationStatusClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building OperationStatus client: %+v", err)
-	}
-	configureFunc(operationStatusClient.Client)
-
-	privateEndpointConnectionResourceClient, err := privateendpointconnectionresource.NewPrivateEndpointConnectionResourceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building PrivateEndpointConnectionResource client: %+v", err)
-	}
-	configureFunc(privateEndpointConnectionResourceClient.Client)
+	configureFunc(cloudEndpointsClient.Client)
 
 	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -84,62 +42,50 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
+	registeredServersClient, err := registeredservers.NewRegisteredServersClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
+		return nil, fmt.Errorf("building RegisteredServers client: %+v", err)
 	}
-	configureFunc(privateLinkResourcesClient.Client)
+	configureFunc(registeredServersClient.Client)
 
-	registeredServerResourceClient, err := registeredserverresource.NewRegisteredServerResourceClientWithBaseURI(sdkApi)
+	serverEndpointsClient, err := serverendpoints.NewServerEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building RegisteredServerResource client: %+v", err)
+		return nil, fmt.Errorf("building ServerEndpoints client: %+v", err)
 	}
-	configureFunc(registeredServerResourceClient.Client)
+	configureFunc(serverEndpointsClient.Client)
 
-	serverEndpointResourceClient, err := serverendpointresource.NewServerEndpointResourceClientWithBaseURI(sdkApi)
+	storageSyncServicesClient, err := storagesyncservices.NewStorageSyncServicesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building ServerEndpointResource client: %+v", err)
+		return nil, fmt.Errorf("building StorageSyncServices client: %+v", err)
 	}
-	configureFunc(serverEndpointResourceClient.Client)
+	configureFunc(storageSyncServicesClient.Client)
 
-	storageSyncServiceClient, err := storagesyncservice.NewStorageSyncServiceClientWithBaseURI(sdkApi)
+	storagesyncsClient, err := storagesyncs.NewStoragesyncsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building StorageSyncService client: %+v", err)
+		return nil, fmt.Errorf("building Storagesyncs client: %+v", err)
 	}
-	configureFunc(storageSyncServiceClient.Client)
+	configureFunc(storagesyncsClient.Client)
 
-	storageSyncServicesResourceClient, err := storagesyncservicesresource.NewStorageSyncServicesResourceClientWithBaseURI(sdkApi)
+	syncGroupsClient, err := syncgroups.NewSyncGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building StorageSyncServicesResource client: %+v", err)
+		return nil, fmt.Errorf("building SyncGroups client: %+v", err)
 	}
-	configureFunc(storageSyncServicesResourceClient.Client)
+	configureFunc(syncGroupsClient.Client)
 
-	syncGroupResourceClient, err := syncgroupresource.NewSyncGroupResourceClientWithBaseURI(sdkApi)
+	workflowsClient, err := workflows.NewWorkflowsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building SyncGroupResource client: %+v", err)
+		return nil, fmt.Errorf("building Workflows client: %+v", err)
 	}
-	configureFunc(syncGroupResourceClient.Client)
-
-	workflowResourceClient, err := workflowresource.NewWorkflowResourceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building WorkflowResource client: %+v", err)
-	}
-	configureFunc(workflowResourceClient.Client)
+	configureFunc(workflowsClient.Client)
 
 	return &Client{
-		Actions:                           actionsClient,
-		BackupRestore:                     backupRestoreClient,
-		ChangeDetection:                   changeDetectionClient,
-		CloudEndpointResource:             cloudEndpointResourceClient,
-		OperationStatus:                   operationStatusClient,
-		PrivateEndpointConnectionResource: privateEndpointConnectionResourceClient,
-		PrivateEndpointConnections:        privateEndpointConnectionsClient,
-		PrivateLinkResources:              privateLinkResourcesClient,
-		RegisteredServerResource:          registeredServerResourceClient,
-		ServerEndpointResource:            serverEndpointResourceClient,
-		StorageSyncService:                storageSyncServiceClient,
-		StorageSyncServicesResource:       storageSyncServicesResourceClient,
-		SyncGroupResource:                 syncGroupResourceClient,
-		WorkflowResource:                  workflowResourceClient,
+		CloudEndpoints:             cloudEndpointsClient,
+		PrivateEndpointConnections: privateEndpointConnectionsClient,
+		RegisteredServers:          registeredServersClient,
+		ServerEndpoints:            serverEndpointsClient,
+		StorageSyncServices:        storageSyncServicesClient,
+		Storagesyncs:               storagesyncsClient,
+		SyncGroups:                 syncGroupsClient,
+		Workflows:                  workflowsClient,
 	}, nil
 }
