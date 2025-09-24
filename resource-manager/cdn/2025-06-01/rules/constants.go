@@ -1016,44 +1016,6 @@ func parseMatchVariable(input string) (*MatchVariable, error) {
 	return &out, nil
 }
 
-type Operator string
-
-const (
-	OperatorEqual Operator = "Equal"
-)
-
-func PossibleValuesForOperator() []string {
-	return []string{
-		string(OperatorEqual),
-	}
-}
-
-func (s *Operator) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseOperator(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseOperator(input string) (*Operator, error) {
-	vals := map[string]Operator{
-		"equal": OperatorEqual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Operator(input)
-	return &out, nil
-}
-
 type ParamIndicator string
 
 const (
@@ -1587,6 +1549,44 @@ func parseRequestMethodOperator(input string) (*RequestMethodOperator, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := RequestMethodOperator(input)
+	return &out, nil
+}
+
+type RequestSchemeMatchConditionParametersOperator string
+
+const (
+	RequestSchemeMatchConditionParametersOperatorEqual RequestSchemeMatchConditionParametersOperator = "Equal"
+)
+
+func PossibleValuesForRequestSchemeMatchConditionParametersOperator() []string {
+	return []string{
+		string(RequestSchemeMatchConditionParametersOperatorEqual),
+	}
+}
+
+func (s *RequestSchemeMatchConditionParametersOperator) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRequestSchemeMatchConditionParametersOperator(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseRequestSchemeMatchConditionParametersOperator(input string) (*RequestSchemeMatchConditionParametersOperator, error) {
+	vals := map[string]RequestSchemeMatchConditionParametersOperator{
+		"equal": RequestSchemeMatchConditionParametersOperatorEqual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RequestSchemeMatchConditionParametersOperator(input)
 	return &out, nil
 }
 

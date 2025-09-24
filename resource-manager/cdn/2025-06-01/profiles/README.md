@@ -21,19 +21,99 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `ProfilesClient.CanMigrate`
+### Example Usage: `ProfilesClient.AFDProfilesCheckEndpointNameAvailability`
 
 ```go
 ctx := context.TODO()
-id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
 
-payload := profiles.CanMigrateParameters{
+payload := profiles.CheckEndpointNameAvailabilityInput{
 	// ...
 }
 
 
-if err := client.CanMigrateThenPoll(ctx, id, payload); err != nil {
+read, err := client.AFDProfilesCheckEndpointNameAvailability(ctx, id, payload)
+if err != nil {
 	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ProfilesClient.AFDProfilesCheckHostNameAvailability`
+
+```go
+ctx := context.TODO()
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+
+payload := profiles.CheckHostNameAvailabilityInput{
+	// ...
+}
+
+
+read, err := client.AFDProfilesCheckHostNameAvailability(ctx, id, payload)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ProfilesClient.AFDProfilesListResourceUsage`
+
+```go
+ctx := context.TODO()
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+
+// alternatively `client.AFDProfilesListResourceUsage(ctx, id)` can be used to do batched pagination
+items, err := client.AFDProfilesListResourceUsageComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `ProfilesClient.AFDProfilesUpgrade`
+
+```go
+ctx := context.TODO()
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+
+payload := profiles.ProfileUpgradeParameters{
+	// ...
+}
+
+
+if err := client.AFDProfilesUpgradeThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `ProfilesClient.AFDProfilesValidateSecret`
+
+```go
+ctx := context.TODO()
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+
+payload := profiles.ValidateSecretInput{
+	// ...
+}
+
+
+read, err := client.AFDProfilesValidateSecret(ctx, id, payload)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
 }
 ```
 
@@ -195,19 +275,98 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ProfilesClient.Migrate`
+### Example Usage: `ProfilesClient.LogAnalyticsGetLogAnalyticsLocations`
 
 ```go
 ctx := context.TODO()
-id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
 
-payload := profiles.MigrationParameters{
-	// ...
-}
-
-
-if err := client.MigrateThenPoll(ctx, id, payload); err != nil {
+read, err := client.LogAnalyticsGetLogAnalyticsLocations(ctx, id)
+if err != nil {
 	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ProfilesClient.LogAnalyticsGetLogAnalyticsMetrics`
+
+```go
+ctx := context.TODO()
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+
+read, err := client.LogAnalyticsGetLogAnalyticsMetrics(ctx, id, profiles.DefaultLogAnalyticsGetLogAnalyticsMetricsOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ProfilesClient.LogAnalyticsGetLogAnalyticsRankings`
+
+```go
+ctx := context.TODO()
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+
+read, err := client.LogAnalyticsGetLogAnalyticsRankings(ctx, id, profiles.DefaultLogAnalyticsGetLogAnalyticsRankingsOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ProfilesClient.LogAnalyticsGetLogAnalyticsResources`
+
+```go
+ctx := context.TODO()
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+
+read, err := client.LogAnalyticsGetLogAnalyticsResources(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ProfilesClient.LogAnalyticsGetWafLogAnalyticsMetrics`
+
+```go
+ctx := context.TODO()
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+
+read, err := client.LogAnalyticsGetWafLogAnalyticsMetrics(ctx, id, profiles.DefaultLogAnalyticsGetWafLogAnalyticsMetricsOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ProfilesClient.LogAnalyticsGetWafLogAnalyticsRankings`
+
+```go
+ctx := context.TODO()
+id := profiles.NewProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileName")
+
+read, err := client.LogAnalyticsGetWafLogAnalyticsRankings(ctx, id, profiles.DefaultLogAnalyticsGetWafLogAnalyticsRankingsOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
 }
 ```
 

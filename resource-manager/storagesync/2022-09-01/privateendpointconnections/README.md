@@ -63,3 +63,20 @@ if model := read.Model; model != nil {
 	// do something with the model/response object
 }
 ```
+
+
+### Example Usage: `PrivateEndpointConnectionsClient.ListByStorageSyncService`
+
+```go
+ctx := context.TODO()
+id := privateendpointconnections.NewStorageSyncServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageSyncServiceName")
+
+// alternatively `client.ListByStorageSyncService(ctx, id)` can be used to do batched pagination
+items, err := client.ListByStorageSyncServiceComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```

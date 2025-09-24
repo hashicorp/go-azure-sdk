@@ -20,27 +20,6 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `WCFRelaysClient.CreateOrUpdate`
-
-```go
-ctx := context.TODO()
-id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName")
-
-payload := wcfrelays.WcfRelay{
-	// ...
-}
-
-
-read, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `WCFRelaysClient.CreateOrUpdateAuthorizationRule`
 
 ```go
@@ -62,22 +41,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `WCFRelaysClient.Delete`
-
-```go
-ctx := context.TODO()
-id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName")
-
-read, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `WCFRelaysClient.DeleteAuthorizationRule`
 
 ```go
@@ -85,22 +48,6 @@ ctx := context.TODO()
 id := wcfrelays.NewWcfRelayAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName", "authorizationRuleName")
 
 read, err := client.DeleteAuthorizationRule(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `WCFRelaysClient.Get`
-
-```go
-ctx := context.TODO()
-id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName", "wcfRelayName")
-
-read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -134,23 +81,6 @@ id := wcfrelays.NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-r
 
 // alternatively `client.ListAuthorizationRules(ctx, id)` can be used to do batched pagination
 items, err := client.ListAuthorizationRulesComplete(ctx, id)
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `WCFRelaysClient.ListByNamespace`
-
-```go
-ctx := context.TODO()
-id := wcfrelays.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceName")
-
-// alternatively `client.ListByNamespace(ctx, id)` can be used to do batched pagination
-items, err := client.ListByNamespaceComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

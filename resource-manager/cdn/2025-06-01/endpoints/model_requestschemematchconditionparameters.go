@@ -11,10 +11,10 @@ import (
 var _ DeliveryRuleConditionParameters = RequestSchemeMatchConditionParameters{}
 
 type RequestSchemeMatchConditionParameters struct {
-	MatchValues     *[]RequestSchemeMatchValue `json:"matchValues,omitempty"`
-	NegateCondition *bool                      `json:"negateCondition,omitempty"`
-	Operator        Operator                   `json:"operator"`
-	Transforms      *[]Transform               `json:"transforms,omitempty"`
+	MatchValues     *[]RequestSchemeMatchValue                    `json:"matchValues,omitempty"`
+	NegateCondition *bool                                         `json:"negateCondition,omitempty"`
+	Operator        RequestSchemeMatchConditionParametersOperator `json:"operator"`
+	Transforms      *[]Transform                                  `json:"transforms,omitempty"`
 
 	// Fields inherited from DeliveryRuleConditionParameters
 

@@ -6,122 +6,113 @@ package v2025_09_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotalimitrequest"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotalimits"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotalocationsettings"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotas"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotassubscriptions"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotasubscriptionrequests"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotausages"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/quotainformation"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/quotarequests"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/subscriptionquotaallocation"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/subscriptionquotaallocationrequest"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/usagesinformation"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/currentquotalimitbases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/currentusagesbases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotalimitlists"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotasenforcementstatuses"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotasentities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotasubscriptionids"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/groupquotasubscriptionrequeststatuses"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/quotaallocationrequeststatuses"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/quotarequeststatus"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/submittedresourcerequeststatuses"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-09-01/subscriptionquotaallocationslists"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	GroupQuotaLimitRequest             *groupquotalimitrequest.GroupQuotaLimitRequestClient
-	GroupQuotaLimits                   *groupquotalimits.GroupQuotaLimitsClient
-	GroupQuotaLocationSettings         *groupquotalocationsettings.GroupQuotaLocationSettingsClient
-	GroupQuotaSubscriptionRequests     *groupquotasubscriptionrequests.GroupQuotaSubscriptionRequestsClient
-	GroupQuotaUsages                   *groupquotausages.GroupQuotaUsagesClient
-	GroupQuotas                        *groupquotas.GroupQuotasClient
-	GroupQuotasSubscriptions           *groupquotassubscriptions.GroupQuotasSubscriptionsClient
-	QuotaInformation                   *quotainformation.QuotaInformationClient
-	QuotaRequests                      *quotarequests.QuotaRequestsClient
-	SubscriptionQuotaAllocation        *subscriptionquotaallocation.SubscriptionQuotaAllocationClient
-	SubscriptionQuotaAllocationRequest *subscriptionquotaallocationrequest.SubscriptionQuotaAllocationRequestClient
-	UsagesInformation                  *usagesinformation.UsagesInformationClient
+	CurrentQuotaLimitBases                *currentquotalimitbases.CurrentQuotaLimitBasesClient
+	CurrentUsagesBases                    *currentusagesbases.CurrentUsagesBasesClient
+	GroupQuotaLimitLists                  *groupquotalimitlists.GroupQuotaLimitListsClient
+	GroupQuotaSubscriptionIds             *groupquotasubscriptionids.GroupQuotaSubscriptionIdsClient
+	GroupQuotaSubscriptionRequestStatuses *groupquotasubscriptionrequeststatuses.GroupQuotaSubscriptionRequestStatusesClient
+	GroupQuotasEnforcementStatuses        *groupquotasenforcementstatuses.GroupQuotasEnforcementStatusesClient
+	GroupQuotasEntities                   *groupquotasentities.GroupQuotasEntitiesClient
+	QuotaAllocationRequestStatuses        *quotaallocationrequeststatuses.QuotaAllocationRequestStatusesClient
+	QuotaRequestStatus                    *quotarequeststatus.QuotaRequestStatusClient
+	SubmittedResourceRequestStatuses      *submittedresourcerequeststatuses.SubmittedResourceRequestStatusesClient
+	SubscriptionQuotaAllocationsLists     *subscriptionquotaallocationslists.SubscriptionQuotaAllocationsListsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	groupQuotaLimitRequestClient, err := groupquotalimitrequest.NewGroupQuotaLimitRequestClientWithBaseURI(sdkApi)
+	currentQuotaLimitBasesClient, err := currentquotalimitbases.NewCurrentQuotaLimitBasesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building GroupQuotaLimitRequest client: %+v", err)
+		return nil, fmt.Errorf("building CurrentQuotaLimitBases client: %+v", err)
 	}
-	configureFunc(groupQuotaLimitRequestClient.Client)
+	configureFunc(currentQuotaLimitBasesClient.Client)
 
-	groupQuotaLimitsClient, err := groupquotalimits.NewGroupQuotaLimitsClientWithBaseURI(sdkApi)
+	currentUsagesBasesClient, err := currentusagesbases.NewCurrentUsagesBasesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building GroupQuotaLimits client: %+v", err)
+		return nil, fmt.Errorf("building CurrentUsagesBases client: %+v", err)
 	}
-	configureFunc(groupQuotaLimitsClient.Client)
+	configureFunc(currentUsagesBasesClient.Client)
 
-	groupQuotaLocationSettingsClient, err := groupquotalocationsettings.NewGroupQuotaLocationSettingsClientWithBaseURI(sdkApi)
+	groupQuotaLimitListsClient, err := groupquotalimitlists.NewGroupQuotaLimitListsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building GroupQuotaLocationSettings client: %+v", err)
+		return nil, fmt.Errorf("building GroupQuotaLimitLists client: %+v", err)
 	}
-	configureFunc(groupQuotaLocationSettingsClient.Client)
+	configureFunc(groupQuotaLimitListsClient.Client)
 
-	groupQuotaSubscriptionRequestsClient, err := groupquotasubscriptionrequests.NewGroupQuotaSubscriptionRequestsClientWithBaseURI(sdkApi)
+	groupQuotaSubscriptionIdsClient, err := groupquotasubscriptionids.NewGroupQuotaSubscriptionIdsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building GroupQuotaSubscriptionRequests client: %+v", err)
+		return nil, fmt.Errorf("building GroupQuotaSubscriptionIds client: %+v", err)
 	}
-	configureFunc(groupQuotaSubscriptionRequestsClient.Client)
+	configureFunc(groupQuotaSubscriptionIdsClient.Client)
 
-	groupQuotaUsagesClient, err := groupquotausages.NewGroupQuotaUsagesClientWithBaseURI(sdkApi)
+	groupQuotaSubscriptionRequestStatusesClient, err := groupquotasubscriptionrequeststatuses.NewGroupQuotaSubscriptionRequestStatusesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building GroupQuotaUsages client: %+v", err)
+		return nil, fmt.Errorf("building GroupQuotaSubscriptionRequestStatuses client: %+v", err)
 	}
-	configureFunc(groupQuotaUsagesClient.Client)
+	configureFunc(groupQuotaSubscriptionRequestStatusesClient.Client)
 
-	groupQuotasClient, err := groupquotas.NewGroupQuotasClientWithBaseURI(sdkApi)
+	groupQuotasEnforcementStatusesClient, err := groupquotasenforcementstatuses.NewGroupQuotasEnforcementStatusesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building GroupQuotas client: %+v", err)
+		return nil, fmt.Errorf("building GroupQuotasEnforcementStatuses client: %+v", err)
 	}
-	configureFunc(groupQuotasClient.Client)
+	configureFunc(groupQuotasEnforcementStatusesClient.Client)
 
-	groupQuotasSubscriptionsClient, err := groupquotassubscriptions.NewGroupQuotasSubscriptionsClientWithBaseURI(sdkApi)
+	groupQuotasEntitiesClient, err := groupquotasentities.NewGroupQuotasEntitiesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building GroupQuotasSubscriptions client: %+v", err)
+		return nil, fmt.Errorf("building GroupQuotasEntities client: %+v", err)
 	}
-	configureFunc(groupQuotasSubscriptionsClient.Client)
+	configureFunc(groupQuotasEntitiesClient.Client)
 
-	quotaInformationClient, err := quotainformation.NewQuotaInformationClientWithBaseURI(sdkApi)
+	quotaAllocationRequestStatusesClient, err := quotaallocationrequeststatuses.NewQuotaAllocationRequestStatusesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building QuotaInformation client: %+v", err)
+		return nil, fmt.Errorf("building QuotaAllocationRequestStatuses client: %+v", err)
 	}
-	configureFunc(quotaInformationClient.Client)
+	configureFunc(quotaAllocationRequestStatusesClient.Client)
 
-	quotaRequestsClient, err := quotarequests.NewQuotaRequestsClientWithBaseURI(sdkApi)
+	quotaRequestStatusClient, err := quotarequeststatus.NewQuotaRequestStatusClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building QuotaRequests client: %+v", err)
+		return nil, fmt.Errorf("building QuotaRequestStatus client: %+v", err)
 	}
-	configureFunc(quotaRequestsClient.Client)
+	configureFunc(quotaRequestStatusClient.Client)
 
-	subscriptionQuotaAllocationClient, err := subscriptionquotaallocation.NewSubscriptionQuotaAllocationClientWithBaseURI(sdkApi)
+	submittedResourceRequestStatusesClient, err := submittedresourcerequeststatuses.NewSubmittedResourceRequestStatusesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building SubscriptionQuotaAllocation client: %+v", err)
+		return nil, fmt.Errorf("building SubmittedResourceRequestStatuses client: %+v", err)
 	}
-	configureFunc(subscriptionQuotaAllocationClient.Client)
+	configureFunc(submittedResourceRequestStatusesClient.Client)
 
-	subscriptionQuotaAllocationRequestClient, err := subscriptionquotaallocationrequest.NewSubscriptionQuotaAllocationRequestClientWithBaseURI(sdkApi)
+	subscriptionQuotaAllocationsListsClient, err := subscriptionquotaallocationslists.NewSubscriptionQuotaAllocationsListsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building SubscriptionQuotaAllocationRequest client: %+v", err)
+		return nil, fmt.Errorf("building SubscriptionQuotaAllocationsLists client: %+v", err)
 	}
-	configureFunc(subscriptionQuotaAllocationRequestClient.Client)
-
-	usagesInformationClient, err := usagesinformation.NewUsagesInformationClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building UsagesInformation client: %+v", err)
-	}
-	configureFunc(usagesInformationClient.Client)
+	configureFunc(subscriptionQuotaAllocationsListsClient.Client)
 
 	return &Client{
-		GroupQuotaLimitRequest:             groupQuotaLimitRequestClient,
-		GroupQuotaLimits:                   groupQuotaLimitsClient,
-		GroupQuotaLocationSettings:         groupQuotaLocationSettingsClient,
-		GroupQuotaSubscriptionRequests:     groupQuotaSubscriptionRequestsClient,
-		GroupQuotaUsages:                   groupQuotaUsagesClient,
-		GroupQuotas:                        groupQuotasClient,
-		GroupQuotasSubscriptions:           groupQuotasSubscriptionsClient,
-		QuotaInformation:                   quotaInformationClient,
-		QuotaRequests:                      quotaRequestsClient,
-		SubscriptionQuotaAllocation:        subscriptionQuotaAllocationClient,
-		SubscriptionQuotaAllocationRequest: subscriptionQuotaAllocationRequestClient,
-		UsagesInformation:                  usagesInformationClient,
+		CurrentQuotaLimitBases:                currentQuotaLimitBasesClient,
+		CurrentUsagesBases:                    currentUsagesBasesClient,
+		GroupQuotaLimitLists:                  groupQuotaLimitListsClient,
+		GroupQuotaSubscriptionIds:             groupQuotaSubscriptionIdsClient,
+		GroupQuotaSubscriptionRequestStatuses: groupQuotaSubscriptionRequestStatusesClient,
+		GroupQuotasEnforcementStatuses:        groupQuotasEnforcementStatusesClient,
+		GroupQuotasEntities:                   groupQuotasEntitiesClient,
+		QuotaAllocationRequestStatuses:        quotaAllocationRequestStatusesClient,
+		QuotaRequestStatus:                    quotaRequestStatusClient,
+		SubmittedResourceRequestStatuses:      submittedResourceRequestStatusesClient,
+		SubscriptionQuotaAllocationsLists:     subscriptionQuotaAllocationsListsClient,
 	}, nil
 }

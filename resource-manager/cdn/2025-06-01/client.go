@@ -6,18 +6,14 @@ package v2025_06_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdcustomdomains"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afddomains"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdendpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdorigingroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdorigins"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdprofiles"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/checkendpointnameavailability"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/checknameavailability"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/checknameavailabilitywithsubscription"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/cdnwebapplicationfirewallpolicies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/customdomains"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/edgenodes"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/endpoints"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/loganalytics"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/openapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/origingroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/origins"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/profiles"
@@ -26,47 +22,35 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/rulesets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/secrets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/securitypolicies"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/validateprobe"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/wafloganalytics"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/webapplicationfirewallmanagedrulesets"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/webapplicationfirewallpolicies"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	AFDCustomDomains                      *afdcustomdomains.AFDCustomDomainsClient
-	AFDEndpoints                          *afdendpoints.AFDEndpointsClient
-	AFDOriginGroups                       *afdorigingroups.AFDOriginGroupsClient
-	AFDOrigins                            *afdorigins.AFDOriginsClient
-	AFDProfiles                           *afdprofiles.AFDProfilesClient
-	CheckEndpointNameAvailability         *checkendpointnameavailability.CheckEndpointNameAvailabilityClient
-	CheckNameAvailability                 *checknameavailability.CheckNameAvailabilityClient
-	CheckNameAvailabilityWithSubscription *checknameavailabilitywithsubscription.CheckNameAvailabilityWithSubscriptionClient
-	CustomDomains                         *customdomains.CustomDomainsClient
-	Edgenodes                             *edgenodes.EdgenodesClient
-	Endpoints                             *endpoints.EndpointsClient
-	LogAnalytics                          *loganalytics.LogAnalyticsClient
-	OriginGroups                          *origingroups.OriginGroupsClient
-	Origins                               *origins.OriginsClient
-	Profiles                              *profiles.ProfilesClient
-	Routes                                *routes.RoutesClient
-	RuleSets                              *rulesets.RuleSetsClient
-	Rules                                 *rules.RulesClient
-	Secrets                               *secrets.SecretsClient
-	SecurityPolicies                      *securitypolicies.SecurityPoliciesClient
-	ValidateProbe                         *validateprobe.ValidateProbeClient
-	WafLogAnalytics                       *wafloganalytics.WafLogAnalyticsClient
-	WebApplicationFirewallManagedRuleSets *webapplicationfirewallmanagedrulesets.WebApplicationFirewallManagedRuleSetsClient
-	WebApplicationFirewallPolicies        *webapplicationfirewallpolicies.WebApplicationFirewallPoliciesClient
+	AFDDomains                        *afddomains.AFDDomainsClient
+	AFDEndpoints                      *afdendpoints.AFDEndpointsClient
+	AFDOriginGroups                   *afdorigingroups.AFDOriginGroupsClient
+	AFDOrigins                        *afdorigins.AFDOriginsClient
+	CdnWebApplicationFirewallPolicies *cdnwebapplicationfirewallpolicies.CdnWebApplicationFirewallPoliciesClient
+	CustomDomains                     *customdomains.CustomDomainsClient
+	Endpoints                         *endpoints.EndpointsClient
+	Openapis                          *openapis.OpenapisClient
+	OriginGroups                      *origingroups.OriginGroupsClient
+	Origins                           *origins.OriginsClient
+	Profiles                          *profiles.ProfilesClient
+	Routes                            *routes.RoutesClient
+	RuleSets                          *rulesets.RuleSetsClient
+	Rules                             *rules.RulesClient
+	Secrets                           *secrets.SecretsClient
+	SecurityPolicies                  *securitypolicies.SecurityPoliciesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	aFDCustomDomainsClient, err := afdcustomdomains.NewAFDCustomDomainsClientWithBaseURI(sdkApi)
+	aFDDomainsClient, err := afddomains.NewAFDDomainsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building AFDCustomDomains client: %+v", err)
+		return nil, fmt.Errorf("building AFDDomains client: %+v", err)
 	}
-	configureFunc(aFDCustomDomainsClient.Client)
+	configureFunc(aFDDomainsClient.Client)
 
 	aFDEndpointsClient, err := afdendpoints.NewAFDEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -86,29 +70,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(aFDOriginsClient.Client)
 
-	aFDProfilesClient, err := afdprofiles.NewAFDProfilesClientWithBaseURI(sdkApi)
+	cdnWebApplicationFirewallPoliciesClient, err := cdnwebapplicationfirewallpolicies.NewCdnWebApplicationFirewallPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building AFDProfiles client: %+v", err)
+		return nil, fmt.Errorf("building CdnWebApplicationFirewallPolicies client: %+v", err)
 	}
-	configureFunc(aFDProfilesClient.Client)
-
-	checkEndpointNameAvailabilityClient, err := checkendpointnameavailability.NewCheckEndpointNameAvailabilityClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CheckEndpointNameAvailability client: %+v", err)
-	}
-	configureFunc(checkEndpointNameAvailabilityClient.Client)
-
-	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CheckNameAvailability client: %+v", err)
-	}
-	configureFunc(checkNameAvailabilityClient.Client)
-
-	checkNameAvailabilityWithSubscriptionClient, err := checknameavailabilitywithsubscription.NewCheckNameAvailabilityWithSubscriptionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CheckNameAvailabilityWithSubscription client: %+v", err)
-	}
-	configureFunc(checkNameAvailabilityWithSubscriptionClient.Client)
+	configureFunc(cdnWebApplicationFirewallPoliciesClient.Client)
 
 	customDomainsClient, err := customdomains.NewCustomDomainsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -116,23 +82,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(customDomainsClient.Client)
 
-	edgenodesClient, err := edgenodes.NewEdgenodesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Edgenodes client: %+v", err)
-	}
-	configureFunc(edgenodesClient.Client)
-
 	endpointsClient, err := endpoints.NewEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Endpoints client: %+v", err)
 	}
 	configureFunc(endpointsClient.Client)
 
-	logAnalyticsClient, err := loganalytics.NewLogAnalyticsClientWithBaseURI(sdkApi)
+	openapisClient, err := openapis.NewOpenapisClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building LogAnalytics client: %+v", err)
+		return nil, fmt.Errorf("building Openapis client: %+v", err)
 	}
-	configureFunc(logAnalyticsClient.Client)
+	configureFunc(openapisClient.Client)
 
 	originGroupsClient, err := origingroups.NewOriginGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -182,54 +142,22 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(securityPoliciesClient.Client)
 
-	validateProbeClient, err := validateprobe.NewValidateProbeClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ValidateProbe client: %+v", err)
-	}
-	configureFunc(validateProbeClient.Client)
-
-	wafLogAnalyticsClient, err := wafloganalytics.NewWafLogAnalyticsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building WafLogAnalytics client: %+v", err)
-	}
-	configureFunc(wafLogAnalyticsClient.Client)
-
-	webApplicationFirewallManagedRuleSetsClient, err := webapplicationfirewallmanagedrulesets.NewWebApplicationFirewallManagedRuleSetsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building WebApplicationFirewallManagedRuleSets client: %+v", err)
-	}
-	configureFunc(webApplicationFirewallManagedRuleSetsClient.Client)
-
-	webApplicationFirewallPoliciesClient, err := webapplicationfirewallpolicies.NewWebApplicationFirewallPoliciesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building WebApplicationFirewallPolicies client: %+v", err)
-	}
-	configureFunc(webApplicationFirewallPoliciesClient.Client)
-
 	return &Client{
-		AFDCustomDomains:                      aFDCustomDomainsClient,
-		AFDEndpoints:                          aFDEndpointsClient,
-		AFDOriginGroups:                       aFDOriginGroupsClient,
-		AFDOrigins:                            aFDOriginsClient,
-		AFDProfiles:                           aFDProfilesClient,
-		CheckEndpointNameAvailability:         checkEndpointNameAvailabilityClient,
-		CheckNameAvailability:                 checkNameAvailabilityClient,
-		CheckNameAvailabilityWithSubscription: checkNameAvailabilityWithSubscriptionClient,
-		CustomDomains:                         customDomainsClient,
-		Edgenodes:                             edgenodesClient,
-		Endpoints:                             endpointsClient,
-		LogAnalytics:                          logAnalyticsClient,
-		OriginGroups:                          originGroupsClient,
-		Origins:                               originsClient,
-		Profiles:                              profilesClient,
-		Routes:                                routesClient,
-		RuleSets:                              ruleSetsClient,
-		Rules:                                 rulesClient,
-		Secrets:                               secretsClient,
-		SecurityPolicies:                      securityPoliciesClient,
-		ValidateProbe:                         validateProbeClient,
-		WafLogAnalytics:                       wafLogAnalyticsClient,
-		WebApplicationFirewallManagedRuleSets: webApplicationFirewallManagedRuleSetsClient,
-		WebApplicationFirewallPolicies:        webApplicationFirewallPoliciesClient,
+		AFDDomains:                        aFDDomainsClient,
+		AFDEndpoints:                      aFDEndpointsClient,
+		AFDOriginGroups:                   aFDOriginGroupsClient,
+		AFDOrigins:                        aFDOriginsClient,
+		CdnWebApplicationFirewallPolicies: cdnWebApplicationFirewallPoliciesClient,
+		CustomDomains:                     customDomainsClient,
+		Endpoints:                         endpointsClient,
+		Openapis:                          openapisClient,
+		OriginGroups:                      originGroupsClient,
+		Origins:                           originsClient,
+		Profiles:                          profilesClient,
+		Routes:                            routesClient,
+		RuleSets:                          ruleSetsClient,
+		Rules:                             rulesClient,
+		Secrets:                           secretsClient,
+		SecurityPolicies:                  securityPoliciesClient,
 	}, nil
 }
