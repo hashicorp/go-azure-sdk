@@ -3,31 +3,35 @@ package backupworkloaditems
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WorkloadItemResource struct {
-	ETag       *string            `json:"eTag,omitempty"`
-	Id         *string            `json:"id,omitempty"`
-	Location   *string            `json:"location,omitempty"`
-	Name       *string            `json:"name,omitempty"`
-	Properties WorkloadItem       `json:"properties"`
-	Tags       *map[string]string `json:"tags,omitempty"`
-	Type       *string            `json:"type,omitempty"`
+	ETag       *string                `json:"eTag,omitempty"`
+	Id         *string                `json:"id,omitempty"`
+	Location   *string                `json:"location,omitempty"`
+	Name       *string                `json:"name,omitempty"`
+	Properties WorkloadItem           `json:"properties"`
+	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+	Tags       *map[string]string     `json:"tags,omitempty"`
+	Type       *string                `json:"type,omitempty"`
 }
 
 var _ json.Unmarshaler = &WorkloadItemResource{}
 
 func (s *WorkloadItemResource) UnmarshalJSON(bytes []byte) error {
 	var decoded struct {
-		ETag     *string            `json:"eTag,omitempty"`
-		Id       *string            `json:"id,omitempty"`
-		Location *string            `json:"location,omitempty"`
-		Name     *string            `json:"name,omitempty"`
-		Tags     *map[string]string `json:"tags,omitempty"`
-		Type     *string            `json:"type,omitempty"`
+		ETag       *string                `json:"eTag,omitempty"`
+		Id         *string                `json:"id,omitempty"`
+		Location   *string                `json:"location,omitempty"`
+		Name       *string                `json:"name,omitempty"`
+		SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+		Tags       *map[string]string     `json:"tags,omitempty"`
+		Type       *string                `json:"type,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
@@ -37,6 +41,7 @@ func (s *WorkloadItemResource) UnmarshalJSON(bytes []byte) error {
 	s.Id = decoded.Id
 	s.Location = decoded.Location
 	s.Name = decoded.Name
+	s.SystemData = decoded.SystemData
 	s.Tags = decoded.Tags
 	s.Type = decoded.Type
 

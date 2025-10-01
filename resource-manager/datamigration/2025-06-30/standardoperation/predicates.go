@@ -39,7 +39,7 @@ func (p DataMigrationServiceOperationPredicate) Matches(input DataMigrationServi
 		return false
 	}
 
-	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
+	if p.Location != nil && *p.Location != input.Location {
 		return false
 	}
 
@@ -72,7 +72,7 @@ func (p ProjectOperationPredicate) Matches(input Project) bool {
 		return false
 	}
 
-	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
+	if p.Location != nil && *p.Location != input.Location {
 		return false
 	}
 
