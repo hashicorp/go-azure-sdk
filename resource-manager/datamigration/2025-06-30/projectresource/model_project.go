@@ -10,7 +10,7 @@ import (
 type Project struct {
 	Etag       *string                `json:"etag,omitempty"`
 	Id         *string                `json:"id,omitempty"`
-	Location   *string                `json:"location,omitempty"`
+	Location   string                 `json:"location"`
 	Name       *string                `json:"name,omitempty"`
 	Properties *ProjectProperties     `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`

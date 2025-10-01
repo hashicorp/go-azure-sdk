@@ -20,6 +20,40 @@ client.Client.Authorizer = authorizer
 ```
 
 
+### Example Usage: `BackupResourceStorageConfigsNonCRRClient.BMSPrepareDataMove`
+
+```go
+ctx := context.TODO()
+id := backupresourcestorageconfigsnoncrr.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
+
+payload := backupresourcestorageconfigsnoncrr.PrepareDataMoveRequest{
+	// ...
+}
+
+
+if err := client.BMSPrepareDataMoveThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `BackupResourceStorageConfigsNonCRRClient.BMSTriggerDataMove`
+
+```go
+ctx := context.TODO()
+id := backupresourcestorageconfigsnoncrr.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName")
+
+payload := backupresourcestorageconfigsnoncrr.TriggerDataMoveRequest{
+	// ...
+}
+
+
+if err := client.BMSTriggerDataMoveThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
 ### Example Usage: `BackupResourceStorageConfigsNonCRRClient.Get`
 
 ```go

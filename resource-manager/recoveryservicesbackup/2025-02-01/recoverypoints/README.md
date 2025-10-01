@@ -51,3 +51,20 @@ for _, item := range items {
 	// do something
 }
 ```
+
+
+### Example Usage: `RecoveryPointsClient.MoveRecoveryPoint`
+
+```go
+ctx := context.TODO()
+id := recoverypoints.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupFabricName", "protectionContainerName", "protectedItemName", "recoveryPointId")
+
+payload := recoverypoints.MoveRPAcrossTiersRequest{
+	// ...
+}
+
+
+if err := client.MoveRecoveryPointThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
