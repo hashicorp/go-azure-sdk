@@ -6,16 +6,13 @@ package v2023_01_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/appservicecertificateorders"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/appserviceenvironments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/appserviceplans"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/certificateordersdiagnostics"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/certificates"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/containerapps"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/containerappsrevisions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/deletedwebapps"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/diagnostics"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/domains"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/global"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/kubeenvironments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/provider"
@@ -23,7 +20,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/resourcehealthmetadata"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/resourceproviders"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/staticsites"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/topleveldomains"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/webapps"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/workflowrunactions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/workflowruns"
@@ -36,40 +32,30 @@ import (
 )
 
 type Client struct {
-	AppServiceCertificateOrders  *appservicecertificateorders.AppServiceCertificateOrdersClient
-	AppServiceEnvironments       *appserviceenvironments.AppServiceEnvironmentsClient
-	AppServicePlans              *appserviceplans.AppServicePlansClient
-	CertificateOrdersDiagnostics *certificateordersdiagnostics.CertificateOrdersDiagnosticsClient
-	Certificates                 *certificates.CertificatesClient
-	ContainerApps                *containerapps.ContainerAppsClient
-	ContainerAppsRevisions       *containerappsrevisions.ContainerAppsRevisionsClient
-	DeletedWebApps               *deletedwebapps.DeletedWebAppsClient
-	Diagnostics                  *diagnostics.DiagnosticsClient
-	Domains                      *domains.DomainsClient
-	Global                       *global.GlobalClient
-	KubeEnvironments             *kubeenvironments.KubeEnvironmentsClient
-	Provider                     *provider.ProviderClient
-	Recommendations              *recommendations.RecommendationsClient
-	ResourceHealthMetadata       *resourcehealthmetadata.ResourceHealthMetadataClient
-	ResourceProviders            *resourceproviders.ResourceProvidersClient
-	StaticSites                  *staticsites.StaticSitesClient
-	TopLevelDomains              *topleveldomains.TopLevelDomainsClient
-	WebApps                      *webapps.WebAppsClient
-	WorkflowRunActions           *workflowrunactions.WorkflowRunActionsClient
-	WorkflowRuns                 *workflowruns.WorkflowRunsClient
-	WorkflowTriggerHistories     *workflowtriggerhistories.WorkflowTriggerHistoriesClient
-	WorkflowTriggers             *workflowtriggers.WorkflowTriggersClient
-	WorkflowVersions             *workflowversions.WorkflowVersionsClient
-	Workflows                    *workflows.WorkflowsClient
+	AppServiceEnvironments   *appserviceenvironments.AppServiceEnvironmentsClient
+	AppServicePlans          *appserviceplans.AppServicePlansClient
+	Certificates             *certificates.CertificatesClient
+	ContainerApps            *containerapps.ContainerAppsClient
+	ContainerAppsRevisions   *containerappsrevisions.ContainerAppsRevisionsClient
+	DeletedWebApps           *deletedwebapps.DeletedWebAppsClient
+	Diagnostics              *diagnostics.DiagnosticsClient
+	Global                   *global.GlobalClient
+	KubeEnvironments         *kubeenvironments.KubeEnvironmentsClient
+	Provider                 *provider.ProviderClient
+	Recommendations          *recommendations.RecommendationsClient
+	ResourceHealthMetadata   *resourcehealthmetadata.ResourceHealthMetadataClient
+	ResourceProviders        *resourceproviders.ResourceProvidersClient
+	StaticSites              *staticsites.StaticSitesClient
+	WebApps                  *webapps.WebAppsClient
+	WorkflowRunActions       *workflowrunactions.WorkflowRunActionsClient
+	WorkflowRuns             *workflowruns.WorkflowRunsClient
+	WorkflowTriggerHistories *workflowtriggerhistories.WorkflowTriggerHistoriesClient
+	WorkflowTriggers         *workflowtriggers.WorkflowTriggersClient
+	WorkflowVersions         *workflowversions.WorkflowVersionsClient
+	Workflows                *workflows.WorkflowsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	appServiceCertificateOrdersClient, err := appservicecertificateorders.NewAppServiceCertificateOrdersClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building AppServiceCertificateOrders client: %+v", err)
-	}
-	configureFunc(appServiceCertificateOrdersClient.Client)
-
 	appServiceEnvironmentsClient, err := appserviceenvironments.NewAppServiceEnvironmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AppServiceEnvironments client: %+v", err)
@@ -81,12 +67,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building AppServicePlans client: %+v", err)
 	}
 	configureFunc(appServicePlansClient.Client)
-
-	certificateOrdersDiagnosticsClient, err := certificateordersdiagnostics.NewCertificateOrdersDiagnosticsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CertificateOrdersDiagnostics client: %+v", err)
-	}
-	configureFunc(certificateOrdersDiagnosticsClient.Client)
 
 	certificatesClient, err := certificates.NewCertificatesClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -117,12 +97,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building Diagnostics client: %+v", err)
 	}
 	configureFunc(diagnosticsClient.Client)
-
-	domainsClient, err := domains.NewDomainsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Domains client: %+v", err)
-	}
-	configureFunc(domainsClient.Client)
 
 	globalClient, err := global.NewGlobalClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -165,12 +139,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building StaticSites client: %+v", err)
 	}
 	configureFunc(staticSitesClient.Client)
-
-	topLevelDomainsClient, err := topleveldomains.NewTopLevelDomainsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building TopLevelDomains client: %+v", err)
-	}
-	configureFunc(topLevelDomainsClient.Client)
 
 	webAppsClient, err := webapps.NewWebAppsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -215,30 +183,26 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(workflowsClient.Client)
 
 	return &Client{
-		AppServiceCertificateOrders:  appServiceCertificateOrdersClient,
-		AppServiceEnvironments:       appServiceEnvironmentsClient,
-		AppServicePlans:              appServicePlansClient,
-		CertificateOrdersDiagnostics: certificateOrdersDiagnosticsClient,
-		Certificates:                 certificatesClient,
-		ContainerApps:                containerAppsClient,
-		ContainerAppsRevisions:       containerAppsRevisionsClient,
-		DeletedWebApps:               deletedWebAppsClient,
-		Diagnostics:                  diagnosticsClient,
-		Domains:                      domainsClient,
-		Global:                       globalClient,
-		KubeEnvironments:             kubeEnvironmentsClient,
-		Provider:                     providerClient,
-		Recommendations:              recommendationsClient,
-		ResourceHealthMetadata:       resourceHealthMetadataClient,
-		ResourceProviders:            resourceProvidersClient,
-		StaticSites:                  staticSitesClient,
-		TopLevelDomains:              topLevelDomainsClient,
-		WebApps:                      webAppsClient,
-		WorkflowRunActions:           workflowRunActionsClient,
-		WorkflowRuns:                 workflowRunsClient,
-		WorkflowTriggerHistories:     workflowTriggerHistoriesClient,
-		WorkflowTriggers:             workflowTriggersClient,
-		WorkflowVersions:             workflowVersionsClient,
-		Workflows:                    workflowsClient,
+		AppServiceEnvironments:   appServiceEnvironmentsClient,
+		AppServicePlans:          appServicePlansClient,
+		Certificates:             certificatesClient,
+		ContainerApps:            containerAppsClient,
+		ContainerAppsRevisions:   containerAppsRevisionsClient,
+		DeletedWebApps:           deletedWebAppsClient,
+		Diagnostics:              diagnosticsClient,
+		Global:                   globalClient,
+		KubeEnvironments:         kubeEnvironmentsClient,
+		Provider:                 providerClient,
+		Recommendations:          recommendationsClient,
+		ResourceHealthMetadata:   resourceHealthMetadataClient,
+		ResourceProviders:        resourceProvidersClient,
+		StaticSites:              staticSitesClient,
+		WebApps:                  webAppsClient,
+		WorkflowRunActions:       workflowRunActionsClient,
+		WorkflowRuns:             workflowRunsClient,
+		WorkflowTriggerHistories: workflowTriggerHistoriesClient,
+		WorkflowTriggers:         workflowTriggersClient,
+		WorkflowVersions:         workflowVersionsClient,
+		Workflows:                workflowsClient,
 	}, nil
 }

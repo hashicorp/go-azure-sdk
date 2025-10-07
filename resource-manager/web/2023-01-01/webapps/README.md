@@ -436,7 +436,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webapps.NewSiteDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "domainOwnershipIdentifierName")
+id := webapps.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "domainOwnershipIdentifierName")
 
 payload := webapps.Identifier{
 	// ...
@@ -1051,7 +1051,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webapps.NewSiteDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "domainOwnershipIdentifierName")
+id := webapps.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "domainOwnershipIdentifierName")
 
 read, err := client.DeleteDomainOwnershipIdentifier(ctx, id)
 if err != nil {
@@ -2153,7 +2153,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webapps.NewSiteDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "domainOwnershipIdentifierName")
+id := webapps.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "domainOwnershipIdentifierName")
 
 read, err := client.GetDomainOwnershipIdentifier(ctx, id)
 if err != nil {
@@ -6371,7 +6371,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := webapps.NewSiteDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "domainOwnershipIdentifierName")
+id := webapps.NewDomainOwnershipIdentifierID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "domainOwnershipIdentifierName")
 
 payload := webapps.Identifier{
 	// ...
