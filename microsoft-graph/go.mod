@@ -2,7 +2,7 @@ module github.com/hashicorp/go-azure-sdk/microsoft-graph
 
 go 1.24.1
 
-require github.com/hashicorp/go-azure-sdk/sdk v0.20251001.1163600
+require github.com/hashicorp/go-azure-sdk/sdk v0.20251007.1174458
 
 require (
 	github.com/hashicorp/go-azure-helpers v0.73.0
