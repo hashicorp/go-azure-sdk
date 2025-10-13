@@ -5,6 +5,7 @@ package accept
 
 import (
 	"fmt"
+	"math"
 	"sort"
 	"strconv"
 	"strings"
@@ -131,9 +132,13 @@ func FromString(in string) (Header, error) {
 					}
 
 					// convert the thousandths value to an int
-					weight, err := strconv.Atoi(q)
+					weight, err := strconv.ParseInt(q, 10, 16)
 					if err != nil {
 						return Header{}, fmt.Errorf("invalid weight for %q: %q", typ.ContentType, q)
+					}
+
+					if weight < 0 || weight > math.MaxUint16 {
+						return Header{}, fmt.Errorf("weight out of bounds for %q: %q", typ.ContentType, q)
 					}
 
 					// if an integer was supplied, just multiply it for normalized value
