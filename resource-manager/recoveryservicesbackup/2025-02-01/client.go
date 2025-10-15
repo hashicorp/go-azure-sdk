@@ -8,18 +8,29 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupengines"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupjobs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backuppolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupprotectableitems"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupprotecteditems"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupprotectioncontainers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupprotectionintent"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupresourceencryptionconfigs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupresourcestorageconfigsnoncrr"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupresourcevaultconfigs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupstatus"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupusagesummaries"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupworkloaditems"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/bms"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/featuresupport"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/fetchtieringcost"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/itemlevelrecoveryconnections"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/jobcancellations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/jobdetails"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/jobs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/operation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/privateendpointconnectionresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectablecontainers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protecteditems"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectioncontainers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectionintent"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectionintentresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectionpolicies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/recoverypoints"
@@ -27,24 +38,38 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/resourceguardproxies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/resourceguardproxy"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/restores"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/securitypins"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/softdeletedcontainers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/validateoperation"
 )
 
 type Client struct {
 	BackupEngines                      *backupengines.BackupEnginesClient
 	BackupJobs                         *backupjobs.BackupJobsClient
 	BackupPolicies                     *backuppolicies.BackupPoliciesClient
+	BackupProtectableItems             *backupprotectableitems.BackupProtectableItemsClient
+	BackupProtectedItems               *backupprotecteditems.BackupProtectedItemsClient
+	BackupProtectionContainers         *backupprotectioncontainers.BackupProtectionContainersClient
+	BackupProtectionIntent             *backupprotectionintent.BackupProtectionIntentClient
 	BackupResourceEncryptionConfigs    *backupresourceencryptionconfigs.BackupResourceEncryptionConfigsClient
 	BackupResourceStorageConfigsNonCRR *backupresourcestorageconfigsnoncrr.BackupResourceStorageConfigsNonCRRClient
 	BackupResourceVaultConfigs         *backupresourcevaultconfigs.BackupResourceVaultConfigsClient
+	BackupStatus                       *backupstatus.BackupStatusClient
+	BackupUsageSummaries               *backupusagesummaries.BackupUsageSummariesClient
 	BackupWorkloadItems                *backupworkloaditems.BackupWorkloadItemsClient
 	Backups                            *backups.BackupsClient
-	Bms                                *bms.BmsClient
+	FeatureSupport                     *featuresupport.FeatureSupportClient
+	FetchTieringCost                   *fetchtieringcost.FetchTieringCostClient
 	ItemLevelRecoveryConnections       *itemlevelrecoveryconnections.ItemLevelRecoveryConnectionsClient
 	JobCancellations                   *jobcancellations.JobCancellationsClient
 	JobDetails                         *jobdetails.JobDetailsClient
+	Jobs                               *jobs.JobsClient
+	Operation                          *operation.OperationClient
 	PrivateEndpointConnectionResources *privateendpointconnectionresources.PrivateEndpointConnectionResourcesClient
+	ProtectableContainers              *protectablecontainers.ProtectableContainersClient
 	ProtectedItems                     *protecteditems.ProtectedItemsClient
 	ProtectionContainers               *protectioncontainers.ProtectionContainersClient
+	ProtectionIntent                   *protectionintent.ProtectionIntentClient
 	ProtectionIntentResources          *protectionintentresources.ProtectionIntentResourcesClient
 	ProtectionPolicies                 *protectionpolicies.ProtectionPoliciesClient
 	RecoveryPoints                     *recoverypoints.RecoveryPointsClient
@@ -52,6 +77,9 @@ type Client struct {
 	ResourceGuardProxies               *resourceguardproxies.ResourceGuardProxiesClient
 	ResourceGuardProxy                 *resourceguardproxy.ResourceGuardProxyClient
 	Restores                           *restores.RestoresClient
+	SecurityPINs                       *securitypins.SecurityPINsClient
+	SoftDeletedContainers              *softdeletedcontainers.SoftDeletedContainersClient
+	ValidateOperation                  *validateoperation.ValidateOperationClient
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
@@ -65,6 +93,18 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	backupPoliciesClient := backuppolicies.NewBackupPoliciesClientWithBaseURI(endpoint)
 	configureAuthFunc(&backupPoliciesClient.Client)
 
+	backupProtectableItemsClient := backupprotectableitems.NewBackupProtectableItemsClientWithBaseURI(endpoint)
+	configureAuthFunc(&backupProtectableItemsClient.Client)
+
+	backupProtectedItemsClient := backupprotecteditems.NewBackupProtectedItemsClientWithBaseURI(endpoint)
+	configureAuthFunc(&backupProtectedItemsClient.Client)
+
+	backupProtectionContainersClient := backupprotectioncontainers.NewBackupProtectionContainersClientWithBaseURI(endpoint)
+	configureAuthFunc(&backupProtectionContainersClient.Client)
+
+	backupProtectionIntentClient := backupprotectionintent.NewBackupProtectionIntentClientWithBaseURI(endpoint)
+	configureAuthFunc(&backupProtectionIntentClient.Client)
+
 	backupResourceEncryptionConfigsClient := backupresourceencryptionconfigs.NewBackupResourceEncryptionConfigsClientWithBaseURI(endpoint)
 	configureAuthFunc(&backupResourceEncryptionConfigsClient.Client)
 
@@ -74,14 +114,23 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	backupResourceVaultConfigsClient := backupresourcevaultconfigs.NewBackupResourceVaultConfigsClientWithBaseURI(endpoint)
 	configureAuthFunc(&backupResourceVaultConfigsClient.Client)
 
+	backupStatusClient := backupstatus.NewBackupStatusClientWithBaseURI(endpoint)
+	configureAuthFunc(&backupStatusClient.Client)
+
+	backupUsageSummariesClient := backupusagesummaries.NewBackupUsageSummariesClientWithBaseURI(endpoint)
+	configureAuthFunc(&backupUsageSummariesClient.Client)
+
 	backupWorkloadItemsClient := backupworkloaditems.NewBackupWorkloadItemsClientWithBaseURI(endpoint)
 	configureAuthFunc(&backupWorkloadItemsClient.Client)
 
 	backupsClient := backups.NewBackupsClientWithBaseURI(endpoint)
 	configureAuthFunc(&backupsClient.Client)
 
-	bmsClient := bms.NewBmsClientWithBaseURI(endpoint)
-	configureAuthFunc(&bmsClient.Client)
+	featureSupportClient := featuresupport.NewFeatureSupportClientWithBaseURI(endpoint)
+	configureAuthFunc(&featureSupportClient.Client)
+
+	fetchTieringCostClient := fetchtieringcost.NewFetchTieringCostClientWithBaseURI(endpoint)
+	configureAuthFunc(&fetchTieringCostClient.Client)
 
 	itemLevelRecoveryConnectionsClient := itemlevelrecoveryconnections.NewItemLevelRecoveryConnectionsClientWithBaseURI(endpoint)
 	configureAuthFunc(&itemLevelRecoveryConnectionsClient.Client)
@@ -92,14 +141,26 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	jobDetailsClient := jobdetails.NewJobDetailsClientWithBaseURI(endpoint)
 	configureAuthFunc(&jobDetailsClient.Client)
 
+	jobsClient := jobs.NewJobsClientWithBaseURI(endpoint)
+	configureAuthFunc(&jobsClient.Client)
+
+	operationClient := operation.NewOperationClientWithBaseURI(endpoint)
+	configureAuthFunc(&operationClient.Client)
+
 	privateEndpointConnectionResourcesClient := privateendpointconnectionresources.NewPrivateEndpointConnectionResourcesClientWithBaseURI(endpoint)
 	configureAuthFunc(&privateEndpointConnectionResourcesClient.Client)
+
+	protectableContainersClient := protectablecontainers.NewProtectableContainersClientWithBaseURI(endpoint)
+	configureAuthFunc(&protectableContainersClient.Client)
 
 	protectedItemsClient := protecteditems.NewProtectedItemsClientWithBaseURI(endpoint)
 	configureAuthFunc(&protectedItemsClient.Client)
 
 	protectionContainersClient := protectioncontainers.NewProtectionContainersClientWithBaseURI(endpoint)
 	configureAuthFunc(&protectionContainersClient.Client)
+
+	protectionIntentClient := protectionintent.NewProtectionIntentClientWithBaseURI(endpoint)
+	configureAuthFunc(&protectionIntentClient.Client)
 
 	protectionIntentResourcesClient := protectionintentresources.NewProtectionIntentResourcesClientWithBaseURI(endpoint)
 	configureAuthFunc(&protectionIntentResourcesClient.Client)
@@ -122,22 +183,42 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	restoresClient := restores.NewRestoresClientWithBaseURI(endpoint)
 	configureAuthFunc(&restoresClient.Client)
 
+	securityPINsClient := securitypins.NewSecurityPINsClientWithBaseURI(endpoint)
+	configureAuthFunc(&securityPINsClient.Client)
+
+	softDeletedContainersClient := softdeletedcontainers.NewSoftDeletedContainersClientWithBaseURI(endpoint)
+	configureAuthFunc(&softDeletedContainersClient.Client)
+
+	validateOperationClient := validateoperation.NewValidateOperationClientWithBaseURI(endpoint)
+	configureAuthFunc(&validateOperationClient.Client)
+
 	return Client{
 		BackupEngines:                      &backupEnginesClient,
 		BackupJobs:                         &backupJobsClient,
 		BackupPolicies:                     &backupPoliciesClient,
+		BackupProtectableItems:             &backupProtectableItemsClient,
+		BackupProtectedItems:               &backupProtectedItemsClient,
+		BackupProtectionContainers:         &backupProtectionContainersClient,
+		BackupProtectionIntent:             &backupProtectionIntentClient,
 		BackupResourceEncryptionConfigs:    &backupResourceEncryptionConfigsClient,
 		BackupResourceStorageConfigsNonCRR: &backupResourceStorageConfigsNonCRRClient,
 		BackupResourceVaultConfigs:         &backupResourceVaultConfigsClient,
+		BackupStatus:                       &backupStatusClient,
+		BackupUsageSummaries:               &backupUsageSummariesClient,
 		BackupWorkloadItems:                &backupWorkloadItemsClient,
 		Backups:                            &backupsClient,
-		Bms:                                &bmsClient,
+		FeatureSupport:                     &featureSupportClient,
+		FetchTieringCost:                   &fetchTieringCostClient,
 		ItemLevelRecoveryConnections:       &itemLevelRecoveryConnectionsClient,
 		JobCancellations:                   &jobCancellationsClient,
 		JobDetails:                         &jobDetailsClient,
+		Jobs:                               &jobsClient,
+		Operation:                          &operationClient,
 		PrivateEndpointConnectionResources: &privateEndpointConnectionResourcesClient,
+		ProtectableContainers:              &protectableContainersClient,
 		ProtectedItems:                     &protectedItemsClient,
 		ProtectionContainers:               &protectionContainersClient,
+		ProtectionIntent:                   &protectionIntentClient,
 		ProtectionIntentResources:          &protectionIntentResourcesClient,
 		ProtectionPolicies:                 &protectionPoliciesClient,
 		RecoveryPoints:                     &recoveryPointsClient,
@@ -145,5 +226,8 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		ResourceGuardProxies:               &resourceGuardProxiesClient,
 		ResourceGuardProxy:                 &resourceGuardProxyClient,
 		Restores:                           &restoresClient,
+		SecurityPINs:                       &securityPINsClient,
+		SoftDeletedContainers:              &softDeletedContainersClient,
+		ValidateOperation:                  &validateOperationClient,
 	}
 }
