@@ -2,16 +2,19 @@ package protectioncontainers
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UnregisterOperationResponse struct {
+	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
 }
 
@@ -23,19 +26,27 @@ func (c ProtectionContainersClient) Unregister(ctx context.Context, id Protectio
 		return
 	}
 
-	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	result, err = c.senderForUnregister(ctx, req)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "protectioncontainers.ProtectionContainersClient", "Unregister", result.HttpResponse, "Failure sending request")
 		return
 	}
 
-	result, err = c.responderForUnregister(result.HttpResponse)
+	return
+}
+
+// UnregisterThenPoll performs Unregister then polls until it's completed
+func (c ProtectionContainersClient) UnregisterThenPoll(ctx context.Context, id ProtectionContainerId) error {
+	result, err := c.Unregister(ctx, id)
 	if err != nil {
-		err = autorest.NewErrorWithError(err, "protectioncontainers.ProtectionContainersClient", "Unregister", result.HttpResponse, "Failure responding to request")
-		return
+		return fmt.Errorf("performing Unregister: %+v", err)
 	}
 
-	return
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after Unregister: %+v", err)
+	}
+
+	return nil
 }
 
 // preparerForUnregister prepares the Unregister request.
@@ -53,14 +64,15 @@ func (c ProtectionContainersClient) preparerForUnregister(ctx context.Context, i
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }
 
-// responderForUnregister handles the response to the Unregister request. The method always
-// closes the http.Response Body.
-func (c ProtectionContainersClient) responderForUnregister(resp *http.Response) (result UnregisterOperationResponse, err error) {
-	err = autorest.Respond(
-		resp,
-		azure.WithErrorUnlessStatusCode(http.StatusAccepted, http.StatusNoContent, http.StatusOK),
-		autorest.ByClosing())
-	result.HttpResponse = resp
+// senderForUnregister sends the Unregister request. The method will close the
+// http.Response Body if it receives an error.
+func (c ProtectionContainersClient) senderForUnregister(ctx context.Context, req *http.Request) (future UnregisterOperationResponse, err error) {
+	var resp *http.Response
+	resp, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		return
+	}
 
+	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
 	return
 }

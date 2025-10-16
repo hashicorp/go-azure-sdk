@@ -1,0 +1,10 @@
+package brokerauthentication
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type BrokerAuthenticatorMethodX509 struct {
+	AdditionalValidation    *BrokerAuthenticatorValidationMethods               `json:"additionalValidation,omitempty"`
+	AuthorizationAttributes *map[string]BrokerAuthenticatorMethodX509Attributes `json:"authorizationAttributes,omitempty"`
+	TrustedClientCaCert     *string                                             `json:"trustedClientCaCert,omitempty"`
+}
