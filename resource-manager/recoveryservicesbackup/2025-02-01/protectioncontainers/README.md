@@ -52,6 +52,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `ProtectionContainersClient.Refresh`
+
+```go
+ctx := context.TODO()
+id := protectioncontainers.NewBackupFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupFabricName")
+
+read, err := client.Refresh(ctx, id, protectioncontainers.DefaultRefreshOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `ProtectionContainersClient.Register`
 
 ```go
@@ -75,11 +91,7 @@ if err := client.RegisterThenPoll(ctx, id, payload); err != nil {
 ctx := context.TODO()
 id := protectioncontainers.NewProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultName", "backupFabricName", "protectionContainerName")
 
-read, err := client.Unregister(ctx, id)
-if err != nil {
+if err := client.UnregisterThenPoll(ctx, id); err != nil {
 	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
 }
 ```
