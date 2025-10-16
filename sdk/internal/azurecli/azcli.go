@@ -9,9 +9,9 @@ import (
 	"fmt"
 	"log"
 	"os/exec"
-	"regexp"
 	"strings"
 
+	"github.com/hashicorp/go-uuid"
 	"github.com/hashicorp/go-version"
 )
 
@@ -77,12 +77,12 @@ func CheckAzVersion() error {
 
 // ValidateTenantID validates the supplied tenant ID, and tries to determine the default tenant if a valid one is not supplied.
 func ValidateTenantID(tenantId string) (bool, error) {
-	validTenantId, err := regexp.MatchString("^[a-zA-Z0-9._-]+$", tenantId)
+	validTenantId, err := uuid.ParseUUID(tenantId)
 	if err != nil {
 		return false, fmt.Errorf("could not parse tenant ID %q: %s", tenantId, err)
 	}
 
-	return validTenantId, nil
+	return len(validTenantId) > 0, nil
 }
 
 // GetDefaultTenantID tries to determine the default tenant

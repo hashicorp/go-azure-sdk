@@ -114,6 +114,42 @@ func TestAccAzureCliAuthorizerWithTenant(t *testing.T) {
 	}
 }
 
+func TestAccAzureCliAuthorizerForceTenant(t *testing.T) {
+	test.AccTest(t)
+
+	ctx := context.Background()
+
+	env, err := environments.FromName(test.Environment)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	opts := auth.AzureCliAuthorizerOptions{
+		Api:                env.MicrosoftGraph,
+		TenantId:           test.TenantId,
+		SubscriptionIdHint: test.SubscriptionId,
+		ForceAuthAtTenant:  true,
+	}
+
+	authorizer, err := auth.NewAzureCliAuthorizer(ctx, opts)
+	if err != nil {
+		t.Fatalf("NewAzureCliAuthorizer(): %v", err)
+	}
+
+	cliAuth, err := testCheckAzureCliAuthorizer(authorizer)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if cliAuth.TenantID != test.TenantId {
+		t.Fatalf("cliAuth.TenantID has unexpected value %q", cliAuth.TenantID)
+	}
+
+	if _, err = testObtainAccessToken(ctx, authorizer); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func testCheckAzureCliAuthorizer(authorizer auth.Authorizer) (*auth.AzureCliAuthorizer, error) {
 	if authorizer == nil {
 		return nil, fmt.Errorf("authorizer is nil, expected Authorizer")
