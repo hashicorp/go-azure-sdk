@@ -5,7 +5,7 @@ go 1.24.1
 require (
 	github.com/Azure/go-autorest/autorest v0.11.30
 	github.com/hashicorp/go-azure-helpers v0.73.0
-	github.com/hashicorp/go-azure-sdk/sdk v0.20251106.1221812
+	github.com/hashicorp/go-azure-sdk/sdk v0.20251107.1191907
 )
 
 require (
