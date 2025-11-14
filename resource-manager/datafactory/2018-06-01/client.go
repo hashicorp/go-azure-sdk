@@ -15,6 +15,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/exposurecontrol"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/factories"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/globalparameters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimedisableinteractivequery"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimeenableinteractivequery"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimenodes"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimeobjectmetadata"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimes"
@@ -33,28 +35,30 @@ import (
 )
 
 type Client struct {
-	Activityruns                     *activityruns.ActivityrunsClient
-	ChangeDataCapture                *changedatacapture.ChangeDataCaptureClient
-	Credentials                      *credentials.CredentialsClient
-	DataFlowDebugSession             *dataflowdebugsession.DataFlowDebugSessionClient
-	DataFlows                        *dataflows.DataFlowsClient
-	Datasets                         *datasets.DatasetsClient
-	ExposureControl                  *exposurecontrol.ExposureControlClient
-	Factories                        *factories.FactoriesClient
-	GlobalParameters                 *globalparameters.GlobalParametersClient
-	IntegrationRuntimeNodes          *integrationruntimenodes.IntegrationRuntimeNodesClient
-	IntegrationRuntimeObjectMetadata *integrationruntimeobjectmetadata.IntegrationRuntimeObjectMetadataClient
-	IntegrationRuntimes              *integrationruntimes.IntegrationRuntimesClient
-	LinkedServices                   *linkedservices.LinkedServicesClient
-	ManagedPrivateEndpoints          *managedprivateendpoints.ManagedPrivateEndpointsClient
-	ManagedVirtualNetworks           *managedvirtualnetworks.ManagedVirtualNetworksClient
-	PipelineRuns                     *pipelineruns.PipelineRunsClient
-	Pipelines                        *pipelines.PipelinesClient
-	PrivateEndpointConnections       *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources             *privatelinkresources.PrivateLinkResourcesClient
-	Trigger                          *trigger.TriggerClient
-	Triggerruns                      *triggerruns.TriggerrunsClient
-	Triggers                         *triggers.TriggersClient
+	Activityruns                              *activityruns.ActivityrunsClient
+	ChangeDataCapture                         *changedatacapture.ChangeDataCaptureClient
+	Credentials                               *credentials.CredentialsClient
+	DataFlowDebugSession                      *dataflowdebugsession.DataFlowDebugSessionClient
+	DataFlows                                 *dataflows.DataFlowsClient
+	Datasets                                  *datasets.DatasetsClient
+	ExposureControl                           *exposurecontrol.ExposureControlClient
+	Factories                                 *factories.FactoriesClient
+	GlobalParameters                          *globalparameters.GlobalParametersClient
+	IntegrationRuntimeDisableInteractiveQuery *integrationruntimedisableinteractivequery.IntegrationRuntimeDisableInteractiveQueryClient
+	IntegrationRuntimeEnableInteractiveQuery  *integrationruntimeenableinteractivequery.IntegrationRuntimeEnableInteractiveQueryClient
+	IntegrationRuntimeNodes                   *integrationruntimenodes.IntegrationRuntimeNodesClient
+	IntegrationRuntimeObjectMetadata          *integrationruntimeobjectmetadata.IntegrationRuntimeObjectMetadataClient
+	IntegrationRuntimes                       *integrationruntimes.IntegrationRuntimesClient
+	LinkedServices                            *linkedservices.LinkedServicesClient
+	ManagedPrivateEndpoints                   *managedprivateendpoints.ManagedPrivateEndpointsClient
+	ManagedVirtualNetworks                    *managedvirtualnetworks.ManagedVirtualNetworksClient
+	PipelineRuns                              *pipelineruns.PipelineRunsClient
+	Pipelines                                 *pipelines.PipelinesClient
+	PrivateEndpointConnections                *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources                      *privatelinkresources.PrivateLinkResourcesClient
+	Trigger                                   *trigger.TriggerClient
+	Triggerruns                               *triggerruns.TriggerrunsClient
+	Triggers                                  *triggers.TriggersClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -111,6 +115,18 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building GlobalParameters client: %+v", err)
 	}
 	configureFunc(globalParametersClient.Client)
+
+	integrationRuntimeDisableInteractiveQueryClient, err := integrationruntimedisableinteractivequery.NewIntegrationRuntimeDisableInteractiveQueryClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationRuntimeDisableInteractiveQuery client: %+v", err)
+	}
+	configureFunc(integrationRuntimeDisableInteractiveQueryClient.Client)
+
+	integrationRuntimeEnableInteractiveQueryClient, err := integrationruntimeenableinteractivequery.NewIntegrationRuntimeEnableInteractiveQueryClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationRuntimeEnableInteractiveQuery client: %+v", err)
+	}
+	configureFunc(integrationRuntimeEnableInteractiveQueryClient.Client)
 
 	integrationRuntimeNodesClient, err := integrationruntimenodes.NewIntegrationRuntimeNodesClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -191,27 +207,29 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(triggersClient.Client)
 
 	return &Client{
-		Activityruns:                     activityrunsClient,
-		ChangeDataCapture:                changeDataCaptureClient,
-		Credentials:                      credentialsClient,
-		DataFlowDebugSession:             dataFlowDebugSessionClient,
-		DataFlows:                        dataFlowsClient,
-		Datasets:                         datasetsClient,
-		ExposureControl:                  exposureControlClient,
-		Factories:                        factoriesClient,
-		GlobalParameters:                 globalParametersClient,
-		IntegrationRuntimeNodes:          integrationRuntimeNodesClient,
-		IntegrationRuntimeObjectMetadata: integrationRuntimeObjectMetadataClient,
-		IntegrationRuntimes:              integrationRuntimesClient,
-		LinkedServices:                   linkedServicesClient,
-		ManagedPrivateEndpoints:          managedPrivateEndpointsClient,
-		ManagedVirtualNetworks:           managedVirtualNetworksClient,
-		PipelineRuns:                     pipelineRunsClient,
-		Pipelines:                        pipelinesClient,
-		PrivateEndpointConnections:       privateEndpointConnectionsClient,
-		PrivateLinkResources:             privateLinkResourcesClient,
-		Trigger:                          triggerClient,
-		Triggerruns:                      triggerrunsClient,
-		Triggers:                         triggersClient,
+		Activityruns:         activityrunsClient,
+		ChangeDataCapture:    changeDataCaptureClient,
+		Credentials:          credentialsClient,
+		DataFlowDebugSession: dataFlowDebugSessionClient,
+		DataFlows:            dataFlowsClient,
+		Datasets:             datasetsClient,
+		ExposureControl:      exposureControlClient,
+		Factories:            factoriesClient,
+		GlobalParameters:     globalParametersClient,
+		IntegrationRuntimeDisableInteractiveQuery: integrationRuntimeDisableInteractiveQueryClient,
+		IntegrationRuntimeEnableInteractiveQuery:  integrationRuntimeEnableInteractiveQueryClient,
+		IntegrationRuntimeNodes:                   integrationRuntimeNodesClient,
+		IntegrationRuntimeObjectMetadata:          integrationRuntimeObjectMetadataClient,
+		IntegrationRuntimes:                       integrationRuntimesClient,
+		LinkedServices:                            linkedServicesClient,
+		ManagedPrivateEndpoints:                   managedPrivateEndpointsClient,
+		ManagedVirtualNetworks:                    managedVirtualNetworksClient,
+		PipelineRuns:                              pipelineRunsClient,
+		Pipelines:                                 pipelinesClient,
+		PrivateEndpointConnections:                privateEndpointConnectionsClient,
+		PrivateLinkResources:                      privateLinkResourcesClient,
+		Trigger:                                   triggerClient,
+		Triggerruns:                               triggerrunsClient,
+		Triggers:                                  triggersClient,
 	}, nil
 }
