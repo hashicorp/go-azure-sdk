@@ -6,103 +6,103 @@ package v2025_10_08
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/certificateobjectglobalrulestack"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/certificateobjectlocalrulestack"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/firewalls"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/firewallstatus"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/fqdnlistglobalrulestack"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/fqdnlistlocalrulestack"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/globalrulestack"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/localrules"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/localrulestacks"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/metricsobjectfirewall"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/certificateobjectglobalrulestackresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/certificateobjectlocalrulestackresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/firewallresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/firewallstatusresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/fqdnlistglobalrulestackresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/fqdnlistlocalrulestackresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/globalrulestackresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/localrulesresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/localrulestackresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/metricsobjectfirewallresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/paloaltonetworkscloudngfws"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/postrules"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/prefixlistglobalrulestack"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/prefixlistlocalrulestack"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/prerules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/postrulesresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/prefixlistglobalrulestackresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/prefixlistresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-10-08/prerulesresources"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	CertificateObjectGlobalRulestack *certificateobjectglobalrulestack.CertificateObjectGlobalRulestackClient
-	CertificateObjectLocalRulestack  *certificateobjectlocalrulestack.CertificateObjectLocalRulestackClient
-	FirewallStatus                   *firewallstatus.FirewallStatusClient
-	Firewalls                        *firewalls.FirewallsClient
-	FqdnListGlobalRulestack          *fqdnlistglobalrulestack.FqdnListGlobalRulestackClient
-	FqdnListLocalRulestack           *fqdnlistlocalrulestack.FqdnListLocalRulestackClient
-	GlobalRulestack                  *globalrulestack.GlobalRulestackClient
-	LocalRules                       *localrules.LocalRulesClient
-	LocalRulestacks                  *localrulestacks.LocalRulestacksClient
-	MetricsObjectFirewall            *metricsobjectfirewall.MetricsObjectFirewallClient
-	PaloAltoNetworksCloudngfws       *paloaltonetworkscloudngfws.PaloAltoNetworksCloudngfwsClient
-	PostRules                        *postrules.PostRulesClient
-	PreRules                         *prerules.PreRulesClient
-	PrefixListGlobalRulestack        *prefixlistglobalrulestack.PrefixListGlobalRulestackClient
-	PrefixListLocalRulestack         *prefixlistlocalrulestack.PrefixListLocalRulestackClient
+	CertificateObjectGlobalRulestackResources *certificateobjectglobalrulestackresources.CertificateObjectGlobalRulestackResourcesClient
+	CertificateObjectLocalRulestackResources  *certificateobjectlocalrulestackresources.CertificateObjectLocalRulestackResourcesClient
+	FirewallResources                         *firewallresources.FirewallResourcesClient
+	FirewallStatusResources                   *firewallstatusresources.FirewallStatusResourcesClient
+	FqdnListGlobalRulestackResources          *fqdnlistglobalrulestackresources.FqdnListGlobalRulestackResourcesClient
+	FqdnListLocalRulestackResources           *fqdnlistlocalrulestackresources.FqdnListLocalRulestackResourcesClient
+	GlobalRulestackResources                  *globalrulestackresources.GlobalRulestackResourcesClient
+	LocalRulesResources                       *localrulesresources.LocalRulesResourcesClient
+	LocalRulestackResources                   *localrulestackresources.LocalRulestackResourcesClient
+	MetricsObjectFirewallResources            *metricsobjectfirewallresources.MetricsObjectFirewallResourcesClient
+	PaloAltoNetworksCloudngfws                *paloaltonetworkscloudngfws.PaloAltoNetworksCloudngfwsClient
+	PostRulesResources                        *postrulesresources.PostRulesResourcesClient
+	PreRulesResources                         *prerulesresources.PreRulesResourcesClient
+	PrefixListGlobalRulestackResources        *prefixlistglobalrulestackresources.PrefixListGlobalRulestackResourcesClient
+	PrefixListResources                       *prefixlistresources.PrefixListResourcesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	certificateObjectGlobalRulestackClient, err := certificateobjectglobalrulestack.NewCertificateObjectGlobalRulestackClientWithBaseURI(sdkApi)
+	certificateObjectGlobalRulestackResourcesClient, err := certificateobjectglobalrulestackresources.NewCertificateObjectGlobalRulestackResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building CertificateObjectGlobalRulestack client: %+v", err)
+		return nil, fmt.Errorf("building CertificateObjectGlobalRulestackResources client: %+v", err)
 	}
-	configureFunc(certificateObjectGlobalRulestackClient.Client)
+	configureFunc(certificateObjectGlobalRulestackResourcesClient.Client)
 
-	certificateObjectLocalRulestackClient, err := certificateobjectlocalrulestack.NewCertificateObjectLocalRulestackClientWithBaseURI(sdkApi)
+	certificateObjectLocalRulestackResourcesClient, err := certificateobjectlocalrulestackresources.NewCertificateObjectLocalRulestackResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building CertificateObjectLocalRulestack client: %+v", err)
+		return nil, fmt.Errorf("building CertificateObjectLocalRulestackResources client: %+v", err)
 	}
-	configureFunc(certificateObjectLocalRulestackClient.Client)
+	configureFunc(certificateObjectLocalRulestackResourcesClient.Client)
 
-	firewallStatusClient, err := firewallstatus.NewFirewallStatusClientWithBaseURI(sdkApi)
+	firewallResourcesClient, err := firewallresources.NewFirewallResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building FirewallStatus client: %+v", err)
+		return nil, fmt.Errorf("building FirewallResources client: %+v", err)
 	}
-	configureFunc(firewallStatusClient.Client)
+	configureFunc(firewallResourcesClient.Client)
 
-	firewallsClient, err := firewalls.NewFirewallsClientWithBaseURI(sdkApi)
+	firewallStatusResourcesClient, err := firewallstatusresources.NewFirewallStatusResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Firewalls client: %+v", err)
+		return nil, fmt.Errorf("building FirewallStatusResources client: %+v", err)
 	}
-	configureFunc(firewallsClient.Client)
+	configureFunc(firewallStatusResourcesClient.Client)
 
-	fqdnListGlobalRulestackClient, err := fqdnlistglobalrulestack.NewFqdnListGlobalRulestackClientWithBaseURI(sdkApi)
+	fqdnListGlobalRulestackResourcesClient, err := fqdnlistglobalrulestackresources.NewFqdnListGlobalRulestackResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building FqdnListGlobalRulestack client: %+v", err)
+		return nil, fmt.Errorf("building FqdnListGlobalRulestackResources client: %+v", err)
 	}
-	configureFunc(fqdnListGlobalRulestackClient.Client)
+	configureFunc(fqdnListGlobalRulestackResourcesClient.Client)
 
-	fqdnListLocalRulestackClient, err := fqdnlistlocalrulestack.NewFqdnListLocalRulestackClientWithBaseURI(sdkApi)
+	fqdnListLocalRulestackResourcesClient, err := fqdnlistlocalrulestackresources.NewFqdnListLocalRulestackResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building FqdnListLocalRulestack client: %+v", err)
+		return nil, fmt.Errorf("building FqdnListLocalRulestackResources client: %+v", err)
 	}
-	configureFunc(fqdnListLocalRulestackClient.Client)
+	configureFunc(fqdnListLocalRulestackResourcesClient.Client)
 
-	globalRulestackClient, err := globalrulestack.NewGlobalRulestackClientWithBaseURI(sdkApi)
+	globalRulestackResourcesClient, err := globalrulestackresources.NewGlobalRulestackResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building GlobalRulestack client: %+v", err)
+		return nil, fmt.Errorf("building GlobalRulestackResources client: %+v", err)
 	}
-	configureFunc(globalRulestackClient.Client)
+	configureFunc(globalRulestackResourcesClient.Client)
 
-	localRulesClient, err := localrules.NewLocalRulesClientWithBaseURI(sdkApi)
+	localRulesResourcesClient, err := localrulesresources.NewLocalRulesResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building LocalRules client: %+v", err)
+		return nil, fmt.Errorf("building LocalRulesResources client: %+v", err)
 	}
-	configureFunc(localRulesClient.Client)
+	configureFunc(localRulesResourcesClient.Client)
 
-	localRulestacksClient, err := localrulestacks.NewLocalRulestacksClientWithBaseURI(sdkApi)
+	localRulestackResourcesClient, err := localrulestackresources.NewLocalRulestackResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building LocalRulestacks client: %+v", err)
+		return nil, fmt.Errorf("building LocalRulestackResources client: %+v", err)
 	}
-	configureFunc(localRulestacksClient.Client)
+	configureFunc(localRulestackResourcesClient.Client)
 
-	metricsObjectFirewallClient, err := metricsobjectfirewall.NewMetricsObjectFirewallClientWithBaseURI(sdkApi)
+	metricsObjectFirewallResourcesClient, err := metricsobjectfirewallresources.NewMetricsObjectFirewallResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building MetricsObjectFirewall client: %+v", err)
+		return nil, fmt.Errorf("building MetricsObjectFirewallResources client: %+v", err)
 	}
-	configureFunc(metricsObjectFirewallClient.Client)
+	configureFunc(metricsObjectFirewallResourcesClient.Client)
 
 	paloAltoNetworksCloudngfwsClient, err := paloaltonetworkscloudngfws.NewPaloAltoNetworksCloudngfwsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -110,45 +110,45 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(paloAltoNetworksCloudngfwsClient.Client)
 
-	postRulesClient, err := postrules.NewPostRulesClientWithBaseURI(sdkApi)
+	postRulesResourcesClient, err := postrulesresources.NewPostRulesResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PostRules client: %+v", err)
+		return nil, fmt.Errorf("building PostRulesResources client: %+v", err)
 	}
-	configureFunc(postRulesClient.Client)
+	configureFunc(postRulesResourcesClient.Client)
 
-	preRulesClient, err := prerules.NewPreRulesClientWithBaseURI(sdkApi)
+	preRulesResourcesClient, err := prerulesresources.NewPreRulesResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PreRules client: %+v", err)
+		return nil, fmt.Errorf("building PreRulesResources client: %+v", err)
 	}
-	configureFunc(preRulesClient.Client)
+	configureFunc(preRulesResourcesClient.Client)
 
-	prefixListGlobalRulestackClient, err := prefixlistglobalrulestack.NewPrefixListGlobalRulestackClientWithBaseURI(sdkApi)
+	prefixListGlobalRulestackResourcesClient, err := prefixlistglobalrulestackresources.NewPrefixListGlobalRulestackResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PrefixListGlobalRulestack client: %+v", err)
+		return nil, fmt.Errorf("building PrefixListGlobalRulestackResources client: %+v", err)
 	}
-	configureFunc(prefixListGlobalRulestackClient.Client)
+	configureFunc(prefixListGlobalRulestackResourcesClient.Client)
 
-	prefixListLocalRulestackClient, err := prefixlistlocalrulestack.NewPrefixListLocalRulestackClientWithBaseURI(sdkApi)
+	prefixListResourcesClient, err := prefixlistresources.NewPrefixListResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PrefixListLocalRulestack client: %+v", err)
+		return nil, fmt.Errorf("building PrefixListResources client: %+v", err)
 	}
-	configureFunc(prefixListLocalRulestackClient.Client)
+	configureFunc(prefixListResourcesClient.Client)
 
 	return &Client{
-		CertificateObjectGlobalRulestack: certificateObjectGlobalRulestackClient,
-		CertificateObjectLocalRulestack:  certificateObjectLocalRulestackClient,
-		FirewallStatus:                   firewallStatusClient,
-		Firewalls:                        firewallsClient,
-		FqdnListGlobalRulestack:          fqdnListGlobalRulestackClient,
-		FqdnListLocalRulestack:           fqdnListLocalRulestackClient,
-		GlobalRulestack:                  globalRulestackClient,
-		LocalRules:                       localRulesClient,
-		LocalRulestacks:                  localRulestacksClient,
-		MetricsObjectFirewall:            metricsObjectFirewallClient,
-		PaloAltoNetworksCloudngfws:       paloAltoNetworksCloudngfwsClient,
-		PostRules:                        postRulesClient,
-		PreRules:                         preRulesClient,
-		PrefixListGlobalRulestack:        prefixListGlobalRulestackClient,
-		PrefixListLocalRulestack:         prefixListLocalRulestackClient,
+		CertificateObjectGlobalRulestackResources: certificateObjectGlobalRulestackResourcesClient,
+		CertificateObjectLocalRulestackResources:  certificateObjectLocalRulestackResourcesClient,
+		FirewallResources:                         firewallResourcesClient,
+		FirewallStatusResources:                   firewallStatusResourcesClient,
+		FqdnListGlobalRulestackResources:          fqdnListGlobalRulestackResourcesClient,
+		FqdnListLocalRulestackResources:           fqdnListLocalRulestackResourcesClient,
+		GlobalRulestackResources:                  globalRulestackResourcesClient,
+		LocalRulesResources:                       localRulesResourcesClient,
+		LocalRulestackResources:                   localRulestackResourcesClient,
+		MetricsObjectFirewallResources:            metricsObjectFirewallResourcesClient,
+		PaloAltoNetworksCloudngfws:                paloAltoNetworksCloudngfwsClient,
+		PostRulesResources:                        postRulesResourcesClient,
+		PreRulesResources:                         preRulesResourcesClient,
+		PrefixListGlobalRulestackResources:        prefixListGlobalRulestackResourcesClient,
+		PrefixListResources:                       prefixListResourcesClient,
 	}, nil
 }

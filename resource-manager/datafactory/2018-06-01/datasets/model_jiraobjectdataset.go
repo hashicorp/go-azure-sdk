@@ -11,7 +11,7 @@ import (
 var _ Dataset = JiraObjectDataset{}
 
 type JiraObjectDataset struct {
-	TypeProperties *GenericDatasetTypeProperties `json:"typeProperties,omitempty"`
+	TypeProperties *JiraTableDatasetTypeProperties `json:"typeProperties,omitempty"`
 
 	// Fields inherited from Dataset
 

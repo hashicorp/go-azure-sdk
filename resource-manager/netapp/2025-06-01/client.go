@@ -6,67 +6,47 @@ package v2025_06_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/backuppolicy"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/backuppolicies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/backups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/backupvaults"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/capacitypools"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/filelocks"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/groupidlistforldapuser"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/netappaccounts"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/netappresource"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/poolchange"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/resetcifspassword"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/restore"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/snapshotpolicy"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/snapshotpolicylistvolumes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/netapps"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/regioninforesources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/snapshotpolicies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/snapshots"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/splitclonevolume"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/subvolumes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/subscriptionquotaitems"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/subvolumeinfos"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/volumegroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/volumequotarules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/volumes"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/volumesonpremmigration"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/volumesonpremmigrationfinalize"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/volumesrelocation"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/volumesreplication"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-06-01/volumesrevert"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	BackupPolicy                   *backuppolicy.BackupPolicyClient
-	BackupVaults                   *backupvaults.BackupVaultsClient
-	Backups                        *backups.BackupsClient
-	CapacityPools                  *capacitypools.CapacityPoolsClient
-	FileLocks                      *filelocks.FileLocksClient
-	GroupIdListForLDAPUser         *groupidlistforldapuser.GroupIdListForLDAPUserClient
-	NetAppAccounts                 *netappaccounts.NetAppAccountsClient
-	NetAppResource                 *netappresource.NetAppResourceClient
-	PoolChange                     *poolchange.PoolChangeClient
-	ResetCifsPassword              *resetcifspassword.ResetCifsPasswordClient
-	Restore                        *restore.RestoreClient
-	SnapshotPolicy                 *snapshotpolicy.SnapshotPolicyClient
-	SnapshotPolicyListVolumes      *snapshotpolicylistvolumes.SnapshotPolicyListVolumesClient
-	Snapshots                      *snapshots.SnapshotsClient
-	SplitCloneVolume               *splitclonevolume.SplitCloneVolumeClient
-	SubVolumes                     *subvolumes.SubVolumesClient
-	VolumeGroups                   *volumegroups.VolumeGroupsClient
-	VolumeQuotaRules               *volumequotarules.VolumeQuotaRulesClient
-	Volumes                        *volumes.VolumesClient
-	VolumesOnPremMigration         *volumesonpremmigration.VolumesOnPremMigrationClient
-	VolumesOnPremMigrationFinalize *volumesonpremmigrationfinalize.VolumesOnPremMigrationFinalizeClient
-	VolumesRelocation              *volumesrelocation.VolumesRelocationClient
-	VolumesReplication             *volumesreplication.VolumesReplicationClient
-	VolumesRevert                  *volumesrevert.VolumesRevertClient
+	BackupPolicies         *backuppolicies.BackupPoliciesClient
+	BackupVaults           *backupvaults.BackupVaultsClient
+	Backups                *backups.BackupsClient
+	CapacityPools          *capacitypools.CapacityPoolsClient
+	NetAppAccounts         *netappaccounts.NetAppAccountsClient
+	Netapps                *netapps.NetappsClient
+	RegionInfoResources    *regioninforesources.RegionInfoResourcesClient
+	SnapshotPolicies       *snapshotpolicies.SnapshotPoliciesClient
+	Snapshots              *snapshots.SnapshotsClient
+	SubscriptionQuotaItems *subscriptionquotaitems.SubscriptionQuotaItemsClient
+	SubvolumeInfos         *subvolumeinfos.SubvolumeInfosClient
+	VolumeGroups           *volumegroups.VolumeGroupsClient
+	VolumeQuotaRules       *volumequotarules.VolumeQuotaRulesClient
+	Volumes                *volumes.VolumesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	backupPolicyClient, err := backuppolicy.NewBackupPolicyClientWithBaseURI(sdkApi)
+	backupPoliciesClient, err := backuppolicies.NewBackupPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building BackupPolicy client: %+v", err)
+		return nil, fmt.Errorf("building BackupPolicies client: %+v", err)
 	}
-	configureFunc(backupPolicyClient.Client)
+	configureFunc(backupPoliciesClient.Client)
 
 	backupVaultsClient, err := backupvaults.NewBackupVaultsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -86,59 +66,29 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(capacityPoolsClient.Client)
 
-	fileLocksClient, err := filelocks.NewFileLocksClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building FileLocks client: %+v", err)
-	}
-	configureFunc(fileLocksClient.Client)
-
-	groupIdListForLDAPUserClient, err := groupidlistforldapuser.NewGroupIdListForLDAPUserClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building GroupIdListForLDAPUser client: %+v", err)
-	}
-	configureFunc(groupIdListForLDAPUserClient.Client)
-
 	netAppAccountsClient, err := netappaccounts.NewNetAppAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building NetAppAccounts client: %+v", err)
 	}
 	configureFunc(netAppAccountsClient.Client)
 
-	netAppResourceClient, err := netappresource.NewNetAppResourceClientWithBaseURI(sdkApi)
+	netappsClient, err := netapps.NewNetappsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building NetAppResource client: %+v", err)
+		return nil, fmt.Errorf("building Netapps client: %+v", err)
 	}
-	configureFunc(netAppResourceClient.Client)
+	configureFunc(netappsClient.Client)
 
-	poolChangeClient, err := poolchange.NewPoolChangeClientWithBaseURI(sdkApi)
+	regionInfoResourcesClient, err := regioninforesources.NewRegionInfoResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PoolChange client: %+v", err)
+		return nil, fmt.Errorf("building RegionInfoResources client: %+v", err)
 	}
-	configureFunc(poolChangeClient.Client)
+	configureFunc(regionInfoResourcesClient.Client)
 
-	resetCifsPasswordClient, err := resetcifspassword.NewResetCifsPasswordClientWithBaseURI(sdkApi)
+	snapshotPoliciesClient, err := snapshotpolicies.NewSnapshotPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building ResetCifsPassword client: %+v", err)
+		return nil, fmt.Errorf("building SnapshotPolicies client: %+v", err)
 	}
-	configureFunc(resetCifsPasswordClient.Client)
-
-	restoreClient, err := restore.NewRestoreClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Restore client: %+v", err)
-	}
-	configureFunc(restoreClient.Client)
-
-	snapshotPolicyClient, err := snapshotpolicy.NewSnapshotPolicyClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building SnapshotPolicy client: %+v", err)
-	}
-	configureFunc(snapshotPolicyClient.Client)
-
-	snapshotPolicyListVolumesClient, err := snapshotpolicylistvolumes.NewSnapshotPolicyListVolumesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building SnapshotPolicyListVolumes client: %+v", err)
-	}
-	configureFunc(snapshotPolicyListVolumesClient.Client)
+	configureFunc(snapshotPoliciesClient.Client)
 
 	snapshotsClient, err := snapshots.NewSnapshotsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -146,17 +96,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(snapshotsClient.Client)
 
-	splitCloneVolumeClient, err := splitclonevolume.NewSplitCloneVolumeClientWithBaseURI(sdkApi)
+	subscriptionQuotaItemsClient, err := subscriptionquotaitems.NewSubscriptionQuotaItemsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building SplitCloneVolume client: %+v", err)
+		return nil, fmt.Errorf("building SubscriptionQuotaItems client: %+v", err)
 	}
-	configureFunc(splitCloneVolumeClient.Client)
+	configureFunc(subscriptionQuotaItemsClient.Client)
 
-	subVolumesClient, err := subvolumes.NewSubVolumesClientWithBaseURI(sdkApi)
+	subvolumeInfosClient, err := subvolumeinfos.NewSubvolumeInfosClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building SubVolumes client: %+v", err)
+		return nil, fmt.Errorf("building SubvolumeInfos client: %+v", err)
 	}
-	configureFunc(subVolumesClient.Client)
+	configureFunc(subvolumeInfosClient.Client)
 
 	volumeGroupsClient, err := volumegroups.NewVolumeGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -176,60 +126,20 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(volumesClient.Client)
 
-	volumesOnPremMigrationClient, err := volumesonpremmigration.NewVolumesOnPremMigrationClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building VolumesOnPremMigration client: %+v", err)
-	}
-	configureFunc(volumesOnPremMigrationClient.Client)
-
-	volumesOnPremMigrationFinalizeClient, err := volumesonpremmigrationfinalize.NewVolumesOnPremMigrationFinalizeClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building VolumesOnPremMigrationFinalize client: %+v", err)
-	}
-	configureFunc(volumesOnPremMigrationFinalizeClient.Client)
-
-	volumesRelocationClient, err := volumesrelocation.NewVolumesRelocationClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building VolumesRelocation client: %+v", err)
-	}
-	configureFunc(volumesRelocationClient.Client)
-
-	volumesReplicationClient, err := volumesreplication.NewVolumesReplicationClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building VolumesReplication client: %+v", err)
-	}
-	configureFunc(volumesReplicationClient.Client)
-
-	volumesRevertClient, err := volumesrevert.NewVolumesRevertClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building VolumesRevert client: %+v", err)
-	}
-	configureFunc(volumesRevertClient.Client)
-
 	return &Client{
-		BackupPolicy:                   backupPolicyClient,
-		BackupVaults:                   backupVaultsClient,
-		Backups:                        backupsClient,
-		CapacityPools:                  capacityPoolsClient,
-		FileLocks:                      fileLocksClient,
-		GroupIdListForLDAPUser:         groupIdListForLDAPUserClient,
-		NetAppAccounts:                 netAppAccountsClient,
-		NetAppResource:                 netAppResourceClient,
-		PoolChange:                     poolChangeClient,
-		ResetCifsPassword:              resetCifsPasswordClient,
-		Restore:                        restoreClient,
-		SnapshotPolicy:                 snapshotPolicyClient,
-		SnapshotPolicyListVolumes:      snapshotPolicyListVolumesClient,
-		Snapshots:                      snapshotsClient,
-		SplitCloneVolume:               splitCloneVolumeClient,
-		SubVolumes:                     subVolumesClient,
-		VolumeGroups:                   volumeGroupsClient,
-		VolumeQuotaRules:               volumeQuotaRulesClient,
-		Volumes:                        volumesClient,
-		VolumesOnPremMigration:         volumesOnPremMigrationClient,
-		VolumesOnPremMigrationFinalize: volumesOnPremMigrationFinalizeClient,
-		VolumesRelocation:              volumesRelocationClient,
-		VolumesReplication:             volumesReplicationClient,
-		VolumesRevert:                  volumesRevertClient,
+		BackupPolicies:         backupPoliciesClient,
+		BackupVaults:           backupVaultsClient,
+		Backups:                backupsClient,
+		CapacityPools:          capacityPoolsClient,
+		NetAppAccounts:         netAppAccountsClient,
+		Netapps:                netappsClient,
+		RegionInfoResources:    regionInfoResourcesClient,
+		SnapshotPolicies:       snapshotPoliciesClient,
+		Snapshots:              snapshotsClient,
+		SubscriptionQuotaItems: subscriptionQuotaItemsClient,
+		SubvolumeInfos:         subvolumeInfosClient,
+		VolumeGroups:           volumeGroupsClient,
+		VolumeQuotaRules:       volumeQuotaRulesClient,
+		Volumes:                volumesClient,
 	}, nil
 }

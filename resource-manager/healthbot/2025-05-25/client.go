@@ -12,17 +12,17 @@ import (
 )
 
 type Client struct {
-	Healthbots *healthbots.HealthbotsClient
+	HealthBots *healthbots.HealthBotsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	healthbotsClient, err := healthbots.NewHealthbotsClientWithBaseURI(sdkApi)
+	healthBotsClient, err := healthbots.NewHealthBotsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Healthbots client: %+v", err)
+		return nil, fmt.Errorf("building HealthBots client: %+v", err)
 	}
-	configureFunc(healthbotsClient.Client)
+	configureFunc(healthBotsClient.Client)
 
 	return &Client{
-		Healthbots: healthbotsClient,
+		HealthBots: healthBotsClient,
 	}, nil
 }

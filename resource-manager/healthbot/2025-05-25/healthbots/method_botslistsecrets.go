@@ -19,7 +19,7 @@ type BotsListSecretsOperationResponse struct {
 }
 
 // BotsListSecrets ...
-func (c HealthbotsClient) BotsListSecrets(ctx context.Context, id HealthBotId) (result BotsListSecretsOperationResponse, err error) {
+func (c HealthBotsClient) BotsListSecrets(ctx context.Context, id HealthBotId) (result BotsListSecretsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

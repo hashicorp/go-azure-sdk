@@ -6,5 +6,5 @@ package pools
 type NetworkProfile struct {
 	IPAddresses          *[]string `json:"ipAddresses,omitempty"`
 	StaticIPAddressCount *int64    `json:"staticIpAddressCount,omitempty"`
-	SubnetId             string    `json:"subnetId"`
+	SubnetId             *string   `json:"subnetId,omitempty"`
 }

@@ -847,6 +847,50 @@ func parseHDInsightClusterAuthenticationType(input string) (*HDInsightClusterAut
 	return &out, nil
 }
 
+type HDInsightOndemandClusterResourceGroupAuthenticationType string
+
+const (
+	HDInsightOndemandClusterResourceGroupAuthenticationTypeServicePrincipalKey           HDInsightOndemandClusterResourceGroupAuthenticationType = "ServicePrincipalKey"
+	HDInsightOndemandClusterResourceGroupAuthenticationTypeSystemAssignedManagedIdentity HDInsightOndemandClusterResourceGroupAuthenticationType = "SystemAssignedManagedIdentity"
+	HDInsightOndemandClusterResourceGroupAuthenticationTypeUserAssignedManagedIdentity   HDInsightOndemandClusterResourceGroupAuthenticationType = "UserAssignedManagedIdentity"
+)
+
+func PossibleValuesForHDInsightOndemandClusterResourceGroupAuthenticationType() []string {
+	return []string{
+		string(HDInsightOndemandClusterResourceGroupAuthenticationTypeServicePrincipalKey),
+		string(HDInsightOndemandClusterResourceGroupAuthenticationTypeSystemAssignedManagedIdentity),
+		string(HDInsightOndemandClusterResourceGroupAuthenticationTypeUserAssignedManagedIdentity),
+	}
+}
+
+func (s *HDInsightOndemandClusterResourceGroupAuthenticationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHDInsightOndemandClusterResourceGroupAuthenticationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseHDInsightOndemandClusterResourceGroupAuthenticationType(input string) (*HDInsightOndemandClusterResourceGroupAuthenticationType, error) {
+	vals := map[string]HDInsightOndemandClusterResourceGroupAuthenticationType{
+		"serviceprincipalkey":           HDInsightOndemandClusterResourceGroupAuthenticationTypeServicePrincipalKey,
+		"systemassignedmanagedidentity": HDInsightOndemandClusterResourceGroupAuthenticationTypeSystemAssignedManagedIdentity,
+		"userassignedmanagedidentity":   HDInsightOndemandClusterResourceGroupAuthenticationTypeUserAssignedManagedIdentity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HDInsightOndemandClusterResourceGroupAuthenticationType(input)
+	return &out, nil
+}
+
 type HTTPAuthenticationType string
 
 const (
@@ -1393,6 +1437,53 @@ func parseIntegrationRuntimeType(input string) (*IntegrationRuntimeType, error) 
 	return &out, nil
 }
 
+type InteractiveCapabilityStatus string
+
+const (
+	InteractiveCapabilityStatusDisabled  InteractiveCapabilityStatus = "Disabled"
+	InteractiveCapabilityStatusDisabling InteractiveCapabilityStatus = "Disabling"
+	InteractiveCapabilityStatusEnabled   InteractiveCapabilityStatus = "Enabled"
+	InteractiveCapabilityStatusEnabling  InteractiveCapabilityStatus = "Enabling"
+)
+
+func PossibleValuesForInteractiveCapabilityStatus() []string {
+	return []string{
+		string(InteractiveCapabilityStatusDisabled),
+		string(InteractiveCapabilityStatusDisabling),
+		string(InteractiveCapabilityStatusEnabled),
+		string(InteractiveCapabilityStatusEnabling),
+	}
+}
+
+func (s *InteractiveCapabilityStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInteractiveCapabilityStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseInteractiveCapabilityStatus(input string) (*InteractiveCapabilityStatus, error) {
+	vals := map[string]InteractiveCapabilityStatus{
+		"disabled":  InteractiveCapabilityStatusDisabled,
+		"disabling": InteractiveCapabilityStatusDisabling,
+		"enabled":   InteractiveCapabilityStatusEnabled,
+		"enabling":  InteractiveCapabilityStatusEnabling,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := InteractiveCapabilityStatus(input)
+	return &out, nil
+}
+
 type LakehouseAuthenticationType string
 
 const (
@@ -1513,6 +1604,47 @@ func parseMongoDbAuthenticationType(input string) (*MongoDbAuthenticationType, e
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := MongoDbAuthenticationType(input)
+	return &out, nil
+}
+
+type NetezzaSecurityLevelType string
+
+const (
+	NetezzaSecurityLevelTypeOnlyUnSecured      NetezzaSecurityLevelType = "OnlyUnSecured"
+	NetezzaSecurityLevelTypePreferredUnSecured NetezzaSecurityLevelType = "PreferredUnSecured"
+)
+
+func PossibleValuesForNetezzaSecurityLevelType() []string {
+	return []string{
+		string(NetezzaSecurityLevelTypeOnlyUnSecured),
+		string(NetezzaSecurityLevelTypePreferredUnSecured),
+	}
+}
+
+func (s *NetezzaSecurityLevelType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNetezzaSecurityLevelType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseNetezzaSecurityLevelType(input string) (*NetezzaSecurityLevelType, error) {
+	vals := map[string]NetezzaSecurityLevelType{
+		"onlyunsecured":      NetezzaSecurityLevelTypeOnlyUnSecured,
+		"preferredunsecured": NetezzaSecurityLevelTypePreferredUnSecured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetezzaSecurityLevelType(input)
 	return &out, nil
 }
 

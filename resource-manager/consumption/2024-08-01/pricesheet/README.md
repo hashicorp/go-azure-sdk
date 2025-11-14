@@ -8,7 +8,6 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
-import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/pricesheet"
 ```
 
@@ -18,34 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-0
 ```go
 client := pricesheet.NewPriceSheetClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-```
-
-
-### Example Usage: `PriceSheetClient.DownloadByBillingAccountPeriod`
-
-```go
-ctx := context.TODO()
-id := pricesheet.NewBillingAccountBillingPeriodID("billingAccountId", "billingPeriodName")
-
-if err := client.DownloadByBillingAccountPeriodThenPoll(ctx, id); err != nil {
-	// handle the error
-}
-```
-
-
-### Example Usage: `PriceSheetClient.Get`
-
-```go
-ctx := context.TODO()
-id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
-
-read, err := client.Get(ctx, id, pricesheet.DefaultGetOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
 ```
 
 

@@ -6,89 +6,41 @@ package v2024_08_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/aggregatedcost"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/balances"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/budgets"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/charges"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/credits"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/events"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/lots"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/marketplaces"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/creditsummaries"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/openapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/pricesheet"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationdetails"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationrecommendationdetails"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationrecommendations"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationsummaries"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationtransactions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/pricesheetresults"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	AggregatedCost                   *aggregatedcost.AggregatedCostClient
-	Balances                         *balances.BalancesClient
-	Budgets                          *budgets.BudgetsClient
-	Charges                          *charges.ChargesClient
-	Credits                          *credits.CreditsClient
-	Events                           *events.EventsClient
-	Lots                             *lots.LotsClient
-	Marketplaces                     *marketplaces.MarketplacesClient
-	PriceSheet                       *pricesheet.PriceSheetClient
-	ReservationDetails               *reservationdetails.ReservationDetailsClient
-	ReservationRecommendationDetails *reservationrecommendationdetails.ReservationRecommendationDetailsClient
-	ReservationRecommendations       *reservationrecommendations.ReservationRecommendationsClient
-	ReservationSummaries             *reservationsummaries.ReservationSummariesClient
-	ReservationTransactions          *reservationtransactions.ReservationTransactionsClient
+	Budgets           *budgets.BudgetsClient
+	CreditSummaries   *creditsummaries.CreditSummariesClient
+	Openapis          *openapis.OpenapisClient
+	PriceSheet        *pricesheet.PriceSheetClient
+	PriceSheetResults *pricesheetresults.PriceSheetResultsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	aggregatedCostClient, err := aggregatedcost.NewAggregatedCostClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building AggregatedCost client: %+v", err)
-	}
-	configureFunc(aggregatedCostClient.Client)
-
-	balancesClient, err := balances.NewBalancesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Balances client: %+v", err)
-	}
-	configureFunc(balancesClient.Client)
-
 	budgetsClient, err := budgets.NewBudgetsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Budgets client: %+v", err)
 	}
 	configureFunc(budgetsClient.Client)
 
-	chargesClient, err := charges.NewChargesClientWithBaseURI(sdkApi)
+	creditSummariesClient, err := creditsummaries.NewCreditSummariesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Charges client: %+v", err)
+		return nil, fmt.Errorf("building CreditSummaries client: %+v", err)
 	}
-	configureFunc(chargesClient.Client)
+	configureFunc(creditSummariesClient.Client)
 
-	creditsClient, err := credits.NewCreditsClientWithBaseURI(sdkApi)
+	openapisClient, err := openapis.NewOpenapisClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Credits client: %+v", err)
+		return nil, fmt.Errorf("building Openapis client: %+v", err)
 	}
-	configureFunc(creditsClient.Client)
-
-	eventsClient, err := events.NewEventsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Events client: %+v", err)
-	}
-	configureFunc(eventsClient.Client)
-
-	lotsClient, err := lots.NewLotsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Lots client: %+v", err)
-	}
-	configureFunc(lotsClient.Client)
-
-	marketplacesClient, err := marketplaces.NewMarketplacesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Marketplaces client: %+v", err)
-	}
-	configureFunc(marketplacesClient.Client)
+	configureFunc(openapisClient.Client)
 
 	priceSheetClient, err := pricesheet.NewPriceSheetClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -96,50 +48,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(priceSheetClient.Client)
 
-	reservationDetailsClient, err := reservationdetails.NewReservationDetailsClientWithBaseURI(sdkApi)
+	priceSheetResultsClient, err := pricesheetresults.NewPriceSheetResultsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building ReservationDetails client: %+v", err)
+		return nil, fmt.Errorf("building PriceSheetResults client: %+v", err)
 	}
-	configureFunc(reservationDetailsClient.Client)
-
-	reservationRecommendationDetailsClient, err := reservationrecommendationdetails.NewReservationRecommendationDetailsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ReservationRecommendationDetails client: %+v", err)
-	}
-	configureFunc(reservationRecommendationDetailsClient.Client)
-
-	reservationRecommendationsClient, err := reservationrecommendations.NewReservationRecommendationsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ReservationRecommendations client: %+v", err)
-	}
-	configureFunc(reservationRecommendationsClient.Client)
-
-	reservationSummariesClient, err := reservationsummaries.NewReservationSummariesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ReservationSummaries client: %+v", err)
-	}
-	configureFunc(reservationSummariesClient.Client)
-
-	reservationTransactionsClient, err := reservationtransactions.NewReservationTransactionsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ReservationTransactions client: %+v", err)
-	}
-	configureFunc(reservationTransactionsClient.Client)
+	configureFunc(priceSheetResultsClient.Client)
 
 	return &Client{
-		AggregatedCost:                   aggregatedCostClient,
-		Balances:                         balancesClient,
-		Budgets:                          budgetsClient,
-		Charges:                          chargesClient,
-		Credits:                          creditsClient,
-		Events:                           eventsClient,
-		Lots:                             lotsClient,
-		Marketplaces:                     marketplacesClient,
-		PriceSheet:                       priceSheetClient,
-		ReservationDetails:               reservationDetailsClient,
-		ReservationRecommendationDetails: reservationRecommendationDetailsClient,
-		ReservationRecommendations:       reservationRecommendationsClient,
-		ReservationSummaries:             reservationSummariesClient,
-		ReservationTransactions:          reservationTransactionsClient,
+		Budgets:           budgetsClient,
+		CreditSummaries:   creditSummariesClient,
+		Openapis:          openapisClient,
+		PriceSheet:        priceSheetClient,
+		PriceSheetResults: priceSheetResultsClient,
 	}, nil
 }

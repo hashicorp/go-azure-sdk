@@ -11,7 +11,7 @@ import (
 var _ Dataset = JiraObjectDataset{}
 
 type JiraObjectDataset struct {
-	TypeProperties *GenericDatasetTypeProperties `json:"typeProperties,omitempty"`
+	TypeProperties *JiraTableDatasetTypeProperties `json:"typeProperties,omitempty"`
 
 	// Fields inherited from Dataset
 
@@ -67,7 +67,7 @@ var _ json.Unmarshaler = &JiraObjectDataset{}
 
 func (s *JiraObjectDataset) UnmarshalJSON(bytes []byte) error {
 	var decoded struct {
-		TypeProperties *GenericDatasetTypeProperties      `json:"typeProperties,omitempty"`
+		TypeProperties *JiraTableDatasetTypeProperties    `json:"typeProperties,omitempty"`
 		Annotations    *[]interface{}                     `json:"annotations,omitempty"`
 		Description    *string                            `json:"description,omitempty"`
 		Folder         *DatasetFolder                     `json:"folder,omitempty"`
