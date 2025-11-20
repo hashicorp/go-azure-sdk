@@ -21,5 +21,5 @@ require (
 	github.com/Azure/go-autorest/logger v0.2.2 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.1 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
-	golang.org/x/crypto v0.39.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
 )
