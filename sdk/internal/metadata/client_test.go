@@ -74,7 +74,7 @@ func TestGetMetaData(t *testing.T) {
 			OSSRDBMS:       "https://ossrdbms-aad.database.windows.net",
 			Synapse:        "https://dev.azuresynapse.net",
 		},
-		ResourceManagerEndpoint: "https://management.azure.com/",
+		ResourceManagerEndpoint: "https://management.azure.com",
 	}
 
 	m, err := client.GetMetaData(ctx)
