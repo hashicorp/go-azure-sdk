@@ -20,4 +20,5 @@ type WorkspaceCustomParameters struct {
 	StorageAccountName              *WorkspaceCustomStringParameter      `json:"storageAccountName,omitempty"`
 	StorageAccountSkuName           *WorkspaceCustomStringParameter      `json:"storageAccountSkuName,omitempty"`
 	VnetAddressPrefix               *WorkspaceCustomStringParameter      `json:"vnetAddressPrefix,omitempty"`
+	ComputeMode                     *WorkspaceCustomStringParameter      `json:"computeMode,omitempty"`
 }
