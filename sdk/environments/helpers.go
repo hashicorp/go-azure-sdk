@@ -158,6 +158,26 @@ func MySqlAPI(domainSuffix string) *ApiEndpoint {
 	}
 }
 
+func Office365ComplianceAPI(resourceId string) *ApiEndpoint {
+	// endpoint and resource ID are the same, only the resource ID is returned in metadata
+	return &ApiEndpoint{
+		endpoint:           pointer.To(resourceId),
+		appId:              pointer.To(office365ComplianceAppId),
+		name:               "Office365Compliance",
+		resourceIdentifier: pointer.To(resourceId),
+	}
+}
+
+func Office365ExchangeOnlineAPI(resourceId string) *ApiEndpoint {
+	// endpoint and resource ID are the same, only the resource ID is returned in metadata
+	return &ApiEndpoint{
+		endpoint:           pointer.To(resourceId),
+		appId:              pointer.To(office365ExchangeOnlineAppId),
+		name:               "Office365ExchangeOnline",
+		resourceIdentifier: pointer.To(resourceId),
+	}
+}
+
 func OperationalInsightsAPI() *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:       nil,
