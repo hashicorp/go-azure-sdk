@@ -153,8 +153,7 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 			if p.latestResponse == nil && p.latestError == nil {
 				// connection drops can either have no response/error (where we have no context)
 				connectionHasBeenDropped = true
-			} else
-			if errors.As(p.latestError, &pollingDroppedConnectionError) {
+			} else if errors.As(p.latestError, &pollingDroppedConnectionError) {
 				// or have an error with more details (e.g. server not found, connection reset etc.)
 				connectionHasBeenDropped = true
 			}
