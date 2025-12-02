@@ -16,12 +16,6 @@ import (
 
 const DefaultNumberOfDroppedConnectionsToAllow = 3
 
-var (
-	pollingCancelledError         = PollingCancelledError{}
-	pollingDroppedConnectionError = PollingDroppedConnectionError{}
-	pollingFailedError            = PollingFailedError{}
-)
-
 type Poller struct {
 	// initialDelayDuration specifies the duration of the initial delay when polling
 	// this is also used for retries should a `latestResponse` not be available, for
@@ -96,17 +90,17 @@ func (p *Poller) LatestResponse() *client.Response {
 // LatestStatus returns the latest status returned when polling
 func (p *Poller) LatestStatus() PollingStatus {
 	if p.latestError != nil {
-		if errors.As(p.latestError, &pollingCancelledError) {
+		if errors.As(p.latestError, &PollingCancelledError{}) {
 			return PollingStatusCancelled
 		}
 
-		if errors.As(p.latestError, &pollingDroppedConnectionError) {
+		if errors.As(p.latestError, &PollingDroppedConnectionError{}) {
 			// we could look to expose a status for this, but we likely wouldn't handle this any differently
 			// to it being unknown, so I (@tombuildsstuff) think this is reasonable for now?
 			return PollingStatusUnknown
 		}
 
-		if errors.As(p.latestError, &pollingFailedError) {
+		if errors.As(p.latestError, &PollingFailedError{}) {
 			return PollingStatusFailed
 		}
 
@@ -153,7 +147,7 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 			if p.latestResponse == nil && p.latestError == nil {
 				// connection drops can either have no response/error (where we have no context)
 				connectionHasBeenDropped = true
-			} else if errors.As(p.latestError, &pollingDroppedConnectionError) {
+			} else if errors.As(p.latestError, &PollingDroppedConnectionError{}) {
 				// or have an error with more details (e.g. server not found, connection reset etc.)
 				connectionHasBeenDropped = true
 			}
