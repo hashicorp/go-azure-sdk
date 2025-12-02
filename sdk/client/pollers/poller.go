@@ -72,8 +72,8 @@ func (p *Poller) LatestResponse() *client.Response {
 		if errors.As(p.latestError, &c) {
 			return c.HttpResponse
 		}
-		var pollingDroppedConnectionError PollingDroppedConnectionError
-		if errors.As(p.latestError, &pollingDroppedConnectionError) {
+		var dc PollingDroppedConnectionError
+		if errors.As(p.latestError, &dc) {
 			return nil
 		}
 		var f PollingFailedError
