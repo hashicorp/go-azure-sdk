@@ -33,7 +33,7 @@ jobs:
     if: needs.secrets-check.outputs.available == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Azure CLI login
         run: az login --allow-no-subscriptions --output none --service-principal --tenant="${{ secrets.ARM_TENANT_ID }}" --username="${{ secrets.ARM_CLIENT_ID }}" --password="${{ secrets.ARM_CLIENT_SECRET }}"
