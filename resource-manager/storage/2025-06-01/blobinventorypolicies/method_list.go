@@ -16,7 +16,24 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ListBlobInventoryPolicy
+	Model        *[]BlobInventoryPolicy
+}
+
+type ListCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []BlobInventoryPolicy
+}
+
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
 }
 
 // List ...
@@ -27,6 +44,7 @@ func (c BlobInventoryPoliciesClient) List(ctx context.Context, id commonids.Stor
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
+		Pager:      &ListCustomPager{},
 		Path:       fmt.Sprintf("%s/inventoryPolicies", id.ID()),
 	}
 
@@ -36,7 +54,7 @@ func (c BlobInventoryPoliciesClient) List(ctx context.Context, id commonids.Stor
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -45,11 +63,44 @@ func (c BlobInventoryPoliciesClient) List(ctx context.Context, id commonids.Stor
 		return
 	}
 
-	var model ListBlobInventoryPolicy
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]BlobInventoryPolicy `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListComplete retrieves all the results into a single object
+func (c BlobInventoryPoliciesClient) ListComplete(ctx context.Context, id commonids.StorageAccountId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, BlobInventoryPolicyOperationPredicate{})
+}
+
+// ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c BlobInventoryPoliciesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.StorageAccountId, predicate BlobInventoryPolicyOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]BlobInventoryPolicy, 0)
+
+	resp, err := c.List(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

@@ -71,6 +71,23 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 ```
 
 
+### Example Usage: `StorageAccountsClient.CustomerInitiatedMigration`
+
+```go
+ctx := context.TODO()
+id := commonids.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName")
+
+payload := storageaccounts.StorageAccountMigration{
+	// ...
+}
+
+
+if err := client.CustomerInitiatedMigrationThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
 ### Example Usage: `StorageAccountsClient.Delete`
 
 ```go
@@ -219,6 +236,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `StorageAccountsClient.PrivateLinkResourcesListByStorageAccount`
+
+```go
+ctx := context.TODO()
+id := commonids.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName")
+
+read, err := client.PrivateLinkResourcesListByStorageAccount(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `StorageAccountsClient.RegenerateKey`
 
 ```go
@@ -269,6 +302,23 @@ if err != nil {
 }
 if model := read.Model; model != nil {
 	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `StorageAccountsClient.StorageTaskAssignmentsInstancesReportList`
+
+```go
+ctx := context.TODO()
+id := commonids.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName")
+
+// alternatively `client.StorageTaskAssignmentsInstancesReportList(ctx, id, storageaccounts.DefaultStorageTaskAssignmentsInstancesReportListOperationOptions())` can be used to do batched pagination
+items, err := client.StorageTaskAssignmentsInstancesReportListComplete(ctx, id, storageaccounts.DefaultStorageTaskAssignmentsInstancesReportListOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
 }
 ```
 

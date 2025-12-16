@@ -6,6 +6,6 @@ package monitoredsubscriptions
 type MonitoredSubscription struct {
 	Error          *string                       `json:"error,omitempty"`
 	Status         *Status                       `json:"status,omitempty"`
-	SubscriptionId *string                       `json:"subscriptionId,omitempty"`
+	SubscriptionId string                        `json:"subscriptionId"`
 	TagRules       *MonitoringTagRulesProperties `json:"tagRules,omitempty"`
 }

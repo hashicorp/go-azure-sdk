@@ -9,30 +9,30 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type RecommendationType string
+type RecommendationTypeEnum string
 
 const (
-	RecommendationTypeAnalyzeTable RecommendationType = "AnalyzeTable"
-	RecommendationTypeCreateIndex  RecommendationType = "CreateIndex"
-	RecommendationTypeDropIndex    RecommendationType = "DropIndex"
-	RecommendationTypeReIndex      RecommendationType = "ReIndex"
+	RecommendationTypeEnumAnalyzeTable RecommendationTypeEnum = "AnalyzeTable"
+	RecommendationTypeEnumCreateIndex  RecommendationTypeEnum = "CreateIndex"
+	RecommendationTypeEnumDropIndex    RecommendationTypeEnum = "DropIndex"
+	RecommendationTypeEnumReIndex      RecommendationTypeEnum = "ReIndex"
 )
 
-func PossibleValuesForRecommendationType() []string {
+func PossibleValuesForRecommendationTypeEnum() []string {
 	return []string{
-		string(RecommendationTypeAnalyzeTable),
-		string(RecommendationTypeCreateIndex),
-		string(RecommendationTypeDropIndex),
-		string(RecommendationTypeReIndex),
+		string(RecommendationTypeEnumAnalyzeTable),
+		string(RecommendationTypeEnumCreateIndex),
+		string(RecommendationTypeEnumDropIndex),
+		string(RecommendationTypeEnumReIndex),
 	}
 }
 
-func (s *RecommendationType) UnmarshalJSON(bytes []byte) error {
+func (s *RecommendationTypeEnum) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseRecommendationType(decoded)
+	out, err := parseRecommendationTypeEnum(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -40,42 +40,46 @@ func (s *RecommendationType) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseRecommendationType(input string) (*RecommendationType, error) {
-	vals := map[string]RecommendationType{
-		"analyzetable": RecommendationTypeAnalyzeTable,
-		"createindex":  RecommendationTypeCreateIndex,
-		"dropindex":    RecommendationTypeDropIndex,
-		"reindex":      RecommendationTypeReIndex,
+func parseRecommendationTypeEnum(input string) (*RecommendationTypeEnum, error) {
+	vals := map[string]RecommendationTypeEnum{
+		"analyzetable": RecommendationTypeEnumAnalyzeTable,
+		"createindex":  RecommendationTypeEnumCreateIndex,
+		"dropindex":    RecommendationTypeEnumDropIndex,
+		"reindex":      RecommendationTypeEnumReIndex,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := RecommendationType(input)
+	out := RecommendationTypeEnum(input)
 	return &out, nil
 }
 
-type TuningOption string
+type RecommendationTypeParameterEnum string
 
 const (
-	TuningOptionIndex TuningOption = "index"
-	TuningOptionTable TuningOption = "table"
+	RecommendationTypeParameterEnumAnalyzeTable RecommendationTypeParameterEnum = "AnalyzeTable"
+	RecommendationTypeParameterEnumCreateIndex  RecommendationTypeParameterEnum = "CreateIndex"
+	RecommendationTypeParameterEnumDropIndex    RecommendationTypeParameterEnum = "DropIndex"
+	RecommendationTypeParameterEnumReIndex      RecommendationTypeParameterEnum = "ReIndex"
 )
 
-func PossibleValuesForTuningOption() []string {
+func PossibleValuesForRecommendationTypeParameterEnum() []string {
 	return []string{
-		string(TuningOptionIndex),
-		string(TuningOptionTable),
+		string(RecommendationTypeParameterEnumAnalyzeTable),
+		string(RecommendationTypeParameterEnumCreateIndex),
+		string(RecommendationTypeParameterEnumDropIndex),
+		string(RecommendationTypeParameterEnumReIndex),
 	}
 }
 
-func (s *TuningOption) UnmarshalJSON(bytes []byte) error {
+func (s *RecommendationTypeParameterEnum) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseTuningOption(decoded)
+	out, err := parseRecommendationTypeParameterEnum(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -83,16 +87,59 @@ func (s *TuningOption) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseTuningOption(input string) (*TuningOption, error) {
-	vals := map[string]TuningOption{
-		"index": TuningOptionIndex,
-		"table": TuningOptionTable,
+func parseRecommendationTypeParameterEnum(input string) (*RecommendationTypeParameterEnum, error) {
+	vals := map[string]RecommendationTypeParameterEnum{
+		"analyzetable": RecommendationTypeParameterEnumAnalyzeTable,
+		"createindex":  RecommendationTypeParameterEnumCreateIndex,
+		"dropindex":    RecommendationTypeParameterEnumDropIndex,
+		"reindex":      RecommendationTypeParameterEnumReIndex,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := TuningOption(input)
+	out := RecommendationTypeParameterEnum(input)
+	return &out, nil
+}
+
+type TuningOptionParameterEnum string
+
+const (
+	TuningOptionParameterEnumIndex TuningOptionParameterEnum = "index"
+	TuningOptionParameterEnumTable TuningOptionParameterEnum = "table"
+)
+
+func PossibleValuesForTuningOptionParameterEnum() []string {
+	return []string{
+		string(TuningOptionParameterEnumIndex),
+		string(TuningOptionParameterEnumTable),
+	}
+}
+
+func (s *TuningOptionParameterEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTuningOptionParameterEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseTuningOptionParameterEnum(input string) (*TuningOptionParameterEnum, error) {
+	vals := map[string]TuningOptionParameterEnum{
+		"index": TuningOptionParameterEnumIndex,
+		"table": TuningOptionParameterEnumTable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TuningOptionParameterEnum(input)
 	return &out, nil
 }

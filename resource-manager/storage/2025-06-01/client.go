@@ -6,62 +6,58 @@ package v2025_06_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/accountmigrations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/blobcontainers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/blobinventorypolicies"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/blobservice"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/blobservices"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/deletedaccounts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/encryptionscopes"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/fileservice"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/fileservices"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/fileserviceusageoperationgroup"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/fileshares"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/localusers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/immutabilitypolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/localuseroperationgroup"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/managementpolicies"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/objectreplicationpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/networksecurityperimeterconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/objectreplicationpolicyoperationgroup"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/openapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/privateendpointconnections"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/privatelinkresources"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/queueservice"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/queueserviceproperties"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/skus"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/queueservices"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/storageaccountmigrations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/storageaccounts"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/storageaccountsnetworksecurityperimeterconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/storagequeues"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/storagetaskassignments"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/tableservice"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/tableserviceproperties"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/tables"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/tableservices"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	AccountMigrations                                     *accountmigrations.AccountMigrationsClient
-	BlobContainers                                        *blobcontainers.BlobContainersClient
-	BlobInventoryPolicies                                 *blobinventorypolicies.BlobInventoryPoliciesClient
-	BlobService                                           *blobservice.BlobServiceClient
-	DeletedAccounts                                       *deletedaccounts.DeletedAccountsClient
-	EncryptionScopes                                      *encryptionscopes.EncryptionScopesClient
-	FileService                                           *fileservice.FileServiceClient
-	FileShares                                            *fileshares.FileSharesClient
-	LocalUsers                                            *localusers.LocalUsersClient
-	ManagementPolicies                                    *managementpolicies.ManagementPoliciesClient
-	ObjectReplicationPolicies                             *objectreplicationpolicies.ObjectReplicationPoliciesClient
-	PrivateEndpointConnections                            *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources                                  *privatelinkresources.PrivateLinkResourcesClient
-	QueueService                                          *queueservice.QueueServiceClient
-	QueueServiceProperties                                *queueserviceproperties.QueueServicePropertiesClient
-	Skus                                                  *skus.SkusClient
-	StorageAccounts                                       *storageaccounts.StorageAccountsClient
-	StorageAccountsNetworkSecurityPerimeterConfigurations *storageaccountsnetworksecurityperimeterconfigurations.StorageAccountsNetworkSecurityPerimeterConfigurationsClient
-	StorageTaskAssignments                                *storagetaskassignments.StorageTaskAssignmentsClient
-	TableService                                          *tableservice.TableServiceClient
-	TableServiceProperties                                *tableserviceproperties.TableServicePropertiesClient
+	BlobContainers                         *blobcontainers.BlobContainersClient
+	BlobInventoryPolicies                  *blobinventorypolicies.BlobInventoryPoliciesClient
+	BlobServices                           *blobservices.BlobServicesClient
+	DeletedAccounts                        *deletedaccounts.DeletedAccountsClient
+	EncryptionScopes                       *encryptionscopes.EncryptionScopesClient
+	FileServiceUsageOperationGroup         *fileserviceusageoperationgroup.FileServiceUsageOperationGroupClient
+	FileServices                           *fileservices.FileServicesClient
+	FileShares                             *fileshares.FileSharesClient
+	ImmutabilityPolicies                   *immutabilitypolicies.ImmutabilityPoliciesClient
+	LocalUserOperationGroup                *localuseroperationgroup.LocalUserOperationGroupClient
+	ManagementPolicies                     *managementpolicies.ManagementPoliciesClient
+	NetworkSecurityPerimeterConfigurations *networksecurityperimeterconfigurations.NetworkSecurityPerimeterConfigurationsClient
+	ObjectReplicationPolicyOperationGroup  *objectreplicationpolicyoperationgroup.ObjectReplicationPolicyOperationGroupClient
+	Openapis                               *openapis.OpenapisClient
+	PrivateEndpointConnections             *privateendpointconnections.PrivateEndpointConnectionsClient
+	QueueServices                          *queueservices.QueueServicesClient
+	StorageAccountMigrations               *storageaccountmigrations.StorageAccountMigrationsClient
+	StorageAccounts                        *storageaccounts.StorageAccountsClient
+	StorageQueues                          *storagequeues.StorageQueuesClient
+	StorageTaskAssignments                 *storagetaskassignments.StorageTaskAssignmentsClient
+	TableServices                          *tableservices.TableServicesClient
+	Tables                                 *tables.TablesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	accountMigrationsClient, err := accountmigrations.NewAccountMigrationsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building AccountMigrations client: %+v", err)
-	}
-	configureFunc(accountMigrationsClient.Client)
-
 	blobContainersClient, err := blobcontainers.NewBlobContainersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BlobContainers client: %+v", err)
@@ -74,11 +70,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(blobInventoryPoliciesClient.Client)
 
-	blobServiceClient, err := blobservice.NewBlobServiceClientWithBaseURI(sdkApi)
+	blobServicesClient, err := blobservices.NewBlobServicesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building BlobService client: %+v", err)
+		return nil, fmt.Errorf("building BlobServices client: %+v", err)
 	}
-	configureFunc(blobServiceClient.Client)
+	configureFunc(blobServicesClient.Client)
 
 	deletedAccountsClient, err := deletedaccounts.NewDeletedAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -92,11 +88,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(encryptionScopesClient.Client)
 
-	fileServiceClient, err := fileservice.NewFileServiceClientWithBaseURI(sdkApi)
+	fileServiceUsageOperationGroupClient, err := fileserviceusageoperationgroup.NewFileServiceUsageOperationGroupClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building FileService client: %+v", err)
+		return nil, fmt.Errorf("building FileServiceUsageOperationGroup client: %+v", err)
 	}
-	configureFunc(fileServiceClient.Client)
+	configureFunc(fileServiceUsageOperationGroupClient.Client)
+
+	fileServicesClient, err := fileservices.NewFileServicesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building FileServices client: %+v", err)
+	}
+	configureFunc(fileServicesClient.Client)
 
 	fileSharesClient, err := fileshares.NewFileSharesClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -104,11 +106,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(fileSharesClient.Client)
 
-	localUsersClient, err := localusers.NewLocalUsersClientWithBaseURI(sdkApi)
+	immutabilityPoliciesClient, err := immutabilitypolicies.NewImmutabilityPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building LocalUsers client: %+v", err)
+		return nil, fmt.Errorf("building ImmutabilityPolicies client: %+v", err)
 	}
-	configureFunc(localUsersClient.Client)
+	configureFunc(immutabilityPoliciesClient.Client)
+
+	localUserOperationGroupClient, err := localuseroperationgroup.NewLocalUserOperationGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building LocalUserOperationGroup client: %+v", err)
+	}
+	configureFunc(localUserOperationGroupClient.Client)
 
 	managementPoliciesClient, err := managementpolicies.NewManagementPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -116,11 +124,23 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(managementPoliciesClient.Client)
 
-	objectReplicationPoliciesClient, err := objectreplicationpolicies.NewObjectReplicationPoliciesClientWithBaseURI(sdkApi)
+	networkSecurityPerimeterConfigurationsClient, err := networksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building ObjectReplicationPolicies client: %+v", err)
+		return nil, fmt.Errorf("building NetworkSecurityPerimeterConfigurations client: %+v", err)
 	}
-	configureFunc(objectReplicationPoliciesClient.Client)
+	configureFunc(networkSecurityPerimeterConfigurationsClient.Client)
+
+	objectReplicationPolicyOperationGroupClient, err := objectreplicationpolicyoperationgroup.NewObjectReplicationPolicyOperationGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ObjectReplicationPolicyOperationGroup client: %+v", err)
+	}
+	configureFunc(objectReplicationPolicyOperationGroupClient.Client)
+
+	openapisClient, err := openapis.NewOpenapisClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Openapis client: %+v", err)
+	}
+	configureFunc(openapisClient.Client)
 
 	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -128,29 +148,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
+	queueServicesClient, err := queueservices.NewQueueServicesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
+		return nil, fmt.Errorf("building QueueServices client: %+v", err)
 	}
-	configureFunc(privateLinkResourcesClient.Client)
+	configureFunc(queueServicesClient.Client)
 
-	queueServiceClient, err := queueservice.NewQueueServiceClientWithBaseURI(sdkApi)
+	storageAccountMigrationsClient, err := storageaccountmigrations.NewStorageAccountMigrationsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building QueueService client: %+v", err)
+		return nil, fmt.Errorf("building StorageAccountMigrations client: %+v", err)
 	}
-	configureFunc(queueServiceClient.Client)
-
-	queueServicePropertiesClient, err := queueserviceproperties.NewQueueServicePropertiesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building QueueServiceProperties client: %+v", err)
-	}
-	configureFunc(queueServicePropertiesClient.Client)
-
-	skusClient, err := skus.NewSkusClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Skus client: %+v", err)
-	}
-	configureFunc(skusClient.Client)
+	configureFunc(storageAccountMigrationsClient.Client)
 
 	storageAccountsClient, err := storageaccounts.NewStorageAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -158,11 +166,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(storageAccountsClient.Client)
 
-	storageAccountsNetworkSecurityPerimeterConfigurationsClient, err := storageaccountsnetworksecurityperimeterconfigurations.NewStorageAccountsNetworkSecurityPerimeterConfigurationsClientWithBaseURI(sdkApi)
+	storageQueuesClient, err := storagequeues.NewStorageQueuesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building StorageAccountsNetworkSecurityPerimeterConfigurations client: %+v", err)
+		return nil, fmt.Errorf("building StorageQueues client: %+v", err)
 	}
-	configureFunc(storageAccountsNetworkSecurityPerimeterConfigurationsClient.Client)
+	configureFunc(storageQueuesClient.Client)
 
 	storageTaskAssignmentsClient, err := storagetaskassignments.NewStorageTaskAssignmentsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -170,39 +178,40 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(storageTaskAssignmentsClient.Client)
 
-	tableServiceClient, err := tableservice.NewTableServiceClientWithBaseURI(sdkApi)
+	tableServicesClient, err := tableservices.NewTableServicesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building TableService client: %+v", err)
+		return nil, fmt.Errorf("building TableServices client: %+v", err)
 	}
-	configureFunc(tableServiceClient.Client)
+	configureFunc(tableServicesClient.Client)
 
-	tableServicePropertiesClient, err := tableserviceproperties.NewTableServicePropertiesClientWithBaseURI(sdkApi)
+	tablesClient, err := tables.NewTablesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building TableServiceProperties client: %+v", err)
+		return nil, fmt.Errorf("building Tables client: %+v", err)
 	}
-	configureFunc(tableServicePropertiesClient.Client)
+	configureFunc(tablesClient.Client)
 
 	return &Client{
-		AccountMigrations:          accountMigrationsClient,
-		BlobContainers:             blobContainersClient,
-		BlobInventoryPolicies:      blobInventoryPoliciesClient,
-		BlobService:                blobServiceClient,
-		DeletedAccounts:            deletedAccountsClient,
-		EncryptionScopes:           encryptionScopesClient,
-		FileService:                fileServiceClient,
-		FileShares:                 fileSharesClient,
-		LocalUsers:                 localUsersClient,
-		ManagementPolicies:         managementPoliciesClient,
-		ObjectReplicationPolicies:  objectReplicationPoliciesClient,
-		PrivateEndpointConnections: privateEndpointConnectionsClient,
-		PrivateLinkResources:       privateLinkResourcesClient,
-		QueueService:               queueServiceClient,
-		QueueServiceProperties:     queueServicePropertiesClient,
-		Skus:                       skusClient,
-		StorageAccounts:            storageAccountsClient,
-		StorageAccountsNetworkSecurityPerimeterConfigurations: storageAccountsNetworkSecurityPerimeterConfigurationsClient,
-		StorageTaskAssignments:                                storageTaskAssignmentsClient,
-		TableService:                                          tableServiceClient,
-		TableServiceProperties:                                tableServicePropertiesClient,
+		BlobContainers:                         blobContainersClient,
+		BlobInventoryPolicies:                  blobInventoryPoliciesClient,
+		BlobServices:                           blobServicesClient,
+		DeletedAccounts:                        deletedAccountsClient,
+		EncryptionScopes:                       encryptionScopesClient,
+		FileServiceUsageOperationGroup:         fileServiceUsageOperationGroupClient,
+		FileServices:                           fileServicesClient,
+		FileShares:                             fileSharesClient,
+		ImmutabilityPolicies:                   immutabilityPoliciesClient,
+		LocalUserOperationGroup:                localUserOperationGroupClient,
+		ManagementPolicies:                     managementPoliciesClient,
+		NetworkSecurityPerimeterConfigurations: networkSecurityPerimeterConfigurationsClient,
+		ObjectReplicationPolicyOperationGroup:  objectReplicationPolicyOperationGroupClient,
+		Openapis:                               openapisClient,
+		PrivateEndpointConnections:             privateEndpointConnectionsClient,
+		QueueServices:                          queueServicesClient,
+		StorageAccountMigrations:               storageAccountMigrationsClient,
+		StorageAccounts:                        storageAccountsClient,
+		StorageQueues:                          storageQueuesClient,
+		StorageTaskAssignments:                 storageTaskAssignmentsClient,
+		TableServices:                          tableServicesClient,
+		Tables:                                 tablesClient,
 	}, nil
 }

@@ -7,7 +7,7 @@ type StorageTaskAssignmentUpdateProperties struct {
 	Description       *string                                      `json:"description,omitempty"`
 	Enabled           *bool                                        `json:"enabled,omitempty"`
 	ExecutionContext  *StorageTaskAssignmentUpdateExecutionContext `json:"executionContext,omitempty"`
-	ProvisioningState *ProvisioningState                           `json:"provisioningState,omitempty"`
+	ProvisioningState *StorageTaskAssignmentProvisioningState      `json:"provisioningState,omitempty"`
 	Report            *StorageTaskAssignmentUpdateReport           `json:"report,omitempty"`
 	RunStatus         *StorageTaskReportProperties                 `json:"runStatus,omitempty"`
 	TaskId            *string                                      `json:"taskId,omitempty"`

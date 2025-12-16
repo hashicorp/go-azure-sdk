@@ -16,7 +16,7 @@ type ManagementGroupDetails struct {
 	Path                          *[]ManagementGroupPathElement `json:"path,omitempty"`
 	UpdatedBy                     *string                       `json:"updatedBy,omitempty"`
 	UpdatedTime                   *string                       `json:"updatedTime,omitempty"`
-	Version                       *float64                      `json:"version,omitempty"`
+	Version                       *int64                        `json:"version,omitempty"`
 }
 
 func (o *ManagementGroupDetails) GetUpdatedTimeAsTime() (*time.Time, error) {

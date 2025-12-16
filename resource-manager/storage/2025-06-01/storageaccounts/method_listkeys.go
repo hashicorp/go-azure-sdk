@@ -20,7 +20,7 @@ type ListKeysOperationResponse struct {
 }
 
 type ListKeysOperationOptions struct {
-	Expand *ListKeyExpand
+	Expand *Expand
 }
 
 func DefaultListKeysOperationOptions() ListKeysOperationOptions {

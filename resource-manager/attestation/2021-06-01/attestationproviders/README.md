@@ -74,22 +74,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AttestationProvidersClient.GetDefaultByLocation`
-
-```go
-ctx := context.TODO()
-id := attestationproviders.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
-
-read, err := client.GetDefaultByLocation(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `AttestationProvidersClient.List`
 
 ```go
@@ -122,18 +106,19 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AttestationProvidersClient.ListDefault`
+### Example Usage: `AttestationProvidersClient.PrivateLinkResourcesListByProvider`
 
 ```go
 ctx := context.TODO()
-id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
+id := attestationproviders.NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderName")
 
-read, err := client.ListDefault(ctx, id)
+// alternatively `client.PrivateLinkResourcesListByProvider(ctx, id)` can be used to do batched pagination
+items, err := client.PrivateLinkResourcesListByProviderComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
 

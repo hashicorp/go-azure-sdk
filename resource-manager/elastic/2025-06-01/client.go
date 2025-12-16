@@ -6,89 +6,35 @@ package v2025_06_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/apikey"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/connectedresources"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/deploymentinfo"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/deploymentupdate"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/elasticversions"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/monitoredresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/elasticmonitorresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/elastics"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/monitoredsubscriptions"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/monitorsresource"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/monitorupgradableversions"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/openaiintegration"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/resubscribe"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/rules"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/trafficfilter"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/userorganization"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/vmcollectionupdate"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/vmhhostlist"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/vmingestiondetails"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/openaiintegrationrpmodels"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/tagrules"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	ApiKey                    *apikey.ApiKeyClient
-	ConnectedResources        *connectedresources.ConnectedResourcesClient
-	DeploymentInfo            *deploymentinfo.DeploymentInfoClient
-	DeploymentUpdate          *deploymentupdate.DeploymentUpdateClient
-	ElasticVersions           *elasticversions.ElasticVersionsClient
-	MonitorUpgradableVersions *monitorupgradableversions.MonitorUpgradableVersionsClient
-	MonitoredResources        *monitoredresources.MonitoredResourcesClient
+	ElasticMonitorResources   *elasticmonitorresources.ElasticMonitorResourcesClient
+	Elastics                  *elastics.ElasticsClient
 	MonitoredSubscriptions    *monitoredsubscriptions.MonitoredSubscriptionsClient
-	MonitorsResource          *monitorsresource.MonitorsResourceClient
-	OpenAIIntegration         *openaiintegration.OpenAIIntegrationClient
-	Resubscribe               *resubscribe.ResubscribeClient
-	Rules                     *rules.RulesClient
-	TrafficFilter             *trafficfilter.TrafficFilterClient
-	UserOrganization          *userorganization.UserOrganizationClient
-	VMCollectionUpdate        *vmcollectionupdate.VMCollectionUpdateClient
-	VMHHostList               *vmhhostlist.VMHHostListClient
-	VMIngestionDetails        *vmingestiondetails.VMIngestionDetailsClient
+	OpenAIIntegrationRPModels *openaiintegrationrpmodels.OpenAIIntegrationRPModelsClient
+	TagRules                  *tagrules.TagRulesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	apiKeyClient, err := apikey.NewApiKeyClientWithBaseURI(sdkApi)
+	elasticMonitorResourcesClient, err := elasticmonitorresources.NewElasticMonitorResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building ApiKey client: %+v", err)
+		return nil, fmt.Errorf("building ElasticMonitorResources client: %+v", err)
 	}
-	configureFunc(apiKeyClient.Client)
+	configureFunc(elasticMonitorResourcesClient.Client)
 
-	connectedResourcesClient, err := connectedresources.NewConnectedResourcesClientWithBaseURI(sdkApi)
+	elasticsClient, err := elastics.NewElasticsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building ConnectedResources client: %+v", err)
+		return nil, fmt.Errorf("building Elastics client: %+v", err)
 	}
-	configureFunc(connectedResourcesClient.Client)
-
-	deploymentInfoClient, err := deploymentinfo.NewDeploymentInfoClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building DeploymentInfo client: %+v", err)
-	}
-	configureFunc(deploymentInfoClient.Client)
-
-	deploymentUpdateClient, err := deploymentupdate.NewDeploymentUpdateClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building DeploymentUpdate client: %+v", err)
-	}
-	configureFunc(deploymentUpdateClient.Client)
-
-	elasticVersionsClient, err := elasticversions.NewElasticVersionsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ElasticVersions client: %+v", err)
-	}
-	configureFunc(elasticVersionsClient.Client)
-
-	monitorUpgradableVersionsClient, err := monitorupgradableversions.NewMonitorUpgradableVersionsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building MonitorUpgradableVersions client: %+v", err)
-	}
-	configureFunc(monitorUpgradableVersionsClient.Client)
-
-	monitoredResourcesClient, err := monitoredresources.NewMonitoredResourcesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building MonitoredResources client: %+v", err)
-	}
-	configureFunc(monitoredResourcesClient.Client)
+	configureFunc(elasticsClient.Client)
 
 	monitoredSubscriptionsClient, err := monitoredsubscriptions.NewMonitoredSubscriptionsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -96,77 +42,23 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(monitoredSubscriptionsClient.Client)
 
-	monitorsResourceClient, err := monitorsresource.NewMonitorsResourceClientWithBaseURI(sdkApi)
+	openAIIntegrationRPModelsClient, err := openaiintegrationrpmodels.NewOpenAIIntegrationRPModelsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building MonitorsResource client: %+v", err)
+		return nil, fmt.Errorf("building OpenAIIntegrationRPModels client: %+v", err)
 	}
-	configureFunc(monitorsResourceClient.Client)
+	configureFunc(openAIIntegrationRPModelsClient.Client)
 
-	openAIIntegrationClient, err := openaiintegration.NewOpenAIIntegrationClientWithBaseURI(sdkApi)
+	tagRulesClient, err := tagrules.NewTagRulesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building OpenAIIntegration client: %+v", err)
+		return nil, fmt.Errorf("building TagRules client: %+v", err)
 	}
-	configureFunc(openAIIntegrationClient.Client)
-
-	resubscribeClient, err := resubscribe.NewResubscribeClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Resubscribe client: %+v", err)
-	}
-	configureFunc(resubscribeClient.Client)
-
-	rulesClient, err := rules.NewRulesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Rules client: %+v", err)
-	}
-	configureFunc(rulesClient.Client)
-
-	trafficFilterClient, err := trafficfilter.NewTrafficFilterClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building TrafficFilter client: %+v", err)
-	}
-	configureFunc(trafficFilterClient.Client)
-
-	userOrganizationClient, err := userorganization.NewUserOrganizationClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building UserOrganization client: %+v", err)
-	}
-	configureFunc(userOrganizationClient.Client)
-
-	vMCollectionUpdateClient, err := vmcollectionupdate.NewVMCollectionUpdateClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building VMCollectionUpdate client: %+v", err)
-	}
-	configureFunc(vMCollectionUpdateClient.Client)
-
-	vMHHostListClient, err := vmhhostlist.NewVMHHostListClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building VMHHostList client: %+v", err)
-	}
-	configureFunc(vMHHostListClient.Client)
-
-	vMIngestionDetailsClient, err := vmingestiondetails.NewVMIngestionDetailsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building VMIngestionDetails client: %+v", err)
-	}
-	configureFunc(vMIngestionDetailsClient.Client)
+	configureFunc(tagRulesClient.Client)
 
 	return &Client{
-		ApiKey:                    apiKeyClient,
-		ConnectedResources:        connectedResourcesClient,
-		DeploymentInfo:            deploymentInfoClient,
-		DeploymentUpdate:          deploymentUpdateClient,
-		ElasticVersions:           elasticVersionsClient,
-		MonitorUpgradableVersions: monitorUpgradableVersionsClient,
-		MonitoredResources:        monitoredResourcesClient,
+		ElasticMonitorResources:   elasticMonitorResourcesClient,
+		Elastics:                  elasticsClient,
 		MonitoredSubscriptions:    monitoredSubscriptionsClient,
-		MonitorsResource:          monitorsResourceClient,
-		OpenAIIntegration:         openAIIntegrationClient,
-		Resubscribe:               resubscribeClient,
-		Rules:                     rulesClient,
-		TrafficFilter:             trafficFilterClient,
-		UserOrganization:          userOrganizationClient,
-		VMCollectionUpdate:        vMCollectionUpdateClient,
-		VMHHostList:               vMHHostListClient,
-		VMIngestionDetails:        vMIngestionDetailsClient,
+		OpenAIIntegrationRPModels: openAIIntegrationRPModelsClient,
+		TagRules:                  tagRulesClient,
 	}, nil
 }

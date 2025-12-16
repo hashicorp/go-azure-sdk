@@ -14,7 +14,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CapabilityHostResource
+	Model        *ProjectCapabilityHostResource
 }
 
 // Get ...
@@ -43,7 +43,7 @@ func (c ProjectCapabilityHostClient) Get(ctx context.Context, id ProjectCapabili
 		return
 	}
 
-	var model CapabilityHostResource
+	var model ProjectCapabilityHostResource
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

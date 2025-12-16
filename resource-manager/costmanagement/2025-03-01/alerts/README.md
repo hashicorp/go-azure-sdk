@@ -73,20 +73,3 @@ for _, item := range items {
 	// do something
 }
 ```
-
-
-### Example Usage: `AlertsClient.ListExternal`
-
-```go
-ctx := context.TODO()
-id := alerts.NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderId")
-
-// alternatively `client.ListExternal(ctx, id)` can be used to do batched pagination
-items, err := client.ListExternalComplete(ctx, id)
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```

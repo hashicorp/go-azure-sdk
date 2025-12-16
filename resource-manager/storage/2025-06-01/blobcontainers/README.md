@@ -63,27 +63,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `BlobContainersClient.CreateOrUpdateImmutabilityPolicy`
-
-```go
-ctx := context.TODO()
-id := commonids.NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "containerName")
-
-payload := blobcontainers.ImmutabilityPolicy{
-	// ...
-}
-
-
-read, err := client.CreateOrUpdateImmutabilityPolicy(ctx, id, payload, blobcontainers.DefaultCreateOrUpdateImmutabilityPolicyOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `BlobContainersClient.Delete`
 
 ```go
@@ -91,43 +70,6 @@ ctx := context.TODO()
 id := commonids.NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "containerName")
 
 read, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `BlobContainersClient.DeleteImmutabilityPolicy`
-
-```go
-ctx := context.TODO()
-id := commonids.NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "containerName")
-
-read, err := client.DeleteImmutabilityPolicy(ctx, id, blobcontainers.DefaultDeleteImmutabilityPolicyOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `BlobContainersClient.ExtendImmutabilityPolicy`
-
-```go
-ctx := context.TODO()
-id := commonids.NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "containerName")
-
-payload := blobcontainers.ImmutabilityPolicy{
-	// ...
-}
-
-
-read, err := client.ExtendImmutabilityPolicy(ctx, id, payload, blobcontainers.DefaultExtendImmutabilityPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -153,22 +95,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `BlobContainersClient.GetImmutabilityPolicy`
-
-```go
-ctx := context.TODO()
-id := commonids.NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "containerName")
-
-read, err := client.GetImmutabilityPolicy(ctx, id, blobcontainers.DefaultGetImmutabilityPolicyOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `BlobContainersClient.Lease`
 
 ```go
@@ -181,39 +107,6 @@ payload := blobcontainers.LeaseContainerRequest{
 
 
 read, err := client.Lease(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `BlobContainersClient.List`
-
-```go
-ctx := context.TODO()
-id := commonids.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName")
-
-// alternatively `client.List(ctx, id, blobcontainers.DefaultListOperationOptions())` can be used to do batched pagination
-items, err := client.ListComplete(ctx, id, blobcontainers.DefaultListOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `BlobContainersClient.LockImmutabilityPolicy`
-
-```go
-ctx := context.TODO()
-id := commonids.NewStorageContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName", "containerName")
-
-read, err := client.LockImmutabilityPolicy(ctx, id, blobcontainers.DefaultLockImmutabilityPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }

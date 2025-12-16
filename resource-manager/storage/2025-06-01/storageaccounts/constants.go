@@ -528,6 +528,44 @@ func parseDnsEndpointType(input string) (*DnsEndpointType, error) {
 	return &out, nil
 }
 
+type Expand string
+
+const (
+	ExpandKerb Expand = "kerb"
+)
+
+func PossibleValuesForExpand() []string {
+	return []string{
+		string(ExpandKerb),
+	}
+}
+
+func (s *Expand) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExpand(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseExpand(input string) (*Expand, error) {
+	vals := map[string]Expand{
+		"kerb": ExpandKerb,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Expand(input)
+	return &out, nil
+}
+
 type ExpirationAction string
 
 const (
@@ -906,24 +944,32 @@ func parseLargeFileSharesState(input string) (*LargeFileSharesState, error) {
 	return &out, nil
 }
 
-type ListKeyExpand string
+type MigrationStatus string
 
 const (
-	ListKeyExpandKerb ListKeyExpand = "kerb"
+	MigrationStatusComplete               MigrationStatus = "Complete"
+	MigrationStatusFailed                 MigrationStatus = "Failed"
+	MigrationStatusInProgress             MigrationStatus = "InProgress"
+	MigrationStatusInvalid                MigrationStatus = "Invalid"
+	MigrationStatusSubmittedForConversion MigrationStatus = "SubmittedForConversion"
 )
 
-func PossibleValuesForListKeyExpand() []string {
+func PossibleValuesForMigrationStatus() []string {
 	return []string{
-		string(ListKeyExpandKerb),
+		string(MigrationStatusComplete),
+		string(MigrationStatusFailed),
+		string(MigrationStatusInProgress),
+		string(MigrationStatusInvalid),
+		string(MigrationStatusSubmittedForConversion),
 	}
 }
 
-func (s *ListKeyExpand) UnmarshalJSON(bytes []byte) error {
+func (s *MigrationStatus) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseListKeyExpand(decoded)
+	out, err := parseMigrationStatus(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -931,16 +977,20 @@ func (s *ListKeyExpand) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseListKeyExpand(input string) (*ListKeyExpand, error) {
-	vals := map[string]ListKeyExpand{
-		"kerb": ListKeyExpandKerb,
+func parseMigrationStatus(input string) (*MigrationStatus, error) {
+	vals := map[string]MigrationStatus{
+		"complete":               MigrationStatusComplete,
+		"failed":                 MigrationStatusFailed,
+		"inprogress":             MigrationStatusInProgress,
+		"invalid":                MigrationStatusInvalid,
+		"submittedforconversion": MigrationStatusSubmittedForConversion,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := ListKeyExpand(input)
+	out := MigrationStatus(input)
 	return &out, nil
 }
 
@@ -1399,6 +1449,88 @@ func parseRoutingChoice(input string) (*RoutingChoice, error) {
 	return &out, nil
 }
 
+type RunResult string
+
+const (
+	RunResultFailed    RunResult = "Failed"
+	RunResultSucceeded RunResult = "Succeeded"
+)
+
+func PossibleValuesForRunResult() []string {
+	return []string{
+		string(RunResultFailed),
+		string(RunResultSucceeded),
+	}
+}
+
+func (s *RunResult) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRunResult(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseRunResult(input string) (*RunResult, error) {
+	vals := map[string]RunResult{
+		"failed":    RunResultFailed,
+		"succeeded": RunResultSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RunResult(input)
+	return &out, nil
+}
+
+type RunStatusEnum string
+
+const (
+	RunStatusEnumFinished   RunStatusEnum = "Finished"
+	RunStatusEnumInProgress RunStatusEnum = "InProgress"
+)
+
+func PossibleValuesForRunStatusEnum() []string {
+	return []string{
+		string(RunStatusEnumFinished),
+		string(RunStatusEnumInProgress),
+	}
+}
+
+func (s *RunStatusEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRunStatusEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseRunStatusEnum(input string) (*RunStatusEnum, error) {
+	vals := map[string]RunStatusEnum{
+		"finished":   RunStatusEnumFinished,
+		"inprogress": RunStatusEnumInProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RunStatusEnum(input)
+	return &out, nil
+}
+
 type Services string
 
 const (
@@ -1749,6 +1881,44 @@ func parseState(input string) (*State, error) {
 	return &out, nil
 }
 
+type StorageAccountCheckNameAvailabilityParametersType string
+
+const (
+	StorageAccountCheckNameAvailabilityParametersTypeMicrosoftPointStorageStorageAccounts StorageAccountCheckNameAvailabilityParametersType = "Microsoft.Storage/storageAccounts"
+)
+
+func PossibleValuesForStorageAccountCheckNameAvailabilityParametersType() []string {
+	return []string{
+		string(StorageAccountCheckNameAvailabilityParametersTypeMicrosoftPointStorageStorageAccounts),
+	}
+}
+
+func (s *StorageAccountCheckNameAvailabilityParametersType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStorageAccountCheckNameAvailabilityParametersType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseStorageAccountCheckNameAvailabilityParametersType(input string) (*StorageAccountCheckNameAvailabilityParametersType, error) {
+	vals := map[string]StorageAccountCheckNameAvailabilityParametersType{
+		"microsoft.storage/storageaccounts": StorageAccountCheckNameAvailabilityParametersTypeMicrosoftPointStorageStorageAccounts,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StorageAccountCheckNameAvailabilityParametersType(input)
+	return &out, nil
+}
+
 type StorageAccountExpand string
 
 const (
@@ -1787,44 +1957,6 @@ func parseStorageAccountExpand(input string) (*StorageAccountExpand, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := StorageAccountExpand(input)
-	return &out, nil
-}
-
-type Type string
-
-const (
-	TypeMicrosoftPointStorageStorageAccounts Type = "Microsoft.Storage/storageAccounts"
-)
-
-func PossibleValuesForType() []string {
-	return []string{
-		string(TypeMicrosoftPointStorageStorageAccounts),
-	}
-}
-
-func (s *Type) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"microsoft.storage/storageaccounts": TypeMicrosoftPointStorageStorageAccounts,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
 	return &out, nil
 }
 

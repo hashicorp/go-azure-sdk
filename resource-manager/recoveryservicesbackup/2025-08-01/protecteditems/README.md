@@ -31,12 +31,8 @@ payload := protecteditems.ProtectedItemResource{
 }
 
 
-read, err := client.CreateOrUpdate(ctx, id, payload, protecteditems.DefaultCreateOrUpdateOperationOptions())
-if err != nil {
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload, protecteditems.DefaultCreateOrUpdateOperationOptions()); err != nil {
 	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
 }
 ```
 

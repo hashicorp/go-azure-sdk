@@ -36,22 +36,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DiagnosticSettingsClient.GetDiagnosticRemoteSupportSettings`
-
-```go
-ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceName")
-
-read, err := client.GetDiagnosticRemoteSupportSettings(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `DiagnosticSettingsClient.UpdateDiagnosticProactiveLogCollectionSettings`
 
 ```go
@@ -64,23 +48,6 @@ payload := diagnosticsettings.DiagnosticProactiveLogCollectionSettings{
 
 
 if err := client.UpdateDiagnosticProactiveLogCollectionSettingsThenPoll(ctx, id, payload); err != nil {
-	// handle the error
-}
-```
-
-
-### Example Usage: `DiagnosticSettingsClient.UpdateDiagnosticRemoteSupportSettings`
-
-```go
-ctx := context.TODO()
-id := diagnosticsettings.NewDataBoxEdgeDeviceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "dataBoxEdgeDeviceName")
-
-payload := diagnosticsettings.DiagnosticRemoteSupportSettings{
-	// ...
-}
-
-
-if err := client.UpdateDiagnosticRemoteSupportSettingsThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

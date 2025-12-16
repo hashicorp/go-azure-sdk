@@ -6,59 +6,50 @@ package v2022_04_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/endpoints"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/geographichierarchies"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/heatmaps"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/profiles"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/realusermetrics"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/trafficmanagergeographichierarchies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/trafficmanagers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/usermetricsmodels"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	Endpoints             *endpoints.EndpointsClient
-	GeographicHierarchies *geographichierarchies.GeographicHierarchiesClient
-	HeatMaps              *heatmaps.HeatMapsClient
-	Profiles              *profiles.ProfilesClient
-	RealUserMetrics       *realusermetrics.RealUserMetricsClient
+	Profiles                            *profiles.ProfilesClient
+	TrafficManagerGeographicHierarchies *trafficmanagergeographichierarchies.TrafficManagerGeographicHierarchiesClient
+	Trafficmanagers                     *trafficmanagers.TrafficmanagersClient
+	UserMetricsModels                   *usermetricsmodels.UserMetricsModelsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	endpointsClient, err := endpoints.NewEndpointsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Endpoints client: %+v", err)
-	}
-	configureFunc(endpointsClient.Client)
-
-	geographicHierarchiesClient, err := geographichierarchies.NewGeographicHierarchiesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building GeographicHierarchies client: %+v", err)
-	}
-	configureFunc(geographicHierarchiesClient.Client)
-
-	heatMapsClient, err := heatmaps.NewHeatMapsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building HeatMaps client: %+v", err)
-	}
-	configureFunc(heatMapsClient.Client)
-
 	profilesClient, err := profiles.NewProfilesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Profiles client: %+v", err)
 	}
 	configureFunc(profilesClient.Client)
 
-	realUserMetricsClient, err := realusermetrics.NewRealUserMetricsClientWithBaseURI(sdkApi)
+	trafficManagerGeographicHierarchiesClient, err := trafficmanagergeographichierarchies.NewTrafficManagerGeographicHierarchiesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building RealUserMetrics client: %+v", err)
+		return nil, fmt.Errorf("building TrafficManagerGeographicHierarchies client: %+v", err)
 	}
-	configureFunc(realUserMetricsClient.Client)
+	configureFunc(trafficManagerGeographicHierarchiesClient.Client)
+
+	trafficmanagersClient, err := trafficmanagers.NewTrafficmanagersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Trafficmanagers client: %+v", err)
+	}
+	configureFunc(trafficmanagersClient.Client)
+
+	userMetricsModelsClient, err := usermetricsmodels.NewUserMetricsModelsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building UserMetricsModels client: %+v", err)
+	}
+	configureFunc(userMetricsModelsClient.Client)
 
 	return &Client{
-		Endpoints:             endpointsClient,
-		GeographicHierarchies: geographicHierarchiesClient,
-		HeatMaps:              heatMapsClient,
-		Profiles:              profilesClient,
-		RealUserMetrics:       realUserMetricsClient,
+		Profiles:                            profilesClient,
+		TrafficManagerGeographicHierarchies: trafficManagerGeographicHierarchiesClient,
+		Trafficmanagers:                     trafficmanagersClient,
+		UserMetricsModels:                   userMetricsModelsClient,
 	}, nil
 }

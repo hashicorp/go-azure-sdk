@@ -19,7 +19,7 @@ type ObjectRecommendationProperties struct {
 	InitialRecommendedTime *string                                              `json:"initialRecommendedTime,omitempty"`
 	LastRecommendedTime    *string                                              `json:"lastRecommendedTime,omitempty"`
 	RecommendationReason   *string                                              `json:"recommendationReason,omitempty"`
-	RecommendationType     *RecommendationType                                  `json:"recommendationType,omitempty"`
+	RecommendationType     *RecommendationTypeEnum                              `json:"recommendationType,omitempty"`
 	TimesRecommended       *int64                                               `json:"timesRecommended,omitempty"`
 }
 

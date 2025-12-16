@@ -4,6 +4,6 @@ package storageaccounts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type StorageAccountCheckNameAvailabilityParameters struct {
-	Name string `json:"name"`
-	Type Type   `json:"type"`
+	Name string                                            `json:"name"`
+	Type StorageAccountCheckNameAvailabilityParametersType `json:"type"`
 }

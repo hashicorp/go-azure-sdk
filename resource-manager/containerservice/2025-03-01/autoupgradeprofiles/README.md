@@ -71,8 +71,8 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := autoupgradeprofiles.NewFleetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetName")
 
-// alternatively `client.ListByFleet(ctx, id)` can be used to do batched pagination
-items, err := client.ListByFleetComplete(ctx, id)
+// alternatively `client.ListByFleet(ctx, id, autoupgradeprofiles.DefaultListByFleetOperationOptions())` can be used to do batched pagination
+items, err := client.ListByFleetComplete(ctx, id, autoupgradeprofiles.DefaultListByFleetOperationOptions())
 if err != nil {
 	// handle the error
 }

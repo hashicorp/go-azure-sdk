@@ -26,7 +26,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := projectcapabilityhost.NewProjectCapabilityHostID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "projectName", "capabilityHostName")
 
-payload := projectcapabilityhost.CapabilityHostResource{
+payload := projectcapabilityhost.ProjectCapabilityHostResource{
 	// ...
 }
 
@@ -61,5 +61,22 @@ if err != nil {
 }
 if model := read.Model; model != nil {
 	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ProjectCapabilityHostClient.List`
+
+```go
+ctx := context.TODO()
+id := projectcapabilityhost.NewProjectID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "projectName")
+
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
 }
 ```

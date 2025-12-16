@@ -8,49 +8,49 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/addons"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/alerts"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/availableskus"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/bandwidthschedules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/containers"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/devicecapacitycheck"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/devicecapacityinfo"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/databoxedgedevices"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/databoxedges"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/devicecapacityinfos"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/devices"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/diagnosticremotesupportsettingsoperationgroup"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/diagnosticsettings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/jobs"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/monitoringconfig"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/nodes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/monitoringmetricconfigurations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/orders"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/roles"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/shares"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/storageaccountcredentials"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/storageaccounts"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/supportpackages"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/triggers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/updatesummaries"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/users"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	Addons                    *addons.AddonsClient
-	Alerts                    *alerts.AlertsClient
-	AvailableSkus             *availableskus.AvailableSkusClient
-	BandwidthSchedules        *bandwidthschedules.BandwidthSchedulesClient
-	Containers                *containers.ContainersClient
-	DeviceCapacityCheck       *devicecapacitycheck.DeviceCapacityCheckClient
-	DeviceCapacityInfo        *devicecapacityinfo.DeviceCapacityInfoClient
-	Devices                   *devices.DevicesClient
-	DiagnosticSettings        *diagnosticsettings.DiagnosticSettingsClient
-	Jobs                      *jobs.JobsClient
-	MonitoringConfig          *monitoringconfig.MonitoringConfigClient
-	Nodes                     *nodes.NodesClient
-	Orders                    *orders.OrdersClient
-	Roles                     *roles.RolesClient
-	Shares                    *shares.SharesClient
-	StorageAccountCredentials *storageaccountcredentials.StorageAccountCredentialsClient
-	StorageAccounts           *storageaccounts.StorageAccountsClient
-	SupportPackages           *supportpackages.SupportPackagesClient
-	Triggers                  *triggers.TriggersClient
-	Users                     *users.UsersClient
+	Addons                                        *addons.AddonsClient
+	Alerts                                        *alerts.AlertsClient
+	BandwidthSchedules                            *bandwidthschedules.BandwidthSchedulesClient
+	Containers                                    *containers.ContainersClient
+	DataBoxEdgeDevices                            *databoxedgedevices.DataBoxEdgeDevicesClient
+	Databoxedges                                  *databoxedges.DataboxedgesClient
+	DeviceCapacityInfos                           *devicecapacityinfos.DeviceCapacityInfosClient
+	Devices                                       *devices.DevicesClient
+	DiagnosticRemoteSupportSettingsOperationGroup *diagnosticremotesupportsettingsoperationgroup.DiagnosticRemoteSupportSettingsOperationGroupClient
+	DiagnosticSettings                            *diagnosticsettings.DiagnosticSettingsClient
+	Jobs                                          *jobs.JobsClient
+	MonitoringMetricConfigurations                *monitoringmetricconfigurations.MonitoringMetricConfigurationsClient
+	Orders                                        *orders.OrdersClient
+	Roles                                         *roles.RolesClient
+	Shares                                        *shares.SharesClient
+	StorageAccountCredentials                     *storageaccountcredentials.StorageAccountCredentialsClient
+	StorageAccounts                               *storageaccounts.StorageAccountsClient
+	Triggers                                      *triggers.TriggersClient
+	UpdateSummaries                               *updatesummaries.UpdateSummariesClient
+	Users                                         *users.UsersClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -66,12 +66,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(alertsClient.Client)
 
-	availableSkusClient, err := availableskus.NewAvailableSkusClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building AvailableSkus client: %+v", err)
-	}
-	configureFunc(availableSkusClient.Client)
-
 	bandwidthSchedulesClient, err := bandwidthschedules.NewBandwidthSchedulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BandwidthSchedules client: %+v", err)
@@ -84,23 +78,35 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(containersClient.Client)
 
-	deviceCapacityCheckClient, err := devicecapacitycheck.NewDeviceCapacityCheckClientWithBaseURI(sdkApi)
+	dataBoxEdgeDevicesClient, err := databoxedgedevices.NewDataBoxEdgeDevicesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building DeviceCapacityCheck client: %+v", err)
+		return nil, fmt.Errorf("building DataBoxEdgeDevices client: %+v", err)
 	}
-	configureFunc(deviceCapacityCheckClient.Client)
+	configureFunc(dataBoxEdgeDevicesClient.Client)
 
-	deviceCapacityInfoClient, err := devicecapacityinfo.NewDeviceCapacityInfoClientWithBaseURI(sdkApi)
+	databoxedgesClient, err := databoxedges.NewDataboxedgesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building DeviceCapacityInfo client: %+v", err)
+		return nil, fmt.Errorf("building Databoxedges client: %+v", err)
 	}
-	configureFunc(deviceCapacityInfoClient.Client)
+	configureFunc(databoxedgesClient.Client)
+
+	deviceCapacityInfosClient, err := devicecapacityinfos.NewDeviceCapacityInfosClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DeviceCapacityInfos client: %+v", err)
+	}
+	configureFunc(deviceCapacityInfosClient.Client)
 
 	devicesClient, err := devices.NewDevicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Devices client: %+v", err)
 	}
 	configureFunc(devicesClient.Client)
+
+	diagnosticRemoteSupportSettingsOperationGroupClient, err := diagnosticremotesupportsettingsoperationgroup.NewDiagnosticRemoteSupportSettingsOperationGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DiagnosticRemoteSupportSettingsOperationGroup client: %+v", err)
+	}
+	configureFunc(diagnosticRemoteSupportSettingsOperationGroupClient.Client)
 
 	diagnosticSettingsClient, err := diagnosticsettings.NewDiagnosticSettingsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -114,17 +120,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(jobsClient.Client)
 
-	monitoringConfigClient, err := monitoringconfig.NewMonitoringConfigClientWithBaseURI(sdkApi)
+	monitoringMetricConfigurationsClient, err := monitoringmetricconfigurations.NewMonitoringMetricConfigurationsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building MonitoringConfig client: %+v", err)
+		return nil, fmt.Errorf("building MonitoringMetricConfigurations client: %+v", err)
 	}
-	configureFunc(monitoringConfigClient.Client)
-
-	nodesClient, err := nodes.NewNodesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Nodes client: %+v", err)
-	}
-	configureFunc(nodesClient.Client)
+	configureFunc(monitoringMetricConfigurationsClient.Client)
 
 	ordersClient, err := orders.NewOrdersClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -156,17 +156,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(storageAccountsClient.Client)
 
-	supportPackagesClient, err := supportpackages.NewSupportPackagesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building SupportPackages client: %+v", err)
-	}
-	configureFunc(supportPackagesClient.Client)
-
 	triggersClient, err := triggers.NewTriggersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Triggers client: %+v", err)
 	}
 	configureFunc(triggersClient.Client)
+
+	updateSummariesClient, err := updatesummaries.NewUpdateSummariesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building UpdateSummaries client: %+v", err)
+	}
+	configureFunc(updateSummariesClient.Client)
 
 	usersClient, err := users.NewUsersClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -175,25 +175,25 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(usersClient.Client)
 
 	return &Client{
-		Addons:                    addonsClient,
-		Alerts:                    alertsClient,
-		AvailableSkus:             availableSkusClient,
-		BandwidthSchedules:        bandwidthSchedulesClient,
-		Containers:                containersClient,
-		DeviceCapacityCheck:       deviceCapacityCheckClient,
-		DeviceCapacityInfo:        deviceCapacityInfoClient,
-		Devices:                   devicesClient,
-		DiagnosticSettings:        diagnosticSettingsClient,
-		Jobs:                      jobsClient,
-		MonitoringConfig:          monitoringConfigClient,
-		Nodes:                     nodesClient,
-		Orders:                    ordersClient,
-		Roles:                     rolesClient,
-		Shares:                    sharesClient,
-		StorageAccountCredentials: storageAccountCredentialsClient,
-		StorageAccounts:           storageAccountsClient,
-		SupportPackages:           supportPackagesClient,
-		Triggers:                  triggersClient,
-		Users:                     usersClient,
+		Addons:              addonsClient,
+		Alerts:              alertsClient,
+		BandwidthSchedules:  bandwidthSchedulesClient,
+		Containers:          containersClient,
+		DataBoxEdgeDevices:  dataBoxEdgeDevicesClient,
+		Databoxedges:        databoxedgesClient,
+		DeviceCapacityInfos: deviceCapacityInfosClient,
+		Devices:             devicesClient,
+		DiagnosticRemoteSupportSettingsOperationGroup: diagnosticRemoteSupportSettingsOperationGroupClient,
+		DiagnosticSettings:                            diagnosticSettingsClient,
+		Jobs:                                          jobsClient,
+		MonitoringMetricConfigurations:                monitoringMetricConfigurationsClient,
+		Orders:                                        ordersClient,
+		Roles:                                         rolesClient,
+		Shares:                                        sharesClient,
+		StorageAccountCredentials:                     storageAccountCredentialsClient,
+		StorageAccounts:                               storageAccountsClient,
+		Triggers:                                      triggersClient,
+		UpdateSummaries:                               updateSummariesClient,
+		Users:                                         usersClient,
 	}, nil
 }

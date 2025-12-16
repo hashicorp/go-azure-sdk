@@ -8,7 +8,6 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
-import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-06-01/deletedaccounts"
 ```
 
@@ -33,22 +32,5 @@ if err != nil {
 }
 if model := read.Model; model != nil {
 	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `DeletedAccountsClient.List`
-
-```go
-ctx := context.TODO()
-id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
-
-// alternatively `client.List(ctx, id)` can be used to do batched pagination
-items, err := client.ListComplete(ctx, id)
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
 }
 ```
