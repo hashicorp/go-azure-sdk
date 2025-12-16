@@ -24,7 +24,7 @@ type ListRecommendationsCompleteResult struct {
 }
 
 type ListRecommendationsOperationOptions struct {
-	RecommendationType *RecommendationType
+	RecommendationType *RecommendationTypeParameterEnum
 }
 
 func DefaultListRecommendationsOperationOptions() ListRecommendationsOperationOptions {

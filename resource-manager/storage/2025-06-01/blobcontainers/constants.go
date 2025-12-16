@@ -276,44 +276,6 @@ func parseLeaseStatus(input string) (*LeaseStatus, error) {
 	return &out, nil
 }
 
-type ListContainersInclude string
-
-const (
-	ListContainersIncludeDeleted ListContainersInclude = "deleted"
-)
-
-func PossibleValuesForListContainersInclude() []string {
-	return []string{
-		string(ListContainersIncludeDeleted),
-	}
-}
-
-func (s *ListContainersInclude) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseListContainersInclude(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseListContainersInclude(input string) (*ListContainersInclude, error) {
-	vals := map[string]ListContainersInclude{
-		"deleted": ListContainersIncludeDeleted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ListContainersInclude(input)
-	return &out, nil
-}
-
 type MigrationState string
 
 const (

@@ -66,23 +66,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `StorageTaskAssignmentsClient.InstancesReportList`
-
-```go
-ctx := context.TODO()
-id := commonids.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountName")
-
-// alternatively `client.InstancesReportList(ctx, id, storagetaskassignments.DefaultInstancesReportListOperationOptions())` can be used to do batched pagination
-items, err := client.InstancesReportListComplete(ctx, id, storagetaskassignments.DefaultInstancesReportListOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
 ### Example Usage: `StorageTaskAssignmentsClient.List`
 
 ```go

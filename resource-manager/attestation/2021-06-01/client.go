@@ -7,16 +7,16 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2021-06-01/attestationproviders"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2021-06-01/attestations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2021-06-01/privateendpointconnections"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2021-06-01/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	AttestationProviders       *attestationproviders.AttestationProvidersClient
+	Attestations               *attestations.AttestationsClient
 	PrivateEndpointConnections *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources       *privatelinkresources.PrivateLinkResourcesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -26,21 +26,21 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(attestationProvidersClient.Client)
 
+	attestationsClient, err := attestations.NewAttestationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Attestations client: %+v", err)
+	}
+	configureFunc(attestationsClient.Client)
+
 	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
-	}
-	configureFunc(privateLinkResourcesClient.Client)
-
 	return &Client{
 		AttestationProviders:       attestationProvidersClient,
+		Attestations:               attestationsClient,
 		PrivateEndpointConnections: privateEndpointConnectionsClient,
-		PrivateLinkResources:       privateLinkResourcesClient,
 	}, nil
 }

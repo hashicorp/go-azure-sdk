@@ -22,11 +22,11 @@ type TuningOptionId struct {
 	SubscriptionId     string
 	ResourceGroupName  string
 	FlexibleServerName string
-	TuningOption       TuningOption
+	TuningOption       TuningOptionParameterEnum
 }
 
 // NewTuningOptionID returns a new TuningOptionId struct
-func NewTuningOptionID(subscriptionId string, resourceGroupName string, flexibleServerName string, tuningOption TuningOption) TuningOptionId {
+func NewTuningOptionID(subscriptionId string, resourceGroupName string, flexibleServerName string, tuningOption TuningOptionParameterEnum) TuningOptionId {
 	return TuningOptionId{
 		SubscriptionId:     subscriptionId,
 		ResourceGroupName:  resourceGroupName,
@@ -88,7 +88,7 @@ func (id *TuningOptionId) FromParseResult(input resourceids.ParseResult) error {
 			return resourceids.NewSegmentNotSpecifiedError(id, "tuningOption", input)
 		}
 
-		tuningOption, err := parseTuningOption(v)
+		tuningOption, err := parseTuningOptionParameterEnum(v)
 		if err != nil {
 			return fmt.Errorf("parsing %q: %+v", v, err)
 		}
@@ -131,7 +131,7 @@ func (id TuningOptionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticFlexibleServers", "flexibleServers", "flexibleServers"),
 		resourceids.UserSpecifiedSegment("flexibleServerName", "flexibleServerName"),
 		resourceids.StaticSegment("staticTuningOptions", "tuningOptions", "tuningOptions"),
-		resourceids.ConstantSegment("tuningOption", PossibleValuesForTuningOption(), "index"),
+		resourceids.ConstantSegment("tuningOption", PossibleValuesForTuningOptionParameterEnum(), "index"),
 	}
 }
 

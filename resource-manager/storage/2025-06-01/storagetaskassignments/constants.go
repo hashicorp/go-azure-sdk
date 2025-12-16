@@ -47,65 +47,6 @@ func parseIntervalUnit(input string) (*IntervalUnit, error) {
 	return &out, nil
 }
 
-type ProvisioningState string
-
-const (
-	ProvisioningStateAccepted                       ProvisioningState = "Accepted"
-	ProvisioningStateCanceled                       ProvisioningState = "Canceled"
-	ProvisioningStateCreating                       ProvisioningState = "Creating"
-	ProvisioningStateDeleting                       ProvisioningState = "Deleting"
-	ProvisioningStateFailed                         ProvisioningState = "Failed"
-	ProvisioningStateSucceeded                      ProvisioningState = "Succeeded"
-	ProvisioningStateValidateSubscriptionQuotaBegin ProvisioningState = "ValidateSubscriptionQuotaBegin"
-	ProvisioningStateValidateSubscriptionQuotaEnd   ProvisioningState = "ValidateSubscriptionQuotaEnd"
-)
-
-func PossibleValuesForProvisioningState() []string {
-	return []string{
-		string(ProvisioningStateAccepted),
-		string(ProvisioningStateCanceled),
-		string(ProvisioningStateCreating),
-		string(ProvisioningStateDeleting),
-		string(ProvisioningStateFailed),
-		string(ProvisioningStateSucceeded),
-		string(ProvisioningStateValidateSubscriptionQuotaBegin),
-		string(ProvisioningStateValidateSubscriptionQuotaEnd),
-	}
-}
-
-func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseProvisioningState(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":                       ProvisioningStateAccepted,
-		"canceled":                       ProvisioningStateCanceled,
-		"creating":                       ProvisioningStateCreating,
-		"deleting":                       ProvisioningStateDeleting,
-		"failed":                         ProvisioningStateFailed,
-		"succeeded":                      ProvisioningStateSucceeded,
-		"validatesubscriptionquotabegin": ProvisioningStateValidateSubscriptionQuotaBegin,
-		"validatesubscriptionquotaend":   ProvisioningStateValidateSubscriptionQuotaEnd,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type RunResult string
 
 const (
@@ -185,6 +126,65 @@ func parseRunStatusEnum(input string) (*RunStatusEnum, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := RunStatusEnum(input)
+	return &out, nil
+}
+
+type StorageTaskAssignmentProvisioningState string
+
+const (
+	StorageTaskAssignmentProvisioningStateAccepted                       StorageTaskAssignmentProvisioningState = "Accepted"
+	StorageTaskAssignmentProvisioningStateCanceled                       StorageTaskAssignmentProvisioningState = "Canceled"
+	StorageTaskAssignmentProvisioningStateCreating                       StorageTaskAssignmentProvisioningState = "Creating"
+	StorageTaskAssignmentProvisioningStateDeleting                       StorageTaskAssignmentProvisioningState = "Deleting"
+	StorageTaskAssignmentProvisioningStateFailed                         StorageTaskAssignmentProvisioningState = "Failed"
+	StorageTaskAssignmentProvisioningStateSucceeded                      StorageTaskAssignmentProvisioningState = "Succeeded"
+	StorageTaskAssignmentProvisioningStateValidateSubscriptionQuotaBegin StorageTaskAssignmentProvisioningState = "ValidateSubscriptionQuotaBegin"
+	StorageTaskAssignmentProvisioningStateValidateSubscriptionQuotaEnd   StorageTaskAssignmentProvisioningState = "ValidateSubscriptionQuotaEnd"
+)
+
+func PossibleValuesForStorageTaskAssignmentProvisioningState() []string {
+	return []string{
+		string(StorageTaskAssignmentProvisioningStateAccepted),
+		string(StorageTaskAssignmentProvisioningStateCanceled),
+		string(StorageTaskAssignmentProvisioningStateCreating),
+		string(StorageTaskAssignmentProvisioningStateDeleting),
+		string(StorageTaskAssignmentProvisioningStateFailed),
+		string(StorageTaskAssignmentProvisioningStateSucceeded),
+		string(StorageTaskAssignmentProvisioningStateValidateSubscriptionQuotaBegin),
+		string(StorageTaskAssignmentProvisioningStateValidateSubscriptionQuotaEnd),
+	}
+}
+
+func (s *StorageTaskAssignmentProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStorageTaskAssignmentProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseStorageTaskAssignmentProvisioningState(input string) (*StorageTaskAssignmentProvisioningState, error) {
+	vals := map[string]StorageTaskAssignmentProvisioningState{
+		"accepted":                       StorageTaskAssignmentProvisioningStateAccepted,
+		"canceled":                       StorageTaskAssignmentProvisioningStateCanceled,
+		"creating":                       StorageTaskAssignmentProvisioningStateCreating,
+		"deleting":                       StorageTaskAssignmentProvisioningStateDeleting,
+		"failed":                         StorageTaskAssignmentProvisioningStateFailed,
+		"succeeded":                      StorageTaskAssignmentProvisioningStateSucceeded,
+		"validatesubscriptionquotabegin": StorageTaskAssignmentProvisioningStateValidateSubscriptionQuotaBegin,
+		"validatesubscriptionquotaend":   StorageTaskAssignmentProvisioningStateValidateSubscriptionQuotaEnd,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StorageTaskAssignmentProvisioningState(input)
 	return &out, nil
 }
 

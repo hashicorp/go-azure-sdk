@@ -6,33 +6,27 @@ package v2023_04_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2023-04-01/checknameavailability"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2023-04-01/entities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2023-04-01/hierarchysettingsoperationgroup"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2023-04-01/managementgroups"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2023-04-01/tenantbackfill"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2023-04-01/managements"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2023-04-01/subscriptionundermanagementgroups"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	CheckNameAvailability *checknameavailability.CheckNameAvailabilityClient
-	Entities              *entities.EntitiesClient
-	ManagementGroups      *managementgroups.ManagementGroupsClient
-	TenantBackfill        *tenantbackfill.TenantBackfillClient
+	HierarchySettingsOperationGroup   *hierarchysettingsoperationgroup.HierarchySettingsOperationGroupClient
+	ManagementGroups                  *managementgroups.ManagementGroupsClient
+	Managements                       *managements.ManagementsClient
+	SubscriptionUnderManagementGroups *subscriptionundermanagementgroups.SubscriptionUnderManagementGroupsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(sdkApi)
+	hierarchySettingsOperationGroupClient, err := hierarchysettingsoperationgroup.NewHierarchySettingsOperationGroupClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building CheckNameAvailability client: %+v", err)
+		return nil, fmt.Errorf("building HierarchySettingsOperationGroup client: %+v", err)
 	}
-	configureFunc(checkNameAvailabilityClient.Client)
-
-	entitiesClient, err := entities.NewEntitiesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Entities client: %+v", err)
-	}
-	configureFunc(entitiesClient.Client)
+	configureFunc(hierarchySettingsOperationGroupClient.Client)
 
 	managementGroupsClient, err := managementgroups.NewManagementGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -40,16 +34,22 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(managementGroupsClient.Client)
 
-	tenantBackfillClient, err := tenantbackfill.NewTenantBackfillClientWithBaseURI(sdkApi)
+	managementsClient, err := managements.NewManagementsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building TenantBackfill client: %+v", err)
+		return nil, fmt.Errorf("building Managements client: %+v", err)
 	}
-	configureFunc(tenantBackfillClient.Client)
+	configureFunc(managementsClient.Client)
+
+	subscriptionUnderManagementGroupsClient, err := subscriptionundermanagementgroups.NewSubscriptionUnderManagementGroupsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SubscriptionUnderManagementGroups client: %+v", err)
+	}
+	configureFunc(subscriptionUnderManagementGroupsClient.Client)
 
 	return &Client{
-		CheckNameAvailability: checkNameAvailabilityClient,
-		Entities:              entitiesClient,
-		ManagementGroups:      managementGroupsClient,
-		TenantBackfill:        tenantBackfillClient,
+		HierarchySettingsOperationGroup:   hierarchySettingsOperationGroupClient,
+		ManagementGroups:                  managementGroupsClient,
+		Managements:                       managementsClient,
+		SubscriptionUnderManagementGroups: subscriptionUnderManagementGroupsClient,
 	}, nil
 }

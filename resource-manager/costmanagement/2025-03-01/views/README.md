@@ -8,7 +8,6 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
-import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/views"
 ```
 
@@ -42,27 +41,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ViewsClient.CreateOrUpdateByScope`
-
-```go
-ctx := context.TODO()
-id := views.NewScopedViewID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "viewName")
-
-payload := views.View{
-	// ...
-}
-
-
-read, err := client.CreateOrUpdateByScope(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `ViewsClient.Delete`
 
 ```go
@@ -70,22 +48,6 @@ ctx := context.TODO()
 id := views.NewViewID("viewName")
 
 read, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ViewsClient.DeleteByScope`
-
-```go
-ctx := context.TODO()
-id := views.NewScopedViewID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "viewName")
-
-read, err := client.DeleteByScope(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -111,22 +73,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ViewsClient.GetByScope`
-
-```go
-ctx := context.TODO()
-id := views.NewScopedViewID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "viewName")
-
-read, err := client.GetByScope(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `ViewsClient.List`
 
 ```go
@@ -135,23 +81,6 @@ ctx := context.TODO()
 
 // alternatively `client.List(ctx)` can be used to do batched pagination
 items, err := client.ListComplete(ctx)
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `ViewsClient.ListByScope`
-
-```go
-ctx := context.TODO()
-id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
-
-// alternatively `client.ListByScope(ctx, id)` can be used to do batched pagination
-items, err := client.ListByScopeComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
