@@ -5,5 +5,5 @@ package dataconnectors
 
 type AADDataConnectorProperties struct {
 	DataTypes *AlertsDataTypeOfDataConnector `json:"dataTypes,omitempty"`
-	TenantId  *string                        `json:"tenantId,omitempty"`
+	TenantId  string                         `json:"tenantId"`
 }

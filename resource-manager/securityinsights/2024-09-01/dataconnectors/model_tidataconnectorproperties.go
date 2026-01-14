@@ -10,9 +10,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TIDataConnectorProperties struct {
-	DataTypes         *TIDataConnectorDataTypes `json:"dataTypes,omitempty"`
-	TenantId          *string                   `json:"tenantId,omitempty"`
-	TipLookbackPeriod *string                   `json:"tipLookbackPeriod,omitempty"`
+	DataTypes         TIDataConnectorDataTypes `json:"dataTypes"`
+	TenantId          string                   `json:"tenantId"`
+	TipLookbackPeriod *string                  `json:"tipLookbackPeriod,omitempty"`
 }
 
 func (o *TIDataConnectorProperties) GetTipLookbackPeriodAsTime() (*time.Time, error) {

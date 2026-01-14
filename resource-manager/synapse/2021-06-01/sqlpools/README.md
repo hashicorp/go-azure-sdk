@@ -106,43 +106,6 @@ if err := client.ResumeThenPoll(ctx, id); err != nil {
 ```
 
 
-### Example Usage: `SqlPoolsClient.SqlPoolMetadataSyncConfigsCreate`
-
-```go
-ctx := context.TODO()
-id := sqlpools.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName")
-
-payload := sqlpools.MetadataSyncConfig{
-	// ...
-}
-
-
-read, err := client.SqlPoolMetadataSyncConfigsCreate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `SqlPoolsClient.SqlPoolMetadataSyncConfigsGet`
-
-```go
-ctx := context.TODO()
-id := sqlpools.NewSqlPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceName", "sqlPoolName")
-
-read, err := client.SqlPoolMetadataSyncConfigsGet(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
 ### Example Usage: `SqlPoolsClient.Update`
 
 ```go

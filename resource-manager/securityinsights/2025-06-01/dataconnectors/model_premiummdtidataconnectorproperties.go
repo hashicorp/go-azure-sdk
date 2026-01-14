@@ -13,7 +13,7 @@ type PremiumMdtiDataConnectorProperties struct {
 	DataTypes           PremiumMdtiDataConnectorDataTypes `json:"dataTypes"`
 	LookbackPeriod      string                            `json:"lookbackPeriod"`
 	RequiredSKUsPresent *bool                             `json:"requiredSKUsPresent,omitempty"`
-	TenantId            *string                           `json:"tenantId,omitempty"`
+	TenantId            string                            `json:"tenantId"`
 }
 
 func (o *PremiumMdtiDataConnectorProperties) GetLookbackPeriodAsTime() (*time.Time, error) {

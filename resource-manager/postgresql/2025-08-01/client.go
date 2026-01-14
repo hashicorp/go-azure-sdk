@@ -6,111 +6,71 @@ package v2025_08_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/administratorsmicrosoftentra"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/advancedthreatprotectionsettings"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/backupsautomaticandondemand"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/backupslongtermretention"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/capabilitiesbylocation"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/capabilitiesbyserver"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/capturedlogs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/administratormicrosoftentras"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/advancedthreatprotectionsettingsmodels"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/backupautomaticandondemands"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/backupslongtermretentionoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/configurations"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/customoperation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/databases"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/firewallrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/migrations"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/nameavailability"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/post"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/privatednszonesuffix"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/openapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/privateendpointconnections"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/privatelinkresources"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/quotausagesforflexibleservers"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/replicas"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/servers"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/tuningoptions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/tuningoptionsoperationgroup"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2025-08-01/virtualendpoints"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	AdministratorsMicrosoftEntra     *administratorsmicrosoftentra.AdministratorsMicrosoftEntraClient
-	AdvancedThreatProtectionSettings *advancedthreatprotectionsettings.AdvancedThreatProtectionSettingsClient
-	BackupsAutomaticAndOnDemand      *backupsautomaticandondemand.BackupsAutomaticAndOnDemandClient
-	BackupsLongTermRetention         *backupslongtermretention.BackupsLongTermRetentionClient
-	CapabilitiesByLocation           *capabilitiesbylocation.CapabilitiesByLocationClient
-	CapabilitiesByServer             *capabilitiesbyserver.CapabilitiesByServerClient
-	CapturedLogs                     *capturedlogs.CapturedLogsClient
-	Configurations                   *configurations.ConfigurationsClient
-	CustomOperation                  *customoperation.CustomOperationClient
-	Databases                        *databases.DatabasesClient
-	FirewallRules                    *firewallrules.FirewallRulesClient
-	Migrations                       *migrations.MigrationsClient
-	NameAvailability                 *nameavailability.NameAvailabilityClient
-	POST                             *post.POSTClient
-	PrivateDnsZoneSuffix             *privatednszonesuffix.PrivateDnsZoneSuffixClient
-	PrivateEndpointConnections       *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources             *privatelinkresources.PrivateLinkResourcesClient
-	QuotaUsagesForFlexibleServers    *quotausagesforflexibleservers.QuotaUsagesForFlexibleServersClient
-	Replicas                         *replicas.ReplicasClient
-	Servers                          *servers.ServersClient
-	TuningOptions                    *tuningoptions.TuningOptionsClient
-	VirtualEndpoints                 *virtualendpoints.VirtualEndpointsClient
+	AdministratorMicrosoftEntras           *administratormicrosoftentras.AdministratorMicrosoftEntrasClient
+	AdvancedThreatProtectionSettingsModels *advancedthreatprotectionsettingsmodels.AdvancedThreatProtectionSettingsModelsClient
+	BackupAutomaticAndOnDemands            *backupautomaticandondemands.BackupAutomaticAndOnDemandsClient
+	BackupsLongTermRetentionOperations     *backupslongtermretentionoperations.BackupsLongTermRetentionOperationsClient
+	Configurations                         *configurations.ConfigurationsClient
+	Databases                              *databases.DatabasesClient
+	FirewallRules                          *firewallrules.FirewallRulesClient
+	Migrations                             *migrations.MigrationsClient
+	Openapis                               *openapis.OpenapisClient
+	PrivateEndpointConnections             *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources                   *privatelinkresources.PrivateLinkResourcesClient
+	Servers                                *servers.ServersClient
+	TuningOptionsOperationGroup            *tuningoptionsoperationgroup.TuningOptionsOperationGroupClient
+	VirtualEndpoints                       *virtualendpoints.VirtualEndpointsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	administratorsMicrosoftEntraClient, err := administratorsmicrosoftentra.NewAdministratorsMicrosoftEntraClientWithBaseURI(sdkApi)
+	administratorMicrosoftEntrasClient, err := administratormicrosoftentras.NewAdministratorMicrosoftEntrasClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building AdministratorsMicrosoftEntra client: %+v", err)
+		return nil, fmt.Errorf("building AdministratorMicrosoftEntras client: %+v", err)
 	}
-	configureFunc(administratorsMicrosoftEntraClient.Client)
+	configureFunc(administratorMicrosoftEntrasClient.Client)
 
-	advancedThreatProtectionSettingsClient, err := advancedthreatprotectionsettings.NewAdvancedThreatProtectionSettingsClientWithBaseURI(sdkApi)
+	advancedThreatProtectionSettingsModelsClient, err := advancedthreatprotectionsettingsmodels.NewAdvancedThreatProtectionSettingsModelsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building AdvancedThreatProtectionSettings client: %+v", err)
+		return nil, fmt.Errorf("building AdvancedThreatProtectionSettingsModels client: %+v", err)
 	}
-	configureFunc(advancedThreatProtectionSettingsClient.Client)
+	configureFunc(advancedThreatProtectionSettingsModelsClient.Client)
 
-	backupsAutomaticAndOnDemandClient, err := backupsautomaticandondemand.NewBackupsAutomaticAndOnDemandClientWithBaseURI(sdkApi)
+	backupAutomaticAndOnDemandsClient, err := backupautomaticandondemands.NewBackupAutomaticAndOnDemandsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building BackupsAutomaticAndOnDemand client: %+v", err)
+		return nil, fmt.Errorf("building BackupAutomaticAndOnDemands client: %+v", err)
 	}
-	configureFunc(backupsAutomaticAndOnDemandClient.Client)
+	configureFunc(backupAutomaticAndOnDemandsClient.Client)
 
-	backupsLongTermRetentionClient, err := backupslongtermretention.NewBackupsLongTermRetentionClientWithBaseURI(sdkApi)
+	backupsLongTermRetentionOperationsClient, err := backupslongtermretentionoperations.NewBackupsLongTermRetentionOperationsClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building BackupsLongTermRetention client: %+v", err)
+		return nil, fmt.Errorf("building BackupsLongTermRetentionOperations client: %+v", err)
 	}
-	configureFunc(backupsLongTermRetentionClient.Client)
-
-	capabilitiesByLocationClient, err := capabilitiesbylocation.NewCapabilitiesByLocationClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CapabilitiesByLocation client: %+v", err)
-	}
-	configureFunc(capabilitiesByLocationClient.Client)
-
-	capabilitiesByServerClient, err := capabilitiesbyserver.NewCapabilitiesByServerClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CapabilitiesByServer client: %+v", err)
-	}
-	configureFunc(capabilitiesByServerClient.Client)
-
-	capturedLogsClient, err := capturedlogs.NewCapturedLogsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CapturedLogs client: %+v", err)
-	}
-	configureFunc(capturedLogsClient.Client)
+	configureFunc(backupsLongTermRetentionOperationsClient.Client)
 
 	configurationsClient, err := configurations.NewConfigurationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Configurations client: %+v", err)
 	}
 	configureFunc(configurationsClient.Client)
-
-	customOperationClient, err := customoperation.NewCustomOperationClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CustomOperation client: %+v", err)
-	}
-	configureFunc(customOperationClient.Client)
 
 	databasesClient, err := databases.NewDatabasesClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -130,23 +90,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(migrationsClient.Client)
 
-	nameAvailabilityClient, err := nameavailability.NewNameAvailabilityClientWithBaseURI(sdkApi)
+	openapisClient, err := openapis.NewOpenapisClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building NameAvailability client: %+v", err)
+		return nil, fmt.Errorf("building Openapis client: %+v", err)
 	}
-	configureFunc(nameAvailabilityClient.Client)
-
-	pOSTClient, err := post.NewPOSTClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building POST client: %+v", err)
-	}
-	configureFunc(pOSTClient.Client)
-
-	privateDnsZoneSuffixClient, err := privatednszonesuffix.NewPrivateDnsZoneSuffixClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building PrivateDnsZoneSuffix client: %+v", err)
-	}
-	configureFunc(privateDnsZoneSuffixClient.Client)
+	configureFunc(openapisClient.Client)
 
 	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -160,29 +108,17 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	quotaUsagesForFlexibleServersClient, err := quotausagesforflexibleservers.NewQuotaUsagesForFlexibleServersClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building QuotaUsagesForFlexibleServers client: %+v", err)
-	}
-	configureFunc(quotaUsagesForFlexibleServersClient.Client)
-
-	replicasClient, err := replicas.NewReplicasClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Replicas client: %+v", err)
-	}
-	configureFunc(replicasClient.Client)
-
 	serversClient, err := servers.NewServersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Servers client: %+v", err)
 	}
 	configureFunc(serversClient.Client)
 
-	tuningOptionsClient, err := tuningoptions.NewTuningOptionsClientWithBaseURI(sdkApi)
+	tuningOptionsOperationGroupClient, err := tuningoptionsoperationgroup.NewTuningOptionsOperationGroupClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building TuningOptions client: %+v", err)
+		return nil, fmt.Errorf("building TuningOptionsOperationGroup client: %+v", err)
 	}
-	configureFunc(tuningOptionsClient.Client)
+	configureFunc(tuningOptionsOperationGroupClient.Client)
 
 	virtualEndpointsClient, err := virtualendpoints.NewVirtualEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -191,27 +127,19 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(virtualEndpointsClient.Client)
 
 	return &Client{
-		AdministratorsMicrosoftEntra:     administratorsMicrosoftEntraClient,
-		AdvancedThreatProtectionSettings: advancedThreatProtectionSettingsClient,
-		BackupsAutomaticAndOnDemand:      backupsAutomaticAndOnDemandClient,
-		BackupsLongTermRetention:         backupsLongTermRetentionClient,
-		CapabilitiesByLocation:           capabilitiesByLocationClient,
-		CapabilitiesByServer:             capabilitiesByServerClient,
-		CapturedLogs:                     capturedLogsClient,
-		Configurations:                   configurationsClient,
-		CustomOperation:                  customOperationClient,
-		Databases:                        databasesClient,
-		FirewallRules:                    firewallRulesClient,
-		Migrations:                       migrationsClient,
-		NameAvailability:                 nameAvailabilityClient,
-		POST:                             pOSTClient,
-		PrivateDnsZoneSuffix:             privateDnsZoneSuffixClient,
-		PrivateEndpointConnections:       privateEndpointConnectionsClient,
-		PrivateLinkResources:             privateLinkResourcesClient,
-		QuotaUsagesForFlexibleServers:    quotaUsagesForFlexibleServersClient,
-		Replicas:                         replicasClient,
-		Servers:                          serversClient,
-		TuningOptions:                    tuningOptionsClient,
-		VirtualEndpoints:                 virtualEndpointsClient,
+		AdministratorMicrosoftEntras:           administratorMicrosoftEntrasClient,
+		AdvancedThreatProtectionSettingsModels: advancedThreatProtectionSettingsModelsClient,
+		BackupAutomaticAndOnDemands:            backupAutomaticAndOnDemandsClient,
+		BackupsLongTermRetentionOperations:     backupsLongTermRetentionOperationsClient,
+		Configurations:                         configurationsClient,
+		Databases:                              databasesClient,
+		FirewallRules:                          firewallRulesClient,
+		Migrations:                             migrationsClient,
+		Openapis:                               openapisClient,
+		PrivateEndpointConnections:             privateEndpointConnectionsClient,
+		PrivateLinkResources:                   privateLinkResourcesClient,
+		Servers:                                serversClient,
+		TuningOptionsOperationGroup:            tuningOptionsOperationGroupClient,
+		VirtualEndpoints:                       virtualEndpointsClient,
 	}, nil
 }
