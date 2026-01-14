@@ -1,0 +1,120 @@
+
+## `github.com/hashicorp/go-azure-sdk/resource-manager/management/2023-04-01/managementgroups` Documentation
+
+The `managementgroups` SDK allows for interaction with Azure Resource Manager `management` (API Version `2023-04-01`).
+
+This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
+
+### Import Path
+
+```go
+import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+import "github.com/hashicorp/go-azure-sdk/resource-manager/management/2023-04-01/managementgroups"
+```
+
+
+### Client Initialization
+
+```go
+client := managementgroups.NewManagementGroupsClientWithBaseURI("https://management.azure.com")
+client.Client.Authorizer = authorizer
+```
+
+
+### Example Usage: `ManagementGroupsClient.CreateOrUpdate`
+
+```go
+ctx := context.TODO()
+id := commonids.NewManagementGroupID("groupId")
+
+payload := managementgroups.CreateManagementGroupRequest{
+	// ...
+}
+
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload, managementgroups.DefaultCreateOrUpdateOperationOptions()); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `ManagementGroupsClient.Delete`
+
+```go
+ctx := context.TODO()
+id := commonids.NewManagementGroupID("groupId")
+
+if err := client.DeleteThenPoll(ctx, id, managementgroups.DefaultDeleteOperationOptions()); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `ManagementGroupsClient.Get`
+
+```go
+ctx := context.TODO()
+id := commonids.NewManagementGroupID("groupId")
+
+read, err := client.Get(ctx, id, managementgroups.DefaultGetOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ManagementGroupsClient.GetDescendants`
+
+```go
+ctx := context.TODO()
+id := commonids.NewManagementGroupID("groupId")
+
+// alternatively `client.GetDescendants(ctx, id, managementgroups.DefaultGetDescendantsOperationOptions())` can be used to do batched pagination
+items, err := client.GetDescendantsComplete(ctx, id, managementgroups.DefaultGetDescendantsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `ManagementGroupsClient.HierarchySettingsList`
+
+```go
+ctx := context.TODO()
+id := commonids.NewManagementGroupID("groupId")
+
+read, err := client.HierarchySettingsList(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ManagementGroupsClient.Update`
+
+```go
+ctx := context.TODO()
+id := commonids.NewManagementGroupID("groupId")
+
+payload := managementgroups.PatchManagementGroupRequest{
+	// ...
+}
+
+
+read, err := client.Update(ctx, id, payload, managementgroups.DefaultUpdateOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```

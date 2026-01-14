@@ -5,5 +5,5 @@ package dataconnectors
 
 type MSTIDataConnectorProperties struct {
 	DataTypes MSTIDataConnectorDataTypes `json:"dataTypes"`
-	TenantId  *string                    `json:"tenantId,omitempty"`
+	TenantId  string                     `json:"tenantId"`
 }
