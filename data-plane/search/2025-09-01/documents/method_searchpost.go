@@ -4,36 +4,22 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"net/url"
 
-	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
-	
 )
-
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-
-
-
 type SearchPostOperationResponse struct {
-	
 	HttpResponse *http.Response
-	OData *odata.OData
-	Model *SearchDocumentsResult
+	OData        *odata.OData
+	Model        *SearchDocumentsResult
 }
 
-
-
-
 type SearchPostOperationOptions struct {
-XMsClientRequestId *string
+	XMsClientRequestId *string
 }
 
 func DefaultSearchPostOperationOptions() SearchPostOperationOptions {
@@ -42,9 +28,9 @@ func DefaultSearchPostOperationOptions() SearchPostOperationOptions {
 
 func (o SearchPostOperationOptions) ToHeaders() *client.Headers {
 	out := client.Headers{}
-if o.XMsClientRequestId != nil {
-	out.Append("x-ms-client-request-id", fmt.Sprintf("%v", *o.XMsClientRequestId))
-}
+	if o.XMsClientRequestId != nil {
+		out.Append("x-ms-client-request-id", fmt.Sprintf("%v", *o.XMsClientRequestId))
+	}
 	return &out
 }
 
@@ -60,32 +46,27 @@ func (o SearchPostOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-
-
 // SearchPost ...
-func (c DocumentsClient) SearchPost(ctx context.Context , input SearchRequest, options SearchPostOperationOptions) (result SearchPostOperationResponse, err error) {
+func (c DocumentsClient) SearchPost(ctx context.Context, input SearchRequest, options SearchPostOperationOptions) (result SearchPostOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
-			206 // TODO: document me,
 			http.StatusOK,
-},
-		HttpMethod: http.MethodPost,
+			http.StatusPartialContent,
+		},
+		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path: "/docs/Search.Post.Search",
+		Path:          "/docs/Search.Post.Search",
 	}
-
 
 	req, err := c.Client.NewRequest(ctx, opts)
 	if err != nil {
 		return
 	}
 
-	
 	if err = req.Marshal(input); err != nil {
 		return
 	}
-
 
 	var resp *client.Response
 	resp, err = req.Execute(ctx)
@@ -97,14 +78,11 @@ func (c DocumentsClient) SearchPost(ctx context.Context , input SearchRequest, o
 		return
 	}
 
-		var model SearchDocumentsResult
+	var model SearchDocumentsResult
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 
-
 	return
 }
-
-
