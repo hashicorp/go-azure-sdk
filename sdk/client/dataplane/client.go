@@ -21,12 +21,6 @@ type Client struct {
 	// as we intentionally split out multiple API Versions into different clients, rather than using composite API
 	// Versions/packages which can cause confusion about which version is being used.
 	ApiVersion string
-
-	// Endpoint is the https Base URL with which the API must communicate - This usually takes the form https://[RESOURCENAME].[AZURE-SERVICE-SUBDOMAIN]/
-	Endpoint string
-
-	// Some APIs expose a Subdomain
-	AdditionalEndpoint string
 }
 
 func NewClient(endpoint string, additionalEndpoint string, serviceName, apiVersion string) (*Client, error) {
@@ -34,17 +28,18 @@ func NewClient(endpoint string, additionalEndpoint string, serviceName, apiVersi
 
 	baseClient.AuthorizeRequest = AuthorizeDataPlaneRequest
 
+	baseClient.BaseUri = endpoint
+
 	return &Client{
-		Client:             baseClient,
-		ApiVersion:         apiVersion,
-		Endpoint:           endpoint,
-		AdditionalEndpoint: additionalEndpoint,
+		Client:     baseClient,
+		ApiVersion: apiVersion,
 	}, nil
 }
 
 func NewDataPlaneClient(baseUri string, serviceName, apiVersion string) *Client {
 	client := &Client{
-		Client: client.NewClient(baseUri, serviceName, apiVersion),
+		ApiVersion: apiVersion,
+		Client:     client.NewClient(baseUri, serviceName, apiVersion),
 	}
 
 	return client
