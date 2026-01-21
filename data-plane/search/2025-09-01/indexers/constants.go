@@ -6,29 +6,24 @@ import (
 	"strings"
 )
 
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
-
-
 
 type BlobIndexerDataToExtract string
 
 const (
-	BlobIndexerDataToExtractAllMetadata BlobIndexerDataToExtract = "allMetadata"
+	BlobIndexerDataToExtractAllMetadata        BlobIndexerDataToExtract = "allMetadata"
 	BlobIndexerDataToExtractContentAndMetadata BlobIndexerDataToExtract = "contentAndMetadata"
-	BlobIndexerDataToExtractStorageMetadata BlobIndexerDataToExtract = "storageMetadata"
+	BlobIndexerDataToExtractStorageMetadata    BlobIndexerDataToExtract = "storageMetadata"
 )
-
 
 func PossibleValuesForBlobIndexerDataToExtract() []string {
 	return []string{
 		string(BlobIndexerDataToExtractAllMetadata),
-string(BlobIndexerDataToExtractContentAndMetadata),
-string(BlobIndexerDataToExtractStorageMetadata),
+		string(BlobIndexerDataToExtractContentAndMetadata),
+		string(BlobIndexerDataToExtractStorageMetadata),
 	}
 }
-
 
 func (s *BlobIndexerDataToExtract) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -43,12 +38,11 @@ func (s *BlobIndexerDataToExtract) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parseBlobIndexerDataToExtract(input string) (*BlobIndexerDataToExtract, error) {
 	vals := map[string]BlobIndexerDataToExtract{
-		"allmetadata": BlobIndexerDataToExtractAllMetadata,
-"contentandmetadata": BlobIndexerDataToExtractContentAndMetadata,
-"storagemetadata": BlobIndexerDataToExtractStorageMetadata,
+		"allmetadata":        BlobIndexerDataToExtractAllMetadata,
+		"contentandmetadata": BlobIndexerDataToExtractContentAndMetadata,
+		"storagemetadata":    BlobIndexerDataToExtractStorageMetadata,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -59,24 +53,21 @@ func parseBlobIndexerDataToExtract(input string) (*BlobIndexerDataToExtract, err
 	return &out, nil
 }
 
-
 type BlobIndexerImageAction string
 
 const (
 	BlobIndexerImageActionGenerateNormalizedImagePerPage BlobIndexerImageAction = "generateNormalizedImagePerPage"
-	BlobIndexerImageActionGenerateNormalizedImages BlobIndexerImageAction = "generateNormalizedImages"
-	BlobIndexerImageActionNone BlobIndexerImageAction = "none"
+	BlobIndexerImageActionGenerateNormalizedImages       BlobIndexerImageAction = "generateNormalizedImages"
+	BlobIndexerImageActionNone                           BlobIndexerImageAction = "none"
 )
-
 
 func PossibleValuesForBlobIndexerImageAction() []string {
 	return []string{
 		string(BlobIndexerImageActionGenerateNormalizedImagePerPage),
-string(BlobIndexerImageActionGenerateNormalizedImages),
-string(BlobIndexerImageActionNone),
+		string(BlobIndexerImageActionGenerateNormalizedImages),
+		string(BlobIndexerImageActionNone),
 	}
 }
-
 
 func (s *BlobIndexerImageAction) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -91,12 +82,11 @@ func (s *BlobIndexerImageAction) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parseBlobIndexerImageAction(input string) (*BlobIndexerImageAction, error) {
 	vals := map[string]BlobIndexerImageAction{
 		"generatenormalizedimageperpage": BlobIndexerImageActionGenerateNormalizedImagePerPage,
-"generatenormalizedimages": BlobIndexerImageActionGenerateNormalizedImages,
-"none": BlobIndexerImageActionNone,
+		"generatenormalizedimages":       BlobIndexerImageActionGenerateNormalizedImages,
+		"none":                           BlobIndexerImageActionNone,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -107,22 +97,19 @@ func parseBlobIndexerImageAction(input string) (*BlobIndexerImageAction, error) 
 	return &out, nil
 }
 
-
 type BlobIndexerPDFTextRotationAlgorithm string
 
 const (
 	BlobIndexerPDFTextRotationAlgorithmDetectAngles BlobIndexerPDFTextRotationAlgorithm = "detectAngles"
-	BlobIndexerPDFTextRotationAlgorithmNone BlobIndexerPDFTextRotationAlgorithm = "none"
+	BlobIndexerPDFTextRotationAlgorithmNone         BlobIndexerPDFTextRotationAlgorithm = "none"
 )
-
 
 func PossibleValuesForBlobIndexerPDFTextRotationAlgorithm() []string {
 	return []string{
 		string(BlobIndexerPDFTextRotationAlgorithmDetectAngles),
-string(BlobIndexerPDFTextRotationAlgorithmNone),
+		string(BlobIndexerPDFTextRotationAlgorithmNone),
 	}
 }
-
 
 func (s *BlobIndexerPDFTextRotationAlgorithm) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -137,11 +124,10 @@ func (s *BlobIndexerPDFTextRotationAlgorithm) UnmarshalJSON(bytes []byte) error 
 	return nil
 }
 
-
 func parseBlobIndexerPDFTextRotationAlgorithm(input string) (*BlobIndexerPDFTextRotationAlgorithm, error) {
 	vals := map[string]BlobIndexerPDFTextRotationAlgorithm{
 		"detectangles": BlobIndexerPDFTextRotationAlgorithmDetectAngles,
-"none": BlobIndexerPDFTextRotationAlgorithmNone,
+		"none":         BlobIndexerPDFTextRotationAlgorithmNone,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -152,30 +138,27 @@ func parseBlobIndexerPDFTextRotationAlgorithm(input string) (*BlobIndexerPDFText
 	return &out, nil
 }
 
-
 type BlobIndexerParsingMode string
 
 const (
-	BlobIndexerParsingModeDefault BlobIndexerParsingMode = "default"
+	BlobIndexerParsingModeDefault       BlobIndexerParsingMode = "default"
 	BlobIndexerParsingModeDelimitedText BlobIndexerParsingMode = "delimitedText"
-	BlobIndexerParsingModeJson BlobIndexerParsingMode = "json"
-	BlobIndexerParsingModeJsonArray BlobIndexerParsingMode = "jsonArray"
-	BlobIndexerParsingModeJsonLines BlobIndexerParsingMode = "jsonLines"
-	BlobIndexerParsingModeText BlobIndexerParsingMode = "text"
+	BlobIndexerParsingModeJson          BlobIndexerParsingMode = "json"
+	BlobIndexerParsingModeJsonArray     BlobIndexerParsingMode = "jsonArray"
+	BlobIndexerParsingModeJsonLines     BlobIndexerParsingMode = "jsonLines"
+	BlobIndexerParsingModeText          BlobIndexerParsingMode = "text"
 )
-
 
 func PossibleValuesForBlobIndexerParsingMode() []string {
 	return []string{
 		string(BlobIndexerParsingModeDefault),
-string(BlobIndexerParsingModeDelimitedText),
-string(BlobIndexerParsingModeJson),
-string(BlobIndexerParsingModeJsonArray),
-string(BlobIndexerParsingModeJsonLines),
-string(BlobIndexerParsingModeText),
+		string(BlobIndexerParsingModeDelimitedText),
+		string(BlobIndexerParsingModeJson),
+		string(BlobIndexerParsingModeJsonArray),
+		string(BlobIndexerParsingModeJsonLines),
+		string(BlobIndexerParsingModeText),
 	}
 }
-
 
 func (s *BlobIndexerParsingMode) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -190,15 +173,14 @@ func (s *BlobIndexerParsingMode) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parseBlobIndexerParsingMode(input string) (*BlobIndexerParsingMode, error) {
 	vals := map[string]BlobIndexerParsingMode{
-		"default": BlobIndexerParsingModeDefault,
-"delimitedtext": BlobIndexerParsingModeDelimitedText,
-"json": BlobIndexerParsingModeJson,
-"jsonarray": BlobIndexerParsingModeJsonArray,
-"jsonlines": BlobIndexerParsingModeJsonLines,
-"text": BlobIndexerParsingModeText,
+		"default":       BlobIndexerParsingModeDefault,
+		"delimitedtext": BlobIndexerParsingModeDelimitedText,
+		"json":          BlobIndexerParsingModeJson,
+		"jsonarray":     BlobIndexerParsingModeJsonArray,
+		"jsonlines":     BlobIndexerParsingModeJsonLines,
+		"text":          BlobIndexerParsingModeText,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -209,22 +191,19 @@ func parseBlobIndexerParsingMode(input string) (*BlobIndexerParsingMode, error) 
 	return &out, nil
 }
 
-
 type IndexerExecutionEnvironment string
 
 const (
-	IndexerExecutionEnvironmentPrivate IndexerExecutionEnvironment = "private"
+	IndexerExecutionEnvironmentPrivate  IndexerExecutionEnvironment = "private"
 	IndexerExecutionEnvironmentStandard IndexerExecutionEnvironment = "standard"
 )
-
 
 func PossibleValuesForIndexerExecutionEnvironment() []string {
 	return []string{
 		string(IndexerExecutionEnvironmentPrivate),
-string(IndexerExecutionEnvironmentStandard),
+		string(IndexerExecutionEnvironmentStandard),
 	}
 }
-
 
 func (s *IndexerExecutionEnvironment) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -239,11 +218,10 @@ func (s *IndexerExecutionEnvironment) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parseIndexerExecutionEnvironment(input string) (*IndexerExecutionEnvironment, error) {
 	vals := map[string]IndexerExecutionEnvironment{
-		"private": IndexerExecutionEnvironmentPrivate,
-"standard": IndexerExecutionEnvironmentStandard,
+		"private":  IndexerExecutionEnvironmentPrivate,
+		"standard": IndexerExecutionEnvironmentStandard,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -254,26 +232,23 @@ func parseIndexerExecutionEnvironment(input string) (*IndexerExecutionEnvironmen
 	return &out, nil
 }
 
-
 type IndexerExecutionStatus string
 
 const (
-	IndexerExecutionStatusInProgress IndexerExecutionStatus = "inProgress"
-	IndexerExecutionStatusReset IndexerExecutionStatus = "reset"
-	IndexerExecutionStatusSuccess IndexerExecutionStatus = "success"
+	IndexerExecutionStatusInProgress       IndexerExecutionStatus = "inProgress"
+	IndexerExecutionStatusReset            IndexerExecutionStatus = "reset"
+	IndexerExecutionStatusSuccess          IndexerExecutionStatus = "success"
 	IndexerExecutionStatusTransientFailure IndexerExecutionStatus = "transientFailure"
 )
-
 
 func PossibleValuesForIndexerExecutionStatus() []string {
 	return []string{
 		string(IndexerExecutionStatusInProgress),
-string(IndexerExecutionStatusReset),
-string(IndexerExecutionStatusSuccess),
-string(IndexerExecutionStatusTransientFailure),
+		string(IndexerExecutionStatusReset),
+		string(IndexerExecutionStatusSuccess),
+		string(IndexerExecutionStatusTransientFailure),
 	}
 }
-
 
 func (s *IndexerExecutionStatus) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -288,13 +263,12 @@ func (s *IndexerExecutionStatus) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parseIndexerExecutionStatus(input string) (*IndexerExecutionStatus, error) {
 	vals := map[string]IndexerExecutionStatus{
-		"inprogress": IndexerExecutionStatusInProgress,
-"reset": IndexerExecutionStatusReset,
-"success": IndexerExecutionStatusSuccess,
-"transientfailure": IndexerExecutionStatusTransientFailure,
+		"inprogress":       IndexerExecutionStatusInProgress,
+		"reset":            IndexerExecutionStatusReset,
+		"success":          IndexerExecutionStatusSuccess,
+		"transientfailure": IndexerExecutionStatusTransientFailure,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -305,24 +279,21 @@ func parseIndexerExecutionStatus(input string) (*IndexerExecutionStatus, error) 
 	return &out, nil
 }
 
-
 type IndexerStatus string
 
 const (
-	IndexerStatusError IndexerStatus = "error"
+	IndexerStatusError   IndexerStatus = "error"
 	IndexerStatusRunning IndexerStatus = "running"
 	IndexerStatusUnknown IndexerStatus = "unknown"
 )
 
-
 func PossibleValuesForIndexerStatus() []string {
 	return []string{
 		string(IndexerStatusError),
-string(IndexerStatusRunning),
-string(IndexerStatusUnknown),
+		string(IndexerStatusRunning),
+		string(IndexerStatusUnknown),
 	}
 }
-
 
 func (s *IndexerStatus) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -337,12 +308,11 @@ func (s *IndexerStatus) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parseIndexerStatus(input string) (*IndexerStatus, error) {
 	vals := map[string]IndexerStatus{
-		"error": IndexerStatusError,
-"running": IndexerStatusRunning,
-"unknown": IndexerStatusUnknown,
+		"error":   IndexerStatusError,
+		"running": IndexerStatusRunning,
+		"unknown": IndexerStatusUnknown,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -353,20 +323,17 @@ func parseIndexerStatus(input string) (*IndexerStatus, error) {
 	return &out, nil
 }
 
-
 type Prefer string
 
 const (
-	PreferReturn=Representation Prefer = "return=representation"
+	PreferReturnEqualsrepresentation Prefer = "return=representation"
 )
-
 
 func PossibleValuesForPrefer() []string {
 	return []string{
-		string(PreferReturn=Representation),
+		string(PreferReturnEqualsrepresentation),
 	}
 }
-
 
 func (s *Prefer) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -381,10 +348,9 @@ func (s *Prefer) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parsePrefer(input string) (*Prefer, error) {
 	vals := map[string]Prefer{
-		"return=representation": PreferReturn=Representation,
+		"return=representation": PreferReturnEqualsrepresentation,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

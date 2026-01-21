@@ -6,25 +6,20 @@ import (
 	"strings"
 )
 
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
-
-
 
 type Prefer string
 
 const (
-	PreferReturn=Representation Prefer = "return=representation"
+	PreferReturnEqualsrepresentation Prefer = "return=representation"
 )
-
 
 func PossibleValuesForPrefer() []string {
 	return []string{
-		string(PreferReturn=Representation),
+		string(PreferReturnEqualsrepresentation),
 	}
 }
-
 
 func (s *Prefer) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -39,10 +34,9 @@ func (s *Prefer) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parsePrefer(input string) (*Prefer, error) {
 	vals := map[string]Prefer{
-		"return=representation": PreferReturn=Representation,
+		"return=representation": PreferReturnEqualsrepresentation,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -53,20 +47,17 @@ func parsePrefer(input string) (*Prefer, error) {
 	return &out, nil
 }
 
-
 type SynonymMapFormat string
 
 const (
 	SynonymMapFormatSolr SynonymMapFormat = "solr"
 )
 
-
 func PossibleValuesForSynonymMapFormat() []string {
 	return []string{
 		string(SynonymMapFormatSolr),
 	}
 }
-
 
 func (s *SynonymMapFormat) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -80,7 +71,6 @@ func (s *SynonymMapFormat) UnmarshalJSON(bytes []byte) error {
 	*s = *out
 	return nil
 }
-
 
 func parseSynonymMapFormat(input string) (*SynonymMapFormat, error) {
 	vals := map[string]SynonymMapFormat{
