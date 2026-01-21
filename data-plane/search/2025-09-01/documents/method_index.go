@@ -4,36 +4,22 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"net/url"
 
-	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
-	
 )
-
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-
-
-
 type IndexOperationResponse struct {
-	
 	HttpResponse *http.Response
-	OData *odata.OData
-	Model *IndexDocumentsResult
+	OData        *odata.OData
+	Model        *IndexDocumentsResult
 }
 
-
-
-
 type IndexOperationOptions struct {
-XMsClientRequestId *string
+	XMsClientRequestId *string
 }
 
 func DefaultIndexOperationOptions() IndexOperationOptions {
@@ -42,9 +28,9 @@ func DefaultIndexOperationOptions() IndexOperationOptions {
 
 func (o IndexOperationOptions) ToHeaders() *client.Headers {
 	out := client.Headers{}
-if o.XMsClientRequestId != nil {
-	out.Append("x-ms-client-request-id", fmt.Sprintf("%v", *o.XMsClientRequestId))
-}
+	if o.XMsClientRequestId != nil {
+		out.Append("x-ms-client-request-id", fmt.Sprintf("%v", *o.XMsClientRequestId))
+	}
 	return &out
 }
 
@@ -60,32 +46,27 @@ func (o IndexOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-
-
 // Index ...
-func (c DocumentsClient) Index(ctx context.Context , input IndexBatch, options IndexOperationOptions) (result IndexOperationResponse, err error) {
+func (c DocumentsClient) Index(ctx context.Context, input IndexBatch, options IndexOperationOptions) (result IndexOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
-			207 // TODO: document me,
+			http.StatusMultiStatus,
 			http.StatusOK,
-},
-		HttpMethod: http.MethodPost,
+		},
+		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path: "/docs/Search.Index",
+		Path:          "/docs/Search.Index",
 	}
-
 
 	req, err := c.Client.NewRequest(ctx, opts)
 	if err != nil {
 		return
 	}
 
-	
 	if err = req.Marshal(input); err != nil {
 		return
 	}
-
 
 	var resp *client.Response
 	resp, err = req.Execute(ctx)
@@ -97,14 +78,11 @@ func (c DocumentsClient) Index(ctx context.Context , input IndexBatch, options I
 		return
 	}
 
-		var model IndexDocumentsResult
+	var model IndexDocumentsResult
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
 	}
 
-
 	return
 }
-
-
