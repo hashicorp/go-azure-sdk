@@ -6,25 +6,20 @@ import (
 	"strings"
 )
 
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
-
-
 
 type Prefer string
 
 const (
-	PreferReturn=Representation Prefer = "return=representation"
+	PreferReturnEqualsrepresentation Prefer = "return=representation"
 )
-
 
 func PossibleValuesForPrefer() []string {
 	return []string{
-		string(PreferReturn=Representation),
+		string(PreferReturnEqualsrepresentation),
 	}
 }
-
 
 func (s *Prefer) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -39,10 +34,9 @@ func (s *Prefer) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parsePrefer(input string) (*Prefer, error) {
 	vals := map[string]Prefer{
-		"return=representation": PreferReturn=Representation,
+		"return=representation": PreferReturnEqualsrepresentation,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -53,32 +47,29 @@ func parsePrefer(input string) (*Prefer, error) {
 	return &out, nil
 }
 
-
 type SearchIndexerDataSourceType string
 
 const (
 	SearchIndexerDataSourceTypeAdlsgenTwo SearchIndexerDataSourceType = "adlsgen2"
-	SearchIndexerDataSourceTypeAzureblob SearchIndexerDataSourceType = "azureblob"
-	SearchIndexerDataSourceTypeAzuresql SearchIndexerDataSourceType = "azuresql"
+	SearchIndexerDataSourceTypeAzureblob  SearchIndexerDataSourceType = "azureblob"
+	SearchIndexerDataSourceTypeAzuresql   SearchIndexerDataSourceType = "azuresql"
 	SearchIndexerDataSourceTypeAzuretable SearchIndexerDataSourceType = "azuretable"
-	SearchIndexerDataSourceTypeCosmosdb SearchIndexerDataSourceType = "cosmosdb"
-	SearchIndexerDataSourceTypeMysql SearchIndexerDataSourceType = "mysql"
-	SearchIndexerDataSourceTypeOnelake SearchIndexerDataSourceType = "onelake"
+	SearchIndexerDataSourceTypeCosmosdb   SearchIndexerDataSourceType = "cosmosdb"
+	SearchIndexerDataSourceTypeMysql      SearchIndexerDataSourceType = "mysql"
+	SearchIndexerDataSourceTypeOnelake    SearchIndexerDataSourceType = "onelake"
 )
-
 
 func PossibleValuesForSearchIndexerDataSourceType() []string {
 	return []string{
 		string(SearchIndexerDataSourceTypeAdlsgenTwo),
-string(SearchIndexerDataSourceTypeAzureblob),
-string(SearchIndexerDataSourceTypeAzuresql),
-string(SearchIndexerDataSourceTypeAzuretable),
-string(SearchIndexerDataSourceTypeCosmosdb),
-string(SearchIndexerDataSourceTypeMysql),
-string(SearchIndexerDataSourceTypeOnelake),
+		string(SearchIndexerDataSourceTypeAzureblob),
+		string(SearchIndexerDataSourceTypeAzuresql),
+		string(SearchIndexerDataSourceTypeAzuretable),
+		string(SearchIndexerDataSourceTypeCosmosdb),
+		string(SearchIndexerDataSourceTypeMysql),
+		string(SearchIndexerDataSourceTypeOnelake),
 	}
 }
-
 
 func (s *SearchIndexerDataSourceType) UnmarshalJSON(bytes []byte) error {
 	var decoded string
@@ -93,16 +84,15 @@ func (s *SearchIndexerDataSourceType) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-
 func parseSearchIndexerDataSourceType(input string) (*SearchIndexerDataSourceType, error) {
 	vals := map[string]SearchIndexerDataSourceType{
-		"adlsgen2": SearchIndexerDataSourceTypeAdlsgenTwo,
-"azureblob": SearchIndexerDataSourceTypeAzureblob,
-"azuresql": SearchIndexerDataSourceTypeAzuresql,
-"azuretable": SearchIndexerDataSourceTypeAzuretable,
-"cosmosdb": SearchIndexerDataSourceTypeCosmosdb,
-"mysql": SearchIndexerDataSourceTypeMysql,
-"onelake": SearchIndexerDataSourceTypeOnelake,
+		"adlsgen2":   SearchIndexerDataSourceTypeAdlsgenTwo,
+		"azureblob":  SearchIndexerDataSourceTypeAzureblob,
+		"azuresql":   SearchIndexerDataSourceTypeAzuresql,
+		"azuretable": SearchIndexerDataSourceTypeAzuretable,
+		"cosmosdb":   SearchIndexerDataSourceTypeCosmosdb,
+		"mysql":      SearchIndexerDataSourceTypeMysql,
+		"onelake":    SearchIndexerDataSourceTypeOnelake,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
