@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := files.NewNodeFileID("https://endpoint_url", "poolId", "nodeId")
+id := files.NewNodeFileID("poolId", "nodeId", "fileName")
 
 read, err := client.FileDeleteFromComputeNode(ctx, id, files.DefaultFileDeleteFromComputeNodeOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := files.NewFileID("https://endpoint_url", "jobId", "taskId")
+id := files.NewFileID("jobId", "taskId", "fileName")
 
 read, err := client.FileDeleteFromTask(ctx, id, files.DefaultFileDeleteFromTaskOperationOptions())
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := files.NewNodeFileID("https://endpoint_url", "poolId", "nodeId")
+id := files.NewNodeFileID("poolId", "nodeId", "fileName")
 
 read, err := client.FileGetFromComputeNode(ctx, id, files.DefaultFileGetFromComputeNodeOperationOptions())
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := files.NewFileID("https://endpoint_url", "jobId", "taskId")
+id := files.NewFileID("jobId", "taskId", "fileName")
 
 read, err := client.FileGetFromTask(ctx, id, files.DefaultFileGetFromTaskOperationOptions())
 if err != nil {
@@ -88,7 +88,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := files.NewNodeFileID("https://endpoint_url", "poolId", "nodeId")
+id := files.NewNodeFileID("poolId", "nodeId", "fileName")
 
 read, err := client.FileGetPropertiesFromComputeNode(ctx, id, files.DefaultFileGetPropertiesFromComputeNodeOperationOptions())
 if err != nil {
@@ -104,7 +104,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := files.NewFileID("https://endpoint_url", "jobId", "taskId")
+id := files.NewFileID("jobId", "taskId", "fileName")
 
 read, err := client.FileGetPropertiesFromTask(ctx, id, files.DefaultFileGetPropertiesFromTaskOperationOptions())
 if err != nil {

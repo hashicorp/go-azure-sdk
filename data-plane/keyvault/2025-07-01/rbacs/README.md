@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewScopedRoleAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleAssignmentName")
+id := rbacs.NewScopedRoleAssignmentID("https://endpoint_url", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := rbacs.RoleAssignmentCreateParameters{
 	// ...
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewScopedRoleAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleAssignmentName")
+id := rbacs.NewScopedRoleAssignmentID("https://endpoint_url", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.RoleAssignmentsDelete(ctx, id)
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewScopedRoleAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleAssignmentName")
+id := rbacs.NewScopedRoleAssignmentID("https://endpoint_url", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.RoleAssignmentsGet(ctx, id)
 if err != nil {
@@ -95,7 +95,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewScopedRoleDefinitionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleDefinitionName")
+id := rbacs.NewScopedRoleDefinitionID("https://endpoint_url", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := rbacs.RoleDefinitionCreateParameters{
 	// ...
@@ -116,7 +116,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewScopedRoleDefinitionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleDefinitionName")
+id := rbacs.NewScopedRoleDefinitionID("https://endpoint_url", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.RoleDefinitionsDelete(ctx, id)
 if err != nil {
@@ -132,7 +132,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewScopedRoleDefinitionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleDefinitionName")
+id := rbacs.NewScopedRoleDefinitionID("https://endpoint_url", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.RoleDefinitionsGet(ctx, id)
 if err != nil {
