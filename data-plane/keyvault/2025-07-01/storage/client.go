@@ -1,0 +1,44 @@
+package storage
+
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/dataplane"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type StorageClient struct {
+	Client *dataplane.Client
+}
+
+func NewStorageClientUnconfigured() (*StorageClient, error) {
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "storage", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StorageClient: %+v", err)
+	}
+
+	return &StorageClient{
+		Client: client,
+	}, nil
+}
+
+func (c *StorageClient) StorageClientSetEndpoint(endpoint string) {
+	c.Client.Client.BaseUri = endpoint
+}
+
+func (c *StorageClient) StorageClientSetAdditionalEndpoint(endpoint string) {
+	c.Client.AdditionalEndpoint = endpoint
+}
+
+func NewStorageClientWithBaseURI(endpoint string, additionalEndpoint string) (*StorageClient, error) {
+	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "storage", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StorageClient: %+v", err)
+	}
+
+	return &StorageClient{
+		Client: client,
+	}, nil
+}
