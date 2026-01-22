@@ -14,7 +14,7 @@ type DocumentsClient struct {
 }
 
 func NewDocumentsClientUnconfigured() (*DocumentsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "documents", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "documents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DocumentsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *DocumentsClient) DocumentsClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *DocumentsClient) DocumentsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewDocumentsClientWithBaseURI(endpoint string, additionalEndpoint string) (*DocumentsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "documents", defaultApiVersion)
+func NewDocumentsClientWithBaseURI(endpoint string) (*DocumentsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "documents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DocumentsClient: %+v", err)
 	}

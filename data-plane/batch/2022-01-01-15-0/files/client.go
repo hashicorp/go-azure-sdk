@@ -14,7 +14,7 @@ type FilesClient struct {
 }
 
 func NewFilesClientUnconfigured() (*FilesClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "files", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "files", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FilesClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *FilesClient) FilesClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *FilesClient) FilesClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewFilesClientWithBaseURI(endpoint string, additionalEndpoint string) (*FilesClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "files", defaultApiVersion)
+func NewFilesClientWithBaseURI(endpoint string) (*FilesClient, error) {
+	client, err := dataplane.NewClient(endpoint, "files", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FilesClient: %+v", err)
 	}

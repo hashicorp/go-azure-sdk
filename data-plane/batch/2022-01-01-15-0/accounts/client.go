@@ -14,7 +14,7 @@ type AccountsClient struct {
 }
 
 func NewAccountsClientUnconfigured() (*AccountsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "accounts", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "accounts", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AccountsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *AccountsClient) AccountsClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *AccountsClient) AccountsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewAccountsClientWithBaseURI(endpoint string, additionalEndpoint string) (*AccountsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "accounts", defaultApiVersion)
+func NewAccountsClientWithBaseURI(endpoint string) (*AccountsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "accounts", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AccountsClient: %+v", err)
 	}
