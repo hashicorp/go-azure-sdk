@@ -3,8 +3,8 @@ module github.com/hashicorp/go-azure-sdk/data-plane
 go 1.25.5
 
 require (
-	github.com/hashicorp/go-azure-helpers v0.73.0
-	github.com/hashicorp/go-azure-sdk/sdk v0.20260114.1164646
+	github.com/hashicorp/go-azure-helpers v0.75.2-0.20260120145437-56244c2628f7
+	github.com/hashicorp/go-azure-sdk/sdk v0.20260114.1164647-0.20260121090812-69d9a0b0bd0a
 )
 
 require (
@@ -16,7 +16,3 @@ require (
 	golang.org/x/oauth2 v0.30.0 // indirect
 	software.sslmate.com/src/go-pkcs12 v0.4.0 // indirect
 )
-
-replace github.com/hashicorp/go-azure-sdk/sdk => ../sdk
-
-replace github.com/hashicorp/go-azure-helpers => ../../go-azure-helpers
