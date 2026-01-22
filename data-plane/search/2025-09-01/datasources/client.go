@@ -14,7 +14,7 @@ type DataSourcesClient struct {
 }
 
 func NewDataSourcesClientUnconfigured() (*DataSourcesClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "datasources", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "datasources", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataSourcesClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *DataSourcesClient) DataSourcesClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *DataSourcesClient) DataSourcesClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewDataSourcesClientWithBaseURI(endpoint string, additionalEndpoint string) (*DataSourcesClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "datasources", defaultApiVersion)
+func NewDataSourcesClientWithBaseURI(endpoint string) (*DataSourcesClient, error) {
+	client, err := dataplane.NewClient(endpoint, "datasources", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataSourcesClient: %+v", err)
 	}

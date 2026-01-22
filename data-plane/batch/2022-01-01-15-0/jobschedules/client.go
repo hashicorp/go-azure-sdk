@@ -14,7 +14,7 @@ type JobSchedulesClient struct {
 }
 
 func NewJobSchedulesClientUnconfigured() (*JobSchedulesClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "jobschedules", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "jobschedules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JobSchedulesClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *JobSchedulesClient) JobSchedulesClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *JobSchedulesClient) JobSchedulesClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewJobSchedulesClientWithBaseURI(endpoint string, additionalEndpoint string) (*JobSchedulesClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "jobschedules", defaultApiVersion)
+func NewJobSchedulesClientWithBaseURI(endpoint string) (*JobSchedulesClient, error) {
+	client, err := dataplane.NewClient(endpoint, "jobschedules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JobSchedulesClient: %+v", err)
 	}

@@ -14,7 +14,7 @@ type ApplicationsClient struct {
 }
 
 func NewApplicationsClientUnconfigured() (*ApplicationsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "applications", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "applications", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApplicationsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *ApplicationsClient) ApplicationsClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *ApplicationsClient) ApplicationsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewApplicationsClientWithBaseURI(endpoint string, additionalEndpoint string) (*ApplicationsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "applications", defaultApiVersion)
+func NewApplicationsClientWithBaseURI(endpoint string) (*ApplicationsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "applications", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ApplicationsClient: %+v", err)
 	}

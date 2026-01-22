@@ -14,7 +14,7 @@ type SettingsClient struct {
 }
 
 func NewSettingsClientUnconfigured() (*SettingsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "settings", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "settings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SettingsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *SettingsClient) SettingsClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *SettingsClient) SettingsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewSettingsClientWithBaseURI(endpoint string, additionalEndpoint string) (*SettingsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "settings", defaultApiVersion)
+func NewSettingsClientWithBaseURI(endpoint string) (*SettingsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "settings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SettingsClient: %+v", err)
 	}

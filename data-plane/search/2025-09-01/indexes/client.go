@@ -14,7 +14,7 @@ type IndexesClient struct {
 }
 
 func NewIndexesClientUnconfigured() (*IndexesClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "indexes", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "indexes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IndexesClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *IndexesClient) IndexesClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *IndexesClient) IndexesClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewIndexesClientWithBaseURI(endpoint string, additionalEndpoint string) (*IndexesClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "indexes", defaultApiVersion)
+func NewIndexesClientWithBaseURI(endpoint string) (*IndexesClient, error) {
+	client, err := dataplane.NewClient(endpoint, "indexes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IndexesClient: %+v", err)
 	}

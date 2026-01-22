@@ -30,56 +30,56 @@ type Client struct {
 	Tasks        *tasks.TasksClient
 }
 
-func NewClientWithBaseURI(endpoint string, additionalEndpoint string, configureFunc func(c *dataplane.Client)) (*Client, error) {
-	accountsClient, err := accounts.NewAccountsClientWithBaseURI(endpoint, additionalEndpoint)
+func NewClientWithBaseURI(endpoint string, configureFunc func(c *dataplane.Client)) (*Client, error) {
+	accountsClient, err := accounts.NewAccountsClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Accounts client: %+v", err)
 	}
 	configureFunc(accountsClient.Client)
 
-	applicationsClient, err := applications.NewApplicationsClientWithBaseURI(endpoint, additionalEndpoint)
+	applicationsClient, err := applications.NewApplicationsClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Applications client: %+v", err)
 	}
 	configureFunc(applicationsClient.Client)
 
-	certificatesClient, err := certificates.NewCertificatesClientWithBaseURI(endpoint, additionalEndpoint)
+	certificatesClient, err := certificates.NewCertificatesClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Certificates client: %+v", err)
 	}
 	configureFunc(certificatesClient.Client)
 
-	computeNodesClient, err := computenodes.NewComputeNodesClientWithBaseURI(endpoint, additionalEndpoint)
+	computeNodesClient, err := computenodes.NewComputeNodesClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building ComputeNodes client: %+v", err)
 	}
 	configureFunc(computeNodesClient.Client)
 
-	filesClient, err := files.NewFilesClientWithBaseURI(endpoint, additionalEndpoint)
+	filesClient, err := files.NewFilesClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Files client: %+v", err)
 	}
 	configureFunc(filesClient.Client)
 
-	jobSchedulesClient, err := jobschedules.NewJobSchedulesClientWithBaseURI(endpoint, additionalEndpoint)
+	jobSchedulesClient, err := jobschedules.NewJobSchedulesClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building JobSchedules client: %+v", err)
 	}
 	configureFunc(jobSchedulesClient.Client)
 
-	jobsClient, err := jobs.NewJobsClientWithBaseURI(endpoint, additionalEndpoint)
+	jobsClient, err := jobs.NewJobsClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Jobs client: %+v", err)
 	}
 	configureFunc(jobsClient.Client)
 
-	poolsClient, err := pools.NewPoolsClientWithBaseURI(endpoint, additionalEndpoint)
+	poolsClient, err := pools.NewPoolsClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Pools client: %+v", err)
 	}
 	configureFunc(poolsClient.Client)
 
-	tasksClient, err := tasks.NewTasksClientWithBaseURI(endpoint, additionalEndpoint)
+	tasksClient, err := tasks.NewTasksClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Tasks client: %+v", err)
 	}

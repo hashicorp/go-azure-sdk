@@ -14,7 +14,7 @@ type SynonymMapsClient struct {
 }
 
 func NewSynonymMapsClientUnconfigured() (*SynonymMapsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "synonymmaps", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "synonymmaps", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SynonymMapsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *SynonymMapsClient) SynonymMapsClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *SynonymMapsClient) SynonymMapsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewSynonymMapsClientWithBaseURI(endpoint string, additionalEndpoint string) (*SynonymMapsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "synonymmaps", defaultApiVersion)
+func NewSynonymMapsClientWithBaseURI(endpoint string) (*SynonymMapsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "synonymmaps", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SynonymMapsClient: %+v", err)
 	}
