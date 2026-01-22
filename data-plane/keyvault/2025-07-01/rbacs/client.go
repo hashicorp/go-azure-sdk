@@ -14,7 +14,7 @@ type RbacsClient struct {
 }
 
 func NewRbacsClientUnconfigured() (*RbacsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "rbacs", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "rbacs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RbacsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *RbacsClient) RbacsClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *RbacsClient) RbacsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewRbacsClientWithBaseURI(endpoint string, additionalEndpoint string) (*RbacsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "rbacs", defaultApiVersion)
+func NewRbacsClientWithBaseURI(endpoint string) (*RbacsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "rbacs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RbacsClient: %+v", err)
 	}

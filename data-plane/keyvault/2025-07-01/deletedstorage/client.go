@@ -14,7 +14,7 @@ type DeletedStorageClient struct {
 }
 
 func NewDeletedStorageClientUnconfigured() (*DeletedStorageClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "deletedstorage", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "deletedstorage", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DeletedStorageClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *DeletedStorageClient) DeletedStorageClientSetEndpoint(endpoint string) 
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *DeletedStorageClient) DeletedStorageClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewDeletedStorageClientWithBaseURI(endpoint string, additionalEndpoint string) (*DeletedStorageClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "deletedstorage", defaultApiVersion)
+func NewDeletedStorageClientWithBaseURI(endpoint string) (*DeletedStorageClient, error) {
+	client, err := dataplane.NewClient(endpoint, "deletedstorage", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DeletedStorageClient: %+v", err)
 	}

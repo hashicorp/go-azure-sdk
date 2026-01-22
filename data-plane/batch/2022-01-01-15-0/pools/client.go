@@ -14,7 +14,7 @@ type PoolsClient struct {
 }
 
 func NewPoolsClientUnconfigured() (*PoolsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "pools", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "pools", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PoolsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *PoolsClient) PoolsClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *PoolsClient) PoolsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewPoolsClientWithBaseURI(endpoint string, additionalEndpoint string) (*PoolsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "pools", defaultApiVersion)
+func NewPoolsClientWithBaseURI(endpoint string) (*PoolsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "pools", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PoolsClient: %+v", err)
 	}

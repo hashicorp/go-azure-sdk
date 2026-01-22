@@ -14,7 +14,7 @@ type SecuritydomainsClient struct {
 }
 
 func NewSecuritydomainsClientUnconfigured() (*SecuritydomainsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "securitydomains", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "securitydomains", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SecuritydomainsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *SecuritydomainsClient) SecuritydomainsClientSetEndpoint(endpoint string
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *SecuritydomainsClient) SecuritydomainsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewSecuritydomainsClientWithBaseURI(endpoint string, additionalEndpoint string) (*SecuritydomainsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "securitydomains", defaultApiVersion)
+func NewSecuritydomainsClientWithBaseURI(endpoint string) (*SecuritydomainsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "securitydomains", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SecuritydomainsClient: %+v", err)
 	}

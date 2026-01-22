@@ -14,7 +14,7 @@ type ComputeNodesClient struct {
 }
 
 func NewComputeNodesClientUnconfigured() (*ComputeNodesClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "computenodes", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "computenodes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ComputeNodesClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *ComputeNodesClient) ComputeNodesClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *ComputeNodesClient) ComputeNodesClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewComputeNodesClientWithBaseURI(endpoint string, additionalEndpoint string) (*ComputeNodesClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "computenodes", defaultApiVersion)
+func NewComputeNodesClientWithBaseURI(endpoint string) (*ComputeNodesClient, error) {
+	client, err := dataplane.NewClient(endpoint, "computenodes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ComputeNodesClient: %+v", err)
 	}

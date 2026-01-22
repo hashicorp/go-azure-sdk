@@ -14,7 +14,7 @@ type SkillsetsClient struct {
 }
 
 func NewSkillsetsClientUnconfigured() (*SkillsetsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "skillsets", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "skillsets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SkillsetsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *SkillsetsClient) SkillsetsClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *SkillsetsClient) SkillsetsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewSkillsetsClientWithBaseURI(endpoint string, additionalEndpoint string) (*SkillsetsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "skillsets", defaultApiVersion)
+func NewSkillsetsClientWithBaseURI(endpoint string) (*SkillsetsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "skillsets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SkillsetsClient: %+v", err)
 	}

@@ -14,7 +14,7 @@ type CertificatesClient struct {
 }
 
 func NewCertificatesClientUnconfigured() (*CertificatesClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "certificates", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "certificates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CertificatesClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *CertificatesClient) CertificatesClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *CertificatesClient) CertificatesClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewCertificatesClientWithBaseURI(endpoint string, additionalEndpoint string) (*CertificatesClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "certificates", defaultApiVersion)
+func NewCertificatesClientWithBaseURI(endpoint string) (*CertificatesClient, error) {
+	client, err := dataplane.NewClient(endpoint, "certificates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CertificatesClient: %+v", err)
 	}

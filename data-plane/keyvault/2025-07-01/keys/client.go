@@ -14,7 +14,7 @@ type KeysClient struct {
 }
 
 func NewKeysClientUnconfigured() (*KeysClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "keys", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "keys", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating KeysClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *KeysClient) KeysClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *KeysClient) KeysClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewKeysClientWithBaseURI(endpoint string, additionalEndpoint string) (*KeysClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "keys", defaultApiVersion)
+func NewKeysClientWithBaseURI(endpoint string) (*KeysClient, error) {
+	client, err := dataplane.NewClient(endpoint, "keys", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating KeysClient: %+v", err)
 	}

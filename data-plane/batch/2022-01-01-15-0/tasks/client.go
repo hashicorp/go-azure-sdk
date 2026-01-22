@@ -14,7 +14,7 @@ type TasksClient struct {
 }
 
 func NewTasksClientUnconfigured() (*TasksClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "tasks", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "tasks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TasksClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *TasksClient) TasksClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *TasksClient) TasksClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewTasksClientWithBaseURI(endpoint string, additionalEndpoint string) (*TasksClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "tasks", defaultApiVersion)
+func NewTasksClientWithBaseURI(endpoint string) (*TasksClient, error) {
+	client, err := dataplane.NewClient(endpoint, "tasks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TasksClient: %+v", err)
 	}

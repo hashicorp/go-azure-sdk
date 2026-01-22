@@ -14,7 +14,7 @@ type SecretsClient struct {
 }
 
 func NewSecretsClientUnconfigured() (*SecretsClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "secrets", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "secrets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SecretsClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *SecretsClient) SecretsClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *SecretsClient) SecretsClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewSecretsClientWithBaseURI(endpoint string, additionalEndpoint string) (*SecretsClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "secrets", defaultApiVersion)
+func NewSecretsClientWithBaseURI(endpoint string) (*SecretsClient, error) {
+	client, err := dataplane.NewClient(endpoint, "secrets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SecretsClient: %+v", err)
 	}

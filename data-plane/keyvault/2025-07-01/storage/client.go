@@ -14,7 +14,7 @@ type StorageClient struct {
 }
 
 func NewStorageClientUnconfigured() (*StorageClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "storage", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "storage", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating StorageClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *StorageClient) StorageClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *StorageClient) StorageClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewStorageClientWithBaseURI(endpoint string, additionalEndpoint string) (*StorageClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "storage", defaultApiVersion)
+func NewStorageClientWithBaseURI(endpoint string) (*StorageClient, error) {
+	client, err := dataplane.NewClient(endpoint, "storage", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating StorageClient: %+v", err)
 	}

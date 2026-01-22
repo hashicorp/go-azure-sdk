@@ -30,56 +30,56 @@ type Client struct {
 	Storage         *storage.StorageClient
 }
 
-func NewClientWithBaseURI(endpoint string, additionalEndpoint string, configureFunc func(c *dataplane.Client)) (*Client, error) {
-	backuprestoresClient, err := backuprestores.NewBackuprestoresClientWithBaseURI(endpoint, additionalEndpoint)
+func NewClientWithBaseURI(endpoint string, configureFunc func(c *dataplane.Client)) (*Client, error) {
+	backuprestoresClient, err := backuprestores.NewBackuprestoresClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Backuprestores client: %+v", err)
 	}
 	configureFunc(backuprestoresClient.Client)
 
-	certificatesClient, err := certificates.NewCertificatesClientWithBaseURI(endpoint, additionalEndpoint)
+	certificatesClient, err := certificates.NewCertificatesClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Certificates client: %+v", err)
 	}
 	configureFunc(certificatesClient.Client)
 
-	deletedStorageClient, err := deletedstorage.NewDeletedStorageClientWithBaseURI(endpoint, additionalEndpoint)
+	deletedStorageClient, err := deletedstorage.NewDeletedStorageClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building DeletedStorage client: %+v", err)
 	}
 	configureFunc(deletedStorageClient.Client)
 
-	keysClient, err := keys.NewKeysClientWithBaseURI(endpoint, additionalEndpoint)
+	keysClient, err := keys.NewKeysClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Keys client: %+v", err)
 	}
 	configureFunc(keysClient.Client)
 
-	rbacsClient, err := rbacs.NewRbacsClientWithBaseURI(endpoint, additionalEndpoint)
+	rbacsClient, err := rbacs.NewRbacsClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Rbacs client: %+v", err)
 	}
 	configureFunc(rbacsClient.Client)
 
-	secretsClient, err := secrets.NewSecretsClientWithBaseURI(endpoint, additionalEndpoint)
+	secretsClient, err := secrets.NewSecretsClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Secrets client: %+v", err)
 	}
 	configureFunc(secretsClient.Client)
 
-	securitydomainsClient, err := securitydomains.NewSecuritydomainsClientWithBaseURI(endpoint, additionalEndpoint)
+	securitydomainsClient, err := securitydomains.NewSecuritydomainsClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Securitydomains client: %+v", err)
 	}
 	configureFunc(securitydomainsClient.Client)
 
-	settingsClient, err := settings.NewSettingsClientWithBaseURI(endpoint, additionalEndpoint)
+	settingsClient, err := settings.NewSettingsClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Settings client: %+v", err)
 	}
 	configureFunc(settingsClient.Client)
 
-	storageClient, err := storage.NewStorageClientWithBaseURI(endpoint, additionalEndpoint)
+	storageClient, err := storage.NewStorageClientWithBaseURI(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("building Storage client: %+v", err)
 	}

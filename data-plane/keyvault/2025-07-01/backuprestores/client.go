@@ -14,7 +14,7 @@ type BackuprestoresClient struct {
 }
 
 func NewBackuprestoresClientUnconfigured() (*BackuprestoresClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "backuprestores", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "backuprestores", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BackuprestoresClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *BackuprestoresClient) BackuprestoresClientSetEndpoint(endpoint string) 
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *BackuprestoresClient) BackuprestoresClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewBackuprestoresClientWithBaseURI(endpoint string, additionalEndpoint string) (*BackuprestoresClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "backuprestores", defaultApiVersion)
+func NewBackuprestoresClientWithBaseURI(endpoint string) (*BackuprestoresClient, error) {
+	client, err := dataplane.NewClient(endpoint, "backuprestores", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BackuprestoresClient: %+v", err)
 	}

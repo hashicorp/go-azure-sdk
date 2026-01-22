@@ -14,7 +14,7 @@ type ServiceClient struct {
 }
 
 func NewServiceClientUnconfigured() (*ServiceClient, error) {
-	client, err := dataplane.NewClient("please_configure_client_endpoint", "", "service", defaultApiVersion)
+	client, err := dataplane.NewClient("please_configure_client_endpoint", "service", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServiceClient: %+v", err)
 	}
@@ -28,12 +28,8 @@ func (c *ServiceClient) ServiceClientSetEndpoint(endpoint string) {
 	c.Client.Client.BaseUri = endpoint
 }
 
-func (c *ServiceClient) ServiceClientSetAdditionalEndpoint(endpoint string) {
-	c.Client.AdditionalEndpoint = endpoint
-}
-
-func NewServiceClientWithBaseURI(endpoint string, additionalEndpoint string) (*ServiceClient, error) {
-	client, err := dataplane.NewClient(endpoint, additionalEndpoint, "service", defaultApiVersion)
+func NewServiceClientWithBaseURI(endpoint string) (*ServiceClient, error) {
+	client, err := dataplane.NewClient(endpoint, "service", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServiceClient: %+v", err)
 	}
