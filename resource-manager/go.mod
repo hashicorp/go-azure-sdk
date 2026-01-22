@@ -4,8 +4,8 @@ go 1.25.5
 
 require (
 	github.com/Azure/go-autorest/autorest v0.11.30
-	github.com/hashicorp/go-azure-helpers v0.75.2-0.20260120145437-56244c2628f7
-	github.com/hashicorp/go-azure-sdk/sdk 7d558c492356734ba66961e549894e550bbcc39f
+	github.com/hashicorp/go-azure-helpers v0.75.2-0.20260122123014-aa3ad08cde20
+	github.com/hashicorp/go-azure-sdk/sdk v0.20260114.1164647-0.20260121135948-7d558c492356
 )
 
 require (
@@ -42,13 +42,13 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/zclconf/go-cty v1.17.0 // indirect
-	golang.org/x/crypto v0.45.0 // indirect
-	golang.org/x/mod v0.30.0 // indirect
+	golang.org/x/crypto v0.47.0 // indirect
+	golang.org/x/mod v0.31.0 // indirect
 	golang.org/x/oauth2 v0.30.0 // indirect
-	golang.org/x/sync v0.18.0 // indirect
-	golang.org/x/sys v0.38.0 // indirect
-	golang.org/x/text v0.31.0 // indirect
-	golang.org/x/tools v0.39.0 // indirect
+	golang.org/x/sync v0.19.0 // indirect
+	golang.org/x/sys v0.40.0 // indirect
+	golang.org/x/text v0.33.0 // indirect
+	golang.org/x/tools v0.40.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/protobuf v1.36.10 // indirect
 	software.sslmate.com/src/go-pkcs12 v0.4.0 // indirect
