@@ -23,7 +23,9 @@ type Client struct {
 	ApiVersion string
 }
 
-func NewClient(endpoint string, additionalEndpoint string, serviceName, apiVersion string) (*Client, error) {
+// NewClient returns a pointer to a Client. If the endpoint value is available at call-time, it will be set into the
+// BaseUri property of the underlying BaseClient
+func NewClient(endpoint string, serviceName, apiVersion string) (*Client, error) {
 	baseClient := client.NewClient(endpoint, serviceName, apiVersion)
 
 	baseClient.AuthorizeRequest = AuthorizeDataPlaneRequest
