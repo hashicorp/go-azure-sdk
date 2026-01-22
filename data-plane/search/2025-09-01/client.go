@@ -26,44 +26,44 @@ type Client struct {
 	SynonymMaps *synonymmaps.SynonymMapsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureFunc func(c *dataplane.Client)) (*Client, error) {
-	dataSourcesClient, err := datasources.NewDataSourcesClientWithBaseURI(endpoint)
+func NewClient(configureFunc func(c *dataplane.Client)) (*Client, error) {
+	dataSourcesClient, err := datasources.NewDataSourcesClientUnconfigured()
 	if err != nil {
 		return nil, fmt.Errorf("building DataSources client: %+v", err)
 	}
 	configureFunc(dataSourcesClient.Client)
 
-	documentsClient, err := documents.NewDocumentsClientWithBaseURI(endpoint)
+	documentsClient, err := documents.NewDocumentsClientUnconfigured()
 	if err != nil {
 		return nil, fmt.Errorf("building Documents client: %+v", err)
 	}
 	configureFunc(documentsClient.Client)
 
-	indexersClient, err := indexers.NewIndexersClientWithBaseURI(endpoint)
+	indexersClient, err := indexers.NewIndexersClientUnconfigured()
 	if err != nil {
 		return nil, fmt.Errorf("building Indexers client: %+v", err)
 	}
 	configureFunc(indexersClient.Client)
 
-	indexesClient, err := indexes.NewIndexesClientWithBaseURI(endpoint)
+	indexesClient, err := indexes.NewIndexesClientUnconfigured()
 	if err != nil {
 		return nil, fmt.Errorf("building Indexes client: %+v", err)
 	}
 	configureFunc(indexesClient.Client)
 
-	serviceClient, err := service.NewServiceClientWithBaseURI(endpoint)
+	serviceClient, err := service.NewServiceClientUnconfigured()
 	if err != nil {
 		return nil, fmt.Errorf("building Service client: %+v", err)
 	}
 	configureFunc(serviceClient.Client)
 
-	skillsetsClient, err := skillsets.NewSkillsetsClientWithBaseURI(endpoint)
+	skillsetsClient, err := skillsets.NewSkillsetsClientUnconfigured()
 	if err != nil {
 		return nil, fmt.Errorf("building Skillsets client: %+v", err)
 	}
 	configureFunc(skillsetsClient.Client)
 
-	synonymMapsClient, err := synonymmaps.NewSynonymMapsClientWithBaseURI(endpoint)
+	synonymMapsClient, err := synonymmaps.NewSynonymMapsClientUnconfigured()
 	if err != nil {
 		return nil, fmt.Errorf("building SynonymMaps client: %+v", err)
 	}
