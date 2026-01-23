@@ -29,6 +29,8 @@ func AzureChina() *Environment {
 	env.ManagedHSM = ManagedHSMAPI("https://managedhsm.azure.cn", "managedhsm.azure.cn")
 	env.MariaDB = MariaDBAPI("mariadb.database.chinacloudapi.cn").WithResourceIdentifier("https://ossrdbms-aad.database.chinacloudapi.cn")
 	env.MySql = MySqlAPI("mysql.database.chinacloudapi.cn").WithResourceIdentifier("https://ossrdbms-aad.database.chinacloudapi.cn")
+	env.Office365Compliance = Office365ComplianceAPI("https://ps.compliance.protection.outlook.com")
+	env.Office365ExchangeOnline = Office365ExchangeOnlineAPI("https://outlook.office365.com")
 	env.OperationalInsights = OperationalInsightsAPI().WithResourceIdentifier("https://api.loganalytics.azure.cn")
 	env.Postgresql = PostgresqlAPI("postgres.database.chinacloudapi.cn").WithResourceIdentifier("https://ossrdbms-aad.database.chinacloudapi.cn")
 	env.ServiceBus = ServiceBusAPI("https://servicebus.chinacloudapi.cn", "servicebus.chinacloudapi.cn").WithResourceIdentifier("https://servicebus.chinacloudapi.cn")
