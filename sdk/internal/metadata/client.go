@@ -14,6 +14,7 @@ import (
 	"net"
 	"net/http"
 	"runtime"
+	"strings"
 	"time"
 )
 
@@ -115,7 +116,9 @@ func (c *Client) GetMetaData(ctx context.Context) (*MetaData, error) {
 			OSSRDBMS:       normalizeResourceId(metadata.OssrDbmsResourceId),
 			Synapse:        normalizeResourceId(metadata.SynapseAnalyticsResourceId),
 		},
-		ResourceManagerEndpoint: metadata.ResourceManager,
+		// The resourceManager endpoint returned from the ARM metadata service is in an inconsistent format
+		// between clouds so sanitize it here to prevent downstream issues.
+		ResourceManagerEndpoint: strings.TrimRight(metadata.ResourceManager, "/"),
 	}, nil
 }
 
