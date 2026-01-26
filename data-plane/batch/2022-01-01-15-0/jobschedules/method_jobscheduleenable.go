@@ -81,7 +81,7 @@ func (c JobSchedulesClient) JobScheduleEnable(ctx context.Context, id Jobschedul
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/enable", id.ID()),
+		Path:          fmt.Sprintf("%s/enable", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

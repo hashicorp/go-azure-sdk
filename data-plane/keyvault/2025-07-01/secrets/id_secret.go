@@ -21,7 +21,7 @@ type SecretId struct {
 // NewSecretID returns a new SecretId struct
 func NewSecretID(baseURI string, secretName string) SecretId {
 	return SecretId{
-		BaseURI:    baseURI,
+		BaseURI:    strings.TrimSuffix(baseURI, "/"),
 		SecretName: secretName,
 	}
 }
@@ -94,7 +94,7 @@ func (id SecretId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.SecretName)
 }
 
-// Path returns the formatted Secret ID without the Scope / BaseURI
+// Path returns the formatted Secret ID without the BaseURI
 func (id SecretId) Path() string {
 	fmtString := "/secrets/%s"
 	return fmt.Sprintf(fmtString, id.SecretName)

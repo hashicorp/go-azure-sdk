@@ -66,7 +66,7 @@ func (c TasksClient) TaskAddCollection(ctx context.Context, id JobId, input Task
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/addtaskcollection", id.ID()),
+		Path:          fmt.Sprintf("%s/addtaskcollection", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

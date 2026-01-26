@@ -21,7 +21,7 @@ type PoolId struct {
 // NewPoolID returns a new PoolId struct
 func NewPoolID(baseURI string, poolId string) PoolId {
 	return PoolId{
-		BaseURI: baseURI,
+		BaseURI: strings.TrimSuffix(baseURI, "/"),
 		PoolId:  poolId,
 	}
 }
@@ -94,7 +94,7 @@ func (id PoolId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.PoolId)
 }
 
-// Path returns the formatted Pool ID without the Scope / BaseURI
+// Path returns the formatted Pool ID without the BaseURI
 func (id PoolId) Path() string {
 	fmtString := "/pools/%s"
 	return fmt.Sprintf(fmtString, id.PoolId)

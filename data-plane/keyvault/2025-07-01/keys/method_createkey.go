@@ -26,7 +26,7 @@ func (c KeysClient) CreateKey(ctx context.Context, id KeyId, input KeyCreatePara
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/create", id.ID()),
+		Path:       fmt.Sprintf("%s/create", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

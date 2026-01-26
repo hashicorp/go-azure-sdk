@@ -81,7 +81,7 @@ func (c TasksClient) TaskReactivate(ctx context.Context, id TaskId, options Task
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/reactivate", id.ID()),
+		Path:          fmt.Sprintf("%s/reactivate", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

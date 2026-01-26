@@ -96,7 +96,7 @@ func (c ComputeNodesClient) ComputeNodeList(ctx context.Context, id PoolId, opti
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &ComputeNodeListCustomPager{},
-		Path:          fmt.Sprintf("%s/nodes", id.ID()),
+		Path:          fmt.Sprintf("%s/nodes", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

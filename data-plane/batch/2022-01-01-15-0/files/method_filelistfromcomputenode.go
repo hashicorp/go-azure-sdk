@@ -96,7 +96,7 @@ func (c FilesClient) FileListFromComputeNode(ctx context.Context, id NodeId, opt
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &FileListFromComputeNodeCustomPager{},
-		Path:          fmt.Sprintf("%s/files", id.ID()),
+		Path:          fmt.Sprintf("%s/files", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

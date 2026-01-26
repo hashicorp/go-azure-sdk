@@ -26,7 +26,7 @@ func (c CertificatesClient) GetCertificateOperation(ctx context.Context, id Cert
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/pending", id.ID()),
+		Path:       fmt.Sprintf("%s/pending", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

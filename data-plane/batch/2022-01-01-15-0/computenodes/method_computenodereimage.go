@@ -65,7 +65,7 @@ func (c ComputeNodesClient) ComputeNodeReimage(ctx context.Context, id NodeId, i
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/reimage", id.ID()),
+		Path:          fmt.Sprintf("%s/reimage", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

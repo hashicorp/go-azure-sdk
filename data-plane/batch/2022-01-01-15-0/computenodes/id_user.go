@@ -23,7 +23,7 @@ type UserId struct {
 // NewUserID returns a new UserId struct
 func NewUserID(baseURI string, poolId string, nodeId string, userName string) UserId {
 	return UserId{
-		BaseURI:  baseURI,
+		BaseURI:  strings.TrimSuffix(baseURI, "/"),
 		PoolId:   poolId,
 		NodeId:   nodeId,
 		UserName: userName,
@@ -106,7 +106,7 @@ func (id UserId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.PoolId, id.NodeId, id.UserName)
 }
 
-// Path returns the formatted User ID without the Scope / BaseURI
+// Path returns the formatted User ID without the BaseURI
 func (id UserId) Path() string {
 	fmtString := "/pools/%s/nodes/%s/users/%s"
 	return fmt.Sprintf(fmtString, id.PoolId, id.NodeId, id.UserName)

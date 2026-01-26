@@ -26,7 +26,7 @@ func (c DeletedStorageClient) RecoverDeletedStorageAccount(ctx context.Context, 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/recover", id.ID()),
+		Path:       fmt.Sprintf("%s/recover", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

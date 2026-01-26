@@ -26,7 +26,7 @@ func (c CertificatesClient) GetCertificatePolicy(ctx context.Context, id Certifi
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/policy", id.ID()),
+		Path:       fmt.Sprintf("%s/policy", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

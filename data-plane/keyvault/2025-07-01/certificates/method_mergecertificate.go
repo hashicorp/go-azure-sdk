@@ -26,7 +26,7 @@ func (c CertificatesClient) MergeCertificate(ctx context.Context, id Certificate
 			http.StatusCreated,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/pending/merge", id.ID()),
+		Path:       fmt.Sprintf("%s/pending/merge", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

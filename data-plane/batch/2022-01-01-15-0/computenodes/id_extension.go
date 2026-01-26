@@ -23,7 +23,7 @@ type ExtensionId struct {
 // NewExtensionID returns a new ExtensionId struct
 func NewExtensionID(baseURI string, poolId string, nodeId string, extensionName string) ExtensionId {
 	return ExtensionId{
-		BaseURI:       baseURI,
+		BaseURI:       strings.TrimSuffix(baseURI, "/"),
 		PoolId:        poolId,
 		NodeId:        nodeId,
 		ExtensionName: extensionName,
@@ -106,7 +106,7 @@ func (id ExtensionId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.PoolId, id.NodeId, id.ExtensionName)
 }
 
-// Path returns the formatted Extension ID without the Scope / BaseURI
+// Path returns the formatted Extension ID without the BaseURI
 func (id ExtensionId) Path() string {
 	fmtString := "/pools/%s/nodes/%s/extensions/%s"
 	return fmt.Sprintf(fmtString, id.PoolId, id.NodeId, id.ExtensionName)

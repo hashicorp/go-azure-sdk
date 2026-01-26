@@ -92,7 +92,7 @@ func (c ComputeNodesClient) ComputeNodeExtensionList(ctx context.Context, id Nod
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &ComputeNodeExtensionListCustomPager{},
-		Path:          fmt.Sprintf("%s/extensions", id.ID()),
+		Path:          fmt.Sprintf("%s/extensions", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

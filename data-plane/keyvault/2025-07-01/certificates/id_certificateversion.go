@@ -22,7 +22,7 @@ type CertificateversionId struct {
 // NewCertificateversionID returns a new CertificateversionId struct
 func NewCertificateversionID(baseURI string, certificateName string, certificateversion string) CertificateversionId {
 	return CertificateversionId{
-		BaseURI:            baseURI,
+		BaseURI:            strings.TrimSuffix(baseURI, "/"),
 		CertificateName:    certificateName,
 		Certificateversion: certificateversion,
 	}
@@ -100,7 +100,7 @@ func (id CertificateversionId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.CertificateName, id.Certificateversion)
 }
 
-// Path returns the formatted Certificateversion ID without the Scope / BaseURI
+// Path returns the formatted Certificateversion ID without the BaseURI
 func (id CertificateversionId) Path() string {
 	fmtString := "/certificates/%s/%s"
 	return fmt.Sprintf(fmtString, id.CertificateName, id.Certificateversion)

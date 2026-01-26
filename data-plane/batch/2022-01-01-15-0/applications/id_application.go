@@ -21,7 +21,7 @@ type ApplicationId struct {
 // NewApplicationID returns a new ApplicationId struct
 func NewApplicationID(baseURI string, applicationId string) ApplicationId {
 	return ApplicationId{
-		BaseURI:       baseURI,
+		BaseURI:       strings.TrimSuffix(baseURI, "/"),
 		ApplicationId: applicationId,
 	}
 }
@@ -94,7 +94,7 @@ func (id ApplicationId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.ApplicationId)
 }
 
-// Path returns the formatted Application ID without the Scope / BaseURI
+// Path returns the formatted Application ID without the BaseURI
 func (id ApplicationId) Path() string {
 	fmtString := "/applications/%s"
 	return fmt.Sprintf(fmtString, id.ApplicationId)

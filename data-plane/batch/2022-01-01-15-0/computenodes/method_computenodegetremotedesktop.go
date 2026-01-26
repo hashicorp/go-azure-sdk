@@ -66,7 +66,7 @@ func (c ComputeNodesClient) ComputeNodeGetRemoteDesktop(ctx context.Context, id 
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/rdp", id.ID()),
+		Path:          fmt.Sprintf("%s/rdp", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

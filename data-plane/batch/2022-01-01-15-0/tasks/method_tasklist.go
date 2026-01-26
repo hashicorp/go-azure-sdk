@@ -100,7 +100,7 @@ func (c TasksClient) TaskList(ctx context.Context, id JobId, options TaskListOpe
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &TaskListCustomPager{},
-		Path:          fmt.Sprintf("%s/tasks", id.ID()),
+		Path:          fmt.Sprintf("%s/tasks", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

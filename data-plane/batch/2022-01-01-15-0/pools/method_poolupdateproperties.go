@@ -65,7 +65,7 @@ func (c PoolsClient) PoolUpdateProperties(ctx context.Context, id PoolId, input 
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/updateproperties", id.ID()),
+		Path:          fmt.Sprintf("%s/updateproperties", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

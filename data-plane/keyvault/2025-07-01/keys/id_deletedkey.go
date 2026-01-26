@@ -21,7 +21,7 @@ type DeletedkeyId struct {
 // NewDeletedkeyID returns a new DeletedkeyId struct
 func NewDeletedkeyID(baseURI string, deletedkeyName string) DeletedkeyId {
 	return DeletedkeyId{
-		BaseURI:        baseURI,
+		BaseURI:        strings.TrimSuffix(baseURI, "/"),
 		DeletedkeyName: deletedkeyName,
 	}
 }
@@ -94,7 +94,7 @@ func (id DeletedkeyId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.DeletedkeyName)
 }
 
-// Path returns the formatted Deletedkey ID without the Scope / BaseURI
+// Path returns the formatted Deletedkey ID without the BaseURI
 func (id DeletedkeyId) Path() string {
 	fmtString := "/deletedkeys/%s"
 	return fmt.Sprintf(fmtString, id.DeletedkeyName)

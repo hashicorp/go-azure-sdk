@@ -26,7 +26,7 @@ func (c KeysClient) Decrypt(ctx context.Context, id KeyversionId, input KeyOpera
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/decrypt", id.ID()),
+		Path:       fmt.Sprintf("%s/decrypt", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

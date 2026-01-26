@@ -23,7 +23,7 @@ type FileId struct {
 // NewFileID returns a new FileId struct
 func NewFileID(baseURI string, jobId string, taskId string, fileName string) FileId {
 	return FileId{
-		BaseURI:  baseURI,
+		BaseURI:  strings.TrimSuffix(baseURI, "/"),
 		JobId:    jobId,
 		TaskId:   taskId,
 		FileName: fileName,
@@ -106,7 +106,7 @@ func (id FileId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.JobId, id.TaskId, id.FileName)
 }
 
-// Path returns the formatted File ID without the Scope / BaseURI
+// Path returns the formatted File ID without the BaseURI
 func (id FileId) Path() string {
 	fmtString := "/jobs/%s/tasks/%s/files/%s"
 	return fmt.Sprintf(fmtString, id.JobId, id.TaskId, id.FileName)

@@ -66,7 +66,7 @@ func (c ComputeNodesClient) ComputeNodeGetRemoteLoginSettings(ctx context.Contex
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/remoteloginsettings", id.ID()),
+		Path:          fmt.Sprintf("%s/remoteloginsettings", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

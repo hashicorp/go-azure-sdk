@@ -21,7 +21,7 @@ type SettingId struct {
 // NewSettingID returns a new SettingId struct
 func NewSettingID(baseURI string, settingName string) SettingId {
 	return SettingId{
-		BaseURI:     baseURI,
+		BaseURI:     strings.TrimSuffix(baseURI, "/"),
 		SettingName: settingName,
 	}
 }
@@ -94,7 +94,7 @@ func (id SettingId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.SettingName)
 }
 
-// Path returns the formatted Setting ID without the Scope / BaseURI
+// Path returns the formatted Setting ID without the BaseURI
 func (id SettingId) Path() string {
 	fmtString := "/settings/%s"
 	return fmt.Sprintf(fmtString, id.SettingName)

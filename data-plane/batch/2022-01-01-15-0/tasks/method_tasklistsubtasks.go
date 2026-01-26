@@ -70,7 +70,7 @@ func (c TasksClient) TaskListSubtasks(ctx context.Context, id TaskId, options Ta
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/subtasksinfo", id.ID()),
+		Path:          fmt.Sprintf("%s/subtasksinfo", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

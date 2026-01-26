@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -65,7 +64,7 @@ func (p *RoleAssignmentsListForScopeCustomPager) NextPageLink() *odata.Link {
 }
 
 // RoleAssignmentsListForScope ...
-func (c RbacsClient) RoleAssignmentsListForScope(ctx context.Context, id commonids.ScopeId, options RoleAssignmentsListForScopeOperationOptions) (result RoleAssignmentsListForScopeOperationResponse, err error) {
+func (c RbacsClient) RoleAssignmentsListForScope(ctx context.Context, id ScopeId, options RoleAssignmentsListForScopeOperationOptions) (result RoleAssignmentsListForScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -74,7 +73,7 @@ func (c RbacsClient) RoleAssignmentsListForScope(ctx context.Context, id commoni
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &RoleAssignmentsListForScopeCustomPager{},
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/roleAssignments", id.ID()),
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/roleAssignments", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -105,12 +104,12 @@ func (c RbacsClient) RoleAssignmentsListForScope(ctx context.Context, id commoni
 }
 
 // RoleAssignmentsListForScopeComplete retrieves all the results into a single object
-func (c RbacsClient) RoleAssignmentsListForScopeComplete(ctx context.Context, id commonids.ScopeId, options RoleAssignmentsListForScopeOperationOptions) (RoleAssignmentsListForScopeCompleteResult, error) {
+func (c RbacsClient) RoleAssignmentsListForScopeComplete(ctx context.Context, id ScopeId, options RoleAssignmentsListForScopeOperationOptions) (RoleAssignmentsListForScopeCompleteResult, error) {
 	return c.RoleAssignmentsListForScopeCompleteMatchingPredicate(ctx, id, options, RoleAssignmentOperationPredicate{})
 }
 
 // RoleAssignmentsListForScopeCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RbacsClient) RoleAssignmentsListForScopeCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, options RoleAssignmentsListForScopeOperationOptions, predicate RoleAssignmentOperationPredicate) (result RoleAssignmentsListForScopeCompleteResult, err error) {
+func (c RbacsClient) RoleAssignmentsListForScopeCompleteMatchingPredicate(ctx context.Context, id ScopeId, options RoleAssignmentsListForScopeOperationOptions, predicate RoleAssignmentOperationPredicate) (result RoleAssignmentsListForScopeCompleteResult, err error) {
 	items := make([]RoleAssignment, 0)
 
 	resp, err := c.RoleAssignmentsListForScope(ctx, id, options)

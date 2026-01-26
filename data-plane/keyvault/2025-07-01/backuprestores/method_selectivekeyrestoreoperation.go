@@ -29,7 +29,7 @@ func (c BackuprestoresClient) SelectiveKeyRestoreOperation(ctx context.Context, 
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/restore", id.ID()),
+		Path:       fmt.Sprintf("%s/restore", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

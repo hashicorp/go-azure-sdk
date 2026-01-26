@@ -21,7 +21,7 @@ type JobId struct {
 // NewJobID returns a new JobId struct
 func NewJobID(baseURI string, jobId string) JobId {
 	return JobId{
-		BaseURI: baseURI,
+		BaseURI: strings.TrimSuffix(baseURI, "/"),
 		JobId:   jobId,
 	}
 }
@@ -94,7 +94,7 @@ func (id JobId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.JobId)
 }
 
-// Path returns the formatted Job ID without the Scope / BaseURI
+// Path returns the formatted Job ID without the BaseURI
 func (id JobId) Path() string {
 	fmtString := "/jobs/%s"
 	return fmt.Sprintf(fmtString, id.JobId)

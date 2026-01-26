@@ -26,7 +26,7 @@ func (c KeysClient) Release(ctx context.Context, id KeyversionId, input KeyRelea
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/release", id.ID()),
+		Path:       fmt.Sprintf("%s/release", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,7 @@ func (c BackuprestoresClient) RestoreStatus(ctx context.Context, id RestoreId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/pending", id.ID()),
+		Path:       fmt.Sprintf("%s/pending", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

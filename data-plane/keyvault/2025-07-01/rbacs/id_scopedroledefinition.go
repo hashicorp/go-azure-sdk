@@ -22,7 +22,7 @@ type ScopedRoleDefinitionId struct {
 // NewScopedRoleDefinitionID returns a new ScopedRoleDefinitionId struct
 func NewScopedRoleDefinitionID(baseURI string, scope string, roleDefinitionName string) ScopedRoleDefinitionId {
 	return ScopedRoleDefinitionId{
-		BaseURI:            baseURI,
+		BaseURI:            strings.TrimSuffix(baseURI, "/"),
 		Scope:              scope,
 		RoleDefinitionName: roleDefinitionName,
 	}
@@ -100,10 +100,10 @@ func (id ScopedRoleDefinitionId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, strings.TrimPrefix(id.Scope, "/"), id.RoleDefinitionName)
 }
 
-// Path returns the formatted Scoped Role Definition ID without the Scope / BaseURI
+// Path returns the formatted Scoped Role Definition ID without the BaseURI
 func (id ScopedRoleDefinitionId) Path() string {
-	fmtString := "/providers/Microsoft.Authorization/roleDefinitions/%s"
-	return fmt.Sprintf(fmtString, id.RoleDefinitionName)
+	fmtString := "/%s/providers/Microsoft.Authorization/roleDefinitions/%s"
+	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.Scope, "/"), id.RoleDefinitionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Scoped Role Definition ID

@@ -66,7 +66,7 @@ func (c PoolsClient) PoolEvaluateAutoScale(ctx context.Context, id PoolId, input
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/evaluateautoscale", id.ID()),
+		Path:          fmt.Sprintf("%s/evaluateautoscale", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
