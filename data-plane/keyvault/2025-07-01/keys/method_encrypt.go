@@ -26,7 +26,7 @@ func (c KeysClient) Encrypt(ctx context.Context, id KeyversionId, input KeyOpera
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/encrypt", id.ID()),
+		Path:       fmt.Sprintf("%s/encrypt", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

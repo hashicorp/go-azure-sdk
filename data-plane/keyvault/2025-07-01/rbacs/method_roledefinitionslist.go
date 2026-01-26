@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -65,7 +64,7 @@ func (p *RoleDefinitionsListCustomPager) NextPageLink() *odata.Link {
 }
 
 // RoleDefinitionsList ...
-func (c RbacsClient) RoleDefinitionsList(ctx context.Context, id commonids.ScopeId, options RoleDefinitionsListOperationOptions) (result RoleDefinitionsListOperationResponse, err error) {
+func (c RbacsClient) RoleDefinitionsList(ctx context.Context, id ScopeId, options RoleDefinitionsListOperationOptions) (result RoleDefinitionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -74,7 +73,7 @@ func (c RbacsClient) RoleDefinitionsList(ctx context.Context, id commonids.Scope
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &RoleDefinitionsListCustomPager{},
-		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/roleDefinitions", id.ID()),
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/roleDefinitions", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -105,12 +104,12 @@ func (c RbacsClient) RoleDefinitionsList(ctx context.Context, id commonids.Scope
 }
 
 // RoleDefinitionsListComplete retrieves all the results into a single object
-func (c RbacsClient) RoleDefinitionsListComplete(ctx context.Context, id commonids.ScopeId, options RoleDefinitionsListOperationOptions) (RoleDefinitionsListCompleteResult, error) {
+func (c RbacsClient) RoleDefinitionsListComplete(ctx context.Context, id ScopeId, options RoleDefinitionsListOperationOptions) (RoleDefinitionsListCompleteResult, error) {
 	return c.RoleDefinitionsListCompleteMatchingPredicate(ctx, id, options, RoleDefinitionOperationPredicate{})
 }
 
 // RoleDefinitionsListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RbacsClient) RoleDefinitionsListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, options RoleDefinitionsListOperationOptions, predicate RoleDefinitionOperationPredicate) (result RoleDefinitionsListCompleteResult, err error) {
+func (c RbacsClient) RoleDefinitionsListCompleteMatchingPredicate(ctx context.Context, id ScopeId, options RoleDefinitionsListOperationOptions, predicate RoleDefinitionOperationPredicate) (result RoleDefinitionsListCompleteResult, err error) {
 	items := make([]RoleDefinition, 0)
 
 	resp, err := c.RoleDefinitionsList(ctx, id, options)

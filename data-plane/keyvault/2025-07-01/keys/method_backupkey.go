@@ -26,7 +26,7 @@ func (c KeysClient) BackupKey(ctx context.Context, id KeyId) (result BackupKeyOp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/backup", id.ID()),
+		Path:       fmt.Sprintf("%s/backup", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

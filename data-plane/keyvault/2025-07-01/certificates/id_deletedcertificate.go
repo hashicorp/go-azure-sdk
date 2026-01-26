@@ -21,7 +21,7 @@ type DeletedcertificateId struct {
 // NewDeletedcertificateID returns a new DeletedcertificateId struct
 func NewDeletedcertificateID(baseURI string, deletedcertificateName string) DeletedcertificateId {
 	return DeletedcertificateId{
-		BaseURI:                baseURI,
+		BaseURI:                strings.TrimSuffix(baseURI, "/"),
 		DeletedcertificateName: deletedcertificateName,
 	}
 }
@@ -94,7 +94,7 @@ func (id DeletedcertificateId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.DeletedcertificateName)
 }
 
-// Path returns the formatted Deletedcertificate ID without the Scope / BaseURI
+// Path returns the formatted Deletedcertificate ID without the BaseURI
 func (id DeletedcertificateId) Path() string {
 	fmtString := "/deletedcertificates/%s"
 	return fmt.Sprintf(fmtString, id.DeletedcertificateName)

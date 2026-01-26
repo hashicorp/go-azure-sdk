@@ -22,7 +22,7 @@ type TaskId struct {
 // NewTaskID returns a new TaskId struct
 func NewTaskID(baseURI string, jobId string, taskId string) TaskId {
 	return TaskId{
-		BaseURI: baseURI,
+		BaseURI: strings.TrimSuffix(baseURI, "/"),
 		JobId:   jobId,
 		TaskId:  taskId,
 	}
@@ -100,7 +100,7 @@ func (id TaskId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.JobId, id.TaskId)
 }
 
-// Path returns the formatted Task ID without the Scope / BaseURI
+// Path returns the formatted Task ID without the BaseURI
 func (id TaskId) Path() string {
 	fmtString := "/jobs/%s/tasks/%s"
 	return fmt.Sprintf(fmtString, id.JobId, id.TaskId)

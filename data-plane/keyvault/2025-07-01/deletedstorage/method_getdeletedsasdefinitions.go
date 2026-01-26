@@ -73,7 +73,7 @@ func (c DeletedStorageClient) GetDeletedSasDefinitions(ctx context.Context, id D
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &GetDeletedSasDefinitionsCustomPager{},
-		Path:          fmt.Sprintf("%s/sas", id.ID()),
+		Path:          fmt.Sprintf("%s/sas", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

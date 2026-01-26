@@ -21,7 +21,7 @@ type StorageId struct {
 // NewStorageID returns a new StorageId struct
 func NewStorageID(baseURI string, storageName string) StorageId {
 	return StorageId{
-		BaseURI:     baseURI,
+		BaseURI:     strings.TrimSuffix(baseURI, "/"),
 		StorageName: storageName,
 	}
 }
@@ -94,7 +94,7 @@ func (id StorageId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.StorageName)
 }
 
-// Path returns the formatted Storage ID without the Scope / BaseURI
+// Path returns the formatted Storage ID without the BaseURI
 func (id StorageId) Path() string {
 	fmtString := "/storage/%s"
 	return fmt.Sprintf(fmtString, id.StorageName)

@@ -65,7 +65,7 @@ func (c ComputeNodesClient) ComputeNodeReboot(ctx context.Context, id NodeId, in
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/reboot", id.ID()),
+		Path:          fmt.Sprintf("%s/reboot", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

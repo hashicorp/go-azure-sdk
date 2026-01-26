@@ -81,7 +81,7 @@ func (c ComputeNodesClient) PoolRemoveNodes(ctx context.Context, id PoolId, inpu
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/removenodes", id.ID()),
+		Path:          fmt.Sprintf("%s/removenodes", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

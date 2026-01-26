@@ -26,7 +26,7 @@ func (c KeysClient) GetKeyRotationPolicy(ctx context.Context, id KeyId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/rotationpolicy", id.ID()),
+		Path:       fmt.Sprintf("%s/rotationpolicy", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -81,7 +81,7 @@ func (c PoolsClient) PoolResize(ctx context.Context, id PoolId, input PoolResize
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/resize", id.ID()),
+		Path:          fmt.Sprintf("%s/resize", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

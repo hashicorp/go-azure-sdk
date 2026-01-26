@@ -26,7 +26,7 @@ func (c CertificatesClient) DeleteCertificateOperation(ctx context.Context, id C
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       fmt.Sprintf("%s/pending", id.ID()),
+		Path:       fmt.Sprintf("%s/pending", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,7 @@ func (c StorageClient) RegenerateStorageAccountKey(ctx context.Context, id Stora
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/regeneratekey", id.ID()),
+		Path:       fmt.Sprintf("%s/regeneratekey", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

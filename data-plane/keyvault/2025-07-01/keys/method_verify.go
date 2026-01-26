@@ -26,7 +26,7 @@ func (c KeysClient) Verify(ctx context.Context, id KeyversionId, input KeyVerify
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/verify", id.ID()),
+		Path:       fmt.Sprintf("%s/verify", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -73,7 +73,7 @@ func (c SecretsClient) GetSecretVersions(ctx context.Context, id SecretId, optio
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &GetSecretVersionsCustomPager{},
-		Path:          fmt.Sprintf("%s/versions", id.ID()),
+		Path:          fmt.Sprintf("%s/versions", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -96,7 +96,7 @@ func (c FilesClient) FileListFromTask(ctx context.Context, id TaskId, options Fi
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &FileListFromTaskCustomPager{},
-		Path:          fmt.Sprintf("%s/files", id.ID()),
+		Path:          fmt.Sprintf("%s/files", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

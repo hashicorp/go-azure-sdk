@@ -26,7 +26,7 @@ func (c CertificatesClient) ImportCertificate(ctx context.Context, id Certificat
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/import", id.ID()),
+		Path:       fmt.Sprintf("%s/import", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

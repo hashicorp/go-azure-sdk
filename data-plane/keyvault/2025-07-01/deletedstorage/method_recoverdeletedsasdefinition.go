@@ -26,7 +26,7 @@ func (c DeletedStorageClient) RecoverDeletedSasDefinition(ctx context.Context, i
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/recover", id.ID()),
+		Path:       fmt.Sprintf("%s/recover", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

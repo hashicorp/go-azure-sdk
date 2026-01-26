@@ -26,7 +26,7 @@ func (c KeysClient) RotateKey(ctx context.Context, id KeyId) (result RotateKeyOp
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotate", id.ID()),
+		Path:       fmt.Sprintf("%s/rotate", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

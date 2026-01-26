@@ -26,7 +26,7 @@ func (c KeysClient) UnwrapKey(ctx context.Context, id KeyversionId, input KeyOpe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unwrapkey", id.ID()),
+		Path:       fmt.Sprintf("%s/unwrapkey", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,7 @@ func (c KeysClient) WrapKey(ctx context.Context, id KeyversionId, input KeyOpera
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/wrapkey", id.ID()),
+		Path:       fmt.Sprintf("%s/wrapkey", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -73,7 +73,7 @@ func (c CertificatesClient) GetCertificateVersions(ctx context.Context, id Certi
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &GetCertificateVersionsCustomPager{},
-		Path:          fmt.Sprintf("%s/versions", id.ID()),
+		Path:          fmt.Sprintf("%s/versions", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
