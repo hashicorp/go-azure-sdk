@@ -26,7 +26,7 @@ func (c BackuprestoresClient) FullBackupStatus(ctx context.Context, id BackupId)
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/pending", id.ID()),
+		Path:       fmt.Sprintf("%s/pending", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -26,7 +26,7 @@ func (c CertificatesClient) CreateCertificate(ctx context.Context, id Certificat
 			http.StatusAccepted,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/create", id.ID()),
+		Path:       fmt.Sprintf("%s/create", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -21,7 +21,7 @@ type KeyId struct {
 // NewKeyID returns a new KeyId struct
 func NewKeyID(baseURI string, keyName string) KeyId {
 	return KeyId{
-		BaseURI: baseURI,
+		BaseURI: strings.TrimSuffix(baseURI, "/"),
 		KeyName: keyName,
 	}
 }
@@ -94,7 +94,7 @@ func (id KeyId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.KeyName)
 }
 
-// Path returns the formatted Key ID without the Scope / BaseURI
+// Path returns the formatted Key ID without the BaseURI
 func (id KeyId) Path() string {
 	fmtString := "/keys/%s"
 	return fmt.Sprintf(fmtString, id.KeyName)

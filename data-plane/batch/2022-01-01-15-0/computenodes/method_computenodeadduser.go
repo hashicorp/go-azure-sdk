@@ -65,7 +65,7 @@ func (c ComputeNodesClient) ComputeNodeAddUser(ctx context.Context, id NodeId, i
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/users", id.ID()),
+		Path:          fmt.Sprintf("%s/users", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -66,7 +66,7 @@ func (c ComputeNodesClient) ComputeNodeUploadBatchServiceLogs(ctx context.Contex
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/uploadbatchservicelogs", id.ID()),
+		Path:          fmt.Sprintf("%s/uploadbatchservicelogs", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

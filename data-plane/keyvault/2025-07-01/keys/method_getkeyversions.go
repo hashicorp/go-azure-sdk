@@ -73,7 +73,7 @@ func (c KeysClient) GetKeyVersions(ctx context.Context, id KeyId, options GetKey
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &GetKeyVersionsCustomPager{},
-		Path:          fmt.Sprintf("%s/versions", id.ID()),
+		Path:          fmt.Sprintf("%s/versions", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

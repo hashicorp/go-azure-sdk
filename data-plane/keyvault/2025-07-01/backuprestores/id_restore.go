@@ -21,7 +21,7 @@ type RestoreId struct {
 // NewRestoreID returns a new RestoreId struct
 func NewRestoreID(baseURI string, jobId string) RestoreId {
 	return RestoreId{
-		BaseURI: baseURI,
+		BaseURI: strings.TrimSuffix(baseURI, "/"),
 		JobId:   jobId,
 	}
 }
@@ -94,7 +94,7 @@ func (id RestoreId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.JobId)
 }
 
-// Path returns the formatted Restore ID without the Scope / BaseURI
+// Path returns the formatted Restore ID without the BaseURI
 func (id RestoreId) Path() string {
 	fmtString := "/restore/%s"
 	return fmt.Sprintf(fmtString, id.JobId)

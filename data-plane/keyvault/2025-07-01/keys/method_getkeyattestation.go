@@ -26,7 +26,7 @@ func (c KeysClient) GetKeyAttestation(ctx context.Context, id KeyversionId) (res
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/attestation", id.ID()),
+		Path:       fmt.Sprintf("%s/attestation", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

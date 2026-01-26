@@ -26,7 +26,7 @@ func (c KeysClient) UpdateKeyRotationPolicy(ctx context.Context, id KeyId, input
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/rotationpolicy", id.ID()),
+		Path:       fmt.Sprintf("%s/rotationpolicy", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

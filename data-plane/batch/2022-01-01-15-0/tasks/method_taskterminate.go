@@ -81,7 +81,7 @@ func (c TasksClient) TaskTerminate(ctx context.Context, id TaskId, options TaskT
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/terminate", id.ID()),
+		Path:          fmt.Sprintf("%s/terminate", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

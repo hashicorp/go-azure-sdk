@@ -65,7 +65,7 @@ func (c ComputeNodesClient) ComputeNodeEnableScheduling(ctx context.Context, id 
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/enablescheduling", id.ID()),
+		Path:          fmt.Sprintf("%s/enablescheduling", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

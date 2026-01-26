@@ -22,7 +22,7 @@ type KeyversionId struct {
 // NewKeyversionID returns a new KeyversionId struct
 func NewKeyversionID(baseURI string, keyName string, keyversion string) KeyversionId {
 	return KeyversionId{
-		BaseURI:    baseURI,
+		BaseURI:    strings.TrimSuffix(baseURI, "/"),
 		KeyName:    keyName,
 		Keyversion: keyversion,
 	}
@@ -100,7 +100,7 @@ func (id KeyversionId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.KeyName, id.Keyversion)
 }
 
-// Path returns the formatted Keyversion ID without the Scope / BaseURI
+// Path returns the formatted Keyversion ID without the BaseURI
 func (id KeyversionId) Path() string {
 	fmtString := "/keys/%s/%s"
 	return fmt.Sprintf(fmtString, id.KeyName, id.Keyversion)

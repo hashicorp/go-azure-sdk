@@ -73,7 +73,7 @@ func (c StorageClient) GetSasDefinitions(ctx context.Context, id StorageId, opti
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &GetSasDefinitionsCustomPager{},
-		Path:          fmt.Sprintf("%s/sas", id.ID()),
+		Path:          fmt.Sprintf("%s/sas", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -21,7 +21,7 @@ type IssuernameId struct {
 // NewIssuernameID returns a new IssuernameId struct
 func NewIssuernameID(baseURI string, issuerName string) IssuernameId {
 	return IssuernameId{
-		BaseURI:    baseURI,
+		BaseURI:    strings.TrimSuffix(baseURI, "/"),
 		IssuerName: issuerName,
 	}
 }
@@ -94,7 +94,7 @@ func (id IssuernameId) ID() string {
 	return fmt.Sprintf(fmtString, id.BaseURI, id.IssuerName)
 }
 
-// Path returns the formatted Issuername ID without the Scope / BaseURI
+// Path returns the formatted Issuername ID without the BaseURI
 func (id IssuernameId) Path() string {
 	fmtString := "/certificates/issuers/%s"
 	return fmt.Sprintf(fmtString, id.IssuerName)

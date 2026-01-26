@@ -26,7 +26,7 @@ func (c StorageClient) BackupStorageAccount(ctx context.Context, id StorageId) (
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/backup", id.ID()),
+		Path:       fmt.Sprintf("%s/backup", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

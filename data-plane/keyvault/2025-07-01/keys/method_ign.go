@@ -26,7 +26,7 @@ func (c KeysClient) Ign(ctx context.Context, id KeyversionId, input KeySignParam
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sign", id.ID()),
+		Path:       fmt.Sprintf("%s/sign", id.Path()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
