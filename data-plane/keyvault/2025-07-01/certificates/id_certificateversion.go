@@ -106,6 +106,11 @@ func (id CertificateversionId) Path() string {
 	return fmt.Sprintf(fmtString, id.CertificateName, id.Certificateversion)
 }
 
+// PathElements returns the values of Certificateversion ID Segments without the BaseURI
+func (id CertificateversionId) PathElements() []any {
+	return []any{id.CertificateName, id.Certificateversion}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Certificateversion ID
 func (id CertificateversionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

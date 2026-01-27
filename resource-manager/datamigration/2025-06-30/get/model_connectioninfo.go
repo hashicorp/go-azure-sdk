@@ -63,7 +63,7 @@ func UnmarshalConnectionInfoImplementation(input []byte) (ConnectionInfo, error)
 		return out, nil
 	}
 
-	if strings.EqualFold(value, "MongoDbConnectionInfo") {
+	if strings.EqualFold(value, "mongoDbConnectionInfo") {
 		var out MongoDbConnectionInfo
 		if err := json.Unmarshal(input, &out); err != nil {
 			return nil, fmt.Errorf("unmarshaling into MongoDbConnectionInfo: %+v", err)

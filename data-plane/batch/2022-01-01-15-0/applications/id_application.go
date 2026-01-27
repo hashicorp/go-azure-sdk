@@ -100,6 +100,11 @@ func (id ApplicationId) Path() string {
 	return fmt.Sprintf(fmtString, id.ApplicationId)
 }
 
+// PathElements returns the values of Application ID Segments without the BaseURI
+func (id ApplicationId) PathElements() []any {
+	return []any{id.ApplicationId}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Application ID
 func (id ApplicationId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

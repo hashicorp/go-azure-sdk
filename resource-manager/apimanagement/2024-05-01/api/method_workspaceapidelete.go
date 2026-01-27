@@ -6,8 +6,6 @@ import (
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
 
@@ -15,7 +13,6 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WorkspaceApiDeleteOperationResponse struct {
-	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
 }
@@ -56,7 +53,6 @@ func (c ApiClient) WorkspaceApiDelete(ctx context.Context, id WorkspaceApiId, op
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
-			http.StatusAccepted,
 			http.StatusNoContent,
 			http.StatusOK,
 		},
@@ -80,24 +76,5 @@ func (c ApiClient) WorkspaceApiDelete(ctx context.Context, id WorkspaceApiId, op
 		return
 	}
 
-	result.Poller, err = resourcemanager.PollerFromResponse(resp, c.Client)
-	if err != nil {
-		return
-	}
-
 	return
-}
-
-// WorkspaceApiDeleteThenPoll performs WorkspaceApiDelete then polls until it's completed
-func (c ApiClient) WorkspaceApiDeleteThenPoll(ctx context.Context, id WorkspaceApiId, options WorkspaceApiDeleteOperationOptions) error {
-	result, err := c.WorkspaceApiDelete(ctx, id, options)
-	if err != nil {
-		return fmt.Errorf("performing WorkspaceApiDelete: %+v", err)
-	}
-
-	if err := result.Poller.PollUntilDone(ctx); err != nil {
-		return fmt.Errorf("polling after WorkspaceApiDelete: %+v", err)
-	}
-
-	return nil
 }

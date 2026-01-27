@@ -106,6 +106,11 @@ func (id TaskId) Path() string {
 	return fmt.Sprintf(fmtString, id.JobId, id.TaskId)
 }
 
+// PathElements returns the values of Task ID Segments without the BaseURI
+func (id TaskId) PathElements() []any {
+	return []any{id.JobId, id.TaskId}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Task ID
 func (id TaskId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

@@ -106,6 +106,11 @@ func (id KeyversionId) Path() string {
 	return fmt.Sprintf(fmtString, id.KeyName, id.Keyversion)
 }
 
+// PathElements returns the values of Keyversion ID Segments without the BaseURI
+func (id KeyversionId) PathElements() []any {
+	return []any{id.KeyName, id.Keyversion}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Keyversion ID
 func (id KeyversionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
