@@ -3,7 +3,7 @@ module github.com/hashicorp/go-azure-sdk/data-plane
 go 1.25.5
 
 require (
-	github.com/hashicorp/go-azure-helpers v0.75.2-0.20260122123014-aa3ad08cde20
+	github.com/hashicorp/go-azure-helpers v0.76.0
 	github.com/hashicorp/go-azure-sdk/sdk v0.20260123.1165823-0.20260126121440-e4c0d8af420a
 )
 

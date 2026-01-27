@@ -4,9 +4,7 @@ package protecteditems
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ErrorDetail struct {
-	AdditionalInfo *[]ErrorAdditionalInfo `json:"additionalInfo,omitempty"`
-	Code           *string                `json:"code,omitempty"`
-	Details        *[]ErrorDetail         `json:"details,omitempty"`
-	Message        *string                `json:"message,omitempty"`
-	Target         *string                `json:"target,omitempty"`
+	Code            *string   `json:"code,omitempty"`
+	Message         *string   `json:"message,omitempty"`
+	Recommendations *[]string `json:"recommendations,omitempty"`
 }
