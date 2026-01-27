@@ -12,14 +12,14 @@ import (
 type ContentType string
 
 const (
-	ContentTypeApplicationSlashxNegativepemNegativefile ContentType = "application/x-pem-file"
-	ContentTypeApplicationSlashxNegativepkcsOneTwo      ContentType = "application/x-pkcs12"
+	ContentTypeApplicationXNegativepemNegativefile ContentType = "application/x-pem-file"
+	ContentTypeApplicationXNegativepkcsOneTwo      ContentType = "application/x-pkcs12"
 )
 
 func PossibleValuesForContentType() []string {
 	return []string{
-		string(ContentTypeApplicationSlashxNegativepemNegativefile),
-		string(ContentTypeApplicationSlashxNegativepkcsOneTwo),
+		string(ContentTypeApplicationXNegativepemNegativefile),
+		string(ContentTypeApplicationXNegativepkcsOneTwo),
 	}
 }
 
@@ -38,8 +38,8 @@ func (s *ContentType) UnmarshalJSON(bytes []byte) error {
 
 func parseContentType(input string) (*ContentType, error) {
 	vals := map[string]ContentType{
-		"application/x-pem-file": ContentTypeApplicationSlashxNegativepemNegativefile,
-		"application/x-pkcs12":   ContentTypeApplicationSlashxNegativepkcsOneTwo,
+		"application/x-pem-file": ContentTypeApplicationXNegativepemNegativefile,
+		"application/x-pkcs12":   ContentTypeApplicationXNegativepkcsOneTwo,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

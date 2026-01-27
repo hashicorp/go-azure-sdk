@@ -100,6 +100,11 @@ func (id ScopeId) Path() string {
 	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.Scope, "/"))
 }
 
+// PathElements returns the values of Scope ID Segments without the BaseURI
+func (id ScopeId) PathElements() []any {
+	return []any{strings.TrimPrefix(id.Scope, "/")}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Scope ID
 func (id ScopeId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

@@ -106,6 +106,11 @@ func (id SecretversionId) Path() string {
 	return fmt.Sprintf(fmtString, id.SecretName, id.Secretversion)
 }
 
+// PathElements returns the values of Secretversion ID Segments without the BaseURI
+func (id SecretversionId) PathElements() []any {
+	return []any{id.SecretName, id.Secretversion}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Secretversion ID
 func (id SecretversionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

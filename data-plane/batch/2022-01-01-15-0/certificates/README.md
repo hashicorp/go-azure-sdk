@@ -44,9 +44,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := certificates.NewThumbprintID("thumbprintAlgorithmName", "thumbprintName")
 
-
-read, err := client.CertificateCancelDeletion(ctx, certificates.DefaultCertificateCancelDeletionOperationOptions())
+read, err := client.CertificateCancelDeletion(ctx, id, certificates.DefaultCertificateCancelDeletionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,9 +60,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := certificates.NewThumbprintID("thumbprintAlgorithmName", "thumbprintName")
 
-
-read, err := client.CertificateDelete(ctx, certificates.DefaultCertificateDeleteOperationOptions())
+read, err := client.CertificateDelete(ctx, id, certificates.DefaultCertificateDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -76,9 +76,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := certificates.NewThumbprintID("thumbprintAlgorithmName", "thumbprintName")
 
-
-read, err := client.CertificateGet(ctx, certificates.DefaultCertificateGetOperationOptions())
+read, err := client.CertificateGet(ctx, id, certificates.DefaultCertificateGetOperationOptions())
 if err != nil {
 	// handle the error
 }

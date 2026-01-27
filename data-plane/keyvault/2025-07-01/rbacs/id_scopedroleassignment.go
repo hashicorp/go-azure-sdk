@@ -106,6 +106,11 @@ func (id ScopedRoleAssignmentId) Path() string {
 	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.Scope, "/"), id.RoleAssignmentName)
 }
 
+// PathElements returns the values of Scoped Role Assignment ID Segments without the BaseURI
+func (id ScopedRoleAssignmentId) PathElements() []any {
+	return []any{strings.TrimPrefix(id.Scope, "/"), id.RoleAssignmentName}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Scoped Role Assignment ID
 func (id ScopedRoleAssignmentId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

@@ -100,6 +100,11 @@ func (id DeletedcertificateId) Path() string {
 	return fmt.Sprintf(fmtString, id.DeletedcertificateName)
 }
 
+// PathElements returns the values of Deletedcertificate ID Segments without the BaseURI
+func (id DeletedcertificateId) PathElements() []any {
+	return []any{id.DeletedcertificateName}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Deletedcertificate ID
 func (id DeletedcertificateId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

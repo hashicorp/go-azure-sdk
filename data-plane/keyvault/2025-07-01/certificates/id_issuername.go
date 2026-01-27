@@ -100,6 +100,11 @@ func (id IssuernameId) Path() string {
 	return fmt.Sprintf(fmtString, id.IssuerName)
 }
 
+// PathElements returns the values of Issuername ID Segments without the BaseURI
+func (id IssuernameId) PathElements() []any {
+	return []any{id.IssuerName}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Issuername ID
 func (id IssuernameId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

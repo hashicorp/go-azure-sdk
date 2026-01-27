@@ -100,6 +100,11 @@ func (id SettingId) Path() string {
 	return fmt.Sprintf(fmtString, id.SettingName)
 }
 
+// PathElements returns the values of Setting ID Segments without the BaseURI
+func (id SettingId) PathElements() []any {
+	return []any{id.SettingName}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Setting ID
 func (id SettingId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
