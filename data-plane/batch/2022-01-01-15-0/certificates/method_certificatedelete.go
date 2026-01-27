@@ -57,7 +57,7 @@ func (o CertificateDeleteOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CertificateDelete ...
-func (c CertificatesClient) CertificateDelete(ctx context.Context, options CertificateDeleteOperationOptions) (result CertificateDeleteOperationResponse, err error) {
+func (c CertificatesClient) CertificateDelete(ctx context.Context, id ThumbprintId, options CertificateDeleteOperationOptions) (result CertificateDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; odata=minimalmetadata; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -65,7 +65,7 @@ func (c CertificatesClient) CertificateDelete(ctx context.Context, options Certi
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          "/certificatesthumbprintAlgorithm=thumbprintAlgorithmthumbprint=thumbprint",
+		Path:          fmt.Sprintf("/certificates(%s,%s)", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

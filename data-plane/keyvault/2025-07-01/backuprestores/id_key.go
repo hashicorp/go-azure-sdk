@@ -100,6 +100,11 @@ func (id KeyId) Path() string {
 	return fmt.Sprintf(fmtString, id.KeyName)
 }
 
+// PathElements returns the values of Key ID Segments without the BaseURI
+func (id KeyId) PathElements() []any {
+	return []any{id.KeyName}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Key ID
 func (id KeyId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

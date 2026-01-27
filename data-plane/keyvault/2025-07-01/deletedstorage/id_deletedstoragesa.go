@@ -106,6 +106,11 @@ func (id DeletedstorageSaId) Path() string {
 	return fmt.Sprintf(fmtString, id.DeletedstorageName, id.SaName)
 }
 
+// PathElements returns the values of Deletedstorage Sa ID Segments without the BaseURI
+func (id DeletedstorageSaId) PathElements() []any {
+	return []any{id.DeletedstorageName, id.SaName}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Deletedstorage Sa ID
 func (id DeletedstorageSaId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

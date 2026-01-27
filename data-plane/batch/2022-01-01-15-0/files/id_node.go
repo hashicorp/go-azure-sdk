@@ -106,6 +106,11 @@ func (id NodeId) Path() string {
 	return fmt.Sprintf(fmtString, id.PoolId, id.NodeId)
 }
 
+// PathElements returns the values of Node ID Segments without the BaseURI
+func (id NodeId) PathElements() []any {
+	return []any{id.PoolId, id.NodeId}
+}
+
 // Segments returns a slice of Resource ID Segments which comprise this Node ID
 func (id NodeId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{

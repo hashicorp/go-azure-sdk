@@ -62,7 +62,7 @@ func (o CertificateGetOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CertificateGet ...
-func (c CertificatesClient) CertificateGet(ctx context.Context, options CertificateGetOperationOptions) (result CertificateGetOperationResponse, err error) {
+func (c CertificatesClient) CertificateGet(ctx context.Context, id ThumbprintId, options CertificateGetOperationOptions) (result CertificateGetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -70,7 +70,7 @@ func (c CertificatesClient) CertificateGet(ctx context.Context, options Certific
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/certificatesthumbprintAlgorithm=thumbprintAlgorithmthumbprint=thumbprint",
+		Path:          fmt.Sprintf("/certificates(%s,%s)", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

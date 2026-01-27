@@ -326,12 +326,12 @@ func parseIndexerStatus(input string) (*IndexerStatus, error) {
 type Prefer string
 
 const (
-	PreferReturnEqualsrepresentation Prefer = "return=representation"
+	PreferReturnRepresentation Prefer = "return=representation"
 )
 
 func PossibleValuesForPrefer() []string {
 	return []string{
-		string(PreferReturnEqualsrepresentation),
+		string(PreferReturnRepresentation),
 	}
 }
 
@@ -350,7 +350,7 @@ func (s *Prefer) UnmarshalJSON(bytes []byte) error {
 
 func parsePrefer(input string) (*Prefer, error) {
 	vals := map[string]Prefer{
-		"return=representation": PreferReturnEqualsrepresentation,
+		"return=representation": PreferReturnRepresentation,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
