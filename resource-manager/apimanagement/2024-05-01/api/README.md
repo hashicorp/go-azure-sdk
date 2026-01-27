@@ -142,12 +142,8 @@ if err := client.WorkspaceApiCreateOrUpdateThenPoll(ctx, id, payload, api.Defaul
 ctx := context.TODO()
 id := api.NewWorkspaceApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceName", "workspaceId", "apiId")
 
-read, err := client.WorkspaceApiDelete(ctx, id, api.DefaultWorkspaceApiDeleteOperationOptions())
-if err != nil {
+if err := client.WorkspaceApiDeleteThenPoll(ctx, id, api.DefaultWorkspaceApiDeleteOperationOptions()); err != nil {
 	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
 }
 ```
 
