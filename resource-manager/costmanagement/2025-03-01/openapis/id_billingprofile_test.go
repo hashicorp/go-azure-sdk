@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &BillingProfileId{}
 
 func TestNewBillingProfileID(t *testing.T) {
-	id := NewBillingProfileID("billingAccountId", "billingProfileId")
+	id := NewBillingProfileID("billingAccountName", "billingProfileName")
 
-	if id.BillingAccountId != "billingAccountId" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountId'", id.BillingAccountId, "billingAccountId")
+	if id.BillingAccountName != "billingAccountName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingAccountName'", id.BillingAccountName, "billingAccountName")
 	}
 
-	if id.BillingProfileId != "billingProfileId" {
-		t.Fatalf("Expected %q but got %q for Segment 'BillingProfileId'", id.BillingProfileId, "billingProfileId")
+	if id.BillingProfileName != "billingProfileName" {
+		t.Fatalf("Expected %q but got %q for Segment 'BillingProfileName'", id.BillingProfileName, "billingProfileName")
 	}
 }
 
 func TestFormatBillingProfileID(t *testing.T) {
-	actual := NewBillingProfileID("billingAccountId", "billingProfileId").ID()
-	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingProfiles/billingProfileId"
+	actual := NewBillingProfileID("billingAccountName", "billingProfileName").ID()
+	expected := "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseBillingProfileID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingProfiles",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingProfiles/billingProfileId",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName",
 			Expected: &BillingProfileId{
-				BillingAccountId: "billingAccountId",
-				BillingProfileId: "billingProfileId",
+				BillingAccountName: "billingAccountName",
+				BillingProfileName: "billingProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingProfiles/billingProfileId/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/extra",
 			Error: true,
 		},
 	}
@@ -96,12 +96,12 @@ func TestParseBillingProfileID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.BillingAccountId != v.Expected.BillingAccountId {
-			t.Fatalf("Expected %q but got %q for BillingAccountId", v.Expected.BillingAccountId, actual.BillingAccountId)
+		if actual.BillingAccountName != v.Expected.BillingAccountName {
+			t.Fatalf("Expected %q but got %q for BillingAccountName", v.Expected.BillingAccountName, actual.BillingAccountName)
 		}
 
-		if actual.BillingProfileId != v.Expected.BillingProfileId {
-			t.Fatalf("Expected %q but got %q for BillingProfileId", v.Expected.BillingProfileId, actual.BillingProfileId)
+		if actual.BillingProfileName != v.Expected.BillingProfileName {
+			t.Fatalf("Expected %q but got %q for BillingProfileName", v.Expected.BillingProfileName, actual.BillingProfileName)
 		}
 
 	}
@@ -150,48 +150,48 @@ func TestParseBillingProfileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingProfiles",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/bIlLiNgPrOfIlEs",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingProfiles/billingProfileId",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName",
 			Expected: &BillingProfileId{
-				BillingAccountId: "billingAccountId",
-				BillingProfileId: "billingProfileId",
+				BillingAccountName: "billingAccountName",
+				BillingProfileName: "billingProfileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountId/billingProfiles/billingProfileId/extra",
+			Input: "/providers/Microsoft.Billing/billingAccounts/billingAccountName/billingProfiles/billingProfileName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEiD",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE",
 			Expected: &BillingProfileId{
-				BillingAccountId: "bIlLiNgAcCoUnTiD",
-				BillingProfileId: "bIlLiNgPrOfIlEiD",
+				BillingAccountName: "bIlLiNgAcCoUnTnAmE",
+				BillingProfileName: "bIlLiNgPrOfIlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTiD/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEiD/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.bIlLiNg/bIlLiNgAcCoUnTs/bIlLiNgAcCoUnTnAmE/bIlLiNgPrOfIlEs/bIlLiNgPrOfIlEnAmE/extra",
 			Error: true,
 		},
 	}
@@ -210,12 +210,12 @@ func TestParseBillingProfileIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.BillingAccountId != v.Expected.BillingAccountId {
-			t.Fatalf("Expected %q but got %q for BillingAccountId", v.Expected.BillingAccountId, actual.BillingAccountId)
+		if actual.BillingAccountName != v.Expected.BillingAccountName {
+			t.Fatalf("Expected %q but got %q for BillingAccountName", v.Expected.BillingAccountName, actual.BillingAccountName)
 		}
 
-		if actual.BillingProfileId != v.Expected.BillingProfileId {
-			t.Fatalf("Expected %q but got %q for BillingProfileId", v.Expected.BillingProfileId, actual.BillingProfileId)
+		if actual.BillingProfileName != v.Expected.BillingProfileName {
+			t.Fatalf("Expected %q but got %q for BillingProfileName", v.Expected.BillingProfileName, actual.BillingProfileName)
 		}
 
 	}

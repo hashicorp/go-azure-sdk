@@ -47,6 +47,47 @@ func parseCapacityReservationInstanceViewTypes(input string) (*CapacityReservati
 	return &out, nil
 }
 
+type ExpandTypesForGetCapacityReservationGroups string
+
+const (
+	ExpandTypesForGetCapacityReservationGroupsVirtualMachineScaleSetVMsRef ExpandTypesForGetCapacityReservationGroups = "virtualMachineScaleSetVMs/$ref"
+	ExpandTypesForGetCapacityReservationGroupsVirtualMachinesRef           ExpandTypesForGetCapacityReservationGroups = "virtualMachines/$ref"
+)
+
+func PossibleValuesForExpandTypesForGetCapacityReservationGroups() []string {
+	return []string{
+		string(ExpandTypesForGetCapacityReservationGroupsVirtualMachineScaleSetVMsRef),
+		string(ExpandTypesForGetCapacityReservationGroupsVirtualMachinesRef),
+	}
+}
+
+func (s *ExpandTypesForGetCapacityReservationGroups) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExpandTypesForGetCapacityReservationGroups(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseExpandTypesForGetCapacityReservationGroups(input string) (*ExpandTypesForGetCapacityReservationGroups, error) {
+	vals := map[string]ExpandTypesForGetCapacityReservationGroups{
+		"virtualmachinescalesetvms/$ref": ExpandTypesForGetCapacityReservationGroupsVirtualMachineScaleSetVMsRef,
+		"virtualmachines/$ref":           ExpandTypesForGetCapacityReservationGroupsVirtualMachinesRef,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExpandTypesForGetCapacityReservationGroups(input)
+	return &out, nil
+}
+
 type StatusLevelTypes string
 
 const (

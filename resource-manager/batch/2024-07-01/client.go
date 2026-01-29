@@ -6,57 +6,57 @@ package v2024_07_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/applicationpackages"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/applications"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/batchaccounts"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/certificates"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/application"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/applicationpackage"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/batchaccount"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/certificate"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/detectorresponses"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/networksecurityperimeterconfigurations"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/openapis"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/pools"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/privateendpointconnections"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/privatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/location"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/networksecurityperimeter"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/pool"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/privateendpointconnection"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/privatelinkresource"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	ApplicationPackages                    *applicationpackages.ApplicationPackagesClient
-	Applications                           *applications.ApplicationsClient
-	BatchAccounts                          *batchaccounts.BatchAccountsClient
-	Certificates                           *certificates.CertificatesClient
-	DetectorResponses                      *detectorresponses.DetectorResponsesClient
-	NetworkSecurityPerimeterConfigurations *networksecurityperimeterconfigurations.NetworkSecurityPerimeterConfigurationsClient
-	Openapis                               *openapis.OpenapisClient
-	Pools                                  *pools.PoolsClient
-	PrivateEndpointConnections             *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources                   *privatelinkresources.PrivateLinkResourcesClient
+	Application               *application.ApplicationClient
+	ApplicationPackage        *applicationpackage.ApplicationPackageClient
+	BatchAccount              *batchaccount.BatchAccountClient
+	Certificate               *certificate.CertificateClient
+	DetectorResponses         *detectorresponses.DetectorResponsesClient
+	Location                  *location.LocationClient
+	NetworkSecurityPerimeter  *networksecurityperimeter.NetworkSecurityPerimeterClient
+	Pool                      *pool.PoolClient
+	PrivateEndpointConnection *privateendpointconnection.PrivateEndpointConnectionClient
+	PrivateLinkResource       *privatelinkresource.PrivateLinkResourceClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	applicationPackagesClient, err := applicationpackages.NewApplicationPackagesClientWithBaseURI(sdkApi)
+	applicationClient, err := application.NewApplicationClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building ApplicationPackages client: %+v", err)
+		return nil, fmt.Errorf("building Application client: %+v", err)
 	}
-	configureFunc(applicationPackagesClient.Client)
+	configureFunc(applicationClient.Client)
 
-	applicationsClient, err := applications.NewApplicationsClientWithBaseURI(sdkApi)
+	applicationPackageClient, err := applicationpackage.NewApplicationPackageClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Applications client: %+v", err)
+		return nil, fmt.Errorf("building ApplicationPackage client: %+v", err)
 	}
-	configureFunc(applicationsClient.Client)
+	configureFunc(applicationPackageClient.Client)
 
-	batchAccountsClient, err := batchaccounts.NewBatchAccountsClientWithBaseURI(sdkApi)
+	batchAccountClient, err := batchaccount.NewBatchAccountClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building BatchAccounts client: %+v", err)
+		return nil, fmt.Errorf("building BatchAccount client: %+v", err)
 	}
-	configureFunc(batchAccountsClient.Client)
+	configureFunc(batchAccountClient.Client)
 
-	certificatesClient, err := certificates.NewCertificatesClientWithBaseURI(sdkApi)
+	certificateClient, err := certificate.NewCertificateClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Certificates client: %+v", err)
+		return nil, fmt.Errorf("building Certificate client: %+v", err)
 	}
-	configureFunc(certificatesClient.Client)
+	configureFunc(certificateClient.Client)
 
 	detectorResponsesClient, err := detectorresponses.NewDetectorResponsesClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -64,46 +64,46 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(detectorResponsesClient.Client)
 
-	networkSecurityPerimeterConfigurationsClient, err := networksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationsClientWithBaseURI(sdkApi)
+	locationClient, err := location.NewLocationClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building NetworkSecurityPerimeterConfigurations client: %+v", err)
+		return nil, fmt.Errorf("building Location client: %+v", err)
 	}
-	configureFunc(networkSecurityPerimeterConfigurationsClient.Client)
+	configureFunc(locationClient.Client)
 
-	openapisClient, err := openapis.NewOpenapisClientWithBaseURI(sdkApi)
+	networkSecurityPerimeterClient, err := networksecurityperimeter.NewNetworkSecurityPerimeterClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Openapis client: %+v", err)
+		return nil, fmt.Errorf("building NetworkSecurityPerimeter client: %+v", err)
 	}
-	configureFunc(openapisClient.Client)
+	configureFunc(networkSecurityPerimeterClient.Client)
 
-	poolsClient, err := pools.NewPoolsClientWithBaseURI(sdkApi)
+	poolClient, err := pool.NewPoolClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building Pools client: %+v", err)
+		return nil, fmt.Errorf("building Pool client: %+v", err)
 	}
-	configureFunc(poolsClient.Client)
+	configureFunc(poolClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
+	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
+		return nil, fmt.Errorf("building PrivateEndpointConnection client: %+v", err)
 	}
-	configureFunc(privateEndpointConnectionsClient.Client)
+	configureFunc(privateEndpointConnectionClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
+	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
+		return nil, fmt.Errorf("building PrivateLinkResource client: %+v", err)
 	}
-	configureFunc(privateLinkResourcesClient.Client)
+	configureFunc(privateLinkResourceClient.Client)
 
 	return &Client{
-		ApplicationPackages:                    applicationPackagesClient,
-		Applications:                           applicationsClient,
-		BatchAccounts:                          batchAccountsClient,
-		Certificates:                           certificatesClient,
-		DetectorResponses:                      detectorResponsesClient,
-		NetworkSecurityPerimeterConfigurations: networkSecurityPerimeterConfigurationsClient,
-		Openapis:                               openapisClient,
-		Pools:                                  poolsClient,
-		PrivateEndpointConnections:             privateEndpointConnectionsClient,
-		PrivateLinkResources:                   privateLinkResourcesClient,
+		Application:               applicationClient,
+		ApplicationPackage:        applicationPackageClient,
+		BatchAccount:              batchAccountClient,
+		Certificate:               certificateClient,
+		DetectorResponses:         detectorResponsesClient,
+		Location:                  locationClient,
+		NetworkSecurityPerimeter:  networkSecurityPerimeterClient,
+		Pool:                      poolClient,
+		PrivateEndpointConnection: privateEndpointConnectionClient,
+		PrivateLinkResource:       privateLinkResourceClient,
 	}, nil
 }
