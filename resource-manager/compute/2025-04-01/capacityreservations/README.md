@@ -71,8 +71,8 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := capacityreservations.NewCapacityReservationGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "capacityReservationGroupName")
 
-// alternatively `client.ListByCapacityReservationGroup(ctx, id)` can be used to do batched pagination
-items, err := client.ListByCapacityReservationGroupComplete(ctx, id)
+// alternatively `client.ListByCapacityReservationGroup(ctx, id, capacityreservations.DefaultListByCapacityReservationGroupOperationOptions())` can be used to do batched pagination
+items, err := client.ListByCapacityReservationGroupComplete(ctx, id, capacityreservations.DefaultListByCapacityReservationGroupOperationOptions())
 if err != nil {
 	// handle the error
 }

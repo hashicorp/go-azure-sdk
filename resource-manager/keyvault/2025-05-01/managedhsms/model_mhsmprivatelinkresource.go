@@ -11,7 +11,7 @@ import (
 type MHSMPrivateLinkResource struct {
 	Id         *string                                  `json:"id,omitempty"`
 	Identity   *identity.LegacySystemAndUserAssignedMap `json:"identity,omitempty"`
-	Location   *string                                  `json:"location,omitempty"`
+	Location   string                                   `json:"location"`
 	Name       *string                                  `json:"name,omitempty"`
 	Properties *MHSMPrivateLinkResourceProperties       `json:"properties,omitempty"`
 	Sku        *ManagedHsmSku                           `json:"sku,omitempty"`

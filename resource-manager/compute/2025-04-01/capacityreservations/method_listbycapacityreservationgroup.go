@@ -23,6 +23,34 @@ type ListByCapacityReservationGroupCompleteResult struct {
 	Items              []CapacityReservation
 }
 
+type ListByCapacityReservationGroupOperationOptions struct {
+	Expand *ExpandTypesForGetCapacityReservationGroups
+}
+
+func DefaultListByCapacityReservationGroupOperationOptions() ListByCapacityReservationGroupOperationOptions {
+	return ListByCapacityReservationGroupOperationOptions{}
+}
+
+func (o ListByCapacityReservationGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ListByCapacityReservationGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+
+	return &out
+}
+
+func (o ListByCapacityReservationGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Expand != nil {
+		out.Append("$expand", fmt.Sprintf("%v", *o.Expand))
+	}
+	return &out
+}
+
 type ListByCapacityReservationGroupCustomPager struct {
 	NextLink *odata.Link `json:"nextLink"`
 }
@@ -36,15 +64,16 @@ func (p *ListByCapacityReservationGroupCustomPager) NextPageLink() *odata.Link {
 }
 
 // ListByCapacityReservationGroup ...
-func (c CapacityReservationsClient) ListByCapacityReservationGroup(ctx context.Context, id CapacityReservationGroupId) (result ListByCapacityReservationGroupOperationResponse, err error) {
+func (c CapacityReservationsClient) ListByCapacityReservationGroup(ctx context.Context, id CapacityReservationGroupId, options ListByCapacityReservationGroupOperationOptions) (result ListByCapacityReservationGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Pager:      &ListByCapacityReservationGroupCustomPager{},
-		Path:       fmt.Sprintf("%s/capacityReservations", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Pager:         &ListByCapacityReservationGroupCustomPager{},
+		Path:          fmt.Sprintf("%s/capacityReservations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -75,15 +104,15 @@ func (c CapacityReservationsClient) ListByCapacityReservationGroup(ctx context.C
 }
 
 // ListByCapacityReservationGroupComplete retrieves all the results into a single object
-func (c CapacityReservationsClient) ListByCapacityReservationGroupComplete(ctx context.Context, id CapacityReservationGroupId) (ListByCapacityReservationGroupCompleteResult, error) {
-	return c.ListByCapacityReservationGroupCompleteMatchingPredicate(ctx, id, CapacityReservationOperationPredicate{})
+func (c CapacityReservationsClient) ListByCapacityReservationGroupComplete(ctx context.Context, id CapacityReservationGroupId, options ListByCapacityReservationGroupOperationOptions) (ListByCapacityReservationGroupCompleteResult, error) {
+	return c.ListByCapacityReservationGroupCompleteMatchingPredicate(ctx, id, options, CapacityReservationOperationPredicate{})
 }
 
 // ListByCapacityReservationGroupCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c CapacityReservationsClient) ListByCapacityReservationGroupCompleteMatchingPredicate(ctx context.Context, id CapacityReservationGroupId, predicate CapacityReservationOperationPredicate) (result ListByCapacityReservationGroupCompleteResult, err error) {
+func (c CapacityReservationsClient) ListByCapacityReservationGroupCompleteMatchingPredicate(ctx context.Context, id CapacityReservationGroupId, options ListByCapacityReservationGroupOperationOptions, predicate CapacityReservationOperationPredicate) (result ListByCapacityReservationGroupCompleteResult, err error) {
 	items := make([]CapacityReservation, 0)
 
-	resp, err := c.ListByCapacityReservationGroup(ctx, id)
+	resp, err := c.ListByCapacityReservationGroup(ctx, id, options)
 	if err != nil {
 		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)
