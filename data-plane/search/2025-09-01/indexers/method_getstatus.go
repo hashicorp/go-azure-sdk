@@ -47,7 +47,7 @@ func (o GetStatusOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // GetStatus ...
-func (c IndexersClient) GetStatus(ctx context.Context, options GetStatusOperationOptions) (result GetStatusOperationResponse, err error) {
+func (c IndexersClient) GetStatus(ctx context.Context, id IndexerId, options GetStatusOperationOptions) (result GetStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +55,7 @@ func (c IndexersClient) GetStatus(ctx context.Context, options GetStatusOperatio
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/indexersindexerName/Search.Status",
+		Path:          fmt.Sprintf("/indexers('%s')/search.status", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

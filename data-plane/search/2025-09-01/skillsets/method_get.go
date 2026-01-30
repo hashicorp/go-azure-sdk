@@ -47,7 +47,7 @@ func (o GetOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Get ...
-func (c SkillsetsClient) Get(ctx context.Context, options GetOperationOptions) (result GetOperationResponse, err error) {
+func (c SkillsetsClient) Get(ctx context.Context, id SkillsetId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +55,7 @@ func (c SkillsetsClient) Get(ctx context.Context, options GetOperationOptions) (
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/skillsetsskillsetName",
+		Path:          fmt.Sprintf("/skillsets('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

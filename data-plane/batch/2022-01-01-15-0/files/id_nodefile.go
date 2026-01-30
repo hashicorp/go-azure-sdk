@@ -103,7 +103,7 @@ func ValidateNodeFileID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Node File ID
 func (id NodeFileId) ID() string {
 	fmtString := "%s/pools/%s/nodes/%s/files/%s"
-	return fmt.Sprintf(fmtString, id.BaseURI, id.PoolId, id.NodeId, id.FileName)
+	return fmt.Sprintf(fmtString, strings.TrimSuffix(id.BaseURI, "/"), id.PoolId, id.NodeId, id.FileName)
 }
 
 // Path returns the formatted Node File ID without the BaseURI
@@ -120,7 +120,7 @@ func (id NodeFileId) PathElements() []any {
 // Segments returns a slice of Resource ID Segments which comprise this Node File ID
 func (id NodeFileId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
-		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint_url"),
+		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint-url.example.com"),
 		resourceids.StaticSegment("staticPools", "pools", "pools"),
 		resourceids.UserSpecifiedSegment("poolId", "poolId"),
 		resourceids.StaticSegment("staticNodes", "nodes", "nodes"),

@@ -103,7 +103,7 @@ func ValidateUserID(input interface{}, key string) (warnings []string, errors []
 // ID returns the formatted User ID
 func (id UserId) ID() string {
 	fmtString := "%s/pools/%s/nodes/%s/users/%s"
-	return fmt.Sprintf(fmtString, id.BaseURI, id.PoolId, id.NodeId, id.UserName)
+	return fmt.Sprintf(fmtString, strings.TrimSuffix(id.BaseURI, "/"), id.PoolId, id.NodeId, id.UserName)
 }
 
 // Path returns the formatted User ID without the BaseURI
@@ -120,7 +120,7 @@ func (id UserId) PathElements() []any {
 // Segments returns a slice of Resource ID Segments which comprise this User ID
 func (id UserId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
-		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint_url"),
+		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint-url.example.com"),
 		resourceids.StaticSegment("staticPools", "pools", "pools"),
 		resourceids.UserSpecifiedSegment("poolId", "poolId"),
 		resourceids.StaticSegment("staticNodes", "nodes", "nodes"),

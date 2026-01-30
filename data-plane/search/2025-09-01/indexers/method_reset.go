@@ -46,7 +46,7 @@ func (o ResetOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Reset ...
-func (c IndexersClient) Reset(ctx context.Context, options ResetOperationOptions) (result ResetOperationResponse, err error) {
+func (c IndexersClient) Reset(ctx context.Context, id IndexerId, options ResetOperationOptions) (result ResetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -54,7 +54,7 @@ func (c IndexersClient) Reset(ctx context.Context, options ResetOperationOptions
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          "/indexersindexerName/Search.Reset",
+		Path:          fmt.Sprintf("/indexers('%s')/search.reset", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

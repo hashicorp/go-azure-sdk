@@ -54,7 +54,7 @@ func (o DeleteOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Delete ...
-func (c DataSourcesClient) Delete(ctx context.Context, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
+func (c DataSourcesClient) Delete(ctx context.Context, id DatasourceId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c DataSourcesClient) Delete(ctx context.Context, options DeleteOperationOp
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          "/datasourcesdataSourceName",
+		Path:          fmt.Sprintf("/datasources('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

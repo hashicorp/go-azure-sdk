@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &DeletedcertificateId{}
 
 func TestNewDeletedcertificateID(t *testing.T) {
-	id := NewDeletedcertificateID("deletedcertificateName")
+	id := NewDeletedcertificateID("https://endpoint-url.example.com", "deletedcertificateName")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.DeletedcertificateName != "deletedcertificateName" {
 		t.Fatalf("Expected %q but got %q for Segment 'DeletedcertificateName'", id.DeletedcertificateName, "deletedcertificateName")
@@ -20,8 +24,8 @@ func TestNewDeletedcertificateID(t *testing.T) {
 }
 
 func TestFormatDeletedcertificateID(t *testing.T) {
-	actual := NewDeletedcertificateID("deletedcertificateName").ID()
-	expected := "/deletedcertificates/deletedcertificateName"
+	actual := NewDeletedcertificateID("https://endpoint-url.example.com", "deletedcertificateName").ID()
+	expected := "https://endpoint-url.example.com/deletedcertificates/deletedcertificateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParseDeletedcertificateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deletedcertificates",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/deletedcertificates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deletedcertificates/deletedcertificateName",
+			Input: "https://endpoint-url.example.com/deletedcertificates/deletedcertificateName",
 			Expected: &DeletedcertificateId{
+				BaseURI:                "https://endpoint-url.example.com",
 				DeletedcertificateName: "deletedcertificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deletedcertificates/deletedcertificateName/extra",
+			Input: "https://endpoint-url.example.com/deletedcertificates/deletedcertificateName/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParseDeletedcertificateID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.DeletedcertificateName != v.Expected.DeletedcertificateName {
@@ -91,36 +105,48 @@ func TestParseDeletedcertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deletedcertificates",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dElEtEdCeRtIfIcAtEs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/deletedcertificates",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/dElEtEdCeRtIfIcAtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deletedcertificates/deletedcertificateName",
+			Input: "https://endpoint-url.example.com/deletedcertificates/deletedcertificateName",
 			Expected: &DeletedcertificateId{
+				BaseURI:                "https://endpoint-url.example.com",
 				DeletedcertificateName: "deletedcertificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deletedcertificates/deletedcertificateName/extra",
+			Input: "https://endpoint-url.example.com/deletedcertificates/deletedcertificateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dElEtEdCeRtIfIcAtEs/dElEtEdCeRtIfIcAtEnAmE",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/dElEtEdCeRtIfIcAtEs/dElEtEdCeRtIfIcAtEnAmE",
 			Expected: &DeletedcertificateId{
+				BaseURI:                "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 				DeletedcertificateName: "dElEtEdCeRtIfIcAtEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dElEtEdCeRtIfIcAtEs/dElEtEdCeRtIfIcAtEnAmE/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/dElEtEdCeRtIfIcAtEs/dElEtEdCeRtIfIcAtEnAmE/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParseDeletedcertificateIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.DeletedcertificateName != v.Expected.DeletedcertificateName {

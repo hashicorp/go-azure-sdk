@@ -59,7 +59,7 @@ func (o CreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CreateOrUpdate ...
-func (c SkillsetsClient) CreateOrUpdate(ctx context.Context, input SearchIndexerSkillset, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c SkillsetsClient) CreateOrUpdate(ctx context.Context, id SkillsetId, input SearchIndexerSkillset, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -68,7 +68,7 @@ func (c SkillsetsClient) CreateOrUpdate(ctx context.Context, input SearchIndexer
 		},
 		HttpMethod:    http.MethodPut,
 		OptionsObject: options,
-		Path:          "/skillsetsskillsetName",
+		Path:          fmt.Sprintf("/skillsets('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

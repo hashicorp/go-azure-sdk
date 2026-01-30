@@ -50,7 +50,7 @@ func (o GetOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Get ...
-func (c DocumentsClient) Get(ctx context.Context, options GetOperationOptions) (result GetOperationResponse, err error) {
+func (c DocumentsClient) Get(ctx context.Context, id DocId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -58,7 +58,7 @@ func (c DocumentsClient) Get(ctx context.Context, options GetOperationOptions) (
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/docskey",
+		Path:          fmt.Sprintf("/docs('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

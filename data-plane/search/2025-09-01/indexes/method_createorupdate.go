@@ -62,7 +62,7 @@ func (o CreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CreateOrUpdate ...
-func (c IndexesClient) CreateOrUpdate(ctx context.Context, input SearchIndex, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c IndexesClient) CreateOrUpdate(ctx context.Context, id IndexId, input SearchIndex, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -71,7 +71,7 @@ func (c IndexesClient) CreateOrUpdate(ctx context.Context, input SearchIndex, op
 		},
 		HttpMethod:    http.MethodPut,
 		OptionsObject: options,
-		Path:          "/indexesindexName",
+		Path:          fmt.Sprintf("/indexes('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

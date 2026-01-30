@@ -44,13 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := synonymmaps.NewSynonymmapID("synonymmapName")
 
 payload := synonymmaps.SynonymMap{
 	// ...
 }
 
 
-read, err := client.CreateOrUpdate(ctx, payload, synonymmaps.DefaultCreateOrUpdateOperationOptions())
+read, err := client.CreateOrUpdate(ctx, id, payload, synonymmaps.DefaultCreateOrUpdateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,9 +65,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := synonymmaps.NewSynonymmapID("synonymmapName")
 
-
-read, err := client.Delete(ctx, synonymmaps.DefaultDeleteOperationOptions())
+read, err := client.Delete(ctx, id, synonymmaps.DefaultDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -80,9 +81,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := synonymmaps.NewSynonymmapID("synonymmapName")
 
-
-read, err := client.Get(ctx, synonymmaps.DefaultGetOperationOptions())
+read, err := client.Get(ctx, id, synonymmaps.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
 }

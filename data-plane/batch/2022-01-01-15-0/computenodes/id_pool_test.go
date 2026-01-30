@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &PoolId{}
 
 func TestNewPoolID(t *testing.T) {
-	id := NewPoolID("poolId")
+	id := NewPoolID("https://endpoint-url.example.com", "poolId")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.PoolId != "poolId" {
 		t.Fatalf("Expected %q but got %q for Segment 'PoolId'", id.PoolId, "poolId")
@@ -20,8 +24,8 @@ func TestNewPoolID(t *testing.T) {
 }
 
 func TestFormatPoolID(t *testing.T) {
-	actual := NewPoolID("poolId").ID()
-	expected := "/pools/poolId"
+	actual := NewPoolID("https://endpoint-url.example.com", "poolId").ID()
+	expected := "https://endpoint-url.example.com/pools/poolId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParsePoolID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/pools",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/pools",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/pools/poolId",
+			Input: "https://endpoint-url.example.com/pools/poolId",
 			Expected: &PoolId{
-				PoolId: "poolId",
+				BaseURI: "https://endpoint-url.example.com",
+				PoolId:  "poolId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/pools/poolId/extra",
+			Input: "https://endpoint-url.example.com/pools/poolId/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParsePoolID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.PoolId != v.Expected.PoolId {
@@ -91,36 +105,48 @@ func TestParsePoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/pools",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOoLs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/pools",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/pools/poolId",
+			Input: "https://endpoint-url.example.com/pools/poolId",
 			Expected: &PoolId{
-				PoolId: "poolId",
+				BaseURI: "https://endpoint-url.example.com",
+				PoolId:  "poolId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/pools/poolId/extra",
+			Input: "https://endpoint-url.example.com/pools/poolId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOoLs/pOoLiD",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD",
 			Expected: &PoolId{
-				PoolId: "pOoLiD",
+				BaseURI: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				PoolId:  "pOoLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOoLs/pOoLiD/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParsePoolIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.PoolId != v.Expected.PoolId {

@@ -47,7 +47,7 @@ func (o GetOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Get ...
-func (c SynonymMapsClient) Get(ctx context.Context, options GetOperationOptions) (result GetOperationResponse, err error) {
+func (c SynonymMapsClient) Get(ctx context.Context, id SynonymmapId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +55,7 @@ func (c SynonymMapsClient) Get(ctx context.Context, options GetOperationOptions)
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/synonymmapssynonymMapName",
+		Path:          fmt.Sprintf("/synonymmaps('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

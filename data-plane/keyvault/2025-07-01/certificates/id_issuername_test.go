@@ -12,16 +12,20 @@ import (
 var _ resourceids.ResourceId = &IssuernameId{}
 
 func TestNewIssuernameID(t *testing.T) {
-	id := NewIssuernameID("https://endpoint_url")
+	id := NewIssuernameID("https://endpoint-url.example.com", "issuerName")
 
-	if id.BaseURI != "https://endpoint_url" {
-		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint_url")
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
+
+	if id.IssuerName != "issuerName" {
+		t.Fatalf("Expected %q but got %q for Segment 'IssuerName'", id.IssuerName, "issuerName")
 	}
 }
 
 func TestFormatIssuernameID(t *testing.T) {
-	actual := NewIssuernameID("https://endpoint_url").ID()
-	expected := "/https://endpoint_url/certificates/issuers"
+	actual := NewIssuernameID("https://endpoint-url.example.com", "issuerName").ID()
+	expected := "https://endpoint-url.example.com/certificates/issuers/issuerName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,24 +44,30 @@ func TestParseIssuernameID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/certificates",
+			Input: "https://endpoint-url.example.com/certificates",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/certificates/issuers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/certificates/issuers",
+			Input: "https://endpoint-url.example.com/certificates/issuers/issuerName",
 			Expected: &IssuernameId{
-				BaseURI: "https://endpoint_url",
+				BaseURI:    "https://endpoint-url.example.com",
+				IssuerName: "issuerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/certificates/issuers/extra",
+			Input: "https://endpoint-url.example.com/certificates/issuers/issuerName/extra",
 			Error: true,
 		},
 	}
@@ -80,6 +90,10 @@ func TestParseIssuernameID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
+		if actual.IssuerName != v.Expected.IssuerName {
+			t.Fatalf("Expected %q but got %q for IssuerName", v.Expected.IssuerName, actual.IssuerName)
+		}
+
 	}
 }
 
@@ -96,46 +110,58 @@ func TestParseIssuernameIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/certificates",
+			Input: "https://endpoint-url.example.com/certificates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/cErTiFiCaTeS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/cErTiFiCaTeS",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/certificates/issuers",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/cErTiFiCaTeS/iSsUeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/certificates/issuers",
+			Input: "https://endpoint-url.example.com/certificates/issuers/issuerName",
 			Expected: &IssuernameId{
-				BaseURI: "https://endpoint_url",
+				BaseURI:    "https://endpoint-url.example.com",
+				IssuerName: "issuerName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/certificates/issuers/extra",
+			Input: "https://endpoint-url.example.com/certificates/issuers/issuerName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/cErTiFiCaTeS/iSsUeRs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/cErTiFiCaTeS/iSsUeRs/iSsUeRnAmE",
 			Expected: &IssuernameId{
-				BaseURI: "hTtPs://eNdPoInT_UrL",
+				BaseURI:    "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				IssuerName: "iSsUeRnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/cErTiFiCaTeS/iSsUeRs/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/cErTiFiCaTeS/iSsUeRs/iSsUeRnAmE/extra",
 			Error: true,
 		},
 	}
@@ -156,6 +182,10 @@ func TestParseIssuernameIDInsensitively(t *testing.T) {
 
 		if actual.BaseURI != v.Expected.BaseURI {
 			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
+		}
+
+		if actual.IssuerName != v.Expected.IssuerName {
+			t.Fatalf("Expected %q but got %q for IssuerName", v.Expected.IssuerName, actual.IssuerName)
 		}
 
 	}

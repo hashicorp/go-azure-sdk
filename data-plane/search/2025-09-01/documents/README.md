@@ -76,9 +76,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := documents.NewDocID("docName")
 
-
-read, err := client.Get(ctx, documents.DefaultGetOperationOptions())
+read, err := client.Get(ctx, id, documents.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -97,7 +97,7 @@ func ValidateThumbprintID(input interface{}, key string) (warnings []string, err
 // ID returns the formatted Thumbprint ID
 func (id ThumbprintId) ID() string {
 	fmtString := "%s/thumbprintAlgorithm/%s/thumbprint/%s"
-	return fmt.Sprintf(fmtString, id.BaseURI, id.ThumbprintAlgorithmName, id.ThumbprintName)
+	return fmt.Sprintf(fmtString, strings.TrimSuffix(id.BaseURI, "/"), id.ThumbprintAlgorithmName, id.ThumbprintName)
 }
 
 // Path returns the formatted Thumbprint ID without the BaseURI
@@ -114,7 +114,7 @@ func (id ThumbprintId) PathElements() []any {
 // Segments returns a slice of Resource ID Segments which comprise this Thumbprint ID
 func (id ThumbprintId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
-		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint_url"),
+		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint-url.example.com"),
 		resourceids.StaticSegment("thumbprintAlgorithm", "thumbprintAlgorithm", "thumbprintAlgorithm"),
 		resourceids.UserSpecifiedSegment("thumbprintAlgorithmName", "thumbprintAlgorithmName"),
 		resourceids.StaticSegment("thumbprint", "thumbprint", "thumbprint"),

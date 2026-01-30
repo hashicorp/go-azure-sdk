@@ -44,13 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := skillsets.NewSkillsetID("skillsetName")
 
 payload := skillsets.SearchIndexerSkillset{
 	// ...
 }
 
 
-read, err := client.CreateOrUpdate(ctx, payload, skillsets.DefaultCreateOrUpdateOperationOptions())
+read, err := client.CreateOrUpdate(ctx, id, payload, skillsets.DefaultCreateOrUpdateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,9 +65,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := skillsets.NewSkillsetID("skillsetName")
 
-
-read, err := client.Delete(ctx, skillsets.DefaultDeleteOperationOptions())
+read, err := client.Delete(ctx, id, skillsets.DefaultDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -80,9 +81,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := skillsets.NewSkillsetID("skillsetName")
 
-
-read, err := client.Get(ctx, skillsets.DefaultGetOperationOptions())
+read, err := client.Get(ctx, id, skillsets.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
 }

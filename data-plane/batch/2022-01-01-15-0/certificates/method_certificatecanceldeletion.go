@@ -65,7 +65,7 @@ func (c CertificatesClient) CertificateCancelDeletion(ctx context.Context, id Th
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("/certificates(%s,%s)/canceldelete", id.PathElements()...),
+		Path:          fmt.Sprintf("/certificates(thumbprintAlgorithm=%s,thumbprint=%s)/canceldelete", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,24 @@ import (
 var _ resourceids.ResourceId = &KeyversionId{}
 
 func TestNewKeyversionID(t *testing.T) {
-	id := NewKeyversionID("https://endpoint_url", "keyName")
+	id := NewKeyversionID("https://endpoint-url.example.com", "keyName", "keyversion")
 
-	if id.BaseURI != "https://endpoint_url" {
-		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint_url")
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
 	}
 
 	if id.KeyName != "keyName" {
 		t.Fatalf("Expected %q but got %q for Segment 'KeyName'", id.KeyName, "keyName")
 	}
+
+	if id.Keyversion != "keyversion" {
+		t.Fatalf("Expected %q but got %q for Segment 'Keyversion'", id.Keyversion, "keyversion")
+	}
 }
 
 func TestFormatKeyversionID(t *testing.T) {
-	actual := NewKeyversionID("https://endpoint_url", "keyName").ID()
-	expected := "/https://endpoint_url/keys/keyName"
+	actual := NewKeyversionID("https://endpoint-url.example.com", "keyName", "keyversion").ID()
+	expected := "https://endpoint-url.example.com/keys/keyName/keyversion"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -44,25 +48,31 @@ func TestParseKeyversionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/keys",
+			Input: "https://endpoint-url.example.com/keys",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/keys/keyName",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/keys/keyName",
+			Input: "https://endpoint-url.example.com/keys/keyName/keyversion",
 			Expected: &KeyversionId{
-				BaseURI: "https://endpoint_url",
-				KeyName: "keyName",
+				BaseURI:    "https://endpoint-url.example.com",
+				KeyName:    "keyName",
+				Keyversion: "keyversion",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/keys/keyName/extra",
+			Input: "https://endpoint-url.example.com/keys/keyName/keyversion/extra",
 			Error: true,
 		},
 	}
@@ -89,6 +99,10 @@ func TestParseKeyversionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for KeyName", v.Expected.KeyName, actual.KeyName)
 		}
 
+		if actual.Keyversion != v.Expected.Keyversion {
+			t.Fatalf("Expected %q but got %q for Keyversion", v.Expected.Keyversion, actual.Keyversion)
+		}
+
 	}
 }
 
@@ -105,48 +119,60 @@ func TestParseKeyversionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/keys",
+			Input: "https://endpoint-url.example.com/keys",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/kEyS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/kEyS",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/keys/keyName",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/kEyS/kEyNaMe",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/keys/keyName",
+			Input: "https://endpoint-url.example.com/keys/keyName/keyversion",
 			Expected: &KeyversionId{
-				BaseURI: "https://endpoint_url",
-				KeyName: "keyName",
+				BaseURI:    "https://endpoint-url.example.com",
+				KeyName:    "keyName",
+				Keyversion: "keyversion",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/keys/keyName/extra",
+			Input: "https://endpoint-url.example.com/keys/keyName/keyversion/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/kEyS/kEyNaMe",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/kEyS/kEyNaMe/kEyVeRsIoN",
 			Expected: &KeyversionId{
-				BaseURI: "hTtPs://eNdPoInT_UrL",
-				KeyName: "kEyNaMe",
+				BaseURI:    "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				KeyName:    "kEyNaMe",
+				Keyversion: "kEyVeRsIoN",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/kEyS/kEyNaMe/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/kEyS/kEyNaMe/kEyVeRsIoN/extra",
 			Error: true,
 		},
 	}
@@ -171,6 +197,10 @@ func TestParseKeyversionIDInsensitively(t *testing.T) {
 
 		if actual.KeyName != v.Expected.KeyName {
 			t.Fatalf("Expected %q but got %q for KeyName", v.Expected.KeyName, actual.KeyName)
+		}
+
+		if actual.Keyversion != v.Expected.Keyversion {
+			t.Fatalf("Expected %q but got %q for Keyversion", v.Expected.Keyversion, actual.Keyversion)
 		}
 
 	}

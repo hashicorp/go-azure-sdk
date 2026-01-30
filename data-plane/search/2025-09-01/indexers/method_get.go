@@ -47,7 +47,7 @@ func (o GetOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Get ...
-func (c IndexersClient) Get(ctx context.Context, options GetOperationOptions) (result GetOperationResponse, err error) {
+func (c IndexersClient) Get(ctx context.Context, id IndexerId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +55,7 @@ func (c IndexersClient) Get(ctx context.Context, options GetOperationOptions) (r
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/indexersindexerName",
+		Path:          fmt.Sprintf("/indexers('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

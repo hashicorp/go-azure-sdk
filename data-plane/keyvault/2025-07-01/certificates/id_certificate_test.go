@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &CertificateId{}
 
 func TestNewCertificateID(t *testing.T) {
-	id := NewCertificateID("certificateName")
+	id := NewCertificateID("https://endpoint-url.example.com", "certificateName")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.CertificateName != "certificateName" {
 		t.Fatalf("Expected %q but got %q for Segment 'CertificateName'", id.CertificateName, "certificateName")
@@ -20,8 +24,8 @@ func TestNewCertificateID(t *testing.T) {
 }
 
 func TestFormatCertificateID(t *testing.T) {
-	actual := NewCertificateID("certificateName").ID()
-	expected := "/certificates/certificateName"
+	actual := NewCertificateID("https://endpoint-url.example.com", "certificateName").ID()
+	expected := "https://endpoint-url.example.com/certificates/certificateName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParseCertificateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/certificates",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/certificates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/certificates/certificateName",
+			Input: "https://endpoint-url.example.com/certificates/certificateName",
 			Expected: &CertificateId{
+				BaseURI:         "https://endpoint-url.example.com",
 				CertificateName: "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/certificates/certificateName/extra",
+			Input: "https://endpoint-url.example.com/certificates/certificateName/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParseCertificateID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.CertificateName != v.Expected.CertificateName {
@@ -91,36 +105,48 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/certificates",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/cErTiFiCaTeS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/certificates",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/cErTiFiCaTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/certificates/certificateName",
+			Input: "https://endpoint-url.example.com/certificates/certificateName",
 			Expected: &CertificateId{
+				BaseURI:         "https://endpoint-url.example.com",
 				CertificateName: "certificateName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/certificates/certificateName/extra",
+			Input: "https://endpoint-url.example.com/certificates/certificateName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/cErTiFiCaTeS/cErTiFiCaTeNaMe",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/cErTiFiCaTeS/cErTiFiCaTeNaMe",
 			Expected: &CertificateId{
+				BaseURI:         "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 				CertificateName: "cErTiFiCaTeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/cErTiFiCaTeS/cErTiFiCaTeNaMe/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/cErTiFiCaTeS/cErTiFiCaTeNaMe/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.CertificateName != v.Expected.CertificateName {

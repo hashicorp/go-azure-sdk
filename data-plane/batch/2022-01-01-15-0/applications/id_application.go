@@ -91,7 +91,7 @@ func ValidateApplicationID(input interface{}, key string) (warnings []string, er
 // ID returns the formatted Application ID
 func (id ApplicationId) ID() string {
 	fmtString := "%s/applications/%s"
-	return fmt.Sprintf(fmtString, id.BaseURI, id.ApplicationId)
+	return fmt.Sprintf(fmtString, strings.TrimSuffix(id.BaseURI, "/"), id.ApplicationId)
 }
 
 // Path returns the formatted Application ID without the BaseURI
@@ -108,7 +108,7 @@ func (id ApplicationId) PathElements() []any {
 // Segments returns a slice of Resource ID Segments which comprise this Application ID
 func (id ApplicationId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
-		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint_url"),
+		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint-url.example.com"),
 		resourceids.StaticSegment("staticApplications", "applications", "applications"),
 		resourceids.UserSpecifiedSegment("applicationId", "applicationId"),
 	}

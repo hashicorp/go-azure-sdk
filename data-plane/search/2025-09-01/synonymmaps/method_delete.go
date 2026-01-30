@@ -54,7 +54,7 @@ func (o DeleteOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Delete ...
-func (c SynonymMapsClient) Delete(ctx context.Context, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
+func (c SynonymMapsClient) Delete(ctx context.Context, id SynonymmapId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c SynonymMapsClient) Delete(ctx context.Context, options DeleteOperationOp
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          "/synonymmapssynonymMapName",
+		Path:          fmt.Sprintf("/synonymmaps('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

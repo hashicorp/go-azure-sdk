@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := computenodes.NewUserID("poolId", "nodeId", "userName")
+id := computenodes.NewUserID("https://endpoint-url.example.com", "poolId", "nodeId")
 
 read, err := client.ComputeNodeDeleteUser(ctx, id, computenodes.DefaultComputeNodeDeleteUserOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := computenodes.NewExtensionID("poolId", "nodeId", "extensionName")
+id := computenodes.NewExtensionID("https://endpoint-url.example.com", "poolId", "nodeId")
 
 read, err := client.ComputeNodeExtensionGet(ctx, id, computenodes.DefaultComputeNodeExtensionGetOperationOptions())
 if err != nil {
@@ -238,7 +238,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := computenodes.NewUserID("poolId", "nodeId", "userName")
+id := computenodes.NewUserID("https://endpoint-url.example.com", "poolId", "nodeId")
 
 payload := computenodes.NodeUpdateUserParameter{
 	// ...
