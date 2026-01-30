@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &NodeId{}
 
 func TestNewNodeID(t *testing.T) {
-	id := NewNodeID("poolId", "nodeId")
+	id := NewNodeID("https://endpoint-url.example.com", "poolId", "nodeId")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.PoolId != "poolId" {
 		t.Fatalf("Expected %q but got %q for Segment 'PoolId'", id.PoolId, "poolId")
@@ -24,8 +28,8 @@ func TestNewNodeID(t *testing.T) {
 }
 
 func TestFormatNodeID(t *testing.T) {
-	actual := NewNodeID("poolId", "nodeId").ID()
-	expected := "/pools/poolId/nodes/nodeId"
+	actual := NewNodeID("https://endpoint-url.example.com", "poolId", "nodeId").ID()
+	expected := "https://endpoint-url.example.com/pools/poolId/nodes/nodeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -44,30 +48,36 @@ func TestParseNodeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/pools",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/pools/poolId",
+			Input: "https://endpoint-url.example.com/pools",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/pools/poolId/nodes",
+			Input: "https://endpoint-url.example.com/pools/poolId",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/pools/poolId/nodes/nodeId",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId",
 			Expected: &NodeId{
-				PoolId: "poolId",
-				NodeId: "nodeId",
+				BaseURI: "https://endpoint-url.example.com",
+				PoolId:  "poolId",
+				NodeId:  "nodeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/pools/poolId/nodes/nodeId/extra",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/extra",
 			Error: true,
 		},
 	}
@@ -84,6 +94,10 @@ func TestParseNodeID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.PoolId != v.Expected.PoolId {
@@ -110,58 +124,70 @@ func TestParseNodeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/pools",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOoLs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/pools/poolId",
+			Input: "https://endpoint-url.example.com/pools",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOoLs/pOoLiD",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/pools/poolId/nodes",
+			Input: "https://endpoint-url.example.com/pools/poolId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOoLs/pOoLiD/nOdEs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/pools/poolId/nodes/nodeId",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId",
 			Expected: &NodeId{
-				PoolId: "poolId",
-				NodeId: "nodeId",
+				BaseURI: "https://endpoint-url.example.com",
+				PoolId:  "poolId",
+				NodeId:  "nodeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/pools/poolId/nodes/nodeId/extra",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOoLs/pOoLiD/nOdEs/nOdEiD",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD",
 			Expected: &NodeId{
-				PoolId: "pOoLiD",
-				NodeId: "nOdEiD",
+				BaseURI: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				PoolId:  "pOoLiD",
+				NodeId:  "nOdEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOoLs/pOoLiD/nOdEs/nOdEiD/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD/extra",
 			Error: true,
 		},
 	}
@@ -178,6 +204,10 @@ func TestParseNodeIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.PoolId != v.Expected.PoolId {

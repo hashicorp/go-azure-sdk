@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &ThumbprintId{}
 
 func TestNewThumbprintID(t *testing.T) {
-	id := NewThumbprintID("thumbprintAlgorithmName", "thumbprintName")
+	id := NewThumbprintID("https://endpoint-url.example.com", "thumbprintAlgorithmName", "thumbprintName")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.ThumbprintAlgorithmName != "thumbprintAlgorithmName" {
 		t.Fatalf("Expected %q but got %q for Segment 'ThumbprintAlgorithmName'", id.ThumbprintAlgorithmName, "thumbprintAlgorithmName")
@@ -24,8 +28,8 @@ func TestNewThumbprintID(t *testing.T) {
 }
 
 func TestFormatThumbprintID(t *testing.T) {
-	actual := NewThumbprintID("thumbprintAlgorithmName", "thumbprintName").ID()
-	expected := "/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName"
+	actual := NewThumbprintID("https://endpoint-url.example.com", "thumbprintAlgorithmName", "thumbprintName").ID()
+	expected := "https://endpoint-url.example.com/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -44,30 +48,36 @@ func TestParseThumbprintID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/thumbprintAlgorithm",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/thumbprintAlgorithm/thumbprintAlgorithmName",
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint",
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm/thumbprintAlgorithmName",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName",
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName",
 			Expected: &ThumbprintId{
+				BaseURI:                 "https://endpoint-url.example.com",
 				ThumbprintAlgorithmName: "thumbprintAlgorithmName",
 				ThumbprintName:          "thumbprintName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName/extra",
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName/extra",
 			Error: true,
 		},
 	}
@@ -84,6 +94,10 @@ func TestParseThumbprintID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.ThumbprintAlgorithmName != v.Expected.ThumbprintAlgorithmName {
@@ -110,58 +124,70 @@ func TestParseThumbprintIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/thumbprintAlgorithm",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/tHuMbPrInTaLgOrItHm",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/thumbprintAlgorithm/thumbprintAlgorithmName",
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/tHuMbPrInTaLgOrItHm/tHuMbPrInTaLgOrItHmNaMe",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/tHuMbPrInTaLgOrItHm",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint",
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm/thumbprintAlgorithmName",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/tHuMbPrInTaLgOrItHm/tHuMbPrInTaLgOrItHmNaMe/tHuMbPrInT",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/tHuMbPrInTaLgOrItHm/tHuMbPrInTaLgOrItHmNaMe",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/tHuMbPrInTaLgOrItHm/tHuMbPrInTaLgOrItHmNaMe/tHuMbPrInT",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName",
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName",
 			Expected: &ThumbprintId{
+				BaseURI:                 "https://endpoint-url.example.com",
 				ThumbprintAlgorithmName: "thumbprintAlgorithmName",
 				ThumbprintName:          "thumbprintName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName/extra",
+			Input: "https://endpoint-url.example.com/thumbprintAlgorithm/thumbprintAlgorithmName/thumbprint/thumbprintName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/tHuMbPrInTaLgOrItHm/tHuMbPrInTaLgOrItHmNaMe/tHuMbPrInT/tHuMbPrInTnAmE",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/tHuMbPrInTaLgOrItHm/tHuMbPrInTaLgOrItHmNaMe/tHuMbPrInT/tHuMbPrInTnAmE",
 			Expected: &ThumbprintId{
+				BaseURI:                 "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 				ThumbprintAlgorithmName: "tHuMbPrInTaLgOrItHmNaMe",
 				ThumbprintName:          "tHuMbPrInTnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/tHuMbPrInTaLgOrItHm/tHuMbPrInTaLgOrItHmNaMe/tHuMbPrInT/tHuMbPrInTnAmE/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/tHuMbPrInTaLgOrItHm/tHuMbPrInTaLgOrItHmNaMe/tHuMbPrInT/tHuMbPrInTnAmE/extra",
 			Error: true,
 		},
 	}
@@ -178,6 +204,10 @@ func TestParseThumbprintIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.ThumbprintAlgorithmName != v.Expected.ThumbprintAlgorithmName {

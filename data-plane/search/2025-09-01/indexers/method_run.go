@@ -46,7 +46,7 @@ func (o RunOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Run ...
-func (c IndexersClient) Run(ctx context.Context, options RunOperationOptions) (result RunOperationResponse, err error) {
+func (c IndexersClient) Run(ctx context.Context, id IndexerId, options RunOperationOptions) (result RunOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -54,7 +54,7 @@ func (c IndexersClient) Run(ctx context.Context, options RunOperationOptions) (r
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          "/indexersindexerName/Search.Run",
+		Path:          fmt.Sprintf("/indexers('%s')/search.run", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

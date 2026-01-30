@@ -47,7 +47,7 @@ func (o GetStatisticsOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // GetStatistics ...
-func (c IndexesClient) GetStatistics(ctx context.Context, options GetStatisticsOperationOptions) (result GetStatisticsOperationResponse, err error) {
+func (c IndexesClient) GetStatistics(ctx context.Context, id IndexId, options GetStatisticsOperationOptions) (result GetStatisticsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +55,7 @@ func (c IndexesClient) GetStatistics(ctx context.Context, options GetStatisticsO
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/indexesindexName/Search.Stats",
+		Path:          fmt.Sprintf("/indexes('%s')/search.stats", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &JobscheduleId{}
 
 func TestNewJobscheduleID(t *testing.T) {
-	id := NewJobscheduleID("jobScheduleId")
+	id := NewJobscheduleID("https://endpoint-url.example.com", "jobScheduleId")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.JobScheduleId != "jobScheduleId" {
 		t.Fatalf("Expected %q but got %q for Segment 'JobScheduleId'", id.JobScheduleId, "jobScheduleId")
@@ -20,8 +24,8 @@ func TestNewJobscheduleID(t *testing.T) {
 }
 
 func TestFormatJobscheduleID(t *testing.T) {
-	actual := NewJobscheduleID("jobScheduleId").ID()
-	expected := "/jobschedules/jobScheduleId"
+	actual := NewJobscheduleID("https://endpoint-url.example.com", "jobScheduleId").ID()
+	expected := "https://endpoint-url.example.com/jobschedules/jobScheduleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParseJobscheduleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/jobschedules",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/jobschedules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/jobschedules/jobScheduleId",
+			Input: "https://endpoint-url.example.com/jobschedules/jobScheduleId",
 			Expected: &JobscheduleId{
+				BaseURI:       "https://endpoint-url.example.com",
 				JobScheduleId: "jobScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/jobschedules/jobScheduleId/extra",
+			Input: "https://endpoint-url.example.com/jobschedules/jobScheduleId/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParseJobscheduleID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.JobScheduleId != v.Expected.JobScheduleId {
@@ -91,36 +105,48 @@ func TestParseJobscheduleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/jobschedules",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/jObScHeDuLeS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/jobschedules",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObScHeDuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/jobschedules/jobScheduleId",
+			Input: "https://endpoint-url.example.com/jobschedules/jobScheduleId",
 			Expected: &JobscheduleId{
+				BaseURI:       "https://endpoint-url.example.com",
 				JobScheduleId: "jobScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/jobschedules/jobScheduleId/extra",
+			Input: "https://endpoint-url.example.com/jobschedules/jobScheduleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/jObScHeDuLeS/jObScHeDuLeId",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObScHeDuLeS/jObScHeDuLeId",
 			Expected: &JobscheduleId{
+				BaseURI:       "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 				JobScheduleId: "jObScHeDuLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/jObScHeDuLeS/jObScHeDuLeId/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObScHeDuLeS/jObScHeDuLeId/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParseJobscheduleIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.JobScheduleId != v.Expected.JobScheduleId {

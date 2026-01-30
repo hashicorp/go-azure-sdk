@@ -12,10 +12,10 @@ import (
 var _ resourceids.ResourceId = &ExtensionId{}
 
 func TestNewExtensionID(t *testing.T) {
-	id := NewExtensionID("https://endpoint_url", "poolId", "nodeId")
+	id := NewExtensionID("https://endpoint-url.example.com", "poolId", "nodeId", "extensionName")
 
-	if id.BaseURI != "https://endpoint_url" {
-		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint_url")
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
 	}
 
 	if id.PoolId != "poolId" {
@@ -25,11 +25,15 @@ func TestNewExtensionID(t *testing.T) {
 	if id.NodeId != "nodeId" {
 		t.Fatalf("Expected %q but got %q for Segment 'NodeId'", id.NodeId, "nodeId")
 	}
+
+	if id.ExtensionName != "extensionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionName'", id.ExtensionName, "extensionName")
+	}
 }
 
 func TestFormatExtensionID(t *testing.T) {
-	actual := NewExtensionID("https://endpoint_url", "poolId", "nodeId").ID()
-	expected := "/https://endpoint_url/pools/poolId/nodes/nodeId/extensions"
+	actual := NewExtensionID("https://endpoint-url.example.com", "poolId", "nodeId", "extensionName").ID()
+	expected := "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/extensions/extensionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -48,41 +52,47 @@ func TestParseExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools",
+			Input: "https://endpoint-url.example.com/pools",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId",
+			Input: "https://endpoint-url.example.com/pools/poolId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId/nodes",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId/extensions",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/extensions/extensionName",
 			Expected: &ExtensionId{
-				BaseURI: "https://endpoint_url",
-				PoolId:  "poolId",
-				NodeId:  "nodeId",
+				BaseURI:       "https://endpoint-url.example.com",
+				PoolId:        "poolId",
+				NodeId:        "nodeId",
+				ExtensionName: "extensionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId/extensions/extra",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/extensions/extensionName/extra",
 			Error: true,
 		},
 	}
@@ -113,6 +123,10 @@ func TestParseExtensionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NodeId", v.Expected.NodeId, actual.NodeId)
 		}
 
+		if actual.ExtensionName != v.Expected.ExtensionName {
+			t.Fatalf("Expected %q but got %q for ExtensionName", v.Expected.ExtensionName, actual.ExtensionName)
+		}
+
 	}
 }
 
@@ -129,80 +143,92 @@ func TestParseExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools",
+			Input: "https://endpoint-url.example.com/pools",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId",
+			Input: "https://endpoint-url.example.com/pools/poolId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId/nodes",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD/nOdEs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD/nOdEs/nOdEiD",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/extensions",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId/extensions",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/extensions/extensionName",
 			Expected: &ExtensionId{
-				BaseURI: "https://endpoint_url",
-				PoolId:  "poolId",
-				NodeId:  "nodeId",
+				BaseURI:       "https://endpoint-url.example.com",
+				PoolId:        "poolId",
+				NodeId:        "nodeId",
+				ExtensionName: "extensionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId/extensions/extra",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/extensions/extensionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD/nOdEs/nOdEiD/eXtEnSiOnS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD/eXtEnSiOnS/eXtEnSiOnNaMe",
 			Expected: &ExtensionId{
-				BaseURI: "hTtPs://eNdPoInT_UrL",
-				PoolId:  "pOoLiD",
-				NodeId:  "nOdEiD",
+				BaseURI:       "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				PoolId:        "pOoLiD",
+				NodeId:        "nOdEiD",
+				ExtensionName: "eXtEnSiOnNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD/nOdEs/nOdEiD/eXtEnSiOnS/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD/eXtEnSiOnS/eXtEnSiOnNaMe/extra",
 			Error: true,
 		},
 	}
@@ -231,6 +257,10 @@ func TestParseExtensionIDInsensitively(t *testing.T) {
 
 		if actual.NodeId != v.Expected.NodeId {
 			t.Fatalf("Expected %q but got %q for NodeId", v.Expected.NodeId, actual.NodeId)
+		}
+
+		if actual.ExtensionName != v.Expected.ExtensionName {
+			t.Fatalf("Expected %q but got %q for ExtensionName", v.Expected.ExtensionName, actual.ExtensionName)
 		}
 
 	}

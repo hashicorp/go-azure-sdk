@@ -54,7 +54,7 @@ func (o DeleteOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Delete ...
-func (c IndexesClient) Delete(ctx context.Context, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
+func (c IndexesClient) Delete(ctx context.Context, id IndexId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c IndexesClient) Delete(ctx context.Context, options DeleteOperationOption
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          "/indexesindexName",
+		Path:          fmt.Sprintf("/indexes('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

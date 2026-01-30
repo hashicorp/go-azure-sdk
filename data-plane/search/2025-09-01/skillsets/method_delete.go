@@ -54,7 +54,7 @@ func (o DeleteOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Delete ...
-func (c SkillsetsClient) Delete(ctx context.Context, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
+func (c SkillsetsClient) Delete(ctx context.Context, id SkillsetId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c SkillsetsClient) Delete(ctx context.Context, options DeleteOperationOpti
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          "/skillsetsskillsetName",
+		Path:          fmt.Sprintf("/skillsets('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

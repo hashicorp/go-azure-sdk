@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &JobId{}
 
 func TestNewJobID(t *testing.T) {
-	id := NewJobID("jobId")
+	id := NewJobID("https://endpoint-url.example.com", "jobId")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.JobId != "jobId" {
 		t.Fatalf("Expected %q but got %q for Segment 'JobId'", id.JobId, "jobId")
@@ -20,8 +24,8 @@ func TestNewJobID(t *testing.T) {
 }
 
 func TestFormatJobID(t *testing.T) {
-	actual := NewJobID("jobId").ID()
-	expected := "/jobs/jobId"
+	actual := NewJobID("https://endpoint-url.example.com", "jobId").ID()
+	expected := "https://endpoint-url.example.com/jobs/jobId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParseJobID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/jobs",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/jobs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/jobs/jobId",
+			Input: "https://endpoint-url.example.com/jobs/jobId",
 			Expected: &JobId{
-				JobId: "jobId",
+				BaseURI: "https://endpoint-url.example.com",
+				JobId:   "jobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/jobs/jobId/extra",
+			Input: "https://endpoint-url.example.com/jobs/jobId/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParseJobID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.JobId != v.Expected.JobId {
@@ -91,36 +105,48 @@ func TestParseJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/jobs",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/jObS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/jobs",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/jobs/jobId",
+			Input: "https://endpoint-url.example.com/jobs/jobId",
 			Expected: &JobId{
-				JobId: "jobId",
+				BaseURI: "https://endpoint-url.example.com",
+				JobId:   "jobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/jobs/jobId/extra",
+			Input: "https://endpoint-url.example.com/jobs/jobId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/jObS/jObId",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS/jObId",
 			Expected: &JobId{
-				JobId: "jObId",
+				BaseURI: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				JobId:   "jObId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/jObS/jObId/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS/jObId/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParseJobIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.JobId != v.Expected.JobId {

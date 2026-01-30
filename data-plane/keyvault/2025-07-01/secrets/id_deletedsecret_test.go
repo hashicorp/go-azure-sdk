@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &DeletedsecretId{}
 
 func TestNewDeletedsecretID(t *testing.T) {
-	id := NewDeletedsecretID("deletedsecretName")
+	id := NewDeletedsecretID("https://endpoint-url.example.com", "deletedsecretName")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.DeletedsecretName != "deletedsecretName" {
 		t.Fatalf("Expected %q but got %q for Segment 'DeletedsecretName'", id.DeletedsecretName, "deletedsecretName")
@@ -20,8 +24,8 @@ func TestNewDeletedsecretID(t *testing.T) {
 }
 
 func TestFormatDeletedsecretID(t *testing.T) {
-	actual := NewDeletedsecretID("deletedsecretName").ID()
-	expected := "/deletedsecrets/deletedsecretName"
+	actual := NewDeletedsecretID("https://endpoint-url.example.com", "deletedsecretName").ID()
+	expected := "https://endpoint-url.example.com/deletedsecrets/deletedsecretName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParseDeletedsecretID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deletedsecrets",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/deletedsecrets",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deletedsecrets/deletedsecretName",
+			Input: "https://endpoint-url.example.com/deletedsecrets/deletedsecretName",
 			Expected: &DeletedsecretId{
+				BaseURI:           "https://endpoint-url.example.com",
 				DeletedsecretName: "deletedsecretName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deletedsecrets/deletedsecretName/extra",
+			Input: "https://endpoint-url.example.com/deletedsecrets/deletedsecretName/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParseDeletedsecretID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.DeletedsecretName != v.Expected.DeletedsecretName {
@@ -91,36 +105,48 @@ func TestParseDeletedsecretIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deletedsecrets",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dElEtEdSeCrEtS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/deletedsecrets",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/dElEtEdSeCrEtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deletedsecrets/deletedsecretName",
+			Input: "https://endpoint-url.example.com/deletedsecrets/deletedsecretName",
 			Expected: &DeletedsecretId{
+				BaseURI:           "https://endpoint-url.example.com",
 				DeletedsecretName: "deletedsecretName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deletedsecrets/deletedsecretName/extra",
+			Input: "https://endpoint-url.example.com/deletedsecrets/deletedsecretName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dElEtEdSeCrEtS/dElEtEdSeCrEtNaMe",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/dElEtEdSeCrEtS/dElEtEdSeCrEtNaMe",
 			Expected: &DeletedsecretId{
+				BaseURI:           "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 				DeletedsecretName: "dElEtEdSeCrEtNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dElEtEdSeCrEtS/dElEtEdSeCrEtNaMe/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/dElEtEdSeCrEtS/dElEtEdSeCrEtNaMe/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParseDeletedsecretIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.DeletedsecretName != v.Expected.DeletedsecretName {

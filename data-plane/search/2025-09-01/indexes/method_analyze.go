@@ -47,7 +47,7 @@ func (o AnalyzeOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Analyze ...
-func (c IndexesClient) Analyze(ctx context.Context, input AnalyzeRequest, options AnalyzeOperationOptions) (result AnalyzeOperationResponse, err error) {
+func (c IndexesClient) Analyze(ctx context.Context, id IndexId, input AnalyzeRequest, options AnalyzeOperationOptions) (result AnalyzeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +55,7 @@ func (c IndexesClient) Analyze(ctx context.Context, input AnalyzeRequest, option
 		},
 		HttpMethod:    http.MethodPost,
 		OptionsObject: options,
-		Path:          "/indexesindexName/Search.Analyze",
+		Path:          fmt.Sprintf("/indexes('%s')/search.analyze", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

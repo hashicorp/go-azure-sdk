@@ -12,20 +12,24 @@ import (
 var _ resourceids.ResourceId = &ScopedRoleDefinitionId{}
 
 func TestNewScopedRoleDefinitionID(t *testing.T) {
-	id := NewScopedRoleDefinitionID("https://endpoint_url", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+	id := NewScopedRoleDefinitionID("https://endpoint-url.example.com", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleDefinitionName")
 
-	if id.BaseURI != "https://endpoint_url" {
-		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint_url")
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
 	}
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
+
+	if id.RoleDefinitionName != "roleDefinitionName" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoleDefinitionName'", id.RoleDefinitionName, "roleDefinitionName")
+	}
 }
 
 func TestFormatScopedRoleDefinitionID(t *testing.T) {
-	actual := NewScopedRoleDefinitionID("https://endpoint_url", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group").ID()
-	expected := "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions"
+	actual := NewScopedRoleDefinitionID("https://endpoint-url.example.com", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "roleDefinitionName").ID()
+	expected := "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions/roleDefinitionName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -44,35 +48,41 @@ func TestParseScopedRoleDefinitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions/roleDefinitionName",
 			Expected: &ScopedRoleDefinitionId{
-				BaseURI: "https://endpoint_url",
-				Scope:   "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				BaseURI:            "https://endpoint-url.example.com",
+				Scope:              "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				RoleDefinitionName: "roleDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions/extra",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions/roleDefinitionName/extra",
 			Error: true,
 		},
 	}
@@ -99,6 +109,10 @@ func TestParseScopedRoleDefinitionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for Scope", v.Expected.Scope, actual.Scope)
 		}
 
+		if actual.RoleDefinitionName != v.Expected.RoleDefinitionName {
+			t.Fatalf("Expected %q but got %q for RoleDefinitionName", v.Expected.RoleDefinitionName, actual.RoleDefinitionName)
+		}
+
 	}
 }
 
@@ -115,68 +129,80 @@ func TestParseScopedRoleDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEdEfInItIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions/roleDefinitionName",
 			Expected: &ScopedRoleDefinitionId{
-				BaseURI: "https://endpoint_url",
-				Scope:   "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				BaseURI:            "https://endpoint-url.example.com",
+				Scope:              "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				RoleDefinitionName: "roleDefinitionName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions/extra",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Authorization/roleDefinitions/roleDefinitionName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEdEfInItIoNs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEdEfInItIoNs/rOlEdEfInItIoNnAmE",
 			Expected: &ScopedRoleDefinitionId{
-				BaseURI: "hTtPs://eNdPoInT_UrL",
-				Scope:   "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
+				BaseURI:            "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				Scope:              "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
+				RoleDefinitionName: "rOlEdEfInItIoNnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEdEfInItIoNs/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rOlEdEfInItIoNs/rOlEdEfInItIoNnAmE/extra",
 			Error: true,
 		},
 	}
@@ -201,6 +227,10 @@ func TestParseScopedRoleDefinitionIDInsensitively(t *testing.T) {
 
 		if actual.Scope != v.Expected.Scope {
 			t.Fatalf("Expected %q but got %q for Scope", v.Expected.Scope, actual.Scope)
+		}
+
+		if actual.RoleDefinitionName != v.Expected.RoleDefinitionName {
+			t.Fatalf("Expected %q but got %q for RoleDefinitionName", v.Expected.RoleDefinitionName, actual.RoleDefinitionName)
 		}
 
 	}

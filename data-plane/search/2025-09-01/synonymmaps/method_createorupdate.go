@@ -59,7 +59,7 @@ func (o CreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CreateOrUpdate ...
-func (c SynonymMapsClient) CreateOrUpdate(ctx context.Context, input SynonymMap, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c SynonymMapsClient) CreateOrUpdate(ctx context.Context, id SynonymmapId, input SynonymMap, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -68,7 +68,7 @@ func (c SynonymMapsClient) CreateOrUpdate(ctx context.Context, input SynonymMap,
 		},
 		HttpMethod:    http.MethodPut,
 		OptionsObject: options,
-		Path:          "/synonymmapssynonymMapName",
+		Path:          fmt.Sprintf("/synonymmaps('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

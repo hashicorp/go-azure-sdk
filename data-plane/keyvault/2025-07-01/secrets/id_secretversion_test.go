@@ -12,20 +12,24 @@ import (
 var _ resourceids.ResourceId = &SecretversionId{}
 
 func TestNewSecretversionID(t *testing.T) {
-	id := NewSecretversionID("https://endpoint_url", "secretName")
+	id := NewSecretversionID("https://endpoint-url.example.com", "secretName", "secretversion")
 
-	if id.BaseURI != "https://endpoint_url" {
-		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint_url")
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
 	}
 
 	if id.SecretName != "secretName" {
 		t.Fatalf("Expected %q but got %q for Segment 'SecretName'", id.SecretName, "secretName")
 	}
+
+	if id.Secretversion != "secretversion" {
+		t.Fatalf("Expected %q but got %q for Segment 'Secretversion'", id.Secretversion, "secretversion")
+	}
 }
 
 func TestFormatSecretversionID(t *testing.T) {
-	actual := NewSecretversionID("https://endpoint_url", "secretName").ID()
-	expected := "/https://endpoint_url/secrets/secretName"
+	actual := NewSecretversionID("https://endpoint-url.example.com", "secretName", "secretversion").ID()
+	expected := "https://endpoint-url.example.com/secrets/secretName/secretversion"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -44,25 +48,31 @@ func TestParseSecretversionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/secrets",
+			Input: "https://endpoint-url.example.com/secrets",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/secrets/secretName",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/secrets/secretName",
+			Input: "https://endpoint-url.example.com/secrets/secretName/secretversion",
 			Expected: &SecretversionId{
-				BaseURI:    "https://endpoint_url",
-				SecretName: "secretName",
+				BaseURI:       "https://endpoint-url.example.com",
+				SecretName:    "secretName",
+				Secretversion: "secretversion",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/secrets/secretName/extra",
+			Input: "https://endpoint-url.example.com/secrets/secretName/secretversion/extra",
 			Error: true,
 		},
 	}
@@ -89,6 +99,10 @@ func TestParseSecretversionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SecretName", v.Expected.SecretName, actual.SecretName)
 		}
 
+		if actual.Secretversion != v.Expected.Secretversion {
+			t.Fatalf("Expected %q but got %q for Secretversion", v.Expected.Secretversion, actual.Secretversion)
+		}
+
 	}
 }
 
@@ -105,48 +119,60 @@ func TestParseSecretversionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/secrets",
+			Input: "https://endpoint-url.example.com/secrets",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/sEcReTs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sEcReTs",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/secrets/secretName",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sEcReTs/sEcReTnAmE",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/secrets/secretName",
+			Input: "https://endpoint-url.example.com/secrets/secretName/secretversion",
 			Expected: &SecretversionId{
-				BaseURI:    "https://endpoint_url",
-				SecretName: "secretName",
+				BaseURI:       "https://endpoint-url.example.com",
+				SecretName:    "secretName",
+				Secretversion: "secretversion",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/secrets/secretName/extra",
+			Input: "https://endpoint-url.example.com/secrets/secretName/secretversion/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/sEcReTs/sEcReTnAmE",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sEcReTs/sEcReTnAmE/sEcReTvErSiOn",
 			Expected: &SecretversionId{
-				BaseURI:    "hTtPs://eNdPoInT_UrL",
-				SecretName: "sEcReTnAmE",
+				BaseURI:       "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				SecretName:    "sEcReTnAmE",
+				Secretversion: "sEcReTvErSiOn",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/sEcReTs/sEcReTnAmE/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sEcReTs/sEcReTnAmE/sEcReTvErSiOn/extra",
 			Error: true,
 		},
 	}
@@ -171,6 +197,10 @@ func TestParseSecretversionIDInsensitively(t *testing.T) {
 
 		if actual.SecretName != v.Expected.SecretName {
 			t.Fatalf("Expected %q but got %q for SecretName", v.Expected.SecretName, actual.SecretName)
+		}
+
+		if actual.Secretversion != v.Expected.Secretversion {
+			t.Fatalf("Expected %q but got %q for Secretversion", v.Expected.Secretversion, actual.Secretversion)
 		}
 
 	}

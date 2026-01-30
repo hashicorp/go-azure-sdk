@@ -44,13 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := datasources.NewDatasourceID("datasourceName")
 
 payload := datasources.SearchIndexerDataSource{
 	// ...
 }
 
 
-read, err := client.CreateOrUpdate(ctx, payload, datasources.DefaultCreateOrUpdateOperationOptions())
+read, err := client.CreateOrUpdate(ctx, id, payload, datasources.DefaultCreateOrUpdateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,9 +65,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := datasources.NewDatasourceID("datasourceName")
 
-
-read, err := client.Delete(ctx, datasources.DefaultDeleteOperationOptions())
+read, err := client.Delete(ctx, id, datasources.DefaultDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -80,9 +81,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := datasources.NewDatasourceID("datasourceName")
 
-
-read, err := client.Get(ctx, datasources.DefaultGetOperationOptions())
+read, err := client.Get(ctx, id, datasources.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
 }

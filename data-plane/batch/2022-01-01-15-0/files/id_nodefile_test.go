@@ -12,10 +12,10 @@ import (
 var _ resourceids.ResourceId = &NodeFileId{}
 
 func TestNewNodeFileID(t *testing.T) {
-	id := NewNodeFileID("https://endpoint_url", "poolId", "nodeId")
+	id := NewNodeFileID("https://endpoint-url.example.com", "poolId", "nodeId", "fileName")
 
-	if id.BaseURI != "https://endpoint_url" {
-		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint_url")
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
 	}
 
 	if id.PoolId != "poolId" {
@@ -25,11 +25,15 @@ func TestNewNodeFileID(t *testing.T) {
 	if id.NodeId != "nodeId" {
 		t.Fatalf("Expected %q but got %q for Segment 'NodeId'", id.NodeId, "nodeId")
 	}
+
+	if id.FileName != "fileName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FileName'", id.FileName, "fileName")
+	}
 }
 
 func TestFormatNodeFileID(t *testing.T) {
-	actual := NewNodeFileID("https://endpoint_url", "poolId", "nodeId").ID()
-	expected := "/https://endpoint_url/pools/poolId/nodes/nodeId/files"
+	actual := NewNodeFileID("https://endpoint-url.example.com", "poolId", "nodeId", "fileName").ID()
+	expected := "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/files/fileName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -48,41 +52,47 @@ func TestParseNodeFileID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools",
+			Input: "https://endpoint-url.example.com/pools",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId",
+			Input: "https://endpoint-url.example.com/pools/poolId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId/nodes",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/files",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId/files",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/files/fileName",
 			Expected: &NodeFileId{
-				BaseURI: "https://endpoint_url",
-				PoolId:  "poolId",
-				NodeId:  "nodeId",
+				BaseURI:  "https://endpoint-url.example.com",
+				PoolId:   "poolId",
+				NodeId:   "nodeId",
+				FileName: "fileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId/files/extra",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/files/fileName/extra",
 			Error: true,
 		},
 	}
@@ -113,6 +123,10 @@ func TestParseNodeFileID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NodeId", v.Expected.NodeId, actual.NodeId)
 		}
 
+		if actual.FileName != v.Expected.FileName {
+			t.Fatalf("Expected %q but got %q for FileName", v.Expected.FileName, actual.FileName)
+		}
+
 	}
 }
 
@@ -129,80 +143,92 @@ func TestParseNodeFileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools",
+			Input: "https://endpoint-url.example.com/pools",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId",
+			Input: "https://endpoint-url.example.com/pools/poolId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId/nodes",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD/nOdEs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD/nOdEs/nOdEiD",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/files",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD/fIlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId/files",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/files/fileName",
 			Expected: &NodeFileId{
-				BaseURI: "https://endpoint_url",
-				PoolId:  "poolId",
-				NodeId:  "nodeId",
+				BaseURI:  "https://endpoint-url.example.com",
+				PoolId:   "poolId",
+				NodeId:   "nodeId",
+				FileName: "fileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/pools/poolId/nodes/nodeId/files/extra",
+			Input: "https://endpoint-url.example.com/pools/poolId/nodes/nodeId/files/fileName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD/nOdEs/nOdEiD/fIlEs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD/fIlEs/fIlEnAmE",
 			Expected: &NodeFileId{
-				BaseURI: "hTtPs://eNdPoInT_UrL",
-				PoolId:  "pOoLiD",
-				NodeId:  "nOdEiD",
+				BaseURI:  "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				PoolId:   "pOoLiD",
+				NodeId:   "nOdEiD",
+				FileName: "fIlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/pOoLs/pOoLiD/nOdEs/nOdEiD/fIlEs/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/pOoLs/pOoLiD/nOdEs/nOdEiD/fIlEs/fIlEnAmE/extra",
 			Error: true,
 		},
 	}
@@ -231,6 +257,10 @@ func TestParseNodeFileIDInsensitively(t *testing.T) {
 
 		if actual.NodeId != v.Expected.NodeId {
 			t.Fatalf("Expected %q but got %q for NodeId", v.Expected.NodeId, actual.NodeId)
+		}
+
+		if actual.FileName != v.Expected.FileName {
+			t.Fatalf("Expected %q but got %q for FileName", v.Expected.FileName, actual.FileName)
 		}
 
 	}

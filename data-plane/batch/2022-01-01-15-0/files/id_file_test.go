@@ -12,10 +12,10 @@ import (
 var _ resourceids.ResourceId = &FileId{}
 
 func TestNewFileID(t *testing.T) {
-	id := NewFileID("https://endpoint_url", "jobId", "taskId")
+	id := NewFileID("https://endpoint-url.example.com", "jobId", "taskId", "fileName")
 
-	if id.BaseURI != "https://endpoint_url" {
-		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint_url")
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
 	}
 
 	if id.JobId != "jobId" {
@@ -25,11 +25,15 @@ func TestNewFileID(t *testing.T) {
 	if id.TaskId != "taskId" {
 		t.Fatalf("Expected %q but got %q for Segment 'TaskId'", id.TaskId, "taskId")
 	}
+
+	if id.FileName != "fileName" {
+		t.Fatalf("Expected %q but got %q for Segment 'FileName'", id.FileName, "fileName")
+	}
 }
 
 func TestFormatFileID(t *testing.T) {
-	actual := NewFileID("https://endpoint_url", "jobId", "taskId").ID()
-	expected := "/https://endpoint_url/jobs/jobId/tasks/taskId/files"
+	actual := NewFileID("https://endpoint-url.example.com", "jobId", "taskId", "fileName").ID()
+	expected := "https://endpoint-url.example.com/jobs/jobId/tasks/taskId/files/fileName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -48,41 +52,47 @@ func TestParseFileID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/jobs",
+			Input: "https://endpoint-url.example.com/jobs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/jobs/jobId",
+			Input: "https://endpoint-url.example.com/jobs/jobId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/jobs/jobId/tasks",
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/jobs/jobId/tasks/taskId",
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks/taskId",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks/taskId/files",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/jobs/jobId/tasks/taskId/files",
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks/taskId/files/fileName",
 			Expected: &FileId{
-				BaseURI: "https://endpoint_url",
-				JobId:   "jobId",
-				TaskId:  "taskId",
+				BaseURI:  "https://endpoint-url.example.com",
+				JobId:    "jobId",
+				TaskId:   "taskId",
+				FileName: "fileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/jobs/jobId/tasks/taskId/files/extra",
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks/taskId/files/fileName/extra",
 			Error: true,
 		},
 	}
@@ -113,6 +123,10 @@ func TestParseFileID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for TaskId", v.Expected.TaskId, actual.TaskId)
 		}
 
+		if actual.FileName != v.Expected.FileName {
+			t.Fatalf("Expected %q but got %q for FileName", v.Expected.FileName, actual.FileName)
+		}
+
 	}
 }
 
@@ -129,80 +143,92 @@ func TestParseFileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/jobs",
+			Input: "https://endpoint-url.example.com/jobs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/jObS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/jobs/jobId",
+			Input: "https://endpoint-url.example.com/jobs/jobId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/jObS/jObId",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS/jObId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/jobs/jobId/tasks",
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/jObS/jObId/tAsKs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS/jObId/tAsKs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/https://endpoint_url/jobs/jobId/tasks/taskId",
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks/taskId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/jObS/jObId/tAsKs/tAsKiD",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS/jObId/tAsKs/tAsKiD",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks/taskId/files",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS/jObId/tAsKs/tAsKiD/fIlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/https://endpoint_url/jobs/jobId/tasks/taskId/files",
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks/taskId/files/fileName",
 			Expected: &FileId{
-				BaseURI: "https://endpoint_url",
-				JobId:   "jobId",
-				TaskId:  "taskId",
+				BaseURI:  "https://endpoint-url.example.com",
+				JobId:    "jobId",
+				TaskId:   "taskId",
+				FileName: "fileName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/https://endpoint_url/jobs/jobId/tasks/taskId/files/extra",
+			Input: "https://endpoint-url.example.com/jobs/jobId/tasks/taskId/files/fileName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/jObS/jObId/tAsKs/tAsKiD/fIlEs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS/jObId/tAsKs/tAsKiD/fIlEs/fIlEnAmE",
 			Expected: &FileId{
-				BaseURI: "hTtPs://eNdPoInT_UrL",
-				JobId:   "jObId",
-				TaskId:  "tAsKiD",
+				BaseURI:  "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				JobId:    "jObId",
+				TaskId:   "tAsKiD",
+				FileName: "fIlEnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/hTtPs://eNdPoInT_UrL/jObS/jObId/tAsKs/tAsKiD/fIlEs/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/jObS/jObId/tAsKs/tAsKiD/fIlEs/fIlEnAmE/extra",
 			Error: true,
 		},
 	}
@@ -231,6 +257,10 @@ func TestParseFileIDInsensitively(t *testing.T) {
 
 		if actual.TaskId != v.Expected.TaskId {
 			t.Fatalf("Expected %q but got %q for TaskId", v.Expected.TaskId, actual.TaskId)
+		}
+
+		if actual.FileName != v.Expected.FileName {
+			t.Fatalf("Expected %q but got %q for FileName", v.Expected.FileName, actual.FileName)
 		}
 
 	}

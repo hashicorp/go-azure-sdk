@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &ApplicationId{}
 
 func TestNewApplicationID(t *testing.T) {
-	id := NewApplicationID("applicationId")
+	id := NewApplicationID("https://endpoint-url.example.com", "applicationId")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.ApplicationId != "applicationId" {
 		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
@@ -20,8 +24,8 @@ func TestNewApplicationID(t *testing.T) {
 }
 
 func TestFormatApplicationID(t *testing.T) {
-	actual := NewApplicationID("applicationId").ID()
-	expected := "/applications/applicationId"
+	actual := NewApplicationID("https://endpoint-url.example.com", "applicationId").ID()
+	expected := "https://endpoint-url.example.com/applications/applicationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParseApplicationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/applications",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationId",
+			Input: "https://endpoint-url.example.com/applications/applicationId",
 			Expected: &ApplicationId{
+				BaseURI:       "https://endpoint-url.example.com",
 				ApplicationId: "applicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationId/extra",
+			Input: "https://endpoint-url.example.com/applications/applicationId/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParseApplicationID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.ApplicationId != v.Expected.ApplicationId {
@@ -91,36 +105,48 @@ func TestParseApplicationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/applications",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/aPpLiCaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationId",
+			Input: "https://endpoint-url.example.com/applications/applicationId",
 			Expected: &ApplicationId{
+				BaseURI:       "https://endpoint-url.example.com",
 				ApplicationId: "applicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationId/extra",
+			Input: "https://endpoint-url.example.com/applications/applicationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Expected: &ApplicationId{
+				BaseURI:       "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 				ApplicationId: "aPpLiCaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/aPpLiCaTiOnS/aPpLiCaTiOnId/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParseApplicationIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.ApplicationId != v.Expected.ApplicationId {

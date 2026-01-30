@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &ScopeId{}
 
 func TestNewScopeID(t *testing.T) {
-	id := NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+	id := NewScopeID("https://endpoint-url.example.com", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
@@ -20,8 +24,8 @@ func TestNewScopeID(t *testing.T) {
 }
 
 func TestFormatScopeID(t *testing.T) {
-	actual := NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"
+	actual := NewScopeID("https://endpoint-url.example.com", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group").ID()
+	expected := "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -39,10 +43,16 @@ func TestParseScopeID(t *testing.T) {
 			Error: true,
 		},
 		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			Expected: &ScopeId{
-				Scope: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				BaseURI: "https://endpoint-url.example.com",
+				Scope:   "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			},
 		},
 	}
@@ -59,6 +69,10 @@ func TestParseScopeID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.Scope != v.Expected.Scope {
@@ -80,17 +94,29 @@ func TestParseScopeIDInsensitively(t *testing.T) {
 			Error: true,
 		},
 		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+			Input: "https://endpoint-url.example.com/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			Expected: &ScopeId{
-				Scope: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				BaseURI: "https://endpoint-url.example.com",
+				Scope:   "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
 			},
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
 			Expected: &ScopeId{
-				Scope: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
+				BaseURI: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+				Scope:   "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
 			},
 		},
 	}
@@ -107,6 +133,10 @@ func TestParseScopeIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.Scope != v.Expected.Scope {

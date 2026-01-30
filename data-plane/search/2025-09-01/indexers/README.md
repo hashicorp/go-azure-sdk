@@ -44,13 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexers.NewIndexerID("indexerName")
 
 payload := indexers.SearchIndexer{
 	// ...
 }
 
 
-read, err := client.CreateOrUpdate(ctx, payload, indexers.DefaultCreateOrUpdateOperationOptions())
+read, err := client.CreateOrUpdate(ctx, id, payload, indexers.DefaultCreateOrUpdateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,9 +65,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexers.NewIndexerID("indexerName")
 
-
-read, err := client.Delete(ctx, indexers.DefaultDeleteOperationOptions())
+read, err := client.Delete(ctx, id, indexers.DefaultDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -80,9 +81,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexers.NewIndexerID("indexerName")
 
-
-read, err := client.Get(ctx, indexers.DefaultGetOperationOptions())
+read, err := client.Get(ctx, id, indexers.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -96,9 +97,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexers.NewIndexerID("indexerName")
 
-
-read, err := client.GetStatus(ctx, indexers.DefaultGetStatusOperationOptions())
+read, err := client.GetStatus(ctx, id, indexers.DefaultGetStatusOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -128,9 +129,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexers.NewIndexerID("indexerName")
 
-
-read, err := client.Reset(ctx, indexers.DefaultResetOperationOptions())
+read, err := client.Reset(ctx, id, indexers.DefaultResetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -144,9 +145,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexers.NewIndexerID("indexerName")
 
-
-read, err := client.Run(ctx, indexers.DefaultRunOperationOptions())
+read, err := client.Run(ctx, id, indexers.DefaultRunOperationOptions())
 if err != nil {
 	// handle the error
 }

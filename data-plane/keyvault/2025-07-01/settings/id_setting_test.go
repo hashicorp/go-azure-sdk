@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &SettingId{}
 
 func TestNewSettingID(t *testing.T) {
-	id := NewSettingID("settingName")
+	id := NewSettingID("https://endpoint-url.example.com", "settingName")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.SettingName != "settingName" {
 		t.Fatalf("Expected %q but got %q for Segment 'SettingName'", id.SettingName, "settingName")
@@ -20,8 +24,8 @@ func TestNewSettingID(t *testing.T) {
 }
 
 func TestFormatSettingID(t *testing.T) {
-	actual := NewSettingID("settingName").ID()
-	expected := "/settings/settingName"
+	actual := NewSettingID("https://endpoint-url.example.com", "settingName").ID()
+	expected := "https://endpoint-url.example.com/settings/settingName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParseSettingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/settings",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/settings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/settings/settingName",
+			Input: "https://endpoint-url.example.com/settings/settingName",
 			Expected: &SettingId{
+				BaseURI:     "https://endpoint-url.example.com",
 				SettingName: "settingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/settings/settingName/extra",
+			Input: "https://endpoint-url.example.com/settings/settingName/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParseSettingID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.SettingName != v.Expected.SettingName {
@@ -91,36 +105,48 @@ func TestParseSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/settings",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sEtTiNgS",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/settings",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sEtTiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/settings/settingName",
+			Input: "https://endpoint-url.example.com/settings/settingName",
 			Expected: &SettingId{
+				BaseURI:     "https://endpoint-url.example.com",
 				SettingName: "settingName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/settings/settingName/extra",
+			Input: "https://endpoint-url.example.com/settings/settingName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sEtTiNgS/sEtTiNgNaMe",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sEtTiNgS/sEtTiNgNaMe",
 			Expected: &SettingId{
+				BaseURI:     "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 				SettingName: "sEtTiNgNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sEtTiNgS/sEtTiNgNaMe/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sEtTiNgS/sEtTiNgNaMe/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParseSettingIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.SettingName != v.Expected.SettingName {

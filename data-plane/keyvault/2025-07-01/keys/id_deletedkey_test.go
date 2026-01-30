@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &DeletedkeyId{}
 
 func TestNewDeletedkeyID(t *testing.T) {
-	id := NewDeletedkeyID("deletedkeyName")
+	id := NewDeletedkeyID("https://endpoint-url.example.com", "deletedkeyName")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.DeletedkeyName != "deletedkeyName" {
 		t.Fatalf("Expected %q but got %q for Segment 'DeletedkeyName'", id.DeletedkeyName, "deletedkeyName")
@@ -20,8 +24,8 @@ func TestNewDeletedkeyID(t *testing.T) {
 }
 
 func TestFormatDeletedkeyID(t *testing.T) {
-	actual := NewDeletedkeyID("deletedkeyName").ID()
-	expected := "/deletedkeys/deletedkeyName"
+	actual := NewDeletedkeyID("https://endpoint-url.example.com", "deletedkeyName").ID()
+	expected := "https://endpoint-url.example.com/deletedkeys/deletedkeyName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParseDeletedkeyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deletedkeys",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/deletedkeys",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deletedkeys/deletedkeyName",
+			Input: "https://endpoint-url.example.com/deletedkeys/deletedkeyName",
 			Expected: &DeletedkeyId{
+				BaseURI:        "https://endpoint-url.example.com",
 				DeletedkeyName: "deletedkeyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deletedkeys/deletedkeyName/extra",
+			Input: "https://endpoint-url.example.com/deletedkeys/deletedkeyName/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParseDeletedkeyID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.DeletedkeyName != v.Expected.DeletedkeyName {
@@ -91,36 +105,48 @@ func TestParseDeletedkeyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deletedkeys",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dElEtEdKeYs",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/deletedkeys",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/dElEtEdKeYs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deletedkeys/deletedkeyName",
+			Input: "https://endpoint-url.example.com/deletedkeys/deletedkeyName",
 			Expected: &DeletedkeyId{
+				BaseURI:        "https://endpoint-url.example.com",
 				DeletedkeyName: "deletedkeyName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deletedkeys/deletedkeyName/extra",
+			Input: "https://endpoint-url.example.com/deletedkeys/deletedkeyName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dElEtEdKeYs/dElEtEdKeYnAmE",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/dElEtEdKeYs/dElEtEdKeYnAmE",
 			Expected: &DeletedkeyId{
+				BaseURI:        "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 				DeletedkeyName: "dElEtEdKeYnAmE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dElEtEdKeYs/dElEtEdKeYnAmE/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/dElEtEdKeYs/dElEtEdKeYnAmE/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParseDeletedkeyIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.DeletedkeyName != v.Expected.DeletedkeyName {

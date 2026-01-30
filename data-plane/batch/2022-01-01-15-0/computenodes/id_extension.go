@@ -103,7 +103,7 @@ func ValidateExtensionID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Extension ID
 func (id ExtensionId) ID() string {
 	fmtString := "%s/pools/%s/nodes/%s/extensions/%s"
-	return fmt.Sprintf(fmtString, id.BaseURI, id.PoolId, id.NodeId, id.ExtensionName)
+	return fmt.Sprintf(fmtString, strings.TrimSuffix(id.BaseURI, "/"), id.PoolId, id.NodeId, id.ExtensionName)
 }
 
 // Path returns the formatted Extension ID without the BaseURI
@@ -120,7 +120,7 @@ func (id ExtensionId) PathElements() []any {
 // Segments returns a slice of Resource ID Segments which comprise this Extension ID
 func (id ExtensionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
-		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint_url"),
+		resourceids.DataPlaneBaseURISegment("baseURI", "https://endpoint-url.example.com"),
 		resourceids.StaticSegment("staticPools", "pools", "pools"),
 		resourceids.UserSpecifiedSegment("poolId", "poolId"),
 		resourceids.StaticSegment("staticNodes", "nodes", "nodes"),

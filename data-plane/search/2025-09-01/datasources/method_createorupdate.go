@@ -59,7 +59,7 @@ func (o CreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CreateOrUpdate ...
-func (c DataSourcesClient) CreateOrUpdate(ctx context.Context, input SearchIndexerDataSource, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c DataSourcesClient) CreateOrUpdate(ctx context.Context, id DatasourceId, input SearchIndexerDataSource, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -68,7 +68,7 @@ func (c DataSourcesClient) CreateOrUpdate(ctx context.Context, input SearchIndex
 		},
 		HttpMethod:    http.MethodPut,
 		OptionsObject: options,
-		Path:          "/datasourcesdataSourceName",
+		Path:          fmt.Sprintf("/datasources('%s')", id.PathElements()...),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

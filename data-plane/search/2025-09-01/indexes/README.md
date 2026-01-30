@@ -24,13 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
+id := indexes.NewIndexID("indexName")
 
 payload := indexes.AnalyzeRequest{
 	// ...
 }
 
 
-read, err := client.Analyze(ctx, payload, indexes.DefaultAnalyzeOperationOptions())
+read, err := client.Analyze(ctx, id, payload, indexes.DefaultAnalyzeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,13 +65,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexes.NewIndexID("indexName")
 
 payload := indexes.SearchIndex{
 	// ...
 }
 
 
-read, err := client.CreateOrUpdate(ctx, payload, indexes.DefaultCreateOrUpdateOperationOptions())
+read, err := client.CreateOrUpdate(ctx, id, payload, indexes.DefaultCreateOrUpdateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -84,9 +86,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexes.NewIndexID("indexName")
 
-
-read, err := client.Delete(ctx, indexes.DefaultDeleteOperationOptions())
+read, err := client.Delete(ctx, id, indexes.DefaultDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -100,9 +102,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexes.NewIndexID("indexName")
 
-
-read, err := client.Get(ctx, indexes.DefaultGetOperationOptions())
+read, err := client.Get(ctx, id, indexes.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -116,9 +118,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+id := indexes.NewIndexID("indexName")
 
-
-read, err := client.GetStatistics(ctx, indexes.DefaultGetStatisticsOperationOptions())
+read, err := client.GetStatistics(ctx, id, indexes.DefaultGetStatisticsOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -12,7 +12,11 @@ import (
 var _ resourceids.ResourceId = &StorageId{}
 
 func TestNewStorageID(t *testing.T) {
-	id := NewStorageID("storageName")
+	id := NewStorageID("https://endpoint-url.example.com", "storageName")
+
+	if id.BaseURI != "https://endpoint-url.example.com" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseURI'", id.BaseURI, "https://endpoint-url.example.com")
+	}
 
 	if id.StorageName != "storageName" {
 		t.Fatalf("Expected %q but got %q for Segment 'StorageName'", id.StorageName, "storageName")
@@ -20,8 +24,8 @@ func TestNewStorageID(t *testing.T) {
 }
 
 func TestFormatStorageID(t *testing.T) {
-	actual := NewStorageID("storageName").ID()
-	expected := "/storage/storageName"
+	actual := NewStorageID("https://endpoint-url.example.com", "storageName").ID()
+	expected := "https://endpoint-url.example.com/storage/storageName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -40,19 +44,25 @@ func TestParseStorageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/storage",
+			Input: "https://endpoint-url.example.com",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/storage",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/storage/storageName",
+			Input: "https://endpoint-url.example.com/storage/storageName",
 			Expected: &StorageId{
+				BaseURI:     "https://endpoint-url.example.com",
 				StorageName: "storageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/storage/storageName/extra",
+			Input: "https://endpoint-url.example.com/storage/storageName/extra",
 			Error: true,
 		},
 	}
@@ -69,6 +79,10 @@ func TestParseStorageID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.StorageName != v.Expected.StorageName {
@@ -91,36 +105,48 @@ func TestParseStorageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/storage",
+			Input: "https://endpoint-url.example.com",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sToRaGe",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "https://endpoint-url.example.com/storage",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sToRaGe",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/storage/storageName",
+			Input: "https://endpoint-url.example.com/storage/storageName",
 			Expected: &StorageId{
+				BaseURI:     "https://endpoint-url.example.com",
 				StorageName: "storageName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/storage/storageName/extra",
+			Input: "https://endpoint-url.example.com/storage/storageName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sToRaGe/sToRaGeNaMe",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sToRaGe/sToRaGeNaMe",
 			Expected: &StorageId{
+				BaseURI:     "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM",
 				StorageName: "sToRaGeNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sToRaGe/sToRaGeNaMe/extra",
+			Input: "hTtPs://eNdPoInT-UrL.ExAmPlE.CoM/sToRaGe/sToRaGeNaMe/extra",
 			Error: true,
 		},
 	}
@@ -137,6 +163,10 @@ func TestParseStorageIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.BaseURI != v.Expected.BaseURI {
+			t.Fatalf("Expected %q but got %q for BaseURI", v.Expected.BaseURI, actual.BaseURI)
 		}
 
 		if actual.StorageName != v.Expected.StorageName {
