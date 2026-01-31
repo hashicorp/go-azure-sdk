@@ -29,6 +29,8 @@ func AzureUSGovernment() *Environment {
 	env.ManagedHSM = ManagedHSMAPI("https://managedhsm.usgovcloudapi.net", "managedhsm.usgovcloudapi.net")
 	env.MariaDB = MariaDBAPI("mariadb.database.usgovcloudapi.net").WithResourceIdentifier("https://ossrdbms-aad.database.usgovcloudapi.net")
 	env.MySql = MySqlAPI("mysql.database.usgovcloudapi.net").WithResourceIdentifier("https://ossrdbms-aad.database.usgovcloudapi.net")
+	env.Office365Compliance = Office365ComplianceAPI("https://ps.compliance.protection.outlook.us")
+	env.Office365ExchangeOnline = Office365ExchangeOnlineAPI("https://outlook.office365.us")
 	env.OperationalInsights = OperationalInsightsAPI().WithResourceIdentifier("https://api.loganalytics.us")
 	env.Postgresql = PostgresqlAPI("postgres.database.usgovcloudapi.net").WithResourceIdentifier("https://ossrdbms-aad.database.usgovcloudapi.net")
 	env.ServiceBus = ServiceBusAPI("https://servicebus.usgovcloudapi.net", "servicebus.usgovcloudapi.net").WithResourceIdentifier("https://servicebus.usgovcloudapi.net")

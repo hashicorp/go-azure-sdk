@@ -81,6 +81,7 @@ func baseEnvironmentWithName(name string) Environment {
 		MileIqRestService:                 applicationIdOnly("MileIqRestService", mileIqRestServiceAppId),
 		MixedReality:                      applicationIdOnly("MixedReality", mixedRealityAppId),
 		MySql:                             applicationIdOnly("MySql", ossRDBMSAppId),
+		Office365Compliance:               applicationIdOnly("Office365Compliance", office365ComplianceAppId),
 		Office365Connectors:               applicationIdOnly("Office365Connectors", office365ConnectorsAppId),
 		Office365Demeter:                  applicationIdOnly("Office365Demeter", office365DemeterAppId),
 		Office365DwEngineV2:               applicationIdOnly("Office365DwEngineV2", office365DwEngineV2AppId),
