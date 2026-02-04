@@ -38,3 +38,9 @@ func NewTasksClientWithBaseURI(endpoint string) (*TasksClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *TasksClient) Clone(endpoint string) *TasksClient {
+	return &TasksClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

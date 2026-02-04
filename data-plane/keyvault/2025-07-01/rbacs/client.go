@@ -38,3 +38,9 @@ func NewRbacsClientWithBaseURI(endpoint string) (*RbacsClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *RbacsClient) Clone(endpoint string) *RbacsClient {
+	return &RbacsClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

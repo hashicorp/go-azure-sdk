@@ -38,3 +38,9 @@ func NewCertificatesClientWithBaseURI(endpoint string) (*CertificatesClient, err
 		Client: client,
 	}, nil
 }
+
+func (c *CertificatesClient) Clone(endpoint string) *CertificatesClient {
+	return &CertificatesClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

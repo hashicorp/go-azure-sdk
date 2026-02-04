@@ -38,3 +38,9 @@ func NewComputeNodesClientWithBaseURI(endpoint string) (*ComputeNodesClient, err
 		Client: client,
 	}, nil
 }
+
+func (c *ComputeNodesClient) Clone(endpoint string) *ComputeNodesClient {
+	return &ComputeNodesClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

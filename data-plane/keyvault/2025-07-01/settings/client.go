@@ -38,3 +38,9 @@ func NewSettingsClientWithBaseURI(endpoint string) (*SettingsClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *SettingsClient) Clone(endpoint string) *SettingsClient {
+	return &SettingsClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

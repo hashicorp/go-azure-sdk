@@ -38,3 +38,9 @@ func NewIndexesClientWithBaseURI(endpoint string) (*IndexesClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *IndexesClient) Clone(endpoint string) *IndexesClient {
+	return &IndexesClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

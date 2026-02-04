@@ -38,3 +38,9 @@ func NewBackuprestoresClientWithBaseURI(endpoint string) (*BackuprestoresClient,
 		Client: client,
 	}, nil
 }
+
+func (c *BackuprestoresClient) Clone(endpoint string) *BackuprestoresClient {
+	return &BackuprestoresClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

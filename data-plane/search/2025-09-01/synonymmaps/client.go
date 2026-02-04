@@ -38,3 +38,9 @@ func NewSynonymMapsClientWithBaseURI(endpoint string) (*SynonymMapsClient, error
 		Client: client,
 	}, nil
 }
+
+func (c *SynonymMapsClient) Clone(endpoint string) *SynonymMapsClient {
+	return &SynonymMapsClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

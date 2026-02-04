@@ -38,3 +38,9 @@ func NewStorageClientWithBaseURI(endpoint string) (*StorageClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *StorageClient) Clone(endpoint string) *StorageClient {
+	return &StorageClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

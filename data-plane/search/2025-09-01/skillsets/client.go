@@ -38,3 +38,9 @@ func NewSkillsetsClientWithBaseURI(endpoint string) (*SkillsetsClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *SkillsetsClient) Clone(endpoint string) *SkillsetsClient {
+	return &SkillsetsClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

@@ -38,3 +38,9 @@ func NewAccountsClientWithBaseURI(endpoint string) (*AccountsClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *AccountsClient) Clone(endpoint string) *AccountsClient {
+	return &AccountsClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

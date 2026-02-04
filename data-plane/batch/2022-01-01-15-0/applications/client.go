@@ -38,3 +38,9 @@ func NewApplicationsClientWithBaseURI(endpoint string) (*ApplicationsClient, err
 		Client: client,
 	}, nil
 }
+
+func (c *ApplicationsClient) Clone(endpoint string) *ApplicationsClient {
+	return &ApplicationsClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

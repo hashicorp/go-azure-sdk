@@ -38,3 +38,9 @@ func NewSecuritydomainsClientWithBaseURI(endpoint string) (*SecuritydomainsClien
 		Client: client,
 	}, nil
 }
+
+func (c *SecuritydomainsClient) Clone(endpoint string) *SecuritydomainsClient {
+	return &SecuritydomainsClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

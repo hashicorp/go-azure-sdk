@@ -38,3 +38,9 @@ func NewKeysClientWithBaseURI(endpoint string) (*KeysClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *KeysClient) Clone(endpoint string) *KeysClient {
+	return &KeysClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

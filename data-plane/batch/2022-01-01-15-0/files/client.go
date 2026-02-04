@@ -38,3 +38,9 @@ func NewFilesClientWithBaseURI(endpoint string) (*FilesClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *FilesClient) Clone(endpoint string) *FilesClient {
+	return &FilesClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

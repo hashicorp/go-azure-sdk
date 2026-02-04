@@ -38,3 +38,9 @@ func NewDataSourcesClientWithBaseURI(endpoint string) (*DataSourcesClient, error
 		Client: client,
 	}, nil
 }
+
+func (c *DataSourcesClient) Clone(endpoint string) *DataSourcesClient {
+	return &DataSourcesClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}

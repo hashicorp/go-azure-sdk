@@ -38,3 +38,9 @@ func NewPoolsClientWithBaseURI(endpoint string) (*PoolsClient, error) {
 		Client: client,
 	}, nil
 }
+
+func (c *PoolsClient) Clone(endpoint string) *PoolsClient {
+	return &PoolsClient{
+		Client: c.Client.CloneClient(endpoint),
+	}
+}
