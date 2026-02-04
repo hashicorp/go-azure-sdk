@@ -107,3 +107,27 @@ func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*
 
 	return req, nil
 }
+
+// CloneClient will take Client pointer a string value named endpoint and returns a deep copy of the provided Client
+// pointer into a new pointer and sets the baseClient.BaseUri value to the string value provided in endpoint.
+// This function should be called for a new *Client wherever the client may be used for multiple endpoints
+// simultaneously
+func (c *Client) CloneClient(endpoint string) *Client {
+	baseClient := *c.Client
+	if c.Client.RequestMiddlewares != nil {
+		middlewares := make([]client.RequestMiddleware, len(*c.Client.RequestMiddlewares))
+		copy(middlewares, *c.Client.RequestMiddlewares)
+		baseClient.RequestMiddlewares = &middlewares
+	}
+	if c.Client.ResponseMiddlewares != nil {
+		middlewares := make([]client.ResponseMiddleware, len(*c.Client.ResponseMiddlewares))
+		copy(middlewares, *c.Client.ResponseMiddlewares)
+		baseClient.ResponseMiddlewares = &middlewares
+	}
+	baseClient.BaseUri = endpoint
+
+	return &Client{
+		Client:     &baseClient,
+		ApiVersion: c.ApiVersion,
+	}
+}
