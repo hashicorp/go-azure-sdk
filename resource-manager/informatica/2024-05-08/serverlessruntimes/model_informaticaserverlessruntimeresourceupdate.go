@@ -4,5 +4,6 @@ package serverlessruntimes
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type InformaticaServerlessRuntimeResourceUpdate struct {
-	Properties *ServerlessRuntimePropertiesCustomUpdate `json:"properties,omitempty"`
+	Identity   *AzureResourceManagerCommonTypesManagedServiceIdentityUpdate `json:"identity,omitempty"`
+	Properties *ServerlessRuntimePropertiesCustomUpdate                     `json:"properties,omitempty"`
 }
