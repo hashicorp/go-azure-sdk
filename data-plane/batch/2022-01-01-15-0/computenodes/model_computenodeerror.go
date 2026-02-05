@@ -1,0 +1,10 @@
+package computenodes
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ComputeNodeError struct {
+	Code         *string          `json:"code,omitempty"`
+	ErrorDetails *[]NameValuePair `json:"errorDetails,omitempty"`
+	Message      *string          `json:"message,omitempty"`
+}
