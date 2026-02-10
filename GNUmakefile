@@ -9,6 +9,7 @@ fmt: tools
 
 imports: tools
 	@echo "==> Fixing source code with goimports..."
+	goimports -w ./data-plane
 	goimports -w ./microsoft-graph
 	goimports -w ./resource-manager
 	goimports -w ./sdk
