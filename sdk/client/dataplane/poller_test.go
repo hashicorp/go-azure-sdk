@@ -446,7 +446,7 @@ func TestNewPoller_ProvisioningState_Invalid(t *testing.T) {
 			Response: &client.Response{
 				Response: &http.Response{
 					StatusCode: http.StatusOK,
-					Header: http.Header{
+					Header:     http.Header{
 						// no content type header
 					},
 					Request: &http.Request{

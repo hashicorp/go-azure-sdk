@@ -4,6 +4,7 @@ package organizations
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type InformaticaOrganizationResourceUpdate struct {
-	Properties *OrganizationPropertiesCustomUpdate `json:"properties,omitempty"`
-	Tags       *map[string]string                  `json:"tags,omitempty"`
+	Identity   *AzureResourceManagerCommonTypesManagedServiceIdentityUpdate `json:"identity,omitempty"`
+	Properties *OrganizationPropertiesCustomUpdate                          `json:"properties,omitempty"`
+	Tags       *map[string]string                                           `json:"tags,omitempty"`
 }
