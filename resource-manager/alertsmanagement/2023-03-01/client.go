@@ -6,23 +6,23 @@ package v2023_03_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2023-03-01/prometheusrulegroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2023-03-01/prometheusrulegroupresources"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	PrometheusRuleGroups *prometheusrulegroups.PrometheusRuleGroupsClient
+	PrometheusRuleGroupResources *prometheusrulegroupresources.PrometheusRuleGroupResourcesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	prometheusRuleGroupsClient, err := prometheusrulegroups.NewPrometheusRuleGroupsClientWithBaseURI(sdkApi)
+	prometheusRuleGroupResourcesClient, err := prometheusrulegroupresources.NewPrometheusRuleGroupResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building PrometheusRuleGroups client: %+v", err)
+		return nil, fmt.Errorf("building PrometheusRuleGroupResources client: %+v", err)
 	}
-	configureFunc(prometheusRuleGroupsClient.Client)
+	configureFunc(prometheusRuleGroupResourcesClient.Client)
 
 	return &Client{
-		PrometheusRuleGroups: prometheusRuleGroupsClient,
+		PrometheusRuleGroupResources: prometheusRuleGroupResourcesClient,
 	}, nil
 }

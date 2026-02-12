@@ -1,6 +1,7 @@
 package serverlessruntimes
 
 import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
@@ -8,9 +9,10 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type InformaticaServerlessRuntimeResource struct {
-	Id         *string                                 `json:"id,omitempty"`
-	Name       *string                                 `json:"name,omitempty"`
-	Properties *InformaticaServerlessRuntimeProperties `json:"properties,omitempty"`
-	SystemData *systemdata.SystemData                  `json:"systemData,omitempty"`
-	Type       *string                                 `json:"type,omitempty"`
+	Id         *string                                  `json:"id,omitempty"`
+	Identity   *identity.LegacySystemAndUserAssignedMap `json:"identity,omitempty"`
+	Name       *string                                  `json:"name,omitempty"`
+	Properties *InformaticaServerlessRuntimeProperties  `json:"properties,omitempty"`
+	SystemData *systemdata.SystemData                   `json:"systemData,omitempty"`
+	Type       *string                                  `json:"type,omitempty"`
 }

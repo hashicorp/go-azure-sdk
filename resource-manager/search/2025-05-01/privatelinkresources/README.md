@@ -26,11 +26,12 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := privatelinkresources.NewSearchServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceName")
 
-read, err := client.ListSupported(ctx, id, privatelinkresources.DefaultListSupportedOperationOptions())
+// alternatively `client.ListSupported(ctx, id, privatelinkresources.DefaultListSupportedOperationOptions())` can be used to do batched pagination
+items, err := client.ListSupportedComplete(ctx, id, privatelinkresources.DefaultListSupportedOperationOptions())
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```
