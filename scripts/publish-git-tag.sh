@@ -57,6 +57,7 @@ function main {
 
   local microsoftGraphTag="microsoft-graph/$version"
   local resourceManagerTag="resource-manager/$version"
+  local dataPlaneTag="data-plane/$version"
   local sdkTag="sdk/$version"
 
   echo "Releasing the Base Layer.."
@@ -69,6 +70,10 @@ function main {
   echo "Releasing the Resource Manager SDK.."
   updateSdkReferenceAndCommitChanges "resource-manager" "$version"
   publish "$resourceManagerTag"
+
+  echo "Releasing the Data plane SDK.."
+  updateSdkReferenceAndCommitChanges "data-plane" "$version"
+  publish "$dataPlaneTag"
 }
 
 main "$1"
