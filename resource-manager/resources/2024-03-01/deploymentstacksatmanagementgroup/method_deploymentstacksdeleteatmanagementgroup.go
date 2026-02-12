@@ -22,9 +22,9 @@ type DeploymentStacksDeleteAtManagementGroupOperationResponse struct {
 
 type DeploymentStacksDeleteAtManagementGroupOperationOptions struct {
 	BypassStackOutOfSyncError      *bool
-	UnmanageActionManagementGroups *DeploymentStacksDeleteDetachEnum
-	UnmanageActionResourceGroups   *DeploymentStacksDeleteDetachEnum
-	UnmanageActionResources        *DeploymentStacksDeleteDetachEnum
+	UnmanageActionManagementGroups *UnmanageActionManagementGroupMode
+	UnmanageActionResourceGroups   *UnmanageActionResourceGroupMode
+	UnmanageActionResources        *UnmanageActionResourceMode
 }
 
 func DefaultDeploymentStacksDeleteAtManagementGroupOperationOptions() DeploymentStacksDeleteAtManagementGroupOperationOptions {
