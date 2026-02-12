@@ -1,0 +1,83 @@
+package notebooks
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NotebookGetNotebookOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *NotebookResource
+}
+
+type NotebookGetNotebookOperationOptions struct {
+	IfNoneMatch *string
+}
+
+func DefaultNotebookGetNotebookOperationOptions() NotebookGetNotebookOperationOptions {
+	return NotebookGetNotebookOperationOptions{}
+}
+
+func (o NotebookGetNotebookOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+	if o.IfNoneMatch != nil {
+		out.Append("If-None-Match", fmt.Sprintf("%v", *o.IfNoneMatch))
+	}
+	return &out
+}
+
+func (o NotebookGetNotebookOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+
+	return &out
+}
+
+func (o NotebookGetNotebookOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// NotebookGetNotebook ...
+func (c NotebooksClient) NotebookGetNotebook(ctx context.Context, id NotebookId, options NotebookGetNotebookOperationOptions) (result NotebookGetNotebookOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          id.Path(),
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.Execute(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var model NotebookResource
+	result.Model = &model
+	if err = resp.Unmarshal(result.Model); err != nil {
+		return
+	}
+
+	return
+}
