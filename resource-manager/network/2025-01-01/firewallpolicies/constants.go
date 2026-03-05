@@ -233,18 +233,18 @@ func PossibleValuesForFirewallPolicyIDPSSignatureSeverity() []int64 {
 type FirewallPolicyIntrusionDetectionProfileType string
 
 const (
-	FirewallPolicyIntrusionDetectionProfileTypeAdvanced FirewallPolicyIntrusionDetectionProfileType = "Advanced"
-	FirewallPolicyIntrusionDetectionProfileTypeBasic    FirewallPolicyIntrusionDetectionProfileType = "Basic"
+	FirewallPolicyIntrusionDetectionProfileTypeOff FirewallPolicyIntrusionDetectionProfileType = "Off"
+	FirewallPolicyIntrusionDetectionProfileTypeEmerging    FirewallPolicyIntrusionDetectionProfileType = "Emerging"
+	FirewallPolicyIntrusionDetectionProfileTypeCore FirewallPolicyIntrusionDetectionProfileType = "Core"
 	FirewallPolicyIntrusionDetectionProfileTypeExtended FirewallPolicyIntrusionDetectionProfileType = "Extended"
-	FirewallPolicyIntrusionDetectionProfileTypeStandard FirewallPolicyIntrusionDetectionProfileType = "Standard"
 )
 
 func PossibleValuesForFirewallPolicyIntrusionDetectionProfileType() []string {
 	return []string{
-		string(FirewallPolicyIntrusionDetectionProfileTypeAdvanced),
-		string(FirewallPolicyIntrusionDetectionProfileTypeBasic),
+		string(FirewallPolicyIntrusionDetectionProfileTypeOff),
+		string(FirewallPolicyIntrusionDetectionProfileTypeEmerging),
+		string(FirewallPolicyIntrusionDetectionProfileTypeCore),
 		string(FirewallPolicyIntrusionDetectionProfileTypeExtended),
-		string(FirewallPolicyIntrusionDetectionProfileTypeStandard),
 	}
 }
 
@@ -263,10 +263,10 @@ func (s *FirewallPolicyIntrusionDetectionProfileType) UnmarshalJSON(bytes []byte
 
 func parseFirewallPolicyIntrusionDetectionProfileType(input string) (*FirewallPolicyIntrusionDetectionProfileType, error) {
 	vals := map[string]FirewallPolicyIntrusionDetectionProfileType{
-		"advanced": FirewallPolicyIntrusionDetectionProfileTypeAdvanced,
-		"basic":    FirewallPolicyIntrusionDetectionProfileTypeBasic,
+		"off": FirewallPolicyIntrusionDetectionProfileTypeOff,
+		"emerging":    FirewallPolicyIntrusionDetectionProfileTypeEmerging,
+		"core": FirewallPolicyIntrusionDetectionProfileTypeCore,
 		"extended": FirewallPolicyIntrusionDetectionProfileTypeExtended,
-		"standard": FirewallPolicyIntrusionDetectionProfileTypeStandard,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
