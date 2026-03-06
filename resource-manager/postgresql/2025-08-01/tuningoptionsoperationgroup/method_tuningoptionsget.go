@@ -14,7 +14,7 @@ import (
 type TuningOptionsGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Resource
+	Model        *TuningOptions
 }
 
 // TuningOptionsGet ...
@@ -43,7 +43,7 @@ func (c TuningOptionsOperationGroupClient) TuningOptionsGet(ctx context.Context,
 		return
 	}
 
-	var model Resource
+	var model TuningOptions
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
