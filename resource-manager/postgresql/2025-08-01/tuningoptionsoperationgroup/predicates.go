@@ -31,13 +31,13 @@ func (p ObjectRecommendationOperationPredicate) Matches(input ObjectRecommendati
 	return true
 }
 
-type ResourceOperationPredicate struct {
+type TuningOptionsOperationPredicate struct {
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p ResourceOperationPredicate) Matches(input Resource) bool {
+func (p TuningOptionsOperationPredicate) Matches(input TuningOptions) bool {
 
 	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false

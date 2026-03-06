@@ -15,12 +15,12 @@ import (
 type TuningOptionsListByServerOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]Resource
+	Model        *[]TuningOptions
 }
 
 type TuningOptionsListByServerCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []Resource
+	Items              []TuningOptions
 }
 
 type TuningOptionsListByServerCustomPager struct {
@@ -63,7 +63,7 @@ func (c TuningOptionsOperationGroupClient) TuningOptionsListByServer(ctx context
 	}
 
 	var values struct {
-		Values *[]Resource `json:"value"`
+		Values *[]TuningOptions `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c TuningOptionsOperationGroupClient) TuningOptionsListByServer(ctx context
 
 // TuningOptionsListByServerComplete retrieves all the results into a single object
 func (c TuningOptionsOperationGroupClient) TuningOptionsListByServerComplete(ctx context.Context, id FlexibleServerId) (TuningOptionsListByServerCompleteResult, error) {
-	return c.TuningOptionsListByServerCompleteMatchingPredicate(ctx, id, ResourceOperationPredicate{})
+	return c.TuningOptionsListByServerCompleteMatchingPredicate(ctx, id, TuningOptionsOperationPredicate{})
 }
 
 // TuningOptionsListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c TuningOptionsOperationGroupClient) TuningOptionsListByServerCompleteMatchingPredicate(ctx context.Context, id FlexibleServerId, predicate ResourceOperationPredicate) (result TuningOptionsListByServerCompleteResult, err error) {
-	items := make([]Resource, 0)
+func (c TuningOptionsOperationGroupClient) TuningOptionsListByServerCompleteMatchingPredicate(ctx context.Context, id FlexibleServerId, predicate TuningOptionsOperationPredicate) (result TuningOptionsListByServerCompleteResult, err error) {
+	items := make([]TuningOptions, 0)
 
 	resp, err := c.TuningOptionsListByServer(ctx, id)
 	if err != nil {
