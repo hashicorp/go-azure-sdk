@@ -25,7 +25,6 @@ func (c PrivateEndpointConnectionsClient) Delete(ctx context.Context, id Private
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
-			http.StatusAccepted,
 			http.StatusNoContent,
 			http.StatusOK,
 		},
