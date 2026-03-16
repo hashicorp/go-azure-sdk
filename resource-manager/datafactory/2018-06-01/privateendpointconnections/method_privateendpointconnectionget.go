@@ -29,7 +29,7 @@ func DefaultPrivateEndpointConnectionGetOperationOptions() PrivateEndpointConnec
 func (o PrivateEndpointConnectionGetOperationOptions) ToHeaders() *client.Headers {
 	out := client.Headers{}
 	if o.IfNoneMatch != nil {
-		out.Append("If-None-Match", fmt.Sprintf("%v", *o.IfNoneMatch))
+		out.Append("if-none-match", fmt.Sprintf("%v", *o.IfNoneMatch))
 	}
 	return &out
 }

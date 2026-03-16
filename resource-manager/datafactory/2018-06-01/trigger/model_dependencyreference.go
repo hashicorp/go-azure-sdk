@@ -69,6 +69,14 @@ func UnmarshalDependencyReferenceImplementation(input []byte) (DependencyReferen
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "TumblingWindowTriggerDependencyReference") {
+		var out TumblingWindowTriggerDependencyReference
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TumblingWindowTriggerDependencyReference: %+v", err)
+		}
+		return out, nil
+	}
+
 	var parent BaseDependencyReferenceImpl
 	if err := json.Unmarshal(input, &parent); err != nil {
 		return nil, fmt.Errorf("unmarshaling into BaseDependencyReferenceImpl: %+v", err)

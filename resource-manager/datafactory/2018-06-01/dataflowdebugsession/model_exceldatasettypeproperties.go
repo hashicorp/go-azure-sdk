@@ -10,11 +10,11 @@ import (
 
 type ExcelDatasetTypeProperties struct {
 	Compression      *DatasetCompression `json:"compression,omitempty"`
-	FirstRowAsHeader *bool               `json:"firstRowAsHeader,omitempty"`
+	FirstRowAsHeader *interface{}        `json:"firstRowAsHeader,omitempty"`
 	Location         DatasetLocation     `json:"location"`
 	NullValue        *interface{}        `json:"nullValue,omitempty"`
 	Range            *interface{}        `json:"range,omitempty"`
-	SheetIndex       *int64              `json:"sheetIndex,omitempty"`
+	SheetIndex       *interface{}        `json:"sheetIndex,omitempty"`
 	SheetName        *interface{}        `json:"sheetName,omitempty"`
 }
 
@@ -23,10 +23,10 @@ var _ json.Unmarshaler = &ExcelDatasetTypeProperties{}
 func (s *ExcelDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 	var decoded struct {
 		Compression      *DatasetCompression `json:"compression,omitempty"`
-		FirstRowAsHeader *bool               `json:"firstRowAsHeader,omitempty"`
+		FirstRowAsHeader *interface{}        `json:"firstRowAsHeader,omitempty"`
 		NullValue        *interface{}        `json:"nullValue,omitempty"`
 		Range            *interface{}        `json:"range,omitempty"`
-		SheetIndex       *int64              `json:"sheetIndex,omitempty"`
+		SheetIndex       *interface{}        `json:"sheetIndex,omitempty"`
 		SheetName        *interface{}        `json:"sheetName,omitempty"`
 	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {

@@ -14,7 +14,7 @@ type DelimitedTextDatasetTypeProperties struct {
 	CompressionLevel *interface{}    `json:"compressionLevel,omitempty"`
 	EncodingName     *interface{}    `json:"encodingName,omitempty"`
 	EscapeChar       *interface{}    `json:"escapeChar,omitempty"`
-	FirstRowAsHeader *bool           `json:"firstRowAsHeader,omitempty"`
+	FirstRowAsHeader *interface{}    `json:"firstRowAsHeader,omitempty"`
 	Location         DatasetLocation `json:"location"`
 	NullValue        *interface{}    `json:"nullValue,omitempty"`
 	QuoteChar        *interface{}    `json:"quoteChar,omitempty"`
@@ -30,7 +30,7 @@ func (s *DelimitedTextDatasetTypeProperties) UnmarshalJSON(bytes []byte) error {
 		CompressionLevel *interface{} `json:"compressionLevel,omitempty"`
 		EncodingName     *interface{} `json:"encodingName,omitempty"`
 		EscapeChar       *interface{} `json:"escapeChar,omitempty"`
-		FirstRowAsHeader *bool        `json:"firstRowAsHeader,omitempty"`
+		FirstRowAsHeader *interface{} `json:"firstRowAsHeader,omitempty"`
 		NullValue        *interface{} `json:"nullValue,omitempty"`
 		QuoteChar        *interface{} `json:"quoteChar,omitempty"`
 		RowDelimiter     *interface{} `json:"rowDelimiter,omitempty"`

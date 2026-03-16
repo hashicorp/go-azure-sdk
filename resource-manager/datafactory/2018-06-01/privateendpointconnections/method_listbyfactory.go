@@ -44,7 +44,7 @@ func (c PrivateEndpointConnectionsClient) ListByFactory(ctx context.Context, id 
 		},
 		HttpMethod: http.MethodGet,
 		Pager:      &ListByFactoryCustomPager{},
-		Path:       fmt.Sprintf("%s/privateEndPointConnections", id.ID()),
+		Path:       fmt.Sprintf("%s/privateEndpointConnections", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

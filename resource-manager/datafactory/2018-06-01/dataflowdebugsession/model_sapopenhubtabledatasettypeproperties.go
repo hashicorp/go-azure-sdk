@@ -4,7 +4,7 @@ package dataflowdebugsession
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SapOpenHubTableDatasetTypeProperties struct {
-	BaseRequestId          *int64      `json:"baseRequestId,omitempty"`
-	ExcludeLastRequest     *bool       `json:"excludeLastRequest,omitempty"`
-	OpenHubDestinationName interface{} `json:"openHubDestinationName"`
+	BaseRequestId          *interface{} `json:"baseRequestId,omitempty"`
+	ExcludeLastRequest     *interface{} `json:"excludeLastRequest,omitempty"`
+	OpenHubDestinationName interface{}  `json:"openHubDestinationName"`
 }
