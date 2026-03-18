@@ -32,12 +32,8 @@ payload := certificates.Certificate{
 }
 
 
-read, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
 }
 ```
 

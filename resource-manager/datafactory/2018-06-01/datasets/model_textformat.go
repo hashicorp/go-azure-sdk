@@ -14,12 +14,12 @@ type TextFormat struct {
 	ColumnDelimiter  *interface{} `json:"columnDelimiter,omitempty"`
 	EncodingName     *interface{} `json:"encodingName,omitempty"`
 	EscapeChar       *interface{} `json:"escapeChar,omitempty"`
-	FirstRowAsHeader *bool        `json:"firstRowAsHeader,omitempty"`
+	FirstRowAsHeader *interface{} `json:"firstRowAsHeader,omitempty"`
 	NullValue        *interface{} `json:"nullValue,omitempty"`
 	QuoteChar        *interface{} `json:"quoteChar,omitempty"`
 	RowDelimiter     *interface{} `json:"rowDelimiter,omitempty"`
-	SkipLineCount    *int64       `json:"skipLineCount,omitempty"`
-	TreatEmptyAsNull *bool        `json:"treatEmptyAsNull,omitempty"`
+	SkipLineCount    *interface{} `json:"skipLineCount,omitempty"`
+	TreatEmptyAsNull *interface{} `json:"treatEmptyAsNull,omitempty"`
 
 	// Fields inherited from DatasetStorageFormat
 

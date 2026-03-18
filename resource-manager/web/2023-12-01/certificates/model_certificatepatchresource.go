@@ -8,5 +8,6 @@ type CertificatePatchResource struct {
 	Kind       *string                             `json:"kind,omitempty"`
 	Name       *string                             `json:"name,omitempty"`
 	Properties *CertificatePatchResourceProperties `json:"properties,omitempty"`
+	Tags       *map[string]string                  `json:"tags,omitempty"`
 	Type       *string                             `json:"type,omitempty"`
 }
