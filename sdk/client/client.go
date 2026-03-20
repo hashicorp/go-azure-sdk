@@ -29,23 +29,6 @@ import (
 	"github.com/hashicorp/go-retryablehttp"
 )
 
-var DefaultTransport = &http.Transport{
-	Proxy: http.ProxyFromEnvironment,
-	DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
-		d := &net.Dialer{Resolver: &net.Resolver{}}
-		return d.DialContext(ctx, network, addr)
-	},
-	TLSClientConfig: &tls.Config{
-		MinVersion: tls.VersionTLS12,
-	},
-	MaxIdleConns:          100,
-	IdleConnTimeout:       90 * time.Second,
-	TLSHandshakeTimeout:   10 * time.Second,
-	ExpectContinueTimeout: 1 * time.Second,
-	ForceAttemptHTTP2:     true,
-	MaxIdleConnsPerHost:   runtime.GOMAXPROCS(0) + 1,
-}
-
 // RetryOn404ConsistencyFailureFunc can be used to retry a request when a 404 response is received
 func RetryOn404ConsistencyFailureFunc(resp *http.Response, _ *odata.OData) (bool, error) {
 	return resp != nil && resp.StatusCode == http.StatusNotFound, nil
@@ -755,7 +738,22 @@ func (c *Client) retryableClient(ctx context.Context, checkRetry retryablehttp.C
 	if c.Transport != nil {
 		transport = c.Transport
 	} else {
-		transport = DefaultTransport
+		transport = &http.Transport{
+			Proxy: http.ProxyFromEnvironment,
+			DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
+				d := &net.Dialer{Resolver: &net.Resolver{}}
+				return d.DialContext(ctx, network, addr)
+			},
+			TLSClientConfig: &tls.Config{
+				MinVersion: tls.VersionTLS12,
+			},
+			MaxIdleConns:          100,
+			IdleConnTimeout:       90 * time.Second,
+			TLSHandshakeTimeout:   10 * time.Second,
+			ExpectContinueTimeout: 1 * time.Second,
+			ForceAttemptHTTP2:     true,
+			MaxIdleConnsPerHost:   runtime.GOMAXPROCS(0) + 1,
+		}
 	}
 
 	r.HTTPClient = &http.Client{
