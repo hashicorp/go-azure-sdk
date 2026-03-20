@@ -512,3 +512,64 @@ func unmarshalResponse(body io.ReadCloser, unmarshal func(in []byte) error) erro
 
 	return unmarshal(respBody)
 }
+
+type roundTripperMock struct {
+	roundTripFunc func(*http.Request) (*http.Response, error)
+}
+
+func (rt *roundTripperMock) RoundTrip(req *http.Request) (*http.Response, error) {
+	if rt.roundTripFunc != nil {
+		return rt.roundTripFunc(req)
+	}
+	return nil, fmt.Errorf("roundTripFunc missing from mock")
+}
+
+func TestClient_CustomTransport(t *testing.T) {
+	ctx := context.TODO()
+
+	c := NewClient("http://localhost", "testService", "v1.0")
+	c.DisableRetries = true
+
+	hitCount := 0
+	mockTransport := &roundTripperMock{
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			hitCount++
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       io.NopCloser(bytes.NewReader([]byte(`{"success": true}`))),
+				Header: map[string][]string{
+					"Content-Type": {"application/json"},
+				},
+				Request: req,
+			}, nil
+		},
+	}
+	c.Transport = mockTransport
+
+	reqOpts := RequestOptions{
+		ContentType: "application/json",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodGet,
+		Path:       "/test",
+	}
+
+	req, err := c.NewRequest(ctx, reqOpts)
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	resp, err := req.Execute(ctx)
+	if err != nil {
+		t.Fatalf("Execute error: %v", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		t.Errorf("expected 200 OK, got %d", resp.StatusCode)
+	}
+
+	if hitCount != 1 {
+		t.Errorf("expected transport to be hit 1 time, got %d", hitCount)
+	}
+}
