@@ -573,3 +573,202 @@ func TestClient_CustomTransport(t *testing.T) {
 		t.Errorf("expected transport to be hit 1 time, got %d", hitCount)
 	}
 }
+
+func TestClient_VCRHeaderInjected(t *testing.T) {
+	ctx := context.TODO()
+
+	c := NewClient("http://localhost", "testService", "v1.0")
+	c.DisableRetries = true
+
+	mockTransport := &recorderRecorder{
+		mode: 1, // Replay
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       io.NopCloser(bytes.NewReader([]byte(`{"success": true}`))),
+				Header:     make(http.Header),
+				Request:    req,
+			}, nil
+		},
+	}
+	c.Transport = mockTransport
+
+	reqOpts := RequestOptions{
+		ContentType: "application/json",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodGet,
+		Path:       "/test",
+	}
+
+	req, err := c.NewRequest(ctx, reqOpts)
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	resp, err := req.Execute(ctx)
+	if err != nil {
+		t.Fatalf("Execute error: %v", err)
+	}
+
+	if resp.Header.Get("X-Go-Azure-SDK-Skip-Polling-Delay") != "true" {
+		t.Errorf("expected skip polling delay header to be injected in replay mode, but wasn't")
+	}
+}
+
+func TestClient_VCRHeaderInjectedInRecordOnceModeReplaying(t *testing.T) {
+	ctx := context.TODO()
+
+	c := NewClient("http://localhost", "testService", "v1.0")
+	c.DisableRetries = true
+
+	mockTransport := &recorderRecorder{
+		mode: 3, // RecordOnce
+		cassette: &testCassette{
+			IsNew: false, // REPLAYING
+		},
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       io.NopCloser(bytes.NewReader([]byte(`{"success": true}`))),
+				Header:     make(http.Header),
+				Request:    req,
+			}, nil
+		},
+	}
+	c.Transport = mockTransport
+
+	reqOpts := RequestOptions{
+		ContentType: "application/json",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodGet,
+		Path:       "/test",
+	}
+
+	req, err := c.NewRequest(ctx, reqOpts)
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	resp, err := req.Execute(ctx)
+	if err != nil {
+		t.Fatalf("Execute error: %v", err)
+	}
+
+	if resp.Header.Get("X-Go-Azure-SDK-Skip-Polling-Delay") != "true" {
+		t.Errorf("expected skip polling delay header to be injected in RecordOnce replaying mode, but wasn't")
+	}
+}
+
+func TestClient_VCRHeaderNotInjectedInRecordOnceModeRecording(t *testing.T) {
+	ctx := context.TODO()
+
+	c := NewClient("http://localhost", "testService", "v1.0")
+	c.DisableRetries = true
+
+	mockTransport := &recorderRecorder{
+		mode: 3, // RecordOnce
+		cassette: &testCassette{
+			IsNew: true, // RECORDING
+		},
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       io.NopCloser(bytes.NewReader([]byte(`{"success": true}`))),
+				Header:     make(http.Header),
+				Request:    req,
+			}, nil
+		},
+	}
+	c.Transport = mockTransport
+
+	reqOpts := RequestOptions{
+		ContentType: "application/json",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodGet,
+		Path:       "/test",
+	}
+
+	req, err := c.NewRequest(ctx, reqOpts)
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	resp, err := req.Execute(ctx)
+	if err != nil {
+		t.Fatalf("Execute error: %v", err)
+	}
+
+	if resp.Header.Get("X-Go-Azure-SDK-Skip-Polling-Delay") == "true" {
+		t.Errorf("expected skip polling delay header NOT to be injected in RecordOnce recording mode, but it was")
+	}
+}
+
+func TestClient_VCRHeaderNotInjectedInRecordMode(t *testing.T) {
+	ctx := context.TODO()
+
+	c := NewClient("http://localhost", "testService", "v1.0")
+	c.DisableRetries = true
+
+	mockTransport := &recorderRecorder{
+		mode: 0, // Record
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Body:       io.NopCloser(bytes.NewReader([]byte(`{"success": true}`))),
+				Header:     make(http.Header),
+				Request:    req,
+			}, nil
+		},
+	}
+	c.Transport = mockTransport
+
+	reqOpts := RequestOptions{
+		ContentType: "application/json",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodGet,
+		Path:       "/test",
+	}
+
+	req, err := c.NewRequest(ctx, reqOpts)
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	resp, err := req.Execute(ctx)
+	if err != nil {
+		t.Fatalf("Execute error: %v", err)
+	}
+
+	if resp.Header.Get("X-Go-Azure-SDK-Skip-Polling-Delay") == "true" {
+		t.Errorf("expected skip polling delay header NOT to be injected in record mode, but it was")
+	}
+}
+
+type recorderRecorder struct {
+	roundTripFunc func(*http.Request) (*http.Response, error)
+	mode          int
+	cassette      *testCassette
+}
+
+type testCassette struct {
+	IsNew bool
+}
+
+func (rt *recorderRecorder) Mode() int {
+	return rt.mode
+}
+
+func (rt *recorderRecorder) RoundTrip(req *http.Request) (*http.Response, error) {
+	if rt.roundTripFunc != nil {
+		return rt.roundTripFunc(req)
+	}
+	return nil, fmt.Errorf("roundTripFunc missing from mock")
+}

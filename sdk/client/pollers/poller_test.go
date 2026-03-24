@@ -6,6 +6,8 @@ package pollers_test
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"os"
 	"testing"
 	"time"
 
@@ -95,6 +97,129 @@ func TestPoller_ImmediatelyCancelled_WithDetails(t *testing.T) {
 	}
 	if poller.LatestResponse() != expectedResponse {
 		t.Fatalf("expected LatestResponse to be match but it didn't")
+	}
+}
+
+func TestPoller_SkipsDelayWhenSkipDelayReturnsTrue(t *testing.T) {
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			PollInterval: 1 * time.Hour,
+			Status:       pollers.PollingStatusInProgress,
+		},
+		pollers.PollResult{
+			Status: pollers.PollingStatusSucceeded,
+		},
+	})
+	pollerType.skipDelay = true
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	// Since we're skipping the 1 hour delay, this should finish almost immediately
+	timeout := 100 * time.Millisecond
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
+
+	start := time.Now()
+	if err := poller.PollUntilDone(ctx); err != nil {
+		t.Fatalf("polling: %+v", err)
+	}
+	duration := time.Since(start)
+
+	if duration > timeout {
+		t.Fatalf("expected polling to finish within %v but took %v", timeout, duration)
+	}
+
+	if poller.LatestStatus() != pollers.PollingStatusSucceeded {
+		t.Fatalf("expected LatestStatus to be Succeeded but got %q", string(poller.LatestStatus()))
+	}
+}
+
+func TestPoller_SkipsDelayWhenContextFlagSet(t *testing.T) {
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			PollInterval: 1 * time.Hour,
+			Status:       pollers.PollingStatusInProgress,
+		},
+		pollers.PollResult{
+			Status: pollers.PollingStatusSucceeded,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	ctx := pollers.WithSkipPollingDelay(context.Background())
+	ctx, cancel := context.WithTimeout(ctx, 100*time.Millisecond)
+	defer cancel()
+
+	start := time.Now()
+	if err := poller.PollUntilDone(ctx); err != nil {
+		t.Fatalf("polling: %+v", err)
+	}
+	duration := time.Since(start)
+
+	if duration > 100*time.Millisecond {
+		t.Fatalf("expected polling to finish within 100ms but took %v", duration)
+	}
+}
+
+func TestPoller_SkipsDelayWhenEnvVarSet(t *testing.T) {
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			PollInterval: 1 * time.Hour,
+			Status:       pollers.PollingStatusInProgress,
+		},
+		pollers.PollResult{
+			Status: pollers.PollingStatusSucceeded,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	os.Setenv("GO_AZURE_SDK_SKIP_POLLING_DELAY", "true")
+	defer os.Unsetenv("GO_AZURE_SDK_SKIP_POLLING_DELAY")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
+	defer cancel()
+
+	start := time.Now()
+	if err := poller.PollUntilDone(ctx); err != nil {
+		t.Fatalf("polling: %+v", err)
+	}
+	duration := time.Since(start)
+
+	if duration > 100*time.Millisecond {
+		t.Fatalf("expected polling to finish within 100ms but took %v", duration)
+	}
+}
+
+func TestPoller_SkipsDelayWhenHeaderSet(t *testing.T) {
+	expectedResponse := &client.Response{
+		Response: &http.Response{
+			Header: make(http.Header),
+		},
+	}
+	expectedResponse.Header.Set("X-Go-Azure-SDK-Skip-Polling-Delay", "true")
+
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: expectedResponse,
+			PollInterval: 1 * time.Hour,
+			Status:       pollers.PollingStatusInProgress,
+		},
+		pollers.PollResult{
+			Status: pollers.PollingStatusSucceeded,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
+	defer cancel()
+
+	start := time.Now()
+	if err := poller.PollUntilDone(ctx); err != nil {
+		t.Fatalf("polling: %+v", err)
+	}
+	duration := time.Since(start)
+
+	if duration > 100*time.Millisecond {
+		t.Fatalf("expected polling to finish within 100ms but took %v", duration)
 	}
 }
 
@@ -436,6 +561,7 @@ type errorResult struct {
 type fakePoller struct {
 	count     int
 	responses []pollResult
+	skipDelay bool
 }
 
 func fakePollerWithResults(results []pollResult) *fakePoller {
@@ -469,4 +595,8 @@ func (f *fakePoller) Poll(ctx context.Context) (*pollers.PollResult, error) {
 
 	pollResult := result.(pollers.PollResult)
 	return &pollResult, nil
+}
+
+func (f *fakePoller) SkipDelay() bool {
+	return f.skipDelay
 }
