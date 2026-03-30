@@ -24,7 +24,7 @@ type CancelPaymentTermsOperationResponse struct {
 // CancelPaymentTerms ...
 func (c BillingAccountClient) CancelPaymentTerms(ctx context.Context, id BillingAccountId, input string) (result CancelPaymentTermsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json; charset=utf-8",
+		ContentType: "text/plain",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

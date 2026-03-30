@@ -59,20 +59,30 @@ func parseBillingManagementTenantState(input string) (*BillingManagementTenantSt
 type ProvisioningState string
 
 const (
-	ProvisioningStateCanceled     ProvisioningState = "Canceled"
-	ProvisioningStateFailed       ProvisioningState = "Failed"
-	ProvisioningStateNew          ProvisioningState = "New"
-	ProvisioningStatePending      ProvisioningState = "Pending"
-	ProvisioningStateProvisioning ProvisioningState = "Provisioning"
-	ProvisioningStateSucceeded    ProvisioningState = "Succeeded"
+	ProvisioningStateCanceled         ProvisioningState = "Canceled"
+	ProvisioningStateConfirmedBilling ProvisioningState = "ConfirmedBilling"
+	ProvisioningStateCreated          ProvisioningState = "Created"
+	ProvisioningStateCreating         ProvisioningState = "Creating"
+	ProvisioningStateExpired          ProvisioningState = "Expired"
+	ProvisioningStateFailed           ProvisioningState = "Failed"
+	ProvisioningStateNew              ProvisioningState = "New"
+	ProvisioningStatePending          ProvisioningState = "Pending"
+	ProvisioningStatePendingBilling   ProvisioningState = "PendingBilling"
+	ProvisioningStateProvisioning     ProvisioningState = "Provisioning"
+	ProvisioningStateSucceeded        ProvisioningState = "Succeeded"
 )
 
 func PossibleValuesForProvisioningState() []string {
 	return []string{
 		string(ProvisioningStateCanceled),
+		string(ProvisioningStateConfirmedBilling),
+		string(ProvisioningStateCreated),
+		string(ProvisioningStateCreating),
+		string(ProvisioningStateExpired),
 		string(ProvisioningStateFailed),
 		string(ProvisioningStateNew),
 		string(ProvisioningStatePending),
+		string(ProvisioningStatePendingBilling),
 		string(ProvisioningStateProvisioning),
 		string(ProvisioningStateSucceeded),
 	}
@@ -93,12 +103,17 @@ func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
-		"canceled":     ProvisioningStateCanceled,
-		"failed":       ProvisioningStateFailed,
-		"new":          ProvisioningStateNew,
-		"pending":      ProvisioningStatePending,
-		"provisioning": ProvisioningStateProvisioning,
-		"succeeded":    ProvisioningStateSucceeded,
+		"canceled":         ProvisioningStateCanceled,
+		"confirmedbilling": ProvisioningStateConfirmedBilling,
+		"created":          ProvisioningStateCreated,
+		"creating":         ProvisioningStateCreating,
+		"expired":          ProvisioningStateExpired,
+		"failed":           ProvisioningStateFailed,
+		"new":              ProvisioningStateNew,
+		"pending":          ProvisioningStatePending,
+		"pendingbilling":   ProvisioningStatePendingBilling,
+		"provisioning":     ProvisioningStateProvisioning,
+		"succeeded":        ProvisioningStateSucceeded,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

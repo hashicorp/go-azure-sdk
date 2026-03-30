@@ -11,7 +11,7 @@ import (
 var _ Facet = FacetError{}
 
 type FacetError struct {
-	Errors []ErrorDetails `json:"errors"`
+	Errors []ResourceGraphCommonErrorDetails `json:"errors"`
 
 	// Fields inherited from Facet
 

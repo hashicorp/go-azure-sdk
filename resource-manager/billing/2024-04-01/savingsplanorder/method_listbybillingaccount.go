@@ -26,7 +26,7 @@ type ListByBillingAccountCompleteResult struct {
 type ListByBillingAccountOperationOptions struct {
 	Filter    *string
 	OrderBy   *string
-	Skiptoken *int64
+	Skiptoken *float64
 }
 
 func DefaultListByBillingAccountOperationOptions() ListByBillingAccountOperationOptions {

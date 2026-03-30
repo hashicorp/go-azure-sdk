@@ -138,7 +138,10 @@ const (
 	ProvisioningStateCreating         ProvisioningState = "Creating"
 	ProvisioningStateExpired          ProvisioningState = "Expired"
 	ProvisioningStateFailed           ProvisioningState = "Failed"
+	ProvisioningStateNew              ProvisioningState = "New"
+	ProvisioningStatePending          ProvisioningState = "Pending"
 	ProvisioningStatePendingBilling   ProvisioningState = "PendingBilling"
+	ProvisioningStateProvisioning     ProvisioningState = "Provisioning"
 	ProvisioningStateSucceeded        ProvisioningState = "Succeeded"
 )
 
@@ -150,7 +153,10 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateCreating),
 		string(ProvisioningStateExpired),
 		string(ProvisioningStateFailed),
+		string(ProvisioningStateNew),
+		string(ProvisioningStatePending),
 		string(ProvisioningStatePendingBilling),
+		string(ProvisioningStateProvisioning),
 		string(ProvisioningStateSucceeded),
 	}
 }
@@ -176,7 +182,10 @@ func parseProvisioningState(input string) (*ProvisioningState, error) {
 		"creating":         ProvisioningStateCreating,
 		"expired":          ProvisioningStateExpired,
 		"failed":           ProvisioningStateFailed,
+		"new":              ProvisioningStateNew,
+		"pending":          ProvisioningStatePending,
 		"pendingbilling":   ProvisioningStatePendingBilling,
+		"provisioning":     ProvisioningStateProvisioning,
 		"succeeded":        ProvisioningStateSucceeded,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {

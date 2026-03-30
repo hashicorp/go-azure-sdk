@@ -28,8 +28,8 @@ type ListByBillingAccountOperationOptions struct {
 	OrderBy        *string
 	RefreshSummary *string
 	SelectedState  *string
-	Skiptoken      *int64
-	Take           *int64
+	Skiptoken      *float64
+	Take           *float64
 }
 
 func DefaultListByBillingAccountOperationOptions() ListByBillingAccountOperationOptions {
