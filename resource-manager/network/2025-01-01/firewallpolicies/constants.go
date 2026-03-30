@@ -233,9 +233,9 @@ func PossibleValuesForFirewallPolicyIDPSSignatureSeverity() []int64 {
 type FirewallPolicyIntrusionDetectionProfileType string
 
 const (
-	FirewallPolicyIntrusionDetectionProfileTypeOff FirewallPolicyIntrusionDetectionProfileType = "Off"
-	FirewallPolicyIntrusionDetectionProfileTypeEmerging    FirewallPolicyIntrusionDetectionProfileType = "Emerging"
-	FirewallPolicyIntrusionDetectionProfileTypeCore FirewallPolicyIntrusionDetectionProfileType = "Core"
+	FirewallPolicyIntrusionDetectionProfileTypeOff      FirewallPolicyIntrusionDetectionProfileType = "Off"
+	FirewallPolicyIntrusionDetectionProfileTypeEmerging FirewallPolicyIntrusionDetectionProfileType = "Emerging"
+	FirewallPolicyIntrusionDetectionProfileTypeCore     FirewallPolicyIntrusionDetectionProfileType = "Core"
 	FirewallPolicyIntrusionDetectionProfileTypeExtended FirewallPolicyIntrusionDetectionProfileType = "Extended"
 )
 
@@ -263,9 +263,9 @@ func (s *FirewallPolicyIntrusionDetectionProfileType) UnmarshalJSON(bytes []byte
 
 func parseFirewallPolicyIntrusionDetectionProfileType(input string) (*FirewallPolicyIntrusionDetectionProfileType, error) {
 	vals := map[string]FirewallPolicyIntrusionDetectionProfileType{
-		"off": FirewallPolicyIntrusionDetectionProfileTypeOff,
-		"emerging":    FirewallPolicyIntrusionDetectionProfileTypeEmerging,
-		"core": FirewallPolicyIntrusionDetectionProfileTypeCore,
+		"off":      FirewallPolicyIntrusionDetectionProfileTypeOff,
+		"emerging": FirewallPolicyIntrusionDetectionProfileTypeEmerging,
+		"core":     FirewallPolicyIntrusionDetectionProfileTypeCore,
 		"extended": FirewallPolicyIntrusionDetectionProfileTypeExtended,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
