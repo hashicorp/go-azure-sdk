@@ -7,7 +7,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"os"
+	"net/url"
 	"testing"
 	"time"
 
@@ -160,42 +160,13 @@ func TestPoller_SkipsDelayWhenContextFlagSet(t *testing.T) {
 	}
 }
 
-func TestPoller_SkipsDelayWhenEnvVarSet(t *testing.T) {
-	pollerType := fakePollerWithResults([]pollResult{
-		pollers.PollResult{
-			PollInterval: 1 * time.Hour,
-			Status:       pollers.PollingStatusInProgress,
-		},
-		pollers.PollResult{
-			Status: pollers.PollingStatusSucceeded,
-		},
-	})
-	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
-
-	os.Setenv("GO_AZURE_SDK_SKIP_POLLING_DELAY", "true")
-	defer os.Unsetenv("GO_AZURE_SDK_SKIP_POLLING_DELAY")
-
-	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
-	defer cancel()
-
-	start := time.Now()
-	if err := poller.PollUntilDone(ctx); err != nil {
-		t.Fatalf("polling: %+v", err)
-	}
-	duration := time.Since(start)
-
-	if duration > 100*time.Millisecond {
-		t.Fatalf("expected polling to finish within 100ms but took %v", duration)
-	}
-}
-
 func TestPoller_SkipsDelayWhenHeaderSet(t *testing.T) {
 	expectedResponse := &client.Response{
 		Response: &http.Response{
 			Header: make(http.Header),
 		},
 	}
-	expectedResponse.Header.Set("X-Go-Azure-SDK-Skip-Polling-Delay", "true")
+	expectedResponse.Header.Set(client.SkipPollingDelayHeader, "true")
 
 	pollerType := fakePollerWithResults([]pollResult{
 		pollers.PollResult{
@@ -220,6 +191,78 @@ func TestPoller_SkipsDelayWhenHeaderSet(t *testing.T) {
 
 	if duration > 100*time.Millisecond {
 		t.Fatalf("expected polling to finish within 100ms but took %v", duration)
+	}
+}
+
+func TestPoller_RetryOnError_DoesNotRetryWrappedVCRReplayMiss(t *testing.T) {
+	pollerType := fakePollerWithResults([]pollResult{
+		errorResult{
+			Error: fmt.Errorf("executing request: %+v", &url.Error{
+				Op:  http.MethodGet,
+				URL: "https://example.test/operations/1",
+				Err: fmt.Errorf(client.VCRInteractionNotFoundErrMsg),
+			}),
+		},
+		pollers.PollResult{
+			Status: pollers.PollingStatusSucceeded,
+		},
+	})
+	pollerType.skipDelay = true
+	poller := pollers.NewRetryOnErrorPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow, true)
+
+	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
+	defer cancel()
+
+	err := poller.PollUntilDone(ctx)
+	if err == nil {
+		t.Fatal("expected replay miss to fail polling immediately")
+	}
+	if !client.IsVCRReplayMissErrorDeprecated(err) {
+		t.Fatalf("expected replay miss error, got: %T,%v", err, err)
+	}
+	if pollerType.count != 1 {
+		t.Fatalf("expected the fakePoller to be called 1 time but got %d", pollerType.count)
+	}
+	if poller.LatestStatus() != pollers.PollingStatusUnknown {
+		t.Fatalf("expected LatestStatus to be Unknown but got %q", string(poller.LatestStatus()))
+	}
+	if poller.LatestResponse() != nil {
+		t.Fatalf("expected LatestResponse to be nil but got: %+v", poller.LatestResponse())
+	}
+}
+
+func TestPoller_DoesNotSkipDelayWhenHTTPResponsePresentWithoutHeader(t *testing.T) {
+	expectedResponse := &client.Response{
+		Response: &http.Response{
+			Header: make(http.Header),
+		},
+	}
+
+	pollInterval := 80 * time.Millisecond
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: expectedResponse,
+			PollInterval: pollInterval,
+			Status:       pollers.PollingStatusInProgress,
+		},
+		pollers.PollResult{
+			Status: pollers.PollingStatusSucceeded,
+		},
+	})
+	pollerType.skipDelay = true
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Millisecond)
+	defer cancel()
+
+	start := time.Now()
+	if err := poller.PollUntilDone(ctx); err != nil {
+		t.Fatalf("polling: %+v", err)
+	}
+	duration := time.Since(start)
+
+	if duration < pollInterval {
+		t.Fatalf("expected polling to wait for the poll interval when no skip header is present, but it finished in %v", duration)
 	}
 }
 
