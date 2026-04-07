@@ -72,7 +72,7 @@ func UnmarshalTriggerImplementation(input []byte) (Trigger, error) {
 		return out, nil
 	}
 
-	if strings.EqualFold(value, "RerunTumblingWindowTrigger") {
+	if strings.EqualFold(value, "rerunTumblingWindowTrigger") {
 		var out RerunTumblingWindowTrigger
 		if err := json.Unmarshal(input, &out); err != nil {
 			return nil, fmt.Errorf("unmarshaling into RerunTumblingWindowTrigger: %+v", err)
