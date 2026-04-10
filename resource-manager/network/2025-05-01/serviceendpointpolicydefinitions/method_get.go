@@ -14,7 +14,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ServiceEndpointPolicyDefinition
+	Model        *CommonServiceEndpointPolicyDefinition
 }
 
 // Get ...
@@ -43,7 +43,7 @@ func (c ServiceEndpointPolicyDefinitionsClient) Get(ctx context.Context, id Serv
 		return
 	}
 
-	var model ServiceEndpointPolicyDefinition
+	var model CommonServiceEndpointPolicyDefinition
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -3,25 +3,20 @@ package privateendpoints
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type PrivateEndpointOperationPredicate struct {
-	Etag     *string
-	Id       *string
-	Location *string
-	Name     *string
-	Type     *string
+type CommonPrivateEndpointOperationPredicate struct {
+	Etag *string
+	Id   *string
+	Name *string
+	Type *string
 }
 
-func (p PrivateEndpointOperationPredicate) Matches(input PrivateEndpoint) bool {
+func (p CommonPrivateEndpointOperationPredicate) Matches(input CommonPrivateEndpoint) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
 	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
-		return false
-	}
-
-	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
 		return false
 	}
 

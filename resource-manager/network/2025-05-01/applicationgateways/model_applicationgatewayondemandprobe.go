@@ -4,8 +4,8 @@ package applicationgateways
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplicationGatewayOnDemandProbe struct {
-	BackendAddressPool                  *SubResource                                `json:"backendAddressPool,omitempty"`
-	BackendHTTPSettings                 *SubResource                                `json:"backendHttpSettings,omitempty"`
+	BackendAddressPool                  *CommonSubResource                          `json:"backendAddressPool,omitempty"`
+	BackendHTTPSettings                 *CommonSubResource                          `json:"backendHttpSettings,omitempty"`
 	EnableProbeProxyProtocolHeader      *bool                                       `json:"enableProbeProxyProtocolHeader,omitempty"`
 	Host                                *string                                     `json:"host,omitempty"`
 	Match                               *ApplicationGatewayProbeHealthResponseMatch `json:"match,omitempty"`

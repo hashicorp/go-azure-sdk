@@ -18,7 +18,7 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *VirtualNetworkPeering
+	Model        *CommonVirtualNetworkPeering
 }
 
 type CreateOrUpdateOperationOptions struct {
@@ -50,7 +50,7 @@ func (o CreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CreateOrUpdate ...
-func (c VirtualNetworkPeeringsClient) CreateOrUpdate(ctx context.Context, id VirtualNetworkPeeringId, input VirtualNetworkPeering, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c VirtualNetworkPeeringsClient) CreateOrUpdate(ctx context.Context, id VirtualNetworkPeeringId, input CommonVirtualNetworkPeering, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -90,7 +90,7 @@ func (c VirtualNetworkPeeringsClient) CreateOrUpdate(ctx context.Context, id Vir
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c VirtualNetworkPeeringsClient) CreateOrUpdateThenPoll(ctx context.Context, id VirtualNetworkPeeringId, input VirtualNetworkPeering, options CreateOrUpdateOperationOptions) error {
+func (c VirtualNetworkPeeringsClient) CreateOrUpdateThenPoll(ctx context.Context, id VirtualNetworkPeeringId, input CommonVirtualNetworkPeering, options CreateOrUpdateOperationOptions) error {
 	result, err := c.CreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

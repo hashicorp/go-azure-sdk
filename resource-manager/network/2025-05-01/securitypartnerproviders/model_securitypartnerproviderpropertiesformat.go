@@ -7,5 +7,5 @@ type SecurityPartnerProviderPropertiesFormat struct {
 	ConnectionStatus     *SecurityPartnerProviderConnectionStatus `json:"connectionStatus,omitempty"`
 	ProvisioningState    *ProvisioningState                       `json:"provisioningState,omitempty"`
 	SecurityProviderName *SecurityProviderName                    `json:"securityProviderName,omitempty"`
-	VirtualHub           *SubResource                             `json:"virtualHub,omitempty"`
+	VirtualHub           *CommonSubResource                       `json:"virtualHub,omitempty"`
 }

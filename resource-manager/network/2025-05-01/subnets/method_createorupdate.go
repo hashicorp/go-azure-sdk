@@ -19,11 +19,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Subnet
+	Model        *CommonSubnet
 }
 
 // CreateOrUpdate ...
-func (c SubnetsClient) CreateOrUpdate(ctx context.Context, id commonids.SubnetId, input Subnet) (result CreateOrUpdateOperationResponse, err error) {
+func (c SubnetsClient) CreateOrUpdate(ctx context.Context, id commonids.SubnetId, input CommonSubnet) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c SubnetsClient) CreateOrUpdate(ctx context.Context, id commonids.SubnetId
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c SubnetsClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.SubnetId, input Subnet) error {
+func (c SubnetsClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.SubnetId, input CommonSubnet) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

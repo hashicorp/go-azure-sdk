@@ -7,5 +7,5 @@ type ApplicationGatewayAvailableSslOptionsPropertiesFormat struct {
 	AvailableCipherSuites *[]ApplicationGatewaySslCipherSuite `json:"availableCipherSuites,omitempty"`
 	AvailableProtocols    *[]ApplicationGatewaySslProtocol    `json:"availableProtocols,omitempty"`
 	DefaultPolicy         *ApplicationGatewaySslPolicyName    `json:"defaultPolicy,omitempty"`
-	PredefinedPolicies    *[]SubResource                      `json:"predefinedPolicies,omitempty"`
+	PredefinedPolicies    *[]CommonSubResource                `json:"predefinedPolicies,omitempty"`
 }

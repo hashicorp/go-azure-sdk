@@ -14,7 +14,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *FlowLog
+	Model        *CommonFlowLog
 }
 
 // Get ...
@@ -43,7 +43,7 @@ func (c FlowLogsClient) Get(ctx context.Context, id FlowLogId) (result GetOperat
 		return
 	}
 
-	var model FlowLog
+	var model CommonFlowLog
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -4,6 +4,6 @@ package applicationgateways
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplicationGatewayBackendHealthOnDemand struct {
-	BackendAddressPool        *ApplicationGatewayBackendAddressPool        `json:"backendAddressPool,omitempty"`
+	BackendAddressPool        *CommonApplicationGatewayBackendAddressPool  `json:"backendAddressPool,omitempty"`
 	BackendHealthHTTPSettings *ApplicationGatewayBackendHealthHTTPSettings `json:"backendHealthHttpSettings,omitempty"`
 }

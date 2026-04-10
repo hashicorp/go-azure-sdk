@@ -10,6 +10,6 @@ type VirtualWanProperties struct {
 	Office365LocalBreakoutCategory *OfficeTrafficCategory `json:"office365LocalBreakoutCategory,omitempty"`
 	ProvisioningState              *ProvisioningState     `json:"provisioningState,omitempty"`
 	Type                           *string                `json:"type,omitempty"`
-	VirtualHubs                    *[]SubResource         `json:"virtualHubs,omitempty"`
-	VpnSites                       *[]SubResource         `json:"vpnSites,omitempty"`
+	VirtualHubs                    *[]CommonSubResource   `json:"virtualHubs,omitempty"`
+	VpnSites                       *[]CommonSubResource   `json:"vpnSites,omitempty"`
 }

@@ -15,12 +15,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]SecurityRule
+	Model        *[]CommonSecurityRule
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []SecurityRule
+	Items              []CommonSecurityRule
 }
 
 type ListCustomPager struct {
@@ -63,7 +63,7 @@ func (c SecurityRulesClient) List(ctx context.Context, id NetworkSecurityGroupId
 	}
 
 	var values struct {
-		Values *[]SecurityRule `json:"value"`
+		Values *[]CommonSecurityRule `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c SecurityRulesClient) List(ctx context.Context, id NetworkSecurityGroupId
 
 // ListComplete retrieves all the results into a single object
 func (c SecurityRulesClient) ListComplete(ctx context.Context, id NetworkSecurityGroupId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, SecurityRuleOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, CommonSecurityRuleOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c SecurityRulesClient) ListCompleteMatchingPredicate(ctx context.Context, id NetworkSecurityGroupId, predicate SecurityRuleOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]SecurityRule, 0)
+func (c SecurityRulesClient) ListCompleteMatchingPredicate(ctx context.Context, id NetworkSecurityGroupId, predicate CommonSecurityRuleOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]CommonSecurityRule, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

@@ -15,12 +15,12 @@ import (
 type InboundNatRulesListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]InboundNatRule
+	Model        *[]CommonInboundNatRule
 }
 
 type InboundNatRulesListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []InboundNatRule
+	Items              []CommonInboundNatRule
 }
 
 type InboundNatRulesListCustomPager struct {
@@ -63,7 +63,7 @@ func (c LoadBalancersClient) InboundNatRulesList(ctx context.Context, id Provide
 	}
 
 	var values struct {
-		Values *[]InboundNatRule `json:"value"`
+		Values *[]CommonInboundNatRule `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c LoadBalancersClient) InboundNatRulesList(ctx context.Context, id Provide
 
 // InboundNatRulesListComplete retrieves all the results into a single object
 func (c LoadBalancersClient) InboundNatRulesListComplete(ctx context.Context, id ProviderLoadBalancerId) (InboundNatRulesListCompleteResult, error) {
-	return c.InboundNatRulesListCompleteMatchingPredicate(ctx, id, InboundNatRuleOperationPredicate{})
+	return c.InboundNatRulesListCompleteMatchingPredicate(ctx, id, CommonInboundNatRuleOperationPredicate{})
 }
 
 // InboundNatRulesListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c LoadBalancersClient) InboundNatRulesListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate InboundNatRuleOperationPredicate) (result InboundNatRulesListCompleteResult, err error) {
-	items := make([]InboundNatRule, 0)
+func (c LoadBalancersClient) InboundNatRulesListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate CommonInboundNatRuleOperationPredicate) (result InboundNatRulesListCompleteResult, err error) {
+	items := make([]CommonInboundNatRule, 0)
 
 	resp, err := c.InboundNatRulesList(ctx, id)
 	if err != nil {

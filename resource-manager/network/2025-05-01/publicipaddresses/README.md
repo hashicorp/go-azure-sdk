@@ -27,7 +27,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := commonids.NewPublicIPAddressID("12345678-1234-9876-4563-123456789012", "example-resource-group", "publicIPAddressName")
 
-payload := publicipaddresses.PublicIPAddress{
+payload := publicipaddresses.CommonPublicIPAddress{
 	// ...
 }
 

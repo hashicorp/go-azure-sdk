@@ -14,7 +14,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ApplicationSecurityGroup
+	Model        *CommonApplicationSecurityGroup
 }
 
 // UpdateTags ...
@@ -47,7 +47,7 @@ func (c ApplicationSecurityGroupsClient) UpdateTags(ctx context.Context, id Appl
 		return
 	}
 
-	var model ApplicationSecurityGroup
+	var model CommonApplicationSecurityGroup
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

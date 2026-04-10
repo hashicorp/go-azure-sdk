@@ -16,12 +16,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]RouteTable
+	Model        *[]CommonRouteTable
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []RouteTable
+	Items              []CommonRouteTable
 }
 
 type ListCustomPager struct {
@@ -64,7 +64,7 @@ func (c RouteTablesClient) List(ctx context.Context, id commonids.ResourceGroupI
 	}
 
 	var values struct {
-		Values *[]RouteTable `json:"value"`
+		Values *[]CommonRouteTable `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c RouteTablesClient) List(ctx context.Context, id commonids.ResourceGroupI
 
 // ListComplete retrieves all the results into a single object
 func (c RouteTablesClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, RouteTableOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, CommonRouteTableOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RouteTablesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate RouteTableOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]RouteTable, 0)
+func (c RouteTablesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate CommonRouteTableOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]CommonRouteTable, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

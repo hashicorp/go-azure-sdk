@@ -4,11 +4,10 @@ package virtualapplianceskus
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type NetworkVirtualApplianceSkuOperationPredicate struct {
-	Etag     *string
-	Id       *string
-	Location *string
-	Name     *string
-	Type     *string
+	Etag *string
+	Id   *string
+	Name *string
+	Type *string
 }
 
 func (p NetworkVirtualApplianceSkuOperationPredicate) Matches(input NetworkVirtualApplianceSku) bool {
@@ -18,10 +17,6 @@ func (p NetworkVirtualApplianceSkuOperationPredicate) Matches(input NetworkVirtu
 	}
 
 	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
-		return false
-	}
-
-	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
 		return false
 	}
 

@@ -15,12 +15,12 @@ import (
 type ListByResourceGroupOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ServiceEndpointPolicyDefinition
+	Model        *[]CommonServiceEndpointPolicyDefinition
 }
 
 type ListByResourceGroupCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ServiceEndpointPolicyDefinition
+	Items              []CommonServiceEndpointPolicyDefinition
 }
 
 type ListByResourceGroupCustomPager struct {
@@ -63,7 +63,7 @@ func (c ServiceEndpointPolicyDefinitionsClient) ListByResourceGroup(ctx context.
 	}
 
 	var values struct {
-		Values *[]ServiceEndpointPolicyDefinition `json:"value"`
+		Values *[]CommonServiceEndpointPolicyDefinition `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c ServiceEndpointPolicyDefinitionsClient) ListByResourceGroup(ctx context.
 
 // ListByResourceGroupComplete retrieves all the results into a single object
 func (c ServiceEndpointPolicyDefinitionsClient) ListByResourceGroupComplete(ctx context.Context, id ServiceEndpointPolicyId) (ListByResourceGroupCompleteResult, error) {
-	return c.ListByResourceGroupCompleteMatchingPredicate(ctx, id, ServiceEndpointPolicyDefinitionOperationPredicate{})
+	return c.ListByResourceGroupCompleteMatchingPredicate(ctx, id, CommonServiceEndpointPolicyDefinitionOperationPredicate{})
 }
 
 // ListByResourceGroupCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ServiceEndpointPolicyDefinitionsClient) ListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id ServiceEndpointPolicyId, predicate ServiceEndpointPolicyDefinitionOperationPredicate) (result ListByResourceGroupCompleteResult, err error) {
-	items := make([]ServiceEndpointPolicyDefinition, 0)
+func (c ServiceEndpointPolicyDefinitionsClient) ListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id ServiceEndpointPolicyId, predicate CommonServiceEndpointPolicyDefinitionOperationPredicate) (result ListByResourceGroupCompleteResult, err error) {
+	items := make([]CommonServiceEndpointPolicyDefinition, 0)
 
 	resp, err := c.ListByResourceGroup(ctx, id)
 	if err != nil {

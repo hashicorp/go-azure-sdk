@@ -27,7 +27,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := commonids.NewNetworkInterfaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkInterfaceName")
 
-payload := networkinterfaces.NetworkInterface{
+payload := networkinterfaces.CommonNetworkInterface{
 	// ...
 }
 
@@ -240,7 +240,7 @@ for _, item := range items {
 ctx := context.TODO()
 id := networkinterfaces.NewTapConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkInterfaceName", "tapConfigurationName")
 
-payload := networkinterfaces.NetworkInterfaceTapConfiguration{
+payload := networkinterfaces.CommonNetworkInterfaceTapConfiguration{
 	// ...
 }
 

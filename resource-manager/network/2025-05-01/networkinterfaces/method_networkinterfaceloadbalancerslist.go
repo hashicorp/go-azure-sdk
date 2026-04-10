@@ -16,12 +16,12 @@ import (
 type NetworkInterfaceLoadBalancersListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]LoadBalancer
+	Model        *[]CommonLoadBalancer
 }
 
 type NetworkInterfaceLoadBalancersListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []LoadBalancer
+	Items              []CommonLoadBalancer
 }
 
 type NetworkInterfaceLoadBalancersListCustomPager struct {
@@ -64,7 +64,7 @@ func (c NetworkInterfacesClient) NetworkInterfaceLoadBalancersList(ctx context.C
 	}
 
 	var values struct {
-		Values *[]LoadBalancer `json:"value"`
+		Values *[]CommonLoadBalancer `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c NetworkInterfacesClient) NetworkInterfaceLoadBalancersList(ctx context.C
 
 // NetworkInterfaceLoadBalancersListComplete retrieves all the results into a single object
 func (c NetworkInterfacesClient) NetworkInterfaceLoadBalancersListComplete(ctx context.Context, id commonids.NetworkInterfaceId) (NetworkInterfaceLoadBalancersListCompleteResult, error) {
-	return c.NetworkInterfaceLoadBalancersListCompleteMatchingPredicate(ctx, id, LoadBalancerOperationPredicate{})
+	return c.NetworkInterfaceLoadBalancersListCompleteMatchingPredicate(ctx, id, CommonLoadBalancerOperationPredicate{})
 }
 
 // NetworkInterfaceLoadBalancersListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NetworkInterfacesClient) NetworkInterfaceLoadBalancersListCompleteMatchingPredicate(ctx context.Context, id commonids.NetworkInterfaceId, predicate LoadBalancerOperationPredicate) (result NetworkInterfaceLoadBalancersListCompleteResult, err error) {
-	items := make([]LoadBalancer, 0)
+func (c NetworkInterfacesClient) NetworkInterfaceLoadBalancersListCompleteMatchingPredicate(ctx context.Context, id commonids.NetworkInterfaceId, predicate CommonLoadBalancerOperationPredicate) (result NetworkInterfaceLoadBalancersListCompleteResult, err error) {
+	items := make([]CommonLoadBalancer, 0)
 
 	resp, err := c.NetworkInterfaceLoadBalancersList(ctx, id)
 	if err != nil {

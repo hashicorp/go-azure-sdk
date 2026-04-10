@@ -17,5 +17,5 @@ type BastionHostPropertiesFormat struct {
 	NetworkAcls              *BastionHostPropertiesFormatNetworkAcls `json:"networkAcls,omitempty"`
 	ProvisioningState        *ProvisioningState                      `json:"provisioningState,omitempty"`
 	ScaleUnits               *int64                                  `json:"scaleUnits,omitempty"`
-	VirtualNetwork           *SubResource                            `json:"virtualNetwork,omitempty"`
+	VirtualNetwork           *CommonSubResource                      `json:"virtualNetwork,omitempty"`
 }

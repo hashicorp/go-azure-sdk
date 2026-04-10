@@ -7,7 +7,6 @@ type RaiPolicyProperties struct {
 	BasePolicyName   *string                   `json:"basePolicyName,omitempty"`
 	ContentFilters   *[]RaiPolicyContentFilter `json:"contentFilters,omitempty"`
 	CustomBlocklists *[]CustomBlocklistConfig  `json:"customBlocklists,omitempty"`
-	CustomTopics     *[]CustomTopicConfig      `json:"customTopics,omitempty"`
 	Mode             *RaiPolicyMode            `json:"mode,omitempty"`
 	SafetyProviders  *[]SafetyProviderConfig   `json:"safetyProviders,omitempty"`
 	Type             *RaiPolicyType            `json:"type,omitempty"`

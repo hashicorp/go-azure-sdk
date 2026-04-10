@@ -16,12 +16,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]PrivateEndpoint
+	Model        *[]CommonPrivateEndpoint
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []PrivateEndpoint
+	Items              []CommonPrivateEndpoint
 }
 
 type ListCustomPager struct {
@@ -64,7 +64,7 @@ func (c PrivateEndpointsClient) List(ctx context.Context, id commonids.ResourceG
 	}
 
 	var values struct {
-		Values *[]PrivateEndpoint `json:"value"`
+		Values *[]CommonPrivateEndpoint `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c PrivateEndpointsClient) List(ctx context.Context, id commonids.ResourceG
 
 // ListComplete retrieves all the results into a single object
 func (c PrivateEndpointsClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, PrivateEndpointOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, CommonPrivateEndpointOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c PrivateEndpointsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate PrivateEndpointOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]PrivateEndpoint, 0)
+func (c PrivateEndpointsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate CommonPrivateEndpointOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]CommonPrivateEndpoint, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

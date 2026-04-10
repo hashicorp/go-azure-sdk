@@ -5,7 +5,7 @@ package ddoscustompolicies
 
 type DdosCustomPolicyPropertiesFormat struct {
 	DetectionRules          *[]DdosDetectionRule `json:"detectionRules,omitempty"`
-	FrontEndIPConfiguration *[]SubResource       `json:"frontEndIpConfiguration,omitempty"`
+	FrontEndIPConfiguration *[]CommonSubResource `json:"frontEndIpConfiguration,omitempty"`
 	ProvisioningState       *ProvisioningState   `json:"provisioningState,omitempty"`
 	ResourceGuid            *string              `json:"resourceGuid,omitempty"`
 }

@@ -14,7 +14,7 @@ type VpnConnectionProperties struct {
 	IPsecPolicies                  *[]IPsecPolicy                           `json:"ipsecPolicies,omitempty"`
 	IngressBytesTransferred        *int64                                   `json:"ingressBytesTransferred,omitempty"`
 	ProvisioningState              *ProvisioningState                       `json:"provisioningState,omitempty"`
-	RemoteVpnSite                  *SubResource                             `json:"remoteVpnSite,omitempty"`
+	RemoteVpnSite                  *CommonSubResource                       `json:"remoteVpnSite,omitempty"`
 	RoutingConfiguration           *RoutingConfiguration                    `json:"routingConfiguration,omitempty"`
 	RoutingWeight                  *int64                                   `json:"routingWeight,omitempty"`
 	SharedKey                      *string                                  `json:"sharedKey,omitempty"`

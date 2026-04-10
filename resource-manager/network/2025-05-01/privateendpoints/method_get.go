@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *PrivateEndpoint
+	Model        *CommonPrivateEndpoint
 }
 
 type GetOperationOptions struct {
@@ -73,7 +73,7 @@ func (c PrivateEndpointsClient) Get(ctx context.Context, id PrivateEndpointId, o
 		return
 	}
 
-	var model PrivateEndpoint
+	var model CommonPrivateEndpoint
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

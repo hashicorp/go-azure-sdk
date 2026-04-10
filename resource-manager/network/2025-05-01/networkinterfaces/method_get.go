@@ -16,7 +16,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *NetworkInterface
+	Model        *CommonNetworkInterface
 }
 
 type GetOperationOptions struct {
@@ -74,7 +74,7 @@ func (c NetworkInterfacesClient) Get(ctx context.Context, id commonids.NetworkIn
 		return
 	}
 
-	var model NetworkInterface
+	var model CommonNetworkInterface
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

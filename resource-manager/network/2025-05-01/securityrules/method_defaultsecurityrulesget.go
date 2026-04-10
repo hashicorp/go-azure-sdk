@@ -14,7 +14,7 @@ import (
 type DefaultSecurityRulesGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *SecurityRule
+	Model        *CommonSecurityRule
 }
 
 // DefaultSecurityRulesGet ...
@@ -43,7 +43,7 @@ func (c SecurityRulesClient) DefaultSecurityRulesGet(ctx context.Context, id Def
 		return
 	}
 
-	var model SecurityRule
+	var model CommonSecurityRule
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

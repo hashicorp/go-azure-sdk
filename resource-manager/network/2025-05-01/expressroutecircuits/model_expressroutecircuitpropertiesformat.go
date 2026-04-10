@@ -11,7 +11,7 @@ type ExpressRouteCircuitPropertiesFormat struct {
 	BandwidthInGbps                  *float64                                      `json:"bandwidthInGbps,omitempty"`
 	CircuitProvisioningState         *string                                       `json:"circuitProvisioningState,omitempty"`
 	EnableDirectPortRateLimit        *bool                                         `json:"enableDirectPortRateLimit,omitempty"`
-	ExpressRoutePort                 *SubResource                                  `json:"expressRoutePort,omitempty"`
+	ExpressRoutePort                 *CommonSubResource                            `json:"expressRoutePort,omitempty"`
 	GatewayManagerEtag               *string                                       `json:"gatewayManagerEtag,omitempty"`
 	GlobalReachEnabled               *bool                                         `json:"globalReachEnabled,omitempty"`
 	Peerings                         *[]ExpressRouteCircuitPeering                 `json:"peerings,omitempty"`

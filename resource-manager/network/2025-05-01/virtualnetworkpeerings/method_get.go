@@ -14,7 +14,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *VirtualNetworkPeering
+	Model        *CommonVirtualNetworkPeering
 }
 
 // Get ...
@@ -43,7 +43,7 @@ func (c VirtualNetworkPeeringsClient) Get(ctx context.Context, id VirtualNetwork
 		return
 	}
 
-	var model VirtualNetworkPeering
+	var model CommonVirtualNetworkPeering
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

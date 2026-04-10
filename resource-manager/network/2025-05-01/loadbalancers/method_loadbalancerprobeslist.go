@@ -15,12 +15,12 @@ import (
 type LoadBalancerProbesListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]Probe
+	Model        *[]CommonProbe
 }
 
 type LoadBalancerProbesListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []Probe
+	Items              []CommonProbe
 }
 
 type LoadBalancerProbesListCustomPager struct {
@@ -63,7 +63,7 @@ func (c LoadBalancersClient) LoadBalancerProbesList(ctx context.Context, id Prov
 	}
 
 	var values struct {
-		Values *[]Probe `json:"value"`
+		Values *[]CommonProbe `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c LoadBalancersClient) LoadBalancerProbesList(ctx context.Context, id Prov
 
 // LoadBalancerProbesListComplete retrieves all the results into a single object
 func (c LoadBalancersClient) LoadBalancerProbesListComplete(ctx context.Context, id ProviderLoadBalancerId) (LoadBalancerProbesListCompleteResult, error) {
-	return c.LoadBalancerProbesListCompleteMatchingPredicate(ctx, id, ProbeOperationPredicate{})
+	return c.LoadBalancerProbesListCompleteMatchingPredicate(ctx, id, CommonProbeOperationPredicate{})
 }
 
 // LoadBalancerProbesListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c LoadBalancersClient) LoadBalancerProbesListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate ProbeOperationPredicate) (result LoadBalancerProbesListCompleteResult, err error) {
-	items := make([]Probe, 0)
+func (c LoadBalancersClient) LoadBalancerProbesListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate CommonProbeOperationPredicate) (result LoadBalancerProbesListCompleteResult, err error) {
+	items := make([]CommonProbe, 0)
 
 	resp, err := c.LoadBalancerProbesList(ctx, id)
 	if err != nil {

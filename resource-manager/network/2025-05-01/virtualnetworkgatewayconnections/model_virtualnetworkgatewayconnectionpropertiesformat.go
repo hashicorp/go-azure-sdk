@@ -13,16 +13,16 @@ type VirtualNetworkGatewayConnectionPropertiesFormat struct {
 	ConnectionType                 VirtualNetworkGatewayConnectionType                `json:"connectionType"`
 	DpdTimeoutSeconds              *int64                                             `json:"dpdTimeoutSeconds,omitempty"`
 	EgressBytesTransferred         *int64                                             `json:"egressBytesTransferred,omitempty"`
-	EgressNatRules                 *[]SubResource                                     `json:"egressNatRules,omitempty"`
+	EgressNatRules                 *[]CommonSubResource                               `json:"egressNatRules,omitempty"`
 	EnableBgp                      *bool                                              `json:"enableBgp,omitempty"`
 	EnablePrivateLinkFastPath      *bool                                              `json:"enablePrivateLinkFastPath,omitempty"`
 	ExpressRouteGatewayBypass      *bool                                              `json:"expressRouteGatewayBypass,omitempty"`
 	GatewayCustomBgpIPAddresses    *[]GatewayCustomBgpIPAddressIPConfiguration        `json:"gatewayCustomBgpIpAddresses,omitempty"`
 	IPsecPolicies                  *[]IPsecPolicy                                     `json:"ipsecPolicies,omitempty"`
 	IngressBytesTransferred        *int64                                             `json:"ingressBytesTransferred,omitempty"`
-	IngressNatRules                *[]SubResource                                     `json:"ingressNatRules,omitempty"`
+	IngressNatRules                *[]CommonSubResource                               `json:"ingressNatRules,omitempty"`
 	LocalNetworkGateway2           *LocalNetworkGateway                               `json:"localNetworkGateway2,omitempty"`
-	Peer                           *SubResource                                       `json:"peer,omitempty"`
+	Peer                           *CommonSubResource                                 `json:"peer,omitempty"`
 	ProvisioningState              *ProvisioningState                                 `json:"provisioningState,omitempty"`
 	ResourceGuid                   *string                                            `json:"resourceGuid,omitempty"`
 	RoutingWeight                  *int64                                             `json:"routingWeight,omitempty"`

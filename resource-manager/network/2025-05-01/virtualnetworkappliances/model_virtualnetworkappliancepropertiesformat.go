@@ -8,5 +8,5 @@ type VirtualNetworkAppliancePropertiesFormat struct {
 	IPConfigurations  *[]VirtualNetworkApplianceIPConfiguration `json:"ipConfigurations,omitempty"`
 	ProvisioningState *ProvisioningState                        `json:"provisioningState,omitempty"`
 	ResourceGuid      *string                                   `json:"resourceGuid,omitempty"`
-	Subnet            *Subnet                                   `json:"subnet,omitempty"`
+	Subnet            *CommonSubnet                             `json:"subnet,omitempty"`
 }

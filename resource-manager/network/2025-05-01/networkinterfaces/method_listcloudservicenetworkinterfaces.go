@@ -15,12 +15,12 @@ import (
 type ListCloudServiceNetworkInterfacesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]NetworkInterface
+	Model        *[]CommonNetworkInterface
 }
 
 type ListCloudServiceNetworkInterfacesCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []NetworkInterface
+	Items              []CommonNetworkInterface
 }
 
 type ListCloudServiceNetworkInterfacesCustomPager struct {
@@ -63,7 +63,7 @@ func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfaces(ctx context.C
 	}
 
 	var values struct {
-		Values *[]NetworkInterface `json:"value"`
+		Values *[]CommonNetworkInterface `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfaces(ctx context.C
 
 // ListCloudServiceNetworkInterfacesComplete retrieves all the results into a single object
 func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfacesComplete(ctx context.Context, id ProviderCloudServiceId) (ListCloudServiceNetworkInterfacesCompleteResult, error) {
-	return c.ListCloudServiceNetworkInterfacesCompleteMatchingPredicate(ctx, id, NetworkInterfaceOperationPredicate{})
+	return c.ListCloudServiceNetworkInterfacesCompleteMatchingPredicate(ctx, id, CommonNetworkInterfaceOperationPredicate{})
 }
 
 // ListCloudServiceNetworkInterfacesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfacesCompleteMatchingPredicate(ctx context.Context, id ProviderCloudServiceId, predicate NetworkInterfaceOperationPredicate) (result ListCloudServiceNetworkInterfacesCompleteResult, err error) {
-	items := make([]NetworkInterface, 0)
+func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfacesCompleteMatchingPredicate(ctx context.Context, id ProviderCloudServiceId, predicate CommonNetworkInterfaceOperationPredicate) (result ListCloudServiceNetworkInterfacesCompleteResult, err error) {
+	items := make([]CommonNetworkInterface, 0)
 
 	resp, err := c.ListCloudServiceNetworkInterfaces(ctx, id)
 	if err != nil {

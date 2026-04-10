@@ -16,12 +16,12 @@ import (
 type NetworkInterfaceIPConfigurationsListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]NetworkInterfaceIPConfiguration
+	Model        *[]CommonNetworkInterfaceIPConfiguration
 }
 
 type NetworkInterfaceIPConfigurationsListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []NetworkInterfaceIPConfiguration
+	Items              []CommonNetworkInterfaceIPConfiguration
 }
 
 type NetworkInterfaceIPConfigurationsListCustomPager struct {
@@ -64,7 +64,7 @@ func (c NetworkInterfacesClient) NetworkInterfaceIPConfigurationsList(ctx contex
 	}
 
 	var values struct {
-		Values *[]NetworkInterfaceIPConfiguration `json:"value"`
+		Values *[]CommonNetworkInterfaceIPConfiguration `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c NetworkInterfacesClient) NetworkInterfaceIPConfigurationsList(ctx contex
 
 // NetworkInterfaceIPConfigurationsListComplete retrieves all the results into a single object
 func (c NetworkInterfacesClient) NetworkInterfaceIPConfigurationsListComplete(ctx context.Context, id commonids.NetworkInterfaceId) (NetworkInterfaceIPConfigurationsListCompleteResult, error) {
-	return c.NetworkInterfaceIPConfigurationsListCompleteMatchingPredicate(ctx, id, NetworkInterfaceIPConfigurationOperationPredicate{})
+	return c.NetworkInterfaceIPConfigurationsListCompleteMatchingPredicate(ctx, id, CommonNetworkInterfaceIPConfigurationOperationPredicate{})
 }
 
 // NetworkInterfaceIPConfigurationsListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NetworkInterfacesClient) NetworkInterfaceIPConfigurationsListCompleteMatchingPredicate(ctx context.Context, id commonids.NetworkInterfaceId, predicate NetworkInterfaceIPConfigurationOperationPredicate) (result NetworkInterfaceIPConfigurationsListCompleteResult, err error) {
-	items := make([]NetworkInterfaceIPConfiguration, 0)
+func (c NetworkInterfacesClient) NetworkInterfaceIPConfigurationsListCompleteMatchingPredicate(ctx context.Context, id commonids.NetworkInterfaceId, predicate CommonNetworkInterfaceIPConfigurationOperationPredicate) (result NetworkInterfaceIPConfigurationsListCompleteResult, err error) {
+	items := make([]CommonNetworkInterfaceIPConfiguration, 0)
 
 	resp, err := c.NetworkInterfaceIPConfigurationsList(ctx, id)
 	if err != nil {

@@ -6,6 +6,6 @@ package bastionhosts
 type BastionHostIPConfigurationPropertiesFormat struct {
 	PrivateIPAllocationMethod *IPAllocationMethod `json:"privateIPAllocationMethod,omitempty"`
 	ProvisioningState         *ProvisioningState  `json:"provisioningState,omitempty"`
-	PublicIPAddress           *SubResource        `json:"publicIPAddress,omitempty"`
-	Subnet                    SubResource         `json:"subnet"`
+	PublicIPAddress           *CommonSubResource  `json:"publicIPAddress,omitempty"`
+	Subnet                    CommonSubResource   `json:"subnet"`
 }

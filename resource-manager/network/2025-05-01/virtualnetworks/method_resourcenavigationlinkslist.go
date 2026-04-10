@@ -16,12 +16,12 @@ import (
 type ResourceNavigationLinksListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ResourceNavigationLink
+	Model        *[]CommonResourceNavigationLink
 }
 
 type ResourceNavigationLinksListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ResourceNavigationLink
+	Items              []CommonResourceNavigationLink
 }
 
 type ResourceNavigationLinksListCustomPager struct {
@@ -64,7 +64,7 @@ func (c VirtualNetworksClient) ResourceNavigationLinksList(ctx context.Context, 
 	}
 
 	var values struct {
-		Values *[]ResourceNavigationLink `json:"value"`
+		Values *[]CommonResourceNavigationLink `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c VirtualNetworksClient) ResourceNavigationLinksList(ctx context.Context, 
 
 // ResourceNavigationLinksListComplete retrieves all the results into a single object
 func (c VirtualNetworksClient) ResourceNavigationLinksListComplete(ctx context.Context, id commonids.SubnetId) (ResourceNavigationLinksListCompleteResult, error) {
-	return c.ResourceNavigationLinksListCompleteMatchingPredicate(ctx, id, ResourceNavigationLinkOperationPredicate{})
+	return c.ResourceNavigationLinksListCompleteMatchingPredicate(ctx, id, CommonResourceNavigationLinkOperationPredicate{})
 }
 
 // ResourceNavigationLinksListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworksClient) ResourceNavigationLinksListCompleteMatchingPredicate(ctx context.Context, id commonids.SubnetId, predicate ResourceNavigationLinkOperationPredicate) (result ResourceNavigationLinksListCompleteResult, err error) {
-	items := make([]ResourceNavigationLink, 0)
+func (c VirtualNetworksClient) ResourceNavigationLinksListCompleteMatchingPredicate(ctx context.Context, id commonids.SubnetId, predicate CommonResourceNavigationLinkOperationPredicate) (result ResourceNavigationLinksListCompleteResult, err error) {
+	items := make([]CommonResourceNavigationLink, 0)
 
 	resp, err := c.ResourceNavigationLinksList(ctx, id)
 	if err != nil {

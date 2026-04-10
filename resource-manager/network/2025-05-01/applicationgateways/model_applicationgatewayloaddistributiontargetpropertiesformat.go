@@ -4,6 +4,6 @@ package applicationgateways
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplicationGatewayLoadDistributionTargetPropertiesFormat struct {
-	BackendAddressPool *SubResource `json:"backendAddressPool,omitempty"`
-	WeightPerServer    *int64       `json:"weightPerServer,omitempty"`
+	BackendAddressPool *CommonSubResource `json:"backendAddressPool,omitempty"`
+	WeightPerServer    *int64             `json:"weightPerServer,omitempty"`
 }

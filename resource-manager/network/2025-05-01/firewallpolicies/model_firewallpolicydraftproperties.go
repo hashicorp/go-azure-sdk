@@ -4,7 +4,7 @@ package firewallpolicies
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FirewallPolicyDraftProperties struct {
-	BasePolicy           *SubResource                        `json:"basePolicy,omitempty"`
+	BasePolicy           *CommonSubResource                  `json:"basePolicy,omitempty"`
 	DnsSettings          *DnsSettings                        `json:"dnsSettings,omitempty"`
 	ExplicitProxy        *ExplicitProxy                      `json:"explicitProxy,omitempty"`
 	Insights             *FirewallPolicyInsights             `json:"insights,omitempty"`

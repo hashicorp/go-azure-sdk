@@ -6,10 +6,10 @@ package webapplicationfirewallpolicies
 type ApplicationGatewayRedirectConfigurationPropertiesFormat struct {
 	IncludePath         *bool                           `json:"includePath,omitempty"`
 	IncludeQueryString  *bool                           `json:"includeQueryString,omitempty"`
-	PathRules           *[]SubResource                  `json:"pathRules,omitempty"`
+	PathRules           *[]CommonSubResource            `json:"pathRules,omitempty"`
 	RedirectType        *ApplicationGatewayRedirectType `json:"redirectType,omitempty"`
-	RequestRoutingRules *[]SubResource                  `json:"requestRoutingRules,omitempty"`
-	TargetListener      *SubResource                    `json:"targetListener,omitempty"`
+	RequestRoutingRules *[]CommonSubResource            `json:"requestRoutingRules,omitempty"`
+	TargetListener      *CommonSubResource              `json:"targetListener,omitempty"`
 	TargetURL           *string                         `json:"targetUrl,omitempty"`
-	UrlPathMaps         *[]SubResource                  `json:"urlPathMaps,omitempty"`
+	UrlPathMaps         *[]CommonSubResource            `json:"urlPathMaps,omitempty"`
 }

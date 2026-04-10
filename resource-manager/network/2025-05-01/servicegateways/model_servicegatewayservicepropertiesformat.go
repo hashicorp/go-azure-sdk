@@ -4,8 +4,8 @@ package servicegateways
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ServiceGatewayServicePropertiesFormat struct {
-	IsDefault                *bool                 `json:"isDefault,omitempty"`
-	LoadBalancerBackendPools *[]BackendAddressPool `json:"loadBalancerBackendPools,omitempty"`
-	PublicNatGatewayId       *string               `json:"publicNatGatewayId,omitempty"`
-	ServiceType              *ServiceType          `json:"serviceType,omitempty"`
+	IsDefault                *bool                       `json:"isDefault,omitempty"`
+	LoadBalancerBackendPools *[]CommonBackendAddressPool `json:"loadBalancerBackendPools,omitempty"`
+	PublicNatGatewayId       *string                     `json:"publicNatGatewayId,omitempty"`
+	ServiceType              *ServiceType                `json:"serviceType,omitempty"`
 }

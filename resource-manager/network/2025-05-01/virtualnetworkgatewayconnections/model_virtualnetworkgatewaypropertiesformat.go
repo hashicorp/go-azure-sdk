@@ -10,14 +10,14 @@ type VirtualNetworkGatewayPropertiesFormat struct {
 	AllowVirtualWanTraffic               *bool                                        `json:"allowVirtualWanTraffic,omitempty"`
 	AutoScaleConfiguration               *VirtualNetworkGatewayAutoScaleConfiguration `json:"autoScaleConfiguration,omitempty"`
 	BgpSettings                          *BgpSettings                                 `json:"bgpSettings,omitempty"`
-	CustomRoutes                         *AddressSpace                                `json:"customRoutes,omitempty"`
+	CustomRoutes                         *CommonAddressSpace                          `json:"customRoutes,omitempty"`
 	DisableIPSecReplayProtection         *bool                                        `json:"disableIPSecReplayProtection,omitempty"`
 	EnableBgp                            *bool                                        `json:"enableBgp,omitempty"`
 	EnableBgpRouteTranslationForNat      *bool                                        `json:"enableBgpRouteTranslationForNat,omitempty"`
 	EnableDnsForwarding                  *bool                                        `json:"enableDnsForwarding,omitempty"`
 	EnableHighBandwidthVpnGateway        *bool                                        `json:"enableHighBandwidthVpnGateway,omitempty"`
 	EnablePrivateIPAddress               *bool                                        `json:"enablePrivateIpAddress,omitempty"`
-	GatewayDefaultSite                   *SubResource                                 `json:"gatewayDefaultSite,omitempty"`
+	GatewayDefaultSite                   *CommonSubResource                           `json:"gatewayDefaultSite,omitempty"`
 	GatewayType                          *VirtualNetworkGatewayType                   `json:"gatewayType,omitempty"`
 	IPConfigurations                     *[]VirtualNetworkGatewayIPConfiguration      `json:"ipConfigurations,omitempty"`
 	InboundDnsForwardingEndpoint         *string                                      `json:"inboundDnsForwardingEndpoint,omitempty"`

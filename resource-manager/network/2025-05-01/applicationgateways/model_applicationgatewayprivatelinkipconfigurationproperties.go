@@ -8,5 +8,5 @@ type ApplicationGatewayPrivateLinkIPConfigurationProperties struct {
 	PrivateIPAddress          *string             `json:"privateIPAddress,omitempty"`
 	PrivateIPAllocationMethod *IPAllocationMethod `json:"privateIPAllocationMethod,omitempty"`
 	ProvisioningState         *ProvisioningState  `json:"provisioningState,omitempty"`
-	Subnet                    *SubResource        `json:"subnet,omitempty"`
+	Subnet                    *CommonSubResource  `json:"subnet,omitempty"`
 }

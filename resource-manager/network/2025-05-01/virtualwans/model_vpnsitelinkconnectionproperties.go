@@ -8,12 +8,12 @@ type VpnSiteLinkConnectionProperties struct {
 	ConnectionStatus               *VpnConnectionStatus                        `json:"connectionStatus,omitempty"`
 	DpdTimeoutSeconds              *int64                                      `json:"dpdTimeoutSeconds,omitempty"`
 	EgressBytesTransferred         *int64                                      `json:"egressBytesTransferred,omitempty"`
-	EgressNatRules                 *[]SubResource                              `json:"egressNatRules,omitempty"`
+	EgressNatRules                 *[]CommonSubResource                        `json:"egressNatRules,omitempty"`
 	EnableBgp                      *bool                                       `json:"enableBgp,omitempty"`
 	EnableRateLimiting             *bool                                       `json:"enableRateLimiting,omitempty"`
 	IPsecPolicies                  *[]IPsecPolicy                              `json:"ipsecPolicies,omitempty"`
 	IngressBytesTransferred        *int64                                      `json:"ingressBytesTransferred,omitempty"`
-	IngressNatRules                *[]SubResource                              `json:"ingressNatRules,omitempty"`
+	IngressNatRules                *[]CommonSubResource                        `json:"ingressNatRules,omitempty"`
 	ProvisioningState              *ProvisioningState                          `json:"provisioningState,omitempty"`
 	RoutingWeight                  *int64                                      `json:"routingWeight,omitempty"`
 	SharedKey                      *string                                     `json:"sharedKey,omitempty"`
@@ -22,5 +22,5 @@ type VpnSiteLinkConnectionProperties struct {
 	VpnConnectionProtocolType      *VirtualNetworkGatewayConnectionProtocol    `json:"vpnConnectionProtocolType,omitempty"`
 	VpnGatewayCustomBgpAddresses   *[]GatewayCustomBgpIPAddressIPConfiguration `json:"vpnGatewayCustomBgpAddresses,omitempty"`
 	VpnLinkConnectionMode          *VpnLinkConnectionMode                      `json:"vpnLinkConnectionMode,omitempty"`
-	VpnSiteLink                    *SubResource                                `json:"vpnSiteLink,omitempty"`
+	VpnSiteLink                    *CommonSubResource                          `json:"vpnSiteLink,omitempty"`
 }

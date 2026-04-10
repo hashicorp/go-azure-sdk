@@ -14,7 +14,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Route
+	Model        *CommonRoute
 }
 
 // Get ...
@@ -43,7 +43,7 @@ func (c RoutesClient) Get(ctx context.Context, id RouteId) (result GetOperationR
 		return
 	}
 
-	var model Route
+	var model CommonRoute
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

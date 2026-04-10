@@ -17,7 +17,7 @@ type VirtualNetworkGatewayConnectionListEntityPropertiesFormat struct {
 	IPsecPolicies                  *[]IPsecPolicy                              `json:"ipsecPolicies,omitempty"`
 	IngressBytesTransferred        *int64                                      `json:"ingressBytesTransferred,omitempty"`
 	LocalNetworkGateway2           *VirtualNetworkConnectionGatewayReference   `json:"localNetworkGateway2,omitempty"`
-	Peer                           *SubResource                                `json:"peer,omitempty"`
+	Peer                           *CommonSubResource                          `json:"peer,omitempty"`
 	ProvisioningState              *ProvisioningState                          `json:"provisioningState,omitempty"`
 	ResourceGuid                   *string                                     `json:"resourceGuid,omitempty"`
 	RoutingWeight                  *int64                                      `json:"routingWeight,omitempty"`

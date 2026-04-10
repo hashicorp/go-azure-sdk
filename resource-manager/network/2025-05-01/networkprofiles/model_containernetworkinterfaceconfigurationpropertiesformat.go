@@ -4,7 +4,7 @@ package networkprofiles
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ContainerNetworkInterfaceConfigurationPropertiesFormat struct {
-	ContainerNetworkInterfaces *[]SubResource            `json:"containerNetworkInterfaces,omitempty"`
-	IPConfigurations           *[]IPConfigurationProfile `json:"ipConfigurations,omitempty"`
-	ProvisioningState          *ProvisioningState        `json:"provisioningState,omitempty"`
+	ContainerNetworkInterfaces *[]CommonSubResource            `json:"containerNetworkInterfaces,omitempty"`
+	IPConfigurations           *[]CommonIPConfigurationProfile `json:"ipConfigurations,omitempty"`
+	ProvisioningState          *ProvisioningState              `json:"provisioningState,omitempty"`
 }

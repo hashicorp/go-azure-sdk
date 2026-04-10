@@ -7,5 +7,5 @@ type ApplicationGatewayBackendHealthServer struct {
 	Address         *string                                      `json:"address,omitempty"`
 	Health          *ApplicationGatewayBackendHealthServerHealth `json:"health,omitempty"`
 	HealthProbeLog  *string                                      `json:"healthProbeLog,omitempty"`
-	IPConfiguration *NetworkInterfaceIPConfiguration             `json:"ipConfiguration,omitempty"`
+	IPConfiguration *CommonNetworkInterfaceIPConfiguration       `json:"ipConfiguration,omitempty"`
 }

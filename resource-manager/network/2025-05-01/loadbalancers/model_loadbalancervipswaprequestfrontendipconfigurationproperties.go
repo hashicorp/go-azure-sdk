@@ -4,5 +4,5 @@ package loadbalancers
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LoadBalancerVipSwapRequestFrontendIPConfigurationProperties struct {
-	PublicIPAddress *SubResource `json:"publicIPAddress,omitempty"`
+	PublicIPAddress *CommonSubResource `json:"publicIPAddress,omitempty"`
 }

@@ -6,7 +6,7 @@ package webapplicationfirewallpolicies
 type ApplicationGatewayPropertiesFormat struct {
 	AuthenticationCertificates          *[]ApplicationGatewayAuthenticationCertificate         `json:"authenticationCertificates,omitempty"`
 	AutoscaleConfiguration              *ApplicationGatewayAutoscaleConfiguration              `json:"autoscaleConfiguration,omitempty"`
-	BackendAddressPools                 *[]ApplicationGatewayBackendAddressPool                `json:"backendAddressPools,omitempty"`
+	BackendAddressPools                 *[]CommonApplicationGatewayBackendAddressPool          `json:"backendAddressPools,omitempty"`
 	BackendHTTPSettingsCollection       *[]ApplicationGatewayBackendHTTPSettings               `json:"backendHttpSettingsCollection,omitempty"`
 	BackendSettingsCollection           *[]ApplicationGatewayBackendSettings                   `json:"backendSettingsCollection,omitempty"`
 	CustomErrorConfigurations           *[]ApplicationGatewayCustomError                       `json:"customErrorConfigurations,omitempty"`
@@ -14,11 +14,11 @@ type ApplicationGatewayPropertiesFormat struct {
 	EnableFips                          *bool                                                  `json:"enableFips,omitempty"`
 	EnableHTTP2                         *bool                                                  `json:"enableHttp2,omitempty"`
 	EntraJWTValidationConfigs           *[]ApplicationGatewayEntraJWTValidationConfig          `json:"entraJWTValidationConfigs,omitempty"`
-	FirewallPolicy                      *SubResource                                           `json:"firewallPolicy,omitempty"`
+	FirewallPolicy                      *CommonSubResource                                     `json:"firewallPolicy,omitempty"`
 	ForceFirewallPolicyAssociation      *bool                                                  `json:"forceFirewallPolicyAssociation,omitempty"`
 	FrontendIPConfigurations            *[]ApplicationGatewayFrontendIPConfiguration           `json:"frontendIPConfigurations,omitempty"`
 	FrontendPorts                       *[]ApplicationGatewayFrontendPort                      `json:"frontendPorts,omitempty"`
-	GatewayIPConfigurations             *[]ApplicationGatewayIPConfiguration                   `json:"gatewayIPConfigurations,omitempty"`
+	GatewayIPConfigurations             *[]CommonApplicationGatewayIPConfiguration             `json:"gatewayIPConfigurations,omitempty"`
 	GlobalConfiguration                 *ApplicationGatewayGlobalConfiguration                 `json:"globalConfiguration,omitempty"`
 	HTTPListeners                       *[]ApplicationGatewayHTTPListener                      `json:"httpListeners,omitempty"`
 	Listeners                           *[]ApplicationGatewayListener                          `json:"listeners,omitempty"`

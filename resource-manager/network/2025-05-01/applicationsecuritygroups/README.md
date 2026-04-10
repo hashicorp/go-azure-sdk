@@ -27,7 +27,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := applicationsecuritygroups.NewApplicationSecurityGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applicationSecurityGroupName")
 
-payload := applicationsecuritygroups.ApplicationSecurityGroup{
+payload := applicationsecuritygroups.CommonApplicationSecurityGroup{
 	// ...
 }
 

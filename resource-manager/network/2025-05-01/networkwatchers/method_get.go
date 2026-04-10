@@ -14,7 +14,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *NetworkWatcher
+	Model        *CommonNetworkWatcher
 }
 
 // Get ...
@@ -43,7 +43,7 @@ func (c NetworkWatchersClient) Get(ctx context.Context, id NetworkWatcherId) (re
 		return
 	}
 
-	var model NetworkWatcher
+	var model CommonNetworkWatcher
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

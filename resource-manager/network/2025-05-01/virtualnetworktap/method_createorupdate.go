@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *VirtualNetworkTap
+	Model        *CommonVirtualNetworkTap
 }
 
 // CreateOrUpdate ...
-func (c VirtualNetworkTapClient) CreateOrUpdate(ctx context.Context, id VirtualNetworkTapId, input VirtualNetworkTap) (result CreateOrUpdateOperationResponse, err error) {
+func (c VirtualNetworkTapClient) CreateOrUpdate(ctx context.Context, id VirtualNetworkTapId, input CommonVirtualNetworkTap) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c VirtualNetworkTapClient) CreateOrUpdate(ctx context.Context, id VirtualN
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c VirtualNetworkTapClient) CreateOrUpdateThenPoll(ctx context.Context, id VirtualNetworkTapId, input VirtualNetworkTap) error {
+func (c VirtualNetworkTapClient) CreateOrUpdateThenPoll(ctx context.Context, id VirtualNetworkTapId, input CommonVirtualNetworkTap) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

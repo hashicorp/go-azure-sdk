@@ -14,7 +14,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *VirtualNetworkTap
+	Model        *CommonVirtualNetworkTap
 }
 
 // Get ...
@@ -43,7 +43,7 @@ func (c VirtualNetworkTapClient) Get(ctx context.Context, id VirtualNetworkTapId
 		return
 	}
 
-	var model VirtualNetworkTap
+	var model CommonVirtualNetworkTap
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

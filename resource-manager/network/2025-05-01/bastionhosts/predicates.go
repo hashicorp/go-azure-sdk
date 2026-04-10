@@ -62,11 +62,10 @@ func (p BastionActiveSessionOperationPredicate) Matches(input BastionActiveSessi
 }
 
 type BastionHostOperationPredicate struct {
-	Etag     *string
-	Id       *string
-	Location *string
-	Name     *string
-	Type     *string
+	Etag *string
+	Id   *string
+	Name *string
+	Type *string
 }
 
 func (p BastionHostOperationPredicate) Matches(input BastionHost) bool {
@@ -76,10 +75,6 @@ func (p BastionHostOperationPredicate) Matches(input BastionHost) bool {
 	}
 
 	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
-		return false
-	}
-
-	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
 		return false
 	}
 

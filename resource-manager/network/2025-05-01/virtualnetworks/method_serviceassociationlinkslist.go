@@ -16,12 +16,12 @@ import (
 type ServiceAssociationLinksListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ServiceAssociationLink
+	Model        *[]CommonServiceAssociationLink
 }
 
 type ServiceAssociationLinksListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ServiceAssociationLink
+	Items              []CommonServiceAssociationLink
 }
 
 type ServiceAssociationLinksListCustomPager struct {
@@ -64,7 +64,7 @@ func (c VirtualNetworksClient) ServiceAssociationLinksList(ctx context.Context, 
 	}
 
 	var values struct {
-		Values *[]ServiceAssociationLink `json:"value"`
+		Values *[]CommonServiceAssociationLink `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c VirtualNetworksClient) ServiceAssociationLinksList(ctx context.Context, 
 
 // ServiceAssociationLinksListComplete retrieves all the results into a single object
 func (c VirtualNetworksClient) ServiceAssociationLinksListComplete(ctx context.Context, id commonids.SubnetId) (ServiceAssociationLinksListCompleteResult, error) {
-	return c.ServiceAssociationLinksListCompleteMatchingPredicate(ctx, id, ServiceAssociationLinkOperationPredicate{})
+	return c.ServiceAssociationLinksListCompleteMatchingPredicate(ctx, id, CommonServiceAssociationLinkOperationPredicate{})
 }
 
 // ServiceAssociationLinksListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworksClient) ServiceAssociationLinksListCompleteMatchingPredicate(ctx context.Context, id commonids.SubnetId, predicate ServiceAssociationLinkOperationPredicate) (result ServiceAssociationLinksListCompleteResult, err error) {
-	items := make([]ServiceAssociationLink, 0)
+func (c VirtualNetworksClient) ServiceAssociationLinksListCompleteMatchingPredicate(ctx context.Context, id commonids.SubnetId, predicate CommonServiceAssociationLinkOperationPredicate) (result ServiceAssociationLinksListCompleteResult, err error) {
+	items := make([]CommonServiceAssociationLink, 0)
 
 	resp, err := c.ServiceAssociationLinksList(ctx, id)
 	if err != nil {

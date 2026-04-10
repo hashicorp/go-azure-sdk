@@ -4,7 +4,7 @@ package networkwatchers
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SecurityRuleAssociations struct {
-	DefaultSecurityRules        *[]SecurityRule                 `json:"defaultSecurityRules,omitempty"`
+	DefaultSecurityRules        *[]CommonSecurityRule           `json:"defaultSecurityRules,omitempty"`
 	EffectiveSecurityRules      *[]EffectiveNetworkSecurityRule `json:"effectiveSecurityRules,omitempty"`
 	NetworkInterfaceAssociation *NetworkInterfaceAssociation    `json:"networkInterfaceAssociation,omitempty"`
 	SubnetAssociation           *SubnetAssociation              `json:"subnetAssociation,omitempty"`

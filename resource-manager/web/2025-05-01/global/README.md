@@ -8,7 +8,6 @@ This readme covers example usages, but further information on [using this SDK ca
 ### Import Path
 
 ```go
-import "github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 import "github.com/hashicorp/go-azure-sdk/resource-manager/web/2025-05-01/global"
 ```
 
@@ -18,23 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/web/2025-05-01/global
 ```go
 client := global.NewGlobalClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-```
-
-
-### Example Usage: `GlobalClient.DeletedWebAppsList`
-
-```go
-ctx := context.TODO()
-id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
-
-// alternatively `client.DeletedWebAppsList(ctx, id)` can be used to do batched pagination
-items, err := client.DeletedWebAppsListComplete(ctx, id)
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
 ```
 
 

@@ -14,7 +14,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *FlowLog
+	Model        *CommonFlowLog
 }
 
 // UpdateTags ...
@@ -47,7 +47,7 @@ func (c FlowLogsClient) UpdateTags(ctx context.Context, id FlowLogId, input Tags
 		return
 	}
 
-	var model FlowLog
+	var model CommonFlowLog
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

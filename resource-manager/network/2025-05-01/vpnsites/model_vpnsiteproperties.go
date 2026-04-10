@@ -4,7 +4,7 @@ package vpnsites
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VpnSiteProperties struct {
-	AddressSpace      *AddressSpace         `json:"addressSpace,omitempty"`
+	AddressSpace      *CommonAddressSpace   `json:"addressSpace,omitempty"`
 	BgpProperties     *BgpSettings          `json:"bgpProperties,omitempty"`
 	DeviceProperties  *DeviceProperties     `json:"deviceProperties,omitempty"`
 	IPAddress         *string               `json:"ipAddress,omitempty"`
@@ -12,6 +12,6 @@ type VpnSiteProperties struct {
 	O365Policy        *O365PolicyProperties `json:"o365Policy,omitempty"`
 	ProvisioningState *ProvisioningState    `json:"provisioningState,omitempty"`
 	SiteKey           *string               `json:"siteKey,omitempty"`
-	VirtualWAN        *SubResource          `json:"virtualWan,omitempty"`
+	VirtualWAN        *CommonSubResource    `json:"virtualWan,omitempty"`
 	VpnSiteLinks      *[]VpnSiteLink        `json:"vpnSiteLinks,omitempty"`
 }

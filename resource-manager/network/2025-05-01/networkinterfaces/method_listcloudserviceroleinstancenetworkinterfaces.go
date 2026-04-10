@@ -15,12 +15,12 @@ import (
 type ListCloudServiceRoleInstanceNetworkInterfacesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]NetworkInterface
+	Model        *[]CommonNetworkInterface
 }
 
 type ListCloudServiceRoleInstanceNetworkInterfacesCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []NetworkInterface
+	Items              []CommonNetworkInterface
 }
 
 type ListCloudServiceRoleInstanceNetworkInterfacesCustomPager struct {
@@ -63,7 +63,7 @@ func (c NetworkInterfacesClient) ListCloudServiceRoleInstanceNetworkInterfaces(c
 	}
 
 	var values struct {
-		Values *[]NetworkInterface `json:"value"`
+		Values *[]CommonNetworkInterface `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c NetworkInterfacesClient) ListCloudServiceRoleInstanceNetworkInterfaces(c
 
 // ListCloudServiceRoleInstanceNetworkInterfacesComplete retrieves all the results into a single object
 func (c NetworkInterfacesClient) ListCloudServiceRoleInstanceNetworkInterfacesComplete(ctx context.Context, id RoleInstanceId) (ListCloudServiceRoleInstanceNetworkInterfacesCompleteResult, error) {
-	return c.ListCloudServiceRoleInstanceNetworkInterfacesCompleteMatchingPredicate(ctx, id, NetworkInterfaceOperationPredicate{})
+	return c.ListCloudServiceRoleInstanceNetworkInterfacesCompleteMatchingPredicate(ctx, id, CommonNetworkInterfaceOperationPredicate{})
 }
 
 // ListCloudServiceRoleInstanceNetworkInterfacesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NetworkInterfacesClient) ListCloudServiceRoleInstanceNetworkInterfacesCompleteMatchingPredicate(ctx context.Context, id RoleInstanceId, predicate NetworkInterfaceOperationPredicate) (result ListCloudServiceRoleInstanceNetworkInterfacesCompleteResult, err error) {
-	items := make([]NetworkInterface, 0)
+func (c NetworkInterfacesClient) ListCloudServiceRoleInstanceNetworkInterfacesCompleteMatchingPredicate(ctx context.Context, id RoleInstanceId, predicate CommonNetworkInterfaceOperationPredicate) (result ListCloudServiceRoleInstanceNetworkInterfacesCompleteResult, err error) {
+	items := make([]CommonNetworkInterface, 0)
 
 	resp, err := c.ListCloudServiceRoleInstanceNetworkInterfaces(ctx, id)
 	if err != nil {

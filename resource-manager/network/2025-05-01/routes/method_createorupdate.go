@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *Route
+	Model        *CommonRoute
 }
 
 // CreateOrUpdate ...
-func (c RoutesClient) CreateOrUpdate(ctx context.Context, id RouteId, input Route) (result CreateOrUpdateOperationResponse, err error) {
+func (c RoutesClient) CreateOrUpdate(ctx context.Context, id RouteId, input CommonRoute) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c RoutesClient) CreateOrUpdate(ctx context.Context, id RouteId, input Rout
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c RoutesClient) CreateOrUpdateThenPoll(ctx context.Context, id RouteId, input Route) error {
+func (c RoutesClient) CreateOrUpdateThenPoll(ctx context.Context, id RouteId, input CommonRoute) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

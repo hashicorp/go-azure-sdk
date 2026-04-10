@@ -16,12 +16,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]NetworkWatcher
+	Model        *[]CommonNetworkWatcher
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []NetworkWatcher
+	Items              []CommonNetworkWatcher
 }
 
 type ListCustomPager struct {
@@ -64,7 +64,7 @@ func (c NetworkWatchersClient) List(ctx context.Context, id commonids.ResourceGr
 	}
 
 	var values struct {
-		Values *[]NetworkWatcher `json:"value"`
+		Values *[]CommonNetworkWatcher `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c NetworkWatchersClient) List(ctx context.Context, id commonids.ResourceGr
 
 // ListComplete retrieves all the results into a single object
 func (c NetworkWatchersClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, NetworkWatcherOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, CommonNetworkWatcherOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NetworkWatchersClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate NetworkWatcherOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]NetworkWatcher, 0)
+func (c NetworkWatchersClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate CommonNetworkWatcherOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]CommonNetworkWatcher, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

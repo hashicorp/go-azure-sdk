@@ -8,6 +8,6 @@ type HubVirtualNetworkConnectionProperties struct {
 	AllowRemoteVnetToUseHubVnetGateways *bool                 `json:"allowRemoteVnetToUseHubVnetGateways,omitempty"`
 	EnableInternetSecurity              *bool                 `json:"enableInternetSecurity,omitempty"`
 	ProvisioningState                   *ProvisioningState    `json:"provisioningState,omitempty"`
-	RemoteVirtualNetwork                *SubResource          `json:"remoteVirtualNetwork,omitempty"`
+	RemoteVirtualNetwork                *CommonSubResource    `json:"remoteVirtualNetwork,omitempty"`
 	RoutingConfiguration                *RoutingConfiguration `json:"routingConfiguration,omitempty"`
 }

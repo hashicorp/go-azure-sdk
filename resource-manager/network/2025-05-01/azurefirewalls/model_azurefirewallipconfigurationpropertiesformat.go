@@ -6,6 +6,6 @@ package azurefirewalls
 type AzureFirewallIPConfigurationPropertiesFormat struct {
 	PrivateIPAddress  *string            `json:"privateIPAddress,omitempty"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
-	PublicIPAddress   *SubResource       `json:"publicIPAddress,omitempty"`
-	Subnet            *SubResource       `json:"subnet,omitempty"`
+	PublicIPAddress   *CommonSubResource `json:"publicIPAddress,omitempty"`
+	Subnet            *CommonSubResource `json:"subnet,omitempty"`
 }

@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *NetworkSecurityGroup
+	Model        *CommonNetworkSecurityGroup
 }
 
 // CreateOrUpdate ...
-func (c NetworkSecurityGroupsClient) CreateOrUpdate(ctx context.Context, id NetworkSecurityGroupId, input NetworkSecurityGroup) (result CreateOrUpdateOperationResponse, err error) {
+func (c NetworkSecurityGroupsClient) CreateOrUpdate(ctx context.Context, id NetworkSecurityGroupId, input CommonNetworkSecurityGroup) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c NetworkSecurityGroupsClient) CreateOrUpdate(ctx context.Context, id Netw
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c NetworkSecurityGroupsClient) CreateOrUpdateThenPoll(ctx context.Context, id NetworkSecurityGroupId, input NetworkSecurityGroup) error {
+func (c NetworkSecurityGroupsClient) CreateOrUpdateThenPoll(ctx context.Context, id NetworkSecurityGroupId, input CommonNetworkSecurityGroup) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

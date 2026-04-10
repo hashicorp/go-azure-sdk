@@ -4,6 +4,6 @@ package loadbalancers
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type QueryInboundNatRulePortMappingRequest struct {
-	IPAddress       *string      `json:"ipAddress,omitempty"`
-	IPConfiguration *SubResource `json:"ipConfiguration,omitempty"`
+	IPAddress       *string            `json:"ipAddress,omitempty"`
+	IPConfiguration *CommonSubResource `json:"ipConfiguration,omitempty"`
 }

@@ -92,13 +92,18 @@ func (p AvailableServiceAliasOperationPredicate) Matches(input AvailableServiceA
 	return true
 }
 
-type EndpointServiceResultOperationPredicate struct {
+type CommonPublicIPAddressOperationPredicate struct {
+	Etag *string
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p EndpointServiceResultOperationPredicate) Matches(input EndpointServiceResult) bool {
+func (p CommonPublicIPAddressOperationPredicate) Matches(input CommonPublicIPAddress) bool {
+
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
+		return false
+	}
 
 	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
@@ -115,15 +120,14 @@ func (p EndpointServiceResultOperationPredicate) Matches(input EndpointServiceRe
 	return true
 }
 
-type PublicIPAddressOperationPredicate struct {
-	Etag     *string
-	Id       *string
-	Location *string
-	Name     *string
-	Type     *string
+type CommonResourceNavigationLinkOperationPredicate struct {
+	Etag *string
+	Id   *string
+	Name *string
+	Type *string
 }
 
-func (p PublicIPAddressOperationPredicate) Matches(input PublicIPAddress) bool {
+func (p CommonResourceNavigationLinkOperationPredicate) Matches(input CommonResourceNavigationLink) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
@@ -133,7 +137,82 @@ func (p PublicIPAddressOperationPredicate) Matches(input PublicIPAddress) bool {
 		return false
 	}
 
-	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}
+
+type CommonServiceAssociationLinkOperationPredicate struct {
+	Etag *string
+	Id   *string
+	Name *string
+	Type *string
+}
+
+func (p CommonServiceAssociationLinkOperationPredicate) Matches(input CommonServiceAssociationLink) bool {
+
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}
+
+type CommonVirtualNetworkOperationPredicate struct {
+	Etag *string
+	Id   *string
+	Name *string
+	Type *string
+}
+
+func (p CommonVirtualNetworkOperationPredicate) Matches(input CommonVirtualNetwork) bool {
+
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}
+
+type EndpointServiceResultOperationPredicate struct {
+	Id   *string
+	Name *string
+	Type *string
+}
+
+func (p EndpointServiceResultOperationPredicate) Matches(input EndpointServiceResult) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -171,62 +250,6 @@ func (p PublicIPDdosProtectionStatusResultOperationPredicate) Matches(input Publ
 	return true
 }
 
-type ResourceNavigationLinkOperationPredicate struct {
-	Etag *string
-	Id   *string
-	Name *string
-	Type *string
-}
-
-func (p ResourceNavigationLinkOperationPredicate) Matches(input ResourceNavigationLink) bool {
-
-	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
-		return false
-	}
-
-	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
-		return false
-	}
-
-	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
-		return false
-	}
-
-	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
-		return false
-	}
-
-	return true
-}
-
-type ServiceAssociationLinkOperationPredicate struct {
-	Etag *string
-	Id   *string
-	Name *string
-	Type *string
-}
-
-func (p ServiceAssociationLinkOperationPredicate) Matches(input ServiceAssociationLink) bool {
-
-	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
-		return false
-	}
-
-	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
-		return false
-	}
-
-	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
-		return false
-	}
-
-	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
-		return false
-	}
-
-	return true
-}
-
 type ServiceTagInformationOperationPredicate struct {
 	Id                     *string
 	Name                   *string
@@ -244,39 +267,6 @@ func (p ServiceTagInformationOperationPredicate) Matches(input ServiceTagInforma
 	}
 
 	if p.ServiceTagChangeNumber != nil && (input.ServiceTagChangeNumber == nil || *p.ServiceTagChangeNumber != *input.ServiceTagChangeNumber) {
-		return false
-	}
-
-	return true
-}
-
-type VirtualNetworkOperationPredicate struct {
-	Etag     *string
-	Id       *string
-	Location *string
-	Name     *string
-	Type     *string
-}
-
-func (p VirtualNetworkOperationPredicate) Matches(input VirtualNetwork) bool {
-
-	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
-		return false
-	}
-
-	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
-		return false
-	}
-
-	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
-		return false
-	}
-
-	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
-		return false
-	}
-
-	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

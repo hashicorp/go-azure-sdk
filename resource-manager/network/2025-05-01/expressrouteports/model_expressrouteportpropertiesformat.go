@@ -7,7 +7,7 @@ type ExpressRoutePortPropertiesFormat struct {
 	AllocationDate             *string                         `json:"allocationDate,omitempty"`
 	BandwidthInGbps            *int64                          `json:"bandwidthInGbps,omitempty"`
 	BillingType                *ExpressRoutePortsBillingType   `json:"billingType,omitempty"`
-	Circuits                   *[]SubResource                  `json:"circuits,omitempty"`
+	Circuits                   *[]CommonSubResource            `json:"circuits,omitempty"`
 	Encapsulation              *ExpressRoutePortsEncapsulation `json:"encapsulation,omitempty"`
 	EtherType                  *string                         `json:"etherType,omitempty"`
 	Links                      *[]ExpressRouteLink             `json:"links,omitempty"`

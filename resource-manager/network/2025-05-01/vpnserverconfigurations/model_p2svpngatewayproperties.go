@@ -8,8 +8,8 @@ type P2SVpnGatewayProperties struct {
 	IsRoutingPreferenceInternet *bool                         `json:"isRoutingPreferenceInternet,omitempty"`
 	P2SConnectionConfigurations *[]P2SConnectionConfiguration `json:"p2SConnectionConfigurations,omitempty"`
 	ProvisioningState           *ProvisioningState            `json:"provisioningState,omitempty"`
-	VirtualHub                  *SubResource                  `json:"virtualHub,omitempty"`
+	VirtualHub                  *CommonSubResource            `json:"virtualHub,omitempty"`
 	VpnClientConnectionHealth   *VpnClientConnectionHealth    `json:"vpnClientConnectionHealth,omitempty"`
 	VpnGatewayScaleUnit         *int64                        `json:"vpnGatewayScaleUnit,omitempty"`
-	VpnServerConfiguration      *SubResource                  `json:"vpnServerConfiguration,omitempty"`
+	VpnServerConfiguration      *CommonSubResource            `json:"vpnServerConfiguration,omitempty"`
 }

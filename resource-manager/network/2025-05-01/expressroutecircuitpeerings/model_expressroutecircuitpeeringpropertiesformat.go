@@ -17,7 +17,7 @@ type ExpressRouteCircuitPeeringPropertiesFormat struct {
 	PrimaryAzurePort           *string                               `json:"primaryAzurePort,omitempty"`
 	PrimaryPeerAddressPrefix   *string                               `json:"primaryPeerAddressPrefix,omitempty"`
 	ProvisioningState          *ProvisioningState                    `json:"provisioningState,omitempty"`
-	RouteFilter                *SubResource                          `json:"routeFilter,omitempty"`
+	RouteFilter                *CommonSubResource                    `json:"routeFilter,omitempty"`
 	SecondaryAzurePort         *string                               `json:"secondaryAzurePort,omitempty"`
 	SecondaryPeerAddressPrefix *string                               `json:"secondaryPeerAddressPrefix,omitempty"`
 	SharedKey                  *string                               `json:"sharedKey,omitempty"`

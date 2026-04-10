@@ -19,11 +19,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *PublicIPAddress
+	Model        *CommonPublicIPAddress
 }
 
 // CreateOrUpdate ...
-func (c PublicIPAddressesClient) CreateOrUpdate(ctx context.Context, id commonids.PublicIPAddressId, input PublicIPAddress) (result CreateOrUpdateOperationResponse, err error) {
+func (c PublicIPAddressesClient) CreateOrUpdate(ctx context.Context, id commonids.PublicIPAddressId, input CommonPublicIPAddress) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +62,7 @@ func (c PublicIPAddressesClient) CreateOrUpdate(ctx context.Context, id commonid
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c PublicIPAddressesClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.PublicIPAddressId, input PublicIPAddress) error {
+func (c PublicIPAddressesClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.PublicIPAddressId, input CommonPublicIPAddress) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

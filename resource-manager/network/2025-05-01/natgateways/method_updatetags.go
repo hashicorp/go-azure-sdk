@@ -14,7 +14,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *NatGateway
+	Model        *CommonNatGateway
 }
 
 // UpdateTags ...
@@ -47,7 +47,7 @@ func (c NatGatewaysClient) UpdateTags(ctx context.Context, id NatGatewayId, inpu
 		return
 	}
 
-	var model NatGateway
+	var model CommonNatGateway
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -4,6 +4,6 @@ package expressrouteconnections
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PropagatedRouteTable struct {
-	Ids    *[]SubResource `json:"ids,omitempty"`
-	Labels *[]string      `json:"labels,omitempty"`
+	Ids    *[]CommonSubResource `json:"ids,omitempty"`
+	Labels *[]string            `json:"labels,omitempty"`
 }

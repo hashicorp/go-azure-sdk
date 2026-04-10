@@ -7,7 +7,7 @@ type AzureFirewallPropertiesFormat struct {
 	AdditionalProperties       *map[string]string                        `json:"additionalProperties,omitempty"`
 	ApplicationRuleCollections *[]AzureFirewallApplicationRuleCollection `json:"applicationRuleCollections,omitempty"`
 	AutoscaleConfiguration     *AzureFirewallAutoscaleConfiguration      `json:"autoscaleConfiguration,omitempty"`
-	FirewallPolicy             *SubResource                              `json:"firewallPolicy,omitempty"`
+	FirewallPolicy             *CommonSubResource                        `json:"firewallPolicy,omitempty"`
 	HubIPAddresses             *HubIPAddresses                           `json:"hubIPAddresses,omitempty"`
 	IPConfigurations           *[]AzureFirewallIPConfiguration           `json:"ipConfigurations,omitempty"`
 	IPGroups                   *[]AzureFirewallIPGroups                  `json:"ipGroups,omitempty"`
@@ -17,5 +17,5 @@ type AzureFirewallPropertiesFormat struct {
 	ProvisioningState          *ProvisioningState                        `json:"provisioningState,omitempty"`
 	Sku                        *AzureFirewallSku                         `json:"sku,omitempty"`
 	ThreatIntelMode            *AzureFirewallThreatIntelMode             `json:"threatIntelMode,omitempty"`
-	VirtualHub                 *SubResource                              `json:"virtualHub,omitempty"`
+	VirtualHub                 *CommonSubResource                        `json:"virtualHub,omitempty"`
 }

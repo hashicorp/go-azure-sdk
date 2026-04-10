@@ -4,11 +4,11 @@ package publicipprefixes
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PublicIPPrefixPropertiesFormat struct {
-	CustomIPPrefix                      *SubResource                 `json:"customIPPrefix,omitempty"`
+	CustomIPPrefix                      *CommonSubResource           `json:"customIPPrefix,omitempty"`
 	IPPrefix                            *string                      `json:"ipPrefix,omitempty"`
-	IPTags                              *[]IPTag                     `json:"ipTags,omitempty"`
-	LoadBalancerFrontendIPConfiguration *SubResource                 `json:"loadBalancerFrontendIpConfiguration,omitempty"`
-	NatGateway                          *NatGateway                  `json:"natGateway,omitempty"`
+	IPTags                              *[]CommonIPTag               `json:"ipTags,omitempty"`
+	LoadBalancerFrontendIPConfiguration *CommonSubResource           `json:"loadBalancerFrontendIpConfiguration,omitempty"`
+	NatGateway                          *CommonNatGateway            `json:"natGateway,omitempty"`
 	PrefixLength                        *int64                       `json:"prefixLength,omitempty"`
 	ProvisioningState                   *ProvisioningState           `json:"provisioningState,omitempty"`
 	PublicIPAddressVersion              *IPVersion                   `json:"publicIPAddressVersion,omitempty"`

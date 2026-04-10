@@ -4,8 +4,8 @@ package applicationgatewayprivateendpointconnections
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplicationGatewayPrivateEndpointConnectionProperties struct {
-	LinkIdentifier                    *string                            `json:"linkIdentifier,omitempty"`
-	PrivateEndpoint                   *PrivateEndpoint                   `json:"privateEndpoint,omitempty"`
-	PrivateLinkServiceConnectionState *PrivateLinkServiceConnectionState `json:"privateLinkServiceConnectionState,omitempty"`
-	ProvisioningState                 *ProvisioningState                 `json:"provisioningState,omitempty"`
+	LinkIdentifier                    *string                                  `json:"linkIdentifier,omitempty"`
+	PrivateEndpoint                   *CommonPrivateEndpoint                   `json:"privateEndpoint,omitempty"`
+	PrivateLinkServiceConnectionState *CommonPrivateLinkServiceConnectionState `json:"privateLinkServiceConnectionState,omitempty"`
+	ProvisioningState                 *ProvisioningState                       `json:"provisioningState,omitempty"`
 }

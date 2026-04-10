@@ -5,7 +5,7 @@ package virtualwans
 
 type BgpConnectionProperties struct {
 	ConnectionState             *HubBgpConnectionStatus `json:"connectionState,omitempty"`
-	HubVirtualNetworkConnection *SubResource            `json:"hubVirtualNetworkConnection,omitempty"`
+	HubVirtualNetworkConnection *CommonSubResource      `json:"hubVirtualNetworkConnection,omitempty"`
 	PeerAsn                     *int64                  `json:"peerAsn,omitempty"`
 	PeerIP                      *string                 `json:"peerIp,omitempty"`
 	ProvisioningState           *ProvisioningState      `json:"provisioningState,omitempty"`

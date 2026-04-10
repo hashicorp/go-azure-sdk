@@ -16,12 +16,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]PrivateLinkService
+	Model        *[]CommonPrivateLinkService
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []PrivateLinkService
+	Items              []CommonPrivateLinkService
 }
 
 type ListCustomPager struct {
@@ -64,7 +64,7 @@ func (c PrivateLinkServicesClient) List(ctx context.Context, id commonids.Resour
 	}
 
 	var values struct {
-		Values *[]PrivateLinkService `json:"value"`
+		Values *[]CommonPrivateLinkService `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c PrivateLinkServicesClient) List(ctx context.Context, id commonids.Resour
 
 // ListComplete retrieves all the results into a single object
 func (c PrivateLinkServicesClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, PrivateLinkServiceOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, CommonPrivateLinkServiceOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c PrivateLinkServicesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate PrivateLinkServiceOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]PrivateLinkService, 0)
+func (c PrivateLinkServicesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate CommonPrivateLinkServiceOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]CommonPrivateLinkService, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

@@ -42,6 +42,38 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `OpenapisClient.GetPublishingUser`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetPublishingUser(ctx)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `OpenapisClient.GetSourceControl`
+
+```go
+ctx := context.TODO()
+id := openapis.NewSourceControlID("sourceControlName")
+
+read, err := client.GetSourceControl(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `OpenapisClient.GetSubscriptionDeploymentLocations`
 
 ```go
@@ -198,6 +230,23 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `OpenapisClient.ListSourceControls`
+
+```go
+ctx := context.TODO()
+
+
+// alternatively `client.ListSourceControls(ctx)` can be used to do batched pagination
+items, err := client.ListSourceControlsComplete(ctx)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `OpenapisClient.Move`
 
 ```go
@@ -210,157 +259,6 @@ payload := openapis.CsmMoveResourceEnvelope{
 
 
 read, err := client.Move(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `OpenapisClient.ProviderGetAvailableStacks`
-
-```go
-ctx := context.TODO()
-
-
-// alternatively `client.ProviderGetAvailableStacks(ctx, openapis.DefaultProviderGetAvailableStacksOperationOptions())` can be used to do batched pagination
-items, err := client.ProviderGetAvailableStacksComplete(ctx, openapis.DefaultProviderGetAvailableStacksOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `OpenapisClient.ProviderGetAvailableStacksOnPrem`
-
-```go
-ctx := context.TODO()
-id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
-
-// alternatively `client.ProviderGetAvailableStacksOnPrem(ctx, id, openapis.DefaultProviderGetAvailableStacksOnPremOperationOptions())` can be used to do batched pagination
-items, err := client.ProviderGetAvailableStacksOnPremComplete(ctx, id, openapis.DefaultProviderGetAvailableStacksOnPremOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `OpenapisClient.ProviderGetFunctionAppStacks`
-
-```go
-ctx := context.TODO()
-
-
-// alternatively `client.ProviderGetFunctionAppStacks(ctx, openapis.DefaultProviderGetFunctionAppStacksOperationOptions())` can be used to do batched pagination
-items, err := client.ProviderGetFunctionAppStacksComplete(ctx, openapis.DefaultProviderGetFunctionAppStacksOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `OpenapisClient.ProviderGetFunctionAppStacksForLocation`
-
-```go
-ctx := context.TODO()
-id := openapis.NewLocationID("locationName")
-
-// alternatively `client.ProviderGetFunctionAppStacksForLocation(ctx, id, openapis.DefaultProviderGetFunctionAppStacksForLocationOperationOptions())` can be used to do batched pagination
-items, err := client.ProviderGetFunctionAppStacksForLocationComplete(ctx, id, openapis.DefaultProviderGetFunctionAppStacksForLocationOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `OpenapisClient.ProviderGetWebAppStacks`
-
-```go
-ctx := context.TODO()
-
-
-// alternatively `client.ProviderGetWebAppStacks(ctx, openapis.DefaultProviderGetWebAppStacksOperationOptions())` can be used to do batched pagination
-items, err := client.ProviderGetWebAppStacksComplete(ctx, openapis.DefaultProviderGetWebAppStacksOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `OpenapisClient.ProviderGetWebAppStacksForLocation`
-
-```go
-ctx := context.TODO()
-id := openapis.NewLocationID("locationName")
-
-// alternatively `client.ProviderGetWebAppStacksForLocation(ctx, id, openapis.DefaultProviderGetWebAppStacksForLocationOperationOptions())` can be used to do batched pagination
-items, err := client.ProviderGetWebAppStacksForLocationComplete(ctx, id, openapis.DefaultProviderGetWebAppStacksForLocationOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `OpenapisClient.RecommendationsDisableRecommendationForSubscription`
-
-```go
-ctx := context.TODO()
-id := openapis.NewRecommendationID("12345678-1234-9876-4563-123456789012", "recommendationName")
-
-read, err := client.RecommendationsDisableRecommendationForSubscription(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `OpenapisClient.RecommendationsList`
-
-```go
-ctx := context.TODO()
-id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
-
-// alternatively `client.RecommendationsList(ctx, id, openapis.DefaultRecommendationsListOperationOptions())` can be used to do batched pagination
-items, err := client.RecommendationsListComplete(ctx, id, openapis.DefaultRecommendationsListOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `OpenapisClient.RecommendationsResetAllFilters`
-
-```go
-ctx := context.TODO()
-id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
-
-read, err := client.RecommendationsResetAllFilters(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -391,52 +289,38 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `OpenapisClient.ResourceHealthMetadataList`
+### Example Usage: `OpenapisClient.UpdatePublishingUser`
 
 ```go
 ctx := context.TODO()
-id := commonids.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-// alternatively `client.ResourceHealthMetadataList(ctx, id)` can be used to do batched pagination
-items, err := client.ResourceHealthMetadataListComplete(ctx, id)
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `OpenapisClient.ResourceHealthMetadataListByResourceGroup`
-
-```go
-ctx := context.TODO()
-id := commonids.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
-
-// alternatively `client.ResourceHealthMetadataListByResourceGroup(ctx, id)` can be used to do batched pagination
-items, err := client.ResourceHealthMetadataListByResourceGroupComplete(ctx, id)
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `OpenapisClient.StaticSitesPreviewWorkflow`
-
-```go
-ctx := context.TODO()
-id := openapis.NewProviderLocationID("12345678-1234-9876-4563-123456789012", "locationName")
-
-payload := openapis.StaticSitesWorkflowPreviewRequest{
+payload := openapis.User{
 	// ...
 }
 
 
-read, err := client.StaticSitesPreviewWorkflow(ctx, id, payload)
+read, err := client.UpdatePublishingUser(ctx, payload)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `OpenapisClient.UpdateSourceControl`
+
+```go
+ctx := context.TODO()
+id := openapis.NewSourceControlID("sourceControlName")
+
+payload := openapis.SourceControl{
+	// ...
+}
+
+
+read, err := client.UpdateSourceControl(ctx, id, payload)
 if err != nil {
 	// handle the error
 }

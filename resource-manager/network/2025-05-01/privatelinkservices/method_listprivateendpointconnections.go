@@ -15,12 +15,12 @@ import (
 type ListPrivateEndpointConnectionsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]PrivateEndpointConnection
+	Model        *[]CommonPrivateEndpointConnection
 }
 
 type ListPrivateEndpointConnectionsCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []PrivateEndpointConnection
+	Items              []CommonPrivateEndpointConnection
 }
 
 type ListPrivateEndpointConnectionsCustomPager struct {
@@ -63,7 +63,7 @@ func (c PrivateLinkServicesClient) ListPrivateEndpointConnections(ctx context.Co
 	}
 
 	var values struct {
-		Values *[]PrivateEndpointConnection `json:"value"`
+		Values *[]CommonPrivateEndpointConnection `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c PrivateLinkServicesClient) ListPrivateEndpointConnections(ctx context.Co
 
 // ListPrivateEndpointConnectionsComplete retrieves all the results into a single object
 func (c PrivateLinkServicesClient) ListPrivateEndpointConnectionsComplete(ctx context.Context, id PrivateLinkServiceId) (ListPrivateEndpointConnectionsCompleteResult, error) {
-	return c.ListPrivateEndpointConnectionsCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionOperationPredicate{})
+	return c.ListPrivateEndpointConnectionsCompleteMatchingPredicate(ctx, id, CommonPrivateEndpointConnectionOperationPredicate{})
 }
 
 // ListPrivateEndpointConnectionsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c PrivateLinkServicesClient) ListPrivateEndpointConnectionsCompleteMatchingPredicate(ctx context.Context, id PrivateLinkServiceId, predicate PrivateEndpointConnectionOperationPredicate) (result ListPrivateEndpointConnectionsCompleteResult, err error) {
-	items := make([]PrivateEndpointConnection, 0)
+func (c PrivateLinkServicesClient) ListPrivateEndpointConnectionsCompleteMatchingPredicate(ctx context.Context, id PrivateLinkServiceId, predicate CommonPrivateEndpointConnectionOperationPredicate) (result ListPrivateEndpointConnectionsCompleteResult, err error) {
+	items := make([]CommonPrivateEndpointConnection, 0)
 
 	resp, err := c.ListPrivateEndpointConnections(ctx, id)
 	if err != nil {

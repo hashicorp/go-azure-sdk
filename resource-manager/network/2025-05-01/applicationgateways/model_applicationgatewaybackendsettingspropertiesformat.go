@@ -8,9 +8,9 @@ type ApplicationGatewayBackendSettingsPropertiesFormat struct {
 	HostName                       *string                     `json:"hostName,omitempty"`
 	PickHostNameFromBackendAddress *bool                       `json:"pickHostNameFromBackendAddress,omitempty"`
 	Port                           *int64                      `json:"port,omitempty"`
-	Probe                          *SubResource                `json:"probe,omitempty"`
+	Probe                          *CommonSubResource          `json:"probe,omitempty"`
 	Protocol                       *ApplicationGatewayProtocol `json:"protocol,omitempty"`
 	ProvisioningState              *ProvisioningState          `json:"provisioningState,omitempty"`
 	Timeout                        *int64                      `json:"timeout,omitempty"`
-	TrustedRootCertificates        *[]SubResource              `json:"trustedRootCertificates,omitempty"`
+	TrustedRootCertificates        *[]CommonSubResource        `json:"trustedRootCertificates,omitempty"`
 }

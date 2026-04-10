@@ -11,6 +11,6 @@ type VpnGatewayProperties struct {
 	IsRoutingPreferenceInternet     *bool                        `json:"isRoutingPreferenceInternet,omitempty"`
 	NatRules                        *[]VpnGatewayNatRule         `json:"natRules,omitempty"`
 	ProvisioningState               *ProvisioningState           `json:"provisioningState,omitempty"`
-	VirtualHub                      *SubResource                 `json:"virtualHub,omitempty"`
+	VirtualHub                      *CommonSubResource           `json:"virtualHub,omitempty"`
 	VpnGatewayScaleUnit             *int64                       `json:"vpnGatewayScaleUnit,omitempty"`
 }

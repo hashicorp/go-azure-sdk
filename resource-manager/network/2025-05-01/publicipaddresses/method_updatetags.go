@@ -15,7 +15,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *PublicIPAddress
+	Model        *CommonPublicIPAddress
 }
 
 // UpdateTags ...
@@ -48,7 +48,7 @@ func (c PublicIPAddressesClient) UpdateTags(ctx context.Context, id commonids.Pu
 		return
 	}
 
-	var model PublicIPAddress
+	var model CommonPublicIPAddress
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -16,12 +16,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]VirtualNetwork
+	Model        *[]CommonVirtualNetwork
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []VirtualNetwork
+	Items              []CommonVirtualNetwork
 }
 
 type ListCustomPager struct {
@@ -64,7 +64,7 @@ func (c VirtualNetworksClient) List(ctx context.Context, id commonids.ResourceGr
 	}
 
 	var values struct {
-		Values *[]VirtualNetwork `json:"value"`
+		Values *[]CommonVirtualNetwork `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c VirtualNetworksClient) List(ctx context.Context, id commonids.ResourceGr
 
 // ListComplete retrieves all the results into a single object
 func (c VirtualNetworksClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, VirtualNetworkOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, CommonVirtualNetworkOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworksClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate VirtualNetworkOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]VirtualNetwork, 0)
+func (c VirtualNetworksClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate CommonVirtualNetworkOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]CommonVirtualNetwork, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

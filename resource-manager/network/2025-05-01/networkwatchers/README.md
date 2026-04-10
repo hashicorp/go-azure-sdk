@@ -44,7 +44,7 @@ if err := client.CheckConnectivityThenPoll(ctx, id, payload); err != nil {
 ctx := context.TODO()
 id := networkwatchers.NewNetworkWatcherID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkWatcherName")
 
-payload := networkwatchers.NetworkWatcher{
+payload := networkwatchers.CommonNetworkWatcher{
 	// ...
 }
 

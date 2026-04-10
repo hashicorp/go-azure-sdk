@@ -14,7 +14,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *SecurityRule
+	Model        *CommonSecurityRule
 }
 
 // Get ...
@@ -43,7 +43,7 @@ func (c SecurityRulesClient) Get(ctx context.Context, id SecurityRuleId) (result
 		return
 	}
 
-	var model SecurityRule
+	var model CommonSecurityRule
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

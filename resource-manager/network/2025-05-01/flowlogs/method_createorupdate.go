@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *FlowLog
+	Model        *CommonFlowLog
 }
 
 // CreateOrUpdate ...
-func (c FlowLogsClient) CreateOrUpdate(ctx context.Context, id FlowLogId, input FlowLog) (result CreateOrUpdateOperationResponse, err error) {
+func (c FlowLogsClient) CreateOrUpdate(ctx context.Context, id FlowLogId, input CommonFlowLog) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c FlowLogsClient) CreateOrUpdate(ctx context.Context, id FlowLogId, input 
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c FlowLogsClient) CreateOrUpdateThenPoll(ctx context.Context, id FlowLogId, input FlowLog) error {
+func (c FlowLogsClient) CreateOrUpdateThenPoll(ctx context.Context, id FlowLogId, input CommonFlowLog) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

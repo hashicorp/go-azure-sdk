@@ -11,7 +11,7 @@ type NetworkVirtualAppliancePropertiesFormat struct {
 	CloudInitConfigurationBlobs *[]string                                              `json:"cloudInitConfigurationBlobs,omitempty"`
 	Delegation                  *DelegationProperties                                  `json:"delegation,omitempty"`
 	DeploymentType              *string                                                `json:"deploymentType,omitempty"`
-	InboundSecurityRules        *[]SubResource                                         `json:"inboundSecurityRules,omitempty"`
+	InboundSecurityRules        *[]CommonSubResource                                   `json:"inboundSecurityRules,omitempty"`
 	InternetIngressPublicIPs    *[]InternetIngressPublicIPsProperties                  `json:"internetIngressPublicIps,omitempty"`
 	NetworkProfile              *NetworkVirtualAppliancePropertiesFormatNetworkProfile `json:"networkProfile,omitempty"`
 	NvaInterfaceConfigurations  *[]NvaInterfaceConfigurationsProperties                `json:"nvaInterfaceConfigurations,omitempty"`
@@ -21,8 +21,8 @@ type NetworkVirtualAppliancePropertiesFormat struct {
 	ProvisioningState           *ProvisioningState                                     `json:"provisioningState,omitempty"`
 	SshPublicKey                *string                                                `json:"sshPublicKey,omitempty"`
 	VirtualApplianceAsn         *int64                                                 `json:"virtualApplianceAsn,omitempty"`
-	VirtualApplianceConnections *[]SubResource                                         `json:"virtualApplianceConnections,omitempty"`
+	VirtualApplianceConnections *[]CommonSubResource                                   `json:"virtualApplianceConnections,omitempty"`
 	VirtualApplianceNics        *[]VirtualApplianceNicProperties                       `json:"virtualApplianceNics,omitempty"`
-	VirtualApplianceSites       *[]SubResource                                         `json:"virtualApplianceSites,omitempty"`
-	VirtualHub                  *SubResource                                           `json:"virtualHub,omitempty"`
+	VirtualApplianceSites       *[]CommonSubResource                                   `json:"virtualApplianceSites,omitempty"`
+	VirtualHub                  *CommonSubResource                                     `json:"virtualHub,omitempty"`
 }

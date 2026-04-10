@@ -16,12 +16,12 @@ import (
 type ListAllOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]NetworkInterface
+	Model        *[]CommonNetworkInterface
 }
 
 type ListAllCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []NetworkInterface
+	Items              []CommonNetworkInterface
 }
 
 type ListAllCustomPager struct {
@@ -64,7 +64,7 @@ func (c NetworkInterfacesClient) ListAll(ctx context.Context, id commonids.Subsc
 	}
 
 	var values struct {
-		Values *[]NetworkInterface `json:"value"`
+		Values *[]CommonNetworkInterface `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c NetworkInterfacesClient) ListAll(ctx context.Context, id commonids.Subsc
 
 // ListAllComplete retrieves all the results into a single object
 func (c NetworkInterfacesClient) ListAllComplete(ctx context.Context, id commonids.SubscriptionId) (ListAllCompleteResult, error) {
-	return c.ListAllCompleteMatchingPredicate(ctx, id, NetworkInterfaceOperationPredicate{})
+	return c.ListAllCompleteMatchingPredicate(ctx, id, CommonNetworkInterfaceOperationPredicate{})
 }
 
 // ListAllCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NetworkInterfacesClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate NetworkInterfaceOperationPredicate) (result ListAllCompleteResult, err error) {
-	items := make([]NetworkInterface, 0)
+func (c NetworkInterfacesClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate CommonNetworkInterfaceOperationPredicate) (result ListAllCompleteResult, err error) {
+	items := make([]CommonNetworkInterface, 0)
 
 	resp, err := c.ListAll(ctx, id)
 	if err != nil {

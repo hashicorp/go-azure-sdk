@@ -3,7 +3,7 @@ package serviceendpointpolicies
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type ServiceEndpointPolicyOperationPredicate struct {
+type CommonServiceEndpointPolicyOperationPredicate struct {
 	Etag     *string
 	Id       *string
 	Kind     *string
@@ -12,7 +12,7 @@ type ServiceEndpointPolicyOperationPredicate struct {
 	Type     *string
 }
 
-func (p ServiceEndpointPolicyOperationPredicate) Matches(input ServiceEndpointPolicy) bool {
+func (p CommonServiceEndpointPolicyOperationPredicate) Matches(input CommonServiceEndpointPolicy) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false

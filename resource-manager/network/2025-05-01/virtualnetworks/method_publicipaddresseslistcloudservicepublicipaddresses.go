@@ -15,12 +15,12 @@ import (
 type PublicIPAddressesListCloudServicePublicIPAddressesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]PublicIPAddress
+	Model        *[]CommonPublicIPAddress
 }
 
 type PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []PublicIPAddress
+	Items              []CommonPublicIPAddress
 }
 
 type PublicIPAddressesListCloudServicePublicIPAddressesCustomPager struct {
@@ -63,7 +63,7 @@ func (c VirtualNetworksClient) PublicIPAddressesListCloudServicePublicIPAddresse
 	}
 
 	var values struct {
-		Values *[]PublicIPAddress `json:"value"`
+		Values *[]CommonPublicIPAddress `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c VirtualNetworksClient) PublicIPAddressesListCloudServicePublicIPAddresse
 
 // PublicIPAddressesListCloudServicePublicIPAddressesComplete retrieves all the results into a single object
 func (c VirtualNetworksClient) PublicIPAddressesListCloudServicePublicIPAddressesComplete(ctx context.Context, id ProviderCloudServiceId) (PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult, error) {
-	return c.PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate(ctx, id, PublicIPAddressOperationPredicate{})
+	return c.PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate(ctx, id, CommonPublicIPAddressOperationPredicate{})
 }
 
 // PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworksClient) PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate(ctx context.Context, id ProviderCloudServiceId, predicate PublicIPAddressOperationPredicate) (result PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult, err error) {
-	items := make([]PublicIPAddress, 0)
+func (c VirtualNetworksClient) PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate(ctx context.Context, id ProviderCloudServiceId, predicate CommonPublicIPAddressOperationPredicate) (result PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult, err error) {
+	items := make([]CommonPublicIPAddress, 0)
 
 	resp, err := c.PublicIPAddressesListCloudServicePublicIPAddresses(ctx, id)
 	if err != nil {

@@ -14,11 +14,11 @@ import (
 type CreateOrUpdateOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *NetworkWatcher
+	Model        *CommonNetworkWatcher
 }
 
 // CreateOrUpdate ...
-func (c NetworkWatchersClient) CreateOrUpdate(ctx context.Context, id NetworkWatcherId, input NetworkWatcher) (result CreateOrUpdateOperationResponse, err error) {
+func (c NetworkWatchersClient) CreateOrUpdate(ctx context.Context, id NetworkWatcherId, input CommonNetworkWatcher) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -48,7 +48,7 @@ func (c NetworkWatchersClient) CreateOrUpdate(ctx context.Context, id NetworkWat
 		return
 	}
 
-	var model NetworkWatcher
+	var model CommonNetworkWatcher
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

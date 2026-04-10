@@ -4,8 +4,8 @@ package ipgroups
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type IPGroupPropertiesFormat struct {
-	FirewallPolicies  *[]SubResource     `json:"firewallPolicies,omitempty"`
-	Firewalls         *[]SubResource     `json:"firewalls,omitempty"`
-	IPAddresses       *[]string          `json:"ipAddresses,omitempty"`
-	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+	FirewallPolicies  *[]CommonSubResource `json:"firewallPolicies,omitempty"`
+	Firewalls         *[]CommonSubResource `json:"firewalls,omitempty"`
+	IPAddresses       *[]string            `json:"ipAddresses,omitempty"`
+	ProvisioningState *ProvisioningState   `json:"provisioningState,omitempty"`
 }

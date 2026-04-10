@@ -8,7 +8,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FlowLogInformation struct {
-	FlowAnalyticsConfiguration *TrafficAnalyticsProperties        `json:"flowAnalyticsConfiguration,omitempty"`
+	FlowAnalyticsConfiguration *CommonTrafficAnalyticsProperties  `json:"flowAnalyticsConfiguration,omitempty"`
 	Identity                   *identity.SystemAndUserAssignedMap `json:"identity,omitempty"`
 	Properties                 FlowLogProperties                  `json:"properties"`
 	TargetResourceId           string                             `json:"targetResourceId"`

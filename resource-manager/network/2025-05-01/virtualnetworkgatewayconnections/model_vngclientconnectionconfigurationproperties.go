@@ -4,7 +4,7 @@ package virtualnetworkgatewayconnections
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VngClientConnectionConfigurationProperties struct {
-	ProvisioningState                 *ProvisioningState `json:"provisioningState,omitempty"`
-	VirtualNetworkGatewayPolicyGroups []SubResource      `json:"virtualNetworkGatewayPolicyGroups"`
-	VpnClientAddressPool              AddressSpace       `json:"vpnClientAddressPool"`
+	ProvisioningState                 *ProvisioningState  `json:"provisioningState,omitempty"`
+	VirtualNetworkGatewayPolicyGroups []CommonSubResource `json:"virtualNetworkGatewayPolicyGroups"`
+	VpnClientAddressPool              CommonAddressSpace  `json:"vpnClientAddressPool"`
 }

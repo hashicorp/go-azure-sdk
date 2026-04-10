@@ -4,8 +4,8 @@ package ddosprotectionplans
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DdosProtectionPlanPropertiesFormat struct {
-	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
-	PublicIPAddresses *[]SubResource     `json:"publicIPAddresses,omitempty"`
-	ResourceGuid      *string            `json:"resourceGuid,omitempty"`
-	VirtualNetworks   *[]SubResource     `json:"virtualNetworks,omitempty"`
+	ProvisioningState *ProvisioningState   `json:"provisioningState,omitempty"`
+	PublicIPAddresses *[]CommonSubResource `json:"publicIPAddresses,omitempty"`
+	ResourceGuid      *string              `json:"resourceGuid,omitempty"`
+	VirtualNetworks   *[]CommonSubResource `json:"virtualNetworks,omitempty"`
 }

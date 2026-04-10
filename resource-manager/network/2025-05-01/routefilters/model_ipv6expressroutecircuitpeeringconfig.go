@@ -6,7 +6,7 @@ package routefilters
 type IPv6ExpressRouteCircuitPeeringConfig struct {
 	MicrosoftPeeringConfig     *ExpressRouteCircuitPeeringConfig `json:"microsoftPeeringConfig,omitempty"`
 	PrimaryPeerAddressPrefix   *string                           `json:"primaryPeerAddressPrefix,omitempty"`
-	RouteFilter                *SubResource                      `json:"routeFilter,omitempty"`
+	RouteFilter                *CommonSubResource                `json:"routeFilter,omitempty"`
 	SecondaryPeerAddressPrefix *string                           `json:"secondaryPeerAddressPrefix,omitempty"`
 	State                      *ExpressRouteCircuitPeeringState  `json:"state,omitempty"`
 }

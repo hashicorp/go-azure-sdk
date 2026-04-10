@@ -14,7 +14,7 @@ import (
 type NetworkInterfaceTapConfigurationsGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *NetworkInterfaceTapConfiguration
+	Model        *CommonNetworkInterfaceTapConfiguration
 }
 
 // NetworkInterfaceTapConfigurationsGet ...
@@ -43,7 +43,7 @@ func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsGet(ctx contex
 		return
 	}
 
-	var model NetworkInterfaceTapConfiguration
+	var model CommonNetworkInterfaceTapConfiguration
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

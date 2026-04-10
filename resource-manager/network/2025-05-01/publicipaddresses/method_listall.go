@@ -16,12 +16,12 @@ import (
 type ListAllOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]PublicIPAddress
+	Model        *[]CommonPublicIPAddress
 }
 
 type ListAllCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []PublicIPAddress
+	Items              []CommonPublicIPAddress
 }
 
 type ListAllCustomPager struct {
@@ -64,7 +64,7 @@ func (c PublicIPAddressesClient) ListAll(ctx context.Context, id commonids.Subsc
 	}
 
 	var values struct {
-		Values *[]PublicIPAddress `json:"value"`
+		Values *[]CommonPublicIPAddress `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c PublicIPAddressesClient) ListAll(ctx context.Context, id commonids.Subsc
 
 // ListAllComplete retrieves all the results into a single object
 func (c PublicIPAddressesClient) ListAllComplete(ctx context.Context, id commonids.SubscriptionId) (ListAllCompleteResult, error) {
-	return c.ListAllCompleteMatchingPredicate(ctx, id, PublicIPAddressOperationPredicate{})
+	return c.ListAllCompleteMatchingPredicate(ctx, id, CommonPublicIPAddressOperationPredicate{})
 }
 
 // ListAllCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c PublicIPAddressesClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate PublicIPAddressOperationPredicate) (result ListAllCompleteResult, err error) {
-	items := make([]PublicIPAddress, 0)
+func (c PublicIPAddressesClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate CommonPublicIPAddressOperationPredicate) (result ListAllCompleteResult, err error) {
+	items := make([]CommonPublicIPAddress, 0)
 
 	resp, err := c.ListAll(ctx, id)
 	if err != nil {

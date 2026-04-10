@@ -12,7 +12,7 @@ type VpnClientConfiguration struct {
 	RadiusServers                     *[]RadiusServer                     `json:"radiusServers,omitempty"`
 	VngClientConnectionConfigurations *[]VngClientConnectionConfiguration `json:"vngClientConnectionConfigurations,omitempty"`
 	VpnAuthenticationTypes            *[]VpnAuthenticationType            `json:"vpnAuthenticationTypes,omitempty"`
-	VpnClientAddressPool              *AddressSpace                       `json:"vpnClientAddressPool,omitempty"`
+	VpnClientAddressPool              *CommonAddressSpace                 `json:"vpnClientAddressPool,omitempty"`
 	VpnClientIPsecPolicies            *[]IPsecPolicy                      `json:"vpnClientIpsecPolicies,omitempty"`
 	VpnClientProtocols                *[]VpnClientProtocol                `json:"vpnClientProtocols,omitempty"`
 	VpnClientRevokedCertificates      *[]VpnClientRevokedCertificate      `json:"vpnClientRevokedCertificates,omitempty"`

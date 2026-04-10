@@ -16,14 +16,14 @@ func (p AutoApprovedPrivateLinkServiceOperationPredicate) Matches(input AutoAppr
 	return true
 }
 
-type PrivateEndpointConnectionOperationPredicate struct {
+type CommonPrivateEndpointConnectionOperationPredicate struct {
 	Etag *string
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p PrivateEndpointConnectionOperationPredicate) Matches(input PrivateEndpointConnection) bool {
+func (p CommonPrivateEndpointConnectionOperationPredicate) Matches(input CommonPrivateEndpointConnection) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
@@ -44,25 +44,20 @@ func (p PrivateEndpointConnectionOperationPredicate) Matches(input PrivateEndpoi
 	return true
 }
 
-type PrivateLinkServiceOperationPredicate struct {
-	Etag     *string
-	Id       *string
-	Location *string
-	Name     *string
-	Type     *string
+type CommonPrivateLinkServiceOperationPredicate struct {
+	Etag *string
+	Id   *string
+	Name *string
+	Type *string
 }
 
-func (p PrivateLinkServiceOperationPredicate) Matches(input PrivateLinkService) bool {
+func (p CommonPrivateLinkServiceOperationPredicate) Matches(input CommonPrivateLinkService) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
 	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
-		return false
-	}
-
-	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
 		return false
 	}
 

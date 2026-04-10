@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *LoadBalancer
+	Model        *CommonLoadBalancer
 }
 
 // CreateOrUpdate ...
-func (c LoadBalancersClient) CreateOrUpdate(ctx context.Context, id ProviderLoadBalancerId, input LoadBalancer) (result CreateOrUpdateOperationResponse, err error) {
+func (c LoadBalancersClient) CreateOrUpdate(ctx context.Context, id ProviderLoadBalancerId, input CommonLoadBalancer) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c LoadBalancersClient) CreateOrUpdate(ctx context.Context, id ProviderLoad
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c LoadBalancersClient) CreateOrUpdateThenPoll(ctx context.Context, id ProviderLoadBalancerId, input LoadBalancer) error {
+func (c LoadBalancersClient) CreateOrUpdateThenPoll(ctx context.Context, id ProviderLoadBalancerId, input CommonLoadBalancer) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

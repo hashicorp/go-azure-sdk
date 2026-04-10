@@ -15,12 +15,12 @@ import (
 type LoadBalancerLoadBalancingRulesListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]LoadBalancingRule
+	Model        *[]CommonLoadBalancingRule
 }
 
 type LoadBalancerLoadBalancingRulesListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []LoadBalancingRule
+	Items              []CommonLoadBalancingRule
 }
 
 type LoadBalancerLoadBalancingRulesListCustomPager struct {
@@ -63,7 +63,7 @@ func (c LoadBalancersClient) LoadBalancerLoadBalancingRulesList(ctx context.Cont
 	}
 
 	var values struct {
-		Values *[]LoadBalancingRule `json:"value"`
+		Values *[]CommonLoadBalancingRule `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c LoadBalancersClient) LoadBalancerLoadBalancingRulesList(ctx context.Cont
 
 // LoadBalancerLoadBalancingRulesListComplete retrieves all the results into a single object
 func (c LoadBalancersClient) LoadBalancerLoadBalancingRulesListComplete(ctx context.Context, id ProviderLoadBalancerId) (LoadBalancerLoadBalancingRulesListCompleteResult, error) {
-	return c.LoadBalancerLoadBalancingRulesListCompleteMatchingPredicate(ctx, id, LoadBalancingRuleOperationPredicate{})
+	return c.LoadBalancerLoadBalancingRulesListCompleteMatchingPredicate(ctx, id, CommonLoadBalancingRuleOperationPredicate{})
 }
 
 // LoadBalancerLoadBalancingRulesListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c LoadBalancersClient) LoadBalancerLoadBalancingRulesListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate LoadBalancingRuleOperationPredicate) (result LoadBalancerLoadBalancingRulesListCompleteResult, err error) {
-	items := make([]LoadBalancingRule, 0)
+func (c LoadBalancersClient) LoadBalancerLoadBalancingRulesListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate CommonLoadBalancingRuleOperationPredicate) (result LoadBalancerLoadBalancingRulesListCompleteResult, err error) {
+	items := make([]CommonLoadBalancingRule, 0)
 
 	resp, err := c.LoadBalancerLoadBalancingRulesList(ctx, id)
 	if err != nil {

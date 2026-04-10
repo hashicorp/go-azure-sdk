@@ -6,8 +6,8 @@ package applicationgateways
 type ApplicationGatewayFrontendIPConfigurationPropertiesFormat struct {
 	PrivateIPAddress          *string             `json:"privateIPAddress,omitempty"`
 	PrivateIPAllocationMethod *IPAllocationMethod `json:"privateIPAllocationMethod,omitempty"`
-	PrivateLinkConfiguration  *SubResource        `json:"privateLinkConfiguration,omitempty"`
+	PrivateLinkConfiguration  *CommonSubResource  `json:"privateLinkConfiguration,omitempty"`
 	ProvisioningState         *ProvisioningState  `json:"provisioningState,omitempty"`
-	PublicIPAddress           *SubResource        `json:"publicIPAddress,omitempty"`
-	Subnet                    *SubResource        `json:"subnet,omitempty"`
+	PublicIPAddress           *CommonSubResource  `json:"publicIPAddress,omitempty"`
+	Subnet                    *CommonSubResource  `json:"subnet,omitempty"`
 }

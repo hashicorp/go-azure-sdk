@@ -27,7 +27,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := loadbalancers.NewProviderLoadBalancerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerName")
 
-payload := loadbalancers.LoadBalancer{
+payload := loadbalancers.CommonLoadBalancer{
 	// ...
 }
 
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := loadbalancers.NewInboundNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerName", "inboundNatRuleName")
 
-payload := loadbalancers.InboundNatRule{
+payload := loadbalancers.CommonInboundNatRule{
 	// ...
 }
 
@@ -185,7 +185,7 @@ if err := client.ListInboundNatRulePortMappingsThenPoll(ctx, id, payload); err !
 ctx := context.TODO()
 id := loadbalancers.NewLoadBalancerBackendAddressPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "loadBalancerName", "backendAddressPoolName")
 
-payload := loadbalancers.BackendAddressPool{
+payload := loadbalancers.CommonBackendAddressPool{
 	// ...
 }
 

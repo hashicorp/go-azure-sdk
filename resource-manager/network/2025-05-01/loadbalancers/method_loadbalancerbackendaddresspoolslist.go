@@ -15,12 +15,12 @@ import (
 type LoadBalancerBackendAddressPoolsListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]BackendAddressPool
+	Model        *[]CommonBackendAddressPool
 }
 
 type LoadBalancerBackendAddressPoolsListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []BackendAddressPool
+	Items              []CommonBackendAddressPool
 }
 
 type LoadBalancerBackendAddressPoolsListCustomPager struct {
@@ -63,7 +63,7 @@ func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsList(ctx context.Con
 	}
 
 	var values struct {
-		Values *[]BackendAddressPool `json:"value"`
+		Values *[]CommonBackendAddressPool `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsList(ctx context.Con
 
 // LoadBalancerBackendAddressPoolsListComplete retrieves all the results into a single object
 func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsListComplete(ctx context.Context, id ProviderLoadBalancerId) (LoadBalancerBackendAddressPoolsListCompleteResult, error) {
-	return c.LoadBalancerBackendAddressPoolsListCompleteMatchingPredicate(ctx, id, BackendAddressPoolOperationPredicate{})
+	return c.LoadBalancerBackendAddressPoolsListCompleteMatchingPredicate(ctx, id, CommonBackendAddressPoolOperationPredicate{})
 }
 
 // LoadBalancerBackendAddressPoolsListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate BackendAddressPoolOperationPredicate) (result LoadBalancerBackendAddressPoolsListCompleteResult, err error) {
-	items := make([]BackendAddressPool, 0)
+func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate CommonBackendAddressPoolOperationPredicate) (result LoadBalancerBackendAddressPoolsListCompleteResult, err error) {
+	items := make([]CommonBackendAddressPool, 0)
 
 	resp, err := c.LoadBalancerBackendAddressPoolsList(ctx, id)
 	if err != nil {

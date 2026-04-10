@@ -4,6 +4,6 @@ package networkwatchers
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type NetworkInterfaceAssociation struct {
-	Id            *string         `json:"id,omitempty"`
-	SecurityRules *[]SecurityRule `json:"securityRules,omitempty"`
+	Id            *string               `json:"id,omitempty"`
+	SecurityRules *[]CommonSecurityRule `json:"securityRules,omitempty"`
 }

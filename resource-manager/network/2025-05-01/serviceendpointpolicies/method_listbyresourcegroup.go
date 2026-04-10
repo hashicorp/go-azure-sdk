@@ -16,12 +16,12 @@ import (
 type ListByResourceGroupOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]ServiceEndpointPolicy
+	Model        *[]CommonServiceEndpointPolicy
 }
 
 type ListByResourceGroupCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []ServiceEndpointPolicy
+	Items              []CommonServiceEndpointPolicy
 }
 
 type ListByResourceGroupCustomPager struct {
@@ -64,7 +64,7 @@ func (c ServiceEndpointPoliciesClient) ListByResourceGroup(ctx context.Context, 
 	}
 
 	var values struct {
-		Values *[]ServiceEndpointPolicy `json:"value"`
+		Values *[]CommonServiceEndpointPolicy `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c ServiceEndpointPoliciesClient) ListByResourceGroup(ctx context.Context, 
 
 // ListByResourceGroupComplete retrieves all the results into a single object
 func (c ServiceEndpointPoliciesClient) ListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (ListByResourceGroupCompleteResult, error) {
-	return c.ListByResourceGroupCompleteMatchingPredicate(ctx, id, ServiceEndpointPolicyOperationPredicate{})
+	return c.ListByResourceGroupCompleteMatchingPredicate(ctx, id, CommonServiceEndpointPolicyOperationPredicate{})
 }
 
 // ListByResourceGroupCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ServiceEndpointPoliciesClient) ListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate ServiceEndpointPolicyOperationPredicate) (result ListByResourceGroupCompleteResult, err error) {
-	items := make([]ServiceEndpointPolicy, 0)
+func (c ServiceEndpointPoliciesClient) ListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate CommonServiceEndpointPolicyOperationPredicate) (result ListByResourceGroupCompleteResult, err error) {
+	items := make([]CommonServiceEndpointPolicy, 0)
 
 	resp, err := c.ListByResourceGroup(ctx, id)
 	if err != nil {

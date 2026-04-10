@@ -14,7 +14,7 @@ import (
 type LoadBalancerLoadBalancingRulesGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *LoadBalancingRule
+	Model        *CommonLoadBalancingRule
 }
 
 // LoadBalancerLoadBalancingRulesGet ...
@@ -43,7 +43,7 @@ func (c LoadBalancersClient) LoadBalancerLoadBalancingRulesGet(ctx context.Conte
 		return
 	}
 
-	var model LoadBalancingRule
+	var model CommonLoadBalancingRule
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -16,6 +16,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/componentworkitemconfigsapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/favoritesapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/myworkbooksapis"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/openapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/webtestlocationsapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/webtestsapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/workbooksapis"
@@ -34,6 +35,7 @@ type Client struct {
 	ComponentsAPIs                  *componentsapis.ComponentsAPIsClient
 	FavoritesAPIs                   *favoritesapis.FavoritesAPIsClient
 	MyworkbooksAPIs                 *myworkbooksapis.MyworkbooksAPIsClient
+	Openapis                        *openapis.OpenapisClient
 	WebTestLocationsAPIs            *webtestlocationsapis.WebTestLocationsAPIsClient
 	WebTestsAPIs                    *webtestsapis.WebTestsAPIsClient
 	WorkbooksAPIs                   *workbooksapis.WorkbooksAPIsClient
@@ -100,6 +102,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(myworkbooksAPIsClient.Client)
 
+	openapisClient, err := openapis.NewOpenapisClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Openapis client: %+v", err)
+	}
+	configureFunc(openapisClient.Client)
+
 	webTestLocationsAPIsClient, err := webtestlocationsapis.NewWebTestLocationsAPIsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WebTestLocationsAPIs client: %+v", err)
@@ -129,6 +137,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		ComponentsAPIs:                  componentsAPIsClient,
 		FavoritesAPIs:                   favoritesAPIsClient,
 		MyworkbooksAPIs:                 myworkbooksAPIsClient,
+		Openapis:                        openapisClient,
 		WebTestLocationsAPIs:            webTestLocationsAPIsClient,
 		WebTestsAPIs:                    webTestsAPIsClient,
 		WorkbooksAPIs:                   workbooksAPIsClient,

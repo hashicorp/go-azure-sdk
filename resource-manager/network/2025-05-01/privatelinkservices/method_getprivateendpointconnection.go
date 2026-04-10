@@ -15,7 +15,7 @@ import (
 type GetPrivateEndpointConnectionOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *PrivateEndpointConnection
+	Model        *CommonPrivateEndpointConnection
 }
 
 type GetPrivateEndpointConnectionOperationOptions struct {
@@ -73,7 +73,7 @@ func (c PrivateLinkServicesClient) GetPrivateEndpointConnection(ctx context.Cont
 		return
 	}
 
-	var model PrivateEndpointConnection
+	var model CommonPrivateEndpointConnection
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -4,12 +4,12 @@ package applicationgateways
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplicationGatewayPathRulePropertiesFormat struct {
-	BackendAddressPool     *SubResource       `json:"backendAddressPool,omitempty"`
-	BackendHTTPSettings    *SubResource       `json:"backendHttpSettings,omitempty"`
-	FirewallPolicy         *SubResource       `json:"firewallPolicy,omitempty"`
-	LoadDistributionPolicy *SubResource       `json:"loadDistributionPolicy,omitempty"`
+	BackendAddressPool     *CommonSubResource `json:"backendAddressPool,omitempty"`
+	BackendHTTPSettings    *CommonSubResource `json:"backendHttpSettings,omitempty"`
+	FirewallPolicy         *CommonSubResource `json:"firewallPolicy,omitempty"`
+	LoadDistributionPolicy *CommonSubResource `json:"loadDistributionPolicy,omitempty"`
 	Paths                  *[]string          `json:"paths,omitempty"`
 	ProvisioningState      *ProvisioningState `json:"provisioningState,omitempty"`
-	RedirectConfiguration  *SubResource       `json:"redirectConfiguration,omitempty"`
-	RewriteRuleSet         *SubResource       `json:"rewriteRuleSet,omitempty"`
+	RedirectConfiguration  *CommonSubResource `json:"redirectConfiguration,omitempty"`
+	RewriteRuleSet         *CommonSubResource `json:"rewriteRuleSet,omitempty"`
 }

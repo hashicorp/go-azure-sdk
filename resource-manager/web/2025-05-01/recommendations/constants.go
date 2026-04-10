@@ -105,3 +105,47 @@ func parseNotificationLevel(input string) (*NotificationLevel, error) {
 	out := NotificationLevel(input)
 	return &out, nil
 }
+
+type ResourceScopeType string
+
+const (
+	ResourceScopeTypeServerFarm   ResourceScopeType = "ServerFarm"
+	ResourceScopeTypeSubscription ResourceScopeType = "Subscription"
+	ResourceScopeTypeWebSite      ResourceScopeType = "WebSite"
+)
+
+func PossibleValuesForResourceScopeType() []string {
+	return []string{
+		string(ResourceScopeTypeServerFarm),
+		string(ResourceScopeTypeSubscription),
+		string(ResourceScopeTypeWebSite),
+	}
+}
+
+func (s *ResourceScopeType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResourceScopeType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseResourceScopeType(input string) (*ResourceScopeType, error) {
+	vals := map[string]ResourceScopeType{
+		"serverfarm":   ResourceScopeTypeServerFarm,
+		"subscription": ResourceScopeTypeSubscription,
+		"website":      ResourceScopeTypeWebSite,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResourceScopeType(input)
+	return &out, nil
+}

@@ -15,12 +15,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]Route
+	Model        *[]CommonRoute
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []Route
+	Items              []CommonRoute
 }
 
 type ListCustomPager struct {
@@ -63,7 +63,7 @@ func (c RoutesClient) List(ctx context.Context, id RouteTableId) (result ListOpe
 	}
 
 	var values struct {
-		Values *[]Route `json:"value"`
+		Values *[]CommonRoute `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c RoutesClient) List(ctx context.Context, id RouteTableId) (result ListOpe
 
 // ListComplete retrieves all the results into a single object
 func (c RoutesClient) ListComplete(ctx context.Context, id RouteTableId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, RouteOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, CommonRouteOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RoutesClient) ListCompleteMatchingPredicate(ctx context.Context, id RouteTableId, predicate RouteOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]Route, 0)
+func (c RoutesClient) ListCompleteMatchingPredicate(ctx context.Context, id RouteTableId, predicate CommonRouteOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]CommonRoute, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

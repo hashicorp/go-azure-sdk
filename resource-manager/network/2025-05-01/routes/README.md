@@ -26,7 +26,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := routes.NewRouteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableName", "routeName")
 
-payload := routes.Route{
+payload := routes.CommonRoute{
 	// ...
 }
 

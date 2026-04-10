@@ -4,6 +4,6 @@ package firewallpolicies
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FirewallPolicyLogAnalyticsWorkspace struct {
-	Region      *string      `json:"region,omitempty"`
-	WorkspaceId *SubResource `json:"workspaceId,omitempty"`
+	Region      *string            `json:"region,omitempty"`
+	WorkspaceId *CommonSubResource `json:"workspaceId,omitempty"`
 }

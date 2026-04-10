@@ -8,5 +8,5 @@ type ServiceGatewayPropertiesFormat struct {
 	ResourceGuid         *string                             `json:"resourceGuid,omitempty"`
 	RouteTargetAddress   *RouteTargetAddressPropertiesFormat `json:"routeTargetAddress,omitempty"`
 	RouteTargetAddressV6 *RouteTargetAddressPropertiesFormat `json:"routeTargetAddressV6,omitempty"`
-	VirtualNetwork       *VirtualNetwork                     `json:"virtualNetwork,omitempty"`
+	VirtualNetwork       *CommonVirtualNetwork               `json:"virtualNetwork,omitempty"`
 }

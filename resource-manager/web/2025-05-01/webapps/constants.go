@@ -9,6 +9,53 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+type AuthType string
+
+const (
+	AuthTypeAnonymous       AuthType = "Anonymous"
+	AuthTypeSystemIdentity  AuthType = "SystemIdentity"
+	AuthTypeUserAssigned    AuthType = "UserAssigned"
+	AuthTypeUserCredentials AuthType = "UserCredentials"
+)
+
+func PossibleValuesForAuthType() []string {
+	return []string{
+		string(AuthTypeAnonymous),
+		string(AuthTypeSystemIdentity),
+		string(AuthTypeUserAssigned),
+		string(AuthTypeUserCredentials),
+	}
+}
+
+func (s *AuthType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAuthType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseAuthType(input string) (*AuthType, error) {
+	vals := map[string]AuthType{
+		"anonymous":       AuthTypeAnonymous,
+		"systemidentity":  AuthTypeSystemIdentity,
+		"userassigned":    AuthTypeUserAssigned,
+		"usercredentials": AuthTypeUserCredentials,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthType(input)
+	return &out, nil
+}
+
 type AuthenticationType string
 
 const (
@@ -141,6 +188,47 @@ func parseAutoHealActionType(input string) (*AutoHealActionType, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := AutoHealActionType(input)
+	return &out, nil
+}
+
+type AzureResourceType string
+
+const (
+	AzureResourceTypeTrafficManager AzureResourceType = "TrafficManager"
+	AzureResourceTypeWebsite        AzureResourceType = "Website"
+)
+
+func PossibleValuesForAzureResourceType() []string {
+	return []string{
+		string(AzureResourceTypeTrafficManager),
+		string(AzureResourceTypeWebsite),
+	}
+}
+
+func (s *AzureResourceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAzureResourceType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseAzureResourceType(input string) (*AzureResourceType, error) {
+	vals := map[string]AzureResourceType{
+		"trafficmanager": AzureResourceTypeTrafficManager,
+		"website":        AzureResourceTypeWebsite,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureResourceType(input)
 	return &out, nil
 }
 
@@ -600,6 +688,138 @@ func parseConnectionStringType(input string) (*ConnectionStringType, error) {
 	return &out, nil
 }
 
+type ContinuousWebJobStatus string
+
+const (
+	ContinuousWebJobStatusInitializing   ContinuousWebJobStatus = "Initializing"
+	ContinuousWebJobStatusPendingRestart ContinuousWebJobStatus = "PendingRestart"
+	ContinuousWebJobStatusRunning        ContinuousWebJobStatus = "Running"
+	ContinuousWebJobStatusStarting       ContinuousWebJobStatus = "Starting"
+	ContinuousWebJobStatusStopped        ContinuousWebJobStatus = "Stopped"
+)
+
+func PossibleValuesForContinuousWebJobStatus() []string {
+	return []string{
+		string(ContinuousWebJobStatusInitializing),
+		string(ContinuousWebJobStatusPendingRestart),
+		string(ContinuousWebJobStatusRunning),
+		string(ContinuousWebJobStatusStarting),
+		string(ContinuousWebJobStatusStopped),
+	}
+}
+
+func (s *ContinuousWebJobStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseContinuousWebJobStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseContinuousWebJobStatus(input string) (*ContinuousWebJobStatus, error) {
+	vals := map[string]ContinuousWebJobStatus{
+		"initializing":   ContinuousWebJobStatusInitializing,
+		"pendingrestart": ContinuousWebJobStatusPendingRestart,
+		"running":        ContinuousWebJobStatusRunning,
+		"starting":       ContinuousWebJobStatusStarting,
+		"stopped":        ContinuousWebJobStatusStopped,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContinuousWebJobStatus(input)
+	return &out, nil
+}
+
+type CookieExpirationConvention string
+
+const (
+	CookieExpirationConventionFixedTime               CookieExpirationConvention = "FixedTime"
+	CookieExpirationConventionIdentityProviderDerived CookieExpirationConvention = "IdentityProviderDerived"
+)
+
+func PossibleValuesForCookieExpirationConvention() []string {
+	return []string{
+		string(CookieExpirationConventionFixedTime),
+		string(CookieExpirationConventionIdentityProviderDerived),
+	}
+}
+
+func (s *CookieExpirationConvention) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCookieExpirationConvention(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseCookieExpirationConvention(input string) (*CookieExpirationConvention, error) {
+	vals := map[string]CookieExpirationConvention{
+		"fixedtime":               CookieExpirationConventionFixedTime,
+		"identityproviderderived": CookieExpirationConventionIdentityProviderDerived,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CookieExpirationConvention(input)
+	return &out, nil
+}
+
+type CustomHostNameDnsRecordType string
+
+const (
+	CustomHostNameDnsRecordTypeA     CustomHostNameDnsRecordType = "A"
+	CustomHostNameDnsRecordTypeCName CustomHostNameDnsRecordType = "CName"
+)
+
+func PossibleValuesForCustomHostNameDnsRecordType() []string {
+	return []string{
+		string(CustomHostNameDnsRecordTypeA),
+		string(CustomHostNameDnsRecordTypeCName),
+	}
+}
+
+func (s *CustomHostNameDnsRecordType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCustomHostNameDnsRecordType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseCustomHostNameDnsRecordType(input string) (*CustomHostNameDnsRecordType, error) {
+	vals := map[string]CustomHostNameDnsRecordType{
+		"a":     CustomHostNameDnsRecordTypeA,
+		"cname": CustomHostNameDnsRecordTypeCName,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CustomHostNameDnsRecordType(input)
+	return &out, nil
+}
+
 type DaprLogLevel string
 
 const (
@@ -735,6 +955,80 @@ func parseDefaultAction(input string) (*DefaultAction, error) {
 	return &out, nil
 }
 
+type DeploymentBuildStatus string
+
+const (
+	DeploymentBuildStatusBuildAborted             DeploymentBuildStatus = "BuildAborted"
+	DeploymentBuildStatusBuildFailed              DeploymentBuildStatus = "BuildFailed"
+	DeploymentBuildStatusBuildInProgress          DeploymentBuildStatus = "BuildInProgress"
+	DeploymentBuildStatusBuildPending             DeploymentBuildStatus = "BuildPending"
+	DeploymentBuildStatusBuildRequestReceived     DeploymentBuildStatus = "BuildRequestReceived"
+	DeploymentBuildStatusBuildSuccessful          DeploymentBuildStatus = "BuildSuccessful"
+	DeploymentBuildStatusPostBuildRestartRequired DeploymentBuildStatus = "PostBuildRestartRequired"
+	DeploymentBuildStatusRuntimeFailed            DeploymentBuildStatus = "RuntimeFailed"
+	DeploymentBuildStatusRuntimeStarting          DeploymentBuildStatus = "RuntimeStarting"
+	DeploymentBuildStatusRuntimeSuccessful        DeploymentBuildStatus = "RuntimeSuccessful"
+	DeploymentBuildStatusStartPolling             DeploymentBuildStatus = "StartPolling"
+	DeploymentBuildStatusStartPollingWithRestart  DeploymentBuildStatus = "StartPollingWithRestart"
+	DeploymentBuildStatusTimedOut                 DeploymentBuildStatus = "TimedOut"
+)
+
+func PossibleValuesForDeploymentBuildStatus() []string {
+	return []string{
+		string(DeploymentBuildStatusBuildAborted),
+		string(DeploymentBuildStatusBuildFailed),
+		string(DeploymentBuildStatusBuildInProgress),
+		string(DeploymentBuildStatusBuildPending),
+		string(DeploymentBuildStatusBuildRequestReceived),
+		string(DeploymentBuildStatusBuildSuccessful),
+		string(DeploymentBuildStatusPostBuildRestartRequired),
+		string(DeploymentBuildStatusRuntimeFailed),
+		string(DeploymentBuildStatusRuntimeStarting),
+		string(DeploymentBuildStatusRuntimeSuccessful),
+		string(DeploymentBuildStatusStartPolling),
+		string(DeploymentBuildStatusStartPollingWithRestart),
+		string(DeploymentBuildStatusTimedOut),
+	}
+}
+
+func (s *DeploymentBuildStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDeploymentBuildStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseDeploymentBuildStatus(input string) (*DeploymentBuildStatus, error) {
+	vals := map[string]DeploymentBuildStatus{
+		"buildaborted":             DeploymentBuildStatusBuildAborted,
+		"buildfailed":              DeploymentBuildStatusBuildFailed,
+		"buildinprogress":          DeploymentBuildStatusBuildInProgress,
+		"buildpending":             DeploymentBuildStatusBuildPending,
+		"buildrequestreceived":     DeploymentBuildStatusBuildRequestReceived,
+		"buildsuccessful":          DeploymentBuildStatusBuildSuccessful,
+		"postbuildrestartrequired": DeploymentBuildStatusPostBuildRestartRequired,
+		"runtimefailed":            DeploymentBuildStatusRuntimeFailed,
+		"runtimestarting":          DeploymentBuildStatusRuntimeStarting,
+		"runtimesuccessful":        DeploymentBuildStatusRuntimeSuccessful,
+		"startpolling":             DeploymentBuildStatusStartPolling,
+		"startpollingwithrestart":  DeploymentBuildStatusStartPollingWithRestart,
+		"timedout":                 DeploymentBuildStatusTimedOut,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeploymentBuildStatus(input)
+	return &out, nil
+}
+
 type DnsVerificationTestResult string
 
 const (
@@ -776,6 +1070,50 @@ func parseDnsVerificationTestResult(input string) (*DnsVerificationTestResult, e
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := DnsVerificationTestResult(input)
+	return &out, nil
+}
+
+type ForwardProxyConvention string
+
+const (
+	ForwardProxyConventionCustom   ForwardProxyConvention = "Custom"
+	ForwardProxyConventionNoProxy  ForwardProxyConvention = "NoProxy"
+	ForwardProxyConventionStandard ForwardProxyConvention = "Standard"
+)
+
+func PossibleValuesForForwardProxyConvention() []string {
+	return []string{
+		string(ForwardProxyConventionCustom),
+		string(ForwardProxyConventionNoProxy),
+		string(ForwardProxyConventionStandard),
+	}
+}
+
+func (s *ForwardProxyConvention) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseForwardProxyConvention(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseForwardProxyConvention(input string) (*ForwardProxyConvention, error) {
+	vals := map[string]ForwardProxyConvention{
+		"custom":   ForwardProxyConventionCustom,
+		"noproxy":  ForwardProxyConventionNoProxy,
+		"standard": ForwardProxyConventionStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ForwardProxyConvention(input)
 	return &out, nil
 }
 
@@ -899,6 +1237,47 @@ func parseFunctionsDeploymentStorageType(input string) (*FunctionsDeploymentStor
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := FunctionsDeploymentStorageType(input)
+	return &out, nil
+}
+
+type HostNameType string
+
+const (
+	HostNameTypeManaged  HostNameType = "Managed"
+	HostNameTypeVerified HostNameType = "Verified"
+)
+
+func PossibleValuesForHostNameType() []string {
+	return []string{
+		string(HostNameTypeManaged),
+		string(HostNameTypeVerified),
+	}
+}
+
+func (s *HostNameType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHostNameType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseHostNameType(input string) (*HostNameType, error) {
+	vals := map[string]HostNameType{
+		"managed":  HostNameTypeManaged,
+		"verified": HostNameTypeVerified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HostNameType(input)
 	return &out, nil
 }
 
@@ -1031,6 +1410,150 @@ func parseIPMode(input string) (*IPMode, error) {
 	return &out, nil
 }
 
+type LogLevel string
+
+const (
+	LogLevelError       LogLevel = "Error"
+	LogLevelInformation LogLevel = "Information"
+	LogLevelOff         LogLevel = "Off"
+	LogLevelVerbose     LogLevel = "Verbose"
+	LogLevelWarning     LogLevel = "Warning"
+)
+
+func PossibleValuesForLogLevel() []string {
+	return []string{
+		string(LogLevelError),
+		string(LogLevelInformation),
+		string(LogLevelOff),
+		string(LogLevelVerbose),
+		string(LogLevelWarning),
+	}
+}
+
+func (s *LogLevel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLogLevel(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseLogLevel(input string) (*LogLevel, error) {
+	vals := map[string]LogLevel{
+		"error":       LogLevelError,
+		"information": LogLevelInformation,
+		"off":         LogLevelOff,
+		"verbose":     LogLevelVerbose,
+		"warning":     LogLevelWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LogLevel(input)
+	return &out, nil
+}
+
+type MSDeployLogEntryType string
+
+const (
+	MSDeployLogEntryTypeError   MSDeployLogEntryType = "Error"
+	MSDeployLogEntryTypeMessage MSDeployLogEntryType = "Message"
+	MSDeployLogEntryTypeWarning MSDeployLogEntryType = "Warning"
+)
+
+func PossibleValuesForMSDeployLogEntryType() []string {
+	return []string{
+		string(MSDeployLogEntryTypeError),
+		string(MSDeployLogEntryTypeMessage),
+		string(MSDeployLogEntryTypeWarning),
+	}
+}
+
+func (s *MSDeployLogEntryType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMSDeployLogEntryType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseMSDeployLogEntryType(input string) (*MSDeployLogEntryType, error) {
+	vals := map[string]MSDeployLogEntryType{
+		"error":   MSDeployLogEntryTypeError,
+		"message": MSDeployLogEntryTypeMessage,
+		"warning": MSDeployLogEntryTypeWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MSDeployLogEntryType(input)
+	return &out, nil
+}
+
+type MSDeployProvisioningState string
+
+const (
+	MSDeployProvisioningStateAccepted  MSDeployProvisioningState = "accepted"
+	MSDeployProvisioningStateCanceled  MSDeployProvisioningState = "canceled"
+	MSDeployProvisioningStateFailed    MSDeployProvisioningState = "failed"
+	MSDeployProvisioningStateRunning   MSDeployProvisioningState = "running"
+	MSDeployProvisioningStateSucceeded MSDeployProvisioningState = "succeeded"
+)
+
+func PossibleValuesForMSDeployProvisioningState() []string {
+	return []string{
+		string(MSDeployProvisioningStateAccepted),
+		string(MSDeployProvisioningStateCanceled),
+		string(MSDeployProvisioningStateFailed),
+		string(MSDeployProvisioningStateRunning),
+		string(MSDeployProvisioningStateSucceeded),
+	}
+}
+
+func (s *MSDeployProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMSDeployProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseMSDeployProvisioningState(input string) (*MSDeployProvisioningState, error) {
+	vals := map[string]MSDeployProvisioningState{
+		"accepted":  MSDeployProvisioningStateAccepted,
+		"canceled":  MSDeployProvisioningStateCanceled,
+		"failed":    MSDeployProvisioningStateFailed,
+		"running":   MSDeployProvisioningStateRunning,
+		"succeeded": MSDeployProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MSDeployProvisioningState(input)
+	return &out, nil
+}
+
 type ManagedPipelineMode string
 
 const (
@@ -1069,6 +1592,179 @@ func parseManagedPipelineMode(input string) (*ManagedPipelineMode, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := ManagedPipelineMode(input)
+	return &out, nil
+}
+
+type Method string
+
+const (
+	MethodClientSecretPost Method = "ClientSecretPost"
+)
+
+func PossibleValuesForMethod() []string {
+	return []string{
+		string(MethodClientSecretPost),
+	}
+}
+
+func (s *Method) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseMethod(input string) (*Method, error) {
+	vals := map[string]Method{
+		"clientsecretpost": MethodClientSecretPost,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Method(input)
+	return &out, nil
+}
+
+type MySqlMigrationType string
+
+const (
+	MySqlMigrationTypeLocalToRemote MySqlMigrationType = "LocalToRemote"
+	MySqlMigrationTypeRemoteToLocal MySqlMigrationType = "RemoteToLocal"
+)
+
+func PossibleValuesForMySqlMigrationType() []string {
+	return []string{
+		string(MySqlMigrationTypeLocalToRemote),
+		string(MySqlMigrationTypeRemoteToLocal),
+	}
+}
+
+func (s *MySqlMigrationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMySqlMigrationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseMySqlMigrationType(input string) (*MySqlMigrationType, error) {
+	vals := map[string]MySqlMigrationType{
+		"localtoremote": MySqlMigrationTypeLocalToRemote,
+		"remotetolocal": MySqlMigrationTypeRemoteToLocal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MySqlMigrationType(input)
+	return &out, nil
+}
+
+type OperationStatus string
+
+const (
+	OperationStatusCreated    OperationStatus = "Created"
+	OperationStatusFailed     OperationStatus = "Failed"
+	OperationStatusInProgress OperationStatus = "InProgress"
+	OperationStatusSucceeded  OperationStatus = "Succeeded"
+	OperationStatusTimedOut   OperationStatus = "TimedOut"
+)
+
+func PossibleValuesForOperationStatus() []string {
+	return []string{
+		string(OperationStatusCreated),
+		string(OperationStatusFailed),
+		string(OperationStatusInProgress),
+		string(OperationStatusSucceeded),
+		string(OperationStatusTimedOut),
+	}
+}
+
+func (s *OperationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperationStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseOperationStatus(input string) (*OperationStatus, error) {
+	vals := map[string]OperationStatus{
+		"created":    OperationStatusCreated,
+		"failed":     OperationStatusFailed,
+		"inprogress": OperationStatusInProgress,
+		"succeeded":  OperationStatusSucceeded,
+		"timedout":   OperationStatusTimedOut,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OperationStatus(input)
+	return &out, nil
+}
+
+type PublicCertificateLocation string
+
+const (
+	PublicCertificateLocationCurrentUserMy  PublicCertificateLocation = "CurrentUserMy"
+	PublicCertificateLocationLocalMachineMy PublicCertificateLocation = "LocalMachineMy"
+	PublicCertificateLocationUnknown        PublicCertificateLocation = "Unknown"
+)
+
+func PossibleValuesForPublicCertificateLocation() []string {
+	return []string{
+		string(PublicCertificateLocationCurrentUserMy),
+		string(PublicCertificateLocationLocalMachineMy),
+		string(PublicCertificateLocationUnknown),
+	}
+}
+
+func (s *PublicCertificateLocation) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePublicCertificateLocation(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parsePublicCertificateLocation(input string) (*PublicCertificateLocation, error) {
+	vals := map[string]PublicCertificateLocation{
+		"currentusermy":  PublicCertificateLocationCurrentUserMy,
+		"localmachinemy": PublicCertificateLocationLocalMachineMy,
+		"unknown":        PublicCertificateLocationUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PublicCertificateLocation(input)
 	return &out, nil
 }
 
@@ -1163,6 +1859,118 @@ func parseRedundancyMode(input string) (*RedundancyMode, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := RedundancyMode(input)
+	return &out, nil
+}
+
+type ResolveStatus string
+
+const (
+	ResolveStatusAccessToKeyVaultDenied ResolveStatus = "AccessToKeyVaultDenied"
+	ResolveStatusFetchTimedOut          ResolveStatus = "FetchTimedOut"
+	ResolveStatusInitialized            ResolveStatus = "Initialized"
+	ResolveStatusInvalidSyntax          ResolveStatus = "InvalidSyntax"
+	ResolveStatusMSINotEnabled          ResolveStatus = "MSINotEnabled"
+	ResolveStatusOtherReasons           ResolveStatus = "OtherReasons"
+	ResolveStatusResolved               ResolveStatus = "Resolved"
+	ResolveStatusSecretNotFound         ResolveStatus = "SecretNotFound"
+	ResolveStatusSecretVersionNotFound  ResolveStatus = "SecretVersionNotFound"
+	ResolveStatusUnauthorizedClient     ResolveStatus = "UnauthorizedClient"
+	ResolveStatusVaultNotFound          ResolveStatus = "VaultNotFound"
+)
+
+func PossibleValuesForResolveStatus() []string {
+	return []string{
+		string(ResolveStatusAccessToKeyVaultDenied),
+		string(ResolveStatusFetchTimedOut),
+		string(ResolveStatusInitialized),
+		string(ResolveStatusInvalidSyntax),
+		string(ResolveStatusMSINotEnabled),
+		string(ResolveStatusOtherReasons),
+		string(ResolveStatusResolved),
+		string(ResolveStatusSecretNotFound),
+		string(ResolveStatusSecretVersionNotFound),
+		string(ResolveStatusUnauthorizedClient),
+		string(ResolveStatusVaultNotFound),
+	}
+}
+
+func (s *ResolveStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResolveStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseResolveStatus(input string) (*ResolveStatus, error) {
+	vals := map[string]ResolveStatus{
+		"accesstokeyvaultdenied": ResolveStatusAccessToKeyVaultDenied,
+		"fetchtimedout":          ResolveStatusFetchTimedOut,
+		"initialized":            ResolveStatusInitialized,
+		"invalidsyntax":          ResolveStatusInvalidSyntax,
+		"msinotenabled":          ResolveStatusMSINotEnabled,
+		"otherreasons":           ResolveStatusOtherReasons,
+		"resolved":               ResolveStatusResolved,
+		"secretnotfound":         ResolveStatusSecretNotFound,
+		"secretversionnotfound":  ResolveStatusSecretVersionNotFound,
+		"unauthorizedclient":     ResolveStatusUnauthorizedClient,
+		"vaultnotfound":          ResolveStatusVaultNotFound,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResolveStatus(input)
+	return &out, nil
+}
+
+type RouteType string
+
+const (
+	RouteTypeDefault   RouteType = "DEFAULT"
+	RouteTypeINHERITED RouteType = "INHERITED"
+	RouteTypeSTATIC    RouteType = "STATIC"
+)
+
+func PossibleValuesForRouteType() []string {
+	return []string{
+		string(RouteTypeDefault),
+		string(RouteTypeINHERITED),
+		string(RouteTypeSTATIC),
+	}
+}
+
+func (s *RouteType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRouteType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseRouteType(input string) (*RouteType, error) {
+	vals := map[string]RouteType{
+		"default":   RouteTypeDefault,
+		"inherited": RouteTypeINHERITED,
+		"static":    RouteTypeSTATIC,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RouteType(input)
 	return &out, nil
 }
 
@@ -1340,6 +2148,47 @@ func parseSiteAvailabilityState(input string) (*SiteAvailabilityState, error) {
 	return &out, nil
 }
 
+type SiteExtensionType string
+
+const (
+	SiteExtensionTypeGallery SiteExtensionType = "Gallery"
+	SiteExtensionTypeWebRoot SiteExtensionType = "WebRoot"
+)
+
+func PossibleValuesForSiteExtensionType() []string {
+	return []string{
+		string(SiteExtensionTypeGallery),
+		string(SiteExtensionTypeWebRoot),
+	}
+}
+
+func (s *SiteExtensionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSiteExtensionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseSiteExtensionType(input string) (*SiteExtensionType, error) {
+	vals := map[string]SiteExtensionType{
+		"gallery": SiteExtensionTypeGallery,
+		"webroot": SiteExtensionTypeWebRoot,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SiteExtensionType(input)
+	return &out, nil
+}
+
 type SiteLoadBalancing string
 
 const (
@@ -1396,6 +2245,50 @@ func parseSiteLoadBalancing(input string) (*SiteLoadBalancing, error) {
 	return &out, nil
 }
 
+type SiteRuntimeState string
+
+const (
+	SiteRuntimeStateREADY   SiteRuntimeState = "READY"
+	SiteRuntimeStateSTOPPED SiteRuntimeState = "STOPPED"
+	SiteRuntimeStateUNKNOWN SiteRuntimeState = "UNKNOWN"
+)
+
+func PossibleValuesForSiteRuntimeState() []string {
+	return []string{
+		string(SiteRuntimeStateREADY),
+		string(SiteRuntimeStateSTOPPED),
+		string(SiteRuntimeStateUNKNOWN),
+	}
+}
+
+func (s *SiteRuntimeState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSiteRuntimeState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseSiteRuntimeState(input string) (*SiteRuntimeState, error) {
+	vals := map[string]SiteRuntimeState{
+		"ready":   SiteRuntimeStateREADY,
+		"stopped": SiteRuntimeStateSTOPPED,
+		"unknown": SiteRuntimeStateUNKNOWN,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SiteRuntimeState(input)
+	return &out, nil
+}
+
 type SiteUpdateStrategyType string
 
 const (
@@ -1434,6 +2327,44 @@ func parseSiteUpdateStrategyType(input string) (*SiteUpdateStrategyType, error) 
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := SiteUpdateStrategyType(input)
+	return &out, nil
+}
+
+type Source string
+
+const (
+	SourceKeyVault Source = "KeyVault"
+)
+
+func PossibleValuesForSource() []string {
+	return []string{
+		string(SourceKeyVault),
+	}
+}
+
+func (s *Source) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSource(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseSource(input string) (*Source, error) {
+	vals := map[string]Source{
+		"keyvault": SourceKeyVault,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Source(input)
 	return &out, nil
 }
 
@@ -1614,6 +2545,50 @@ func parseTlsCipherSuites(input string) (*TlsCipherSuites, error) {
 	return &out, nil
 }
 
+type TriggeredWebJobStatus string
+
+const (
+	TriggeredWebJobStatusError   TriggeredWebJobStatus = "Error"
+	TriggeredWebJobStatusFailed  TriggeredWebJobStatus = "Failed"
+	TriggeredWebJobStatusSuccess TriggeredWebJobStatus = "Success"
+)
+
+func PossibleValuesForTriggeredWebJobStatus() []string {
+	return []string{
+		string(TriggeredWebJobStatusError),
+		string(TriggeredWebJobStatusFailed),
+		string(TriggeredWebJobStatusSuccess),
+	}
+}
+
+func (s *TriggeredWebJobStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTriggeredWebJobStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseTriggeredWebJobStatus(input string) (*TriggeredWebJobStatus, error) {
+	vals := map[string]TriggeredWebJobStatus{
+		"error":   TriggeredWebJobStatusError,
+		"failed":  TriggeredWebJobStatusFailed,
+		"success": TriggeredWebJobStatusSuccess,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TriggeredWebJobStatus(input)
+	return &out, nil
+}
+
 type UnauthenticatedClientAction string
 
 const (
@@ -1655,6 +2630,53 @@ func parseUnauthenticatedClientAction(input string) (*UnauthenticatedClientActio
 	return &out, nil
 }
 
+type UnauthenticatedClientActionV2 string
+
+const (
+	UnauthenticatedClientActionV2AllowAnonymous      UnauthenticatedClientActionV2 = "AllowAnonymous"
+	UnauthenticatedClientActionV2RedirectToLoginPage UnauthenticatedClientActionV2 = "RedirectToLoginPage"
+	UnauthenticatedClientActionV2ReturnFourZeroOne   UnauthenticatedClientActionV2 = "Return401"
+	UnauthenticatedClientActionV2ReturnFourZeroThree UnauthenticatedClientActionV2 = "Return403"
+)
+
+func PossibleValuesForUnauthenticatedClientActionV2() []string {
+	return []string{
+		string(UnauthenticatedClientActionV2AllowAnonymous),
+		string(UnauthenticatedClientActionV2RedirectToLoginPage),
+		string(UnauthenticatedClientActionV2ReturnFourZeroOne),
+		string(UnauthenticatedClientActionV2ReturnFourZeroThree),
+	}
+}
+
+func (s *UnauthenticatedClientActionV2) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUnauthenticatedClientActionV2(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseUnauthenticatedClientActionV2(input string) (*UnauthenticatedClientActionV2, error) {
+	vals := map[string]UnauthenticatedClientActionV2{
+		"allowanonymous":      UnauthenticatedClientActionV2AllowAnonymous,
+		"redirecttologinpage": UnauthenticatedClientActionV2RedirectToLoginPage,
+		"return401":           UnauthenticatedClientActionV2ReturnFourZeroOne,
+		"return403":           UnauthenticatedClientActionV2ReturnFourZeroThree,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UnauthenticatedClientActionV2(input)
+	return &out, nil
+}
+
 type UsageState string
 
 const (
@@ -1693,6 +2715,47 @@ func parseUsageState(input string) (*UsageState, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := UsageState(input)
+	return &out, nil
+}
+
+type WebJobType string
+
+const (
+	WebJobTypeContinuous WebJobType = "Continuous"
+	WebJobTypeTriggered  WebJobType = "Triggered"
+)
+
+func PossibleValuesForWebJobType() []string {
+	return []string{
+		string(WebJobTypeContinuous),
+		string(WebJobTypeTriggered),
+	}
+}
+
+func (s *WebJobType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWebJobType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseWebJobType(input string) (*WebJobType, error) {
+	vals := map[string]WebJobType{
+		"continuous": WebJobTypeContinuous,
+		"triggered":  WebJobTypeTriggered,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WebJobType(input)
 	return &out, nil
 }
 

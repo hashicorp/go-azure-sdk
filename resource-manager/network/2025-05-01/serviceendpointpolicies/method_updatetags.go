@@ -14,7 +14,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *ServiceEndpointPolicy
+	Model        *CommonServiceEndpointPolicy
 }
 
 // UpdateTags ...
@@ -47,7 +47,7 @@ func (c ServiceEndpointPoliciesClient) UpdateTags(ctx context.Context, id Servic
 		return
 	}
 
-	var model ServiceEndpointPolicy
+	var model CommonServiceEndpointPolicy
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

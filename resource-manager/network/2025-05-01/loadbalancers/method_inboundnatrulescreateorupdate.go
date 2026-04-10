@@ -18,11 +18,11 @@ type InboundNatRulesCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *InboundNatRule
+	Model        *CommonInboundNatRule
 }
 
 // InboundNatRulesCreateOrUpdate ...
-func (c LoadBalancersClient) InboundNatRulesCreateOrUpdate(ctx context.Context, id InboundNatRuleId, input InboundNatRule) (result InboundNatRulesCreateOrUpdateOperationResponse, err error) {
+func (c LoadBalancersClient) InboundNatRulesCreateOrUpdate(ctx context.Context, id InboundNatRuleId, input CommonInboundNatRule) (result InboundNatRulesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +61,7 @@ func (c LoadBalancersClient) InboundNatRulesCreateOrUpdate(ctx context.Context, 
 }
 
 // InboundNatRulesCreateOrUpdateThenPoll performs InboundNatRulesCreateOrUpdate then polls until it's completed
-func (c LoadBalancersClient) InboundNatRulesCreateOrUpdateThenPoll(ctx context.Context, id InboundNatRuleId, input InboundNatRule) error {
+func (c LoadBalancersClient) InboundNatRulesCreateOrUpdateThenPoll(ctx context.Context, id InboundNatRuleId, input CommonInboundNatRule) error {
 	result, err := c.InboundNatRulesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing InboundNatRulesCreateOrUpdate: %+v", err)

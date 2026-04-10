@@ -5,14 +5,14 @@ package applicationgateways
 
 type ApplicationGatewayHTTPListenerPropertiesFormat struct {
 	CustomErrorConfigurations   *[]ApplicationGatewayCustomError `json:"customErrorConfigurations,omitempty"`
-	FirewallPolicy              *SubResource                     `json:"firewallPolicy,omitempty"`
-	FrontendIPConfiguration     *SubResource                     `json:"frontendIPConfiguration,omitempty"`
-	FrontendPort                *SubResource                     `json:"frontendPort,omitempty"`
+	FirewallPolicy              *CommonSubResource               `json:"firewallPolicy,omitempty"`
+	FrontendIPConfiguration     *CommonSubResource               `json:"frontendIPConfiguration,omitempty"`
+	FrontendPort                *CommonSubResource               `json:"frontendPort,omitempty"`
 	HostName                    *string                          `json:"hostName,omitempty"`
 	HostNames                   *[]string                        `json:"hostNames,omitempty"`
 	Protocol                    *ApplicationGatewayProtocol      `json:"protocol,omitempty"`
 	ProvisioningState           *ProvisioningState               `json:"provisioningState,omitempty"`
 	RequireServerNameIndication *bool                            `json:"requireServerNameIndication,omitempty"`
-	SslCertificate              *SubResource                     `json:"sslCertificate,omitempty"`
-	SslProfile                  *SubResource                     `json:"sslProfile,omitempty"`
+	SslCertificate              *CommonSubResource               `json:"sslCertificate,omitempty"`
+	SslProfile                  *CommonSubResource               `json:"sslProfile,omitempty"`
 }

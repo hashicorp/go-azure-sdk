@@ -4,9 +4,9 @@ package virtualwans
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HubIPConfigurationPropertiesFormat struct {
-	PrivateIPAddress          *string             `json:"privateIPAddress,omitempty"`
-	PrivateIPAllocationMethod *IPAllocationMethod `json:"privateIPAllocationMethod,omitempty"`
-	ProvisioningState         *ProvisioningState  `json:"provisioningState,omitempty"`
-	PublicIPAddress           *PublicIPAddress    `json:"publicIPAddress,omitempty"`
-	Subnet                    *Subnet             `json:"subnet,omitempty"`
+	PrivateIPAddress          *string                `json:"privateIPAddress,omitempty"`
+	PrivateIPAllocationMethod *IPAllocationMethod    `json:"privateIPAllocationMethod,omitempty"`
+	ProvisioningState         *ProvisioningState     `json:"provisioningState,omitempty"`
+	PublicIPAddress           *CommonPublicIPAddress `json:"publicIPAddress,omitempty"`
+	Subnet                    *CommonSubnet          `json:"subnet,omitempty"`
 }

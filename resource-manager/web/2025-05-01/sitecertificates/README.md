@@ -42,6 +42,27 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `SiteCertificatesClient.CreateOrUpdateSlot`
+
+```go
+ctx := context.TODO()
+id := sitecertificates.NewSlotCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "certificateName")
+
+payload := sitecertificates.Certificate{
+	// ...
+}
+
+
+read, err := client.CreateOrUpdateSlot(ctx, id, payload)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `SiteCertificatesClient.Delete`
 
 ```go
@@ -58,6 +79,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `SiteCertificatesClient.DeleteSlot`
+
+```go
+ctx := context.TODO()
+id := sitecertificates.NewSlotCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "certificateName")
+
+read, err := client.DeleteSlot(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `SiteCertificatesClient.Get`
 
 ```go
@@ -65,6 +102,22 @@ ctx := context.TODO()
 id := sitecertificates.NewSiteCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "certificateName")
 
 read, err := client.Get(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `SiteCertificatesClient.GetSlot`
+
+```go
+ctx := context.TODO()
+id := sitecertificates.NewSlotCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "certificateName")
+
+read, err := client.GetSlot(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -91,6 +144,23 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `SiteCertificatesClient.ListSlot`
+
+```go
+ctx := context.TODO()
+id := sitecertificates.NewSlotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName")
+
+// alternatively `client.ListSlot(ctx, id)` can be used to do batched pagination
+items, err := client.ListSlotComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `SiteCertificatesClient.Update`
 
 ```go
@@ -103,6 +173,27 @@ payload := sitecertificates.CertificatePatchResource{
 
 
 read, err := client.Update(ctx, id, payload)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `SiteCertificatesClient.UpdateSlot`
+
+```go
+ctx := context.TODO()
+id := sitecertificates.NewSlotCertificateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteName", "slotName", "certificateName")
+
+payload := sitecertificates.CertificatePatchResource{
+	// ...
+}
+
+
+read, err := client.UpdateSlot(ctx, id, payload)
 if err != nil {
 	// handle the error
 }

@@ -15,12 +15,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]FlowLog
+	Model        *[]CommonFlowLog
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []FlowLog
+	Items              []CommonFlowLog
 }
 
 type ListCustomPager struct {
@@ -63,7 +63,7 @@ func (c FlowLogsClient) List(ctx context.Context, id NetworkWatcherId) (result L
 	}
 
 	var values struct {
-		Values *[]FlowLog `json:"value"`
+		Values *[]CommonFlowLog `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c FlowLogsClient) List(ctx context.Context, id NetworkWatcherId) (result L
 
 // ListComplete retrieves all the results into a single object
 func (c FlowLogsClient) ListComplete(ctx context.Context, id NetworkWatcherId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, FlowLogOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, CommonFlowLogOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c FlowLogsClient) ListCompleteMatchingPredicate(ctx context.Context, id NetworkWatcherId, predicate FlowLogOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]FlowLog, 0)
+func (c FlowLogsClient) ListCompleteMatchingPredicate(ctx context.Context, id NetworkWatcherId, predicate CommonFlowLogOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]CommonFlowLog, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {
