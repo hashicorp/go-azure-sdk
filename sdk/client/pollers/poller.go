@@ -259,12 +259,8 @@ func (p *Poller) skipPollingDelay(ctx context.Context) bool {
 		return true
 	}
 
-	if skipper, ok := p.poller.(delaySkipper); ok && skipper.SkipDelay() {
-		return true
-	}
-
 	if p.latestResponse != nil && p.latestResponse.HttpResponse != nil && p.latestResponse.HttpResponse.Response != nil && p.latestResponse.HttpResponse.Header != nil {
-		if p.latestResponse.HttpResponse.Header.Get("X-Go-Azure-SDK-Skip-Polling-Delay") == "true" {
+		if p.latestResponse.HttpResponse.Header.Get(client.SkipPollingDelayHeader) == "true" {
 			return true
 		}
 	}
