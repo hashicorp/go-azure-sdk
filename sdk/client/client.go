@@ -33,7 +33,7 @@ import (
 const (
 	// SkipPollingDelayHeader is the HTTP header used to instruct the poller to skip its standard delay wait time.
 	// This is typically injected via a ResponseMiddleware when running tests in a VCR replay mode.
-	SkipPollingDelayHeader = "X-Go-Azure-SDK-Skip-Polling-Delay"
+	SkipPollingDelayHeader = "X-Go-Azure-Sdk-Skip-Polling-Delay"
 )
 
 // RetryOn404ConsistencyFailureFunc can be used to retry a request when a 404 response is received

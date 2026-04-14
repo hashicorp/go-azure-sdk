@@ -7,6 +7,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net/http"
 	"os"
 	"sync"
 	"time"
@@ -251,10 +252,6 @@ func (p *Poller) FinalResult(model interface{}) error {
 }
 
 func (p *Poller) skipPollingDelay(ctx context.Context) bool {
-	if ShouldSkipPollingDelay(ctx) {
-		return true
-	}
-
 	if os.Getenv("GO_AZURE_SDK_SKIP_POLLING_DELAY") == "true" {
 		return true
 	}
@@ -266,4 +263,44 @@ func (p *Poller) skipPollingDelay(ctx context.Context) bool {
 	}
 
 	return false
+}
+
+func PollingInProgress(resp *http.Response, pollInterval time.Duration) *PollResult {
+	return &PollResult{
+		PollInterval: pollInterval,
+		HttpResponse: &client.Response{
+			Response: resp,
+		},
+		Status: PollingStatusInProgress,
+	}
+}
+
+func PollingCancelled(resp *http.Response, pollInterval time.Duration) *PollResult {
+	return &PollResult{
+		PollInterval: pollInterval,
+		HttpResponse: &client.Response{
+			Response: resp,
+		},
+		Status: PollingStatusCancelled,
+	}
+}
+
+func PollingFailed(resp *http.Response, pollInterval time.Duration) *PollResult {
+	return &PollResult{
+		PollInterval: pollInterval,
+		HttpResponse: &client.Response{
+			Response: resp,
+		},
+		Status: PollingStatusFailed,
+	}
+}
+
+func PollingSucceeded(resp *http.Response, pollInterval time.Duration) *PollResult {
+	return &PollResult{
+		PollInterval: pollInterval,
+		HttpResponse: &client.Response{
+			Response: resp,
+		},
+		Status: PollingStatusSucceeded,
+	}
 }
