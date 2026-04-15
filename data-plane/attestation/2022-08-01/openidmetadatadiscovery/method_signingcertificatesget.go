@@ -14,7 +14,7 @@ import (
 type SigningCertificatesGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *JsonWebKeySet
+	Model        *JSONWebKeySet
 }
 
 // SigningCertificatesGet ...
@@ -43,7 +43,7 @@ func (c OpenIDMetadataDiscoveryClient) SigningCertificatesGet(ctx context.Contex
 		return
 	}
 
-	var model JsonWebKeySet
+	var model JSONWebKeySet
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return
