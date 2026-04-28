@@ -8,3 +8,7 @@ const defaultApiVersion = "beta"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/onenotepage/beta"
 }
+
+func ApiVersion() string {
+	return defaultApiVersion
+}

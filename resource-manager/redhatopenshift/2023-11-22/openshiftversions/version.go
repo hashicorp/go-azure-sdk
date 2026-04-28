@@ -8,3 +8,7 @@ const defaultApiVersion = "2023-11-22"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/openshiftversions/2023-11-22"
 }
+
+func ApiVersion() string {
+	return defaultApiVersion
+}

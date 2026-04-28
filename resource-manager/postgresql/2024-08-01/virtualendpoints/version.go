@@ -8,3 +8,7 @@ const defaultApiVersion = "2024-08-01"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/virtualendpoints/2024-08-01"
 }
+
+func ApiVersion() string {
+	return defaultApiVersion
+}

@@ -8,3 +8,7 @@ const defaultApiVersion = "2023-01-31"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/checknameavailability/2023-01-31"
 }
+
+func ApiVersion() string {
+	return defaultApiVersion
+}

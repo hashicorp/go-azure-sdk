@@ -8,3 +8,7 @@ const defaultApiVersion = "beta"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/enterpriseapproleeligibilityschedulerequestappscope/beta"
 }
+
+func ApiVersion() string {
+	return defaultApiVersion
+}
