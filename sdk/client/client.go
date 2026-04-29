@@ -227,6 +227,14 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 		// Unmarshal into provided model
 		if err := json.Unmarshal(respBody, model); err != nil {
+			// log specific error details
+			if syntaxErr, ok := err.(*json.SyntaxError); ok {
+				log.Default().Printf("[WARN] JSON syntax error at byte offset %d, header length=%d, real length=%d",
+					syntaxErr.Offset,
+					r.ContentLength,
+					len(respBody))
+			}
+
 			return fmt.Errorf("unmarshaling response body: %+v", err)
 		}
 
