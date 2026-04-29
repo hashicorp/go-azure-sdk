@@ -539,6 +539,234 @@ func TestPoller_InProgress_ShouldRaiseAnErrorWhenTimeoutExceeded(t *testing.T) {
 	}
 }
 
+func TestPoller_GraceOnCancel_PollCompletesBeforeDeadline(t *testing.T) {
+	// On caller cancellation (SIGINT) before the deadline elapses, polling continues
+	// until either the in-flight operation finishes or the deadline arrives. Here it
+	// finishes first - we expect a success return so callers like XThenPoll reach SetID.
+	expectedResponse := &client.Response{}
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: &client.Response{},
+			PollInterval: 50 * time.Millisecond,
+			Status:       pollers.PollingStatusInProgress,
+		},
+		pollers.PollResult{
+			HttpResponse: expectedResponse,
+			PollInterval: 50 * time.Millisecond,
+			Status:       pollers.PollingStatusSucceeded,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	parent, cancelDeadline := context.WithDeadline(context.Background(), time.Now().Add(2*time.Second))
+	defer cancelDeadline()
+	ctx, cancel := context.WithCancel(parent)
+
+	go func() {
+		time.Sleep(20 * time.Millisecond)
+		cancel()
+	}()
+
+	if err := poller.PollUntilDone(ctx); err != nil {
+		t.Fatalf("expected nil after deadline-bounded grace allowed completion, got: %+v", err)
+	}
+	if poller.LatestStatus() != pollers.PollingStatusSucceeded {
+		t.Fatalf("expected Succeeded, got %q", string(poller.LatestStatus()))
+	}
+	if poller.LatestResponse() != expectedResponse {
+		t.Fatalf("expected the recorded final response to match")
+	}
+}
+
+func TestPoller_GraceOnCancel_DeadlineCapsGrace(t *testing.T) {
+	// On cancellation when the operation does not finish before the deadline, the
+	// poller returns ctx.Err() once the deadline elapses. The deadline is the cap.
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: &client.Response{},
+			PollInterval: 1 * time.Hour,
+			Status:       pollers.PollingStatusInProgress,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	parent, cancelDeadline := context.WithDeadline(context.Background(), time.Now().Add(150*time.Millisecond))
+	defer cancelDeadline()
+	ctx, cancel := context.WithCancel(parent)
+
+	go func() {
+		time.Sleep(10 * time.Millisecond)
+		cancel()
+	}()
+
+	start := time.Now()
+	err := poller.PollUntilDone(ctx)
+	elapsed := time.Since(start)
+	if err == nil {
+		t.Fatalf("expected an error once the deadline cap was reached")
+	}
+	if elapsed < 100*time.Millisecond {
+		t.Fatalf("expected to wait until close to the deadline, waited %v", elapsed)
+	}
+	if elapsed > 1*time.Second {
+		t.Fatalf("returned far later than the deadline: %v", elapsed)
+	}
+}
+
+func TestPoller_GraceOnCancel_DeadlineExceededReturnsImmediately(t *testing.T) {
+	// When the deadline expires (rather than the caller actively canceling), we get
+	// DeadlineExceeded - and there is no extra grace because pollCtx hits its own
+	// deadline at the same instant.
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: &client.Response{},
+			PollInterval: 750 * time.Millisecond,
+			Status:       pollers.PollingStatusInProgress,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(200*time.Millisecond))
+	defer cancel()
+
+	start := time.Now()
+	err := poller.PollUntilDone(ctx)
+	elapsed := time.Since(start)
+	if err == nil {
+		t.Fatalf("expected DeadlineExceeded error")
+	}
+	if elapsed > 1*time.Second {
+		t.Fatalf("expected near-deadline return, took %v", elapsed)
+	}
+}
+
+func TestPoller_GraceOnCancel_PollFailsDuringGrace(t *testing.T) {
+	// Caller cancels mid-poll, then before the deadline elapses the operation
+	// reports failure (e.g. ARM returns 5xx mapped to PollingFailedError). Grace
+	// should let the failure surface so the caller can act on it - not silently
+	// swallow it as ctx.Canceled.
+	expectedResponse := &client.Response{}
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: &client.Response{},
+			PollInterval: 50 * time.Millisecond,
+			Status:       pollers.PollingStatusInProgress,
+		},
+		errorResult{
+			Error: pollers.PollingFailedError{
+				HttpResponse: expectedResponse,
+				Message:      "server gave up",
+			},
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	parent, cancelDeadline := context.WithDeadline(context.Background(), time.Now().Add(2*time.Second))
+	defer cancelDeadline()
+	ctx, cancel := context.WithCancel(parent)
+
+	go func() {
+		time.Sleep(20 * time.Millisecond)
+		cancel()
+	}()
+
+	err := poller.PollUntilDone(ctx)
+	if err == nil {
+		t.Fatalf("expected the underlying poll failure to surface, got nil")
+	}
+	expectedErrorMessage := "polling failed: server gave up"
+	if err.Error() != expectedErrorMessage {
+		t.Fatalf("expected %q, got %q", expectedErrorMessage, err.Error())
+	}
+	if poller.LatestStatus() != pollers.PollingStatusFailed {
+		t.Fatalf("expected Failed, got %q", string(poller.LatestStatus()))
+	}
+	if poller.LatestResponse() != expectedResponse {
+		t.Fatalf("expected the recorded final response to match")
+	}
+}
+
+func TestPoller_GraceOnCancel_DroppedConnectionsThenSucceeds(t *testing.T) {
+	// Caller cancels, the underlying transport drops a couple of connections
+	// during the grace window, the poll then recovers and the operation
+	// succeeds before the deadline. Grace must not break the existing
+	// dropped-connection retry behaviour.
+	expectedResponse := &client.Response{}
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: &client.Response{},
+			PollInterval: 50 * time.Millisecond,
+			Status:       pollers.PollingStatusInProgress,
+		},
+		connectionDroppedResult{},
+		connectionDroppedResult{},
+		pollers.PollResult{
+			HttpResponse: expectedResponse,
+			PollInterval: 50 * time.Millisecond,
+			Status:       pollers.PollingStatusSucceeded,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	parent, cancelDeadline := context.WithDeadline(context.Background(), time.Now().Add(2*time.Second))
+	defer cancelDeadline()
+	ctx, cancel := context.WithCancel(parent)
+
+	go func() {
+		time.Sleep(20 * time.Millisecond)
+		cancel()
+	}()
+
+	if err := poller.PollUntilDone(ctx); err != nil {
+		t.Fatalf("expected nil after grace + drop-recovery, got: %+v", err)
+	}
+	if poller.LatestStatus() != pollers.PollingStatusSucceeded {
+		t.Fatalf("expected Succeeded, got %q", string(poller.LatestStatus()))
+	}
+	if poller.LatestResponse() != expectedResponse {
+		t.Fatalf("expected the recorded final response to match")
+	}
+}
+
+func TestPoller_GraceOnCancel_RepeatedCancelIsIdempotent(t *testing.T) {
+	// Calling cancel() multiple times must not break the grace path. ctx.Done()
+	// fires once; subsequent cancels are no-ops at the channel level. This
+	// exercises the case where a caller defensively triggers cancel from
+	// multiple sites (e.g. an outer signal handler plus a timeout).
+	expectedResponse := &client.Response{}
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: &client.Response{},
+			PollInterval: 50 * time.Millisecond,
+			Status:       pollers.PollingStatusInProgress,
+		},
+		pollers.PollResult{
+			HttpResponse: expectedResponse,
+			PollInterval: 50 * time.Millisecond,
+			Status:       pollers.PollingStatusSucceeded,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	parent, cancelDeadline := context.WithDeadline(context.Background(), time.Now().Add(2*time.Second))
+	defer cancelDeadline()
+	ctx, cancel := context.WithCancel(parent)
+
+	go func() {
+		time.Sleep(20 * time.Millisecond)
+		cancel()
+		cancel()
+		cancel()
+	}()
+
+	if err := poller.PollUntilDone(ctx); err != nil {
+		t.Fatalf("expected nil after grace + repeated cancel, got: %+v", err)
+	}
+	if poller.LatestStatus() != pollers.PollingStatusSucceeded {
+		t.Fatalf("expected Succeeded, got %q", string(poller.LatestStatus()))
+	}
+}
+
 type pollResult interface {
 }
 

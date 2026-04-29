@@ -126,6 +126,18 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 		return fmt.Errorf("internal-error: `ctx` should have a deadline")
 	}
 
+	// pollCtx drives the inner polling goroutine. It is decoupled from ctx so that
+	// when the caller cancels (e.g. SIGINT during `terraform apply`) we can keep
+	// polling and let the in-flight Azure operation complete - long enough for the
+	// resource ID to be persisted into state on the next layer up. pollCtx inherits
+	// the caller's deadline, so the resource's existing `timeouts.create` value
+	// naturally caps how long polling continues. The caller already declared that
+	// deadline as their patience ceiling; honoring it post-cancel is consistent
+	// with that declaration.
+	deadline, _ := ctx.Deadline()
+	pollCtx, cancelPoll := context.WithDeadline(context.WithoutCancel(ctx), deadline)
+	defer cancelPoll()
+
 	var wait sync.WaitGroup
 	wait.Add(1)
 
@@ -138,15 +150,21 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 				retryDuration = p.latestResponse.PollInterval
 			}
 
-			if p.skipPollingDelay(ctx) {
+			if p.skipPollingDelay(pollCtx) {
 				retryDuration = 0
 			}
 
 			endTime := time.Now().Add(retryDuration)
 
-			<-time.After(time.Until(endTime))
+			select {
+			case <-time.After(time.Until(endTime)):
+			case <-pollCtx.Done():
+				p.latestError = pollCtx.Err()
+				wait.Done()
+				return
+			}
 
-			p.latestResponse, p.latestError = p.poller.Poll(ctx)
+			p.latestResponse, p.latestError = p.poller.Poll(pollCtx)
 
 			// first check the connection drop status
 			connectionHasBeenDropped := false
@@ -217,17 +235,38 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 		waitDone <- struct{}{}
 	}()
 
+	// Wait for the polling goroutine to finish, then surface ctx.Err() to the caller.
+	// Used for both the deadline-expired path and the post-grace abort path.
+	abortWithCtxErr := func() error {
+		<-waitDone
+		if pointer.From(p.retryOnError) {
+			return p.latestError
+		}
+		p.latestResponse = nil
+		p.latestError = ctx.Err()
+		return p.latestError
+	}
+
 	select {
 	case <-waitDone:
 		break
 	case <-ctx.Done():
-		{
-			if pointer.From(p.retryOnError) {
-				return p.latestError
+		// On active cancellation (SIGINT, parent ctx cancel) keep polling until
+		// pollCtx hits its deadline - i.e. until the resource's timeouts.create
+		// elapses. The user already declared that deadline as their patience
+		// ceiling; letting the in-flight operation complete within it lets the
+		// caller (XThenPoll) reach SetID and persist state instead of orphaning
+		// the resource. The deadline-exceeded path skips the grace window because
+		// pollCtx will be Done at the same instant ctx is.
+		if errors.Is(ctx.Err(), context.Canceled) {
+			select {
+			case <-waitDone:
+				// poll completed within the remaining deadline - fall through and return its result
+			case <-pollCtx.Done():
+				return abortWithCtxErr()
 			}
-			p.latestResponse = nil
-			p.latestError = ctx.Err()
-			return p.latestError
+		} else {
+			return abortWithCtxErr()
 		}
 	}
 
