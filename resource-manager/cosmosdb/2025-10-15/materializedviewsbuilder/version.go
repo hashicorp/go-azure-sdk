@@ -8,3 +8,7 @@ const defaultApiVersion = "2025-10-15"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/materializedviewsbuilder/2025-10-15"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

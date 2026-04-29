@@ -8,3 +8,7 @@ const defaultApiVersion = "7.5-preview.1"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/deletedsecrets/7.5-preview.1"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

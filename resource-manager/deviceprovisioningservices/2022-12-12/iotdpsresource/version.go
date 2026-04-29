@@ -8,3 +8,7 @@ const defaultApiVersion = "2022-12-12"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/iotdpsresource/2022-12-12"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

@@ -8,3 +8,7 @@ const defaultApiVersion = "2023-11-01-preview"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/cacherules/2023-11-01-preview"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

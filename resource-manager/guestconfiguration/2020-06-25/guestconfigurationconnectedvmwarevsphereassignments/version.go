@@ -8,3 +8,7 @@ const defaultApiVersion = "2020-06-25"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/guestconfigurationconnectedvmwarevsphereassignments/2020-06-25"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

@@ -8,3 +8,7 @@ const defaultApiVersion = "2025-05-23"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/prerules/2025-05-23"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

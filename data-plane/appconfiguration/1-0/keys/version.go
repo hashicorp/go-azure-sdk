@@ -8,3 +8,7 @@ const defaultApiVersion = "1.0"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/keys/1.0"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

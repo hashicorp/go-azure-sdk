@@ -8,3 +8,7 @@ const defaultApiVersion = "2025-06-11"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/datadogmonitorresources/2025-06-11"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

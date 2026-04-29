@@ -8,3 +8,7 @@ const defaultApiVersion = "beta"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/plannerplanbuckettaskassignedtotaskboardformat/beta"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

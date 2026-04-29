@@ -8,3 +8,7 @@ const defaultApiVersion = "v1.0"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/entitlementmanagementroleeligibilityscheduleroledefinition/stable"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

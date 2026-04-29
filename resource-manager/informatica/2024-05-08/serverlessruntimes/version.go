@@ -8,3 +8,7 @@ const defaultApiVersion = "2024-05-08"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/serverlessruntimes/2024-05-08"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

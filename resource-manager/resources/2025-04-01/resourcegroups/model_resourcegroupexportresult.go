@@ -4,7 +4,7 @@ package resourcegroups
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ResourceGroupExportResult struct {
-	Error    *ErrorResponse `json:"error,omitempty"`
-	Output   *string        `json:"output,omitempty"`
-	Template *interface{}   `json:"template,omitempty"`
+	Error    *ErrorDetail `json:"error,omitempty"`
+	Output   *string      `json:"output,omitempty"`
+	Template *interface{} `json:"template,omitempty"`
 }

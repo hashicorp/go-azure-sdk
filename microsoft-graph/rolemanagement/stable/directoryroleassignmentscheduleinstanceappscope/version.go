@@ -8,3 +8,7 @@ const defaultApiVersion = "v1.0"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/directoryroleassignmentscheduleinstanceappscope/stable"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

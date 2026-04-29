@@ -8,3 +8,7 @@ const defaultApiVersion = "2022-04-01-preview"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/outboundnetworkdependenciesendpoints/2022-04-01-preview"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

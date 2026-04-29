@@ -8,3 +8,7 @@ const defaultApiVersion = "2020-07-07"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/hypervhost/2020-07-07"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

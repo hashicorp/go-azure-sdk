@@ -197,16 +197,16 @@ func parseDeploymentState(input string) (*DeploymentState, error) {
 type RoutingMode string
 
 const (
-	RoutingModeAccuracy RoutingMode = "accuracy"
 	RoutingModeBalanced RoutingMode = "balanced"
 	RoutingModeCost     RoutingMode = "cost"
+	RoutingModeQuality  RoutingMode = "quality"
 )
 
 func PossibleValuesForRoutingMode() []string {
 	return []string{
-		string(RoutingModeAccuracy),
 		string(RoutingModeBalanced),
 		string(RoutingModeCost),
+		string(RoutingModeQuality),
 	}
 }
 
@@ -225,9 +225,9 @@ func (s *RoutingMode) UnmarshalJSON(bytes []byte) error {
 
 func parseRoutingMode(input string) (*RoutingMode, error) {
 	vals := map[string]RoutingMode{
-		"accuracy": RoutingModeAccuracy,
 		"balanced": RoutingModeBalanced,
 		"cost":     RoutingModeCost,
+		"quality":  RoutingModeQuality,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

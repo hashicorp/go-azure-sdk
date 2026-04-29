@@ -6,7 +6,7 @@ package v2022_10_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2022-10-01/autoscaleapis"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2022-10-01/autoscales"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2022-10-01/autoscalesettings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/insights/2022-10-01/metrics"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -15,7 +15,7 @@ import (
 
 type Client struct {
 	AutoScaleSettings *autoscalesettings.AutoScaleSettingsClient
-	AutoscaleAPIs     *autoscaleapis.AutoscaleAPIsClient
+	AutoScales        *autoscales.AutoScalesClient
 	Metrics           *metrics.MetricsClient
 }
 
@@ -26,11 +26,11 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(autoScaleSettingsClient.Client)
 
-	autoscaleAPIsClient, err := autoscaleapis.NewAutoscaleAPIsClientWithBaseURI(sdkApi)
+	autoScalesClient, err := autoscales.NewAutoScalesClientWithBaseURI(sdkApi)
 	if err != nil {
-		return nil, fmt.Errorf("building AutoscaleAPIs client: %+v", err)
+		return nil, fmt.Errorf("building AutoScales client: %+v", err)
 	}
-	configureFunc(autoscaleAPIsClient.Client)
+	configureFunc(autoScalesClient.Client)
 
 	metricsClient, err := metrics.NewMetricsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -40,7 +40,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 
 	return &Client{
 		AutoScaleSettings: autoScaleSettingsClient,
-		AutoscaleAPIs:     autoscaleAPIsClient,
+		AutoScales:        autoScalesClient,
 		Metrics:           metricsClient,
 	}, nil
 }

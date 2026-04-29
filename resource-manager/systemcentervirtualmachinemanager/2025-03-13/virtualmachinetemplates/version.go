@@ -8,3 +8,7 @@ const defaultApiVersion = "2025-03-13"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/virtualmachinetemplates/2025-03-13"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

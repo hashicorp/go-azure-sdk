@@ -16,7 +16,12 @@ import (
 type ListAtSubscriptionScopeOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *SubscriptionScopeMetricDefinitionCollection
+	Model        *[]SubscriptionScopeMetricDefinition
+}
+
+type ListAtSubscriptionScopeCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []SubscriptionScopeMetricDefinition
 }
 
 type ListAtSubscriptionScopeOperationOptions struct {
@@ -51,6 +56,18 @@ func (o ListAtSubscriptionScopeOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListAtSubscriptionScopeCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListAtSubscriptionScopeCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // ListAtSubscriptionScope ...
 func (c MetricDefinitionsClient) ListAtSubscriptionScope(ctx context.Context, id commonids.SubscriptionId, options ListAtSubscriptionScopeOperationOptions) (result ListAtSubscriptionScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -60,6 +77,7 @@ func (c MetricDefinitionsClient) ListAtSubscriptionScope(ctx context.Context, id
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
+		Pager:         &ListAtSubscriptionScopeCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metricDefinitions", id.ID()),
 	}
 
@@ -69,7 +87,7 @@ func (c MetricDefinitionsClient) ListAtSubscriptionScope(ctx context.Context, id
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -78,11 +96,44 @@ func (c MetricDefinitionsClient) ListAtSubscriptionScope(ctx context.Context, id
 		return
 	}
 
-	var model SubscriptionScopeMetricDefinitionCollection
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]SubscriptionScopeMetricDefinition `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListAtSubscriptionScopeComplete retrieves all the results into a single object
+func (c MetricDefinitionsClient) ListAtSubscriptionScopeComplete(ctx context.Context, id commonids.SubscriptionId, options ListAtSubscriptionScopeOperationOptions) (ListAtSubscriptionScopeCompleteResult, error) {
+	return c.ListAtSubscriptionScopeCompleteMatchingPredicate(ctx, id, options, SubscriptionScopeMetricDefinitionOperationPredicate{})
+}
+
+// ListAtSubscriptionScopeCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c MetricDefinitionsClient) ListAtSubscriptionScopeCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, options ListAtSubscriptionScopeOperationOptions, predicate SubscriptionScopeMetricDefinitionOperationPredicate) (result ListAtSubscriptionScopeCompleteResult, err error) {
+	items := make([]SubscriptionScopeMetricDefinition, 0)
+
+	resp, err := c.ListAtSubscriptionScope(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAtSubscriptionScopeCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }

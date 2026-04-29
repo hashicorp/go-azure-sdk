@@ -8,3 +8,7 @@ const defaultApiVersion = "2022-11-15"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/restorables/2022-11-15"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

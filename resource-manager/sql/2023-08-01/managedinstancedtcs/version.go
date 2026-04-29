@@ -8,3 +8,7 @@ const defaultApiVersion = "2023-08-01"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/managedinstancedtcs/2023-08-01"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

@@ -8,3 +8,7 @@ const defaultApiVersion = "2024-03-31"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/iotconnectors/2024-03-31"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

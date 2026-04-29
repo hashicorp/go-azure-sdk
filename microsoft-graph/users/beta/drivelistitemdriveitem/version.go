@@ -8,3 +8,7 @@ const defaultApiVersion = "beta"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/drivelistitemdriveitem/beta"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}

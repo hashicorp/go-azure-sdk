@@ -8,3 +8,7 @@ const defaultApiVersion = "2023-12-15-preview"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/topictypes/2023-12-15-preview"
 }
+
+func AzureAPIVersion() string {
+	return defaultApiVersion
+}
