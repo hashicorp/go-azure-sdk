@@ -26,11 +26,12 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 
 
-read, err := client.List(ctx)
+// alternatively `client.List(ctx)` can be used to do batched pagination
+items, err := client.ListComplete(ctx)
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

@@ -8,3 +8,7 @@ const defaultApiVersion = "beta"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/devicecompliancepolicyscheduledactionsforrule/beta"
 }
+
+func ApiVersion() string {
+	return defaultApiVersion
+}

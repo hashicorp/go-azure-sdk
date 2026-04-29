@@ -6,6 +6,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/lang/dates"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -25,6 +26,7 @@ type GenericResourceExpanded struct {
 	Properties        *interface{}                       `json:"properties,omitempty"`
 	ProvisioningState *string                            `json:"provisioningState,omitempty"`
 	Sku               *Sku                               `json:"sku,omitempty"`
+	SystemData        *systemdata.SystemData             `json:"systemData,omitempty"`
 	Tags              *map[string]string                 `json:"tags,omitempty"`
 	Type              *string                            `json:"type,omitempty"`
 }

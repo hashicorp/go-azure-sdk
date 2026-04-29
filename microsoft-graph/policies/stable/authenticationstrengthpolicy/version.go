@@ -8,3 +8,7 @@ const defaultApiVersion = "v1.0"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/authenticationstrengthpolicy/stable"
 }
+
+func ApiVersion() string {
+	return defaultApiVersion
+}

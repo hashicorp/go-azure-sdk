@@ -8,3 +8,7 @@ const defaultApiVersion = "2025-10-15"
 func userAgent() string {
 	return "hashicorp/go-azure-sdk/privatelinkresources/2025-10-15"
 }
+
+func ApiVersion() string {
+	return defaultApiVersion
+}

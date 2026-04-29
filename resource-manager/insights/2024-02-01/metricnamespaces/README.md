@@ -27,11 +27,12 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := commonids.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
-read, err := client.List(ctx, id, metricnamespaces.DefaultListOperationOptions())
+// alternatively `client.List(ctx, id, metricnamespaces.DefaultListOperationOptions())` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id, metricnamespaces.DefaultListOperationOptions())
 if err != nil {
 	// handle the error
 }
-if model := read.Model; model != nil {
-	// do something with the model/response object
+for _, item := range items {
+	// do something
 }
 ```

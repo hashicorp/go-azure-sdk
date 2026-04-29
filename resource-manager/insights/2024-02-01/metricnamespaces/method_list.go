@@ -16,7 +16,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *MetricNamespaceCollection
+	Model        *[]MetricNamespace
+}
+
+type ListCompleteResult struct {
+	LatestHttpResponse *http.Response
+	Items              []MetricNamespace
 }
 
 type ListOperationOptions struct {
@@ -47,6 +52,18 @@ func (o ListOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
+type ListCustomPager struct {
+	NextLink *odata.Link `json:"nextLink"`
+}
+
+func (p *ListCustomPager) NextPageLink() *odata.Link {
+	defer func() {
+		p.NextLink = nil
+	}()
+
+	return p.NextLink
+}
+
 // List ...
 func (c MetricNamespacesClient) List(ctx context.Context, id commonids.ScopeId, options ListOperationOptions) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
@@ -56,6 +73,7 @@ func (c MetricNamespacesClient) List(ctx context.Context, id commonids.ScopeId, 
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
+		Pager:         &ListCustomPager{},
 		Path:          fmt.Sprintf("%s/providers/Microsoft.Insights/metricNamespaces", id.ID()),
 	}
 
@@ -65,7 +83,7 @@ func (c MetricNamespacesClient) List(ctx context.Context, id commonids.ScopeId, 
 	}
 
 	var resp *client.Response
-	resp, err = req.Execute(ctx)
+	resp, err = req.ExecutePaged(ctx)
 	if resp != nil {
 		result.OData = resp.OData
 		result.HttpResponse = resp.Response
@@ -74,11 +92,44 @@ func (c MetricNamespacesClient) List(ctx context.Context, id commonids.ScopeId, 
 		return
 	}
 
-	var model MetricNamespaceCollection
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var values struct {
+		Values *[]MetricNamespace `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
 		return
 	}
 
+	result.Model = values.Values
+
+	return
+}
+
+// ListComplete retrieves all the results into a single object
+func (c MetricNamespacesClient) ListComplete(ctx context.Context, id commonids.ScopeId, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, options, MetricNamespaceOperationPredicate{})
+}
+
+// ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c MetricNamespacesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, options ListOperationOptions, predicate MetricNamespaceOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]MetricNamespace, 0)
+
+	resp, err := c.List(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
 	return
 }
