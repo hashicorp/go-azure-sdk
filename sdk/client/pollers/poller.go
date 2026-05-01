@@ -132,6 +132,10 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 	go func() {
 		connectionDropCounter := 0
 		retryDuration := p.initialDelayDuration
+		if ctxInitialDelay := GetInitialPollingDelay(ctx); ctxInitialDelay > 0 {
+			retryDuration = ctxInitialDelay
+		}
+
 		for {
 			// determine the next retry duration / how long to poll for
 			if p.latestResponse != nil {
