@@ -27,6 +27,7 @@ func (c CognitiveServicesProjectsClient) ProjectsDelete(ctx context.Context, id 
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,
+			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
 		Path:       id.ID(),

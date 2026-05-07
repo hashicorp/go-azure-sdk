@@ -117,6 +117,18 @@ if err := client.ProvisionsProvisionManagedNetworkThenPoll(ctx, id, payload); er
 ```
 
 
+### Example Usage: `ManagedNetworkClient.SettingsDelete`
+
+```go
+ctx := context.TODO()
+id := managednetwork.NewManagedNetworkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountName", "managedNetworkName")
+
+if err := client.SettingsDeleteThenPoll(ctx, id); err != nil {
+	// handle the error
+}
+```
+
+
 ### Example Usage: `ManagedNetworkClient.SettingsGet`
 
 ```go

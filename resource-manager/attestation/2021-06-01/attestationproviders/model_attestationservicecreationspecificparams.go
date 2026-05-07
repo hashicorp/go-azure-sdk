@@ -4,7 +4,7 @@ package attestationproviders
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AttestationServiceCreationSpecificParams struct {
-	PolicySigningCertificates    *JsonWebKeySet                    `json:"policySigningCertificates,omitempty"`
+	PolicySigningCertificates    *JSONWebKeySet                    `json:"policySigningCertificates,omitempty"`
 	PublicNetworkAccess          *PublicNetworkAccessType          `json:"publicNetworkAccess,omitempty"`
 	TpmAttestationAuthentication *TpmAttestationAuthenticationType `json:"tpmAttestationAuthentication,omitempty"`
 }

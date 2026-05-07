@@ -14,6 +14,7 @@ type AssessedResourceType string
 const (
 	AssessedResourceTypeContainerRegistryVulnerability AssessedResourceType = "ContainerRegistryVulnerability"
 	AssessedResourceTypeServerVulnerability            AssessedResourceType = "ServerVulnerability"
+	AssessedResourceTypeServerVulnerabilityAssessment  AssessedResourceType = "ServerVulnerabilityAssessment"
 	AssessedResourceTypeSqlServerVulnerability         AssessedResourceType = "SqlServerVulnerability"
 )
 
@@ -21,6 +22,7 @@ func PossibleValuesForAssessedResourceType() []string {
 	return []string{
 		string(AssessedResourceTypeContainerRegistryVulnerability),
 		string(AssessedResourceTypeServerVulnerability),
+		string(AssessedResourceTypeServerVulnerabilityAssessment),
 		string(AssessedResourceTypeSqlServerVulnerability),
 	}
 }
@@ -42,6 +44,7 @@ func parseAssessedResourceType(input string) (*AssessedResourceType, error) {
 	vals := map[string]AssessedResourceType{
 		"containerregistryvulnerability": AssessedResourceTypeContainerRegistryVulnerability,
 		"servervulnerability":            AssessedResourceTypeServerVulnerability,
+		"servervulnerabilityassessment":  AssessedResourceTypeServerVulnerabilityAssessment,
 		"sqlservervulnerability":         AssessedResourceTypeSqlServerVulnerability,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
@@ -56,13 +59,15 @@ func parseAssessedResourceType(input string) (*AssessedResourceType, error) {
 type Severity string
 
 const (
-	SeverityHigh   Severity = "High"
-	SeverityLow    Severity = "Low"
-	SeverityMedium Severity = "Medium"
+	SeverityCritical Severity = "Critical"
+	SeverityHigh     Severity = "High"
+	SeverityLow      Severity = "Low"
+	SeverityMedium   Severity = "Medium"
 )
 
 func PossibleValuesForSeverity() []string {
 	return []string{
+		string(SeverityCritical),
 		string(SeverityHigh),
 		string(SeverityLow),
 		string(SeverityMedium),
@@ -84,9 +89,10 @@ func (s *Severity) UnmarshalJSON(bytes []byte) error {
 
 func parseSeverity(input string) (*Severity, error) {
 	vals := map[string]Severity{
-		"high":   SeverityHigh,
-		"low":    SeverityLow,
-		"medium": SeverityMedium,
+		"critical": SeverityCritical,
+		"high":     SeverityHigh,
+		"low":      SeverityLow,
+		"medium":   SeverityMedium,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -100,15 +106,21 @@ func parseSeverity(input string) (*Severity, error) {
 type Source string
 
 const (
-	SourceAzure        Source = "Azure"
-	SourceOnPremise    Source = "OnPremise"
-	SourceOnPremiseSql Source = "OnPremiseSql"
+	SourceAws                      Source = "Aws"
+	SourceAzure                    Source = "Azure"
+	SourceGcp                      Source = "Gcp"
+	SourceOnPremise                Source = "OnPremise"
+	SourceOnPremiseResourceDetails Source = "OnPremiseResourceDetails"
+	SourceOnPremiseSql             Source = "OnPremiseSql"
 )
 
 func PossibleValuesForSource() []string {
 	return []string{
+		string(SourceAws),
 		string(SourceAzure),
+		string(SourceGcp),
 		string(SourceOnPremise),
+		string(SourceOnPremiseResourceDetails),
 		string(SourceOnPremiseSql),
 	}
 }
@@ -128,9 +140,12 @@ func (s *Source) UnmarshalJSON(bytes []byte) error {
 
 func parseSource(input string) (*Source, error) {
 	vals := map[string]Source{
-		"azure":        SourceAzure,
-		"onpremise":    SourceOnPremise,
-		"onpremisesql": SourceOnPremiseSql,
+		"aws":                      SourceAws,
+		"azure":                    SourceAzure,
+		"gcp":                      SourceGcp,
+		"onpremise":                SourceOnPremise,
+		"onpremiseresourcedetails": SourceOnPremiseResourceDetails,
+		"onpremisesql":             SourceOnPremiseSql,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

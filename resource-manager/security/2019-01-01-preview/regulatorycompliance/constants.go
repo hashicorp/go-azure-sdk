@@ -13,6 +13,8 @@ type State string
 
 const (
 	StateFailed      State = "Failed"
+	StateOff         State = "Off"
+	StateOn          State = "On"
 	StatePassed      State = "Passed"
 	StateSkipped     State = "Skipped"
 	StateUnsupported State = "Unsupported"
@@ -21,6 +23,8 @@ const (
 func PossibleValuesForState() []string {
 	return []string{
 		string(StateFailed),
+		string(StateOff),
+		string(StateOn),
 		string(StatePassed),
 		string(StateSkipped),
 		string(StateUnsupported),
@@ -43,6 +47,8 @@ func (s *State) UnmarshalJSON(bytes []byte) error {
 func parseState(input string) (*State, error) {
 	vals := map[string]State{
 		"failed":      StateFailed,
+		"off":         StateOff,
+		"on":          StateOn,
 		"passed":      StatePassed,
 		"skipped":     StateSkipped,
 		"unsupported": StateUnsupported,
