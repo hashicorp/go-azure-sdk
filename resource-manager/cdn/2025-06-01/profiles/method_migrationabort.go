@@ -56,9 +56,20 @@ func (c ProfilesClient) MigrationAbort(ctx context.Context, id ProfileId) (resul
 
 // MigrationAbortThenPoll performs MigrationAbort then polls until it's completed
 func (c ProfilesClient) MigrationAbortThenPoll(ctx context.Context, id ProfileId) error {
+	return c.MigrationAbortCallbackThenPoll(ctx, id, nil)
+}
+
+// MigrationAbortCallbackThenPoll performs MigrationAbort, runs the optional callback function, then polls until it's completed
+func (c ProfilesClient) MigrationAbortCallbackThenPoll(ctx context.Context, id ProfileId, callback func() error) error {
 	result, err := c.MigrationAbort(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing MigrationAbort: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c DatabaseMigrationsClient) MongoToCosmosDbvCoreMongoCreate(ctx context.Co
 
 // MongoToCosmosDbvCoreMongoCreateThenPoll performs MongoToCosmosDbvCoreMongoCreate then polls until it's completed
 func (c DatabaseMigrationsClient) MongoToCosmosDbvCoreMongoCreateThenPoll(ctx context.Context, id MongoClusterProviders2DatabaseMigrationId, input DatabaseMigrationCosmosDbMongo) error {
+	return c.MongoToCosmosDbvCoreMongoCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MongoToCosmosDbvCoreMongoCreateCallbackThenPoll performs MongoToCosmosDbvCoreMongoCreate, runs the optional callback function, then polls until it's completed
+func (c DatabaseMigrationsClient) MongoToCosmosDbvCoreMongoCreateCallbackThenPoll(ctx context.Context, id MongoClusterProviders2DatabaseMigrationId, input DatabaseMigrationCosmosDbMongo, callback func() error) error {
 	result, err := c.MongoToCosmosDbvCoreMongoCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing MongoToCosmosDbvCoreMongoCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

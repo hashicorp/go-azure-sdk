@@ -56,9 +56,20 @@ func (c WorkspacesClient) Failover(ctx context.Context, id LocationWorkspaceId) 
 
 // FailoverThenPoll performs Failover then polls until it's completed
 func (c WorkspacesClient) FailoverThenPoll(ctx context.Context, id LocationWorkspaceId) error {
+	return c.FailoverCallbackThenPoll(ctx, id, nil)
+}
+
+// FailoverCallbackThenPoll performs Failover, runs the optional callback function, then polls until it's completed
+func (c WorkspacesClient) FailoverCallbackThenPoll(ctx context.Context, id LocationWorkspaceId, callback func() error) error {
 	result, err := c.Failover(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Failover: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

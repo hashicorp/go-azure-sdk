@@ -56,9 +56,20 @@ func (c NetworkGatewaysClient) VirtualNetworkGatewaysInvokeCommitMigration(ctx c
 
 // VirtualNetworkGatewaysInvokeCommitMigrationThenPoll performs VirtualNetworkGatewaysInvokeCommitMigration then polls until it's completed
 func (c NetworkGatewaysClient) VirtualNetworkGatewaysInvokeCommitMigrationThenPoll(ctx context.Context, id VirtualNetworkGatewayId) error {
+	return c.VirtualNetworkGatewaysInvokeCommitMigrationCallbackThenPoll(ctx, id, nil)
+}
+
+// VirtualNetworkGatewaysInvokeCommitMigrationCallbackThenPoll performs VirtualNetworkGatewaysInvokeCommitMigration, runs the optional callback function, then polls until it's completed
+func (c NetworkGatewaysClient) VirtualNetworkGatewaysInvokeCommitMigrationCallbackThenPoll(ctx context.Context, id VirtualNetworkGatewayId, callback func() error) error {
 	result, err := c.VirtualNetworkGatewaysInvokeCommitMigration(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing VirtualNetworkGatewaysInvokeCommitMigration: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

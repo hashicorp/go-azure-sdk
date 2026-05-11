@@ -62,9 +62,20 @@ func (c DevOpsClient) ConfigurationsUpdate(ctx context.Context, id SecurityConne
 
 // ConfigurationsUpdateThenPoll performs ConfigurationsUpdate then polls until it's completed
 func (c DevOpsClient) ConfigurationsUpdateThenPoll(ctx context.Context, id SecurityConnectorId, input DevOpsConfiguration) error {
+	return c.ConfigurationsUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ConfigurationsUpdateCallbackThenPoll performs ConfigurationsUpdate, runs the optional callback function, then polls until it's completed
+func (c DevOpsClient) ConfigurationsUpdateCallbackThenPoll(ctx context.Context, id SecurityConnectorId, input DevOpsConfiguration, callback func() error) error {
 	result, err := c.ConfigurationsUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ConfigurationsUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

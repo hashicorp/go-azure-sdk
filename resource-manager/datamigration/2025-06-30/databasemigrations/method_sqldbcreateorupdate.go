@@ -62,9 +62,20 @@ func (c DatabaseMigrationsClient) SqlDbCreateOrUpdate(ctx context.Context, id Da
 
 // SqlDbCreateOrUpdateThenPoll performs SqlDbCreateOrUpdate then polls until it's completed
 func (c DatabaseMigrationsClient) SqlDbCreateOrUpdateThenPoll(ctx context.Context, id DatabaseMigrationId, input DatabaseMigrationSqlDb) error {
+	return c.SqlDbCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlDbCreateOrUpdateCallbackThenPoll performs SqlDbCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c DatabaseMigrationsClient) SqlDbCreateOrUpdateCallbackThenPoll(ctx context.Context, id DatabaseMigrationId, input DatabaseMigrationSqlDb, callback func() error) error {
 	result, err := c.SqlDbCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlDbCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

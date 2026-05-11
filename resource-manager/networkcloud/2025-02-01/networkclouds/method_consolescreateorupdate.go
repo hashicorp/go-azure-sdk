@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) ConsolesCreateOrUpdate(ctx context.Context, id Cons
 
 // ConsolesCreateOrUpdateThenPoll performs ConsolesCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) ConsolesCreateOrUpdateThenPoll(ctx context.Context, id ConsoleId, input Console, options ConsolesCreateOrUpdateOperationOptions) error {
+	return c.ConsolesCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// ConsolesCreateOrUpdateCallbackThenPoll performs ConsolesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) ConsolesCreateOrUpdateCallbackThenPoll(ctx context.Context, id ConsoleId, input Console, options ConsolesCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.ConsolesCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing ConsolesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

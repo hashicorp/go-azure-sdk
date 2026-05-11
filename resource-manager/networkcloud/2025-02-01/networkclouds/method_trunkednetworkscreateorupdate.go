@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) TrunkedNetworksCreateOrUpdate(ctx context.Context, 
 
 // TrunkedNetworksCreateOrUpdateThenPoll performs TrunkedNetworksCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) TrunkedNetworksCreateOrUpdateThenPoll(ctx context.Context, id TrunkedNetworkId, input TrunkedNetwork, options TrunkedNetworksCreateOrUpdateOperationOptions) error {
+	return c.TrunkedNetworksCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// TrunkedNetworksCreateOrUpdateCallbackThenPoll performs TrunkedNetworksCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) TrunkedNetworksCreateOrUpdateCallbackThenPoll(ctx context.Context, id TrunkedNetworkId, input TrunkedNetwork, options TrunkedNetworksCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.TrunkedNetworksCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing TrunkedNetworksCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

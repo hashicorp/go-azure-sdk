@@ -59,9 +59,20 @@ func (c ProvisionedClusterInstancesClient) ListAdminKubeconfig(ctx context.Conte
 
 // ListAdminKubeconfigThenPoll performs ListAdminKubeconfig then polls until it's completed
 func (c ProvisionedClusterInstancesClient) ListAdminKubeconfigThenPoll(ctx context.Context, id commonids.ScopeId) error {
+	return c.ListAdminKubeconfigCallbackThenPoll(ctx, id, nil)
+}
+
+// ListAdminKubeconfigCallbackThenPoll performs ListAdminKubeconfig, runs the optional callback function, then polls until it's completed
+func (c ProvisionedClusterInstancesClient) ListAdminKubeconfigCallbackThenPoll(ctx context.Context, id commonids.ScopeId, callback func() error) error {
 	result, err := c.ListAdminKubeconfig(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ListAdminKubeconfig: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

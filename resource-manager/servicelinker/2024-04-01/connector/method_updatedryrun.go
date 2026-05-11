@@ -62,9 +62,20 @@ func (c ConnectorClient) UpdateDryrun(ctx context.Context, id DryrunId, input Dr
 
 // UpdateDryrunThenPoll performs UpdateDryrun then polls until it's completed
 func (c ConnectorClient) UpdateDryrunThenPoll(ctx context.Context, id DryrunId, input DryrunPatch) error {
+	return c.UpdateDryrunCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateDryrunCallbackThenPoll performs UpdateDryrun, runs the optional callback function, then polls until it's completed
+func (c ConnectorClient) UpdateDryrunCallbackThenPoll(ctx context.Context, id DryrunId, input DryrunPatch, callback func() error) error {
 	result, err := c.UpdateDryrun(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateDryrun: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

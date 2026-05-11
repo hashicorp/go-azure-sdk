@@ -62,9 +62,20 @@ func (c DataTransferClient) ServiceCreate(ctx context.Context, id ServiceId, inp
 
 // ServiceCreateThenPoll performs ServiceCreate then polls until it's completed
 func (c DataTransferClient) ServiceCreateThenPoll(ctx context.Context, id ServiceId, input ServiceResourceCreateUpdateParameters) error {
+	return c.ServiceCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ServiceCreateCallbackThenPoll performs ServiceCreate, runs the optional callback function, then polls until it's completed
+func (c DataTransferClient) ServiceCreateCallbackThenPoll(ctx context.Context, id ServiceId, input ServiceResourceCreateUpdateParameters, callback func() error) error {
 	result, err := c.ServiceCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ServiceCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

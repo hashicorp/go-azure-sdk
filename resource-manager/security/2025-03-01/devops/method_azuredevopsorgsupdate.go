@@ -62,9 +62,20 @@ func (c DevOpsClient) AzureDevOpsOrgsUpdate(ctx context.Context, id AzureDevOpsO
 
 // AzureDevOpsOrgsUpdateThenPoll performs AzureDevOpsOrgsUpdate then polls until it's completed
 func (c DevOpsClient) AzureDevOpsOrgsUpdateThenPoll(ctx context.Context, id AzureDevOpsOrgId, input AzureDevOpsOrg) error {
+	return c.AzureDevOpsOrgsUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AzureDevOpsOrgsUpdateCallbackThenPoll performs AzureDevOpsOrgsUpdate, runs the optional callback function, then polls until it's completed
+func (c DevOpsClient) AzureDevOpsOrgsUpdateCallbackThenPoll(ctx context.Context, id AzureDevOpsOrgId, input AzureDevOpsOrg, callback func() error) error {
 	result, err := c.AzureDevOpsOrgsUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AzureDevOpsOrgsUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

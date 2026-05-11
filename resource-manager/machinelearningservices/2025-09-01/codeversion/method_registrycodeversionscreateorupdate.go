@@ -62,9 +62,20 @@ func (c CodeVersionClient) RegistryCodeVersionsCreateOrUpdate(ctx context.Contex
 
 // RegistryCodeVersionsCreateOrUpdateThenPoll performs RegistryCodeVersionsCreateOrUpdate then polls until it's completed
 func (c CodeVersionClient) RegistryCodeVersionsCreateOrUpdateThenPoll(ctx context.Context, id RegistryCodeVersionId, input CodeVersionResource) error {
+	return c.RegistryCodeVersionsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegistryCodeVersionsCreateOrUpdateCallbackThenPoll performs RegistryCodeVersionsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c CodeVersionClient) RegistryCodeVersionsCreateOrUpdateCallbackThenPoll(ctx context.Context, id RegistryCodeVersionId, input CodeVersionResource, callback func() error) error {
 	result, err := c.RegistryCodeVersionsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegistryCodeVersionsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

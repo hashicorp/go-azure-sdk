@@ -62,9 +62,20 @@ func (c ReservationClient) UpdateByBillingAccount(ctx context.Context, id Reserv
 
 // UpdateByBillingAccountThenPoll performs UpdateByBillingAccount then polls until it's completed
 func (c ReservationClient) UpdateByBillingAccountThenPoll(ctx context.Context, id ReservationId, input Patch) error {
+	return c.UpdateByBillingAccountCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateByBillingAccountCallbackThenPoll performs UpdateByBillingAccount, runs the optional callback function, then polls until it's completed
+func (c ReservationClient) UpdateByBillingAccountCallbackThenPoll(ctx context.Context, id ReservationId, input Patch, callback func() error) error {
 	result, err := c.UpdateByBillingAccount(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateByBillingAccount: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

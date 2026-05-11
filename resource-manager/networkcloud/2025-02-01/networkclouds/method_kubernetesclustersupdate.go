@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) KubernetesClustersUpdate(ctx context.Context, id Ku
 
 // KubernetesClustersUpdateThenPoll performs KubernetesClustersUpdate then polls until it's completed
 func (c NetworkcloudsClient) KubernetesClustersUpdateThenPoll(ctx context.Context, id KubernetesClusterId, input KubernetesClusterPatchParameters, options KubernetesClustersUpdateOperationOptions) error {
+	return c.KubernetesClustersUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// KubernetesClustersUpdateCallbackThenPoll performs KubernetesClustersUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) KubernetesClustersUpdateCallbackThenPoll(ctx context.Context, id KubernetesClusterId, input KubernetesClusterPatchParameters, options KubernetesClustersUpdateOperationOptions, callback func() error) error {
 	result, err := c.KubernetesClustersUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing KubernetesClustersUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

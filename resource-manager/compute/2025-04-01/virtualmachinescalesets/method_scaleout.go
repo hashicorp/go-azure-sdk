@@ -61,9 +61,20 @@ func (c VirtualMachineScaleSetsClient) ScaleOut(ctx context.Context, id VirtualM
 
 // ScaleOutThenPoll performs ScaleOut then polls until it's completed
 func (c VirtualMachineScaleSetsClient) ScaleOutThenPoll(ctx context.Context, id VirtualMachineScaleSetId, input VMScaleSetScaleOutInput) error {
+	return c.ScaleOutCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ScaleOutCallbackThenPoll performs ScaleOut, runs the optional callback function, then polls until it's completed
+func (c VirtualMachineScaleSetsClient) ScaleOutCallbackThenPoll(ctx context.Context, id VirtualMachineScaleSetId, input VMScaleSetScaleOutInput, callback func() error) error {
 	result, err := c.ScaleOut(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ScaleOut: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) MetricsConfigurationsCreateOrUpdate(ctx context.Con
 
 // MetricsConfigurationsCreateOrUpdateThenPoll performs MetricsConfigurationsCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) MetricsConfigurationsCreateOrUpdateThenPoll(ctx context.Context, id MetricsConfigurationId, input ClusterMetricsConfiguration, options MetricsConfigurationsCreateOrUpdateOperationOptions) error {
+	return c.MetricsConfigurationsCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// MetricsConfigurationsCreateOrUpdateCallbackThenPoll performs MetricsConfigurationsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) MetricsConfigurationsCreateOrUpdateCallbackThenPoll(ctx context.Context, id MetricsConfigurationId, input ClusterMetricsConfiguration, options MetricsConfigurationsCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.MetricsConfigurationsCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing MetricsConfigurationsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

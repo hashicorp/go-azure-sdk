@@ -60,9 +60,20 @@ func (c StorageAppliancesClient) RunReadCommands(ctx context.Context, id Storage
 
 // RunReadCommandsThenPoll performs RunReadCommands then polls until it's completed
 func (c StorageAppliancesClient) RunReadCommandsThenPoll(ctx context.Context, id StorageApplianceId, input StorageApplianceRunReadCommandsParameters) error {
+	return c.RunReadCommandsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RunReadCommandsCallbackThenPoll performs RunReadCommands, runs the optional callback function, then polls until it's completed
+func (c StorageAppliancesClient) RunReadCommandsCallbackThenPoll(ctx context.Context, id StorageApplianceId, input StorageApplianceRunReadCommandsParameters, callback func() error) error {
 	result, err := c.RunReadCommands(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RunReadCommands: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

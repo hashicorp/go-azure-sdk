@@ -62,9 +62,20 @@ func (c WorkloadNetworksClient) CreateDnsService(ctx context.Context, id DnsServ
 
 // CreateDnsServiceThenPoll performs CreateDnsService then polls until it's completed
 func (c WorkloadNetworksClient) CreateDnsServiceThenPoll(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsService) error {
+	return c.CreateDnsServiceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateDnsServiceCallbackThenPoll performs CreateDnsService, runs the optional callback function, then polls until it's completed
+func (c WorkloadNetworksClient) CreateDnsServiceCallbackThenPoll(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsService, callback func() error) error {
 	result, err := c.CreateDnsService(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateDnsService: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -58,9 +58,20 @@ func (c ConnectorClient) Validate(ctx context.Context, id ConnectorId) (result V
 
 // ValidateThenPoll performs Validate then polls until it's completed
 func (c ConnectorClient) ValidateThenPoll(ctx context.Context, id ConnectorId) error {
+	return c.ValidateCallbackThenPoll(ctx, id, nil)
+}
+
+// ValidateCallbackThenPoll performs Validate, runs the optional callback function, then polls until it's completed
+func (c ConnectorClient) ValidateCallbackThenPoll(ctx context.Context, id ConnectorId, callback func() error) error {
 	result, err := c.Validate(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Validate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

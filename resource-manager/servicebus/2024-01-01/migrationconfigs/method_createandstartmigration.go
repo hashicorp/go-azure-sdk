@@ -62,9 +62,20 @@ func (c MigrationConfigsClient) CreateAndStartMigration(ctx context.Context, id 
 
 // CreateAndStartMigrationThenPoll performs CreateAndStartMigration then polls until it's completed
 func (c MigrationConfigsClient) CreateAndStartMigrationThenPoll(ctx context.Context, id NamespaceId, input MigrationConfigProperties) error {
+	return c.CreateAndStartMigrationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateAndStartMigrationCallbackThenPoll performs CreateAndStartMigration, runs the optional callback function, then polls until it's completed
+func (c MigrationConfigsClient) CreateAndStartMigrationCallbackThenPoll(ctx context.Context, id NamespaceId, input MigrationConfigProperties, callback func() error) error {
 	result, err := c.CreateAndStartMigration(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateAndStartMigration: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

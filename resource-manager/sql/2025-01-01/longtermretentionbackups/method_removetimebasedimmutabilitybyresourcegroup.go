@@ -58,9 +58,20 @@ func (c LongTermRetentionBackupsClient) RemoveTimeBasedImmutabilityByResourceGro
 
 // RemoveTimeBasedImmutabilityByResourceGroupThenPoll performs RemoveTimeBasedImmutabilityByResourceGroup then polls until it's completed
 func (c LongTermRetentionBackupsClient) RemoveTimeBasedImmutabilityByResourceGroupThenPoll(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionBackupId) error {
+	return c.RemoveTimeBasedImmutabilityByResourceGroupCallbackThenPoll(ctx, id, nil)
+}
+
+// RemoveTimeBasedImmutabilityByResourceGroupCallbackThenPoll performs RemoveTimeBasedImmutabilityByResourceGroup, runs the optional callback function, then polls until it's completed
+func (c LongTermRetentionBackupsClient) RemoveTimeBasedImmutabilityByResourceGroupCallbackThenPoll(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionBackupId, callback func() error) error {
 	result, err := c.RemoveTimeBasedImmutabilityByResourceGroup(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing RemoveTimeBasedImmutabilityByResourceGroup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

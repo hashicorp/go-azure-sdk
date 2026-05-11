@@ -62,9 +62,20 @@ func (c MonitoringMetricConfigurationsClient) MonitoringConfigCreateOrUpdate(ctx
 
 // MonitoringConfigCreateOrUpdateThenPoll performs MonitoringConfigCreateOrUpdate then polls until it's completed
 func (c MonitoringMetricConfigurationsClient) MonitoringConfigCreateOrUpdateThenPoll(ctx context.Context, id RoleId, input MonitoringMetricConfiguration) error {
+	return c.MonitoringConfigCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MonitoringConfigCreateOrUpdateCallbackThenPoll performs MonitoringConfigCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c MonitoringMetricConfigurationsClient) MonitoringConfigCreateOrUpdateCallbackThenPoll(ctx context.Context, id RoleId, input MonitoringMetricConfiguration, callback func() error) error {
 	result, err := c.MonitoringConfigCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing MonitoringConfigCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

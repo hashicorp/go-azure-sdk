@@ -61,9 +61,20 @@ func (c DatabaseMigrationsClient) SqlMicancel(ctx context.Context, id Providers2
 
 // SqlMicancelThenPoll performs SqlMicancel then polls until it's completed
 func (c DatabaseMigrationsClient) SqlMicancelThenPoll(ctx context.Context, id Providers2DatabaseMigrationId, input MigrationOperationInput) error {
+	return c.SqlMicancelCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlMicancelCallbackThenPoll performs SqlMicancel, runs the optional callback function, then polls until it's completed
+func (c DatabaseMigrationsClient) SqlMicancelCallbackThenPoll(ctx context.Context, id Providers2DatabaseMigrationId, input MigrationOperationInput, callback func() error) error {
 	result, err := c.SqlMicancel(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlMicancel: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

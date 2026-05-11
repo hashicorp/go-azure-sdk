@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) BmcKeySetsUpdate(ctx context.Context, id BmcKeySetI
 
 // BmcKeySetsUpdateThenPoll performs BmcKeySetsUpdate then polls until it's completed
 func (c NetworkcloudsClient) BmcKeySetsUpdateThenPoll(ctx context.Context, id BmcKeySetId, input BmcKeySetPatchParameters, options BmcKeySetsUpdateOperationOptions) error {
+	return c.BmcKeySetsUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// BmcKeySetsUpdateCallbackThenPoll performs BmcKeySetsUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) BmcKeySetsUpdateCallbackThenPoll(ctx context.Context, id BmcKeySetId, input BmcKeySetPatchParameters, options BmcKeySetsUpdateOperationOptions, callback func() error) error {
 	result, err := c.BmcKeySetsUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing BmcKeySetsUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

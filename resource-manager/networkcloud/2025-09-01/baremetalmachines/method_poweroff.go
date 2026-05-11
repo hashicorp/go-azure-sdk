@@ -60,9 +60,20 @@ func (c BareMetalMachinesClient) PowerOff(ctx context.Context, id BareMetalMachi
 
 // PowerOffThenPoll performs PowerOff then polls until it's completed
 func (c BareMetalMachinesClient) PowerOffThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachinePowerOffParameters) error {
+	return c.PowerOffCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PowerOffCallbackThenPoll performs PowerOff, runs the optional callback function, then polls until it's completed
+func (c BareMetalMachinesClient) PowerOffCallbackThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachinePowerOffParameters, callback func() error) error {
 	result, err := c.PowerOff(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PowerOff: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

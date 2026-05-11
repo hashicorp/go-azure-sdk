@@ -62,9 +62,20 @@ func (c DiagnosticRemoteSupportSettingsOperationGroupClient) DiagnosticSettingsU
 
 // DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsThenPoll performs DiagnosticSettingsUpdateDiagnosticRemoteSupportSettings then polls until it's completed
 func (c DiagnosticRemoteSupportSettingsOperationGroupClient) DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input DiagnosticRemoteSupportSettings) error {
+	return c.DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsCallbackThenPoll performs DiagnosticSettingsUpdateDiagnosticRemoteSupportSettings, runs the optional callback function, then polls until it's completed
+func (c DiagnosticRemoteSupportSettingsOperationGroupClient) DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsCallbackThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input DiagnosticRemoteSupportSettings, callback func() error) error {
 	result, err := c.DiagnosticSettingsUpdateDiagnosticRemoteSupportSettings(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing DiagnosticSettingsUpdateDiagnosticRemoteSupportSettings: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

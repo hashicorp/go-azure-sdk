@@ -57,9 +57,20 @@ func (c VirtualMachineSchedulesClient) Execute(ctx context.Context, id VirtualMa
 
 // ExecuteThenPoll performs Execute then polls until it's completed
 func (c VirtualMachineSchedulesClient) ExecuteThenPoll(ctx context.Context, id VirtualMachineScheduleId) error {
+	return c.ExecuteCallbackThenPoll(ctx, id, nil)
+}
+
+// ExecuteCallbackThenPoll performs Execute, runs the optional callback function, then polls until it's completed
+func (c VirtualMachineSchedulesClient) ExecuteCallbackThenPoll(ctx context.Context, id VirtualMachineScheduleId, callback func() error) error {
 	result, err := c.Execute(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Execute: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

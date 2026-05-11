@@ -61,9 +61,20 @@ func (c DatabaseMigrationsClient) SqlDbretry(ctx context.Context, id DatabaseMig
 
 // SqlDbretryThenPoll performs SqlDbretry then polls until it's completed
 func (c DatabaseMigrationsClient) SqlDbretryThenPoll(ctx context.Context, id DatabaseMigrationId, input MigrationOperationInput) error {
+	return c.SqlDbretryCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlDbretryCallbackThenPoll performs SqlDbretry, runs the optional callback function, then polls until it's completed
+func (c DatabaseMigrationsClient) SqlDbretryCallbackThenPoll(ctx context.Context, id DatabaseMigrationId, input MigrationOperationInput, callback func() error) error {
 	result, err := c.SqlDbretry(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlDbretry: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

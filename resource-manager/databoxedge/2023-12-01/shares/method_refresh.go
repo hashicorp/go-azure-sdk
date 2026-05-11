@@ -57,9 +57,20 @@ func (c SharesClient) Refresh(ctx context.Context, id ShareId) (result RefreshOp
 
 // RefreshThenPoll performs Refresh then polls until it's completed
 func (c SharesClient) RefreshThenPoll(ctx context.Context, id ShareId) error {
+	return c.RefreshCallbackThenPoll(ctx, id, nil)
+}
+
+// RefreshCallbackThenPoll performs Refresh, runs the optional callback function, then polls until it's completed
+func (c SharesClient) RefreshCallbackThenPoll(ctx context.Context, id ShareId, callback func() error) error {
 	result, err := c.Refresh(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Refresh: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

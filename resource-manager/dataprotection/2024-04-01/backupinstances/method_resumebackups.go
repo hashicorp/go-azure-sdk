@@ -57,9 +57,20 @@ func (c BackupInstancesClient) ResumeBackups(ctx context.Context, id BackupInsta
 
 // ResumeBackupsThenPoll performs ResumeBackups then polls until it's completed
 func (c BackupInstancesClient) ResumeBackupsThenPoll(ctx context.Context, id BackupInstanceId) error {
+	return c.ResumeBackupsCallbackThenPoll(ctx, id, nil)
+}
+
+// ResumeBackupsCallbackThenPoll performs ResumeBackups, runs the optional callback function, then polls until it's completed
+func (c BackupInstancesClient) ResumeBackupsCallbackThenPoll(ctx context.Context, id BackupInstanceId, callback func() error) error {
 	result, err := c.ResumeBackups(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ResumeBackups: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

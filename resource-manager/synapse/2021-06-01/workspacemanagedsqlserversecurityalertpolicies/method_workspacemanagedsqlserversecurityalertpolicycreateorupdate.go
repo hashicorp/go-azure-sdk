@@ -62,9 +62,20 @@ func (c WorkspaceManagedSqlServerSecurityAlertPoliciesClient) WorkspaceManagedSq
 
 // WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdateThenPoll performs WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdate then polls until it's completed
 func (c WorkspaceManagedSqlServerSecurityAlertPoliciesClient) WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdateThenPoll(ctx context.Context, id WorkspaceId, input ServerSecurityAlertPolicy) error {
+	return c.WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdateCallbackThenPoll performs WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c WorkspaceManagedSqlServerSecurityAlertPoliciesClient) WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdateCallbackThenPoll(ctx context.Context, id WorkspaceId, input ServerSecurityAlertPolicy, callback func() error) error {
 	result, err := c.WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

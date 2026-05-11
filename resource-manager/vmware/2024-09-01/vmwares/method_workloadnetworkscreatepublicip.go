@@ -62,9 +62,20 @@ func (c VMwaresClient) WorkloadNetworksCreatePublicIP(ctx context.Context, id Pu
 
 // WorkloadNetworksCreatePublicIPThenPoll performs WorkloadNetworksCreatePublicIP then polls until it's completed
 func (c VMwaresClient) WorkloadNetworksCreatePublicIPThenPoll(ctx context.Context, id PublicIPId, input WorkloadNetworkPublicIP) error {
+	return c.WorkloadNetworksCreatePublicIPCallbackThenPoll(ctx, id, input, nil)
+}
+
+// WorkloadNetworksCreatePublicIPCallbackThenPoll performs WorkloadNetworksCreatePublicIP, runs the optional callback function, then polls until it's completed
+func (c VMwaresClient) WorkloadNetworksCreatePublicIPCallbackThenPoll(ctx context.Context, id PublicIPId, input WorkloadNetworkPublicIP, callback func() error) error {
 	result, err := c.WorkloadNetworksCreatePublicIP(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksCreatePublicIP: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

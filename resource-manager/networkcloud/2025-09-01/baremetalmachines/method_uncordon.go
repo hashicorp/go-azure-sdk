@@ -56,9 +56,20 @@ func (c BareMetalMachinesClient) Uncordon(ctx context.Context, id BareMetalMachi
 
 // UncordonThenPoll performs Uncordon then polls until it's completed
 func (c BareMetalMachinesClient) UncordonThenPoll(ctx context.Context, id BareMetalMachineId) error {
+	return c.UncordonCallbackThenPoll(ctx, id, nil)
+}
+
+// UncordonCallbackThenPoll performs Uncordon, runs the optional callback function, then polls until it's completed
+func (c BareMetalMachinesClient) UncordonCallbackThenPoll(ctx context.Context, id BareMetalMachineId, callback func() error) error {
 	result, err := c.Uncordon(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Uncordon: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c AppPlatformClient) JobStart(ctx context.Context, id JobId, input JobExec
 
 // JobStartThenPoll performs JobStart then polls until it's completed
 func (c AppPlatformClient) JobStartThenPoll(ctx context.Context, id JobId, input JobExecutionTemplate) error {
+	return c.JobStartCallbackThenPoll(ctx, id, input, nil)
+}
+
+// JobStartCallbackThenPoll performs JobStart, runs the optional callback function, then polls until it's completed
+func (c AppPlatformClient) JobStartCallbackThenPoll(ctx context.Context, id JobId, input JobExecutionTemplate, callback func() error) error {
 	result, err := c.JobStart(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing JobStart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

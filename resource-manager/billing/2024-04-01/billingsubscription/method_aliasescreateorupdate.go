@@ -63,9 +63,20 @@ func (c BillingSubscriptionClient) AliasesCreateOrUpdate(ctx context.Context, id
 
 // AliasesCreateOrUpdateThenPoll performs AliasesCreateOrUpdate then polls until it's completed
 func (c BillingSubscriptionClient) AliasesCreateOrUpdateThenPoll(ctx context.Context, id BillingSubscriptionAliasId, input BillingSubscriptionAlias) error {
+	return c.AliasesCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AliasesCreateOrUpdateCallbackThenPoll performs AliasesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c BillingSubscriptionClient) AliasesCreateOrUpdateCallbackThenPoll(ctx context.Context, id BillingSubscriptionAliasId, input BillingSubscriptionAlias, callback func() error) error {
 	result, err := c.AliasesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AliasesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

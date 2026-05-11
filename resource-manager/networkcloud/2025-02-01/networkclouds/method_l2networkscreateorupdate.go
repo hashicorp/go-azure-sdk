@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) L2NetworksCreateOrUpdate(ctx context.Context, id L2
 
 // L2NetworksCreateOrUpdateThenPoll performs L2NetworksCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) L2NetworksCreateOrUpdateThenPoll(ctx context.Context, id L2NetworkId, input L2Network, options L2NetworksCreateOrUpdateOperationOptions) error {
+	return c.L2NetworksCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// L2NetworksCreateOrUpdateCallbackThenPoll performs L2NetworksCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) L2NetworksCreateOrUpdateCallbackThenPoll(ctx context.Context, id L2NetworkId, input L2Network, options L2NetworksCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.L2NetworksCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing L2NetworksCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -37,9 +37,20 @@ func (c RecoveryPointsClient) MoveRecoveryPoint(ctx context.Context, id Recovery
 
 // MoveRecoveryPointThenPoll performs MoveRecoveryPoint then polls until it's completed
 func (c RecoveryPointsClient) MoveRecoveryPointThenPoll(ctx context.Context, id RecoveryPointId, input MoveRPAcrossTiersRequest) error {
+	return c.MoveRecoveryPointCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MoveRecoveryPointCallbackThenPoll performs MoveRecoveryPoint, runs the optional callback function, then polls until it's completed
+func (c RecoveryPointsClient) MoveRecoveryPointCallbackThenPoll(ctx context.Context, id RecoveryPointId, input MoveRPAcrossTiersRequest, callback func() error) error {
 	result, err := c.MoveRecoveryPoint(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing MoveRecoveryPoint: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {

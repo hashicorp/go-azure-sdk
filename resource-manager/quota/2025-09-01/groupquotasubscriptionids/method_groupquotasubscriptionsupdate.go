@@ -58,9 +58,20 @@ func (c GroupQuotaSubscriptionIdsClient) GroupQuotaSubscriptionsUpdate(ctx conte
 
 // GroupQuotaSubscriptionsUpdateThenPoll performs GroupQuotaSubscriptionsUpdate then polls until it's completed
 func (c GroupQuotaSubscriptionIdsClient) GroupQuotaSubscriptionsUpdateThenPoll(ctx context.Context, id SubscriptionId) error {
+	return c.GroupQuotaSubscriptionsUpdateCallbackThenPoll(ctx, id, nil)
+}
+
+// GroupQuotaSubscriptionsUpdateCallbackThenPoll performs GroupQuotaSubscriptionsUpdate, runs the optional callback function, then polls until it's completed
+func (c GroupQuotaSubscriptionIdsClient) GroupQuotaSubscriptionsUpdateCallbackThenPoll(ctx context.Context, id SubscriptionId, callback func() error) error {
 	result, err := c.GroupQuotaSubscriptionsUpdate(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing GroupQuotaSubscriptionsUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

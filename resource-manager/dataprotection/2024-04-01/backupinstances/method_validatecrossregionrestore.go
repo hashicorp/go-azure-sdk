@@ -62,9 +62,20 @@ func (c BackupInstancesClient) ValidateCrossRegionRestore(ctx context.Context, i
 
 // ValidateCrossRegionRestoreThenPoll performs ValidateCrossRegionRestore then polls until it's completed
 func (c BackupInstancesClient) ValidateCrossRegionRestoreThenPoll(ctx context.Context, id ProviderLocationId, input ValidateCrossRegionRestoreRequestObject) error {
+	return c.ValidateCrossRegionRestoreCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ValidateCrossRegionRestoreCallbackThenPoll performs ValidateCrossRegionRestore, runs the optional callback function, then polls until it's completed
+func (c BackupInstancesClient) ValidateCrossRegionRestoreCallbackThenPoll(ctx context.Context, id ProviderLocationId, input ValidateCrossRegionRestoreRequestObject, callback func() error) error {
 	result, err := c.ValidateCrossRegionRestore(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ValidateCrossRegionRestore: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

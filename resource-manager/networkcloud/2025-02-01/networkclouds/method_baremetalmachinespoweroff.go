@@ -60,9 +60,20 @@ func (c NetworkcloudsClient) BareMetalMachinesPowerOff(ctx context.Context, id B
 
 // BareMetalMachinesPowerOffThenPoll performs BareMetalMachinesPowerOff then polls until it's completed
 func (c NetworkcloudsClient) BareMetalMachinesPowerOffThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachinePowerOffParameters) error {
+	return c.BareMetalMachinesPowerOffCallbackThenPoll(ctx, id, input, nil)
+}
+
+// BareMetalMachinesPowerOffCallbackThenPoll performs BareMetalMachinesPowerOff, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) BareMetalMachinesPowerOffCallbackThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachinePowerOffParameters, callback func() error) error {
 	result, err := c.BareMetalMachinesPowerOff(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing BareMetalMachinesPowerOff: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

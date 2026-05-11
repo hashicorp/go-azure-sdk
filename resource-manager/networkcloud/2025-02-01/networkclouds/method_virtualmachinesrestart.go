@@ -56,9 +56,20 @@ func (c NetworkcloudsClient) VirtualMachinesRestart(ctx context.Context, id Virt
 
 // VirtualMachinesRestartThenPoll performs VirtualMachinesRestart then polls until it's completed
 func (c NetworkcloudsClient) VirtualMachinesRestartThenPoll(ctx context.Context, id VirtualMachineId) error {
+	return c.VirtualMachinesRestartCallbackThenPoll(ctx, id, nil)
+}
+
+// VirtualMachinesRestartCallbackThenPoll performs VirtualMachinesRestart, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) VirtualMachinesRestartCallbackThenPoll(ctx context.Context, id VirtualMachineId, callback func() error) error {
 	result, err := c.VirtualMachinesRestart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing VirtualMachinesRestart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

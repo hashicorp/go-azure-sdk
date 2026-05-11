@@ -62,9 +62,20 @@ func (c DatadogMonitorResourcesClient) OrganizationsResubscribe(ctx context.Cont
 
 // OrganizationsResubscribeThenPoll performs OrganizationsResubscribe then polls until it's completed
 func (c DatadogMonitorResourcesClient) OrganizationsResubscribeThenPoll(ctx context.Context, id MonitorId, input ResubscribeProperties) error {
+	return c.OrganizationsResubscribeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// OrganizationsResubscribeCallbackThenPoll performs OrganizationsResubscribe, runs the optional callback function, then polls until it's completed
+func (c DatadogMonitorResourcesClient) OrganizationsResubscribeCallbackThenPoll(ctx context.Context, id MonitorId, input ResubscribeProperties, callback func() error) error {
 	result, err := c.OrganizationsResubscribe(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing OrganizationsResubscribe: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

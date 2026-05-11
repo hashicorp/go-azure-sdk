@@ -61,9 +61,20 @@ func (c OnlineEndpointClient) RegenerateKeys(ctx context.Context, id OnlineEndpo
 
 // RegenerateKeysThenPoll performs RegenerateKeys then polls until it's completed
 func (c OnlineEndpointClient) RegenerateKeysThenPoll(ctx context.Context, id OnlineEndpointId, input RegenerateEndpointKeysRequest) error {
+	return c.RegenerateKeysCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegenerateKeysCallbackThenPoll performs RegenerateKeys, runs the optional callback function, then polls until it's completed
+func (c OnlineEndpointClient) RegenerateKeysCallbackThenPoll(ctx context.Context, id OnlineEndpointId, input RegenerateEndpointKeysRequest, callback func() error) error {
 	result, err := c.RegenerateKeys(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegenerateKeys: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

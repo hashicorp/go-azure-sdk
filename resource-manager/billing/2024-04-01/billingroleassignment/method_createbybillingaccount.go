@@ -62,9 +62,20 @@ func (c BillingRoleAssignmentClient) CreateByBillingAccount(ctx context.Context,
 
 // CreateByBillingAccountThenPoll performs CreateByBillingAccount then polls until it's completed
 func (c BillingRoleAssignmentClient) CreateByBillingAccountThenPoll(ctx context.Context, id BillingAccountId, input BillingRoleAssignmentProperties) error {
+	return c.CreateByBillingAccountCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateByBillingAccountCallbackThenPoll performs CreateByBillingAccount, runs the optional callback function, then polls until it's completed
+func (c BillingRoleAssignmentClient) CreateByBillingAccountCallbackThenPoll(ctx context.Context, id BillingAccountId, input BillingRoleAssignmentProperties, callback func() error) error {
 	result, err := c.CreateByBillingAccount(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateByBillingAccount: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

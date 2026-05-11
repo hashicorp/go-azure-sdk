@@ -62,9 +62,20 @@ func (c GroupQuotasEnforcementStatusesClient) GroupQuotaLocationSettingsCreateOr
 
 // GroupQuotaLocationSettingsCreateOrUpdateThenPoll performs GroupQuotaLocationSettingsCreateOrUpdate then polls until it's completed
 func (c GroupQuotasEnforcementStatusesClient) GroupQuotaLocationSettingsCreateOrUpdateThenPoll(ctx context.Context, id LocationSettingId, input GroupQuotasEnforcementStatus) error {
+	return c.GroupQuotaLocationSettingsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// GroupQuotaLocationSettingsCreateOrUpdateCallbackThenPoll performs GroupQuotaLocationSettingsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c GroupQuotasEnforcementStatusesClient) GroupQuotaLocationSettingsCreateOrUpdateCallbackThenPoll(ctx context.Context, id LocationSettingId, input GroupQuotasEnforcementStatus, callback func() error) error {
 	result, err := c.GroupQuotaLocationSettingsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing GroupQuotaLocationSettingsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

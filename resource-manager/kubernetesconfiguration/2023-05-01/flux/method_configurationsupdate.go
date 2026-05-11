@@ -62,9 +62,20 @@ func (c FluxClient) ConfigurationsUpdate(ctx context.Context, id ScopedFluxConfi
 
 // ConfigurationsUpdateThenPoll performs ConfigurationsUpdate then polls until it's completed
 func (c FluxClient) ConfigurationsUpdateThenPoll(ctx context.Context, id ScopedFluxConfigurationId, input FluxConfigurationPatch) error {
+	return c.ConfigurationsUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ConfigurationsUpdateCallbackThenPoll performs ConfigurationsUpdate, runs the optional callback function, then polls until it's completed
+func (c FluxClient) ConfigurationsUpdateCallbackThenPoll(ctx context.Context, id ScopedFluxConfigurationId, input FluxConfigurationPatch, callback func() error) error {
 	result, err := c.ConfigurationsUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ConfigurationsUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

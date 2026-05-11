@@ -61,9 +61,20 @@ func (c DatabaseMigrationsClient) SqlMicutover(ctx context.Context, id Providers
 
 // SqlMicutoverThenPoll performs SqlMicutover then polls until it's completed
 func (c DatabaseMigrationsClient) SqlMicutoverThenPoll(ctx context.Context, id Providers2DatabaseMigrationId, input MigrationOperationInput) error {
+	return c.SqlMicutoverCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlMicutoverCallbackThenPoll performs SqlMicutover, runs the optional callback function, then polls until it's completed
+func (c DatabaseMigrationsClient) SqlMicutoverCallbackThenPoll(ctx context.Context, id Providers2DatabaseMigrationId, input MigrationOperationInput, callback func() error) error {
 	result, err := c.SqlMicutover(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlMicutover: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c ComponentVersionClient) RegistryComponentVersionsCreateOrUpdate(ctx cont
 
 // RegistryComponentVersionsCreateOrUpdateThenPoll performs RegistryComponentVersionsCreateOrUpdate then polls until it's completed
 func (c ComponentVersionClient) RegistryComponentVersionsCreateOrUpdateThenPoll(ctx context.Context, id RegistryComponentVersionId, input ComponentVersionResource) error {
+	return c.RegistryComponentVersionsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegistryComponentVersionsCreateOrUpdateCallbackThenPoll performs RegistryComponentVersionsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c ComponentVersionClient) RegistryComponentVersionsCreateOrUpdateCallbackThenPoll(ctx context.Context, id RegistryComponentVersionId, input ComponentVersionResource, callback func() error) error {
 	result, err := c.RegistryComponentVersionsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegistryComponentVersionsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c ProvisionedClusterInstancesClient) AgentPoolCreateOrUpdate(ctx context.C
 
 // AgentPoolCreateOrUpdateThenPoll performs AgentPoolCreateOrUpdate then polls until it's completed
 func (c ProvisionedClusterInstancesClient) AgentPoolCreateOrUpdateThenPoll(ctx context.Context, id ScopedAgentPoolId, input AgentPool) error {
+	return c.AgentPoolCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AgentPoolCreateOrUpdateCallbackThenPoll performs AgentPoolCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c ProvisionedClusterInstancesClient) AgentPoolCreateOrUpdateCallbackThenPoll(ctx context.Context, id ScopedAgentPoolId, input AgentPool, callback func() error) error {
 	result, err := c.AgentPoolCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AgentPoolCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c RegisteredServersClient) Update(ctx context.Context, id RegisteredServer
 
 // UpdateThenPoll performs Update then polls until it's completed
 func (c RegisteredServersClient) UpdateThenPoll(ctx context.Context, id RegisteredServerId, input RegisteredServerUpdateParameters) error {
+	return c.UpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateCallbackThenPoll performs Update, runs the optional callback function, then polls until it's completed
+func (c RegisteredServersClient) UpdateCallbackThenPoll(ctx context.Context, id RegisteredServerId, input RegisteredServerUpdateParameters, callback func() error) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

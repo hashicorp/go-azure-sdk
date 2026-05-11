@@ -56,9 +56,20 @@ func (c NetworkGatewaysClient) VirtualNetworkGatewaysInvokeAbortMigration(ctx co
 
 // VirtualNetworkGatewaysInvokeAbortMigrationThenPoll performs VirtualNetworkGatewaysInvokeAbortMigration then polls until it's completed
 func (c NetworkGatewaysClient) VirtualNetworkGatewaysInvokeAbortMigrationThenPoll(ctx context.Context, id VirtualNetworkGatewayId) error {
+	return c.VirtualNetworkGatewaysInvokeAbortMigrationCallbackThenPoll(ctx, id, nil)
+}
+
+// VirtualNetworkGatewaysInvokeAbortMigrationCallbackThenPoll performs VirtualNetworkGatewaysInvokeAbortMigration, runs the optional callback function, then polls until it's completed
+func (c NetworkGatewaysClient) VirtualNetworkGatewaysInvokeAbortMigrationCallbackThenPoll(ctx context.Context, id VirtualNetworkGatewayId, callback func() error) error {
 	result, err := c.VirtualNetworkGatewaysInvokeAbortMigration(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing VirtualNetworkGatewaysInvokeAbortMigration: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

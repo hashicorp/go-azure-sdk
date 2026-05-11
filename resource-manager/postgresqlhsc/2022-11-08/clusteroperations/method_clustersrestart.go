@@ -56,9 +56,20 @@ func (c ClusterOperationsClient) ClustersRestart(ctx context.Context, id ServerG
 
 // ClustersRestartThenPoll performs ClustersRestart then polls until it's completed
 func (c ClusterOperationsClient) ClustersRestartThenPoll(ctx context.Context, id ServerGroupsv2Id) error {
+	return c.ClustersRestartCallbackThenPoll(ctx, id, nil)
+}
+
+// ClustersRestartCallbackThenPoll performs ClustersRestart, runs the optional callback function, then polls until it's completed
+func (c ClusterOperationsClient) ClustersRestartCallbackThenPoll(ctx context.Context, id ServerGroupsv2Id, callback func() error) error {
 	result, err := c.ClustersRestart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ClustersRestart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

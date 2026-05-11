@@ -63,9 +63,20 @@ func (c AFDDomainsClient) AFDCustomDomainsCreate(ctx context.Context, id CustomD
 
 // AFDCustomDomainsCreateThenPoll performs AFDCustomDomainsCreate then polls until it's completed
 func (c AFDDomainsClient) AFDCustomDomainsCreateThenPoll(ctx context.Context, id CustomDomainId, input AFDDomain) error {
+	return c.AFDCustomDomainsCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AFDCustomDomainsCreateCallbackThenPoll performs AFDCustomDomainsCreate, runs the optional callback function, then polls until it's completed
+func (c AFDDomainsClient) AFDCustomDomainsCreateCallbackThenPoll(ctx context.Context, id CustomDomainId, input AFDDomain, callback func() error) error {
 	result, err := c.AFDCustomDomainsCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AFDCustomDomainsCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

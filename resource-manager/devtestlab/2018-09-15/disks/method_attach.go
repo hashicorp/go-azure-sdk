@@ -61,9 +61,20 @@ func (c DisksClient) Attach(ctx context.Context, id DiskId, input AttachDiskProp
 
 // AttachThenPoll performs Attach then polls until it's completed
 func (c DisksClient) AttachThenPoll(ctx context.Context, id DiskId, input AttachDiskProperties) error {
+	return c.AttachCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AttachCallbackThenPoll performs Attach, runs the optional callback function, then polls until it's completed
+func (c DisksClient) AttachCallbackThenPoll(ctx context.Context, id DiskId, input AttachDiskProperties, callback func() error) error {
 	result, err := c.Attach(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Attach: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

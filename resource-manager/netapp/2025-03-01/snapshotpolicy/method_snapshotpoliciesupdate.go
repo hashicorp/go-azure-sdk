@@ -62,9 +62,20 @@ func (c SnapshotPolicyClient) SnapshotPoliciesUpdate(ctx context.Context, id Sna
 
 // SnapshotPoliciesUpdateThenPoll performs SnapshotPoliciesUpdate then polls until it's completed
 func (c SnapshotPolicyClient) SnapshotPoliciesUpdateThenPoll(ctx context.Context, id SnapshotPolicyId, input SnapshotPolicyPatch) error {
+	return c.SnapshotPoliciesUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SnapshotPoliciesUpdateCallbackThenPoll performs SnapshotPoliciesUpdate, runs the optional callback function, then polls until it's completed
+func (c SnapshotPolicyClient) SnapshotPoliciesUpdateCallbackThenPoll(ctx context.Context, id SnapshotPolicyId, input SnapshotPolicyPatch, callback func() error) error {
 	result, err := c.SnapshotPoliciesUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SnapshotPoliciesUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

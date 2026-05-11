@@ -60,9 +60,20 @@ func (c BareMetalMachinesClient) RunDataExtractsRestricted(ctx context.Context, 
 
 // RunDataExtractsRestrictedThenPoll performs RunDataExtractsRestricted then polls until it's completed
 func (c BareMetalMachinesClient) RunDataExtractsRestrictedThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachineRunDataExtractsParameters) error {
+	return c.RunDataExtractsRestrictedCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RunDataExtractsRestrictedCallbackThenPoll performs RunDataExtractsRestricted, runs the optional callback function, then polls until it's completed
+func (c BareMetalMachinesClient) RunDataExtractsRestrictedCallbackThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachineRunDataExtractsParameters, callback func() error) error {
 	result, err := c.RunDataExtractsRestricted(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RunDataExtractsRestricted: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

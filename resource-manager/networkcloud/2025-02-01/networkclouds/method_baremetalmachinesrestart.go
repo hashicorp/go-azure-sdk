@@ -56,9 +56,20 @@ func (c NetworkcloudsClient) BareMetalMachinesRestart(ctx context.Context, id Ba
 
 // BareMetalMachinesRestartThenPoll performs BareMetalMachinesRestart then polls until it's completed
 func (c NetworkcloudsClient) BareMetalMachinesRestartThenPoll(ctx context.Context, id BareMetalMachineId) error {
+	return c.BareMetalMachinesRestartCallbackThenPoll(ctx, id, nil)
+}
+
+// BareMetalMachinesRestartCallbackThenPoll performs BareMetalMachinesRestart, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) BareMetalMachinesRestartCallbackThenPoll(ctx context.Context, id BareMetalMachineId, callback func() error) error {
 	result, err := c.BareMetalMachinesRestart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing BareMetalMachinesRestart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

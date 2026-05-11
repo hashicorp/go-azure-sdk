@@ -63,9 +63,20 @@ func (c PublicIPAddressesClient) DisassociateCloudServiceReservedPublicIP(ctx co
 
 // DisassociateCloudServiceReservedPublicIPThenPoll performs DisassociateCloudServiceReservedPublicIP then polls until it's completed
 func (c PublicIPAddressesClient) DisassociateCloudServiceReservedPublicIPThenPoll(ctx context.Context, id commonids.PublicIPAddressId, input DisassociateCloudServicePublicIPRequest) error {
+	return c.DisassociateCloudServiceReservedPublicIPCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DisassociateCloudServiceReservedPublicIPCallbackThenPoll performs DisassociateCloudServiceReservedPublicIP, runs the optional callback function, then polls until it's completed
+func (c PublicIPAddressesClient) DisassociateCloudServiceReservedPublicIPCallbackThenPoll(ctx context.Context, id commonids.PublicIPAddressId, input DisassociateCloudServicePublicIPRequest, callback func() error) error {
 	result, err := c.DisassociateCloudServiceReservedPublicIP(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing DisassociateCloudServiceReservedPublicIP: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -37,9 +37,20 @@ func (c DataMoveClient) BMSTriggerDataMove(ctx context.Context, id VaultId, inpu
 
 // BMSTriggerDataMoveThenPoll performs BMSTriggerDataMove then polls until it's completed
 func (c DataMoveClient) BMSTriggerDataMoveThenPoll(ctx context.Context, id VaultId, input TriggerDataMoveRequest) error {
+	return c.BMSTriggerDataMoveCallbackThenPoll(ctx, id, input, nil)
+}
+
+// BMSTriggerDataMoveCallbackThenPoll performs BMSTriggerDataMove, runs the optional callback function, then polls until it's completed
+func (c DataMoveClient) BMSTriggerDataMoveCallbackThenPoll(ctx context.Context, id VaultId, input TriggerDataMoveRequest, callback func() error) error {
 	result, err := c.BMSTriggerDataMove(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing BMSTriggerDataMove: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {

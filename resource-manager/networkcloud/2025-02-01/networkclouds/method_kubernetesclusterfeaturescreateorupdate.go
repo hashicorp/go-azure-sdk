@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) KubernetesClusterFeaturesCreateOrUpdate(ctx context
 
 // KubernetesClusterFeaturesCreateOrUpdateThenPoll performs KubernetesClusterFeaturesCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) KubernetesClusterFeaturesCreateOrUpdateThenPoll(ctx context.Context, id FeatureId, input KubernetesClusterFeature, options KubernetesClusterFeaturesCreateOrUpdateOperationOptions) error {
+	return c.KubernetesClusterFeaturesCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// KubernetesClusterFeaturesCreateOrUpdateCallbackThenPoll performs KubernetesClusterFeaturesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) KubernetesClusterFeaturesCreateOrUpdateCallbackThenPoll(ctx context.Context, id FeatureId, input KubernetesClusterFeature, options KubernetesClusterFeaturesCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.KubernetesClusterFeaturesCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing KubernetesClusterFeaturesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -57,9 +57,20 @@ func (c DedicatedHostsClient) Restart(ctx context.Context, id commonids.Dedicate
 
 // RestartThenPoll performs Restart then polls until it's completed
 func (c DedicatedHostsClient) RestartThenPoll(ctx context.Context, id commonids.DedicatedHostId) error {
+	return c.RestartCallbackThenPoll(ctx, id, nil)
+}
+
+// RestartCallbackThenPoll performs Restart, runs the optional callback function, then polls until it's completed
+func (c DedicatedHostsClient) RestartCallbackThenPoll(ctx context.Context, id commonids.DedicatedHostId, callback func() error) error {
 	result, err := c.Restart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Restart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

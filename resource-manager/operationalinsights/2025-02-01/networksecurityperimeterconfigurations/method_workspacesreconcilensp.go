@@ -56,9 +56,20 @@ func (c NetworkSecurityPerimeterConfigurationsClient) WorkspacesReconcileNSP(ctx
 
 // WorkspacesReconcileNSPThenPoll performs WorkspacesReconcileNSP then polls until it's completed
 func (c NetworkSecurityPerimeterConfigurationsClient) WorkspacesReconcileNSPThenPoll(ctx context.Context, id NetworkSecurityPerimeterConfigurationId) error {
+	return c.WorkspacesReconcileNSPCallbackThenPoll(ctx, id, nil)
+}
+
+// WorkspacesReconcileNSPCallbackThenPoll performs WorkspacesReconcileNSP, runs the optional callback function, then polls until it's completed
+func (c NetworkSecurityPerimeterConfigurationsClient) WorkspacesReconcileNSPCallbackThenPoll(ctx context.Context, id NetworkSecurityPerimeterConfigurationId, callback func() error) error {
 	result, err := c.WorkspacesReconcileNSP(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing WorkspacesReconcileNSP: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

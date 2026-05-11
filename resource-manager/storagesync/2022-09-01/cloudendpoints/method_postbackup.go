@@ -62,9 +62,20 @@ func (c CloudEndpointsClient) PostBackup(ctx context.Context, id CloudEndpointId
 
 // PostBackupThenPoll performs PostBackup then polls until it's completed
 func (c CloudEndpointsClient) PostBackupThenPoll(ctx context.Context, id CloudEndpointId, input BackupRequest) error {
+	return c.PostBackupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PostBackupCallbackThenPoll performs PostBackup, runs the optional callback function, then polls until it's completed
+func (c CloudEndpointsClient) PostBackupCallbackThenPoll(ctx context.Context, id CloudEndpointId, input BackupRequest, callback func() error) error {
 	result, err := c.PostBackup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PostBackup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

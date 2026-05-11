@@ -61,9 +61,20 @@ func (c PrivateEndpointConnectionsClient) Approve(ctx context.Context, id Privat
 
 // ApproveThenPoll performs Approve then polls until it's completed
 func (c PrivateEndpointConnectionsClient) ApproveThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection) error {
+	return c.ApproveCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ApproveCallbackThenPoll performs Approve, runs the optional callback function, then polls until it's completed
+func (c PrivateEndpointConnectionsClient) ApproveCallbackThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection, callback func() error) error {
 	result, err := c.Approve(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Approve: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c AttestationsClient) CreateOrUpdateAtSubscription(ctx context.Context, id
 
 // CreateOrUpdateAtSubscriptionThenPoll performs CreateOrUpdateAtSubscription then polls until it's completed
 func (c AttestationsClient) CreateOrUpdateAtSubscriptionThenPoll(ctx context.Context, id AttestationId, input Attestation) error {
+	return c.CreateOrUpdateAtSubscriptionCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrUpdateAtSubscriptionCallbackThenPoll performs CreateOrUpdateAtSubscription, runs the optional callback function, then polls until it's completed
+func (c AttestationsClient) CreateOrUpdateAtSubscriptionCallbackThenPoll(ctx context.Context, id AttestationId, input Attestation, callback func() error) error {
 	result, err := c.CreateOrUpdateAtSubscription(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdateAtSubscription: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

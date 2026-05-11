@@ -62,9 +62,20 @@ func (c LongTermRetentionBackupsClient) ChangeAccessTier(ctx context.Context, id
 
 // ChangeAccessTierThenPoll performs ChangeAccessTier then polls until it's completed
 func (c LongTermRetentionBackupsClient) ChangeAccessTierThenPoll(ctx context.Context, id LongTermRetentionBackupId, input ChangeLongTermRetentionBackupAccessTierParameters) error {
+	return c.ChangeAccessTierCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ChangeAccessTierCallbackThenPoll performs ChangeAccessTier, runs the optional callback function, then polls until it's completed
+func (c LongTermRetentionBackupsClient) ChangeAccessTierCallbackThenPoll(ctx context.Context, id LongTermRetentionBackupId, input ChangeLongTermRetentionBackupAccessTierParameters, callback func() error) error {
 	result, err := c.ChangeAccessTier(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ChangeAccessTier: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

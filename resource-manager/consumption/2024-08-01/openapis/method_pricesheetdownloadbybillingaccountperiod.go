@@ -58,9 +58,20 @@ func (c OpenapisClient) PriceSheetDownloadByBillingAccountPeriod(ctx context.Con
 
 // PriceSheetDownloadByBillingAccountPeriodThenPoll performs PriceSheetDownloadByBillingAccountPeriod then polls until it's completed
 func (c OpenapisClient) PriceSheetDownloadByBillingAccountPeriodThenPoll(ctx context.Context, id BillingAccountBillingPeriodId) error {
+	return c.PriceSheetDownloadByBillingAccountPeriodCallbackThenPoll(ctx, id, nil)
+}
+
+// PriceSheetDownloadByBillingAccountPeriodCallbackThenPoll performs PriceSheetDownloadByBillingAccountPeriod, runs the optional callback function, then polls until it's completed
+func (c OpenapisClient) PriceSheetDownloadByBillingAccountPeriodCallbackThenPoll(ctx context.Context, id BillingAccountBillingPeriodId, callback func() error) error {
 	result, err := c.PriceSheetDownloadByBillingAccountPeriod(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing PriceSheetDownloadByBillingAccountPeriod: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

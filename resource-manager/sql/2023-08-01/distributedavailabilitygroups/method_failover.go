@@ -62,9 +62,20 @@ func (c DistributedAvailabilityGroupsClient) Failover(ctx context.Context, id Di
 
 // FailoverThenPoll performs Failover then polls until it's completed
 func (c DistributedAvailabilityGroupsClient) FailoverThenPoll(ctx context.Context, id DistributedAvailabilityGroupId, input DistributedAvailabilityGroupsFailoverRequest) error {
+	return c.FailoverCallbackThenPoll(ctx, id, input, nil)
+}
+
+// FailoverCallbackThenPoll performs Failover, runs the optional callback function, then polls until it's completed
+func (c DistributedAvailabilityGroupsClient) FailoverCallbackThenPoll(ctx context.Context, id DistributedAvailabilityGroupId, input DistributedAvailabilityGroupsFailoverRequest, callback func() error) error {
 	result, err := c.Failover(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Failover: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

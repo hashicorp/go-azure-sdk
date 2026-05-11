@@ -62,9 +62,20 @@ func (c BillingRoleAssignmentClient) CreateOrUpdateByDepartment(ctx context.Cont
 
 // CreateOrUpdateByDepartmentThenPoll performs CreateOrUpdateByDepartment then polls until it's completed
 func (c BillingRoleAssignmentClient) CreateOrUpdateByDepartmentThenPoll(ctx context.Context, id DepartmentBillingRoleAssignmentId, input BillingRoleAssignment) error {
+	return c.CreateOrUpdateByDepartmentCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrUpdateByDepartmentCallbackThenPoll performs CreateOrUpdateByDepartment, runs the optional callback function, then polls until it's completed
+func (c BillingRoleAssignmentClient) CreateOrUpdateByDepartmentCallbackThenPoll(ctx context.Context, id DepartmentBillingRoleAssignmentId, input BillingRoleAssignment, callback func() error) error {
 	result, err := c.CreateOrUpdateByDepartment(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdateByDepartment: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

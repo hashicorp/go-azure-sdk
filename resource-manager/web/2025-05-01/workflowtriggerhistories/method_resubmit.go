@@ -56,9 +56,20 @@ func (c WorkflowTriggerHistoriesClient) Resubmit(ctx context.Context, id Trigger
 
 // ResubmitThenPoll performs Resubmit then polls until it's completed
 func (c WorkflowTriggerHistoriesClient) ResubmitThenPoll(ctx context.Context, id TriggerHistoryId) error {
+	return c.ResubmitCallbackThenPoll(ctx, id, nil)
+}
+
+// ResubmitCallbackThenPoll performs Resubmit, runs the optional callback function, then polls until it's completed
+func (c WorkflowTriggerHistoriesClient) ResubmitCallbackThenPoll(ctx context.Context, id TriggerHistoryId, callback func() error) error {
 	result, err := c.Resubmit(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Resubmit: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

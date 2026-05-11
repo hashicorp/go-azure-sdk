@@ -90,9 +90,20 @@ func (c DeviceCapacityCheckClient) CheckResourceCreationFeasibility(ctx context.
 
 // CheckResourceCreationFeasibilityThenPoll performs CheckResourceCreationFeasibility then polls until it's completed
 func (c DeviceCapacityCheckClient) CheckResourceCreationFeasibilityThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input DeviceCapacityRequestInfo, options CheckResourceCreationFeasibilityOperationOptions) error {
+	return c.CheckResourceCreationFeasibilityCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// CheckResourceCreationFeasibilityCallbackThenPoll performs CheckResourceCreationFeasibility, runs the optional callback function, then polls until it's completed
+func (c DeviceCapacityCheckClient) CheckResourceCreationFeasibilityCallbackThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input DeviceCapacityRequestInfo, options CheckResourceCreationFeasibilityOperationOptions, callback func() error) error {
 	result, err := c.CheckResourceCreationFeasibility(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing CheckResourceCreationFeasibility: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

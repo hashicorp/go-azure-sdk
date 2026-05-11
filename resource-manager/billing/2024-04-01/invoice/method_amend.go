@@ -56,9 +56,20 @@ func (c InvoiceClient) Amend(ctx context.Context, id BillingAccountInvoiceId) (r
 
 // AmendThenPoll performs Amend then polls until it's completed
 func (c InvoiceClient) AmendThenPoll(ctx context.Context, id BillingAccountInvoiceId) error {
+	return c.AmendCallbackThenPoll(ctx, id, nil)
+}
+
+// AmendCallbackThenPoll performs Amend, runs the optional callback function, then polls until it's completed
+func (c InvoiceClient) AmendCallbackThenPoll(ctx context.Context, id BillingAccountInvoiceId, callback func() error) error {
 	result, err := c.Amend(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Amend: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

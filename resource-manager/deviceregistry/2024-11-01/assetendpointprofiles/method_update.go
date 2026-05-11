@@ -62,9 +62,20 @@ func (c AssetEndpointProfilesClient) Update(ctx context.Context, id AssetEndpoin
 
 // UpdateThenPoll performs Update then polls until it's completed
 func (c AssetEndpointProfilesClient) UpdateThenPoll(ctx context.Context, id AssetEndpointProfileId, input AssetEndpointProfileUpdate) error {
+	return c.UpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateCallbackThenPoll performs Update, runs the optional callback function, then polls until it's completed
+func (c AssetEndpointProfilesClient) UpdateCallbackThenPoll(ctx context.Context, id AssetEndpointProfileId, input AssetEndpointProfileUpdate, callback func() error) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c OutputsClient) Test(ctx context.Context, id OutputId, input Output) (res
 
 // TestThenPoll performs Test then polls until it's completed
 func (c OutputsClient) TestThenPoll(ctx context.Context, id OutputId, input Output) error {
+	return c.TestCallbackThenPoll(ctx, id, input, nil)
+}
+
+// TestCallbackThenPoll performs Test, runs the optional callback function, then polls until it's completed
+func (c OutputsClient) TestCallbackThenPoll(ctx context.Context, id OutputId, input Output, callback func() error) error {
 	result, err := c.Test(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Test: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

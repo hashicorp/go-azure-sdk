@@ -62,9 +62,20 @@ func (c ContainersClient) CreateOrUpdate(ctx context.Context, id ContainerId, in
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
 func (c ContainersClient) CreateOrUpdateThenPoll(ctx context.Context, id ContainerId, input Container) error {
+	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c ContainersClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id ContainerId, input Container, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c CommitmentPlansClient) CreateOrUpdateAssociation(ctx context.Context, id
 
 // CreateOrUpdateAssociationThenPoll performs CreateOrUpdateAssociation then polls until it's completed
 func (c CommitmentPlansClient) CreateOrUpdateAssociationThenPoll(ctx context.Context, id AccountAssociationId, input CommitmentPlanAccountAssociation) error {
+	return c.CreateOrUpdateAssociationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrUpdateAssociationCallbackThenPoll performs CreateOrUpdateAssociation, runs the optional callback function, then polls until it's completed
+func (c CommitmentPlansClient) CreateOrUpdateAssociationCallbackThenPoll(ctx context.Context, id AccountAssociationId, input CommitmentPlanAccountAssociation, callback func() error) error {
 	result, err := c.CreateOrUpdateAssociation(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdateAssociation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

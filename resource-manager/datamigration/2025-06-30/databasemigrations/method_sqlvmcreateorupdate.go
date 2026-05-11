@@ -62,9 +62,20 @@ func (c DatabaseMigrationsClient) SqlVMCreateOrUpdate(ctx context.Context, id Sq
 
 // SqlVMCreateOrUpdateThenPoll performs SqlVMCreateOrUpdate then polls until it's completed
 func (c DatabaseMigrationsClient) SqlVMCreateOrUpdateThenPoll(ctx context.Context, id SqlVirtualMachineProviders2DatabaseMigrationId, input DatabaseMigrationSqlVM) error {
+	return c.SqlVMCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlVMCreateOrUpdateCallbackThenPoll performs SqlVMCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c DatabaseMigrationsClient) SqlVMCreateOrUpdateCallbackThenPoll(ctx context.Context, id SqlVirtualMachineProviders2DatabaseMigrationId, input DatabaseMigrationSqlVM, callback func() error) error {
 	result, err := c.SqlVMCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlVMCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

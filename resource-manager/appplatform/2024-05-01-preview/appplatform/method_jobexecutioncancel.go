@@ -56,9 +56,20 @@ func (c AppPlatformClient) JobExecutionCancel(ctx context.Context, id ExecutionI
 
 // JobExecutionCancelThenPoll performs JobExecutionCancel then polls until it's completed
 func (c AppPlatformClient) JobExecutionCancelThenPoll(ctx context.Context, id ExecutionId) error {
+	return c.JobExecutionCancelCallbackThenPoll(ctx, id, nil)
+}
+
+// JobExecutionCancelCallbackThenPoll performs JobExecutionCancel, runs the optional callback function, then polls until it's completed
+func (c AppPlatformClient) JobExecutionCancelCallbackThenPoll(ctx context.Context, id ExecutionId, callback func() error) error {
 	result, err := c.JobExecutionCancel(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing JobExecutionCancel: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

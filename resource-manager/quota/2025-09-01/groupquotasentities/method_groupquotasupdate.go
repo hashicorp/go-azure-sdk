@@ -62,9 +62,20 @@ func (c GroupQuotasEntitiesClient) GroupQuotasUpdate(ctx context.Context, id Gro
 
 // GroupQuotasUpdateThenPoll performs GroupQuotasUpdate then polls until it's completed
 func (c GroupQuotasEntitiesClient) GroupQuotasUpdateThenPoll(ctx context.Context, id GroupQuotaId, input GroupQuotasEntityPatch) error {
+	return c.GroupQuotasUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// GroupQuotasUpdateCallbackThenPoll performs GroupQuotasUpdate, runs the optional callback function, then polls until it's completed
+func (c GroupQuotasEntitiesClient) GroupQuotasUpdateCallbackThenPoll(ctx context.Context, id GroupQuotaId, input GroupQuotasEntityPatch, callback func() error) error {
 	result, err := c.GroupQuotasUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing GroupQuotasUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

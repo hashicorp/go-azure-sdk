@@ -90,9 +90,20 @@ func (c BackupInstancesClient) SuspendBackups(ctx context.Context, id BackupInst
 
 // SuspendBackupsThenPoll performs SuspendBackups then polls until it's completed
 func (c BackupInstancesClient) SuspendBackupsThenPoll(ctx context.Context, id BackupInstanceId, input SuspendBackupRequest, options SuspendBackupsOperationOptions) error {
+	return c.SuspendBackupsCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// SuspendBackupsCallbackThenPoll performs SuspendBackups, runs the optional callback function, then polls until it's completed
+func (c BackupInstancesClient) SuspendBackupsCallbackThenPoll(ctx context.Context, id BackupInstanceId, input SuspendBackupRequest, options SuspendBackupsOperationOptions, callback func() error) error {
 	result, err := c.SuspendBackups(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing SuspendBackups: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c DiscoveredAssetEndpointProfilesClient) CreateOrReplace(ctx context.Conte
 
 // CreateOrReplaceThenPoll performs CreateOrReplace then polls until it's completed
 func (c DiscoveredAssetEndpointProfilesClient) CreateOrReplaceThenPoll(ctx context.Context, id DiscoveredAssetEndpointProfileId, input DiscoveredAssetEndpointProfile) error {
+	return c.CreateOrReplaceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrReplaceCallbackThenPoll performs CreateOrReplace, runs the optional callback function, then polls until it's completed
+func (c DiscoveredAssetEndpointProfilesClient) CreateOrReplaceCallbackThenPoll(ctx context.Context, id DiscoveredAssetEndpointProfileId, input DiscoveredAssetEndpointProfile, callback func() error) error {
 	result, err := c.CreateOrReplace(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrReplace: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

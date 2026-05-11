@@ -58,9 +58,20 @@ func (c CachesClient) ResetSmbPassword(ctx context.Context, id CacheId) (result 
 
 // ResetSmbPasswordThenPoll performs ResetSmbPassword then polls until it's completed
 func (c CachesClient) ResetSmbPasswordThenPoll(ctx context.Context, id CacheId) error {
+	return c.ResetSmbPasswordCallbackThenPoll(ctx, id, nil)
+}
+
+// ResetSmbPasswordCallbackThenPoll performs ResetSmbPassword, runs the optional callback function, then polls until it's completed
+func (c CachesClient) ResetSmbPasswordCallbackThenPoll(ctx context.Context, id CacheId, callback func() error) error {
 	result, err := c.ResetSmbPassword(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ResetSmbPassword: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

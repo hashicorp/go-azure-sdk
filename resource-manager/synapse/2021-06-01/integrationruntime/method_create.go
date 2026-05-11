@@ -91,9 +91,20 @@ func (c IntegrationRuntimeClient) Create(ctx context.Context, id IntegrationRunt
 
 // CreateThenPoll performs Create then polls until it's completed
 func (c IntegrationRuntimeClient) CreateThenPoll(ctx context.Context, id IntegrationRuntimeId, input IntegrationRuntimeResource, options CreateOperationOptions) error {
+	return c.CreateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// CreateCallbackThenPoll performs Create, runs the optional callback function, then polls until it's completed
+func (c IntegrationRuntimeClient) CreateCallbackThenPoll(ctx context.Context, id IntegrationRuntimeId, input IntegrationRuntimeResource, options CreateOperationOptions, callback func() error) error {
 	result, err := c.Create(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

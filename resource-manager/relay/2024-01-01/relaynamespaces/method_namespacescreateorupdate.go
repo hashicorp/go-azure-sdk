@@ -62,9 +62,20 @@ func (c RelayNamespacesClient) NamespacesCreateOrUpdate(ctx context.Context, id 
 
 // NamespacesCreateOrUpdateThenPoll performs NamespacesCreateOrUpdate then polls until it's completed
 func (c RelayNamespacesClient) NamespacesCreateOrUpdateThenPoll(ctx context.Context, id NamespaceId, input RelayNamespace) error {
+	return c.NamespacesCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// NamespacesCreateOrUpdateCallbackThenPoll performs NamespacesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c RelayNamespacesClient) NamespacesCreateOrUpdateCallbackThenPoll(ctx context.Context, id NamespaceId, input RelayNamespace, callback func() error) error {
 	result, err := c.NamespacesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing NamespacesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

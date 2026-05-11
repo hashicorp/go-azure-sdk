@@ -62,9 +62,20 @@ func (c LinkersClient) LinkerUpdate(ctx context.Context, id ScopedLinkerId, inpu
 
 // LinkerUpdateThenPoll performs LinkerUpdate then polls until it's completed
 func (c LinkersClient) LinkerUpdateThenPoll(ctx context.Context, id ScopedLinkerId, input LinkerPatch) error {
+	return c.LinkerUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// LinkerUpdateCallbackThenPoll performs LinkerUpdate, runs the optional callback function, then polls until it's completed
+func (c LinkersClient) LinkerUpdateCallbackThenPoll(ctx context.Context, id ScopedLinkerId, input LinkerPatch, callback func() error) error {
 	result, err := c.LinkerUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing LinkerUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c ServerlessEndpointClient) RegenerateKeys(ctx context.Context, id Serverl
 
 // RegenerateKeysThenPoll performs RegenerateKeys then polls until it's completed
 func (c ServerlessEndpointClient) RegenerateKeysThenPoll(ctx context.Context, id ServerlessEndpointId, input RegenerateEndpointKeysRequest) error {
+	return c.RegenerateKeysCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegenerateKeysCallbackThenPoll performs RegenerateKeys, runs the optional callback function, then polls until it's completed
+func (c ServerlessEndpointClient) RegenerateKeysCallbackThenPoll(ctx context.Context, id ServerlessEndpointId, input RegenerateEndpointKeysRequest, callback func() error) error {
 	result, err := c.RegenerateKeys(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegenerateKeys: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

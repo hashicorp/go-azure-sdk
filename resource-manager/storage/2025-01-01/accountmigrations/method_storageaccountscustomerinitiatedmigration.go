@@ -62,9 +62,20 @@ func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigration(ctx c
 
 // StorageAccountsCustomerInitiatedMigrationThenPoll performs StorageAccountsCustomerInitiatedMigration then polls until it's completed
 func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigrationThenPoll(ctx context.Context, id commonids.StorageAccountId, input StorageAccountMigration) error {
+	return c.StorageAccountsCustomerInitiatedMigrationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// StorageAccountsCustomerInitiatedMigrationCallbackThenPoll performs StorageAccountsCustomerInitiatedMigration, runs the optional callback function, then polls until it's completed
+func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigrationCallbackThenPoll(ctx context.Context, id commonids.StorageAccountId, input StorageAccountMigration, callback func() error) error {
 	result, err := c.StorageAccountsCustomerInitiatedMigration(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing StorageAccountsCustomerInitiatedMigration: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

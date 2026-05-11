@@ -62,9 +62,20 @@ func (c WorkloadNetworksClient) CreateVMGroup(ctx context.Context, id VMGroupId,
 
 // CreateVMGroupThenPoll performs CreateVMGroup then polls until it's completed
 func (c WorkloadNetworksClient) CreateVMGroupThenPoll(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) error {
+	return c.CreateVMGroupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateVMGroupCallbackThenPoll performs CreateVMGroup, runs the optional callback function, then polls until it's completed
+func (c WorkloadNetworksClient) CreateVMGroupCallbackThenPoll(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup, callback func() error) error {
 	result, err := c.CreateVMGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateVMGroup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

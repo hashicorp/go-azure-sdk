@@ -57,9 +57,20 @@ func (c VirtualMachineClient) Stop(ctx context.Context, id VirtualMachineId) (re
 
 // StopThenPoll performs Stop then polls until it's completed
 func (c VirtualMachineClient) StopThenPoll(ctx context.Context, id VirtualMachineId) error {
+	return c.StopCallbackThenPoll(ctx, id, nil)
+}
+
+// StopCallbackThenPoll performs Stop, runs the optional callback function, then polls until it's completed
+func (c VirtualMachineClient) StopCallbackThenPoll(ctx context.Context, id VirtualMachineId, callback func() error) error {
 	result, err := c.Stop(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Stop: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

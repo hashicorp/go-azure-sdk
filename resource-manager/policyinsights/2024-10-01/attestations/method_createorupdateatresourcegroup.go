@@ -62,9 +62,20 @@ func (c AttestationsClient) CreateOrUpdateAtResourceGroup(ctx context.Context, i
 
 // CreateOrUpdateAtResourceGroupThenPoll performs CreateOrUpdateAtResourceGroup then polls until it's completed
 func (c AttestationsClient) CreateOrUpdateAtResourceGroupThenPoll(ctx context.Context, id ProviderAttestationId, input Attestation) error {
+	return c.CreateOrUpdateAtResourceGroupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrUpdateAtResourceGroupCallbackThenPoll performs CreateOrUpdateAtResourceGroup, runs the optional callback function, then polls until it's completed
+func (c AttestationsClient) CreateOrUpdateAtResourceGroupCallbackThenPoll(ctx context.Context, id ProviderAttestationId, input Attestation, callback func() error) error {
 	result, err := c.CreateOrUpdateAtResourceGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdateAtResourceGroup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

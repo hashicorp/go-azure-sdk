@@ -57,9 +57,20 @@ func (c NotebookWorkspacesResourceClient) NotebookWorkspacesRegenerateAuthToken(
 
 // NotebookWorkspacesRegenerateAuthTokenThenPoll performs NotebookWorkspacesRegenerateAuthToken then polls until it's completed
 func (c NotebookWorkspacesResourceClient) NotebookWorkspacesRegenerateAuthTokenThenPoll(ctx context.Context, id DatabaseAccountId) error {
+	return c.NotebookWorkspacesRegenerateAuthTokenCallbackThenPoll(ctx, id, nil)
+}
+
+// NotebookWorkspacesRegenerateAuthTokenCallbackThenPoll performs NotebookWorkspacesRegenerateAuthToken, runs the optional callback function, then polls until it's completed
+func (c NotebookWorkspacesResourceClient) NotebookWorkspacesRegenerateAuthTokenCallbackThenPoll(ctx context.Context, id DatabaseAccountId, callback func() error) error {
 	result, err := c.NotebookWorkspacesRegenerateAuthToken(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing NotebookWorkspacesRegenerateAuthToken: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c AttestationsClient) CreateOrUpdateAtResource(ctx context.Context, id Sco
 
 // CreateOrUpdateAtResourceThenPoll performs CreateOrUpdateAtResource then polls until it's completed
 func (c AttestationsClient) CreateOrUpdateAtResourceThenPoll(ctx context.Context, id ScopedAttestationId, input Attestation) error {
+	return c.CreateOrUpdateAtResourceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrUpdateAtResourceCallbackThenPoll performs CreateOrUpdateAtResource, runs the optional callback function, then polls until it's completed
+func (c AttestationsClient) CreateOrUpdateAtResourceCallbackThenPoll(ctx context.Context, id ScopedAttestationId, input Attestation, callback func() error) error {
 	result, err := c.CreateOrUpdateAtResource(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdateAtResource: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

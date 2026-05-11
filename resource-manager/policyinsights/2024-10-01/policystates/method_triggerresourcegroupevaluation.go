@@ -58,9 +58,20 @@ func (c PolicyStatesClient) TriggerResourceGroupEvaluation(ctx context.Context, 
 
 // TriggerResourceGroupEvaluationThenPoll performs TriggerResourceGroupEvaluation then polls until it's completed
 func (c PolicyStatesClient) TriggerResourceGroupEvaluationThenPoll(ctx context.Context, id commonids.ResourceGroupId) error {
+	return c.TriggerResourceGroupEvaluationCallbackThenPoll(ctx, id, nil)
+}
+
+// TriggerResourceGroupEvaluationCallbackThenPoll performs TriggerResourceGroupEvaluation, runs the optional callback function, then polls until it's completed
+func (c PolicyStatesClient) TriggerResourceGroupEvaluationCallbackThenPoll(ctx context.Context, id commonids.ResourceGroupId, callback func() error) error {
 	result, err := c.TriggerResourceGroupEvaluation(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing TriggerResourceGroupEvaluation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

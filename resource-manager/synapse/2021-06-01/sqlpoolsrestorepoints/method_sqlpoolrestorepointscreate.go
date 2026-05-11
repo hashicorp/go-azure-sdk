@@ -63,9 +63,20 @@ func (c SqlPoolsRestorePointsClient) SqlPoolRestorePointsCreate(ctx context.Cont
 
 // SqlPoolRestorePointsCreateThenPoll performs SqlPoolRestorePointsCreate then polls until it's completed
 func (c SqlPoolsRestorePointsClient) SqlPoolRestorePointsCreateThenPoll(ctx context.Context, id SqlPoolId, input CreateSqlPoolRestorePointDefinition) error {
+	return c.SqlPoolRestorePointsCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlPoolRestorePointsCreateCallbackThenPoll performs SqlPoolRestorePointsCreate, runs the optional callback function, then polls until it's completed
+func (c SqlPoolsRestorePointsClient) SqlPoolRestorePointsCreateCallbackThenPoll(ctx context.Context, id SqlPoolId, input CreateSqlPoolRestorePointDefinition, callback func() error) error {
 	result, err := c.SqlPoolRestorePointsCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlPoolRestorePointsCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

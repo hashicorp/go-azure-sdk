@@ -61,9 +61,20 @@ func (c DataBoxEdgeDevicesClient) SupportPackagesTriggerSupportPackage(ctx conte
 
 // SupportPackagesTriggerSupportPackageThenPoll performs SupportPackagesTriggerSupportPackage then polls until it's completed
 func (c DataBoxEdgeDevicesClient) SupportPackagesTriggerSupportPackageThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input TriggerSupportPackageRequest) error {
+	return c.SupportPackagesTriggerSupportPackageCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SupportPackagesTriggerSupportPackageCallbackThenPoll performs SupportPackagesTriggerSupportPackage, runs the optional callback function, then polls until it's completed
+func (c DataBoxEdgeDevicesClient) SupportPackagesTriggerSupportPackageCallbackThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input TriggerSupportPackageRequest, callback func() error) error {
 	result, err := c.SupportPackagesTriggerSupportPackage(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SupportPackagesTriggerSupportPackage: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

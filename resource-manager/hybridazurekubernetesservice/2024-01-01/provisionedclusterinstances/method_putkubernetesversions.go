@@ -63,9 +63,20 @@ func (c ProvisionedClusterInstancesClient) PutKubernetesVersions(ctx context.Con
 
 // PutKubernetesVersionsThenPoll performs PutKubernetesVersions then polls until it's completed
 func (c ProvisionedClusterInstancesClient) PutKubernetesVersionsThenPoll(ctx context.Context, id commonids.ScopeId, input KubernetesVersionProfile) error {
+	return c.PutKubernetesVersionsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PutKubernetesVersionsCallbackThenPoll performs PutKubernetesVersions, runs the optional callback function, then polls until it's completed
+func (c ProvisionedClusterInstancesClient) PutKubernetesVersionsCallbackThenPoll(ctx context.Context, id commonids.ScopeId, input KubernetesVersionProfile, callback func() error) error {
 	result, err := c.PutKubernetesVersions(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PutKubernetesVersions: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

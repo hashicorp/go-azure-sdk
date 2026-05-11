@@ -38,9 +38,20 @@ func (c PrivateEndpointConnectionResourcesClient) PrivateEndpointConnectionPut(c
 
 // PrivateEndpointConnectionPutThenPoll performs PrivateEndpointConnectionPut then polls until it's completed
 func (c PrivateEndpointConnectionResourcesClient) PrivateEndpointConnectionPutThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnectionResource) error {
+	return c.PrivateEndpointConnectionPutCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PrivateEndpointConnectionPutCallbackThenPoll performs PrivateEndpointConnectionPut, runs the optional callback function, then polls until it's completed
+func (c PrivateEndpointConnectionResourcesClient) PrivateEndpointConnectionPutCallbackThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnectionResource, callback func() error) error {
 	result, err := c.PrivateEndpointConnectionPut(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PrivateEndpointConnectionPut: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {

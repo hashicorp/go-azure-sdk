@@ -62,9 +62,20 @@ func (c PolicyClient) PoliciesCreateOrUpdateByBillingProfile(ctx context.Context
 
 // PoliciesCreateOrUpdateByBillingProfileThenPoll performs PoliciesCreateOrUpdateByBillingProfile then polls until it's completed
 func (c PolicyClient) PoliciesCreateOrUpdateByBillingProfileThenPoll(ctx context.Context, id BillingProfileId, input BillingProfilePolicy) error {
+	return c.PoliciesCreateOrUpdateByBillingProfileCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PoliciesCreateOrUpdateByBillingProfileCallbackThenPoll performs PoliciesCreateOrUpdateByBillingProfile, runs the optional callback function, then polls until it's completed
+func (c PolicyClient) PoliciesCreateOrUpdateByBillingProfileCallbackThenPoll(ctx context.Context, id BillingProfileId, input BillingProfilePolicy, callback func() error) error {
 	result, err := c.PoliciesCreateOrUpdateByBillingProfile(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PoliciesCreateOrUpdateByBillingProfile: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -60,9 +60,20 @@ func (c VolumesReplicationClient) VolumesReestablishReplication(ctx context.Cont
 
 // VolumesReestablishReplicationThenPoll performs VolumesReestablishReplication then polls until it's completed
 func (c VolumesReplicationClient) VolumesReestablishReplicationThenPoll(ctx context.Context, id VolumeId, input ReestablishReplicationRequest) error {
+	return c.VolumesReestablishReplicationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// VolumesReestablishReplicationCallbackThenPoll performs VolumesReestablishReplication, runs the optional callback function, then polls until it's completed
+func (c VolumesReplicationClient) VolumesReestablishReplicationCallbackThenPoll(ctx context.Context, id VolumeId, input ReestablishReplicationRequest, callback func() error) error {
 	result, err := c.VolumesReestablishReplication(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing VolumesReestablishReplication: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

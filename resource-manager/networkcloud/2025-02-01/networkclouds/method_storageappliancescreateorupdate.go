@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) StorageAppliancesCreateOrUpdate(ctx context.Context
 
 // StorageAppliancesCreateOrUpdateThenPoll performs StorageAppliancesCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) StorageAppliancesCreateOrUpdateThenPoll(ctx context.Context, id StorageApplianceId, input StorageAppliance, options StorageAppliancesCreateOrUpdateOperationOptions) error {
+	return c.StorageAppliancesCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// StorageAppliancesCreateOrUpdateCallbackThenPoll performs StorageAppliancesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) StorageAppliancesCreateOrUpdateCallbackThenPoll(ctx context.Context, id StorageApplianceId, input StorageAppliance, options StorageAppliancesCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.StorageAppliancesCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing StorageAppliancesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

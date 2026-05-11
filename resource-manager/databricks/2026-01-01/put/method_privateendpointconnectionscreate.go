@@ -62,9 +62,20 @@ func (c PUTClient) PrivateEndpointConnectionsCreate(ctx context.Context, id Priv
 
 // PrivateEndpointConnectionsCreateThenPoll performs PrivateEndpointConnectionsCreate then polls until it's completed
 func (c PUTClient) PrivateEndpointConnectionsCreateThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection) error {
+	return c.PrivateEndpointConnectionsCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PrivateEndpointConnectionsCreateCallbackThenPoll performs PrivateEndpointConnectionsCreate, runs the optional callback function, then polls until it's completed
+func (c PUTClient) PrivateEndpointConnectionsCreateCallbackThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection, callback func() error) error {
 	result, err := c.PrivateEndpointConnectionsCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PrivateEndpointConnectionsCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

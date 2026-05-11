@@ -62,9 +62,20 @@ func (c SavingsPlanClient) UpdateByBillingAccount(ctx context.Context, id Saving
 
 // UpdateByBillingAccountThenPoll performs UpdateByBillingAccount then polls until it's completed
 func (c SavingsPlanClient) UpdateByBillingAccountThenPoll(ctx context.Context, id SavingsPlanId, input SavingsPlanUpdateRequest) error {
+	return c.UpdateByBillingAccountCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateByBillingAccountCallbackThenPoll performs UpdateByBillingAccount, runs the optional callback function, then polls until it's completed
+func (c SavingsPlanClient) UpdateByBillingAccountCallbackThenPoll(ctx context.Context, id SavingsPlanId, input SavingsPlanUpdateRequest, callback func() error) error {
 	result, err := c.UpdateByBillingAccount(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateByBillingAccount: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

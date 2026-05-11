@@ -57,9 +57,20 @@ func (c BackupInstancesClient) ResumeProtection(ctx context.Context, id BackupIn
 
 // ResumeProtectionThenPoll performs ResumeProtection then polls until it's completed
 func (c BackupInstancesClient) ResumeProtectionThenPoll(ctx context.Context, id BackupInstanceId) error {
+	return c.ResumeProtectionCallbackThenPoll(ctx, id, nil)
+}
+
+// ResumeProtectionCallbackThenPoll performs ResumeProtection, runs the optional callback function, then polls until it's completed
+func (c BackupInstancesClient) ResumeProtectionCallbackThenPoll(ctx context.Context, id BackupInstanceId, callback func() error) error {
 	result, err := c.ResumeProtection(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ResumeProtection: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

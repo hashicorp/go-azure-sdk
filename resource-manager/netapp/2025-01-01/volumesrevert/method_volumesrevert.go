@@ -61,9 +61,20 @@ func (c VolumesRevertClient) VolumesRevert(ctx context.Context, id VolumeId, inp
 
 // VolumesRevertThenPoll performs VolumesRevert then polls until it's completed
 func (c VolumesRevertClient) VolumesRevertThenPoll(ctx context.Context, id VolumeId, input VolumeRevert) error {
+	return c.VolumesRevertCallbackThenPoll(ctx, id, input, nil)
+}
+
+// VolumesRevertCallbackThenPoll performs VolumesRevert, runs the optional callback function, then polls until it's completed
+func (c VolumesRevertClient) VolumesRevertCallbackThenPoll(ctx context.Context, id VolumeId, input VolumeRevert, callback func() error) error {
 	result, err := c.VolumesRevert(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing VolumesRevert: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

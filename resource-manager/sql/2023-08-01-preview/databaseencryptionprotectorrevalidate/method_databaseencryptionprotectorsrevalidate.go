@@ -58,9 +58,20 @@ func (c DatabaseEncryptionProtectorRevalidateClient) DatabaseEncryptionProtector
 
 // DatabaseEncryptionProtectorsRevalidateThenPoll performs DatabaseEncryptionProtectorsRevalidate then polls until it's completed
 func (c DatabaseEncryptionProtectorRevalidateClient) DatabaseEncryptionProtectorsRevalidateThenPoll(ctx context.Context, id commonids.SqlDatabaseId) error {
+	return c.DatabaseEncryptionProtectorsRevalidateCallbackThenPoll(ctx, id, nil)
+}
+
+// DatabaseEncryptionProtectorsRevalidateCallbackThenPoll performs DatabaseEncryptionProtectorsRevalidate, runs the optional callback function, then polls until it's completed
+func (c DatabaseEncryptionProtectorRevalidateClient) DatabaseEncryptionProtectorsRevalidateCallbackThenPoll(ctx context.Context, id commonids.SqlDatabaseId, callback func() error) error {
 	result, err := c.DatabaseEncryptionProtectorsRevalidate(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing DatabaseEncryptionProtectorsRevalidate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

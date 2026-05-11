@@ -58,9 +58,20 @@ func (c TriggersClient) SubscribeToEvents(ctx context.Context, id TriggerId) (re
 
 // SubscribeToEventsThenPoll performs SubscribeToEvents then polls until it's completed
 func (c TriggersClient) SubscribeToEventsThenPoll(ctx context.Context, id TriggerId) error {
+	return c.SubscribeToEventsCallbackThenPoll(ctx, id, nil)
+}
+
+// SubscribeToEventsCallbackThenPoll performs SubscribeToEvents, runs the optional callback function, then polls until it's completed
+func (c TriggersClient) SubscribeToEventsCallbackThenPoll(ctx context.Context, id TriggerId, callback func() error) error {
 	result, err := c.SubscribeToEvents(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing SubscribeToEvents: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {
