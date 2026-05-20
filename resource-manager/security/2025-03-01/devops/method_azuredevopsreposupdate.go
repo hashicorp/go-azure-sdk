@@ -62,9 +62,20 @@ func (c DevOpsClient) AzureDevOpsReposUpdate(ctx context.Context, id ProjectRepo
 
 // AzureDevOpsReposUpdateThenPoll performs AzureDevOpsReposUpdate then polls until it's completed
 func (c DevOpsClient) AzureDevOpsReposUpdateThenPoll(ctx context.Context, id ProjectRepoId, input AzureDevOpsRepository) error {
+	return c.AzureDevOpsReposUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AzureDevOpsReposUpdateCallbackThenPoll performs AzureDevOpsReposUpdate, runs the optional callback function, then polls until it's completed
+func (c DevOpsClient) AzureDevOpsReposUpdateCallbackThenPoll(ctx context.Context, id ProjectRepoId, input AzureDevOpsRepository, callback func() error) error {
 	result, err := c.AzureDevOpsReposUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AzureDevOpsReposUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

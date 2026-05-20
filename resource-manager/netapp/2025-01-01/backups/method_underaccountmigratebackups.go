@@ -60,9 +60,20 @@ func (c BackupsClient) UnderAccountMigrateBackups(ctx context.Context, id NetApp
 
 // UnderAccountMigrateBackupsThenPoll performs UnderAccountMigrateBackups then polls until it's completed
 func (c BackupsClient) UnderAccountMigrateBackupsThenPoll(ctx context.Context, id NetAppAccountId, input BackupsMigrationRequest) error {
+	return c.UnderAccountMigrateBackupsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UnderAccountMigrateBackupsCallbackThenPoll performs UnderAccountMigrateBackups, runs the optional callback function, then polls until it's completed
+func (c BackupsClient) UnderAccountMigrateBackupsCallbackThenPoll(ctx context.Context, id NetAppAccountId, input BackupsMigrationRequest, callback func() error) error {
 	result, err := c.UnderAccountMigrateBackups(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UnderAccountMigrateBackups: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

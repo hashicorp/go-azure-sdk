@@ -58,9 +58,20 @@ func (c ProxyOperationsClient) WorkspacesPrepareNotebook(ctx context.Context, id
 
 // WorkspacesPrepareNotebookThenPoll performs WorkspacesPrepareNotebook then polls until it's completed
 func (c ProxyOperationsClient) WorkspacesPrepareNotebookThenPoll(ctx context.Context, id WorkspaceId) error {
+	return c.WorkspacesPrepareNotebookCallbackThenPoll(ctx, id, nil)
+}
+
+// WorkspacesPrepareNotebookCallbackThenPoll performs WorkspacesPrepareNotebook, runs the optional callback function, then polls until it's completed
+func (c ProxyOperationsClient) WorkspacesPrepareNotebookCallbackThenPoll(ctx context.Context, id WorkspaceId, callback func() error) error {
 	result, err := c.WorkspacesPrepareNotebook(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing WorkspacesPrepareNotebook: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

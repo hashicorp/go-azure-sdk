@@ -61,9 +61,20 @@ func (c SqlScriptsClient) SqlScriptRenameSqlScript(ctx context.Context, id SqlSc
 
 // SqlScriptRenameSqlScriptThenPoll performs SqlScriptRenameSqlScript then polls until it's completed
 func (c SqlScriptsClient) SqlScriptRenameSqlScriptThenPoll(ctx context.Context, id SqlScriptId, input ArtifactRenameRequest) error {
+	return c.SqlScriptRenameSqlScriptCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlScriptRenameSqlScriptCallbackThenPoll performs SqlScriptRenameSqlScript, runs the optional callback function, then polls until it's completed
+func (c SqlScriptsClient) SqlScriptRenameSqlScriptCallbackThenPoll(ctx context.Context, id SqlScriptId, input ArtifactRenameRequest, callback func() error) error {
 	result, err := c.SqlScriptRenameSqlScript(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlScriptRenameSqlScript: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

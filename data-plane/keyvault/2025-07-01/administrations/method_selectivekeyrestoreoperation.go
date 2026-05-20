@@ -61,9 +61,20 @@ func (c AdministrationsClient) SelectiveKeyRestoreOperation(ctx context.Context,
 
 // SelectiveKeyRestoreOperationThenPoll performs SelectiveKeyRestoreOperation then polls until it's completed
 func (c AdministrationsClient) SelectiveKeyRestoreOperationThenPoll(ctx context.Context, id KeyId, input SelectiveKeyRestoreOperationParameters) error {
+	return c.SelectiveKeyRestoreOperationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SelectiveKeyRestoreOperationCallbackThenPoll performs SelectiveKeyRestoreOperation, runs the optional callback function, then polls until it's completed
+func (c AdministrationsClient) SelectiveKeyRestoreOperationCallbackThenPoll(ctx context.Context, id KeyId, input SelectiveKeyRestoreOperationParameters, callback func() error) error {
 	result, err := c.SelectiveKeyRestoreOperation(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SelectiveKeyRestoreOperation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) L3NetworksCreateOrUpdate(ctx context.Context, id L3
 
 // L3NetworksCreateOrUpdateThenPoll performs L3NetworksCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) L3NetworksCreateOrUpdateThenPoll(ctx context.Context, id L3NetworkId, input L3Network, options L3NetworksCreateOrUpdateOperationOptions) error {
+	return c.L3NetworksCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// L3NetworksCreateOrUpdateCallbackThenPoll performs L3NetworksCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) L3NetworksCreateOrUpdateCallbackThenPoll(ctx context.Context, id L3NetworkId, input L3Network, options L3NetworksCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.L3NetworksCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing L3NetworksCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

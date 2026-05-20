@@ -62,9 +62,20 @@ func (c ReplicationJobsClient) Resume(ctx context.Context, id ReplicationJobId, 
 
 // ResumeThenPoll performs Resume then polls until it's completed
 func (c ReplicationJobsClient) ResumeThenPoll(ctx context.Context, id ReplicationJobId, input ResumeJobParams) error {
+	return c.ResumeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ResumeCallbackThenPoll performs Resume, runs the optional callback function, then polls until it's completed
+func (c ReplicationJobsClient) ResumeCallbackThenPoll(ctx context.Context, id ReplicationJobId, input ResumeJobParams, callback func() error) error {
 	result, err := c.Resume(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Resume: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

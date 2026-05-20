@@ -60,9 +60,20 @@ func (c NetworkcloudsClient) VirtualMachinesPowerOff(ctx context.Context, id Vir
 
 // VirtualMachinesPowerOffThenPoll performs VirtualMachinesPowerOff then polls until it's completed
 func (c NetworkcloudsClient) VirtualMachinesPowerOffThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachinePowerOffParameters) error {
+	return c.VirtualMachinesPowerOffCallbackThenPoll(ctx, id, input, nil)
+}
+
+// VirtualMachinesPowerOffCallbackThenPoll performs VirtualMachinesPowerOff, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) VirtualMachinesPowerOffCallbackThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachinePowerOffParameters, callback func() error) error {
 	result, err := c.VirtualMachinesPowerOff(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing VirtualMachinesPowerOff: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

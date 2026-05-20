@@ -62,9 +62,20 @@ func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansCreateOrUpdatePla
 
 // CommitmentPlansCreateOrUpdatePlanThenPoll performs CommitmentPlansCreateOrUpdatePlan then polls until it's completed
 func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansCreateOrUpdatePlanThenPoll(ctx context.Context, id CommitmentPlanId, input CommitmentPlan) error {
+	return c.CommitmentPlansCreateOrUpdatePlanCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CommitmentPlansCreateOrUpdatePlanCallbackThenPoll performs CommitmentPlansCreateOrUpdatePlan, runs the optional callback function, then polls until it's completed
+func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansCreateOrUpdatePlanCallbackThenPoll(ctx context.Context, id CommitmentPlanId, input CommitmentPlan, callback func() error) error {
 	result, err := c.CommitmentPlansCreateOrUpdatePlan(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CommitmentPlansCreateOrUpdatePlan: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

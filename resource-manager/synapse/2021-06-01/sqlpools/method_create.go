@@ -62,9 +62,20 @@ func (c SqlPoolsClient) Create(ctx context.Context, id SqlPoolId, input SqlPool)
 
 // CreateThenPoll performs Create then polls until it's completed
 func (c SqlPoolsClient) CreateThenPoll(ctx context.Context, id SqlPoolId, input SqlPool) error {
+	return c.CreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateCallbackThenPoll performs Create, runs the optional callback function, then polls until it's completed
+func (c SqlPoolsClient) CreateCallbackThenPoll(ctx context.Context, id SqlPoolId, input SqlPool, callback func() error) error {
 	result, err := c.Create(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -63,9 +63,20 @@ func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionUpdate(ctx co
 
 // PrivateEndpointConnectionUpdateThenPoll performs PrivateEndpointConnectionUpdate then polls until it's completed
 func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionUpdateThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection) error {
+	return c.PrivateEndpointConnectionUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PrivateEndpointConnectionUpdateCallbackThenPoll performs PrivateEndpointConnectionUpdate, runs the optional callback function, then polls until it's completed
+func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionUpdateCallbackThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection, callback func() error) error {
 	result, err := c.PrivateEndpointConnectionUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PrivateEndpointConnectionUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

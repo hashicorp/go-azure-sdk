@@ -57,9 +57,20 @@ func (c StorageTasksClient) StopAllAssignments(ctx context.Context, id StorageTa
 
 // StopAllAssignmentsThenPoll performs StopAllAssignments then polls until it's completed
 func (c StorageTasksClient) StopAllAssignmentsThenPoll(ctx context.Context, id StorageTaskId) error {
+	return c.StopAllAssignmentsCallbackThenPoll(ctx, id, nil)
+}
+
+// StopAllAssignmentsCallbackThenPoll performs StopAllAssignments, runs the optional callback function, then polls until it's completed
+func (c StorageTasksClient) StopAllAssignmentsCallbackThenPoll(ctx context.Context, id StorageTaskId, callback func() error) error {
 	result, err := c.StopAllAssignments(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing StopAllAssignments: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

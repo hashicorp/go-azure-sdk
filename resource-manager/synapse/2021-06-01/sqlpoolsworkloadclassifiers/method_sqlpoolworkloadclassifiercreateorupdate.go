@@ -63,9 +63,20 @@ func (c SqlPoolsWorkloadClassifiersClient) SqlPoolWorkloadClassifierCreateOrUpda
 
 // SqlPoolWorkloadClassifierCreateOrUpdateThenPoll performs SqlPoolWorkloadClassifierCreateOrUpdate then polls until it's completed
 func (c SqlPoolsWorkloadClassifiersClient) SqlPoolWorkloadClassifierCreateOrUpdateThenPoll(ctx context.Context, id WorkloadClassifierId, input WorkloadClassifier) error {
+	return c.SqlPoolWorkloadClassifierCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlPoolWorkloadClassifierCreateOrUpdateCallbackThenPoll performs SqlPoolWorkloadClassifierCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c SqlPoolsWorkloadClassifiersClient) SqlPoolWorkloadClassifierCreateOrUpdateCallbackThenPoll(ctx context.Context, id WorkloadClassifierId, input WorkloadClassifier, callback func() error) error {
 	result, err := c.SqlPoolWorkloadClassifierCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlPoolWorkloadClassifierCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

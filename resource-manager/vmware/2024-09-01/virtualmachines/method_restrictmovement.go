@@ -60,9 +60,20 @@ func (c VirtualMachinesClient) RestrictMovement(ctx context.Context, id VirtualM
 
 // RestrictMovementThenPoll performs RestrictMovement then polls until it's completed
 func (c VirtualMachinesClient) RestrictMovementThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachineRestrictMovement) error {
+	return c.RestrictMovementCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RestrictMovementCallbackThenPoll performs RestrictMovement, runs the optional callback function, then polls until it's completed
+func (c VirtualMachinesClient) RestrictMovementCallbackThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachineRestrictMovement, callback func() error) error {
 	result, err := c.RestrictMovement(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RestrictMovement: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

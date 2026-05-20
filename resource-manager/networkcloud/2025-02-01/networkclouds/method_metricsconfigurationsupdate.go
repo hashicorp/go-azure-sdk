@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) MetricsConfigurationsUpdate(ctx context.Context, id
 
 // MetricsConfigurationsUpdateThenPoll performs MetricsConfigurationsUpdate then polls until it's completed
 func (c NetworkcloudsClient) MetricsConfigurationsUpdateThenPoll(ctx context.Context, id MetricsConfigurationId, input ClusterMetricsConfigurationPatchParameters, options MetricsConfigurationsUpdateOperationOptions) error {
+	return c.MetricsConfigurationsUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// MetricsConfigurationsUpdateCallbackThenPoll performs MetricsConfigurationsUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) MetricsConfigurationsUpdateCallbackThenPoll(ctx context.Context, id MetricsConfigurationId, input ClusterMetricsConfigurationPatchParameters, options MetricsConfigurationsUpdateOperationOptions, callback func() error) error {
 	result, err := c.MetricsConfigurationsUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing MetricsConfigurationsUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

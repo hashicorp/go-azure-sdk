@@ -62,9 +62,20 @@ func (c ComputeRPSClient) LogAnalyticsExportRequestRateByInterval(ctx context.Co
 
 // LogAnalyticsExportRequestRateByIntervalThenPoll performs LogAnalyticsExportRequestRateByInterval then polls until it's completed
 func (c ComputeRPSClient) LogAnalyticsExportRequestRateByIntervalThenPoll(ctx context.Context, id LocationId, input RequestRateByIntervalInput) error {
+	return c.LogAnalyticsExportRequestRateByIntervalCallbackThenPoll(ctx, id, input, nil)
+}
+
+// LogAnalyticsExportRequestRateByIntervalCallbackThenPoll performs LogAnalyticsExportRequestRateByInterval, runs the optional callback function, then polls until it's completed
+func (c ComputeRPSClient) LogAnalyticsExportRequestRateByIntervalCallbackThenPoll(ctx context.Context, id LocationId, input RequestRateByIntervalInput, callback func() error) error {
 	result, err := c.LogAnalyticsExportRequestRateByInterval(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing LogAnalyticsExportRequestRateByInterval: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

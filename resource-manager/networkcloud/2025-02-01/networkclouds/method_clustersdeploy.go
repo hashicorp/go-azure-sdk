@@ -60,9 +60,20 @@ func (c NetworkcloudsClient) ClustersDeploy(ctx context.Context, id ClusterId, i
 
 // ClustersDeployThenPoll performs ClustersDeploy then polls until it's completed
 func (c NetworkcloudsClient) ClustersDeployThenPoll(ctx context.Context, id ClusterId, input ClusterDeployParameters) error {
+	return c.ClustersDeployCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ClustersDeployCallbackThenPoll performs ClustersDeploy, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) ClustersDeployCallbackThenPoll(ctx context.Context, id ClusterId, input ClusterDeployParameters, callback func() error) error {
 	result, err := c.ClustersDeploy(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ClustersDeploy: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

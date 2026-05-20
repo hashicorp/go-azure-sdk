@@ -62,9 +62,20 @@ func (c ConfigurationsUpdateClient) ServerParametersListUpdateConfigurations(ctx
 
 // ServerParametersListUpdateConfigurationsThenPoll performs ServerParametersListUpdateConfigurations then polls until it's completed
 func (c ConfigurationsUpdateClient) ServerParametersListUpdateConfigurationsThenPoll(ctx context.Context, id ServerId, input ConfigurationListResult) error {
+	return c.ServerParametersListUpdateConfigurationsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ServerParametersListUpdateConfigurationsCallbackThenPoll performs ServerParametersListUpdateConfigurations, runs the optional callback function, then polls until it's completed
+func (c ConfigurationsUpdateClient) ServerParametersListUpdateConfigurationsCallbackThenPoll(ctx context.Context, id ServerId, input ConfigurationListResult, callback func() error) error {
 	result, err := c.ServerParametersListUpdateConfigurations(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ServerParametersListUpdateConfigurations: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

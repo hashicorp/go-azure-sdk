@@ -58,9 +58,20 @@ func (c AutoUpgradeProfileOperationsClient) GenerateUpdateRun(ctx context.Contex
 
 // GenerateUpdateRunThenPoll performs GenerateUpdateRun then polls until it's completed
 func (c AutoUpgradeProfileOperationsClient) GenerateUpdateRunThenPoll(ctx context.Context, id AutoUpgradeProfileId) error {
+	return c.GenerateUpdateRunCallbackThenPoll(ctx, id, nil)
+}
+
+// GenerateUpdateRunCallbackThenPoll performs GenerateUpdateRun, runs the optional callback function, then polls until it's completed
+func (c AutoUpgradeProfileOperationsClient) GenerateUpdateRunCallbackThenPoll(ctx context.Context, id AutoUpgradeProfileId, callback func() error) error {
 	result, err := c.GenerateUpdateRun(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing GenerateUpdateRun: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

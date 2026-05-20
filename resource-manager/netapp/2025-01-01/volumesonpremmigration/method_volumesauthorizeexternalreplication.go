@@ -58,9 +58,20 @@ func (c VolumesOnPremMigrationClient) VolumesAuthorizeExternalReplication(ctx co
 
 // VolumesAuthorizeExternalReplicationThenPoll performs VolumesAuthorizeExternalReplication then polls until it's completed
 func (c VolumesOnPremMigrationClient) VolumesAuthorizeExternalReplicationThenPoll(ctx context.Context, id VolumeId) error {
+	return c.VolumesAuthorizeExternalReplicationCallbackThenPoll(ctx, id, nil)
+}
+
+// VolumesAuthorizeExternalReplicationCallbackThenPoll performs VolumesAuthorizeExternalReplication, runs the optional callback function, then polls until it's completed
+func (c VolumesOnPremMigrationClient) VolumesAuthorizeExternalReplicationCallbackThenPoll(ctx context.Context, id VolumeId, callback func() error) error {
 	result, err := c.VolumesAuthorizeExternalReplication(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing VolumesAuthorizeExternalReplication: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

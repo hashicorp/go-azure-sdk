@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) ClusterManagersCreateOrUpdate(ctx context.Context, 
 
 // ClusterManagersCreateOrUpdateThenPoll performs ClusterManagersCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) ClusterManagersCreateOrUpdateThenPoll(ctx context.Context, id ClusterManagerId, input ClusterManager, options ClusterManagersCreateOrUpdateOperationOptions) error {
+	return c.ClusterManagersCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// ClusterManagersCreateOrUpdateCallbackThenPoll performs ClusterManagersCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) ClusterManagersCreateOrUpdateCallbackThenPoll(ctx context.Context, id ClusterManagerId, input ClusterManager, options ClusterManagersCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.ClusterManagersCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing ClusterManagersCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

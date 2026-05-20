@@ -61,9 +61,20 @@ func (c NetworkingClient) PrivateEndpointConnectionsCreate(ctx context.Context, 
 
 // PrivateEndpointConnectionsCreateThenPoll performs PrivateEndpointConnectionsCreate then polls until it's completed
 func (c NetworkingClient) PrivateEndpointConnectionsCreateThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection) error {
+	return c.PrivateEndpointConnectionsCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PrivateEndpointConnectionsCreateCallbackThenPoll performs PrivateEndpointConnectionsCreate, runs the optional callback function, then polls until it's completed
+func (c NetworkingClient) PrivateEndpointConnectionsCreateCallbackThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection, callback func() error) error {
 	result, err := c.PrivateEndpointConnectionsCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PrivateEndpointConnectionsCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

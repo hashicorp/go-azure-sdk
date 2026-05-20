@@ -62,9 +62,20 @@ func (c DataVersionRegistryClient) RegistryDataVersionsCreateOrUpdate(ctx contex
 
 // RegistryDataVersionsCreateOrUpdateThenPoll performs RegistryDataVersionsCreateOrUpdate then polls until it's completed
 func (c DataVersionRegistryClient) RegistryDataVersionsCreateOrUpdateThenPoll(ctx context.Context, id VersionId, input DataVersionBaseResource) error {
+	return c.RegistryDataVersionsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegistryDataVersionsCreateOrUpdateCallbackThenPoll performs RegistryDataVersionsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c DataVersionRegistryClient) RegistryDataVersionsCreateOrUpdateCallbackThenPoll(ctx context.Context, id VersionId, input DataVersionBaseResource, callback func() error) error {
 	result, err := c.RegistryDataVersionsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegistryDataVersionsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

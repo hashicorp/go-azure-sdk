@@ -62,9 +62,20 @@ func (c ShareSubscriptionClient) Synchronize(ctx context.Context, id ShareSubscr
 
 // SynchronizeThenPoll performs Synchronize then polls until it's completed
 func (c ShareSubscriptionClient) SynchronizeThenPoll(ctx context.Context, id ShareSubscriptionId, input Synchronize) error {
+	return c.SynchronizeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SynchronizeCallbackThenPoll performs Synchronize, runs the optional callback function, then polls until it's completed
+func (c ShareSubscriptionClient) SynchronizeCallbackThenPoll(ctx context.Context, id ShareSubscriptionId, input Synchronize, callback func() error) error {
 	result, err := c.Synchronize(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Synchronize: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

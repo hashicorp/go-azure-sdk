@@ -61,9 +61,20 @@ func (c ChangeDetectionClient) CloudEndpointsTriggerChangeDetection(ctx context.
 
 // CloudEndpointsTriggerChangeDetectionThenPoll performs CloudEndpointsTriggerChangeDetection then polls until it's completed
 func (c ChangeDetectionClient) CloudEndpointsTriggerChangeDetectionThenPoll(ctx context.Context, id CloudEndpointId, input TriggerChangeDetectionParameters) error {
+	return c.CloudEndpointsTriggerChangeDetectionCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CloudEndpointsTriggerChangeDetectionCallbackThenPoll performs CloudEndpointsTriggerChangeDetection, runs the optional callback function, then polls until it's completed
+func (c ChangeDetectionClient) CloudEndpointsTriggerChangeDetectionCallbackThenPoll(ctx context.Context, id CloudEndpointId, input TriggerChangeDetectionParameters, callback func() error) error {
 	result, err := c.CloudEndpointsTriggerChangeDetection(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CloudEndpointsTriggerChangeDetection: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

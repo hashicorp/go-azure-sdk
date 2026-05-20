@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) RacksUpdate(ctx context.Context, id RackId, input R
 
 // RacksUpdateThenPoll performs RacksUpdate then polls until it's completed
 func (c NetworkcloudsClient) RacksUpdateThenPoll(ctx context.Context, id RackId, input RackPatchParameters, options RacksUpdateOperationOptions) error {
+	return c.RacksUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// RacksUpdateCallbackThenPoll performs RacksUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) RacksUpdateCallbackThenPoll(ctx context.Context, id RackId, input RackPatchParameters, options RacksUpdateOperationOptions, callback func() error) error {
 	result, err := c.RacksUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing RacksUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -61,9 +61,20 @@ func (c DataFlowsClient) DataFlowRenameDataFlow(ctx context.Context, id Dataflow
 
 // DataFlowRenameDataFlowThenPoll performs DataFlowRenameDataFlow then polls until it's completed
 func (c DataFlowsClient) DataFlowRenameDataFlowThenPoll(ctx context.Context, id DataflowId, input ArtifactRenameRequest) error {
+	return c.DataFlowRenameDataFlowCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DataFlowRenameDataFlowCallbackThenPoll performs DataFlowRenameDataFlow, runs the optional callback function, then polls until it's completed
+func (c DataFlowsClient) DataFlowRenameDataFlowCallbackThenPoll(ctx context.Context, id DataflowId, input ArtifactRenameRequest, callback func() error) error {
 	result, err := c.DataFlowRenameDataFlow(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing DataFlowRenameDataFlow: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

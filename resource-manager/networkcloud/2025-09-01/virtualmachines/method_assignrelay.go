@@ -60,9 +60,20 @@ func (c VirtualMachinesClient) AssignRelay(ctx context.Context, id VirtualMachin
 
 // AssignRelayThenPoll performs AssignRelay then polls until it's completed
 func (c VirtualMachinesClient) AssignRelayThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachineAssignRelayParameters) error {
+	return c.AssignRelayCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AssignRelayCallbackThenPoll performs AssignRelay, runs the optional callback function, then polls until it's completed
+func (c VirtualMachinesClient) AssignRelayCallbackThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachineAssignRelayParameters, callback func() error) error {
 	result, err := c.AssignRelay(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AssignRelay: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

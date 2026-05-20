@@ -91,9 +91,20 @@ func (c SparkJobDefinitionsClient) SparkJobDefinitionCreateOrUpdateSparkJobDefin
 
 // SparkJobDefinitionCreateOrUpdateSparkJobDefinitionThenPoll performs SparkJobDefinitionCreateOrUpdateSparkJobDefinition then polls until it's completed
 func (c SparkJobDefinitionsClient) SparkJobDefinitionCreateOrUpdateSparkJobDefinitionThenPoll(ctx context.Context, id SparkJobDefinitionId, input SparkJobDefinitionResource, options SparkJobDefinitionCreateOrUpdateSparkJobDefinitionOperationOptions) error {
+	return c.SparkJobDefinitionCreateOrUpdateSparkJobDefinitionCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// SparkJobDefinitionCreateOrUpdateSparkJobDefinitionCallbackThenPoll performs SparkJobDefinitionCreateOrUpdateSparkJobDefinition, runs the optional callback function, then polls until it's completed
+func (c SparkJobDefinitionsClient) SparkJobDefinitionCreateOrUpdateSparkJobDefinitionCallbackThenPoll(ctx context.Context, id SparkJobDefinitionId, input SparkJobDefinitionResource, options SparkJobDefinitionCreateOrUpdateSparkJobDefinitionOperationOptions, callback func() error) error {
 	result, err := c.SparkJobDefinitionCreateOrUpdateSparkJobDefinition(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing SparkJobDefinitionCreateOrUpdateSparkJobDefinition: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

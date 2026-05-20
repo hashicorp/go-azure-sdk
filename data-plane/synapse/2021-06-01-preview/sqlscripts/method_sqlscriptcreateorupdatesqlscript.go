@@ -91,9 +91,20 @@ func (c SqlScriptsClient) SqlScriptCreateOrUpdateSqlScript(ctx context.Context, 
 
 // SqlScriptCreateOrUpdateSqlScriptThenPoll performs SqlScriptCreateOrUpdateSqlScript then polls until it's completed
 func (c SqlScriptsClient) SqlScriptCreateOrUpdateSqlScriptThenPoll(ctx context.Context, id SqlScriptId, input SqlScriptResource, options SqlScriptCreateOrUpdateSqlScriptOperationOptions) error {
+	return c.SqlScriptCreateOrUpdateSqlScriptCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// SqlScriptCreateOrUpdateSqlScriptCallbackThenPoll performs SqlScriptCreateOrUpdateSqlScript, runs the optional callback function, then polls until it's completed
+func (c SqlScriptsClient) SqlScriptCreateOrUpdateSqlScriptCallbackThenPoll(ctx context.Context, id SqlScriptId, input SqlScriptResource, options SqlScriptCreateOrUpdateSqlScriptOperationOptions, callback func() error) error {
 	result, err := c.SqlScriptCreateOrUpdateSqlScript(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing SqlScriptCreateOrUpdateSqlScript: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

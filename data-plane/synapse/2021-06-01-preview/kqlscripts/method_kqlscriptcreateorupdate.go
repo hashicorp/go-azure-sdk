@@ -62,9 +62,20 @@ func (c KqlScriptsClient) KqlScriptCreateOrUpdate(ctx context.Context, id KqlScr
 
 // KqlScriptCreateOrUpdateThenPoll performs KqlScriptCreateOrUpdate then polls until it's completed
 func (c KqlScriptsClient) KqlScriptCreateOrUpdateThenPoll(ctx context.Context, id KqlScriptId, input KqlScriptResource) error {
+	return c.KqlScriptCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// KqlScriptCreateOrUpdateCallbackThenPoll performs KqlScriptCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c KqlScriptsClient) KqlScriptCreateOrUpdateCallbackThenPoll(ctx context.Context, id KqlScriptId, input KqlScriptResource, callback func() error) error {
 	result, err := c.KqlScriptCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing KqlScriptCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

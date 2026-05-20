@@ -58,9 +58,20 @@ func (c LongTermRetentionBackupsClient) LockTimeBasedImmutability(ctx context.Co
 
 // LockTimeBasedImmutabilityThenPoll performs LockTimeBasedImmutability then polls until it's completed
 func (c LongTermRetentionBackupsClient) LockTimeBasedImmutabilityThenPoll(ctx context.Context, id LongTermRetentionBackupId) error {
+	return c.LockTimeBasedImmutabilityCallbackThenPoll(ctx, id, nil)
+}
+
+// LockTimeBasedImmutabilityCallbackThenPoll performs LockTimeBasedImmutability, runs the optional callback function, then polls until it's completed
+func (c LongTermRetentionBackupsClient) LockTimeBasedImmutabilityCallbackThenPoll(ctx context.Context, id LongTermRetentionBackupId, callback func() error) error {
 	result, err := c.LockTimeBasedImmutability(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing LockTimeBasedImmutability: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

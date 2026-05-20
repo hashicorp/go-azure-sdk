@@ -60,9 +60,20 @@ func (c DeploymentUpdateClient) MonitorUpgrade(ctx context.Context, id MonitorId
 
 // MonitorUpgradeThenPoll performs MonitorUpgrade then polls until it's completed
 func (c DeploymentUpdateClient) MonitorUpgradeThenPoll(ctx context.Context, id MonitorId, input ElasticMonitorUpgrade) error {
+	return c.MonitorUpgradeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MonitorUpgradeCallbackThenPoll performs MonitorUpgrade, runs the optional callback function, then polls until it's completed
+func (c DeploymentUpdateClient) MonitorUpgradeCallbackThenPoll(ctx context.Context, id MonitorId, input ElasticMonitorUpgrade, callback func() error) error {
 	result, err := c.MonitorUpgrade(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing MonitorUpgrade: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

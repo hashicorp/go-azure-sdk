@@ -61,9 +61,20 @@ func (c DatabaseMigrationsClient) SqlVMcutover(ctx context.Context, id SqlVirtua
 
 // SqlVMcutoverThenPoll performs SqlVMcutover then polls until it's completed
 func (c DatabaseMigrationsClient) SqlVMcutoverThenPoll(ctx context.Context, id SqlVirtualMachineProviders2DatabaseMigrationId, input MigrationOperationInput) error {
+	return c.SqlVMcutoverCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlVMcutoverCallbackThenPoll performs SqlVMcutover, runs the optional callback function, then polls until it's completed
+func (c DatabaseMigrationsClient) SqlVMcutoverCallbackThenPoll(ctx context.Context, id SqlVirtualMachineProviders2DatabaseMigrationId, input MigrationOperationInput, callback func() error) error {
 	result, err := c.SqlVMcutover(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlVMcutover: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

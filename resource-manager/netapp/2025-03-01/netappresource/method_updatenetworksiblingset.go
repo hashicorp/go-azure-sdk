@@ -62,9 +62,20 @@ func (c NetAppResourceClient) UpdateNetworkSiblingSet(ctx context.Context, id Lo
 
 // UpdateNetworkSiblingSetThenPoll performs UpdateNetworkSiblingSet then polls until it's completed
 func (c NetAppResourceClient) UpdateNetworkSiblingSetThenPoll(ctx context.Context, id LocationId, input UpdateNetworkSiblingSetRequest) error {
+	return c.UpdateNetworkSiblingSetCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateNetworkSiblingSetCallbackThenPoll performs UpdateNetworkSiblingSet, runs the optional callback function, then polls until it's completed
+func (c NetAppResourceClient) UpdateNetworkSiblingSetCallbackThenPoll(ctx context.Context, id LocationId, input UpdateNetworkSiblingSetRequest, callback func() error) error {
 	result, err := c.UpdateNetworkSiblingSet(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateNetworkSiblingSet: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

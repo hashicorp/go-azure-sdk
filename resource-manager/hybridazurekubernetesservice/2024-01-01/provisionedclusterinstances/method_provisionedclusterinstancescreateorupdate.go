@@ -63,9 +63,20 @@ func (c ProvisionedClusterInstancesClient) ProvisionedClusterInstancesCreateOrUp
 
 // ProvisionedClusterInstancesCreateOrUpdateThenPoll performs ProvisionedClusterInstancesCreateOrUpdate then polls until it's completed
 func (c ProvisionedClusterInstancesClient) ProvisionedClusterInstancesCreateOrUpdateThenPoll(ctx context.Context, id commonids.ScopeId, input ProvisionedCluster) error {
+	return c.ProvisionedClusterInstancesCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ProvisionedClusterInstancesCreateOrUpdateCallbackThenPoll performs ProvisionedClusterInstancesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c ProvisionedClusterInstancesClient) ProvisionedClusterInstancesCreateOrUpdateCallbackThenPoll(ctx context.Context, id commonids.ScopeId, input ProvisionedCluster, callback func() error) error {
 	result, err := c.ProvisionedClusterInstancesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ProvisionedClusterInstancesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

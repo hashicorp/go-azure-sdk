@@ -62,9 +62,20 @@ func (c ConnectedEnvironmentsClient) CertificatesUpdate(ctx context.Context, id 
 
 // CertificatesUpdateThenPoll performs CertificatesUpdate then polls until it's completed
 func (c ConnectedEnvironmentsClient) CertificatesUpdateThenPoll(ctx context.Context, id ConnectedEnvironmentCertificateId, input CertificatePatch) error {
+	return c.CertificatesUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CertificatesUpdateCallbackThenPoll performs CertificatesUpdate, runs the optional callback function, then polls until it's completed
+func (c ConnectedEnvironmentsClient) CertificatesUpdateCallbackThenPoll(ctx context.Context, id ConnectedEnvironmentCertificateId, input CertificatePatch, callback func() error) error {
 	result, err := c.CertificatesUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CertificatesUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -64,9 +64,20 @@ func (c OpenapisClient) GenerateCostDetailsReportCreateOperation(ctx context.Con
 
 // GenerateCostDetailsReportCreateOperationThenPoll performs GenerateCostDetailsReportCreateOperation then polls until it's completed
 func (c OpenapisClient) GenerateCostDetailsReportCreateOperationThenPoll(ctx context.Context, id commonids.ScopeId, input GenerateCostDetailsReportRequestDefinition) error {
+	return c.GenerateCostDetailsReportCreateOperationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// GenerateCostDetailsReportCreateOperationCallbackThenPoll performs GenerateCostDetailsReportCreateOperation, runs the optional callback function, then polls until it's completed
+func (c OpenapisClient) GenerateCostDetailsReportCreateOperationCallbackThenPoll(ctx context.Context, id commonids.ScopeId, input GenerateCostDetailsReportRequestDefinition, callback func() error) error {
 	result, err := c.GenerateCostDetailsReportCreateOperation(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing GenerateCostDetailsReportCreateOperation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

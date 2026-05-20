@@ -62,9 +62,20 @@ func (c ReplicationMigrationItemsClient) Resync(ctx context.Context, id Replicat
 
 // ResyncThenPoll performs Resync then polls until it's completed
 func (c ReplicationMigrationItemsClient) ResyncThenPoll(ctx context.Context, id ReplicationMigrationItemId, input ResyncInput) error {
+	return c.ResyncCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ResyncCallbackThenPoll performs Resync, runs the optional callback function, then polls until it's completed
+func (c ReplicationMigrationItemsClient) ResyncCallbackThenPoll(ctx context.Context, id ReplicationMigrationItemId, input ResyncInput, callback func() error) error {
 	result, err := c.Resync(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Resync: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

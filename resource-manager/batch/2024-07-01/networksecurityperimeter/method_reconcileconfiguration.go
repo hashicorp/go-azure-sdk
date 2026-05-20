@@ -56,9 +56,20 @@ func (c NetworkSecurityPerimeterClient) ReconcileConfiguration(ctx context.Conte
 
 // ReconcileConfigurationThenPoll performs ReconcileConfiguration then polls until it's completed
 func (c NetworkSecurityPerimeterClient) ReconcileConfigurationThenPoll(ctx context.Context, id NetworkSecurityPerimeterConfigurationId) error {
+	return c.ReconcileConfigurationCallbackThenPoll(ctx, id, nil)
+}
+
+// ReconcileConfigurationCallbackThenPoll performs ReconcileConfiguration, runs the optional callback function, then polls until it's completed
+func (c NetworkSecurityPerimeterClient) ReconcileConfigurationCallbackThenPoll(ctx context.Context, id NetworkSecurityPerimeterConfigurationId, callback func() error) error {
 	result, err := c.ReconcileConfiguration(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ReconcileConfiguration: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

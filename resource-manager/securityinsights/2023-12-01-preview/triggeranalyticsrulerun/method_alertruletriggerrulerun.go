@@ -60,9 +60,20 @@ func (c TriggerAnalyticsRuleRunClient) AlertRuleTriggerRuleRun(ctx context.Conte
 
 // AlertRuleTriggerRuleRunThenPoll performs AlertRuleTriggerRuleRun then polls until it's completed
 func (c TriggerAnalyticsRuleRunClient) AlertRuleTriggerRuleRunThenPoll(ctx context.Context, id AlertRuleId, input AnalyticsRuleRunTrigger) error {
+	return c.AlertRuleTriggerRuleRunCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AlertRuleTriggerRuleRunCallbackThenPoll performs AlertRuleTriggerRuleRun, runs the optional callback function, then polls until it's completed
+func (c TriggerAnalyticsRuleRunClient) AlertRuleTriggerRuleRunCallbackThenPoll(ctx context.Context, id AlertRuleId, input AnalyticsRuleRunTrigger, callback func() error) error {
 	result, err := c.AlertRuleTriggerRuleRun(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AlertRuleTriggerRuleRun: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

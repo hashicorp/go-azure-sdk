@@ -61,9 +61,20 @@ func (c VirtualMachineScaleSetsClient) Deallocate(ctx context.Context, id Virtua
 
 // DeallocateThenPoll performs Deallocate then polls until it's completed
 func (c VirtualMachineScaleSetsClient) DeallocateThenPoll(ctx context.Context, id VirtualMachineScaleSetId, input VirtualMachineScaleSetVMInstanceIDs) error {
+	return c.DeallocateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DeallocateCallbackThenPoll performs Deallocate, runs the optional callback function, then polls until it's completed
+func (c VirtualMachineScaleSetsClient) DeallocateCallbackThenPoll(ctx context.Context, id VirtualMachineScaleSetId, input VirtualMachineScaleSetVMInstanceIDs, callback func() error) error {
 	result, err := c.Deallocate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Deallocate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

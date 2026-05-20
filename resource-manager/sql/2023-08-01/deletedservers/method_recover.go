@@ -58,9 +58,20 @@ func (c DeletedServersClient) Recover(ctx context.Context, id DeletedServerId) (
 
 // RecoverThenPoll performs Recover then polls until it's completed
 func (c DeletedServersClient) RecoverThenPoll(ctx context.Context, id DeletedServerId) error {
+	return c.RecoverCallbackThenPoll(ctx, id, nil)
+}
+
+// RecoverCallbackThenPoll performs Recover, runs the optional callback function, then polls until it's completed
+func (c DeletedServersClient) RecoverCallbackThenPoll(ctx context.Context, id DeletedServerId, callback func() error) error {
 	result, err := c.Recover(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Recover: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) VirtualMachinesUpdate(ctx context.Context, id Virtu
 
 // VirtualMachinesUpdateThenPoll performs VirtualMachinesUpdate then polls until it's completed
 func (c NetworkcloudsClient) VirtualMachinesUpdateThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachinePatchParameters, options VirtualMachinesUpdateOperationOptions) error {
+	return c.VirtualMachinesUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// VirtualMachinesUpdateCallbackThenPoll performs VirtualMachinesUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) VirtualMachinesUpdateCallbackThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachinePatchParameters, options VirtualMachinesUpdateOperationOptions, callback func() error) error {
 	result, err := c.VirtualMachinesUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing VirtualMachinesUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

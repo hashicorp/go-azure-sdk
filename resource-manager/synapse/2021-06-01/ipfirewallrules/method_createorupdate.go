@@ -63,9 +63,20 @@ func (c IPFirewallRulesClient) CreateOrUpdate(ctx context.Context, id FirewallRu
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
 func (c IPFirewallRulesClient) CreateOrUpdateThenPoll(ctx context.Context, id FirewallRuleId, input IPFirewallRuleInfo) error {
+	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c IPFirewallRulesClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id FirewallRuleId, input IPFirewallRuleInfo, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

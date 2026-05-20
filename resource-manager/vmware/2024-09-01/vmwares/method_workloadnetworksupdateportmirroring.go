@@ -62,9 +62,20 @@ func (c VMwaresClient) WorkloadNetworksUpdatePortMirroring(ctx context.Context, 
 
 // WorkloadNetworksUpdatePortMirroringThenPoll performs WorkloadNetworksUpdatePortMirroring then polls until it's completed
 func (c VMwaresClient) WorkloadNetworksUpdatePortMirroringThenPoll(ctx context.Context, id PortMirroringProfileId, input WorkloadNetworkPortMirroring) error {
+	return c.WorkloadNetworksUpdatePortMirroringCallbackThenPoll(ctx, id, input, nil)
+}
+
+// WorkloadNetworksUpdatePortMirroringCallbackThenPoll performs WorkloadNetworksUpdatePortMirroring, runs the optional callback function, then polls until it's completed
+func (c VMwaresClient) WorkloadNetworksUpdatePortMirroringCallbackThenPoll(ctx context.Context, id PortMirroringProfileId, input WorkloadNetworkPortMirroring, callback func() error) error {
 	result, err := c.WorkloadNetworksUpdatePortMirroring(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksUpdatePortMirroring: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -56,9 +56,20 @@ func (c ApplicationClient) ReadUpgrade(ctx context.Context, id ApplicationId) (r
 
 // ReadUpgradeThenPoll performs ReadUpgrade then polls until it's completed
 func (c ApplicationClient) ReadUpgradeThenPoll(ctx context.Context, id ApplicationId) error {
+	return c.ReadUpgradeCallbackThenPoll(ctx, id, nil)
+}
+
+// ReadUpgradeCallbackThenPoll performs ReadUpgrade, runs the optional callback function, then polls until it's completed
+func (c ApplicationClient) ReadUpgradeCallbackThenPoll(ctx context.Context, id ApplicationId, callback func() error) error {
 	result, err := c.ReadUpgrade(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ReadUpgrade: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c BackupInstancesClient) AdhocBackup(ctx context.Context, id BackupInstanc
 
 // AdhocBackupThenPoll performs AdhocBackup then polls until it's completed
 func (c BackupInstancesClient) AdhocBackupThenPoll(ctx context.Context, id BackupInstanceId, input TriggerBackupRequest) error {
+	return c.AdhocBackupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AdhocBackupCallbackThenPoll performs AdhocBackup, runs the optional callback function, then polls until it's completed
+func (c BackupInstancesClient) AdhocBackupCallbackThenPoll(ctx context.Context, id BackupInstanceId, input TriggerBackupRequest, callback func() error) error {
 	result, err := c.AdhocBackup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AdhocBackup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -109,9 +109,20 @@ func (c BillingRoleAssignmentClient) ResolveByCustomer(ctx context.Context, id B
 
 // ResolveByCustomerThenPoll performs ResolveByCustomer then polls until it's completed
 func (c BillingRoleAssignmentClient) ResolveByCustomerThenPoll(ctx context.Context, id BillingProfileCustomerId, options ResolveByCustomerOperationOptions) error {
+	return c.ResolveByCustomerCallbackThenPoll(ctx, id, options, nil)
+}
+
+// ResolveByCustomerCallbackThenPoll performs ResolveByCustomer, runs the optional callback function, then polls until it's completed
+func (c BillingRoleAssignmentClient) ResolveByCustomerCallbackThenPoll(ctx context.Context, id BillingProfileCustomerId, options ResolveByCustomerOperationOptions, callback func() error) error {
 	result, err := c.ResolveByCustomer(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing ResolveByCustomer: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c QuotaInformationClient) QuotaUpdate(ctx context.Context, id ScopedQuotaI
 
 // QuotaUpdateThenPoll performs QuotaUpdate then polls until it's completed
 func (c QuotaInformationClient) QuotaUpdateThenPoll(ctx context.Context, id ScopedQuotaId, input CurrentQuotaLimitBase) error {
+	return c.QuotaUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// QuotaUpdateCallbackThenPoll performs QuotaUpdate, runs the optional callback function, then polls until it's completed
+func (c QuotaInformationClient) QuotaUpdateCallbackThenPoll(ctx context.Context, id ScopedQuotaId, input CurrentQuotaLimitBase, callback func() error) error {
 	result, err := c.QuotaUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing QuotaUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

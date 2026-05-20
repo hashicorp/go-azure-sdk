@@ -61,9 +61,20 @@ func (c DataBoxEdgeDevicesClient) DevicesCreateOrUpdateSecuritySettings(ctx cont
 
 // DevicesCreateOrUpdateSecuritySettingsThenPoll performs DevicesCreateOrUpdateSecuritySettings then polls until it's completed
 func (c DataBoxEdgeDevicesClient) DevicesCreateOrUpdateSecuritySettingsThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input SecuritySettings) error {
+	return c.DevicesCreateOrUpdateSecuritySettingsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DevicesCreateOrUpdateSecuritySettingsCallbackThenPoll performs DevicesCreateOrUpdateSecuritySettings, runs the optional callback function, then polls until it's completed
+func (c DataBoxEdgeDevicesClient) DevicesCreateOrUpdateSecuritySettingsCallbackThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input SecuritySettings, callback func() error) error {
 	result, err := c.DevicesCreateOrUpdateSecuritySettings(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing DevicesCreateOrUpdateSecuritySettings: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

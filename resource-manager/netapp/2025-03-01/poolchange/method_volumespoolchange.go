@@ -61,9 +61,20 @@ func (c PoolChangeClient) VolumesPoolChange(ctx context.Context, id VolumeId, in
 
 // VolumesPoolChangeThenPoll performs VolumesPoolChange then polls until it's completed
 func (c PoolChangeClient) VolumesPoolChangeThenPoll(ctx context.Context, id VolumeId, input PoolChangeRequest) error {
+	return c.VolumesPoolChangeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// VolumesPoolChangeCallbackThenPoll performs VolumesPoolChange, runs the optional callback function, then polls until it's completed
+func (c PoolChangeClient) VolumesPoolChangeCallbackThenPoll(ctx context.Context, id VolumeId, input PoolChangeRequest, callback func() error) error {
 	result, err := c.VolumesPoolChange(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing VolumesPoolChange: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

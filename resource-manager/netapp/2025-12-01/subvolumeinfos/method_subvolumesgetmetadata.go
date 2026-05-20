@@ -58,9 +58,20 @@ func (c SubvolumeInfosClient) SubvolumesGetMetadata(ctx context.Context, id SubV
 
 // SubvolumesGetMetadataThenPoll performs SubvolumesGetMetadata then polls until it's completed
 func (c SubvolumeInfosClient) SubvolumesGetMetadataThenPoll(ctx context.Context, id SubVolumeId) error {
+	return c.SubvolumesGetMetadataCallbackThenPoll(ctx, id, nil)
+}
+
+// SubvolumesGetMetadataCallbackThenPoll performs SubvolumesGetMetadata, runs the optional callback function, then polls until it's completed
+func (c SubvolumeInfosClient) SubvolumesGetMetadataCallbackThenPoll(ctx context.Context, id SubVolumeId, callback func() error) error {
 	result, err := c.SubvolumesGetMetadata(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing SubvolumesGetMetadata: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

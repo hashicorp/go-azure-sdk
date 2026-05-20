@@ -58,9 +58,20 @@ func (c IntegrationRuntimeClient) ObjectMetadataRefresh(ctx context.Context, id 
 
 // ObjectMetadataRefreshThenPoll performs ObjectMetadataRefresh then polls until it's completed
 func (c IntegrationRuntimeClient) ObjectMetadataRefreshThenPoll(ctx context.Context, id IntegrationRuntimeId) error {
+	return c.ObjectMetadataRefreshCallbackThenPoll(ctx, id, nil)
+}
+
+// ObjectMetadataRefreshCallbackThenPoll performs ObjectMetadataRefresh, runs the optional callback function, then polls until it's completed
+func (c IntegrationRuntimeClient) ObjectMetadataRefreshCallbackThenPoll(ctx context.Context, id IntegrationRuntimeId, callback func() error) error {
 	result, err := c.ObjectMetadataRefresh(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ObjectMetadataRefresh: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

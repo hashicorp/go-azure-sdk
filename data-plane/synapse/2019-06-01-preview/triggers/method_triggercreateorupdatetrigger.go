@@ -91,9 +91,20 @@ func (c TriggersClient) TriggerCreateOrUpdateTrigger(ctx context.Context, id Tri
 
 // TriggerCreateOrUpdateTriggerThenPoll performs TriggerCreateOrUpdateTrigger then polls until it's completed
 func (c TriggersClient) TriggerCreateOrUpdateTriggerThenPoll(ctx context.Context, id TriggerId, input TriggerResource, options TriggerCreateOrUpdateTriggerOperationOptions) error {
+	return c.TriggerCreateOrUpdateTriggerCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// TriggerCreateOrUpdateTriggerCallbackThenPoll performs TriggerCreateOrUpdateTrigger, runs the optional callback function, then polls until it's completed
+func (c TriggersClient) TriggerCreateOrUpdateTriggerCallbackThenPoll(ctx context.Context, id TriggerId, input TriggerResource, options TriggerCreateOrUpdateTriggerOperationOptions, callback func() error) error {
 	result, err := c.TriggerCreateOrUpdateTrigger(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing TriggerCreateOrUpdateTrigger: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c ClusterExtensionsClient) ExtensionsCreate(ctx context.Context, id Scoped
 
 // ExtensionsCreateThenPoll performs ExtensionsCreate then polls until it's completed
 func (c ClusterExtensionsClient) ExtensionsCreateThenPoll(ctx context.Context, id ScopedExtensionId, input Extension) error {
+	return c.ExtensionsCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ExtensionsCreateCallbackThenPoll performs ExtensionsCreate, runs the optional callback function, then polls until it's completed
+func (c ClusterExtensionsClient) ExtensionsCreateCallbackThenPoll(ctx context.Context, id ScopedExtensionId, input Extension, callback func() error) error {
 	result, err := c.ExtensionsCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ExtensionsCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -58,9 +58,20 @@ func (c IntegrationRuntimeClient) Start(ctx context.Context, id IntegrationRunti
 
 // StartThenPoll performs Start then polls until it's completed
 func (c IntegrationRuntimeClient) StartThenPoll(ctx context.Context, id IntegrationRuntimeId) error {
+	return c.StartCallbackThenPoll(ctx, id, nil)
+}
+
+// StartCallbackThenPoll performs Start, runs the optional callback function, then polls until it's completed
+func (c IntegrationRuntimeClient) StartCallbackThenPoll(ctx context.Context, id IntegrationRuntimeId, callback func() error) error {
 	result, err := c.Start(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Start: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

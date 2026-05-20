@@ -62,9 +62,20 @@ func (c BillingAccountClient) CancelPaymentTerms(ctx context.Context, id Billing
 
 // CancelPaymentTermsThenPoll performs CancelPaymentTerms then polls until it's completed
 func (c BillingAccountClient) CancelPaymentTermsThenPoll(ctx context.Context, id BillingAccountId, input string) error {
+	return c.CancelPaymentTermsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CancelPaymentTermsCallbackThenPoll performs CancelPaymentTerms, runs the optional callback function, then polls until it's completed
+func (c BillingAccountClient) CancelPaymentTermsCallbackThenPoll(ctx context.Context, id BillingAccountId, input string, callback func() error) error {
 	result, err := c.CancelPaymentTerms(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CancelPaymentTerms: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

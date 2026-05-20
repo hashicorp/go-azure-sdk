@@ -37,9 +37,20 @@ func (c BackupResourceStorageConfigsNonCRRClient) BMSPrepareDataMove(ctx context
 
 // BMSPrepareDataMoveThenPoll performs BMSPrepareDataMove then polls until it's completed
 func (c BackupResourceStorageConfigsNonCRRClient) BMSPrepareDataMoveThenPoll(ctx context.Context, id VaultId, input PrepareDataMoveRequest) error {
+	return c.BMSPrepareDataMoveCallbackThenPoll(ctx, id, input, nil)
+}
+
+// BMSPrepareDataMoveCallbackThenPoll performs BMSPrepareDataMove, runs the optional callback function, then polls until it's completed
+func (c BackupResourceStorageConfigsNonCRRClient) BMSPrepareDataMoveCallbackThenPoll(ctx context.Context, id VaultId, input PrepareDataMoveRequest, callback func() error) error {
 	result, err := c.BMSPrepareDataMove(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing BMSPrepareDataMove: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {

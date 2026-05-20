@@ -62,9 +62,20 @@ func (c CustomDomainsClient) EnableCustomHTTPS(ctx context.Context, id EndpointC
 
 // EnableCustomHTTPSThenPoll performs EnableCustomHTTPS then polls until it's completed
 func (c CustomDomainsClient) EnableCustomHTTPSThenPoll(ctx context.Context, id EndpointCustomDomainId, input CustomDomainHTTPSParameters) error {
+	return c.EnableCustomHTTPSCallbackThenPoll(ctx, id, input, nil)
+}
+
+// EnableCustomHTTPSCallbackThenPoll performs EnableCustomHTTPS, runs the optional callback function, then polls until it's completed
+func (c CustomDomainsClient) EnableCustomHTTPSCallbackThenPoll(ctx context.Context, id EndpointCustomDomainId, input CustomDomainHTTPSParameters, callback func() error) error {
 	result, err := c.EnableCustomHTTPS(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing EnableCustomHTTPS: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

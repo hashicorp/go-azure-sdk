@@ -62,9 +62,20 @@ func (c LongTermRetentionBackupsClient) ChangeAccessTierByResourceGroup(ctx cont
 
 // ChangeAccessTierByResourceGroupThenPoll performs ChangeAccessTierByResourceGroup then polls until it's completed
 func (c LongTermRetentionBackupsClient) ChangeAccessTierByResourceGroupThenPoll(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionBackupId, input ChangeLongTermRetentionBackupAccessTierParameters) error {
+	return c.ChangeAccessTierByResourceGroupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ChangeAccessTierByResourceGroupCallbackThenPoll performs ChangeAccessTierByResourceGroup, runs the optional callback function, then polls until it's completed
+func (c LongTermRetentionBackupsClient) ChangeAccessTierByResourceGroupCallbackThenPoll(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionBackupId, input ChangeLongTermRetentionBackupAccessTierParameters, callback func() error) error {
 	result, err := c.ChangeAccessTierByResourceGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ChangeAccessTierByResourceGroup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

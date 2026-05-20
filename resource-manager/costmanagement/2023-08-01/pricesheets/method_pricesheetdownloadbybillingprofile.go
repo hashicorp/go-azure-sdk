@@ -58,9 +58,20 @@ func (c PriceSheetsClient) PriceSheetDownloadByBillingProfile(ctx context.Contex
 
 // PriceSheetDownloadByBillingProfileThenPoll performs PriceSheetDownloadByBillingProfile then polls until it's completed
 func (c PriceSheetsClient) PriceSheetDownloadByBillingProfileThenPoll(ctx context.Context, id BillingProfileId) error {
+	return c.PriceSheetDownloadByBillingProfileCallbackThenPoll(ctx, id, nil)
+}
+
+// PriceSheetDownloadByBillingProfileCallbackThenPoll performs PriceSheetDownloadByBillingProfile, runs the optional callback function, then polls until it's completed
+func (c PriceSheetsClient) PriceSheetDownloadByBillingProfileCallbackThenPoll(ctx context.Context, id BillingProfileId, callback func() error) error {
 	result, err := c.PriceSheetDownloadByBillingProfile(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing PriceSheetDownloadByBillingProfile: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

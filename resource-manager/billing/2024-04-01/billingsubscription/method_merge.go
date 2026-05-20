@@ -62,9 +62,20 @@ func (c BillingSubscriptionClient) Merge(ctx context.Context, id BillingAccountB
 
 // MergeThenPoll performs Merge then polls until it's completed
 func (c BillingSubscriptionClient) MergeThenPoll(ctx context.Context, id BillingAccountBillingSubscriptionId, input BillingSubscriptionMergeRequest) error {
+	return c.MergeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MergeCallbackThenPoll performs Merge, runs the optional callback function, then polls until it's completed
+func (c BillingSubscriptionClient) MergeCallbackThenPoll(ctx context.Context, id BillingAccountBillingSubscriptionId, input BillingSubscriptionMergeRequest, callback func() error) error {
 	result, err := c.Merge(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Merge: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

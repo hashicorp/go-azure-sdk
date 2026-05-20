@@ -58,9 +58,20 @@ func (c ConnectionMonitorsClient) Query(ctx context.Context, id ConnectionMonito
 
 // QueryThenPoll performs Query then polls until it's completed
 func (c ConnectionMonitorsClient) QueryThenPoll(ctx context.Context, id ConnectionMonitorId) error {
+	return c.QueryCallbackThenPoll(ctx, id, nil)
+}
+
+// QueryCallbackThenPoll performs Query, runs the optional callback function, then polls until it's completed
+func (c ConnectionMonitorsClient) QueryCallbackThenPoll(ctx context.Context, id ConnectionMonitorId, callback func() error) error {
 	result, err := c.Query(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Query: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

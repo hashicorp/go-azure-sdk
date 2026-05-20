@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) BareMetalMachineKeySetsCreateOrUpdate(ctx context.C
 
 // BareMetalMachineKeySetsCreateOrUpdateThenPoll performs BareMetalMachineKeySetsCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) BareMetalMachineKeySetsCreateOrUpdateThenPoll(ctx context.Context, id BareMetalMachineKeySetId, input BareMetalMachineKeySet, options BareMetalMachineKeySetsCreateOrUpdateOperationOptions) error {
+	return c.BareMetalMachineKeySetsCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// BareMetalMachineKeySetsCreateOrUpdateCallbackThenPoll performs BareMetalMachineKeySetsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) BareMetalMachineKeySetsCreateOrUpdateCallbackThenPoll(ctx context.Context, id BareMetalMachineKeySetId, input BareMetalMachineKeySet, options BareMetalMachineKeySetsCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.BareMetalMachineKeySetsCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing BareMetalMachineKeySetsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

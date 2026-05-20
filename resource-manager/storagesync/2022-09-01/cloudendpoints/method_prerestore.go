@@ -61,9 +61,20 @@ func (c CloudEndpointsClient) PreRestore(ctx context.Context, id CloudEndpointId
 
 // PreRestoreThenPoll performs PreRestore then polls until it's completed
 func (c CloudEndpointsClient) PreRestoreThenPoll(ctx context.Context, id CloudEndpointId, input PreRestoreRequest) error {
+	return c.PreRestoreCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PreRestoreCallbackThenPoll performs PreRestore, runs the optional callback function, then polls until it's completed
+func (c CloudEndpointsClient) PreRestoreCallbackThenPoll(ctx context.Context, id CloudEndpointId, input PreRestoreRequest, callback func() error) error {
 	result, err := c.PreRestore(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PreRestore: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

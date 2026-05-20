@@ -56,9 +56,20 @@ func (c TriggersClient) Stop(ctx context.Context, id TriggerId) (result StopOper
 
 // StopThenPoll performs Stop then polls until it's completed
 func (c TriggersClient) StopThenPoll(ctx context.Context, id TriggerId) error {
+	return c.StopCallbackThenPoll(ctx, id, nil)
+}
+
+// StopCallbackThenPoll performs Stop, runs the optional callback function, then polls until it's completed
+func (c TriggersClient) StopCallbackThenPoll(ctx context.Context, id TriggerId, callback func() error) error {
 	result, err := c.Stop(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Stop: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

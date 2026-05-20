@@ -62,9 +62,20 @@ func (c ReplicationMigrationItemsClient) Migrate(ctx context.Context, id Replica
 
 // MigrateThenPoll performs Migrate then polls until it's completed
 func (c ReplicationMigrationItemsClient) MigrateThenPoll(ctx context.Context, id ReplicationMigrationItemId, input MigrateInput) error {
+	return c.MigrateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MigrateCallbackThenPoll performs Migrate, runs the optional callback function, then polls until it's completed
+func (c ReplicationMigrationItemsClient) MigrateCallbackThenPoll(ctx context.Context, id ReplicationMigrationItemId, input MigrateInput, callback func() error) error {
 	result, err := c.Migrate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Migrate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

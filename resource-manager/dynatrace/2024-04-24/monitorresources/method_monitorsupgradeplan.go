@@ -60,9 +60,20 @@ func (c MonitorResourcesClient) MonitorsUpgradePlan(ctx context.Context, id Moni
 
 // MonitorsUpgradePlanThenPoll performs MonitorsUpgradePlan then polls until it's completed
 func (c MonitorResourcesClient) MonitorsUpgradePlanThenPoll(ctx context.Context, id MonitorId, input UpgradePlanRequest) error {
+	return c.MonitorsUpgradePlanCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MonitorsUpgradePlanCallbackThenPoll performs MonitorsUpgradePlan, runs the optional callback function, then polls until it's completed
+func (c MonitorResourcesClient) MonitorsUpgradePlanCallbackThenPoll(ctx context.Context, id MonitorId, input UpgradePlanRequest, callback func() error) error {
 	result, err := c.MonitorsUpgradePlan(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing MonitorsUpgradePlan: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

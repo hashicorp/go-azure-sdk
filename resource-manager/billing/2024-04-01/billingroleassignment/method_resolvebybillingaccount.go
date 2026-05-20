@@ -109,9 +109,20 @@ func (c BillingRoleAssignmentClient) ResolveByBillingAccount(ctx context.Context
 
 // ResolveByBillingAccountThenPoll performs ResolveByBillingAccount then polls until it's completed
 func (c BillingRoleAssignmentClient) ResolveByBillingAccountThenPoll(ctx context.Context, id BillingAccountId, options ResolveByBillingAccountOperationOptions) error {
+	return c.ResolveByBillingAccountCallbackThenPoll(ctx, id, options, nil)
+}
+
+// ResolveByBillingAccountCallbackThenPoll performs ResolveByBillingAccount, runs the optional callback function, then polls until it's completed
+func (c BillingRoleAssignmentClient) ResolveByBillingAccountCallbackThenPoll(ctx context.Context, id BillingAccountId, options ResolveByBillingAccountOperationOptions, callback func() error) error {
 	result, err := c.ResolveByBillingAccount(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing ResolveByBillingAccount: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

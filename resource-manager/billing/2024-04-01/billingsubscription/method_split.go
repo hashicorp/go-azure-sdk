@@ -62,9 +62,20 @@ func (c BillingSubscriptionClient) Split(ctx context.Context, id BillingAccountB
 
 // SplitThenPoll performs Split then polls until it's completed
 func (c BillingSubscriptionClient) SplitThenPoll(ctx context.Context, id BillingAccountBillingSubscriptionId, input BillingSubscriptionSplitRequest) error {
+	return c.SplitCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SplitCallbackThenPoll performs Split, runs the optional callback function, then polls until it's completed
+func (c BillingSubscriptionClient) SplitCallbackThenPoll(ctx context.Context, id BillingAccountBillingSubscriptionId, input BillingSubscriptionSplitRequest, callback func() error) error {
 	result, err := c.Split(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Split: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

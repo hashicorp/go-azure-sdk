@@ -62,9 +62,20 @@ func (c ProfilesClient) AFDProfilesUpgrade(ctx context.Context, id ProfileId, in
 
 // AFDProfilesUpgradeThenPoll performs AFDProfilesUpgrade then polls until it's completed
 func (c ProfilesClient) AFDProfilesUpgradeThenPoll(ctx context.Context, id ProfileId, input ProfileUpgradeParameters) error {
+	return c.AFDProfilesUpgradeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AFDProfilesUpgradeCallbackThenPoll performs AFDProfilesUpgrade, runs the optional callback function, then polls until it's completed
+func (c ProfilesClient) AFDProfilesUpgradeCallbackThenPoll(ctx context.Context, id ProfileId, input ProfileUpgradeParameters, callback func() error) error {
 	result, err := c.AFDProfilesUpgrade(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AFDProfilesUpgrade: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

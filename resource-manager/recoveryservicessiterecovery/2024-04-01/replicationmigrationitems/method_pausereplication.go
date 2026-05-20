@@ -62,9 +62,20 @@ func (c ReplicationMigrationItemsClient) PauseReplication(ctx context.Context, i
 
 // PauseReplicationThenPoll performs PauseReplication then polls until it's completed
 func (c ReplicationMigrationItemsClient) PauseReplicationThenPoll(ctx context.Context, id ReplicationMigrationItemId, input PauseReplicationInput) error {
+	return c.PauseReplicationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PauseReplicationCallbackThenPoll performs PauseReplication, runs the optional callback function, then polls until it's completed
+func (c ReplicationMigrationItemsClient) PauseReplicationCallbackThenPoll(ctx context.Context, id ReplicationMigrationItemId, input PauseReplicationInput, callback func() error) error {
 	result, err := c.PauseReplication(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PauseReplication: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

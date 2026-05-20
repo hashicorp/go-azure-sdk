@@ -62,9 +62,20 @@ func (c ProfilesClient) CdnMigrateToAfd(ctx context.Context, id ProfileId, input
 
 // CdnMigrateToAfdThenPoll performs CdnMigrateToAfd then polls until it's completed
 func (c ProfilesClient) CdnMigrateToAfdThenPoll(ctx context.Context, id ProfileId, input CdnMigrationToAfdParameters) error {
+	return c.CdnMigrateToAfdCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CdnMigrateToAfdCallbackThenPoll performs CdnMigrateToAfd, runs the optional callback function, then polls until it's completed
+func (c ProfilesClient) CdnMigrateToAfdCallbackThenPoll(ctx context.Context, id ProfileId, input CdnMigrationToAfdParameters, callback func() error) error {
 	result, err := c.CdnMigrateToAfd(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CdnMigrateToAfd: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

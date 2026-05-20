@@ -63,9 +63,20 @@ func (c SqlPoolsWorkloadGroupsClient) SqlPoolWorkloadGroupCreateOrUpdate(ctx con
 
 // SqlPoolWorkloadGroupCreateOrUpdateThenPoll performs SqlPoolWorkloadGroupCreateOrUpdate then polls until it's completed
 func (c SqlPoolsWorkloadGroupsClient) SqlPoolWorkloadGroupCreateOrUpdateThenPoll(ctx context.Context, id WorkloadGroupId, input WorkloadGroup) error {
+	return c.SqlPoolWorkloadGroupCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlPoolWorkloadGroupCreateOrUpdateCallbackThenPoll performs SqlPoolWorkloadGroupCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c SqlPoolsWorkloadGroupsClient) SqlPoolWorkloadGroupCreateOrUpdateCallbackThenPoll(ctx context.Context, id WorkloadGroupId, input WorkloadGroup, callback func() error) error {
 	result, err := c.SqlPoolWorkloadGroupCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlPoolWorkloadGroupCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

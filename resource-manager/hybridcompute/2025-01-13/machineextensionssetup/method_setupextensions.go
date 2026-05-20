@@ -62,9 +62,20 @@ func (c MachineExtensionsSetupClient) SetupExtensions(ctx context.Context, id Ma
 
 // SetupExtensionsThenPoll performs SetupExtensions then polls until it's completed
 func (c MachineExtensionsSetupClient) SetupExtensionsThenPoll(ctx context.Context, id MachineId, input SetupExtensionRequest) error {
+	return c.SetupExtensionsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SetupExtensionsCallbackThenPoll performs SetupExtensions, runs the optional callback function, then polls until it's completed
+func (c MachineExtensionsSetupClient) SetupExtensionsCallbackThenPoll(ctx context.Context, id MachineId, input SetupExtensionRequest, callback func() error) error {
 	result, err := c.SetupExtensions(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SetupExtensions: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

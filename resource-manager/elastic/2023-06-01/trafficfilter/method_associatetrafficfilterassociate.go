@@ -85,9 +85,20 @@ func (c TrafficFilterClient) AssociateTrafficFilterAssociate(ctx context.Context
 
 // AssociateTrafficFilterAssociateThenPoll performs AssociateTrafficFilterAssociate then polls until it's completed
 func (c TrafficFilterClient) AssociateTrafficFilterAssociateThenPoll(ctx context.Context, id MonitorId, options AssociateTrafficFilterAssociateOperationOptions) error {
+	return c.AssociateTrafficFilterAssociateCallbackThenPoll(ctx, id, options, nil)
+}
+
+// AssociateTrafficFilterAssociateCallbackThenPoll performs AssociateTrafficFilterAssociate, runs the optional callback function, then polls until it's completed
+func (c TrafficFilterClient) AssociateTrafficFilterAssociateCallbackThenPoll(ctx context.Context, id MonitorId, options AssociateTrafficFilterAssociateOperationOptions, callback func() error) error {
 	result, err := c.AssociateTrafficFilterAssociate(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing AssociateTrafficFilterAssociate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

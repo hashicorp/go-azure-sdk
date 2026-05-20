@@ -57,9 +57,20 @@ func (c IncrementalRestorePointsClient) DiskRestorePointRevokeAccess(ctx context
 
 // DiskRestorePointRevokeAccessThenPoll performs DiskRestorePointRevokeAccess then polls until it's completed
 func (c IncrementalRestorePointsClient) DiskRestorePointRevokeAccessThenPoll(ctx context.Context, id DiskRestorePointId) error {
+	return c.DiskRestorePointRevokeAccessCallbackThenPoll(ctx, id, nil)
+}
+
+// DiskRestorePointRevokeAccessCallbackThenPoll performs DiskRestorePointRevokeAccess, runs the optional callback function, then polls until it's completed
+func (c IncrementalRestorePointsClient) DiskRestorePointRevokeAccessCallbackThenPoll(ctx context.Context, id DiskRestorePointId, callback func() error) error {
 	result, err := c.DiskRestorePointRevokeAccess(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing DiskRestorePointRevokeAccess: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

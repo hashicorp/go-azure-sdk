@@ -61,9 +61,20 @@ func (c BackupInstancesClient) TriggerRehydrate(ctx context.Context, id BackupIn
 
 // TriggerRehydrateThenPoll performs TriggerRehydrate then polls until it's completed
 func (c BackupInstancesClient) TriggerRehydrateThenPoll(ctx context.Context, id BackupInstanceId, input AzureBackupRehydrationRequest) error {
+	return c.TriggerRehydrateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// TriggerRehydrateCallbackThenPoll performs TriggerRehydrate, runs the optional callback function, then polls until it's completed
+func (c BackupInstancesClient) TriggerRehydrateCallbackThenPoll(ctx context.Context, id BackupInstanceId, input AzureBackupRehydrationRequest, callback func() error) error {
 	result, err := c.TriggerRehydrate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing TriggerRehydrate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

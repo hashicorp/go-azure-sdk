@@ -63,9 +63,20 @@ func (c PublicIPAddressesClient) ReserveCloudServicePublicIPAddress(ctx context.
 
 // ReserveCloudServicePublicIPAddressThenPoll performs ReserveCloudServicePublicIPAddress then polls until it's completed
 func (c PublicIPAddressesClient) ReserveCloudServicePublicIPAddressThenPoll(ctx context.Context, id commonids.PublicIPAddressId, input ReserveCloudServicePublicIPAddressRequest) error {
+	return c.ReserveCloudServicePublicIPAddressCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ReserveCloudServicePublicIPAddressCallbackThenPoll performs ReserveCloudServicePublicIPAddress, runs the optional callback function, then polls until it's completed
+func (c PublicIPAddressesClient) ReserveCloudServicePublicIPAddressCallbackThenPoll(ctx context.Context, id commonids.PublicIPAddressId, input ReserveCloudServicePublicIPAddressRequest, callback func() error) error {
 	result, err := c.ReserveCloudServicePublicIPAddress(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ReserveCloudServicePublicIPAddress: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

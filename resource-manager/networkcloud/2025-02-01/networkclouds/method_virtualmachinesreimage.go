@@ -56,9 +56,20 @@ func (c NetworkcloudsClient) VirtualMachinesReimage(ctx context.Context, id Virt
 
 // VirtualMachinesReimageThenPoll performs VirtualMachinesReimage then polls until it's completed
 func (c NetworkcloudsClient) VirtualMachinesReimageThenPoll(ctx context.Context, id VirtualMachineId) error {
+	return c.VirtualMachinesReimageCallbackThenPoll(ctx, id, nil)
+}
+
+// VirtualMachinesReimageCallbackThenPoll performs VirtualMachinesReimage, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) VirtualMachinesReimageCallbackThenPoll(ctx context.Context, id VirtualMachineId, callback func() error) error {
 	result, err := c.VirtualMachinesReimage(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing VirtualMachinesReimage: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

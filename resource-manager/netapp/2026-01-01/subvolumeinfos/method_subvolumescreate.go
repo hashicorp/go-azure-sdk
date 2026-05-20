@@ -63,9 +63,20 @@ func (c SubvolumeInfosClient) SubvolumesCreate(ctx context.Context, id SubVolume
 
 // SubvolumesCreateThenPoll performs SubvolumesCreate then polls until it's completed
 func (c SubvolumeInfosClient) SubvolumesCreateThenPoll(ctx context.Context, id SubVolumeId, input SubvolumeInfo) error {
+	return c.SubvolumesCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SubvolumesCreateCallbackThenPoll performs SubvolumesCreate, runs the optional callback function, then polls until it's completed
+func (c SubvolumeInfosClient) SubvolumesCreateCallbackThenPoll(ctx context.Context, id SubVolumeId, input SubvolumeInfo, callback func() error) error {
 	result, err := c.SubvolumesCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SubvolumesCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

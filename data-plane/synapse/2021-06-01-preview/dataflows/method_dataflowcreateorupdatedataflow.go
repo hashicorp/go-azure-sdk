@@ -91,9 +91,20 @@ func (c DataFlowsClient) DataFlowCreateOrUpdateDataFlow(ctx context.Context, id 
 
 // DataFlowCreateOrUpdateDataFlowThenPoll performs DataFlowCreateOrUpdateDataFlow then polls until it's completed
 func (c DataFlowsClient) DataFlowCreateOrUpdateDataFlowThenPoll(ctx context.Context, id DataflowId, input DataFlowResource, options DataFlowCreateOrUpdateDataFlowOperationOptions) error {
+	return c.DataFlowCreateOrUpdateDataFlowCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// DataFlowCreateOrUpdateDataFlowCallbackThenPoll performs DataFlowCreateOrUpdateDataFlow, runs the optional callback function, then polls until it's completed
+func (c DataFlowsClient) DataFlowCreateOrUpdateDataFlowCallbackThenPoll(ctx context.Context, id DataflowId, input DataFlowResource, options DataFlowCreateOrUpdateDataFlowOperationOptions, callback func() error) error {
 	result, err := c.DataFlowCreateOrUpdateDataFlow(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing DataFlowCreateOrUpdateDataFlow: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

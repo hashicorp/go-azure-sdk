@@ -95,9 +95,20 @@ func (c VolumesClient) CreateOrUpdate(ctx context.Context, id VolumeId, input Vo
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
 func (c VolumesClient) CreateOrUpdateThenPoll(ctx context.Context, id VolumeId, input Volume, options CreateOrUpdateOperationOptions) error {
+	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c VolumesClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id VolumeId, input Volume, options CreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

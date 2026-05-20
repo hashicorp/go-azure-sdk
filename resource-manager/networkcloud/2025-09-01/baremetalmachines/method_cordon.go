@@ -60,9 +60,20 @@ func (c BareMetalMachinesClient) Cordon(ctx context.Context, id BareMetalMachine
 
 // CordonThenPoll performs Cordon then polls until it's completed
 func (c BareMetalMachinesClient) CordonThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachineCordonParameters) error {
+	return c.CordonCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CordonCallbackThenPoll performs Cordon, runs the optional callback function, then polls until it's completed
+func (c BareMetalMachinesClient) CordonCallbackThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachineCordonParameters, callback func() error) error {
 	result, err := c.Cordon(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Cordon: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

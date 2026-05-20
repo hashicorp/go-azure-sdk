@@ -57,9 +57,20 @@ func (c WorkflowTriggersClient) Run(ctx context.Context, id TriggerId) (result R
 
 // RunThenPoll performs Run then polls until it's completed
 func (c WorkflowTriggersClient) RunThenPoll(ctx context.Context, id TriggerId) error {
+	return c.RunCallbackThenPoll(ctx, id, nil)
+}
+
+// RunCallbackThenPoll performs Run, runs the optional callback function, then polls until it's completed
+func (c WorkflowTriggersClient) RunCallbackThenPoll(ctx context.Context, id TriggerId, callback func() error) error {
 	result, err := c.Run(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Run: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

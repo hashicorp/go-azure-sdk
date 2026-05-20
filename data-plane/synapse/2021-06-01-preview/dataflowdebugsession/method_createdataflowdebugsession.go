@@ -62,9 +62,20 @@ func (c DataFlowDebugSessionClient) CreateDataFlowDebugSession(ctx context.Conte
 
 // CreateDataFlowDebugSessionThenPoll performs CreateDataFlowDebugSession then polls until it's completed
 func (c DataFlowDebugSessionClient) CreateDataFlowDebugSessionThenPoll(ctx context.Context, input CreateDataFlowDebugSessionRequest) error {
+	return c.CreateDataFlowDebugSessionCallbackThenPoll(ctx, input, nil)
+}
+
+// CreateDataFlowDebugSessionCallbackThenPoll performs CreateDataFlowDebugSession, runs the optional callback function, then polls until it's completed
+func (c DataFlowDebugSessionClient) CreateDataFlowDebugSessionCallbackThenPoll(ctx context.Context, input CreateDataFlowDebugSessionRequest, callback func() error) error {
 	result, err := c.CreateDataFlowDebugSession(ctx, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateDataFlowDebugSession: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

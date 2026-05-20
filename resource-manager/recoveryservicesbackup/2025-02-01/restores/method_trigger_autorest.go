@@ -61,9 +61,20 @@ func (c RestoresClient) Trigger(ctx context.Context, id RecoveryPointId, input R
 
 // TriggerThenPoll performs Trigger then polls until it's completed
 func (c RestoresClient) TriggerThenPoll(ctx context.Context, id RecoveryPointId, input RestoreRequestResource, options TriggerOperationOptions) error {
+	return c.TriggerCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// TriggerCallbackThenPoll performs Trigger, runs the optional callback function, then polls until it's completed
+func (c RestoresClient) TriggerCallbackThenPoll(ctx context.Context, id RecoveryPointId, input RestoreRequestResource, options TriggerOperationOptions, callback func() error) error {
 	result, err := c.Trigger(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing Trigger: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {

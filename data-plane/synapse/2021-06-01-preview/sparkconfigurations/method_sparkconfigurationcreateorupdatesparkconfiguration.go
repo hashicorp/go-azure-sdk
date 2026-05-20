@@ -91,9 +91,20 @@ func (c SparkConfigurationsClient) SparkConfigurationCreateOrUpdateSparkConfigur
 
 // SparkConfigurationCreateOrUpdateSparkConfigurationThenPoll performs SparkConfigurationCreateOrUpdateSparkConfiguration then polls until it's completed
 func (c SparkConfigurationsClient) SparkConfigurationCreateOrUpdateSparkConfigurationThenPoll(ctx context.Context, id SparkConfigurationId, input SparkConfigurationResource, options SparkConfigurationCreateOrUpdateSparkConfigurationOperationOptions) error {
+	return c.SparkConfigurationCreateOrUpdateSparkConfigurationCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// SparkConfigurationCreateOrUpdateSparkConfigurationCallbackThenPoll performs SparkConfigurationCreateOrUpdateSparkConfiguration, runs the optional callback function, then polls until it's completed
+func (c SparkConfigurationsClient) SparkConfigurationCreateOrUpdateSparkConfigurationCallbackThenPoll(ctx context.Context, id SparkConfigurationId, input SparkConfigurationResource, options SparkConfigurationCreateOrUpdateSparkConfigurationOperationOptions, callback func() error) error {
 	result, err := c.SparkConfigurationCreateOrUpdateSparkConfiguration(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing SparkConfigurationCreateOrUpdateSparkConfiguration: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

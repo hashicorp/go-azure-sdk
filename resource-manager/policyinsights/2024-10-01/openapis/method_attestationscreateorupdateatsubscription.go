@@ -62,9 +62,20 @@ func (c OpenapisClient) AttestationsCreateOrUpdateAtSubscription(ctx context.Con
 
 // AttestationsCreateOrUpdateAtSubscriptionThenPoll performs AttestationsCreateOrUpdateAtSubscription then polls until it's completed
 func (c OpenapisClient) AttestationsCreateOrUpdateAtSubscriptionThenPoll(ctx context.Context, id AttestationId, input Attestation) error {
+	return c.AttestationsCreateOrUpdateAtSubscriptionCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AttestationsCreateOrUpdateAtSubscriptionCallbackThenPoll performs AttestationsCreateOrUpdateAtSubscription, runs the optional callback function, then polls until it's completed
+func (c OpenapisClient) AttestationsCreateOrUpdateAtSubscriptionCallbackThenPoll(ctx context.Context, id AttestationId, input Attestation, callback func() error) error {
 	result, err := c.AttestationsCreateOrUpdateAtSubscription(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AttestationsCreateOrUpdateAtSubscription: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

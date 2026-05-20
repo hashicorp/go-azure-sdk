@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) BareMetalMachinesUpdate(ctx context.Context, id Bar
 
 // BareMetalMachinesUpdateThenPoll performs BareMetalMachinesUpdate then polls until it's completed
 func (c NetworkcloudsClient) BareMetalMachinesUpdateThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachinePatchParameters, options BareMetalMachinesUpdateOperationOptions) error {
+	return c.BareMetalMachinesUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// BareMetalMachinesUpdateCallbackThenPoll performs BareMetalMachinesUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) BareMetalMachinesUpdateCallbackThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachinePatchParameters, options BareMetalMachinesUpdateOperationOptions, callback func() error) error {
 	result, err := c.BareMetalMachinesUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing BareMetalMachinesUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -61,9 +61,20 @@ func (c UserClient) Invite(ctx context.Context, id UserId, input InviteBody) (re
 
 // InviteThenPoll performs Invite then polls until it's completed
 func (c UserClient) InviteThenPoll(ctx context.Context, id UserId, input InviteBody) error {
+	return c.InviteCallbackThenPoll(ctx, id, input, nil)
+}
+
+// InviteCallbackThenPoll performs Invite, runs the optional callback function, then polls until it's completed
+func (c UserClient) InviteCallbackThenPoll(ctx context.Context, id UserId, input InviteBody, callback func() error) error {
 	result, err := c.Invite(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Invite: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

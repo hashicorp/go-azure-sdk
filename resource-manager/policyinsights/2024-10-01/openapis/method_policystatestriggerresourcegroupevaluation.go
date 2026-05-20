@@ -58,9 +58,20 @@ func (c OpenapisClient) PolicyStatesTriggerResourceGroupEvaluation(ctx context.C
 
 // PolicyStatesTriggerResourceGroupEvaluationThenPoll performs PolicyStatesTriggerResourceGroupEvaluation then polls until it's completed
 func (c OpenapisClient) PolicyStatesTriggerResourceGroupEvaluationThenPoll(ctx context.Context, id commonids.ResourceGroupId) error {
+	return c.PolicyStatesTriggerResourceGroupEvaluationCallbackThenPoll(ctx, id, nil)
+}
+
+// PolicyStatesTriggerResourceGroupEvaluationCallbackThenPoll performs PolicyStatesTriggerResourceGroupEvaluation, runs the optional callback function, then polls until it's completed
+func (c OpenapisClient) PolicyStatesTriggerResourceGroupEvaluationCallbackThenPoll(ctx context.Context, id commonids.ResourceGroupId, callback func() error) error {
 	result, err := c.PolicyStatesTriggerResourceGroupEvaluation(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing PolicyStatesTriggerResourceGroupEvaluation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -58,9 +58,20 @@ func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRev
 
 // DatabaseEncryptionProtectorsRevertThenPoll performs DatabaseEncryptionProtectorsRevert then polls until it's completed
 func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRevertThenPoll(ctx context.Context, id commonids.SqlDatabaseId) error {
+	return c.DatabaseEncryptionProtectorsRevertCallbackThenPoll(ctx, id, nil)
+}
+
+// DatabaseEncryptionProtectorsRevertCallbackThenPoll performs DatabaseEncryptionProtectorsRevert, runs the optional callback function, then polls until it's completed
+func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRevertCallbackThenPoll(ctx context.Context, id commonids.SqlDatabaseId, callback func() error) error {
 	result, err := c.DatabaseEncryptionProtectorsRevert(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing DatabaseEncryptionProtectorsRevert: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

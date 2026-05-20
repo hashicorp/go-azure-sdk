@@ -62,9 +62,20 @@ func (c ReplicationMigrationItemsClient) Create(ctx context.Context, id Replicat
 
 // CreateThenPoll performs Create then polls until it's completed
 func (c ReplicationMigrationItemsClient) CreateThenPoll(ctx context.Context, id ReplicationMigrationItemId, input EnableMigrationInput) error {
+	return c.CreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateCallbackThenPoll performs Create, runs the optional callback function, then polls until it's completed
+func (c ReplicationMigrationItemsClient) CreateCallbackThenPoll(ctx context.Context, id ReplicationMigrationItemId, input EnableMigrationInput, callback func() error) error {
 	result, err := c.Create(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

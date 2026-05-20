@@ -61,9 +61,20 @@ func (c BackupInstancesClient) SyncBackupInstance(ctx context.Context, id Backup
 
 // SyncBackupInstanceThenPoll performs SyncBackupInstance then polls until it's completed
 func (c BackupInstancesClient) SyncBackupInstanceThenPoll(ctx context.Context, id BackupInstanceId, input SyncBackupInstanceRequest) error {
+	return c.SyncBackupInstanceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SyncBackupInstanceCallbackThenPoll performs SyncBackupInstance, runs the optional callback function, then polls until it's completed
+func (c BackupInstancesClient) SyncBackupInstanceCallbackThenPoll(ctx context.Context, id BackupInstanceId, input SyncBackupInstanceRequest, callback func() error) error {
 	result, err := c.SyncBackupInstance(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SyncBackupInstance: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

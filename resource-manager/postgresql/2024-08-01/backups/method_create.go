@@ -59,9 +59,20 @@ func (c BackupsClient) Create(ctx context.Context, id BackupId) (result CreateOp
 
 // CreateThenPoll performs Create then polls until it's completed
 func (c BackupsClient) CreateThenPoll(ctx context.Context, id BackupId) error {
+	return c.CreateCallbackThenPoll(ctx, id, nil)
+}
+
+// CreateCallbackThenPoll performs Create, runs the optional callback function, then polls until it's completed
+func (c BackupsClient) CreateCallbackThenPoll(ctx context.Context, id BackupId, callback func() error) error {
 	result, err := c.Create(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -61,9 +61,20 @@ func (c PrivateEndpointConnectionsClient) UpdateTags(ctx context.Context, id Pri
 
 // UpdateTagsThenPoll performs UpdateTags then polls until it's completed
 func (c PrivateEndpointConnectionsClient) UpdateTagsThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input TagsObject) error {
+	return c.UpdateTagsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateTagsCallbackThenPoll performs UpdateTags, runs the optional callback function, then polls until it's completed
+func (c PrivateEndpointConnectionsClient) UpdateTagsCallbackThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input TagsObject, callback func() error) error {
 	result, err := c.UpdateTags(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateTags: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

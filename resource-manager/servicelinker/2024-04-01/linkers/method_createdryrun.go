@@ -62,9 +62,20 @@ func (c LinkersClient) CreateDryrun(ctx context.Context, id ScopedDryrunId, inpu
 
 // CreateDryrunThenPoll performs CreateDryrun then polls until it's completed
 func (c LinkersClient) CreateDryrunThenPoll(ctx context.Context, id ScopedDryrunId, input DryrunResource) error {
+	return c.CreateDryrunCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateDryrunCallbackThenPoll performs CreateDryrun, runs the optional callback function, then polls until it's completed
+func (c LinkersClient) CreateDryrunCallbackThenPoll(ctx context.Context, id ScopedDryrunId, input DryrunResource, callback func() error) error {
 	result, err := c.CreateDryrun(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateDryrun: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

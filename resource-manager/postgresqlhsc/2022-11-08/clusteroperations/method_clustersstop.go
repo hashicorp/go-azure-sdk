@@ -57,9 +57,20 @@ func (c ClusterOperationsClient) ClustersStop(ctx context.Context, id ServerGrou
 
 // ClustersStopThenPoll performs ClustersStop then polls until it's completed
 func (c ClusterOperationsClient) ClustersStopThenPoll(ctx context.Context, id ServerGroupsv2Id) error {
+	return c.ClustersStopCallbackThenPoll(ctx, id, nil)
+}
+
+// ClustersStopCallbackThenPoll performs ClustersStop, runs the optional callback function, then polls until it's completed
+func (c ClusterOperationsClient) ClustersStopCallbackThenPoll(ctx context.Context, id ServerGroupsv2Id, callback func() error) error {
 	result, err := c.ClustersStop(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ClustersStop: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

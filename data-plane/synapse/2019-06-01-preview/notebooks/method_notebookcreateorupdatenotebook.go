@@ -91,9 +91,20 @@ func (c NotebooksClient) NotebookCreateOrUpdateNotebook(ctx context.Context, id 
 
 // NotebookCreateOrUpdateNotebookThenPoll performs NotebookCreateOrUpdateNotebook then polls until it's completed
 func (c NotebooksClient) NotebookCreateOrUpdateNotebookThenPoll(ctx context.Context, id NotebookId, input NotebookResource, options NotebookCreateOrUpdateNotebookOperationOptions) error {
+	return c.NotebookCreateOrUpdateNotebookCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// NotebookCreateOrUpdateNotebookCallbackThenPoll performs NotebookCreateOrUpdateNotebook, runs the optional callback function, then polls until it's completed
+func (c NotebooksClient) NotebookCreateOrUpdateNotebookCallbackThenPoll(ctx context.Context, id NotebookId, input NotebookResource, options NotebookCreateOrUpdateNotebookOperationOptions, callback func() error) error {
 	result, err := c.NotebookCreateOrUpdateNotebook(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing NotebookCreateOrUpdateNotebook: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

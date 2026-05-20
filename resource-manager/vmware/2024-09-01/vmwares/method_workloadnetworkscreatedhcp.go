@@ -62,9 +62,20 @@ func (c VMwaresClient) WorkloadNetworksCreateDhcp(ctx context.Context, id DhcpCo
 
 // WorkloadNetworksCreateDhcpThenPoll performs WorkloadNetworksCreateDhcp then polls until it's completed
 func (c VMwaresClient) WorkloadNetworksCreateDhcpThenPoll(ctx context.Context, id DhcpConfigurationId, input WorkloadNetworkDhcp) error {
+	return c.WorkloadNetworksCreateDhcpCallbackThenPoll(ctx, id, input, nil)
+}
+
+// WorkloadNetworksCreateDhcpCallbackThenPoll performs WorkloadNetworksCreateDhcp, runs the optional callback function, then polls until it's completed
+func (c VMwaresClient) WorkloadNetworksCreateDhcpCallbackThenPoll(ctx context.Context, id DhcpConfigurationId, input WorkloadNetworkDhcp, callback func() error) error {
 	result, err := c.WorkloadNetworksCreateDhcp(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksCreateDhcp: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

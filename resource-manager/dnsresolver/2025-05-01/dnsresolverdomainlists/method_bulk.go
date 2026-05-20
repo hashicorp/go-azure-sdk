@@ -95,9 +95,20 @@ func (c DnsResolverDomainListsClient) Bulk(ctx context.Context, id DnsResolverDo
 
 // BulkThenPoll performs Bulk then polls until it's completed
 func (c DnsResolverDomainListsClient) BulkThenPoll(ctx context.Context, id DnsResolverDomainListId, input DnsResolverDomainListBulk, options BulkOperationOptions) error {
+	return c.BulkCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// BulkCallbackThenPoll performs Bulk, runs the optional callback function, then polls until it's completed
+func (c DnsResolverDomainListsClient) BulkCallbackThenPoll(ctx context.Context, id DnsResolverDomainListId, input DnsResolverDomainListBulk, options BulkOperationOptions, callback func() error) error {
 	result, err := c.Bulk(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing Bulk: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

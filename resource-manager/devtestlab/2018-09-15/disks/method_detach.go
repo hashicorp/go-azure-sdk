@@ -61,9 +61,20 @@ func (c DisksClient) Detach(ctx context.Context, id DiskId, input DetachDiskProp
 
 // DetachThenPoll performs Detach then polls until it's completed
 func (c DisksClient) DetachThenPoll(ctx context.Context, id DiskId, input DetachDiskProperties) error {
+	return c.DetachCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DetachCallbackThenPoll performs Detach, runs the optional callback function, then polls until it's completed
+func (c DisksClient) DetachCallbackThenPoll(ctx context.Context, id DiskId, input DetachDiskProperties, callback func() error) error {
 	result, err := c.Detach(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Detach: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

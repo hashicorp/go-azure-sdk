@@ -62,9 +62,20 @@ func (c NginxDeploymentsClient) DeploymentsUpdate(ctx context.Context, id NginxD
 
 // DeploymentsUpdateThenPoll performs DeploymentsUpdate then polls until it's completed
 func (c NginxDeploymentsClient) DeploymentsUpdateThenPoll(ctx context.Context, id NginxDeploymentId, input NginxDeploymentUpdateParameters) error {
+	return c.DeploymentsUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DeploymentsUpdateCallbackThenPoll performs DeploymentsUpdate, runs the optional callback function, then polls until it's completed
+func (c NginxDeploymentsClient) DeploymentsUpdateCallbackThenPoll(ctx context.Context, id NginxDeploymentId, input NginxDeploymentUpdateParameters, callback func() error) error {
 	result, err := c.DeploymentsUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing DeploymentsUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

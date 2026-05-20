@@ -58,9 +58,20 @@ func (c TriggersClient) UnsubscribeFromEvents(ctx context.Context, id TriggerId)
 
 // UnsubscribeFromEventsThenPoll performs UnsubscribeFromEvents then polls until it's completed
 func (c TriggersClient) UnsubscribeFromEventsThenPoll(ctx context.Context, id TriggerId) error {
+	return c.UnsubscribeFromEventsCallbackThenPoll(ctx, id, nil)
+}
+
+// UnsubscribeFromEventsCallbackThenPoll performs UnsubscribeFromEvents, runs the optional callback function, then polls until it's completed
+func (c TriggersClient) UnsubscribeFromEventsCallbackThenPoll(ctx context.Context, id TriggerId, callback func() error) error {
 	result, err := c.UnsubscribeFromEvents(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing UnsubscribeFromEvents: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

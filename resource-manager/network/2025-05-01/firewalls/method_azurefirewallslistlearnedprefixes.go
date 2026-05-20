@@ -58,9 +58,20 @@ func (c FirewallsClient) AzureFirewallsListLearnedPrefixes(ctx context.Context, 
 
 // AzureFirewallsListLearnedPrefixesThenPoll performs AzureFirewallsListLearnedPrefixes then polls until it's completed
 func (c FirewallsClient) AzureFirewallsListLearnedPrefixesThenPoll(ctx context.Context, id AzureFirewallId) error {
+	return c.AzureFirewallsListLearnedPrefixesCallbackThenPoll(ctx, id, nil)
+}
+
+// AzureFirewallsListLearnedPrefixesCallbackThenPoll performs AzureFirewallsListLearnedPrefixes, runs the optional callback function, then polls until it's completed
+func (c FirewallsClient) AzureFirewallsListLearnedPrefixesCallbackThenPoll(ctx context.Context, id AzureFirewallId, callback func() error) error {
 	result, err := c.AzureFirewallsListLearnedPrefixes(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing AzureFirewallsListLearnedPrefixes: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

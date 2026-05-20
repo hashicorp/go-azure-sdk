@@ -61,9 +61,20 @@ func (c RecommendationsClient) UpdateRecommendation(ctx context.Context, id Reco
 
 // UpdateRecommendationThenPoll performs UpdateRecommendation then polls until it's completed
 func (c RecommendationsClient) UpdateRecommendationThenPoll(ctx context.Context, id RecommendationId, input []RecommendationPatch) error {
+	return c.UpdateRecommendationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateRecommendationCallbackThenPoll performs UpdateRecommendation, runs the optional callback function, then polls until it's completed
+func (c RecommendationsClient) UpdateRecommendationCallbackThenPoll(ctx context.Context, id RecommendationId, input []RecommendationPatch, callback func() error) error {
 	result, err := c.UpdateRecommendation(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateRecommendation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

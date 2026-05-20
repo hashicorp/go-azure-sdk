@@ -62,9 +62,20 @@ func (c OpenapisClient) AttestationsCreateOrUpdateAtResourceGroup(ctx context.Co
 
 // AttestationsCreateOrUpdateAtResourceGroupThenPoll performs AttestationsCreateOrUpdateAtResourceGroup then polls until it's completed
 func (c OpenapisClient) AttestationsCreateOrUpdateAtResourceGroupThenPoll(ctx context.Context, id ProviderAttestationId, input Attestation) error {
+	return c.AttestationsCreateOrUpdateAtResourceGroupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AttestationsCreateOrUpdateAtResourceGroupCallbackThenPoll performs AttestationsCreateOrUpdateAtResourceGroup, runs the optional callback function, then polls until it's completed
+func (c OpenapisClient) AttestationsCreateOrUpdateAtResourceGroupCallbackThenPoll(ctx context.Context, id ProviderAttestationId, input Attestation, callback func() error) error {
 	result, err := c.AttestationsCreateOrUpdateAtResourceGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AttestationsCreateOrUpdateAtResourceGroup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

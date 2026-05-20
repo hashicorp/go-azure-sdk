@@ -62,9 +62,20 @@ func (c DataFlowDebugSessionClient) ExecuteCommand(ctx context.Context, input Da
 
 // ExecuteCommandThenPoll performs ExecuteCommand then polls until it's completed
 func (c DataFlowDebugSessionClient) ExecuteCommandThenPoll(ctx context.Context, input DataFlowDebugCommandRequest) error {
+	return c.ExecuteCommandCallbackThenPoll(ctx, input, nil)
+}
+
+// ExecuteCommandCallbackThenPoll performs ExecuteCommand, runs the optional callback function, then polls until it's completed
+func (c DataFlowDebugSessionClient) ExecuteCommandCallbackThenPoll(ctx context.Context, input DataFlowDebugCommandRequest, callback func() error) error {
 	result, err := c.ExecuteCommand(ctx, input)
 	if err != nil {
 		return fmt.Errorf("performing ExecuteCommand: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

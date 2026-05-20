@@ -58,9 +58,20 @@ func (c SparkJobDefinitionsClient) SparkJobDefinitionExecuteSparkJobDefinition(c
 
 // SparkJobDefinitionExecuteSparkJobDefinitionThenPoll performs SparkJobDefinitionExecuteSparkJobDefinition then polls until it's completed
 func (c SparkJobDefinitionsClient) SparkJobDefinitionExecuteSparkJobDefinitionThenPoll(ctx context.Context, id SparkJobDefinitionId) error {
+	return c.SparkJobDefinitionExecuteSparkJobDefinitionCallbackThenPoll(ctx, id, nil)
+}
+
+// SparkJobDefinitionExecuteSparkJobDefinitionCallbackThenPoll performs SparkJobDefinitionExecuteSparkJobDefinition, runs the optional callback function, then polls until it's completed
+func (c SparkJobDefinitionsClient) SparkJobDefinitionExecuteSparkJobDefinitionCallbackThenPoll(ctx context.Context, id SparkJobDefinitionId, callback func() error) error {
 	result, err := c.SparkJobDefinitionExecuteSparkJobDefinition(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing SparkJobDefinitionExecuteSparkJobDefinition: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -57,9 +57,20 @@ func (c SyncGroupsClient) RefreshHubSchema(ctx context.Context, id SyncGroupId) 
 
 // RefreshHubSchemaThenPoll performs RefreshHubSchema then polls until it's completed
 func (c SyncGroupsClient) RefreshHubSchemaThenPoll(ctx context.Context, id SyncGroupId) error {
+	return c.RefreshHubSchemaCallbackThenPoll(ctx, id, nil)
+}
+
+// RefreshHubSchemaCallbackThenPoll performs RefreshHubSchema, runs the optional callback function, then polls until it's completed
+func (c SyncGroupsClient) RefreshHubSchemaCallbackThenPoll(ctx context.Context, id SyncGroupId, callback func() error) error {
 	result, err := c.RefreshHubSchema(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing RefreshHubSchema: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

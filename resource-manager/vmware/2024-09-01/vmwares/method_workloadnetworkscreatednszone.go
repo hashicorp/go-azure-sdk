@@ -62,9 +62,20 @@ func (c VMwaresClient) WorkloadNetworksCreateDnsZone(ctx context.Context, id Dns
 
 // WorkloadNetworksCreateDnsZoneThenPoll performs WorkloadNetworksCreateDnsZone then polls until it's completed
 func (c VMwaresClient) WorkloadNetworksCreateDnsZoneThenPoll(ctx context.Context, id DnsZoneId, input WorkloadNetworkDnsZone) error {
+	return c.WorkloadNetworksCreateDnsZoneCallbackThenPoll(ctx, id, input, nil)
+}
+
+// WorkloadNetworksCreateDnsZoneCallbackThenPoll performs WorkloadNetworksCreateDnsZone, runs the optional callback function, then polls until it's completed
+func (c VMwaresClient) WorkloadNetworksCreateDnsZoneCallbackThenPoll(ctx context.Context, id DnsZoneId, input WorkloadNetworkDnsZone, callback func() error) error {
 	result, err := c.WorkloadNetworksCreateDnsZone(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksCreateDnsZone: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

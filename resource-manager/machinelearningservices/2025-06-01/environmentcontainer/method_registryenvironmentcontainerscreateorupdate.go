@@ -62,9 +62,20 @@ func (c EnvironmentContainerClient) RegistryEnvironmentContainersCreateOrUpdate(
 
 // RegistryEnvironmentContainersCreateOrUpdateThenPoll performs RegistryEnvironmentContainersCreateOrUpdate then polls until it's completed
 func (c EnvironmentContainerClient) RegistryEnvironmentContainersCreateOrUpdateThenPoll(ctx context.Context, id RegistryEnvironmentId, input EnvironmentContainerResource) error {
+	return c.RegistryEnvironmentContainersCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegistryEnvironmentContainersCreateOrUpdateCallbackThenPoll performs RegistryEnvironmentContainersCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c EnvironmentContainerClient) RegistryEnvironmentContainersCreateOrUpdateCallbackThenPoll(ctx context.Context, id RegistryEnvironmentId, input EnvironmentContainerResource, callback func() error) error {
 	result, err := c.RegistryEnvironmentContainersCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegistryEnvironmentContainersCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

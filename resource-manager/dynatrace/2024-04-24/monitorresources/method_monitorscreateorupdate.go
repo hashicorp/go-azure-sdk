@@ -62,9 +62,20 @@ func (c MonitorResourcesClient) MonitorsCreateOrUpdate(ctx context.Context, id M
 
 // MonitorsCreateOrUpdateThenPoll performs MonitorsCreateOrUpdate then polls until it's completed
 func (c MonitorResourcesClient) MonitorsCreateOrUpdateThenPoll(ctx context.Context, id MonitorId, input MonitorResource) error {
+	return c.MonitorsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MonitorsCreateOrUpdateCallbackThenPoll performs MonitorsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c MonitorResourcesClient) MonitorsCreateOrUpdateCallbackThenPoll(ctx context.Context, id MonitorId, input MonitorResource, callback func() error) error {
 	result, err := c.MonitorsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing MonitorsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c ReportClient) GenerateReport(ctx context.Context, id ReportId, input Get
 
 // GenerateReportThenPoll performs GenerateReport then polls until it's completed
 func (c ReportClient) GenerateReportThenPoll(ctx context.Context, id ReportId, input GetReportContent) error {
+	return c.GenerateReportCallbackThenPoll(ctx, id, input, nil)
+}
+
+// GenerateReportCallbackThenPoll performs GenerateReport, runs the optional callback function, then polls until it's completed
+func (c ReportClient) GenerateReportCallbackThenPoll(ctx context.Context, id ReportId, input GetReportContent, callback func() error) error {
 	result, err := c.GenerateReport(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing GenerateReport: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

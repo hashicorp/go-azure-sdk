@@ -58,9 +58,20 @@ func (c LinkersClient) LinkerValidate(ctx context.Context, id ScopedLinkerId) (r
 
 // LinkerValidateThenPoll performs LinkerValidate then polls until it's completed
 func (c LinkersClient) LinkerValidateThenPoll(ctx context.Context, id ScopedLinkerId) error {
+	return c.LinkerValidateCallbackThenPoll(ctx, id, nil)
+}
+
+// LinkerValidateCallbackThenPoll performs LinkerValidate, runs the optional callback function, then polls until it's completed
+func (c LinkersClient) LinkerValidateCallbackThenPoll(ctx context.Context, id ScopedLinkerId, callback func() error) error {
 	result, err := c.LinkerValidate(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing LinkerValidate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

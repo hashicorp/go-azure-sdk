@@ -57,9 +57,20 @@ func (c LabClient) SyncGroup(ctx context.Context, id LabId) (result SyncGroupOpe
 
 // SyncGroupThenPoll performs SyncGroup then polls until it's completed
 func (c LabClient) SyncGroupThenPoll(ctx context.Context, id LabId) error {
+	return c.SyncGroupCallbackThenPoll(ctx, id, nil)
+}
+
+// SyncGroupCallbackThenPoll performs SyncGroup, runs the optional callback function, then polls until it's completed
+func (c LabClient) SyncGroupCallbackThenPoll(ctx context.Context, id LabId, callback func() error) error {
 	result, err := c.SyncGroup(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing SyncGroup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

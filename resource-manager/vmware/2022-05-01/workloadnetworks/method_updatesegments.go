@@ -62,9 +62,20 @@ func (c WorkloadNetworksClient) UpdateSegments(ctx context.Context, id SegmentId
 
 // UpdateSegmentsThenPoll performs UpdateSegments then polls until it's completed
 func (c WorkloadNetworksClient) UpdateSegmentsThenPoll(ctx context.Context, id SegmentId, input WorkloadNetworkSegment) error {
+	return c.UpdateSegmentsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateSegmentsCallbackThenPoll performs UpdateSegments, runs the optional callback function, then polls until it's completed
+func (c WorkloadNetworksClient) UpdateSegmentsCallbackThenPoll(ctx context.Context, id SegmentId, input WorkloadNetworkSegment, callback func() error) error {
 	result, err := c.UpdateSegments(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateSegments: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

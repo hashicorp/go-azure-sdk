@@ -62,9 +62,20 @@ func (c LogAnalyticsClient) ExportThrottledRequests(ctx context.Context, id Loca
 
 // ExportThrottledRequestsThenPoll performs ExportThrottledRequests then polls until it's completed
 func (c LogAnalyticsClient) ExportThrottledRequestsThenPoll(ctx context.Context, id LocationId, input LogAnalyticsInputBase) error {
+	return c.ExportThrottledRequestsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ExportThrottledRequestsCallbackThenPoll performs ExportThrottledRequests, runs the optional callback function, then polls until it's completed
+func (c LogAnalyticsClient) ExportThrottledRequestsCallbackThenPoll(ctx context.Context, id LocationId, input LogAnalyticsInputBase, callback func() error) error {
 	result, err := c.ExportThrottledRequests(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ExportThrottledRequests: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

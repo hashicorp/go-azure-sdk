@@ -62,9 +62,20 @@ func (c OrganizationResourcesClient) OrganizationCreate(ctx context.Context, id 
 
 // OrganizationCreateThenPoll performs OrganizationCreate then polls until it's completed
 func (c OrganizationResourcesClient) OrganizationCreateThenPoll(ctx context.Context, id OrganizationId, input OrganizationResource) error {
+	return c.OrganizationCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// OrganizationCreateCallbackThenPoll performs OrganizationCreate, runs the optional callback function, then polls until it's completed
+func (c OrganizationResourcesClient) OrganizationCreateCallbackThenPoll(ctx context.Context, id OrganizationId, input OrganizationResource, callback func() error) error {
 	result, err := c.OrganizationCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing OrganizationCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

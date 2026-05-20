@@ -91,9 +91,20 @@ func (c PipelinesClient) PipelineCreateOrUpdatePipeline(ctx context.Context, id 
 
 // PipelineCreateOrUpdatePipelineThenPoll performs PipelineCreateOrUpdatePipeline then polls until it's completed
 func (c PipelinesClient) PipelineCreateOrUpdatePipelineThenPoll(ctx context.Context, id PipelineId, input PipelineResource, options PipelineCreateOrUpdatePipelineOperationOptions) error {
+	return c.PipelineCreateOrUpdatePipelineCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// PipelineCreateOrUpdatePipelineCallbackThenPoll performs PipelineCreateOrUpdatePipeline, runs the optional callback function, then polls until it's completed
+func (c PipelinesClient) PipelineCreateOrUpdatePipelineCallbackThenPoll(ctx context.Context, id PipelineId, input PipelineResource, options PipelineCreateOrUpdatePipelineOperationOptions, callback func() error) error {
 	result, err := c.PipelineCreateOrUpdatePipeline(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing PipelineCreateOrUpdatePipeline: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

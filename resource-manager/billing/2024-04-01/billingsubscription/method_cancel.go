@@ -60,9 +60,20 @@ func (c BillingSubscriptionClient) Cancel(ctx context.Context, id BillingAccount
 
 // CancelThenPoll performs Cancel then polls until it's completed
 func (c BillingSubscriptionClient) CancelThenPoll(ctx context.Context, id BillingAccountBillingSubscriptionId, input CancelSubscriptionRequest) error {
+	return c.CancelCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CancelCallbackThenPoll performs Cancel, runs the optional callback function, then polls until it's completed
+func (c BillingSubscriptionClient) CancelCallbackThenPoll(ctx context.Context, id BillingAccountBillingSubscriptionId, input CancelSubscriptionRequest, callback func() error) error {
 	result, err := c.Cancel(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Cancel: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

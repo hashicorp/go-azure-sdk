@@ -62,9 +62,20 @@ func (c EnvironmentVersionClient) RegistryEnvironmentVersionsCreateOrUpdate(ctx 
 
 // RegistryEnvironmentVersionsCreateOrUpdateThenPoll performs RegistryEnvironmentVersionsCreateOrUpdate then polls until it's completed
 func (c EnvironmentVersionClient) RegistryEnvironmentVersionsCreateOrUpdateThenPoll(ctx context.Context, id RegistryEnvironmentVersionId, input EnvironmentVersionResource) error {
+	return c.RegistryEnvironmentVersionsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegistryEnvironmentVersionsCreateOrUpdateCallbackThenPoll performs RegistryEnvironmentVersionsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c EnvironmentVersionClient) RegistryEnvironmentVersionsCreateOrUpdateCallbackThenPoll(ctx context.Context, id RegistryEnvironmentVersionId, input EnvironmentVersionResource, callback func() error) error {
 	result, err := c.RegistryEnvironmentVersionsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegistryEnvironmentVersionsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

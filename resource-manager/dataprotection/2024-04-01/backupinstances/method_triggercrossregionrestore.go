@@ -62,9 +62,20 @@ func (c BackupInstancesClient) TriggerCrossRegionRestore(ctx context.Context, id
 
 // TriggerCrossRegionRestoreThenPoll performs TriggerCrossRegionRestore then polls until it's completed
 func (c BackupInstancesClient) TriggerCrossRegionRestoreThenPoll(ctx context.Context, id ProviderLocationId, input CrossRegionRestoreRequestObject) error {
+	return c.TriggerCrossRegionRestoreCallbackThenPoll(ctx, id, input, nil)
+}
+
+// TriggerCrossRegionRestoreCallbackThenPoll performs TriggerCrossRegionRestore, runs the optional callback function, then polls until it's completed
+func (c BackupInstancesClient) TriggerCrossRegionRestoreCallbackThenPoll(ctx context.Context, id ProviderLocationId, input CrossRegionRestoreRequestObject, callback func() error) error {
 	result, err := c.TriggerCrossRegionRestore(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing TriggerCrossRegionRestore: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -59,9 +59,20 @@ func (c ManagedLedgerDigestUploadsClient) Disable(ctx context.Context, id common
 
 // DisableThenPoll performs Disable then polls until it's completed
 func (c ManagedLedgerDigestUploadsClient) DisableThenPoll(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) error {
+	return c.DisableCallbackThenPoll(ctx, id, nil)
+}
+
+// DisableCallbackThenPoll performs Disable, runs the optional callback function, then polls until it's completed
+func (c ManagedLedgerDigestUploadsClient) DisableCallbackThenPoll(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, callback func() error) error {
 	result, err := c.Disable(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Disable: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

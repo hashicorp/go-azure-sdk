@@ -62,9 +62,20 @@ func (c CodeContainerClient) RegistryCodeContainersCreateOrUpdate(ctx context.Co
 
 // RegistryCodeContainersCreateOrUpdateThenPoll performs RegistryCodeContainersCreateOrUpdate then polls until it's completed
 func (c CodeContainerClient) RegistryCodeContainersCreateOrUpdateThenPoll(ctx context.Context, id RegistryCodeId, input CodeContainerResource) error {
+	return c.RegistryCodeContainersCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegistryCodeContainersCreateOrUpdateCallbackThenPoll performs RegistryCodeContainersCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c CodeContainerClient) RegistryCodeContainersCreateOrUpdateCallbackThenPoll(ctx context.Context, id RegistryCodeId, input CodeContainerResource, callback func() error) error {
 	result, err := c.RegistryCodeContainersCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegistryCodeContainersCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

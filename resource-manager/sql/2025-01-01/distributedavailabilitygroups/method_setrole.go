@@ -62,9 +62,20 @@ func (c DistributedAvailabilityGroupsClient) SetRole(ctx context.Context, id Dis
 
 // SetRoleThenPoll performs SetRole then polls until it's completed
 func (c DistributedAvailabilityGroupsClient) SetRoleThenPoll(ctx context.Context, id DistributedAvailabilityGroupId, input DistributedAvailabilityGroupSetRole) error {
+	return c.SetRoleCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SetRoleCallbackThenPoll performs SetRole, runs the optional callback function, then polls until it's completed
+func (c DistributedAvailabilityGroupsClient) SetRoleCallbackThenPoll(ctx context.Context, id DistributedAvailabilityGroupId, input DistributedAvailabilityGroupSetRole, callback func() error) error {
 	result, err := c.SetRole(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SetRole: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

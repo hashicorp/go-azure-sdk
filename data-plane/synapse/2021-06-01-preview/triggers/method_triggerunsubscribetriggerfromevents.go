@@ -58,9 +58,20 @@ func (c TriggersClient) TriggerUnsubscribeTriggerFromEvents(ctx context.Context,
 
 // TriggerUnsubscribeTriggerFromEventsThenPoll performs TriggerUnsubscribeTriggerFromEvents then polls until it's completed
 func (c TriggersClient) TriggerUnsubscribeTriggerFromEventsThenPoll(ctx context.Context, id TriggerId) error {
+	return c.TriggerUnsubscribeTriggerFromEventsCallbackThenPoll(ctx, id, nil)
+}
+
+// TriggerUnsubscribeTriggerFromEventsCallbackThenPoll performs TriggerUnsubscribeTriggerFromEvents, runs the optional callback function, then polls until it's completed
+func (c TriggersClient) TriggerUnsubscribeTriggerFromEventsCallbackThenPoll(ctx context.Context, id TriggerId, callback func() error) error {
 	result, err := c.TriggerUnsubscribeTriggerFromEvents(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing TriggerUnsubscribeTriggerFromEvents: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

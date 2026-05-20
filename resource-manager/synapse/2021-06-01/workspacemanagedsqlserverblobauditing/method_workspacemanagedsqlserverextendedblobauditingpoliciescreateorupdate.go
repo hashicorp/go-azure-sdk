@@ -62,9 +62,20 @@ func (c WorkspaceManagedSqlServerBlobAuditingClient) WorkspaceManagedSqlServerEx
 
 // WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdateThenPoll performs WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdate then polls until it's completed
 func (c WorkspaceManagedSqlServerBlobAuditingClient) WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdateThenPoll(ctx context.Context, id WorkspaceId, input ExtendedServerBlobAuditingPolicy) error {
+	return c.WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdateCallbackThenPoll performs WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c WorkspaceManagedSqlServerBlobAuditingClient) WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdateCallbackThenPoll(ctx context.Context, id WorkspaceId, input ExtendedServerBlobAuditingPolicy, callback func() error) error {
 	result, err := c.WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

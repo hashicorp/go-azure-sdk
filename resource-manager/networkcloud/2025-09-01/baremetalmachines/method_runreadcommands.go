@@ -60,9 +60,20 @@ func (c BareMetalMachinesClient) RunReadCommands(ctx context.Context, id BareMet
 
 // RunReadCommandsThenPoll performs RunReadCommands then polls until it's completed
 func (c BareMetalMachinesClient) RunReadCommandsThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachineRunReadCommandsParameters) error {
+	return c.RunReadCommandsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RunReadCommandsCallbackThenPoll performs RunReadCommands, runs the optional callback function, then polls until it's completed
+func (c BareMetalMachinesClient) RunReadCommandsCallbackThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachineRunReadCommandsParameters, callback func() error) error {
 	result, err := c.RunReadCommands(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RunReadCommands: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

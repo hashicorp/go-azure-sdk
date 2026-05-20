@@ -62,9 +62,20 @@ func (c DeploymentStacksAtManagementGroupClient) DeploymentStacksValidateStackAt
 
 // DeploymentStacksValidateStackAtManagementGroupThenPoll performs DeploymentStacksValidateStackAtManagementGroup then polls until it's completed
 func (c DeploymentStacksAtManagementGroupClient) DeploymentStacksValidateStackAtManagementGroupThenPoll(ctx context.Context, id Providers2DeploymentStackId, input DeploymentStack) error {
+	return c.DeploymentStacksValidateStackAtManagementGroupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DeploymentStacksValidateStackAtManagementGroupCallbackThenPoll performs DeploymentStacksValidateStackAtManagementGroup, runs the optional callback function, then polls until it's completed
+func (c DeploymentStacksAtManagementGroupClient) DeploymentStacksValidateStackAtManagementGroupCallbackThenPoll(ctx context.Context, id Providers2DeploymentStackId, input DeploymentStack, callback func() error) error {
 	result, err := c.DeploymentStacksValidateStackAtManagementGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing DeploymentStacksValidateStackAtManagementGroup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

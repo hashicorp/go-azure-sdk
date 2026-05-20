@@ -63,9 +63,20 @@ func (c ProvisionedClusterInstancesClient) PutVMSkus(ctx context.Context, id com
 
 // PutVMSkusThenPoll performs PutVMSkus then polls until it's completed
 func (c ProvisionedClusterInstancesClient) PutVMSkusThenPoll(ctx context.Context, id commonids.ScopeId, input VMSkuProfile) error {
+	return c.PutVMSkusCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PutVMSkusCallbackThenPoll performs PutVMSkus, runs the optional callback function, then polls until it's completed
+func (c ProvisionedClusterInstancesClient) PutVMSkusCallbackThenPoll(ctx context.Context, id commonids.ScopeId, input VMSkuProfile, callback func() error) error {
 	result, err := c.PutVMSkus(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PutVMSkus: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

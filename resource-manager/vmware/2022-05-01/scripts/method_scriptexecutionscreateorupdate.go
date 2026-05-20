@@ -62,9 +62,20 @@ func (c ScriptsClient) ScriptExecutionsCreateOrUpdate(ctx context.Context, id Sc
 
 // ScriptExecutionsCreateOrUpdateThenPoll performs ScriptExecutionsCreateOrUpdate then polls until it's completed
 func (c ScriptsClient) ScriptExecutionsCreateOrUpdateThenPoll(ctx context.Context, id ScriptExecutionId, input ScriptExecution) error {
+	return c.ScriptExecutionsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ScriptExecutionsCreateOrUpdateCallbackThenPoll performs ScriptExecutionsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c ScriptsClient) ScriptExecutionsCreateOrUpdateCallbackThenPoll(ctx context.Context, id ScriptExecutionId, input ScriptExecution, callback func() error) error {
 	result, err := c.ScriptExecutionsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ScriptExecutionsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

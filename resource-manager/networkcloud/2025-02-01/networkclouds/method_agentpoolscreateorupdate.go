@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) AgentPoolsCreateOrUpdate(ctx context.Context, id Ag
 
 // AgentPoolsCreateOrUpdateThenPoll performs AgentPoolsCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) AgentPoolsCreateOrUpdateThenPoll(ctx context.Context, id AgentPoolId, input AgentPool, options AgentPoolsCreateOrUpdateOperationOptions) error {
+	return c.AgentPoolsCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// AgentPoolsCreateOrUpdateCallbackThenPoll performs AgentPoolsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) AgentPoolsCreateOrUpdateCallbackThenPoll(ctx context.Context, id AgentPoolId, input AgentPool, options AgentPoolsCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.AgentPoolsCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing AgentPoolsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

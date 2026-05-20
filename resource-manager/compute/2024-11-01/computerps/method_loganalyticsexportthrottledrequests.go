@@ -62,9 +62,20 @@ func (c ComputeRPSClient) LogAnalyticsExportThrottledRequests(ctx context.Contex
 
 // LogAnalyticsExportThrottledRequestsThenPoll performs LogAnalyticsExportThrottledRequests then polls until it's completed
 func (c ComputeRPSClient) LogAnalyticsExportThrottledRequestsThenPoll(ctx context.Context, id LocationId, input LogAnalyticsInputBase) error {
+	return c.LogAnalyticsExportThrottledRequestsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// LogAnalyticsExportThrottledRequestsCallbackThenPoll performs LogAnalyticsExportThrottledRequests, runs the optional callback function, then polls until it's completed
+func (c ComputeRPSClient) LogAnalyticsExportThrottledRequestsCallbackThenPoll(ctx context.Context, id LocationId, input LogAnalyticsInputBase, callback func() error) error {
 	result, err := c.LogAnalyticsExportThrottledRequests(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing LogAnalyticsExportThrottledRequests: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

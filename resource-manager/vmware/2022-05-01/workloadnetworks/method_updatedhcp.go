@@ -62,9 +62,20 @@ func (c WorkloadNetworksClient) UpdateDhcp(ctx context.Context, id DhcpConfigura
 
 // UpdateDhcpThenPoll performs UpdateDhcp then polls until it's completed
 func (c WorkloadNetworksClient) UpdateDhcpThenPoll(ctx context.Context, id DhcpConfigurationId, input WorkloadNetworkDhcp) error {
+	return c.UpdateDhcpCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateDhcpCallbackThenPoll performs UpdateDhcp, runs the optional callback function, then polls until it's completed
+func (c WorkloadNetworksClient) UpdateDhcpCallbackThenPoll(ctx context.Context, id DhcpConfigurationId, input WorkloadNetworkDhcp, callback func() error) error {
 	result, err := c.UpdateDhcp(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateDhcp: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {
