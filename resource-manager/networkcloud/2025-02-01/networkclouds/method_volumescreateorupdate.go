@@ -95,9 +95,20 @@ func (c NetworkcloudsClient) VolumesCreateOrUpdate(ctx context.Context, id Volum
 
 // VolumesCreateOrUpdateThenPoll performs VolumesCreateOrUpdate then polls until it's completed
 func (c NetworkcloudsClient) VolumesCreateOrUpdateThenPoll(ctx context.Context, id VolumeId, input Volume, options VolumesCreateOrUpdateOperationOptions) error {
+	return c.VolumesCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// VolumesCreateOrUpdateCallbackThenPoll performs VolumesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) VolumesCreateOrUpdateCallbackThenPoll(ctx context.Context, id VolumeId, input Volume, options VolumesCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.VolumesCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing VolumesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

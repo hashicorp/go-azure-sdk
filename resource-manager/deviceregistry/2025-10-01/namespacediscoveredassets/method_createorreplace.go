@@ -62,9 +62,20 @@ func (c NamespaceDiscoveredAssetsClient) CreateOrReplace(ctx context.Context, id
 
 // CreateOrReplaceThenPoll performs CreateOrReplace then polls until it's completed
 func (c NamespaceDiscoveredAssetsClient) CreateOrReplaceThenPoll(ctx context.Context, id DiscoveredAssetId, input NamespaceDiscoveredAsset) error {
+	return c.CreateOrReplaceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrReplaceCallbackThenPoll performs CreateOrReplace, runs the optional callback function, then polls until it's completed
+func (c NamespaceDiscoveredAssetsClient) CreateOrReplaceCallbackThenPoll(ctx context.Context, id DiscoveredAssetId, input NamespaceDiscoveredAsset, callback func() error) error {
 	result, err := c.CreateOrReplace(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrReplace: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

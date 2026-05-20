@@ -58,9 +58,20 @@ func (c ReplicationJobsClient) Restart(ctx context.Context, id ReplicationJobId)
 
 // RestartThenPoll performs Restart then polls until it's completed
 func (c ReplicationJobsClient) RestartThenPoll(ctx context.Context, id ReplicationJobId) error {
+	return c.RestartCallbackThenPoll(ctx, id, nil)
+}
+
+// RestartCallbackThenPoll performs Restart, runs the optional callback function, then polls until it's completed
+func (c ReplicationJobsClient) RestartCallbackThenPoll(ctx context.Context, id ReplicationJobId, callback func() error) error {
 	result, err := c.Restart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Restart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

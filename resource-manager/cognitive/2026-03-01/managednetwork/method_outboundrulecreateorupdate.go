@@ -62,9 +62,20 @@ func (c ManagedNetworkClient) OutboundRuleCreateOrUpdate(ctx context.Context, id
 
 // OutboundRuleCreateOrUpdateThenPoll performs OutboundRuleCreateOrUpdate then polls until it's completed
 func (c ManagedNetworkClient) OutboundRuleCreateOrUpdateThenPoll(ctx context.Context, id OutboundRuleId, input OutboundRuleBasicResource) error {
+	return c.OutboundRuleCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// OutboundRuleCreateOrUpdateCallbackThenPoll performs OutboundRuleCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c ManagedNetworkClient) OutboundRuleCreateOrUpdateCallbackThenPoll(ctx context.Context, id OutboundRuleId, input OutboundRuleBasicResource, callback func() error) error {
 	result, err := c.OutboundRuleCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing OutboundRuleCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -91,9 +91,20 @@ func (c LinkedServicesClient) LinkedServiceCreateOrUpdateLinkedService(ctx conte
 
 // LinkedServiceCreateOrUpdateLinkedServiceThenPoll performs LinkedServiceCreateOrUpdateLinkedService then polls until it's completed
 func (c LinkedServicesClient) LinkedServiceCreateOrUpdateLinkedServiceThenPoll(ctx context.Context, id LinkedServiceId, input LinkedServiceResource, options LinkedServiceCreateOrUpdateLinkedServiceOperationOptions) error {
+	return c.LinkedServiceCreateOrUpdateLinkedServiceCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// LinkedServiceCreateOrUpdateLinkedServiceCallbackThenPoll performs LinkedServiceCreateOrUpdateLinkedService, runs the optional callback function, then polls until it's completed
+func (c LinkedServicesClient) LinkedServiceCreateOrUpdateLinkedServiceCallbackThenPoll(ctx context.Context, id LinkedServiceId, input LinkedServiceResource, options LinkedServiceCreateOrUpdateLinkedServiceOperationOptions, callback func() error) error {
 	result, err := c.LinkedServiceCreateOrUpdateLinkedService(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing LinkedServiceCreateOrUpdateLinkedService: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

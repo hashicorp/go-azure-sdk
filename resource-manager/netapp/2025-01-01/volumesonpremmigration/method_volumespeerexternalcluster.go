@@ -62,9 +62,20 @@ func (c VolumesOnPremMigrationClient) VolumesPeerExternalCluster(ctx context.Con
 
 // VolumesPeerExternalClusterThenPoll performs VolumesPeerExternalCluster then polls until it's completed
 func (c VolumesOnPremMigrationClient) VolumesPeerExternalClusterThenPoll(ctx context.Context, id VolumeId, input PeerClusterForVolumeMigrationRequest) error {
+	return c.VolumesPeerExternalClusterCallbackThenPoll(ctx, id, input, nil)
+}
+
+// VolumesPeerExternalClusterCallbackThenPoll performs VolumesPeerExternalCluster, runs the optional callback function, then polls until it's completed
+func (c VolumesOnPremMigrationClient) VolumesPeerExternalClusterCallbackThenPoll(ctx context.Context, id VolumeId, input PeerClusterForVolumeMigrationRequest, callback func() error) error {
 	result, err := c.VolumesPeerExternalCluster(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing VolumesPeerExternalCluster: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

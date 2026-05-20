@@ -62,9 +62,20 @@ func (c ManagedNetworkClient) SettingsPatch(ctx context.Context, id ManagedNetwo
 
 // SettingsPatchThenPoll performs SettingsPatch then polls until it's completed
 func (c ManagedNetworkClient) SettingsPatchThenPoll(ctx context.Context, id ManagedNetworkId, input ManagedNetworkSettingsPropertiesBasicResource) error {
+	return c.SettingsPatchCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SettingsPatchCallbackThenPoll performs SettingsPatch, runs the optional callback function, then polls until it's completed
+func (c ManagedNetworkClient) SettingsPatchCallbackThenPoll(ctx context.Context, id ManagedNetworkId, input ManagedNetworkSettingsPropertiesBasicResource, callback func() error) error {
 	result, err := c.SettingsPatch(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SettingsPatch: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

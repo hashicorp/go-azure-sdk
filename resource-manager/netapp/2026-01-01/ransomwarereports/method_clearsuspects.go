@@ -60,9 +60,20 @@ func (c RansomwareReportsClient) ClearSuspects(ctx context.Context, id Ransomwar
 
 // ClearSuspectsThenPoll performs ClearSuspects then polls until it's completed
 func (c RansomwareReportsClient) ClearSuspectsThenPoll(ctx context.Context, id RansomwareReportId, input RansomwareSuspectsClearRequest) error {
+	return c.ClearSuspectsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ClearSuspectsCallbackThenPoll performs ClearSuspects, runs the optional callback function, then polls until it's completed
+func (c RansomwareReportsClient) ClearSuspectsCallbackThenPoll(ctx context.Context, id RansomwareReportId, input RansomwareSuspectsClearRequest, callback func() error) error {
 	result, err := c.ClearSuspects(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ClearSuspects: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

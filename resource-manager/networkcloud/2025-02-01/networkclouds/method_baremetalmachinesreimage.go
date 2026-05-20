@@ -56,9 +56,20 @@ func (c NetworkcloudsClient) BareMetalMachinesReimage(ctx context.Context, id Ba
 
 // BareMetalMachinesReimageThenPoll performs BareMetalMachinesReimage then polls until it's completed
 func (c NetworkcloudsClient) BareMetalMachinesReimageThenPoll(ctx context.Context, id BareMetalMachineId) error {
+	return c.BareMetalMachinesReimageCallbackThenPoll(ctx, id, nil)
+}
+
+// BareMetalMachinesReimageCallbackThenPoll performs BareMetalMachinesReimage, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) BareMetalMachinesReimageCallbackThenPoll(ctx context.Context, id BareMetalMachineId, callback func() error) error {
 	result, err := c.BareMetalMachinesReimage(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing BareMetalMachinesReimage: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

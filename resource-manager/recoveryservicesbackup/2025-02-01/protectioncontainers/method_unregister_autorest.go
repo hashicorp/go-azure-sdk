@@ -37,9 +37,20 @@ func (c ProtectionContainersClient) Unregister(ctx context.Context, id Protectio
 
 // UnregisterThenPoll performs Unregister then polls until it's completed
 func (c ProtectionContainersClient) UnregisterThenPoll(ctx context.Context, id ProtectionContainerId) error {
+	return c.UnregisterCallbackThenPoll(ctx, id, nil)
+}
+
+// UnregisterCallbackThenPoll performs Unregister, runs the optional callback function, then polls until it's completed
+func (c ProtectionContainersClient) UnregisterCallbackThenPoll(ctx context.Context, id ProtectionContainerId, callback func() error) error {
 	result, err := c.Unregister(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Unregister: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {

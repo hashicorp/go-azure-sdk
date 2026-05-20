@@ -58,9 +58,20 @@ func (c PolicyRestrictionsValidationsClient) PolicyRestrictionValidationsByServi
 
 // PolicyRestrictionValidationsByServiceThenPoll performs PolicyRestrictionValidationsByService then polls until it's completed
 func (c PolicyRestrictionsValidationsClient) PolicyRestrictionValidationsByServiceThenPoll(ctx context.Context, id ServiceId) error {
+	return c.PolicyRestrictionValidationsByServiceCallbackThenPoll(ctx, id, nil)
+}
+
+// PolicyRestrictionValidationsByServiceCallbackThenPoll performs PolicyRestrictionValidationsByService, runs the optional callback function, then polls until it's completed
+func (c PolicyRestrictionsValidationsClient) PolicyRestrictionValidationsByServiceCallbackThenPoll(ctx context.Context, id ServiceId, callback func() error) error {
 	result, err := c.PolicyRestrictionValidationsByService(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing PolicyRestrictionValidationsByService: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

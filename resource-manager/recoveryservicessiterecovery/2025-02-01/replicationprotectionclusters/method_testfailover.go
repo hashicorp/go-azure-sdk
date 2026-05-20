@@ -62,9 +62,20 @@ func (c ReplicationProtectionClustersClient) TestFailover(ctx context.Context, i
 
 // TestFailoverThenPoll performs TestFailover then polls until it's completed
 func (c ReplicationProtectionClustersClient) TestFailoverThenPoll(ctx context.Context, id ReplicationProtectionClusterId, input ClusterTestFailoverInput) error {
+	return c.TestFailoverCallbackThenPoll(ctx, id, input, nil)
+}
+
+// TestFailoverCallbackThenPoll performs TestFailover, runs the optional callback function, then polls until it's completed
+func (c ReplicationProtectionClustersClient) TestFailoverCallbackThenPoll(ctx context.Context, id ReplicationProtectionClusterId, input ClusterTestFailoverInput, callback func() error) error {
 	result, err := c.TestFailover(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing TestFailover: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

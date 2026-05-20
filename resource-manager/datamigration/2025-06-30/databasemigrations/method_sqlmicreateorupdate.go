@@ -62,9 +62,20 @@ func (c DatabaseMigrationsClient) SqlMiCreateOrUpdate(ctx context.Context, id Pr
 
 // SqlMiCreateOrUpdateThenPoll performs SqlMiCreateOrUpdate then polls until it's completed
 func (c DatabaseMigrationsClient) SqlMiCreateOrUpdateThenPoll(ctx context.Context, id Providers2DatabaseMigrationId, input DatabaseMigrationSqlMi) error {
+	return c.SqlMiCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SqlMiCreateOrUpdateCallbackThenPoll performs SqlMiCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c DatabaseMigrationsClient) SqlMiCreateOrUpdateCallbackThenPoll(ctx context.Context, id Providers2DatabaseMigrationId, input DatabaseMigrationSqlMi, callback func() error) error {
 	result, err := c.SqlMiCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlMiCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

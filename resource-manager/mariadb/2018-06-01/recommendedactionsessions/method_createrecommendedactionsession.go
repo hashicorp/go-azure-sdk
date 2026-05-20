@@ -86,9 +86,20 @@ func (c RecommendedActionSessionsClient) CreateRecommendedActionSession(ctx cont
 
 // CreateRecommendedActionSessionThenPoll performs CreateRecommendedActionSession then polls until it's completed
 func (c RecommendedActionSessionsClient) CreateRecommendedActionSessionThenPoll(ctx context.Context, id AdvisorId, options CreateRecommendedActionSessionOperationOptions) error {
+	return c.CreateRecommendedActionSessionCallbackThenPoll(ctx, id, options, nil)
+}
+
+// CreateRecommendedActionSessionCallbackThenPoll performs CreateRecommendedActionSession, runs the optional callback function, then polls until it's completed
+func (c RecommendedActionSessionsClient) CreateRecommendedActionSessionCallbackThenPoll(ctx context.Context, id AdvisorId, options CreateRecommendedActionSessionOperationOptions, callback func() error) error {
 	result, err := c.CreateRecommendedActionSession(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing CreateRecommendedActionSession: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

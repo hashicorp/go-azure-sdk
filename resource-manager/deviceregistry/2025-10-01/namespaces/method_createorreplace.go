@@ -62,9 +62,20 @@ func (c NamespacesClient) CreateOrReplace(ctx context.Context, id NamespaceId, i
 
 // CreateOrReplaceThenPoll performs CreateOrReplace then polls until it's completed
 func (c NamespacesClient) CreateOrReplaceThenPoll(ctx context.Context, id NamespaceId, input Namespace) error {
+	return c.CreateOrReplaceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrReplaceCallbackThenPoll performs CreateOrReplace, runs the optional callback function, then polls until it's completed
+func (c NamespacesClient) CreateOrReplaceCallbackThenPoll(ctx context.Context, id NamespaceId, input Namespace, callback func() error) error {
 	result, err := c.CreateOrReplace(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrReplace: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

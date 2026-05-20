@@ -62,9 +62,20 @@ func (c SubscriptionsClient) TestQuery(ctx context.Context, id LocationId, input
 
 // TestQueryThenPoll performs TestQuery then polls until it's completed
 func (c SubscriptionsClient) TestQueryThenPoll(ctx context.Context, id LocationId, input TestQuery) error {
+	return c.TestQueryCallbackThenPoll(ctx, id, input, nil)
+}
+
+// TestQueryCallbackThenPoll performs TestQuery, runs the optional callback function, then polls until it's completed
+func (c SubscriptionsClient) TestQueryCallbackThenPoll(ctx context.Context, id LocationId, input TestQuery, callback func() error) error {
 	result, err := c.TestQuery(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing TestQuery: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

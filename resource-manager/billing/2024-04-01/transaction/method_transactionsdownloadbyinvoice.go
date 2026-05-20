@@ -58,9 +58,20 @@ func (c TransactionClient) TransactionsDownloadByInvoice(ctx context.Context, id
 
 // TransactionsDownloadByInvoiceThenPoll performs TransactionsDownloadByInvoice then polls until it's completed
 func (c TransactionClient) TransactionsDownloadByInvoiceThenPoll(ctx context.Context, id BillingAccountInvoiceId) error {
+	return c.TransactionsDownloadByInvoiceCallbackThenPoll(ctx, id, nil)
+}
+
+// TransactionsDownloadByInvoiceCallbackThenPoll performs TransactionsDownloadByInvoice, runs the optional callback function, then polls until it's completed
+func (c TransactionClient) TransactionsDownloadByInvoiceCallbackThenPoll(ctx context.Context, id BillingAccountInvoiceId, callback func() error) error {
 	result, err := c.TransactionsDownloadByInvoice(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing TransactionsDownloadByInvoice: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

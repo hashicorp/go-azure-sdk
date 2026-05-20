@@ -62,9 +62,20 @@ func (c FeaturesetVersionClient) Backfill(ctx context.Context, id FeatureSetVers
 
 // BackfillThenPoll performs Backfill then polls until it's completed
 func (c FeaturesetVersionClient) BackfillThenPoll(ctx context.Context, id FeatureSetVersionId, input FeaturesetVersionBackfillRequest) error {
+	return c.BackfillCallbackThenPoll(ctx, id, input, nil)
+}
+
+// BackfillCallbackThenPoll performs Backfill, runs the optional callback function, then polls until it's completed
+func (c FeaturesetVersionClient) BackfillCallbackThenPoll(ctx context.Context, id FeatureSetVersionId, input FeaturesetVersionBackfillRequest, callback func() error) error {
 	result, err := c.Backfill(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Backfill: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

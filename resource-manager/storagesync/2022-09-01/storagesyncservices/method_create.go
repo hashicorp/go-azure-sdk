@@ -62,9 +62,20 @@ func (c StorageSyncServicesClient) Create(ctx context.Context, id StorageSyncSer
 
 // CreateThenPoll performs Create then polls until it's completed
 func (c StorageSyncServicesClient) CreateThenPoll(ctx context.Context, id StorageSyncServiceId, input StorageSyncServiceCreateParameters) error {
+	return c.CreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateCallbackThenPoll performs Create, runs the optional callback function, then polls until it's completed
+func (c StorageSyncServicesClient) CreateCallbackThenPoll(ctx context.Context, id StorageSyncServiceId, input StorageSyncServiceCreateParameters, callback func() error) error {
 	result, err := c.Create(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

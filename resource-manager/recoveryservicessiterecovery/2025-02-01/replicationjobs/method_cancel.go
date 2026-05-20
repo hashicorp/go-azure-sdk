@@ -58,9 +58,20 @@ func (c ReplicationJobsClient) Cancel(ctx context.Context, id ReplicationJobId) 
 
 // CancelThenPoll performs Cancel then polls until it's completed
 func (c ReplicationJobsClient) CancelThenPoll(ctx context.Context, id ReplicationJobId) error {
+	return c.CancelCallbackThenPoll(ctx, id, nil)
+}
+
+// CancelCallbackThenPoll performs Cancel, runs the optional callback function, then polls until it's completed
+func (c ReplicationJobsClient) CancelCallbackThenPoll(ctx context.Context, id ReplicationJobId, callback func() error) error {
 	result, err := c.Cancel(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Cancel: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

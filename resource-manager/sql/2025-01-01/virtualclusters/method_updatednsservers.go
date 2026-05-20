@@ -58,9 +58,20 @@ func (c VirtualClustersClient) UpdateDnsServers(ctx context.Context, id VirtualC
 
 // UpdateDnsServersThenPoll performs UpdateDnsServers then polls until it's completed
 func (c VirtualClustersClient) UpdateDnsServersThenPoll(ctx context.Context, id VirtualClusterId) error {
+	return c.UpdateDnsServersCallbackThenPoll(ctx, id, nil)
+}
+
+// UpdateDnsServersCallbackThenPoll performs UpdateDnsServers, runs the optional callback function, then polls until it's completed
+func (c VirtualClustersClient) UpdateDnsServersCallbackThenPoll(ctx context.Context, id VirtualClusterId, callback func() error) error {
 	result, err := c.UpdateDnsServers(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing UpdateDnsServers: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

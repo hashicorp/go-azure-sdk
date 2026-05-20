@@ -63,9 +63,20 @@ func (c AdministratorsClient) Create(ctx context.Context, id AdministratorId, in
 
 // CreateThenPoll performs Create then polls until it's completed
 func (c AdministratorsClient) CreateThenPoll(ctx context.Context, id AdministratorId, input ActiveDirectoryAdministratorAdd) error {
+	return c.CreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateCallbackThenPoll performs Create, runs the optional callback function, then polls until it's completed
+func (c AdministratorsClient) CreateCallbackThenPoll(ctx context.Context, id AdministratorId, input ActiveDirectoryAdministratorAdd, callback func() error) error {
 	result, err := c.Create(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

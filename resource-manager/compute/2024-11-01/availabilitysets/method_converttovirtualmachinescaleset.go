@@ -61,9 +61,20 @@ func (c AvailabilitySetsClient) ConvertToVirtualMachineScaleSet(ctx context.Cont
 
 // ConvertToVirtualMachineScaleSetThenPoll performs ConvertToVirtualMachineScaleSet then polls until it's completed
 func (c AvailabilitySetsClient) ConvertToVirtualMachineScaleSetThenPoll(ctx context.Context, id commonids.AvailabilitySetId, input ConvertToVirtualMachineScaleSetInput) error {
+	return c.ConvertToVirtualMachineScaleSetCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ConvertToVirtualMachineScaleSetCallbackThenPoll performs ConvertToVirtualMachineScaleSet, runs the optional callback function, then polls until it's completed
+func (c AvailabilitySetsClient) ConvertToVirtualMachineScaleSetCallbackThenPoll(ctx context.Context, id commonids.AvailabilitySetId, input ConvertToVirtualMachineScaleSetInput, callback func() error) error {
 	result, err := c.ConvertToVirtualMachineScaleSet(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ConvertToVirtualMachineScaleSet: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -91,9 +91,20 @@ func (c ApiClient) WorkspaceApiCreateOrUpdate(ctx context.Context, id WorkspaceA
 
 // WorkspaceApiCreateOrUpdateThenPoll performs WorkspaceApiCreateOrUpdate then polls until it's completed
 func (c ApiClient) WorkspaceApiCreateOrUpdateThenPoll(ctx context.Context, id WorkspaceApiId, input ApiCreateOrUpdateParameter, options WorkspaceApiCreateOrUpdateOperationOptions) error {
+	return c.WorkspaceApiCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// WorkspaceApiCreateOrUpdateCallbackThenPoll performs WorkspaceApiCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c ApiClient) WorkspaceApiCreateOrUpdateCallbackThenPoll(ctx context.Context, id WorkspaceApiId, input ApiCreateOrUpdateParameter, options WorkspaceApiCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.WorkspaceApiCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing WorkspaceApiCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

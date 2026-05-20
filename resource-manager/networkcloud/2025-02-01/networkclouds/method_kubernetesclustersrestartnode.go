@@ -60,9 +60,20 @@ func (c NetworkcloudsClient) KubernetesClustersRestartNode(ctx context.Context, 
 
 // KubernetesClustersRestartNodeThenPoll performs KubernetesClustersRestartNode then polls until it's completed
 func (c NetworkcloudsClient) KubernetesClustersRestartNodeThenPoll(ctx context.Context, id KubernetesClusterId, input KubernetesClusterRestartNodeParameters) error {
+	return c.KubernetesClustersRestartNodeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// KubernetesClustersRestartNodeCallbackThenPoll performs KubernetesClustersRestartNode, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) KubernetesClustersRestartNodeCallbackThenPoll(ctx context.Context, id KubernetesClusterId, input KubernetesClusterRestartNodeParameters, callback func() error) error {
 	result, err := c.KubernetesClustersRestartNode(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing KubernetesClustersRestartNode: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

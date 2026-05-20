@@ -62,9 +62,20 @@ func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummar
 
 // GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileThenPoll performs GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile then polls until it's completed
 func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileThenPoll(ctx context.Context, id BillingProfileId, input BenefitUtilizationSummariesRequest) error {
+	return c.GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileCallbackThenPoll(ctx, id, input, nil)
+}
+
+// GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileCallbackThenPoll performs GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile, runs the optional callback function, then polls until it's completed
+func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileCallbackThenPoll(ctx context.Context, id BillingProfileId, input BenefitUtilizationSummariesRequest, callback func() error) error {
 	result, err := c.GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

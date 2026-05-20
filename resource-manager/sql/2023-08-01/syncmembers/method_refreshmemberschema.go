@@ -57,9 +57,20 @@ func (c SyncMembersClient) RefreshMemberSchema(ctx context.Context, id SyncMembe
 
 // RefreshMemberSchemaThenPoll performs RefreshMemberSchema then polls until it's completed
 func (c SyncMembersClient) RefreshMemberSchemaThenPoll(ctx context.Context, id SyncMemberId) error {
+	return c.RefreshMemberSchemaCallbackThenPoll(ctx, id, nil)
+}
+
+// RefreshMemberSchemaCallbackThenPoll performs RefreshMemberSchema, runs the optional callback function, then polls until it's completed
+func (c SyncMembersClient) RefreshMemberSchemaCallbackThenPoll(ctx context.Context, id SyncMemberId, callback func() error) error {
 	result, err := c.RefreshMemberSchema(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing RefreshMemberSchema: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

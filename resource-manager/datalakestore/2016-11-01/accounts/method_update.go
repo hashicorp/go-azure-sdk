@@ -63,9 +63,20 @@ func (c AccountsClient) Update(ctx context.Context, id AccountId, input UpdateDa
 
 // UpdateThenPoll performs Update then polls until it's completed
 func (c AccountsClient) UpdateThenPoll(ctx context.Context, id AccountId, input UpdateDataLakeStoreAccountParameters) error {
+	return c.UpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateCallbackThenPoll performs Update, runs the optional callback function, then polls until it's completed
+func (c AccountsClient) UpdateCallbackThenPoll(ctx context.Context, id AccountId, input UpdateDataLakeStoreAccountParameters, callback func() error) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -61,9 +61,20 @@ func (c AdministrationsClient) FullRestoreOperation(ctx context.Context, input R
 
 // FullRestoreOperationThenPoll performs FullRestoreOperation then polls until it's completed
 func (c AdministrationsClient) FullRestoreOperationThenPoll(ctx context.Context, input RestoreOperationParameters) error {
+	return c.FullRestoreOperationCallbackThenPoll(ctx, input, nil)
+}
+
+// FullRestoreOperationCallbackThenPoll performs FullRestoreOperation, runs the optional callback function, then polls until it's completed
+func (c AdministrationsClient) FullRestoreOperationCallbackThenPoll(ctx context.Context, input RestoreOperationParameters, callback func() error) error {
 	result, err := c.FullRestoreOperation(ctx, input)
 	if err != nil {
 		return fmt.Errorf("performing FullRestoreOperation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -90,9 +90,20 @@ func (c TrafficFilterClient) CreateAndAssociateIPFilterCreate(ctx context.Contex
 
 // CreateAndAssociateIPFilterCreateThenPoll performs CreateAndAssociateIPFilterCreate then polls until it's completed
 func (c TrafficFilterClient) CreateAndAssociateIPFilterCreateThenPoll(ctx context.Context, id MonitorId, options CreateAndAssociateIPFilterCreateOperationOptions) error {
+	return c.CreateAndAssociateIPFilterCreateCallbackThenPoll(ctx, id, options, nil)
+}
+
+// CreateAndAssociateIPFilterCreateCallbackThenPoll performs CreateAndAssociateIPFilterCreate, runs the optional callback function, then polls until it's completed
+func (c TrafficFilterClient) CreateAndAssociateIPFilterCreateCallbackThenPoll(ctx context.Context, id MonitorId, options CreateAndAssociateIPFilterCreateOperationOptions, callback func() error) error {
 	result, err := c.CreateAndAssociateIPFilterCreate(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing CreateAndAssociateIPFilterCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

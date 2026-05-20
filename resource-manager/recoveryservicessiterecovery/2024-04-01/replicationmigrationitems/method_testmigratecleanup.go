@@ -62,9 +62,20 @@ func (c ReplicationMigrationItemsClient) TestMigrateCleanup(ctx context.Context,
 
 // TestMigrateCleanupThenPoll performs TestMigrateCleanup then polls until it's completed
 func (c ReplicationMigrationItemsClient) TestMigrateCleanupThenPoll(ctx context.Context, id ReplicationMigrationItemId, input TestMigrateCleanupInput) error {
+	return c.TestMigrateCleanupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// TestMigrateCleanupCallbackThenPoll performs TestMigrateCleanup, runs the optional callback function, then polls until it's completed
+func (c ReplicationMigrationItemsClient) TestMigrateCleanupCallbackThenPoll(ctx context.Context, id ReplicationMigrationItemId, input TestMigrateCleanupInput, callback func() error) error {
 	result, err := c.TestMigrateCleanup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing TestMigrateCleanup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

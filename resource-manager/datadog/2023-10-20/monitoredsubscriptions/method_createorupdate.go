@@ -63,9 +63,20 @@ func (c MonitoredSubscriptionsClient) CreateorUpdate(ctx context.Context, id Mon
 
 // CreateorUpdateThenPoll performs CreateorUpdate then polls until it's completed
 func (c MonitoredSubscriptionsClient) CreateorUpdateThenPoll(ctx context.Context, id MonitoredSubscriptionId, input MonitoredSubscriptionProperties) error {
+	return c.CreateorUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateorUpdateCallbackThenPoll performs CreateorUpdate, runs the optional callback function, then polls until it's completed
+func (c MonitoredSubscriptionsClient) CreateorUpdateCallbackThenPoll(ctx context.Context, id MonitoredSubscriptionId, input MonitoredSubscriptionProperties, callback func() error) error {
 	result, err := c.CreateorUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateorUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c LongTermRetentionBackupsClient) Copy(ctx context.Context, id LongTermRet
 
 // CopyThenPoll performs Copy then polls until it's completed
 func (c LongTermRetentionBackupsClient) CopyThenPoll(ctx context.Context, id LongTermRetentionBackupId, input CopyLongTermRetentionBackupParameters) error {
+	return c.CopyCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CopyCallbackThenPoll performs Copy, runs the optional callback function, then polls until it's completed
+func (c LongTermRetentionBackupsClient) CopyCallbackThenPoll(ctx context.Context, id LongTermRetentionBackupId, input CopyLongTermRetentionBackupParameters, callback func() error) error {
 	result, err := c.Copy(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Copy: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

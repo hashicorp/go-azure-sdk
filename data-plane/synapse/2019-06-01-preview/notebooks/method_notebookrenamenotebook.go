@@ -61,9 +61,20 @@ func (c NotebooksClient) NotebookRenameNotebook(ctx context.Context, id Notebook
 
 // NotebookRenameNotebookThenPoll performs NotebookRenameNotebook then polls until it's completed
 func (c NotebooksClient) NotebookRenameNotebookThenPoll(ctx context.Context, id NotebookId, input ArtifactRenameRequest) error {
+	return c.NotebookRenameNotebookCallbackThenPoll(ctx, id, input, nil)
+}
+
+// NotebookRenameNotebookCallbackThenPoll performs NotebookRenameNotebook, runs the optional callback function, then polls until it's completed
+func (c NotebooksClient) NotebookRenameNotebookCallbackThenPoll(ctx context.Context, id NotebookId, input ArtifactRenameRequest, callback func() error) error {
 	result, err := c.NotebookRenameNotebook(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing NotebookRenameNotebook: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

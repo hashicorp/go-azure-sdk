@@ -61,9 +61,20 @@ func (c VolumesRelocationClient) VolumesRelocate(ctx context.Context, id VolumeI
 
 // VolumesRelocateThenPoll performs VolumesRelocate then polls until it's completed
 func (c VolumesRelocationClient) VolumesRelocateThenPoll(ctx context.Context, id VolumeId, input RelocateVolumeRequest) error {
+	return c.VolumesRelocateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// VolumesRelocateCallbackThenPoll performs VolumesRelocate, runs the optional callback function, then polls until it's completed
+func (c VolumesRelocationClient) VolumesRelocateCallbackThenPoll(ctx context.Context, id VolumeId, input RelocateVolumeRequest, callback func() error) error {
 	result, err := c.VolumesRelocate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing VolumesRelocate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

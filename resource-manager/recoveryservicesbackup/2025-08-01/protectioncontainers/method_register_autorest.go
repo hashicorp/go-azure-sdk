@@ -38,9 +38,20 @@ func (c ProtectionContainersClient) Register(ctx context.Context, id ProtectionC
 
 // RegisterThenPoll performs Register then polls until it's completed
 func (c ProtectionContainersClient) RegisterThenPoll(ctx context.Context, id ProtectionContainerId, input ProtectionContainerResource) error {
+	return c.RegisterCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegisterCallbackThenPoll performs Register, runs the optional callback function, then polls until it's completed
+func (c ProtectionContainersClient) RegisterCallbackThenPoll(ctx context.Context, id ProtectionContainerId, input ProtectionContainerResource, callback func() error) error {
 	result, err := c.Register(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Register: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {

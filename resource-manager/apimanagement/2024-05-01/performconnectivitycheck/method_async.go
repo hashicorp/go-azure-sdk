@@ -62,9 +62,20 @@ func (c PerformConnectivityCheckClient) Async(ctx context.Context, id ServiceId,
 
 // AsyncThenPoll performs Async then polls until it's completed
 func (c PerformConnectivityCheckClient) AsyncThenPoll(ctx context.Context, id ServiceId, input ConnectivityCheckRequest) error {
+	return c.AsyncCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AsyncCallbackThenPoll performs Async, runs the optional callback function, then polls until it's completed
+func (c PerformConnectivityCheckClient) AsyncCallbackThenPoll(ctx context.Context, id ServiceId, input ConnectivityCheckRequest, callback func() error) error {
 	result, err := c.Async(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Async: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

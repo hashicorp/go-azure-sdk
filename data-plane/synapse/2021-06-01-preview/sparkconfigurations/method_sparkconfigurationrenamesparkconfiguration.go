@@ -61,9 +61,20 @@ func (c SparkConfigurationsClient) SparkConfigurationRenameSparkConfiguration(ct
 
 // SparkConfigurationRenameSparkConfigurationThenPoll performs SparkConfigurationRenameSparkConfiguration then polls until it's completed
 func (c SparkConfigurationsClient) SparkConfigurationRenameSparkConfigurationThenPoll(ctx context.Context, id SparkConfigurationId, input ArtifactRenameRequest) error {
+	return c.SparkConfigurationRenameSparkConfigurationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SparkConfigurationRenameSparkConfigurationCallbackThenPoll performs SparkConfigurationRenameSparkConfiguration, runs the optional callback function, then polls until it's completed
+func (c SparkConfigurationsClient) SparkConfigurationRenameSparkConfigurationCallbackThenPoll(ctx context.Context, id SparkConfigurationId, input ArtifactRenameRequest, callback func() error) error {
 	result, err := c.SparkConfigurationRenameSparkConfiguration(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SparkConfigurationRenameSparkConfiguration: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

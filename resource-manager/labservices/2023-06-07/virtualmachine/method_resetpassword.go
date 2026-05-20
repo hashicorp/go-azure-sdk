@@ -61,9 +61,20 @@ func (c VirtualMachineClient) ResetPassword(ctx context.Context, id VirtualMachi
 
 // ResetPasswordThenPoll performs ResetPassword then polls until it's completed
 func (c VirtualMachineClient) ResetPasswordThenPoll(ctx context.Context, id VirtualMachineId, input ResetPasswordBody) error {
+	return c.ResetPasswordCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ResetPasswordCallbackThenPoll performs ResetPassword, runs the optional callback function, then polls until it's completed
+func (c VirtualMachineClient) ResetPasswordCallbackThenPoll(ctx context.Context, id VirtualMachineId, input ResetPasswordBody, callback func() error) error {
 	result, err := c.ResetPassword(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ResetPassword: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

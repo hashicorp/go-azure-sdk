@@ -62,9 +62,20 @@ func (c AppPlatformClient) JobCreateOrUpdate(ctx context.Context, id JobId, inpu
 
 // JobCreateOrUpdateThenPoll performs JobCreateOrUpdate then polls until it's completed
 func (c AppPlatformClient) JobCreateOrUpdateThenPoll(ctx context.Context, id JobId, input JobResource) error {
+	return c.JobCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// JobCreateOrUpdateCallbackThenPoll performs JobCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c AppPlatformClient) JobCreateOrUpdateCallbackThenPoll(ctx context.Context, id JobId, input JobResource, callback func() error) error {
 	result, err := c.JobCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing JobCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

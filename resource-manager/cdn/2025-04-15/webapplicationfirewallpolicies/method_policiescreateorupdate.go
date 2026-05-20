@@ -63,9 +63,20 @@ func (c WebApplicationFirewallPoliciesClient) PoliciesCreateOrUpdate(ctx context
 
 // PoliciesCreateOrUpdateThenPoll performs PoliciesCreateOrUpdate then polls until it's completed
 func (c WebApplicationFirewallPoliciesClient) PoliciesCreateOrUpdateThenPoll(ctx context.Context, id CdnWebApplicationFirewallPolicyId, input CdnWebApplicationFirewallPolicy) error {
+	return c.PoliciesCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PoliciesCreateOrUpdateCallbackThenPoll performs PoliciesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c WebApplicationFirewallPoliciesClient) PoliciesCreateOrUpdateCallbackThenPoll(ctx context.Context, id CdnWebApplicationFirewallPolicyId, input CdnWebApplicationFirewallPolicy, callback func() error) error {
 	result, err := c.PoliciesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PoliciesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -56,9 +56,20 @@ func (c NetworkcloudsClient) BareMetalMachinesUncordon(ctx context.Context, id B
 
 // BareMetalMachinesUncordonThenPoll performs BareMetalMachinesUncordon then polls until it's completed
 func (c NetworkcloudsClient) BareMetalMachinesUncordonThenPoll(ctx context.Context, id BareMetalMachineId) error {
+	return c.BareMetalMachinesUncordonCallbackThenPoll(ctx, id, nil)
+}
+
+// BareMetalMachinesUncordonCallbackThenPoll performs BareMetalMachinesUncordon, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) BareMetalMachinesUncordonCallbackThenPoll(ctx context.Context, id BareMetalMachineId, callback func() error) error {
 	result, err := c.BareMetalMachinesUncordon(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing BareMetalMachinesUncordon: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

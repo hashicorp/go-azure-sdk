@@ -62,9 +62,20 @@ func (c TenantConfigurationClient) Save(ctx context.Context, id ServiceId, input
 
 // SaveThenPoll performs Save then polls until it's completed
 func (c TenantConfigurationClient) SaveThenPoll(ctx context.Context, id ServiceId, input SaveConfigurationParameter) error {
+	return c.SaveCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SaveCallbackThenPoll performs Save, runs the optional callback function, then polls until it's completed
+func (c TenantConfigurationClient) SaveCallbackThenPoll(ctx context.Context, id ServiceId, input SaveConfigurationParameter, callback func() error) error {
 	result, err := c.Save(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Save: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -62,9 +62,20 @@ func (c StandardOperationClient) ServicesUpdate(ctx context.Context, id ServiceI
 
 // ServicesUpdateThenPoll performs ServicesUpdate then polls until it's completed
 func (c StandardOperationClient) ServicesUpdateThenPoll(ctx context.Context, id ServiceId, input DataMigrationService) error {
+	return c.ServicesUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ServicesUpdateCallbackThenPoll performs ServicesUpdate, runs the optional callback function, then polls until it's completed
+func (c StandardOperationClient) ServicesUpdateCallbackThenPoll(ctx context.Context, id ServiceId, input DataMigrationService, callback func() error) error {
 	result, err := c.ServicesUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ServicesUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

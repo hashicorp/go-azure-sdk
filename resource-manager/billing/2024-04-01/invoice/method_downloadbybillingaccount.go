@@ -87,9 +87,20 @@ func (c InvoiceClient) DownloadByBillingAccount(ctx context.Context, id BillingA
 
 // DownloadByBillingAccountThenPoll performs DownloadByBillingAccount then polls until it's completed
 func (c InvoiceClient) DownloadByBillingAccountThenPoll(ctx context.Context, id BillingAccountInvoiceId, options DownloadByBillingAccountOperationOptions) error {
+	return c.DownloadByBillingAccountCallbackThenPoll(ctx, id, options, nil)
+}
+
+// DownloadByBillingAccountCallbackThenPoll performs DownloadByBillingAccount, runs the optional callback function, then polls until it's completed
+func (c InvoiceClient) DownloadByBillingAccountCallbackThenPoll(ctx context.Context, id BillingAccountInvoiceId, options DownloadByBillingAccountOperationOptions, callback func() error) error {
 	result, err := c.DownloadByBillingAccount(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing DownloadByBillingAccount: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

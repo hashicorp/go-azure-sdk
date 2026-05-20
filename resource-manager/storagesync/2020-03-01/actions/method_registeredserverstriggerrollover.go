@@ -61,9 +61,20 @@ func (c ActionsClient) RegisteredServerstriggerRollover(ctx context.Context, id 
 
 // RegisteredServerstriggerRolloverThenPoll performs RegisteredServerstriggerRollover then polls until it's completed
 func (c ActionsClient) RegisteredServerstriggerRolloverThenPoll(ctx context.Context, id RegisteredServerId, input TriggerRolloverRequest) error {
+	return c.RegisteredServerstriggerRolloverCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegisteredServerstriggerRolloverCallbackThenPoll performs RegisteredServerstriggerRollover, runs the optional callback function, then polls until it's completed
+func (c ActionsClient) RegisteredServerstriggerRolloverCallbackThenPoll(ctx context.Context, id RegisteredServerId, input TriggerRolloverRequest, callback func() error) error {
 	result, err := c.RegisteredServerstriggerRollover(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegisteredServerstriggerRollover: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

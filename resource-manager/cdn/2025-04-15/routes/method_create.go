@@ -63,9 +63,20 @@ func (c RoutesClient) Create(ctx context.Context, id RouteId, input Route) (resu
 
 // CreateThenPoll performs Create then polls until it's completed
 func (c RoutesClient) CreateThenPoll(ctx context.Context, id RouteId, input Route) error {
+	return c.CreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateCallbackThenPoll performs Create, runs the optional callback function, then polls until it's completed
+func (c RoutesClient) CreateCallbackThenPoll(ctx context.Context, id RouteId, input Route, callback func() error) error {
 	result, err := c.Create(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

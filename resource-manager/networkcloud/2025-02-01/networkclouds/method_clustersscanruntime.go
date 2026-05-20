@@ -60,9 +60,20 @@ func (c NetworkcloudsClient) ClustersScanRuntime(ctx context.Context, id Cluster
 
 // ClustersScanRuntimeThenPoll performs ClustersScanRuntime then polls until it's completed
 func (c NetworkcloudsClient) ClustersScanRuntimeThenPoll(ctx context.Context, id ClusterId, input ClusterScanRuntimeParameters) error {
+	return c.ClustersScanRuntimeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ClustersScanRuntimeCallbackThenPoll performs ClustersScanRuntime, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) ClustersScanRuntimeCallbackThenPoll(ctx context.Context, id ClusterId, input ClusterScanRuntimeParameters, callback func() error) error {
 	result, err := c.ClustersScanRuntime(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ClustersScanRuntime: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

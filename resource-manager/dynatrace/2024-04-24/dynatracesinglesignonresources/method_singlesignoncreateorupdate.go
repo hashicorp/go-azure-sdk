@@ -62,9 +62,20 @@ func (c DynatraceSingleSignOnResourcesClient) SingleSignOnCreateOrUpdate(ctx con
 
 // SingleSignOnCreateOrUpdateThenPoll performs SingleSignOnCreateOrUpdate then polls until it's completed
 func (c DynatraceSingleSignOnResourcesClient) SingleSignOnCreateOrUpdateThenPoll(ctx context.Context, id SingleSignOnConfigurationId, input DynatraceSingleSignOnResource) error {
+	return c.SingleSignOnCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SingleSignOnCreateOrUpdateCallbackThenPoll performs SingleSignOnCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c DynatraceSingleSignOnResourcesClient) SingleSignOnCreateOrUpdateCallbackThenPoll(ctx context.Context, id SingleSignOnConfigurationId, input DynatraceSingleSignOnResource, callback func() error) error {
 	result, err := c.SingleSignOnCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SingleSignOnCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

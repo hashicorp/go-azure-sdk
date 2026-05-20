@@ -62,9 +62,20 @@ func (c VMwaresClient) WorkloadNetworksUpdateDnsService(ctx context.Context, id 
 
 // WorkloadNetworksUpdateDnsServiceThenPoll performs WorkloadNetworksUpdateDnsService then polls until it's completed
 func (c VMwaresClient) WorkloadNetworksUpdateDnsServiceThenPoll(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsService) error {
+	return c.WorkloadNetworksUpdateDnsServiceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// WorkloadNetworksUpdateDnsServiceCallbackThenPoll performs WorkloadNetworksUpdateDnsService, runs the optional callback function, then polls until it's completed
+func (c VMwaresClient) WorkloadNetworksUpdateDnsServiceCallbackThenPoll(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsService, callback func() error) error {
 	result, err := c.WorkloadNetworksUpdateDnsService(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkloadNetworksUpdateDnsService: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -61,9 +61,20 @@ func (c KqlScriptsClient) KqlScriptRename(ctx context.Context, id KqlScriptId, i
 
 // KqlScriptRenameThenPoll performs KqlScriptRename then polls until it's completed
 func (c KqlScriptsClient) KqlScriptRenameThenPoll(ctx context.Context, id KqlScriptId, input ArtifactRenameRequest) error {
+	return c.KqlScriptRenameCallbackThenPoll(ctx, id, input, nil)
+}
+
+// KqlScriptRenameCallbackThenPoll performs KqlScriptRename, runs the optional callback function, then polls until it's completed
+func (c KqlScriptsClient) KqlScriptRenameCallbackThenPoll(ctx context.Context, id KqlScriptId, input ArtifactRenameRequest, callback func() error) error {
 	result, err := c.KqlScriptRename(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing KqlScriptRename: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -61,9 +61,20 @@ func (c ComputeClient) RestorePointsCreate(ctx context.Context, id RestorePointI
 
 // RestorePointsCreateThenPoll performs RestorePointsCreate then polls until it's completed
 func (c ComputeClient) RestorePointsCreateThenPoll(ctx context.Context, id RestorePointId, input RestorePoint) error {
+	return c.RestorePointsCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RestorePointsCreateCallbackThenPoll performs RestorePointsCreate, runs the optional callback function, then polls until it's completed
+func (c ComputeClient) RestorePointsCreateCallbackThenPoll(ctx context.Context, id RestorePointId, input RestorePoint, callback func() error) error {
 	result, err := c.RestorePointsCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RestorePointsCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

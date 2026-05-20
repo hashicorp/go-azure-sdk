@@ -62,9 +62,20 @@ func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummar
 
 // GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderIdThenPoll performs GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderId then polls until it's completed
 func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderIdThenPoll(ctx context.Context, id ReservationOrderId, input BenefitUtilizationSummariesRequest) error {
+	return c.GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderIdCallbackThenPoll(ctx, id, input, nil)
+}
+
+// GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderIdCallbackThenPoll performs GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderId, runs the optional callback function, then polls until it's completed
+func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderIdCallbackThenPoll(ctx context.Context, id ReservationOrderId, input BenefitUtilizationSummariesRequest, callback func() error) error {
 	result, err := c.GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderId(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderId: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

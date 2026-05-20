@@ -62,9 +62,20 @@ func (c TenantConfigurationClient) Deploy(ctx context.Context, id ServiceId, inp
 
 // DeployThenPoll performs Deploy then polls until it's completed
 func (c TenantConfigurationClient) DeployThenPoll(ctx context.Context, id ServiceId, input DeployConfigurationParameters) error {
+	return c.DeployCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DeployCallbackThenPoll performs Deploy, runs the optional callback function, then polls until it's completed
+func (c TenantConfigurationClient) DeployCallbackThenPoll(ctx context.Context, id ServiceId, input DeployConfigurationParameters, callback func() error) error {
 	result, err := c.Deploy(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Deploy: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

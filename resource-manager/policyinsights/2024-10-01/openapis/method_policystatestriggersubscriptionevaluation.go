@@ -58,9 +58,20 @@ func (c OpenapisClient) PolicyStatesTriggerSubscriptionEvaluation(ctx context.Co
 
 // PolicyStatesTriggerSubscriptionEvaluationThenPoll performs PolicyStatesTriggerSubscriptionEvaluation then polls until it's completed
 func (c OpenapisClient) PolicyStatesTriggerSubscriptionEvaluationThenPoll(ctx context.Context, id commonids.SubscriptionId) error {
+	return c.PolicyStatesTriggerSubscriptionEvaluationCallbackThenPoll(ctx, id, nil)
+}
+
+// PolicyStatesTriggerSubscriptionEvaluationCallbackThenPoll performs PolicyStatesTriggerSubscriptionEvaluation, runs the optional callback function, then polls until it's completed
+func (c OpenapisClient) PolicyStatesTriggerSubscriptionEvaluationCallbackThenPoll(ctx context.Context, id commonids.SubscriptionId, callback func() error) error {
 	result, err := c.PolicyStatesTriggerSubscriptionEvaluation(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing PolicyStatesTriggerSubscriptionEvaluation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

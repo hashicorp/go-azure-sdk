@@ -62,9 +62,20 @@ func (c BillingAccountClient) AddPaymentTerms(ctx context.Context, id BillingAcc
 
 // AddPaymentTermsThenPoll performs AddPaymentTerms then polls until it's completed
 func (c BillingAccountClient) AddPaymentTermsThenPoll(ctx context.Context, id BillingAccountId, input []PaymentTerm) error {
+	return c.AddPaymentTermsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AddPaymentTermsCallbackThenPoll performs AddPaymentTerms, runs the optional callback function, then polls until it's completed
+func (c BillingAccountClient) AddPaymentTermsCallbackThenPoll(ctx context.Context, id BillingAccountId, input []PaymentTerm, callback func() error) error {
 	result, err := c.AddPaymentTerms(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AddPaymentTerms: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

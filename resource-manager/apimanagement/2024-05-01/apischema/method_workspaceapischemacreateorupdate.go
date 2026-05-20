@@ -91,9 +91,20 @@ func (c ApiSchemaClient) WorkspaceApiSchemaCreateOrUpdate(ctx context.Context, i
 
 // WorkspaceApiSchemaCreateOrUpdateThenPoll performs WorkspaceApiSchemaCreateOrUpdate then polls until it's completed
 func (c ApiSchemaClient) WorkspaceApiSchemaCreateOrUpdateThenPoll(ctx context.Context, id WorkspaceApiSchemaId, input SchemaContract, options WorkspaceApiSchemaCreateOrUpdateOperationOptions) error {
+	return c.WorkspaceApiSchemaCreateOrUpdateCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// WorkspaceApiSchemaCreateOrUpdateCallbackThenPoll performs WorkspaceApiSchemaCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c ApiSchemaClient) WorkspaceApiSchemaCreateOrUpdateCallbackThenPoll(ctx context.Context, id WorkspaceApiSchemaId, input SchemaContract, options WorkspaceApiSchemaCreateOrUpdateOperationOptions, callback func() error) error {
 	result, err := c.WorkspaceApiSchemaCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing WorkspaceApiSchemaCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

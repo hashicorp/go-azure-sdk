@@ -56,9 +56,20 @@ func (c ApplicationClient) StartRollback(ctx context.Context, id ApplicationId) 
 
 // StartRollbackThenPoll performs StartRollback then polls until it's completed
 func (c ApplicationClient) StartRollbackThenPoll(ctx context.Context, id ApplicationId) error {
+	return c.StartRollbackCallbackThenPoll(ctx, id, nil)
+}
+
+// StartRollbackCallbackThenPoll performs StartRollback, runs the optional callback function, then polls until it's completed
+func (c ApplicationClient) StartRollbackCallbackThenPoll(ctx context.Context, id ApplicationId, callback func() error) error {
 	result, err := c.StartRollback(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing StartRollback: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -61,9 +61,20 @@ func (c VolumesReplicationClient) VolumesBreakReplication(ctx context.Context, i
 
 // VolumesBreakReplicationThenPoll performs VolumesBreakReplication then polls until it's completed
 func (c VolumesReplicationClient) VolumesBreakReplicationThenPoll(ctx context.Context, id VolumeId, input BreakReplicationRequest) error {
+	return c.VolumesBreakReplicationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// VolumesBreakReplicationCallbackThenPoll performs VolumesBreakReplication, runs the optional callback function, then polls until it's completed
+func (c VolumesReplicationClient) VolumesBreakReplicationCallbackThenPoll(ctx context.Context, id VolumeId, input BreakReplicationRequest, callback func() error) error {
 	result, err := c.VolumesBreakReplication(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing VolumesBreakReplication: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

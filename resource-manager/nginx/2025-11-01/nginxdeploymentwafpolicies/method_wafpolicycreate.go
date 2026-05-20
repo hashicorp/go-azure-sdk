@@ -62,9 +62,20 @@ func (c NginxDeploymentWafPoliciesClient) WafPolicyCreate(ctx context.Context, i
 
 // WafPolicyCreateThenPoll performs WafPolicyCreate then polls until it's completed
 func (c NginxDeploymentWafPoliciesClient) WafPolicyCreateThenPoll(ctx context.Context, id WafPolicyId, input NginxDeploymentWafPolicy) error {
+	return c.WafPolicyCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// WafPolicyCreateCallbackThenPoll performs WafPolicyCreate, runs the optional callback function, then polls until it's completed
+func (c NginxDeploymentWafPoliciesClient) WafPolicyCreateCallbackThenPoll(ctx context.Context, id WafPolicyId, input NginxDeploymentWafPolicy, callback func() error) error {
 	result, err := c.WafPolicyCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WafPolicyCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

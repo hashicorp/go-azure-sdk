@@ -63,9 +63,20 @@ func (c OpenapisClient) ProfilesMigrate(ctx context.Context, id commonids.Resour
 
 // ProfilesMigrateThenPoll performs ProfilesMigrate then polls until it's completed
 func (c OpenapisClient) ProfilesMigrateThenPoll(ctx context.Context, id commonids.ResourceGroupId, input MigrationParameters) error {
+	return c.ProfilesMigrateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ProfilesMigrateCallbackThenPoll performs ProfilesMigrate, runs the optional callback function, then polls until it's completed
+func (c OpenapisClient) ProfilesMigrateCallbackThenPoll(ctx context.Context, id commonids.ResourceGroupId, input MigrationParameters, callback func() error) error {
 	result, err := c.ProfilesMigrate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ProfilesMigrate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

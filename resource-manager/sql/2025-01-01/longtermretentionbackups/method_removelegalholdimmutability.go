@@ -58,9 +58,20 @@ func (c LongTermRetentionBackupsClient) RemoveLegalHoldImmutability(ctx context.
 
 // RemoveLegalHoldImmutabilityThenPoll performs RemoveLegalHoldImmutability then polls until it's completed
 func (c LongTermRetentionBackupsClient) RemoveLegalHoldImmutabilityThenPoll(ctx context.Context, id LongTermRetentionBackupId) error {
+	return c.RemoveLegalHoldImmutabilityCallbackThenPoll(ctx, id, nil)
+}
+
+// RemoveLegalHoldImmutabilityCallbackThenPoll performs RemoveLegalHoldImmutability, runs the optional callback function, then polls until it's completed
+func (c LongTermRetentionBackupsClient) RemoveLegalHoldImmutabilityCallbackThenPoll(ctx context.Context, id LongTermRetentionBackupId, callback func() error) error {
 	result, err := c.RemoveLegalHoldImmutability(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing RemoveLegalHoldImmutability: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

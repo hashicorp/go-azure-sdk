@@ -60,9 +60,20 @@ func (c NetworkcloudsClient) ClustersUpdateVersion(ctx context.Context, id Clust
 
 // ClustersUpdateVersionThenPoll performs ClustersUpdateVersion then polls until it's completed
 func (c NetworkcloudsClient) ClustersUpdateVersionThenPoll(ctx context.Context, id ClusterId, input ClusterUpdateVersionParameters) error {
+	return c.ClustersUpdateVersionCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ClustersUpdateVersionCallbackThenPoll performs ClustersUpdateVersion, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) ClustersUpdateVersionCallbackThenPoll(ctx context.Context, id ClusterId, input ClusterUpdateVersionParameters, callback func() error) error {
 	result, err := c.ClustersUpdateVersion(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ClustersUpdateVersion: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

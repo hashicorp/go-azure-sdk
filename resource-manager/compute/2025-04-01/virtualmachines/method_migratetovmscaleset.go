@@ -60,9 +60,20 @@ func (c VirtualMachinesClient) MigrateToVMScaleSet(ctx context.Context, id Virtu
 
 // MigrateToVMScaleSetThenPoll performs MigrateToVMScaleSet then polls until it's completed
 func (c VirtualMachinesClient) MigrateToVMScaleSetThenPoll(ctx context.Context, id VirtualMachineId, input MigrateVMToVirtualMachineScaleSetInput) error {
+	return c.MigrateToVMScaleSetCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MigrateToVMScaleSetCallbackThenPoll performs MigrateToVMScaleSet, runs the optional callback function, then polls until it's completed
+func (c VirtualMachinesClient) MigrateToVMScaleSetCallbackThenPoll(ctx context.Context, id VirtualMachineId, input MigrateVMToVirtualMachineScaleSetInput, callback func() error) error {
 	result, err := c.MigrateToVMScaleSet(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing MigrateToVMScaleSet: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

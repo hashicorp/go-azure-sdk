@@ -60,9 +60,20 @@ func (c AdvancedThreatProtectionSettingsModelsClient) ServerThreatProtectionSett
 
 // ServerThreatProtectionSettingsCreateOrUpdateThenPoll performs ServerThreatProtectionSettingsCreateOrUpdate then polls until it's completed
 func (c AdvancedThreatProtectionSettingsModelsClient) ServerThreatProtectionSettingsCreateOrUpdateThenPoll(ctx context.Context, id FlexibleServerId, input AdvancedThreatProtectionSettingsModel) error {
+	return c.ServerThreatProtectionSettingsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ServerThreatProtectionSettingsCreateOrUpdateCallbackThenPoll performs ServerThreatProtectionSettingsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c AdvancedThreatProtectionSettingsModelsClient) ServerThreatProtectionSettingsCreateOrUpdateCallbackThenPoll(ctx context.Context, id FlexibleServerId, input AdvancedThreatProtectionSettingsModel, callback func() error) error {
 	result, err := c.ServerThreatProtectionSettingsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ServerThreatProtectionSettingsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -38,9 +38,20 @@ func (c FetchTieringCostClient) Post(ctx context.Context, id VaultId, input Fetc
 
 // PostThenPoll performs Post then polls until it's completed
 func (c FetchTieringCostClient) PostThenPoll(ctx context.Context, id VaultId, input FetchTieringCostInfoRequest) error {
+	return c.PostCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PostCallbackThenPoll performs Post, runs the optional callback function, then polls until it's completed
+func (c FetchTieringCostClient) PostCallbackThenPoll(ctx context.Context, id VaultId, input FetchTieringCostInfoRequest, callback func() error) error {
 	result, err := c.Post(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Post: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {

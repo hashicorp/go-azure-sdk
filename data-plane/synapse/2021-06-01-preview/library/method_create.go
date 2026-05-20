@@ -58,9 +58,20 @@ func (c LibraryClient) Create(ctx context.Context, id LibraryId) (result CreateO
 
 // CreateThenPoll performs Create then polls until it's completed
 func (c LibraryClient) CreateThenPoll(ctx context.Context, id LibraryId) error {
+	return c.CreateCallbackThenPoll(ctx, id, nil)
+}
+
+// CreateCallbackThenPoll performs Create, runs the optional callback function, then polls until it's completed
+func (c LibraryClient) CreateCallbackThenPoll(ctx context.Context, id LibraryId, callback func() error) error {
 	result, err := c.Create(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

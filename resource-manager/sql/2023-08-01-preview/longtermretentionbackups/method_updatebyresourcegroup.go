@@ -62,9 +62,20 @@ func (c LongTermRetentionBackupsClient) UpdateByResourceGroup(ctx context.Contex
 
 // UpdateByResourceGroupThenPoll performs UpdateByResourceGroup then polls until it's completed
 func (c LongTermRetentionBackupsClient) UpdateByResourceGroupThenPoll(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionBackupId, input UpdateLongTermRetentionBackupParameters) error {
+	return c.UpdateByResourceGroupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateByResourceGroupCallbackThenPoll performs UpdateByResourceGroup, runs the optional callback function, then polls until it's completed
+func (c LongTermRetentionBackupsClient) UpdateByResourceGroupCallbackThenPoll(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionBackupId, input UpdateLongTermRetentionBackupParameters, callback func() error) error {
 	result, err := c.UpdateByResourceGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateByResourceGroup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -61,9 +61,20 @@ func (c NotebookWorkspacesResourceClient) NotebookWorkspacesCreateOrUpdate(ctx c
 
 // NotebookWorkspacesCreateOrUpdateThenPoll performs NotebookWorkspacesCreateOrUpdate then polls until it's completed
 func (c NotebookWorkspacesResourceClient) NotebookWorkspacesCreateOrUpdateThenPoll(ctx context.Context, id DatabaseAccountId, input ARMProxyResource) error {
+	return c.NotebookWorkspacesCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// NotebookWorkspacesCreateOrUpdateCallbackThenPoll performs NotebookWorkspacesCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NotebookWorkspacesResourceClient) NotebookWorkspacesCreateOrUpdateCallbackThenPoll(ctx context.Context, id DatabaseAccountId, input ARMProxyResource, callback func() error) error {
 	result, err := c.NotebookWorkspacesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing NotebookWorkspacesCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

@@ -91,9 +91,20 @@ func (c BackupInstancesClient) TriggerRestore(ctx context.Context, id BackupInst
 
 // TriggerRestoreThenPoll performs TriggerRestore then polls until it's completed
 func (c BackupInstancesClient) TriggerRestoreThenPoll(ctx context.Context, id BackupInstanceId, input AzureBackupRestoreRequest, options TriggerRestoreOperationOptions) error {
+	return c.TriggerRestoreCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// TriggerRestoreCallbackThenPoll performs TriggerRestore, runs the optional callback function, then polls until it's completed
+func (c BackupInstancesClient) TriggerRestoreCallbackThenPoll(ctx context.Context, id BackupInstanceId, input AzureBackupRestoreRequest, options TriggerRestoreOperationOptions, callback func() error) error {
 	result, err := c.TriggerRestore(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing TriggerRestore: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

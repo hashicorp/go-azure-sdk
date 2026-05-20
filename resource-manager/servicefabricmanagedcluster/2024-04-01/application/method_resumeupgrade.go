@@ -60,9 +60,20 @@ func (c ApplicationClient) ResumeUpgrade(ctx context.Context, id ApplicationId, 
 
 // ResumeUpgradeThenPoll performs ResumeUpgrade then polls until it's completed
 func (c ApplicationClient) ResumeUpgradeThenPoll(ctx context.Context, id ApplicationId, input RuntimeResumeApplicationUpgradeParameters) error {
+	return c.ResumeUpgradeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ResumeUpgradeCallbackThenPoll performs ResumeUpgrade, runs the optional callback function, then polls until it's completed
+func (c ApplicationClient) ResumeUpgradeCallbackThenPoll(ctx context.Context, id ApplicationId, input RuntimeResumeApplicationUpgradeParameters, callback func() error) error {
 	result, err := c.ResumeUpgrade(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ResumeUpgrade: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

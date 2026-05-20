@@ -56,9 +56,20 @@ func (c TriggersClient) TriggerStartTrigger(ctx context.Context, id TriggerId) (
 
 // TriggerStartTriggerThenPoll performs TriggerStartTrigger then polls until it's completed
 func (c TriggersClient) TriggerStartTriggerThenPoll(ctx context.Context, id TriggerId) error {
+	return c.TriggerStartTriggerCallbackThenPoll(ctx, id, nil)
+}
+
+// TriggerStartTriggerCallbackThenPoll performs TriggerStartTrigger, runs the optional callback function, then polls until it's completed
+func (c TriggersClient) TriggerStartTriggerCallbackThenPoll(ctx context.Context, id TriggerId, callback func() error) error {
 	result, err := c.TriggerStartTrigger(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing TriggerStartTrigger: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

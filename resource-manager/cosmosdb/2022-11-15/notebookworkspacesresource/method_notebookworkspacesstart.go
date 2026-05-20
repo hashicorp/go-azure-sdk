@@ -57,9 +57,20 @@ func (c NotebookWorkspacesResourceClient) NotebookWorkspacesStart(ctx context.Co
 
 // NotebookWorkspacesStartThenPoll performs NotebookWorkspacesStart then polls until it's completed
 func (c NotebookWorkspacesResourceClient) NotebookWorkspacesStartThenPoll(ctx context.Context, id DatabaseAccountId) error {
+	return c.NotebookWorkspacesStartCallbackThenPoll(ctx, id, nil)
+}
+
+// NotebookWorkspacesStartCallbackThenPoll performs NotebookWorkspacesStart, runs the optional callback function, then polls until it's completed
+func (c NotebookWorkspacesResourceClient) NotebookWorkspacesStartCallbackThenPoll(ctx context.Context, id DatabaseAccountId, callback func() error) error {
 	result, err := c.NotebookWorkspacesStart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing NotebookWorkspacesStart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

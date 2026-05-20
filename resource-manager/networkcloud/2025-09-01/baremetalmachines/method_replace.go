@@ -60,9 +60,20 @@ func (c BareMetalMachinesClient) Replace(ctx context.Context, id BareMetalMachin
 
 // ReplaceThenPoll performs Replace then polls until it's completed
 func (c BareMetalMachinesClient) ReplaceThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachineReplaceParameters) error {
+	return c.ReplaceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ReplaceCallbackThenPoll performs Replace, runs the optional callback function, then polls until it's completed
+func (c BareMetalMachinesClient) ReplaceCallbackThenPoll(ctx context.Context, id BareMetalMachineId, input BareMetalMachineReplaceParameters, callback func() error) error {
 	result, err := c.Replace(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Replace: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

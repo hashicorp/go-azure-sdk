@@ -37,9 +37,20 @@ func (c ValidateOperationClient) Trigger(ctx context.Context, id VaultId, input 
 
 // TriggerThenPoll performs Trigger then polls until it's completed
 func (c ValidateOperationClient) TriggerThenPoll(ctx context.Context, id VaultId, input ValidateOperationRequestResource) error {
+	return c.TriggerCallbackThenPoll(ctx, id, input, nil)
+}
+
+// TriggerCallbackThenPoll performs Trigger, runs the optional callback function, then polls until it's completed
+func (c ValidateOperationClient) TriggerCallbackThenPoll(ctx context.Context, id VaultId, input ValidateOperationRequestResource, callback func() error) error {
 	result, err := c.Trigger(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Trigger: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {

@@ -61,9 +61,20 @@ func (c ServiceGatewaysClient) UpdateAddressLocations(ctx context.Context, id Se
 
 // UpdateAddressLocationsThenPoll performs UpdateAddressLocations then polls until it's completed
 func (c ServiceGatewaysClient) UpdateAddressLocationsThenPoll(ctx context.Context, id ServiceGatewayId, input ServiceGatewayUpdateAddressLocationsRequest) error {
+	return c.UpdateAddressLocationsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateAddressLocationsCallbackThenPoll performs UpdateAddressLocations, runs the optional callback function, then polls until it's completed
+func (c ServiceGatewaysClient) UpdateAddressLocationsCallbackThenPoll(ctx context.Context, id ServiceGatewayId, input ServiceGatewayUpdateAddressLocationsRequest, callback func() error) error {
 	result, err := c.UpdateAddressLocations(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateAddressLocations: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

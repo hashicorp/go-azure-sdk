@@ -62,9 +62,20 @@ func (c SchemaRegistriesClient) CreateOrReplace(ctx context.Context, id SchemaRe
 
 // CreateOrReplaceThenPoll performs CreateOrReplace then polls until it's completed
 func (c SchemaRegistriesClient) CreateOrReplaceThenPoll(ctx context.Context, id SchemaRegistryId, input SchemaRegistry) error {
+	return c.CreateOrReplaceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrReplaceCallbackThenPoll performs CreateOrReplace, runs the optional callback function, then polls until it's completed
+func (c SchemaRegistriesClient) CreateOrReplaceCallbackThenPoll(ctx context.Context, id SchemaRegistryId, input SchemaRegistry, callback func() error) error {
 	result, err := c.CreateOrReplace(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrReplace: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

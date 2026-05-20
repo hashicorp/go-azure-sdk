@@ -61,9 +61,20 @@ func (c AdministrationsClient) PreFullBackup(ctx context.Context, input PreBacku
 
 // PreFullBackupThenPoll performs PreFullBackup then polls until it's completed
 func (c AdministrationsClient) PreFullBackupThenPoll(ctx context.Context, input PreBackupOperationParameters) error {
+	return c.PreFullBackupCallbackThenPoll(ctx, input, nil)
+}
+
+// PreFullBackupCallbackThenPoll performs PreFullBackup, runs the optional callback function, then polls until it's completed
+func (c AdministrationsClient) PreFullBackupCallbackThenPoll(ctx context.Context, input PreBackupOperationParameters, callback func() error) error {
 	result, err := c.PreFullBackup(ctx, input)
 	if err != nil {
 		return fmt.Errorf("performing PreFullBackup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

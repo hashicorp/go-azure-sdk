@@ -56,9 +56,20 @@ func (c StorageAppliancesClient) DisableRemoteVendorManagement(ctx context.Conte
 
 // DisableRemoteVendorManagementThenPoll performs DisableRemoteVendorManagement then polls until it's completed
 func (c StorageAppliancesClient) DisableRemoteVendorManagementThenPoll(ctx context.Context, id StorageApplianceId) error {
+	return c.DisableRemoteVendorManagementCallbackThenPoll(ctx, id, nil)
+}
+
+// DisableRemoteVendorManagementCallbackThenPoll performs DisableRemoteVendorManagement, runs the optional callback function, then polls until it's completed
+func (c StorageAppliancesClient) DisableRemoteVendorManagementCallbackThenPoll(ctx context.Context, id StorageApplianceId, callback func() error) error {
 	result, err := c.DisableRemoteVendorManagement(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing DisableRemoteVendorManagement: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

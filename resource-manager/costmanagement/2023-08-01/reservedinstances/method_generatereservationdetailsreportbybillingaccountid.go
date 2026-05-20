@@ -91,9 +91,20 @@ func (c ReservedInstancesClient) GenerateReservationDetailsReportByBillingAccoun
 
 // GenerateReservationDetailsReportByBillingAccountIdThenPoll performs GenerateReservationDetailsReportByBillingAccountId then polls until it's completed
 func (c ReservedInstancesClient) GenerateReservationDetailsReportByBillingAccountIdThenPoll(ctx context.Context, id BillingAccountId, options GenerateReservationDetailsReportByBillingAccountIdOperationOptions) error {
+	return c.GenerateReservationDetailsReportByBillingAccountIdCallbackThenPoll(ctx, id, options, nil)
+}
+
+// GenerateReservationDetailsReportByBillingAccountIdCallbackThenPoll performs GenerateReservationDetailsReportByBillingAccountId, runs the optional callback function, then polls until it's completed
+func (c ReservedInstancesClient) GenerateReservationDetailsReportByBillingAccountIdCallbackThenPoll(ctx context.Context, id BillingAccountId, options GenerateReservationDetailsReportByBillingAccountIdOperationOptions, callback func() error) error {
 	result, err := c.GenerateReservationDetailsReportByBillingAccountId(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing GenerateReservationDetailsReportByBillingAccountId: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

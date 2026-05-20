@@ -62,9 +62,20 @@ func (c LongTermRetentionBackupsClient) CopyByResourceGroup(ctx context.Context,
 
 // CopyByResourceGroupThenPoll performs CopyByResourceGroup then polls until it's completed
 func (c LongTermRetentionBackupsClient) CopyByResourceGroupThenPoll(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionBackupId, input CopyLongTermRetentionBackupParameters) error {
+	return c.CopyByResourceGroupCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CopyByResourceGroupCallbackThenPoll performs CopyByResourceGroup, runs the optional callback function, then polls until it's completed
+func (c LongTermRetentionBackupsClient) CopyByResourceGroupCallbackThenPoll(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionBackupId, input CopyLongTermRetentionBackupParameters, callback func() error) error {
 	result, err := c.CopyByResourceGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CopyByResourceGroup: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

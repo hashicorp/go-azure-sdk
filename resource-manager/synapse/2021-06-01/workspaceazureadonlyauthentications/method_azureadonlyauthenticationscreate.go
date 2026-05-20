@@ -63,9 +63,20 @@ func (c WorkspaceAzureADOnlyAuthenticationsClient) AzureADOnlyAuthenticationsCre
 
 // AzureADOnlyAuthenticationsCreateThenPoll performs AzureADOnlyAuthenticationsCreate then polls until it's completed
 func (c WorkspaceAzureADOnlyAuthenticationsClient) AzureADOnlyAuthenticationsCreateThenPoll(ctx context.Context, id WorkspaceId, input AzureADOnlyAuthentication) error {
+	return c.AzureADOnlyAuthenticationsCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AzureADOnlyAuthenticationsCreateCallbackThenPoll performs AzureADOnlyAuthenticationsCreate, runs the optional callback function, then polls until it's completed
+func (c WorkspaceAzureADOnlyAuthenticationsClient) AzureADOnlyAuthenticationsCreateCallbackThenPoll(ctx context.Context, id WorkspaceId, input AzureADOnlyAuthentication, callback func() error) error {
 	result, err := c.AzureADOnlyAuthenticationsCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AzureADOnlyAuthenticationsCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

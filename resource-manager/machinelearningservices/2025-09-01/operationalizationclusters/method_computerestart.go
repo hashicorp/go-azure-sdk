@@ -56,9 +56,20 @@ func (c OperationalizationClustersClient) ComputeRestart(ctx context.Context, id
 
 // ComputeRestartThenPoll performs ComputeRestart then polls until it's completed
 func (c OperationalizationClustersClient) ComputeRestartThenPoll(ctx context.Context, id ComputeId) error {
+	return c.ComputeRestartCallbackThenPoll(ctx, id, nil)
+}
+
+// ComputeRestartCallbackThenPoll performs ComputeRestart, runs the optional callback function, then polls until it's completed
+func (c OperationalizationClustersClient) ComputeRestartCallbackThenPoll(ctx context.Context, id ComputeId, callback func() error) error {
 	result, err := c.ComputeRestart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ComputeRestart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

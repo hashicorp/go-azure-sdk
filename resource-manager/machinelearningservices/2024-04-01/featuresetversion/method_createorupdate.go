@@ -62,9 +62,20 @@ func (c FeaturesetVersionClient) CreateOrUpdate(ctx context.Context, id FeatureS
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
 func (c FeaturesetVersionClient) CreateOrUpdateThenPoll(ctx context.Context, id FeatureSetVersionId, input FeaturesetVersionResource) error {
+	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c FeaturesetVersionClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id FeatureSetVersionId, input FeaturesetVersionResource, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

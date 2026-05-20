@@ -85,9 +85,20 @@ func (c TrafficFilterClient) DetachTrafficFilterUpdate(ctx context.Context, id M
 
 // DetachTrafficFilterUpdateThenPoll performs DetachTrafficFilterUpdate then polls until it's completed
 func (c TrafficFilterClient) DetachTrafficFilterUpdateThenPoll(ctx context.Context, id MonitorId, options DetachTrafficFilterUpdateOperationOptions) error {
+	return c.DetachTrafficFilterUpdateCallbackThenPoll(ctx, id, options, nil)
+}
+
+// DetachTrafficFilterUpdateCallbackThenPoll performs DetachTrafficFilterUpdate, runs the optional callback function, then polls until it's completed
+func (c TrafficFilterClient) DetachTrafficFilterUpdateCallbackThenPoll(ctx context.Context, id MonitorId, options DetachTrafficFilterUpdateOperationOptions, callback func() error) error {
 	result, err := c.DetachTrafficFilterUpdate(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing DetachTrafficFilterUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

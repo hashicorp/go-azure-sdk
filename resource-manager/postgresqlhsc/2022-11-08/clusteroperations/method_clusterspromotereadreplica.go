@@ -56,9 +56,20 @@ func (c ClusterOperationsClient) ClustersPromoteReadReplica(ctx context.Context,
 
 // ClustersPromoteReadReplicaThenPoll performs ClustersPromoteReadReplica then polls until it's completed
 func (c ClusterOperationsClient) ClustersPromoteReadReplicaThenPoll(ctx context.Context, id ServerGroupsv2Id) error {
+	return c.ClustersPromoteReadReplicaCallbackThenPoll(ctx, id, nil)
+}
+
+// ClustersPromoteReadReplicaCallbackThenPoll performs ClustersPromoteReadReplica, runs the optional callback function, then polls until it's completed
+func (c ClusterOperationsClient) ClustersPromoteReadReplicaCallbackThenPoll(ctx context.Context, id ServerGroupsv2Id, callback func() error) error {
 	result, err := c.ClustersPromoteReadReplica(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ClustersPromoteReadReplica: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

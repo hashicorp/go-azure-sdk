@@ -62,9 +62,20 @@ func (c ReplicationMigrationItemsClient) ResumeReplication(ctx context.Context, 
 
 // ResumeReplicationThenPoll performs ResumeReplication then polls until it's completed
 func (c ReplicationMigrationItemsClient) ResumeReplicationThenPoll(ctx context.Context, id ReplicationMigrationItemId, input ResumeReplicationInput) error {
+	return c.ResumeReplicationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ResumeReplicationCallbackThenPoll performs ResumeReplication, runs the optional callback function, then polls until it's completed
+func (c ReplicationMigrationItemsClient) ResumeReplicationCallbackThenPoll(ctx context.Context, id ReplicationMigrationItemId, input ResumeReplicationInput, callback func() error) error {
 	result, err := c.ResumeReplication(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ResumeReplication: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

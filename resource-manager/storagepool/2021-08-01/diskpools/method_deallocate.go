@@ -57,9 +57,20 @@ func (c DiskPoolsClient) Deallocate(ctx context.Context, id DiskPoolId) (result 
 
 // DeallocateThenPoll performs Deallocate then polls until it's completed
 func (c DiskPoolsClient) DeallocateThenPoll(ctx context.Context, id DiskPoolId) error {
+	return c.DeallocateCallbackThenPoll(ctx, id, nil)
+}
+
+// DeallocateCallbackThenPoll performs Deallocate, runs the optional callback function, then polls until it's completed
+func (c DiskPoolsClient) DeallocateCallbackThenPoll(ctx context.Context, id DiskPoolId, callback func() error) error {
 	result, err := c.Deallocate(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Deallocate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

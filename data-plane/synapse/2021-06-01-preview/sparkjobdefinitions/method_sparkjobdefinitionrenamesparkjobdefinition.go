@@ -61,9 +61,20 @@ func (c SparkJobDefinitionsClient) SparkJobDefinitionRenameSparkJobDefinition(ct
 
 // SparkJobDefinitionRenameSparkJobDefinitionThenPoll performs SparkJobDefinitionRenameSparkJobDefinition then polls until it's completed
 func (c SparkJobDefinitionsClient) SparkJobDefinitionRenameSparkJobDefinitionThenPoll(ctx context.Context, id SparkJobDefinitionId, input ArtifactRenameRequest) error {
+	return c.SparkJobDefinitionRenameSparkJobDefinitionCallbackThenPoll(ctx, id, input, nil)
+}
+
+// SparkJobDefinitionRenameSparkJobDefinitionCallbackThenPoll performs SparkJobDefinitionRenameSparkJobDefinition, runs the optional callback function, then polls until it's completed
+func (c SparkJobDefinitionsClient) SparkJobDefinitionRenameSparkJobDefinitionCallbackThenPoll(ctx context.Context, id SparkJobDefinitionId, input ArtifactRenameRequest, callback func() error) error {
 	result, err := c.SparkJobDefinitionRenameSparkJobDefinition(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SparkJobDefinitionRenameSparkJobDefinition: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

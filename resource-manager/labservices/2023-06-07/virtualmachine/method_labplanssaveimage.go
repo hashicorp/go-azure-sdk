@@ -61,9 +61,20 @@ func (c VirtualMachineClient) LabPlansSaveImage(ctx context.Context, id LabPlanI
 
 // LabPlansSaveImageThenPoll performs LabPlansSaveImage then polls until it's completed
 func (c VirtualMachineClient) LabPlansSaveImageThenPoll(ctx context.Context, id LabPlanId, input SaveImageBody) error {
+	return c.LabPlansSaveImageCallbackThenPoll(ctx, id, input, nil)
+}
+
+// LabPlansSaveImageCallbackThenPoll performs LabPlansSaveImage, runs the optional callback function, then polls until it's completed
+func (c VirtualMachineClient) LabPlansSaveImageCallbackThenPoll(ctx context.Context, id LabPlanId, input SaveImageBody, callback func() error) error {
 	result, err := c.LabPlansSaveImage(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing LabPlansSaveImage: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

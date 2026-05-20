@@ -62,9 +62,20 @@ func (c ShareSubscriptionClient) CancelSynchronization(ctx context.Context, id S
 
 // CancelSynchronizationThenPoll performs CancelSynchronization then polls until it's completed
 func (c ShareSubscriptionClient) CancelSynchronizationThenPoll(ctx context.Context, id ShareSubscriptionId, input ShareSubscriptionSynchronization) error {
+	return c.CancelSynchronizationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// CancelSynchronizationCallbackThenPoll performs CancelSynchronization, runs the optional callback function, then polls until it's completed
+func (c ShareSubscriptionClient) CancelSynchronizationCallbackThenPoll(ctx context.Context, id ShareSubscriptionId, input ShareSubscriptionSynchronization, callback func() error) error {
 	result, err := c.CancelSynchronization(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CancelSynchronization: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

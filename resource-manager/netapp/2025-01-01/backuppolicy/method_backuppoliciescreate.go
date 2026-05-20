@@ -63,9 +63,20 @@ func (c BackupPolicyClient) BackupPoliciesCreate(ctx context.Context, id BackupP
 
 // BackupPoliciesCreateThenPoll performs BackupPoliciesCreate then polls until it's completed
 func (c BackupPolicyClient) BackupPoliciesCreateThenPoll(ctx context.Context, id BackupPolicyId, input BackupPolicy) error {
+	return c.BackupPoliciesCreateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// BackupPoliciesCreateCallbackThenPoll performs BackupPoliciesCreate, runs the optional callback function, then polls until it's completed
+func (c BackupPolicyClient) BackupPoliciesCreateCallbackThenPoll(ctx context.Context, id BackupPolicyId, input BackupPolicy, callback func() error) error {
 	result, err := c.BackupPoliciesCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing BackupPoliciesCreate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

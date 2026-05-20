@@ -62,9 +62,20 @@ func (c TenantConfigurationClient) Validate(ctx context.Context, id ServiceId, i
 
 // ValidateThenPoll performs Validate then polls until it's completed
 func (c TenantConfigurationClient) ValidateThenPoll(ctx context.Context, id ServiceId, input DeployConfigurationParameters) error {
+	return c.ValidateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ValidateCallbackThenPoll performs Validate, runs the optional callback function, then polls until it's completed
+func (c TenantConfigurationClient) ValidateCallbackThenPoll(ctx context.Context, id ServiceId, input DeployConfigurationParameters, callback func() error) error {
 	result, err := c.Validate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Validate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

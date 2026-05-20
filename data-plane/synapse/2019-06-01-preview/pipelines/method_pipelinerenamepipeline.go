@@ -61,9 +61,20 @@ func (c PipelinesClient) PipelineRenamePipeline(ctx context.Context, id Pipeline
 
 // PipelineRenamePipelineThenPoll performs PipelineRenamePipeline then polls until it's completed
 func (c PipelinesClient) PipelineRenamePipelineThenPoll(ctx context.Context, id PipelineId, input ArtifactRenameRequest) error {
+	return c.PipelineRenamePipelineCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PipelineRenamePipelineCallbackThenPoll performs PipelineRenamePipeline, runs the optional callback function, then polls until it's completed
+func (c PipelinesClient) PipelineRenamePipelineCallbackThenPoll(ctx context.Context, id PipelineId, input ArtifactRenameRequest, callback func() error) error {
 	result, err := c.PipelineRenamePipeline(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PipelineRenamePipeline: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

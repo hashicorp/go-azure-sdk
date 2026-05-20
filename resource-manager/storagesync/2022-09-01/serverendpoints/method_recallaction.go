@@ -61,9 +61,20 @@ func (c ServerEndpointsClient) RecallAction(ctx context.Context, id ServerEndpoi
 
 // RecallActionThenPoll performs RecallAction then polls until it's completed
 func (c ServerEndpointsClient) RecallActionThenPoll(ctx context.Context, id ServerEndpointId, input RecallActionParameters) error {
+	return c.RecallActionCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RecallActionCallbackThenPoll performs RecallAction, runs the optional callback function, then polls until it's completed
+func (c ServerEndpointsClient) RecallActionCallbackThenPoll(ctx context.Context, id ServerEndpointId, input RecallActionParameters, callback func() error) error {
 	result, err := c.RecallAction(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RecallAction: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

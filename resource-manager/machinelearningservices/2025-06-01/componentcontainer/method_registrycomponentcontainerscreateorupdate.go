@@ -62,9 +62,20 @@ func (c ComponentContainerClient) RegistryComponentContainersCreateOrUpdate(ctx 
 
 // RegistryComponentContainersCreateOrUpdateThenPoll performs RegistryComponentContainersCreateOrUpdate then polls until it's completed
 func (c ComponentContainerClient) RegistryComponentContainersCreateOrUpdateThenPoll(ctx context.Context, id RegistryComponentId, input ComponentContainerResource) error {
+	return c.RegistryComponentContainersCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// RegistryComponentContainersCreateOrUpdateCallbackThenPoll performs RegistryComponentContainersCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c ComponentContainerClient) RegistryComponentContainersCreateOrUpdateCallbackThenPoll(ctx context.Context, id RegistryComponentId, input ComponentContainerResource, callback func() error) error {
 	result, err := c.RegistryComponentContainersCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RegistryComponentContainersCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

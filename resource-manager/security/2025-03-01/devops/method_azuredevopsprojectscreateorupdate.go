@@ -62,9 +62,20 @@ func (c DevOpsClient) AzureDevOpsProjectsCreateOrUpdate(ctx context.Context, id 
 
 // AzureDevOpsProjectsCreateOrUpdateThenPoll performs AzureDevOpsProjectsCreateOrUpdate then polls until it's completed
 func (c DevOpsClient) AzureDevOpsProjectsCreateOrUpdateThenPoll(ctx context.Context, id ProjectId, input AzureDevOpsProject) error {
+	return c.AzureDevOpsProjectsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// AzureDevOpsProjectsCreateOrUpdateCallbackThenPoll performs AzureDevOpsProjectsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c DevOpsClient) AzureDevOpsProjectsCreateOrUpdateCallbackThenPoll(ctx context.Context, id ProjectId, input AzureDevOpsProject, callback func() error) error {
 	result, err := c.AzureDevOpsProjectsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing AzureDevOpsProjectsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

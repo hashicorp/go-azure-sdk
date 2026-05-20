@@ -80,9 +80,20 @@ func (c ManagedNetworkClient) OutboundRulesPost(ctx context.Context, id ManagedN
 
 // OutboundRulesPostThenPoll performs OutboundRulesPost then polls until it's completed
 func (c ManagedNetworkClient) OutboundRulesPostThenPoll(ctx context.Context, id ManagedNetworkId, input ManagedNetworkSettingsBasicResource) error {
+	return c.OutboundRulesPostCallbackThenPoll(ctx, id, input, nil)
+}
+
+// OutboundRulesPostCallbackThenPoll performs OutboundRulesPost, runs the optional callback function, then polls until it's completed
+func (c ManagedNetworkClient) OutboundRulesPostCallbackThenPoll(ctx context.Context, id ManagedNetworkId, input ManagedNetworkSettingsBasicResource, callback func() error) error {
 	result, err := c.OutboundRulesPost(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing OutboundRulesPost: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

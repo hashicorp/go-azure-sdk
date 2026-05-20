@@ -62,9 +62,20 @@ func (c ResubscribeClient) MonitorsResubscribe(ctx context.Context, id MonitorId
 
 // MonitorsResubscribeThenPoll performs MonitorsResubscribe then polls until it's completed
 func (c ResubscribeClient) MonitorsResubscribeThenPoll(ctx context.Context, id MonitorId, input ResubscribeProperties) error {
+	return c.MonitorsResubscribeCallbackThenPoll(ctx, id, input, nil)
+}
+
+// MonitorsResubscribeCallbackThenPoll performs MonitorsResubscribe, runs the optional callback function, then polls until it's completed
+func (c ResubscribeClient) MonitorsResubscribeCallbackThenPoll(ctx context.Context, id MonitorId, input ResubscribeProperties, callback func() error) error {
 	result, err := c.MonitorsResubscribe(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing MonitorsResubscribe: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

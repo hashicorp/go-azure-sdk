@@ -62,9 +62,20 @@ func (c IPFirewallRulesClient) ReplaceAll(ctx context.Context, id WorkspaceId, i
 
 // ReplaceAllThenPoll performs ReplaceAll then polls until it's completed
 func (c IPFirewallRulesClient) ReplaceAllThenPoll(ctx context.Context, id WorkspaceId, input ReplaceAllIPFirewallRulesRequest) error {
+	return c.ReplaceAllCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ReplaceAllCallbackThenPoll performs ReplaceAll, runs the optional callback function, then polls until it's completed
+func (c IPFirewallRulesClient) ReplaceAllCallbackThenPoll(ctx context.Context, id WorkspaceId, input ReplaceAllIPFirewallRulesRequest, callback func() error) error {
 	result, err := c.ReplaceAll(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ReplaceAll: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

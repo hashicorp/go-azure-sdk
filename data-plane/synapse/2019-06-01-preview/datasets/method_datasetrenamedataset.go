@@ -61,9 +61,20 @@ func (c DatasetsClient) DatasetRenameDataset(ctx context.Context, id DatasetId, 
 
 // DatasetRenameDatasetThenPoll performs DatasetRenameDataset then polls until it's completed
 func (c DatasetsClient) DatasetRenameDatasetThenPoll(ctx context.Context, id DatasetId, input ArtifactRenameRequest) error {
+	return c.DatasetRenameDatasetCallbackThenPoll(ctx, id, input, nil)
+}
+
+// DatasetRenameDatasetCallbackThenPoll performs DatasetRenameDataset, runs the optional callback function, then polls until it's completed
+func (c DatasetsClient) DatasetRenameDatasetCallbackThenPoll(ctx context.Context, id DatasetId, input ArtifactRenameRequest, callback func() error) error {
 	result, err := c.DatasetRenameDataset(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing DatasetRenameDataset: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

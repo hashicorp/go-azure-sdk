@@ -57,9 +57,20 @@ func (c ServerRestartClient) ServersRestart(ctx context.Context, id ServerId) (r
 
 // ServersRestartThenPoll performs ServersRestart then polls until it's completed
 func (c ServerRestartClient) ServersRestartThenPoll(ctx context.Context, id ServerId) error {
+	return c.ServersRestartCallbackThenPoll(ctx, id, nil)
+}
+
+// ServersRestartCallbackThenPoll performs ServersRestart, runs the optional callback function, then polls until it's completed
+func (c ServerRestartClient) ServersRestartCallbackThenPoll(ctx context.Context, id ServerId, callback func() error) error {
 	result, err := c.ServersRestart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ServersRestart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

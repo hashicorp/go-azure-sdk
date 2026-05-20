@@ -62,9 +62,20 @@ func (c GroupQuotaLimitListsClient) GroupQuotaLimitsRequestUpdate(ctx context.Co
 
 // GroupQuotaLimitsRequestUpdateThenPoll performs GroupQuotaLimitsRequestUpdate then polls until it's completed
 func (c GroupQuotaLimitListsClient) GroupQuotaLimitsRequestUpdateThenPoll(ctx context.Context, id GroupQuotaLimitId, input GroupQuotaLimitList) error {
+	return c.GroupQuotaLimitsRequestUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// GroupQuotaLimitsRequestUpdateCallbackThenPoll performs GroupQuotaLimitsRequestUpdate, runs the optional callback function, then polls until it's completed
+func (c GroupQuotaLimitListsClient) GroupQuotaLimitsRequestUpdateCallbackThenPoll(ctx context.Context, id GroupQuotaLimitId, input GroupQuotaLimitList, callback func() error) error {
 	result, err := c.GroupQuotaLimitsRequestUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing GroupQuotaLimitsRequestUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

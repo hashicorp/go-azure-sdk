@@ -61,9 +61,20 @@ func (c LinkedServicesClient) LinkedServiceRenameLinkedService(ctx context.Conte
 
 // LinkedServiceRenameLinkedServiceThenPoll performs LinkedServiceRenameLinkedService then polls until it's completed
 func (c LinkedServicesClient) LinkedServiceRenameLinkedServiceThenPoll(ctx context.Context, id LinkedServiceId, input ArtifactRenameRequest) error {
+	return c.LinkedServiceRenameLinkedServiceCallbackThenPoll(ctx, id, input, nil)
+}
+
+// LinkedServiceRenameLinkedServiceCallbackThenPoll performs LinkedServiceRenameLinkedService, runs the optional callback function, then polls until it's completed
+func (c LinkedServicesClient) LinkedServiceRenameLinkedServiceCallbackThenPoll(ctx context.Context, id LinkedServiceId, input ArtifactRenameRequest, callback func() error) error {
 	result, err := c.LinkedServiceRenameLinkedService(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing LinkedServiceRenameLinkedService: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

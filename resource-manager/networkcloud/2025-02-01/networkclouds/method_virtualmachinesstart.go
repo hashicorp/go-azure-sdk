@@ -56,9 +56,20 @@ func (c NetworkcloudsClient) VirtualMachinesStart(ctx context.Context, id Virtua
 
 // VirtualMachinesStartThenPoll performs VirtualMachinesStart then polls until it's completed
 func (c NetworkcloudsClient) VirtualMachinesStartThenPoll(ctx context.Context, id VirtualMachineId) error {
+	return c.VirtualMachinesStartCallbackThenPoll(ctx, id, nil)
+}
+
+// VirtualMachinesStartCallbackThenPoll performs VirtualMachinesStart, runs the optional callback function, then polls until it's completed
+func (c NetworkcloudsClient) VirtualMachinesStartCallbackThenPoll(ctx context.Context, id VirtualMachineId, callback func() error) error {
 	result, err := c.VirtualMachinesStart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing VirtualMachinesStart: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

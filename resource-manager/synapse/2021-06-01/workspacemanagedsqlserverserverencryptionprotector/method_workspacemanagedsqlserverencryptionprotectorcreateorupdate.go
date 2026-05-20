@@ -62,9 +62,20 @@ func (c WorkspaceManagedSqlServerServerEncryptionProtectorClient) WorkspaceManag
 
 // WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdateThenPoll performs WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdate then polls until it's completed
 func (c WorkspaceManagedSqlServerServerEncryptionProtectorClient) WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdateThenPoll(ctx context.Context, id WorkspaceId, input EncryptionProtector) error {
+	return c.WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
+}
+
+// WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdateCallbackThenPoll performs WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c WorkspaceManagedSqlServerServerEncryptionProtectorClient) WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdateCallbackThenPoll(ctx context.Context, id WorkspaceId, input EncryptionProtector, callback func() error) error {
 	result, err := c.WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

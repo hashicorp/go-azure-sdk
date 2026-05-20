@@ -60,9 +60,20 @@ func (c ClustersClient) ContinueUpdateVersion(ctx context.Context, id ClusterId,
 
 // ContinueUpdateVersionThenPoll performs ContinueUpdateVersion then polls until it's completed
 func (c ClustersClient) ContinueUpdateVersionThenPoll(ctx context.Context, id ClusterId, input ClusterContinueUpdateVersionParameters) error {
+	return c.ContinueUpdateVersionCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ContinueUpdateVersionCallbackThenPoll performs ContinueUpdateVersion, runs the optional callback function, then polls until it's completed
+func (c ClustersClient) ContinueUpdateVersionCallbackThenPoll(ctx context.Context, id ClusterId, input ClusterContinueUpdateVersionParameters, callback func() error) error {
 	result, err := c.ContinueUpdateVersion(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ContinueUpdateVersion: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

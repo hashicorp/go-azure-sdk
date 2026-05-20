@@ -62,9 +62,20 @@ func (c DiagnosticSettingsClient) UpdateDiagnosticProactiveLogCollectionSettings
 
 // UpdateDiagnosticProactiveLogCollectionSettingsThenPoll performs UpdateDiagnosticProactiveLogCollectionSettings then polls until it's completed
 func (c DiagnosticSettingsClient) UpdateDiagnosticProactiveLogCollectionSettingsThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input DiagnosticProactiveLogCollectionSettings) error {
+	return c.UpdateDiagnosticProactiveLogCollectionSettingsCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateDiagnosticProactiveLogCollectionSettingsCallbackThenPoll performs UpdateDiagnosticProactiveLogCollectionSettings, runs the optional callback function, then polls until it's completed
+func (c DiagnosticSettingsClient) UpdateDiagnosticProactiveLogCollectionSettingsCallbackThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input DiagnosticProactiveLogCollectionSettings, callback func() error) error {
 	result, err := c.UpdateDiagnosticProactiveLogCollectionSettings(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateDiagnosticProactiveLogCollectionSettings: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

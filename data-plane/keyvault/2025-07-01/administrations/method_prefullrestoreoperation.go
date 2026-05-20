@@ -61,9 +61,20 @@ func (c AdministrationsClient) PreFullRestoreOperation(ctx context.Context, inpu
 
 // PreFullRestoreOperationThenPoll performs PreFullRestoreOperation then polls until it's completed
 func (c AdministrationsClient) PreFullRestoreOperationThenPoll(ctx context.Context, input PreRestoreOperationParameters) error {
+	return c.PreFullRestoreOperationCallbackThenPoll(ctx, input, nil)
+}
+
+// PreFullRestoreOperationCallbackThenPoll performs PreFullRestoreOperation, runs the optional callback function, then polls until it's completed
+func (c AdministrationsClient) PreFullRestoreOperationCallbackThenPoll(ctx context.Context, input PreRestoreOperationParameters, callback func() error) error {
 	result, err := c.PreFullRestoreOperation(ctx, input)
 	if err != nil {
 		return fmt.Errorf("performing PreFullRestoreOperation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

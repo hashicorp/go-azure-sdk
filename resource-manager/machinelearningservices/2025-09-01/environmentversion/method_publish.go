@@ -61,9 +61,20 @@ func (c EnvironmentVersionClient) Publish(ctx context.Context, id EnvironmentVer
 
 // PublishThenPoll performs Publish then polls until it's completed
 func (c EnvironmentVersionClient) PublishThenPoll(ctx context.Context, id EnvironmentVersionId, input DestinationAsset) error {
+	return c.PublishCallbackThenPoll(ctx, id, input, nil)
+}
+
+// PublishCallbackThenPoll performs Publish, runs the optional callback function, then polls until it's completed
+func (c EnvironmentVersionClient) PublishCallbackThenPoll(ctx context.Context, id EnvironmentVersionId, input DestinationAsset, callback func() error) error {
 	result, err := c.Publish(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Publish: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

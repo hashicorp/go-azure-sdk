@@ -91,9 +91,20 @@ func (c DatasetsClient) DatasetCreateOrUpdateDataset(ctx context.Context, id Dat
 
 // DatasetCreateOrUpdateDatasetThenPoll performs DatasetCreateOrUpdateDataset then polls until it's completed
 func (c DatasetsClient) DatasetCreateOrUpdateDatasetThenPoll(ctx context.Context, id DatasetId, input DatasetResource, options DatasetCreateOrUpdateDatasetOperationOptions) error {
+	return c.DatasetCreateOrUpdateDatasetCallbackThenPoll(ctx, id, input, options, nil)
+}
+
+// DatasetCreateOrUpdateDatasetCallbackThenPoll performs DatasetCreateOrUpdateDataset, runs the optional callback function, then polls until it's completed
+func (c DatasetsClient) DatasetCreateOrUpdateDatasetCallbackThenPoll(ctx context.Context, id DatasetId, input DatasetResource, options DatasetCreateOrUpdateDatasetOperationOptions, callback func() error) error {
 	result, err := c.DatasetCreateOrUpdateDataset(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing DatasetCreateOrUpdateDataset: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

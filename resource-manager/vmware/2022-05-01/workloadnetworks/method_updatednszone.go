@@ -62,9 +62,20 @@ func (c WorkloadNetworksClient) UpdateDnsZone(ctx context.Context, id DnsZoneId,
 
 // UpdateDnsZoneThenPoll performs UpdateDnsZone then polls until it's completed
 func (c WorkloadNetworksClient) UpdateDnsZoneThenPoll(ctx context.Context, id DnsZoneId, input WorkloadNetworkDnsZone) error {
+	return c.UpdateDnsZoneCallbackThenPoll(ctx, id, input, nil)
+}
+
+// UpdateDnsZoneCallbackThenPoll performs UpdateDnsZone, runs the optional callback function, then polls until it's completed
+func (c WorkloadNetworksClient) UpdateDnsZoneCallbackThenPoll(ctx context.Context, id DnsZoneId, input WorkloadNetworkDnsZone, callback func() error) error {
 	result, err := c.UpdateDnsZone(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateDnsZone: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

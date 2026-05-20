@@ -62,9 +62,20 @@ func (c LogAnalyticsClient) ExportRequestRateByInterval(ctx context.Context, id 
 
 // ExportRequestRateByIntervalThenPoll performs ExportRequestRateByInterval then polls until it's completed
 func (c LogAnalyticsClient) ExportRequestRateByIntervalThenPoll(ctx context.Context, id LocationId, input RequestRateByIntervalInput) error {
+	return c.ExportRequestRateByIntervalCallbackThenPoll(ctx, id, input, nil)
+}
+
+// ExportRequestRateByIntervalCallbackThenPoll performs ExportRequestRateByInterval, runs the optional callback function, then polls until it's completed
+func (c LogAnalyticsClient) ExportRequestRateByIntervalCallbackThenPoll(ctx context.Context, id LocationId, input RequestRateByIntervalInput, callback func() error) error {
 	result, err := c.ExportRequestRateByInterval(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ExportRequestRateByInterval: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

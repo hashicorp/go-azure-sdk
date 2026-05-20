@@ -57,9 +57,20 @@ func (c NamespacesNetworkSecurityPerimeterConfigurationsClient) NetworkSecurityP
 
 // NetworkSecurityPerimeterConfigurationsCreateOrUpdateThenPoll performs NetworkSecurityPerimeterConfigurationsCreateOrUpdate then polls until it's completed
 func (c NamespacesNetworkSecurityPerimeterConfigurationsClient) NetworkSecurityPerimeterConfigurationsCreateOrUpdateThenPoll(ctx context.Context, id NetworkSecurityPerimeterConfigurationId) error {
+	return c.NetworkSecurityPerimeterConfigurationsCreateOrUpdateCallbackThenPoll(ctx, id, nil)
+}
+
+// NetworkSecurityPerimeterConfigurationsCreateOrUpdateCallbackThenPoll performs NetworkSecurityPerimeterConfigurationsCreateOrUpdate, runs the optional callback function, then polls until it's completed
+func (c NamespacesNetworkSecurityPerimeterConfigurationsClient) NetworkSecurityPerimeterConfigurationsCreateOrUpdateCallbackThenPoll(ctx context.Context, id NetworkSecurityPerimeterConfigurationId, callback func() error) error {
 	result, err := c.NetworkSecurityPerimeterConfigurationsCreateOrUpdate(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing NetworkSecurityPerimeterConfigurationsCreateOrUpdate: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {

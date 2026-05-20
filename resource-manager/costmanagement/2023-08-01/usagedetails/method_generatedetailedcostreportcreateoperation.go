@@ -63,9 +63,20 @@ func (c UsageDetailsClient) GenerateDetailedCostReportCreateOperation(ctx contex
 
 // GenerateDetailedCostReportCreateOperationThenPoll performs GenerateDetailedCostReportCreateOperation then polls until it's completed
 func (c UsageDetailsClient) GenerateDetailedCostReportCreateOperationThenPoll(ctx context.Context, id commonids.ScopeId, input GenerateDetailedCostReportDefinition) error {
+	return c.GenerateDetailedCostReportCreateOperationCallbackThenPoll(ctx, id, input, nil)
+}
+
+// GenerateDetailedCostReportCreateOperationCallbackThenPoll performs GenerateDetailedCostReportCreateOperation, runs the optional callback function, then polls until it's completed
+func (c UsageDetailsClient) GenerateDetailedCostReportCreateOperationCallbackThenPoll(ctx context.Context, id commonids.ScopeId, input GenerateDetailedCostReportDefinition, callback func() error) error {
 	result, err := c.GenerateDetailedCostReportCreateOperation(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing GenerateDetailedCostReportCreateOperation: %+v", err)
+	}
+
+	if callback != nil {
+		if err := callback(); err != nil {
+			return fmt.Errorf("executing callback function: %+v", err)
+		}
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {
