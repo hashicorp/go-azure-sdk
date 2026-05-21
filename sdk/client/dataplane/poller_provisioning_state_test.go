@@ -7,6 +7,7 @@ import (
 	"context"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
 
@@ -261,5 +262,74 @@ func TestPollerProvisioningState_InStatus_Poll(t *testing.T) {
 		if actual.Status != expected {
 			t.Fatalf("expected %q but got %q", string(expected), string(actual.Status))
 		}
+	}
+}
+
+func TestPollerProvisioningState_VCRErrorHandling(t *testing.T) {
+	testCases := []struct {
+		name                     string
+		errMsg                   string
+		expectReplayMiss         bool
+		expectResultStatus       *pollers.PollingStatus
+		expectError              bool
+		expectDroppedConnections int
+	}{
+		{
+			name:                     "replay miss url error",
+			errMsg:                   client.VCRInteractionNotFoundErrMsg,
+			expectReplayMiss:         true,
+			expectError:              true,
+			expectDroppedConnections: 0,
+		},
+		{
+			name:                     "non retryable url error",
+			errMsg:                   "unsupported protocol scheme",
+			expectResultStatus:       func() *pollers.PollingStatus { s := pollers.PollingStatusUnknown; return &s }(),
+			expectDroppedConnections: 1,
+		},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			ctx, cancel := context.WithTimeout(context.Background(), 500*time.Millisecond)
+			defer cancel()
+
+			dataplaneClient := &Client{
+				Client:     client.NewClient("https://management.azure.com", "Example", "2020-01-01"),
+				ApiVersion: "2020-01-01",
+			}
+			dataplaneClient.SetTransport(errRoundTripper{errMsg: testCase.errMsg}, client.TransportModeVCRReplay)
+
+			poller := provisioningStatePoller{
+				apiVersion:            "2020-01-01",
+				client:                dataplaneClient,
+				initialRetryDuration:  10 * time.Millisecond,
+				originalUri:           "/provisioning-state/poll",
+				resourcePath:          "/provisioning-state/poll",
+				maxDroppedConnections: 3,
+			}
+
+			result, err := poller.Poll(ctx)
+			if testCase.expectError {
+				if err == nil {
+					t.Fatal("expected polling to return an error, but got no error")
+				}
+				if result != nil {
+					t.Fatalf("expected no poll result, got: %+v ,error %T (err=%v)", result, err, err)
+				}
+				if testCase.expectReplayMiss != client.IsVCRReplayMissError(err) {
+					t.Fatalf("expected IsVCRReplayMissError=%t, got %t (err=%v)", testCase.expectReplayMiss, client.IsVCRReplayMissError(err), err)
+				}
+				if !strings.Contains(err.Error(), testCase.errMsg) {
+					t.Fatalf("expected error to contain %q, got %v", testCase.errMsg, err)
+				}
+			}
+			if testCase.expectResultStatus != nil && (result == nil || result.Status != *testCase.expectResultStatus) {
+				t.Fatalf("expected poll result with status %q, got: %+v", *testCase.expectResultStatus, result)
+			}
+			if poller.droppedConnectionCount != testCase.expectDroppedConnections {
+				t.Fatalf("expected droppedConnectionCount to be %d, got %d", testCase.expectDroppedConnections, poller.droppedConnectionCount)
+			}
+		})
 	}
 }

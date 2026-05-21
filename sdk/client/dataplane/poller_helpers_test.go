@@ -4,6 +4,7 @@
 package dataplane
 
 import (
+	"fmt"
 	"net/http"
 	"testing"
 
@@ -60,4 +61,12 @@ func dropConnection(t *testing.T, w http.ResponseWriter) {
 		return
 	}
 	conn.Close()
+}
+
+type errRoundTripper struct {
+	errMsg string
+}
+
+func (r errRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
+	return nil, fmt.Errorf("%s", r.errMsg)
 }

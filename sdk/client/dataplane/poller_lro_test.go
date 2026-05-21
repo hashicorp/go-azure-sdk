@@ -7,7 +7,9 @@ import (
 	"context"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
+	"time"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
@@ -552,4 +554,71 @@ func TestPollerLRO_InStatus_404ThenInProgressThenSucceeded(t *testing.T) {
 	}
 	// sanity-checking
 	helpers.assertCalled(t, 4)
+}
+
+func TestPollerLRO_VCRErrorHandling(t *testing.T) {
+	testCases := []struct {
+		name                     string
+		errMsg                   string
+		expectReplayMiss         bool
+		expectResultStatus       *pollers.PollingStatus
+		expectError              bool
+		expectDroppedConnections int
+	}{
+		{
+			name:                     "replay miss url error",
+			errMsg:                   client.VCRInteractionNotFoundErrMsg,
+			expectReplayMiss:         true,
+			expectError:              true,
+			expectDroppedConnections: 0,
+		},
+		{
+			name:                     "non retryable url error",
+			errMsg:                   "unsupported protocol scheme",
+			expectResultStatus:       func() *pollers.PollingStatus { s := pollers.PollingStatusUnknown; return &s }(),
+			expectDroppedConnections: 1,
+		},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			ctx, cancel := context.WithTimeout(context.Background(), 500*time.Millisecond)
+			defer cancel()
+
+			helpers := newLongRunningOperationsEndpoint([]expectedResponse{})
+			response := &client.Response{
+				Response: helpers.response(),
+			}
+
+			baseClient := client.NewClient("https://management.azure.com", "Example", "2020-01-01")
+			baseClient.SetTransport(errRoundTripper{errMsg: testCase.errMsg}, client.TransportModeVCRReplay)
+
+			poller, err := longRunningOperationPollerFromResponse(response, baseClient)
+			if err != nil {
+				t.Fatal(err.Error())
+			}
+
+			result, err := poller.Poll(ctx)
+			if testCase.expectError {
+				if err == nil {
+					t.Fatal("expected polling to return an error, but got no error")
+				}
+				if result != nil {
+					t.Fatalf("expected no poll result, got: %+v ,error %T (err=%v)", result, err, err)
+				}
+				if testCase.expectReplayMiss != client.IsVCRReplayMissError(err) {
+					t.Fatalf("expected IsVCRReplayMissError=%t, got %t (err=%v)", testCase.expectReplayMiss, client.IsVCRReplayMissError(err), err)
+				}
+				if !strings.Contains(err.Error(), testCase.errMsg) {
+					t.Fatalf("expected error to contain %q, got %v", testCase.errMsg, err)
+				}
+			}
+			if testCase.expectResultStatus != nil && (result == nil || result.Status != *testCase.expectResultStatus) {
+				t.Fatalf("expected poll result with status %q, got: %+v", *testCase.expectResultStatus, result)
+			}
+			if poller.droppedConnectionCount != testCase.expectDroppedConnections {
+				t.Fatalf("expected droppedConnectionCount to be %d, got %d", testCase.expectDroppedConnections, poller.droppedConnectionCount)
+			}
+		})
+	}
 }
