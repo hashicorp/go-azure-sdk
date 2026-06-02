@@ -187,6 +187,6 @@ func TestSegmentsForDeviceManagementVirtualEndpointFrontLineServicePlanId(t *tes
 		uniqueNames[segment.Name] = struct{}{}
 	}
 	if len(uniqueNames) != len(segments) {
-		t.Fatalf("Expected the Segments to be unique but got %q unique segments and %d total segments", len(uniqueNames), len(segments))
+		t.Fatalf("Expected the Segments to be unique but got %d unique segments and %d total segments", len(uniqueNames), len(segments))
 	}
 }
