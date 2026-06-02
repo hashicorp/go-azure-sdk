@@ -236,6 +236,23 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `VirtualMachinesClient.ListByLocation`
+
+```go
+ctx := context.TODO()
+id := virtualmachines.NewLocationID("12345678-1234-9876-4563-123456789012", "locationName")
+
+// alternatively `client.ListByLocation(ctx, id)` can be used to do batched pagination
+items, err := client.ListByLocationComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `VirtualMachinesClient.MigrateToVMScaleSet`
 
 ```go
