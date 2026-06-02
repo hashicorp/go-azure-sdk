@@ -40,8 +40,11 @@ test-ci-resource-manager:
 test-ci-microsoft-graph:
 	cd ./microsoft-graph/ && go test -v ./...
 
+test-ci-data-plane:
+	cd ./data-plane/ && go test -v ./...
+
 tools:
 	@echo "==> installing required tooling..."
 	go install golang.org/x/tools/cmd/goimports@latest
 
-.PHONY: fmt imports prepare test test-ci-sdk test-ci-resource-manager test-ci-microsoft-graph tools
+.PHONY: fmt imports prepare test test-ci-sdk test-ci-resource-manager test-ci-microsoft-graph test-ci-data-plane tools
