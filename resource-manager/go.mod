@@ -1,6 +1,6 @@
 module github.com/hashicorp/go-azure-sdk/resource-manager
 
-go 1.25.5
+go 1.26.3
 
 require (
 	github.com/Azure/go-autorest/autorest v0.11.30
