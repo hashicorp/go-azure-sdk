@@ -31,8 +31,17 @@ test: fmt
 	cd ./resource-manager/ && go test -v ./... && cd ../
 	cd ./microsoft-graph/ && go test -v ./... && cd ../
 
+test-ci-sdk:
+	cd ./sdk/ && go test -short -v ./...
+
+test-ci-resource-manager:
+	cd ./resource-manager/ && go test -v ./...
+
+test-ci-microsoft-graph:
+	cd ./microsoft-graph/ && go test -v ./...
+
 tools:
 	@echo "==> installing required tooling..."
 	go install golang.org/x/tools/cmd/goimports@latest
 
-.PHONY: fmt imports prepare test tools
+.PHONY: fmt imports prepare test test-ci-sdk test-ci-resource-manager test-ci-microsoft-graph tools

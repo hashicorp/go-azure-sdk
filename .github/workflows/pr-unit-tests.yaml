@@ -6,8 +6,21 @@ on:
 
 jobs:
   unit-test:
-    runs-on: custom-linux-medium
+    runs-on: custom-linux-xl
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [sdk, resource-manager, microsoft-graph]
     steps:
+      - name: Mount RAM Disks
+        run: |
+          sudo mount -t tmpfs -o size=16G tmpfs ${{ github.workspace }}
+          sudo chown -R $USER:$USER ${{ github.workspace }}
+          mkdir -p ~/.cache/go-build ~/go/pkg/mod
+          sudo mount -t tmpfs -o size=8G tmpfs ~/.cache/go-build
+          sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
+          sudo chown -R $USER:$USER ~/.cache/go-build ~/go/pkg/mod
+
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
@@ -15,6 +28,6 @@ jobs:
           go-version-file: ./.go-version
 
       - name: Run unit tests
-        run: make test
+        run: make test-ci-${{ matrix.package }}
 
 # vim: set ts=2 sts=2 sw=2 et:
