@@ -43,8 +43,10 @@ test-ci-microsoft-graph:
 test-ci-data-plane:
 	cd ./data-plane/ && go test -v ./...
 
+test-ci: test-ci-sdk test-ci-resource-manager test-ci-microsoft-graph test-ci-data-plane
+
 tools:
 	@echo "==> installing required tooling..."
 	go install golang.org/x/tools/cmd/goimports@latest
 
-.PHONY: fmt imports prepare test test-ci-sdk test-ci-resource-manager test-ci-microsoft-graph test-ci-data-plane tools
+.PHONY: fmt imports prepare test test-ci test-ci-sdk test-ci-resource-manager test-ci-microsoft-graph test-ci-data-plane tools
