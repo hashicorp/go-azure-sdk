@@ -108,7 +108,7 @@ func (c DeletedItemClient) ListDeletedItemApplications(ctx context.Context, opti
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &ListDeletedItemApplicationsCustomPager{},
-		Path:          "/directory/deletedItems/application",
+		Path:          "/directory/deletedItems/microsoft.graph.application",
 		RetryFunc:     options.RetryFunc,
 	}
 

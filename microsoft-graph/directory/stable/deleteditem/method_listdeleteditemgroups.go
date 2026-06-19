@@ -109,7 +109,7 @@ func (c DeletedItemClient) ListDeletedItemGroups(ctx context.Context, options Li
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &ListDeletedItemGroupsCustomPager{},
-		Path:          "/directory/deletedItems/group",
+		Path:          "/directory/deletedItems/microsoft.graph.group",
 		RetryFunc:     options.RetryFunc,
 	}
 

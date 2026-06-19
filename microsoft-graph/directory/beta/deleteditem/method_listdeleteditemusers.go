@@ -107,7 +107,7 @@ func (c DeletedItemClient) ListDeletedItemUsers(ctx context.Context, options Lis
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &ListDeletedItemUsersCustomPager{},
-		Path:          "/directory/deletedItems/user",
+		Path:          "/directory/deletedItems/microsoft.graph.user",
 		RetryFunc:     options.RetryFunc,
 	}
 

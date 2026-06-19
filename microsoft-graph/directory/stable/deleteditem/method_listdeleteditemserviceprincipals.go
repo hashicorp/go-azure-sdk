@@ -108,7 +108,7 @@ func (c DeletedItemClient) ListDeletedItemServicePrincipals(ctx context.Context,
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &ListDeletedItemServicePrincipalsCustomPager{},
-		Path:          "/directory/deletedItems/servicePrincipal",
+		Path:          "/directory/deletedItems/microsoft.graph.servicePrincipal",
 		RetryFunc:     options.RetryFunc,
 	}
 
