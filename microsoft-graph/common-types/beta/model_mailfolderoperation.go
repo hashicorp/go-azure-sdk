@@ -55,9 +55,9 @@ func (s BaseMailFolderOperationImpl) Entity() BaseEntityImpl {
 
 var _ MailFolderOperation = RawMailFolderOperationImpl{}
 
-// RawMailFolderOperationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawMailFolderOperationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawMailFolderOperationImpl struct {
 	mailFolderOperation BaseMailFolderOperationImpl
 	Type                string
@@ -66,6 +66,10 @@ type RawMailFolderOperationImpl struct {
 
 func (s RawMailFolderOperationImpl) MailFolderOperation() BaseMailFolderOperationImpl {
 	return s.mailFolderOperation
+}
+
+func (s RawMailFolderOperationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawMailFolderOperationImpl) Entity() BaseEntityImpl {

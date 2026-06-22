@@ -37,9 +37,9 @@ func (s BaseBackupEngineBaseImpl) BackupEngineBase() BaseBackupEngineBaseImpl {
 
 var _ BackupEngineBase = RawBackupEngineBaseImpl{}
 
-// RawBackupEngineBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawBackupEngineBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawBackupEngineBaseImpl struct {
 	backupEngineBase BaseBackupEngineBaseImpl
 	Type             string
@@ -48,6 +48,10 @@ type RawBackupEngineBaseImpl struct {
 
 func (s RawBackupEngineBaseImpl) BackupEngineBase() BaseBackupEngineBaseImpl {
 	return s.backupEngineBase
+}
+
+func (s RawBackupEngineBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalBackupEngineBaseImplementation(input []byte) (BackupEngineBase, error) {

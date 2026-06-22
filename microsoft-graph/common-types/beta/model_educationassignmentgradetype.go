@@ -32,9 +32,9 @@ func (s BaseEducationAssignmentGradeTypeImpl) EducationAssignmentGradeType() Bas
 
 var _ EducationAssignmentGradeType = RawEducationAssignmentGradeTypeImpl{}
 
-// RawEducationAssignmentGradeTypeImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawEducationAssignmentGradeTypeImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawEducationAssignmentGradeTypeImpl struct {
 	educationAssignmentGradeType BaseEducationAssignmentGradeTypeImpl
 	Type                         string
@@ -43,6 +43,10 @@ type RawEducationAssignmentGradeTypeImpl struct {
 
 func (s RawEducationAssignmentGradeTypeImpl) EducationAssignmentGradeType() BaseEducationAssignmentGradeTypeImpl {
 	return s.educationAssignmentGradeType
+}
+
+func (s RawEducationAssignmentGradeTypeImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalEducationAssignmentGradeTypeImplementation(input []byte) (EducationAssignmentGradeType, error) {

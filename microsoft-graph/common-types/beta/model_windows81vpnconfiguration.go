@@ -186,9 +186,9 @@ func (s BaseWindows81VpnConfigurationImpl) Entity() BaseEntityImpl {
 
 var _ Windows81VpnConfiguration = RawWindows81VpnConfigurationImpl{}
 
-// RawWindows81VpnConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawWindows81VpnConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawWindows81VpnConfigurationImpl struct {
 	windows81VpnConfiguration BaseWindows81VpnConfigurationImpl
 	Type                      string
@@ -197,6 +197,10 @@ type RawWindows81VpnConfigurationImpl struct {
 
 func (s RawWindows81VpnConfigurationImpl) Windows81VpnConfiguration() BaseWindows81VpnConfigurationImpl {
 	return s.windows81VpnConfiguration
+}
+
+func (s RawWindows81VpnConfigurationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawWindows81VpnConfigurationImpl) WindowsVpnConfiguration() BaseWindowsVpnConfigurationImpl {

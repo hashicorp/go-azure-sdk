@@ -75,9 +75,9 @@ func (s BasePrinterBaseImpl) Entity() BaseEntityImpl {
 
 var _ PrinterBase = RawPrinterBaseImpl{}
 
-// RawPrinterBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawPrinterBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawPrinterBaseImpl struct {
 	printerBase BasePrinterBaseImpl
 	Type        string
@@ -86,6 +86,10 @@ type RawPrinterBaseImpl struct {
 
 func (s RawPrinterBaseImpl) PrinterBase() BasePrinterBaseImpl {
 	return s.printerBase
+}
+
+func (s RawPrinterBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawPrinterBaseImpl) Entity() BaseEntityImpl {

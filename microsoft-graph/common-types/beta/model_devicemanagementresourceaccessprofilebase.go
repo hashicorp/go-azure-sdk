@@ -69,9 +69,9 @@ func (s BaseDeviceManagementResourceAccessProfileBaseImpl) Entity() BaseEntityIm
 
 var _ DeviceManagementResourceAccessProfileBase = RawDeviceManagementResourceAccessProfileBaseImpl{}
 
-// RawDeviceManagementResourceAccessProfileBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDeviceManagementResourceAccessProfileBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDeviceManagementResourceAccessProfileBaseImpl struct {
 	deviceManagementResourceAccessProfileBase BaseDeviceManagementResourceAccessProfileBaseImpl
 	Type                                      string
@@ -80,6 +80,10 @@ type RawDeviceManagementResourceAccessProfileBaseImpl struct {
 
 func (s RawDeviceManagementResourceAccessProfileBaseImpl) DeviceManagementResourceAccessProfileBase() BaseDeviceManagementResourceAccessProfileBaseImpl {
 	return s.deviceManagementResourceAccessProfileBase
+}
+
+func (s RawDeviceManagementResourceAccessProfileBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawDeviceManagementResourceAccessProfileBaseImpl) Entity() BaseEntityImpl {

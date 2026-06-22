@@ -25,9 +25,9 @@ func (s BaseDatasetDestinationImpl) DatasetDestination() BaseDatasetDestinationI
 
 var _ DatasetDestination = RawDatasetDestinationImpl{}
 
-// RawDatasetDestinationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDatasetDestinationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDatasetDestinationImpl struct {
 	datasetDestination BaseDatasetDestinationImpl
 	Type               string
@@ -36,6 +36,10 @@ type RawDatasetDestinationImpl struct {
 
 func (s RawDatasetDestinationImpl) DatasetDestination() BaseDatasetDestinationImpl {
 	return s.datasetDestination
+}
+
+func (s RawDatasetDestinationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalDatasetDestinationImplementation(input []byte) (DatasetDestination, error) {

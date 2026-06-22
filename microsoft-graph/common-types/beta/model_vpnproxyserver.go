@@ -43,9 +43,9 @@ func (s BaseVpnProxyServerImpl) VpnProxyServer() BaseVpnProxyServerImpl {
 
 var _ VpnProxyServer = RawVpnProxyServerImpl{}
 
-// RawVpnProxyServerImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawVpnProxyServerImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawVpnProxyServerImpl struct {
 	vpnProxyServer BaseVpnProxyServerImpl
 	Type           string
@@ -54,6 +54,10 @@ type RawVpnProxyServerImpl struct {
 
 func (s RawVpnProxyServerImpl) VpnProxyServer() BaseVpnProxyServerImpl {
 	return s.vpnProxyServer
+}
+
+func (s RawVpnProxyServerImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalVpnProxyServerImplementation(input []byte) (VpnProxyServer, error) {

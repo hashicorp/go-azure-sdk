@@ -80,9 +80,9 @@ func (s BaseDeviceManagementSettingDefinitionImpl) Entity() BaseEntityImpl {
 
 var _ DeviceManagementSettingDefinition = RawDeviceManagementSettingDefinitionImpl{}
 
-// RawDeviceManagementSettingDefinitionImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDeviceManagementSettingDefinitionImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDeviceManagementSettingDefinitionImpl struct {
 	deviceManagementSettingDefinition BaseDeviceManagementSettingDefinitionImpl
 	Type                              string
@@ -91,6 +91,10 @@ type RawDeviceManagementSettingDefinitionImpl struct {
 
 func (s RawDeviceManagementSettingDefinitionImpl) DeviceManagementSettingDefinition() BaseDeviceManagementSettingDefinitionImpl {
 	return s.deviceManagementSettingDefinition
+}
+
+func (s RawDeviceManagementSettingDefinitionImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawDeviceManagementSettingDefinitionImpl) Entity() BaseEntityImpl {

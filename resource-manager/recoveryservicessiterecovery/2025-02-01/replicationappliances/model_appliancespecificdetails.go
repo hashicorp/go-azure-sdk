@@ -25,9 +25,9 @@ func (s BaseApplianceSpecificDetailsImpl) ApplianceSpecificDetails() BaseApplian
 
 var _ ApplianceSpecificDetails = RawApplianceSpecificDetailsImpl{}
 
-// RawApplianceSpecificDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawApplianceSpecificDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawApplianceSpecificDetailsImpl struct {
 	applianceSpecificDetails BaseApplianceSpecificDetailsImpl
 	Type                     string
@@ -36,6 +36,10 @@ type RawApplianceSpecificDetailsImpl struct {
 
 func (s RawApplianceSpecificDetailsImpl) ApplianceSpecificDetails() BaseApplianceSpecificDetailsImpl {
 	return s.applianceSpecificDetails
+}
+
+func (s RawApplianceSpecificDetailsImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalApplianceSpecificDetailsImplementation(input []byte) (ApplianceSpecificDetails, error) {

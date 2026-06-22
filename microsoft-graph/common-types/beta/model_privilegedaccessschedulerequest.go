@@ -109,9 +109,9 @@ func (s BasePrivilegedAccessScheduleRequestImpl) Entity() BaseEntityImpl {
 
 var _ PrivilegedAccessScheduleRequest = RawPrivilegedAccessScheduleRequestImpl{}
 
-// RawPrivilegedAccessScheduleRequestImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawPrivilegedAccessScheduleRequestImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawPrivilegedAccessScheduleRequestImpl struct {
 	privilegedAccessScheduleRequest BasePrivilegedAccessScheduleRequestImpl
 	Type                            string
@@ -120,6 +120,10 @@ type RawPrivilegedAccessScheduleRequestImpl struct {
 
 func (s RawPrivilegedAccessScheduleRequestImpl) PrivilegedAccessScheduleRequest() BasePrivilegedAccessScheduleRequestImpl {
 	return s.privilegedAccessScheduleRequest
+}
+
+func (s RawPrivilegedAccessScheduleRequestImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawPrivilegedAccessScheduleRequestImpl) Request() BaseRequestImpl {

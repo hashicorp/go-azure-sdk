@@ -40,9 +40,9 @@ func (s BaseIndustryDataIndustryDataActivityStatisticsImpl) IndustryDataIndustry
 
 var _ IndustryDataIndustryDataActivityStatistics = RawIndustryDataIndustryDataActivityStatisticsImpl{}
 
-// RawIndustryDataIndustryDataActivityStatisticsImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawIndustryDataIndustryDataActivityStatisticsImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawIndustryDataIndustryDataActivityStatisticsImpl struct {
 	industryDataIndustryDataActivityStatistics BaseIndustryDataIndustryDataActivityStatisticsImpl
 	Type                                       string
@@ -51,6 +51,10 @@ type RawIndustryDataIndustryDataActivityStatisticsImpl struct {
 
 func (s RawIndustryDataIndustryDataActivityStatisticsImpl) IndustryDataIndustryDataActivityStatistics() BaseIndustryDataIndustryDataActivityStatisticsImpl {
 	return s.industryDataIndustryDataActivityStatistics
+}
+
+func (s RawIndustryDataIndustryDataActivityStatisticsImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 var _ json.Marshaler = BaseIndustryDataIndustryDataActivityStatisticsImpl{}

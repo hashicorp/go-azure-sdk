@@ -25,9 +25,9 @@ func (s BasePartitionImpl) Partition() BasePartitionImpl {
 
 var _ Partition = RawPartitionImpl{}
 
-// RawPartitionImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawPartitionImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawPartitionImpl struct {
 	partition BasePartitionImpl
 	Type      string
@@ -36,6 +36,10 @@ type RawPartitionImpl struct {
 
 func (s RawPartitionImpl) Partition() BasePartitionImpl {
 	return s.partition
+}
+
+func (s RawPartitionImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalPartitionImplementation(input []byte) (Partition, error) {

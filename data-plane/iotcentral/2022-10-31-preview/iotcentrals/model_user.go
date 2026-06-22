@@ -27,9 +27,9 @@ func (s BaseUserImpl) User() BaseUserImpl {
 
 var _ User = RawUserImpl{}
 
-// RawUserImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawUserImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawUserImpl struct {
 	user   BaseUserImpl
 	Type   string
@@ -38,6 +38,10 @@ type RawUserImpl struct {
 
 func (s RawUserImpl) User() BaseUserImpl {
 	return s.user
+}
+
+func (s RawUserImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalUserImplementation(input []byte) (User, error) {

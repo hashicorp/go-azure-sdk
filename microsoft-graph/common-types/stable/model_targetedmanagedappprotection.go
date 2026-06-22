@@ -211,9 +211,9 @@ func (s BaseTargetedManagedAppProtectionImpl) Entity() BaseEntityImpl {
 
 var _ TargetedManagedAppProtection = RawTargetedManagedAppProtectionImpl{}
 
-// RawTargetedManagedAppProtectionImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawTargetedManagedAppProtectionImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawTargetedManagedAppProtectionImpl struct {
 	targetedManagedAppProtection BaseTargetedManagedAppProtectionImpl
 	Type                         string
@@ -222,6 +222,10 @@ type RawTargetedManagedAppProtectionImpl struct {
 
 func (s RawTargetedManagedAppProtectionImpl) TargetedManagedAppProtection() BaseTargetedManagedAppProtectionImpl {
 	return s.targetedManagedAppProtection
+}
+
+func (s RawTargetedManagedAppProtectionImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawTargetedManagedAppProtectionImpl) ManagedAppProtection() BaseManagedAppProtectionImpl {

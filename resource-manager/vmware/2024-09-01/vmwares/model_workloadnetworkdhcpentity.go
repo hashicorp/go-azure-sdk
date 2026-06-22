@@ -29,9 +29,9 @@ func (s BaseWorkloadNetworkDhcpEntityImpl) WorkloadNetworkDhcpEntity() BaseWorkl
 
 var _ WorkloadNetworkDhcpEntity = RawWorkloadNetworkDhcpEntityImpl{}
 
-// RawWorkloadNetworkDhcpEntityImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawWorkloadNetworkDhcpEntityImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawWorkloadNetworkDhcpEntityImpl struct {
 	workloadNetworkDhcpEntity BaseWorkloadNetworkDhcpEntityImpl
 	Type                      string
@@ -40,6 +40,10 @@ type RawWorkloadNetworkDhcpEntityImpl struct {
 
 func (s RawWorkloadNetworkDhcpEntityImpl) WorkloadNetworkDhcpEntity() BaseWorkloadNetworkDhcpEntityImpl {
 	return s.workloadNetworkDhcpEntity
+}
+
+func (s RawWorkloadNetworkDhcpEntityImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalWorkloadNetworkDhcpEntityImplementation(input []byte) (WorkloadNetworkDhcpEntity, error) {

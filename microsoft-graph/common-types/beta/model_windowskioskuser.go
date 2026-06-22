@@ -32,9 +32,9 @@ func (s BaseWindowsKioskUserImpl) WindowsKioskUser() BaseWindowsKioskUserImpl {
 
 var _ WindowsKioskUser = RawWindowsKioskUserImpl{}
 
-// RawWindowsKioskUserImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawWindowsKioskUserImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawWindowsKioskUserImpl struct {
 	windowsKioskUser BaseWindowsKioskUserImpl
 	Type             string
@@ -43,6 +43,10 @@ type RawWindowsKioskUserImpl struct {
 
 func (s RawWindowsKioskUserImpl) WindowsKioskUser() BaseWindowsKioskUserImpl {
 	return s.windowsKioskUser
+}
+
+func (s RawWindowsKioskUserImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalWindowsKioskUserImplementation(input []byte) (WindowsKioskUser, error) {

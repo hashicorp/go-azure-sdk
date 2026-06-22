@@ -25,9 +25,9 @@ func (s BasePartitionSchemeDescriptionImpl) PartitionSchemeDescription() BasePar
 
 var _ PartitionSchemeDescription = RawPartitionSchemeDescriptionImpl{}
 
-// RawPartitionSchemeDescriptionImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawPartitionSchemeDescriptionImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawPartitionSchemeDescriptionImpl struct {
 	partitionSchemeDescription BasePartitionSchemeDescriptionImpl
 	Type                       string
@@ -36,6 +36,10 @@ type RawPartitionSchemeDescriptionImpl struct {
 
 func (s RawPartitionSchemeDescriptionImpl) PartitionSchemeDescription() BasePartitionSchemeDescriptionImpl {
 	return s.partitionSchemeDescription
+}
+
+func (s RawPartitionSchemeDescriptionImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalPartitionSchemeDescriptionImplementation(input []byte) (PartitionSchemeDescription, error) {

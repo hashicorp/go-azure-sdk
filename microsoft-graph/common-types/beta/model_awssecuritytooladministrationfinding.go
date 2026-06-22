@@ -66,9 +66,9 @@ func (s BaseAwsSecurityToolAdministrationFindingImpl) Entity() BaseEntityImpl {
 
 var _ AwsSecurityToolAdministrationFinding = RawAwsSecurityToolAdministrationFindingImpl{}
 
-// RawAwsSecurityToolAdministrationFindingImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawAwsSecurityToolAdministrationFindingImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawAwsSecurityToolAdministrationFindingImpl struct {
 	awsSecurityToolAdministrationFinding BaseAwsSecurityToolAdministrationFindingImpl
 	Type                                 string
@@ -77,6 +77,10 @@ type RawAwsSecurityToolAdministrationFindingImpl struct {
 
 func (s RawAwsSecurityToolAdministrationFindingImpl) AwsSecurityToolAdministrationFinding() BaseAwsSecurityToolAdministrationFindingImpl {
 	return s.awsSecurityToolAdministrationFinding
+}
+
+func (s RawAwsSecurityToolAdministrationFindingImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawAwsSecurityToolAdministrationFindingImpl) Finding() BaseFindingImpl {

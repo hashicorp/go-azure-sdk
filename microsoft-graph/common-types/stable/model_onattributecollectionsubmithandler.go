@@ -32,9 +32,9 @@ func (s BaseOnAttributeCollectionSubmitHandlerImpl) OnAttributeCollectionSubmitH
 
 var _ OnAttributeCollectionSubmitHandler = RawOnAttributeCollectionSubmitHandlerImpl{}
 
-// RawOnAttributeCollectionSubmitHandlerImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawOnAttributeCollectionSubmitHandlerImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawOnAttributeCollectionSubmitHandlerImpl struct {
 	onAttributeCollectionSubmitHandler BaseOnAttributeCollectionSubmitHandlerImpl
 	Type                               string
@@ -43,6 +43,10 @@ type RawOnAttributeCollectionSubmitHandlerImpl struct {
 
 func (s RawOnAttributeCollectionSubmitHandlerImpl) OnAttributeCollectionSubmitHandler() BaseOnAttributeCollectionSubmitHandlerImpl {
 	return s.onAttributeCollectionSubmitHandler
+}
+
+func (s RawOnAttributeCollectionSubmitHandlerImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalOnAttributeCollectionSubmitHandlerImplementation(input []byte) (OnAttributeCollectionSubmitHandler, error) {

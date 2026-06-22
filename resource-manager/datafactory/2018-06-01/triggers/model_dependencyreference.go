@@ -25,9 +25,9 @@ func (s BaseDependencyReferenceImpl) DependencyReference() BaseDependencyReferen
 
 var _ DependencyReference = RawDependencyReferenceImpl{}
 
-// RawDependencyReferenceImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDependencyReferenceImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDependencyReferenceImpl struct {
 	dependencyReference BaseDependencyReferenceImpl
 	Type                string
@@ -36,6 +36,10 @@ type RawDependencyReferenceImpl struct {
 
 func (s RawDependencyReferenceImpl) DependencyReference() BaseDependencyReferenceImpl {
 	return s.dependencyReference
+}
+
+func (s RawDependencyReferenceImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalDependencyReferenceImplementation(input []byte) (DependencyReference, error) {

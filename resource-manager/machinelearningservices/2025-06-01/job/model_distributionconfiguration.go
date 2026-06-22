@@ -25,9 +25,9 @@ func (s BaseDistributionConfigurationImpl) DistributionConfiguration() BaseDistr
 
 var _ DistributionConfiguration = RawDistributionConfigurationImpl{}
 
-// RawDistributionConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDistributionConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDistributionConfigurationImpl struct {
 	distributionConfiguration BaseDistributionConfigurationImpl
 	Type                      string
@@ -36,6 +36,10 @@ type RawDistributionConfigurationImpl struct {
 
 func (s RawDistributionConfigurationImpl) DistributionConfiguration() BaseDistributionConfigurationImpl {
 	return s.distributionConfiguration
+}
+
+func (s RawDistributionConfigurationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalDistributionConfigurationImplementation(input []byte) (DistributionConfiguration, error) {

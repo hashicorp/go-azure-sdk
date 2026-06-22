@@ -32,9 +32,9 @@ func (s BaseInformationProtectionActionImpl) InformationProtectionAction() BaseI
 
 var _ InformationProtectionAction = RawInformationProtectionActionImpl{}
 
-// RawInformationProtectionActionImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawInformationProtectionActionImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawInformationProtectionActionImpl struct {
 	informationProtectionAction BaseInformationProtectionActionImpl
 	Type                        string
@@ -43,6 +43,10 @@ type RawInformationProtectionActionImpl struct {
 
 func (s RawInformationProtectionActionImpl) InformationProtectionAction() BaseInformationProtectionActionImpl {
 	return s.informationProtectionAction
+}
+
+func (s RawInformationProtectionActionImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalInformationProtectionActionImplementation(input []byte) (InformationProtectionAction, error) {

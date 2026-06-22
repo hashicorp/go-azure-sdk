@@ -54,9 +54,9 @@ func (s BaseVirtualEventRegistrationQuestionBaseImpl) Entity() BaseEntityImpl {
 
 var _ VirtualEventRegistrationQuestionBase = RawVirtualEventRegistrationQuestionBaseImpl{}
 
-// RawVirtualEventRegistrationQuestionBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawVirtualEventRegistrationQuestionBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawVirtualEventRegistrationQuestionBaseImpl struct {
 	virtualEventRegistrationQuestionBase BaseVirtualEventRegistrationQuestionBaseImpl
 	Type                                 string
@@ -65,6 +65,10 @@ type RawVirtualEventRegistrationQuestionBaseImpl struct {
 
 func (s RawVirtualEventRegistrationQuestionBaseImpl) VirtualEventRegistrationQuestionBase() BaseVirtualEventRegistrationQuestionBaseImpl {
 	return s.virtualEventRegistrationQuestionBase
+}
+
+func (s RawVirtualEventRegistrationQuestionBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawVirtualEventRegistrationQuestionBaseImpl) Entity() BaseEntityImpl {

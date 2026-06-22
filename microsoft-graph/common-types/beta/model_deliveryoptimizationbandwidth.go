@@ -32,9 +32,9 @@ func (s BaseDeliveryOptimizationBandwidthImpl) DeliveryOptimizationBandwidth() B
 
 var _ DeliveryOptimizationBandwidth = RawDeliveryOptimizationBandwidthImpl{}
 
-// RawDeliveryOptimizationBandwidthImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDeliveryOptimizationBandwidthImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDeliveryOptimizationBandwidthImpl struct {
 	deliveryOptimizationBandwidth BaseDeliveryOptimizationBandwidthImpl
 	Type                          string
@@ -43,6 +43,10 @@ type RawDeliveryOptimizationBandwidthImpl struct {
 
 func (s RawDeliveryOptimizationBandwidthImpl) DeliveryOptimizationBandwidth() BaseDeliveryOptimizationBandwidthImpl {
 	return s.deliveryOptimizationBandwidth
+}
+
+func (s RawDeliveryOptimizationBandwidthImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalDeliveryOptimizationBandwidthImplementation(input []byte) (DeliveryOptimizationBandwidth, error) {

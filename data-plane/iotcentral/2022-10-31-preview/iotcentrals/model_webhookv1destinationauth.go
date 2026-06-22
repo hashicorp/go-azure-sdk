@@ -25,9 +25,9 @@ func (s BaseWebhookV1DestinationAuthImpl) WebhookV1DestinationAuth() BaseWebhook
 
 var _ WebhookV1DestinationAuth = RawWebhookV1DestinationAuthImpl{}
 
-// RawWebhookV1DestinationAuthImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawWebhookV1DestinationAuthImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawWebhookV1DestinationAuthImpl struct {
 	webhookV1DestinationAuth BaseWebhookV1DestinationAuthImpl
 	Type                     string
@@ -36,6 +36,10 @@ type RawWebhookV1DestinationAuthImpl struct {
 
 func (s RawWebhookV1DestinationAuthImpl) WebhookV1DestinationAuth() BaseWebhookV1DestinationAuthImpl {
 	return s.webhookV1DestinationAuth
+}
+
+func (s RawWebhookV1DestinationAuthImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalWebhookV1DestinationAuthImplementation(input []byte) (WebhookV1DestinationAuth, error) {

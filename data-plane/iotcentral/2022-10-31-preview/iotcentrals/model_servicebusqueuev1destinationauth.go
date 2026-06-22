@@ -25,9 +25,9 @@ func (s BaseServiceBusQueueV1DestinationAuthImpl) ServiceBusQueueV1DestinationAu
 
 var _ ServiceBusQueueV1DestinationAuth = RawServiceBusQueueV1DestinationAuthImpl{}
 
-// RawServiceBusQueueV1DestinationAuthImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawServiceBusQueueV1DestinationAuthImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawServiceBusQueueV1DestinationAuthImpl struct {
 	serviceBusQueueV1DestinationAuth BaseServiceBusQueueV1DestinationAuthImpl
 	Type                             string
@@ -36,6 +36,10 @@ type RawServiceBusQueueV1DestinationAuthImpl struct {
 
 func (s RawServiceBusQueueV1DestinationAuthImpl) ServiceBusQueueV1DestinationAuth() BaseServiceBusQueueV1DestinationAuthImpl {
 	return s.serviceBusQueueV1DestinationAuth
+}
+
+func (s RawServiceBusQueueV1DestinationAuthImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalServiceBusQueueV1DestinationAuthImplementation(input []byte) (ServiceBusQueueV1DestinationAuth, error) {

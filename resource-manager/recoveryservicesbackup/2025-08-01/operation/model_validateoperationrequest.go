@@ -25,9 +25,9 @@ func (s BaseValidateOperationRequestImpl) ValidateOperationRequest() BaseValidat
 
 var _ ValidateOperationRequest = RawValidateOperationRequestImpl{}
 
-// RawValidateOperationRequestImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawValidateOperationRequestImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawValidateOperationRequestImpl struct {
 	validateOperationRequest BaseValidateOperationRequestImpl
 	Type                     string
@@ -36,6 +36,10 @@ type RawValidateOperationRequestImpl struct {
 
 func (s RawValidateOperationRequestImpl) ValidateOperationRequest() BaseValidateOperationRequestImpl {
 	return s.validateOperationRequest
+}
+
+func (s RawValidateOperationRequestImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalValidateOperationRequestImplementation(input []byte) (ValidateOperationRequest, error) {

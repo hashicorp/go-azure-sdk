@@ -50,9 +50,9 @@ func (s BaseEncryptContentImpl) LabelActionBase() BaseLabelActionBaseImpl {
 
 var _ EncryptContent = RawEncryptContentImpl{}
 
-// RawEncryptContentImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawEncryptContentImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawEncryptContentImpl struct {
 	encryptContent BaseEncryptContentImpl
 	Type           string
@@ -61,6 +61,10 @@ type RawEncryptContentImpl struct {
 
 func (s RawEncryptContentImpl) EncryptContent() BaseEncryptContentImpl {
 	return s.encryptContent
+}
+
+func (s RawEncryptContentImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawEncryptContentImpl) LabelActionBase() BaseLabelActionBaseImpl {

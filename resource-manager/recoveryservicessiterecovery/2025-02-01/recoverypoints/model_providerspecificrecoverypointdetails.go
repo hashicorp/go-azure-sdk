@@ -25,9 +25,9 @@ func (s BaseProviderSpecificRecoveryPointDetailsImpl) ProviderSpecificRecoveryPo
 
 var _ ProviderSpecificRecoveryPointDetails = RawProviderSpecificRecoveryPointDetailsImpl{}
 
-// RawProviderSpecificRecoveryPointDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawProviderSpecificRecoveryPointDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawProviderSpecificRecoveryPointDetailsImpl struct {
 	providerSpecificRecoveryPointDetails BaseProviderSpecificRecoveryPointDetailsImpl
 	Type                                 string
@@ -36,6 +36,10 @@ type RawProviderSpecificRecoveryPointDetailsImpl struct {
 
 func (s RawProviderSpecificRecoveryPointDetailsImpl) ProviderSpecificRecoveryPointDetails() BaseProviderSpecificRecoveryPointDetailsImpl {
 	return s.providerSpecificRecoveryPointDetails
+}
+
+func (s RawProviderSpecificRecoveryPointDetailsImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalProviderSpecificRecoveryPointDetailsImplementation(input []byte) (ProviderSpecificRecoveryPointDetails, error) {

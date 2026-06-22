@@ -25,9 +25,9 @@ func (s BaseJobDataImpl) JobData() BaseJobDataImpl {
 
 var _ JobData = RawJobDataImpl{}
 
-// RawJobDataImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawJobDataImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawJobDataImpl struct {
 	jobData BaseJobDataImpl
 	Type    string
@@ -36,6 +36,10 @@ type RawJobDataImpl struct {
 
 func (s RawJobDataImpl) JobData() BaseJobDataImpl {
 	return s.jobData
+}
+
+func (s RawJobDataImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalJobDataImplementation(input []byte) (JobData, error) {

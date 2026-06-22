@@ -25,9 +25,9 @@ func (s BaseSparkJobEntryImpl) SparkJobEntry() BaseSparkJobEntryImpl {
 
 var _ SparkJobEntry = RawSparkJobEntryImpl{}
 
-// RawSparkJobEntryImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawSparkJobEntryImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawSparkJobEntryImpl struct {
 	sparkJobEntry BaseSparkJobEntryImpl
 	Type          string
@@ -36,6 +36,10 @@ type RawSparkJobEntryImpl struct {
 
 func (s RawSparkJobEntryImpl) SparkJobEntry() BaseSparkJobEntryImpl {
 	return s.sparkJobEntry
+}
+
+func (s RawSparkJobEntryImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalSparkJobEntryImplementation(input []byte) (SparkJobEntry, error) {

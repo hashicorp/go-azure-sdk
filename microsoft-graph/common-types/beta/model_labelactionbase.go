@@ -37,9 +37,9 @@ func (s BaseLabelActionBaseImpl) LabelActionBase() BaseLabelActionBaseImpl {
 
 var _ LabelActionBase = RawLabelActionBaseImpl{}
 
-// RawLabelActionBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawLabelActionBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawLabelActionBaseImpl struct {
 	labelActionBase BaseLabelActionBaseImpl
 	Type            string
@@ -48,6 +48,10 @@ type RawLabelActionBaseImpl struct {
 
 func (s RawLabelActionBaseImpl) LabelActionBase() BaseLabelActionBaseImpl {
 	return s.labelActionBase
+}
+
+func (s RawLabelActionBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalLabelActionBaseImplementation(input []byte) (LabelActionBase, error) {

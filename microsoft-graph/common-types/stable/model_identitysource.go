@@ -32,9 +32,9 @@ func (s BaseIdentitySourceImpl) IdentitySource() BaseIdentitySourceImpl {
 
 var _ IdentitySource = RawIdentitySourceImpl{}
 
-// RawIdentitySourceImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawIdentitySourceImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawIdentitySourceImpl struct {
 	identitySource BaseIdentitySourceImpl
 	Type           string
@@ -43,6 +43,10 @@ type RawIdentitySourceImpl struct {
 
 func (s RawIdentitySourceImpl) IdentitySource() BaseIdentitySourceImpl {
 	return s.identitySource
+}
+
+func (s RawIdentitySourceImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalIdentitySourceImplementation(input []byte) (IdentitySource, error) {

@@ -32,9 +32,9 @@ func (s BaseCloudPCManagementAssignmentTargetImpl) CloudPCManagementAssignmentTa
 
 var _ CloudPCManagementAssignmentTarget = RawCloudPCManagementAssignmentTargetImpl{}
 
-// RawCloudPCManagementAssignmentTargetImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawCloudPCManagementAssignmentTargetImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawCloudPCManagementAssignmentTargetImpl struct {
 	cloudPCManagementAssignmentTarget BaseCloudPCManagementAssignmentTargetImpl
 	Type                              string
@@ -43,6 +43,10 @@ type RawCloudPCManagementAssignmentTargetImpl struct {
 
 func (s RawCloudPCManagementAssignmentTargetImpl) CloudPCManagementAssignmentTarget() BaseCloudPCManagementAssignmentTargetImpl {
 	return s.cloudPCManagementAssignmentTarget
+}
+
+func (s RawCloudPCManagementAssignmentTargetImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalCloudPCManagementAssignmentTargetImplementation(input []byte) (CloudPCManagementAssignmentTarget, error) {

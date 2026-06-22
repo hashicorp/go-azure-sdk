@@ -30,9 +30,9 @@ func (s BasePartnerDestinationInfoImpl) PartnerDestinationInfo() BasePartnerDest
 
 var _ PartnerDestinationInfo = RawPartnerDestinationInfoImpl{}
 
-// RawPartnerDestinationInfoImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawPartnerDestinationInfoImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawPartnerDestinationInfoImpl struct {
 	partnerDestinationInfo BasePartnerDestinationInfoImpl
 	Type                   string
@@ -41,6 +41,10 @@ type RawPartnerDestinationInfoImpl struct {
 
 func (s RawPartnerDestinationInfoImpl) PartnerDestinationInfo() BasePartnerDestinationInfoImpl {
 	return s.partnerDestinationInfo
+}
+
+func (s RawPartnerDestinationInfoImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalPartnerDestinationInfoImplementation(input []byte) (PartnerDestinationInfo, error) {

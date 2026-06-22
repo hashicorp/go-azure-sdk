@@ -25,9 +25,9 @@ func (s BaseDataExplorerV1DestinationAuthImpl) DataExplorerV1DestinationAuth() B
 
 var _ DataExplorerV1DestinationAuth = RawDataExplorerV1DestinationAuthImpl{}
 
-// RawDataExplorerV1DestinationAuthImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDataExplorerV1DestinationAuthImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDataExplorerV1DestinationAuthImpl struct {
 	dataExplorerV1DestinationAuth BaseDataExplorerV1DestinationAuthImpl
 	Type                          string
@@ -36,6 +36,10 @@ type RawDataExplorerV1DestinationAuthImpl struct {
 
 func (s RawDataExplorerV1DestinationAuthImpl) DataExplorerV1DestinationAuth() BaseDataExplorerV1DestinationAuthImpl {
 	return s.dataExplorerV1DestinationAuth
+}
+
+func (s RawDataExplorerV1DestinationAuthImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalDataExplorerV1DestinationAuthImplementation(input []byte) (DataExplorerV1DestinationAuth, error) {

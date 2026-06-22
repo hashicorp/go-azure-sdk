@@ -32,9 +32,9 @@ func (s BaseWindowsUpdatesUpdatableAssetErrorImpl) WindowsUpdatesUpdatableAssetE
 
 var _ WindowsUpdatesUpdatableAssetError = RawWindowsUpdatesUpdatableAssetErrorImpl{}
 
-// RawWindowsUpdatesUpdatableAssetErrorImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawWindowsUpdatesUpdatableAssetErrorImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawWindowsUpdatesUpdatableAssetErrorImpl struct {
 	windowsUpdatesUpdatableAssetError BaseWindowsUpdatesUpdatableAssetErrorImpl
 	Type                              string
@@ -43,6 +43,10 @@ type RawWindowsUpdatesUpdatableAssetErrorImpl struct {
 
 func (s RawWindowsUpdatesUpdatableAssetErrorImpl) WindowsUpdatesUpdatableAssetError() BaseWindowsUpdatesUpdatableAssetErrorImpl {
 	return s.windowsUpdatesUpdatableAssetError
+}
+
+func (s RawWindowsUpdatesUpdatableAssetErrorImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalWindowsUpdatesUpdatableAssetErrorImplementation(input []byte) (WindowsUpdatesUpdatableAssetError, error) {

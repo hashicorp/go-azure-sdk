@@ -32,9 +32,9 @@ func (s BaseSecurityResponseActionImpl) SecurityResponseAction() BaseSecurityRes
 
 var _ SecurityResponseAction = RawSecurityResponseActionImpl{}
 
-// RawSecurityResponseActionImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawSecurityResponseActionImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawSecurityResponseActionImpl struct {
 	securityResponseAction BaseSecurityResponseActionImpl
 	Type                   string
@@ -43,6 +43,10 @@ type RawSecurityResponseActionImpl struct {
 
 func (s RawSecurityResponseActionImpl) SecurityResponseAction() BaseSecurityResponseActionImpl {
 	return s.securityResponseAction
+}
+
+func (s RawSecurityResponseActionImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalSecurityResponseActionImplementation(input []byte) (SecurityResponseAction, error) {
