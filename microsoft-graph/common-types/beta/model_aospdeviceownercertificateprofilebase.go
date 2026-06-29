@@ -154,9 +154,9 @@ func (s BaseAospDeviceOwnerCertificateProfileBaseImpl) Entity() BaseEntityImpl {
 
 var _ AospDeviceOwnerCertificateProfileBase = RawAospDeviceOwnerCertificateProfileBaseImpl{}
 
-// RawAospDeviceOwnerCertificateProfileBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawAospDeviceOwnerCertificateProfileBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawAospDeviceOwnerCertificateProfileBaseImpl struct {
 	aospDeviceOwnerCertificateProfileBase BaseAospDeviceOwnerCertificateProfileBaseImpl
 	Type                                  string
@@ -165,6 +165,10 @@ type RawAospDeviceOwnerCertificateProfileBaseImpl struct {
 
 func (s RawAospDeviceOwnerCertificateProfileBaseImpl) AospDeviceOwnerCertificateProfileBase() BaseAospDeviceOwnerCertificateProfileBaseImpl {
 	return s.aospDeviceOwnerCertificateProfileBase
+}
+
+func (s RawAospDeviceOwnerCertificateProfileBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawAospDeviceOwnerCertificateProfileBaseImpl) DeviceConfiguration() BaseDeviceConfigurationImpl {

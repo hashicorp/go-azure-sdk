@@ -203,9 +203,9 @@ func (s BaseAppleVpnConfigurationImpl) Entity() BaseEntityImpl {
 
 var _ AppleVpnConfiguration = RawAppleVpnConfigurationImpl{}
 
-// RawAppleVpnConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawAppleVpnConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawAppleVpnConfigurationImpl struct {
 	appleVpnConfiguration BaseAppleVpnConfigurationImpl
 	Type                  string
@@ -214,6 +214,10 @@ type RawAppleVpnConfigurationImpl struct {
 
 func (s RawAppleVpnConfigurationImpl) AppleVpnConfiguration() BaseAppleVpnConfigurationImpl {
 	return s.appleVpnConfiguration
+}
+
+func (s RawAppleVpnConfigurationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawAppleVpnConfigurationImpl) DeviceConfiguration() BaseDeviceConfigurationImpl {

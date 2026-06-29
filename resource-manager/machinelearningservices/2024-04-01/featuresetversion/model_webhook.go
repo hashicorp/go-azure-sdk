@@ -26,9 +26,9 @@ func (s BaseWebhookImpl) Webhook() BaseWebhookImpl {
 
 var _ Webhook = RawWebhookImpl{}
 
-// RawWebhookImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawWebhookImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawWebhookImpl struct {
 	webhook BaseWebhookImpl
 	Type    string
@@ -37,6 +37,10 @@ type RawWebhookImpl struct {
 
 func (s RawWebhookImpl) Webhook() BaseWebhookImpl {
 	return s.webhook
+}
+
+func (s RawWebhookImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalWebhookImplementation(input []byte) (Webhook, error) {

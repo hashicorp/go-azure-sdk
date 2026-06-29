@@ -25,9 +25,9 @@ func (s BaseReferenceImpl) Reference() BaseReferenceImpl {
 
 var _ Reference = RawReferenceImpl{}
 
-// RawReferenceImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawReferenceImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawReferenceImpl struct {
 	reference BaseReferenceImpl
 	Type      string
@@ -36,6 +36,10 @@ type RawReferenceImpl struct {
 
 func (s RawReferenceImpl) Reference() BaseReferenceImpl {
 	return s.reference
+}
+
+func (s RawReferenceImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalReferenceImplementation(input []byte) (Reference, error) {

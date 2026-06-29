@@ -25,9 +25,9 @@ func (s BaseMigrateProviderSpecificInputImpl) MigrateProviderSpecificInput() Bas
 
 var _ MigrateProviderSpecificInput = RawMigrateProviderSpecificInputImpl{}
 
-// RawMigrateProviderSpecificInputImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawMigrateProviderSpecificInputImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawMigrateProviderSpecificInputImpl struct {
 	migrateProviderSpecificInput BaseMigrateProviderSpecificInputImpl
 	Type                         string
@@ -36,6 +36,10 @@ type RawMigrateProviderSpecificInputImpl struct {
 
 func (s RawMigrateProviderSpecificInputImpl) MigrateProviderSpecificInput() BaseMigrateProviderSpecificInputImpl {
 	return s.migrateProviderSpecificInput
+}
+
+func (s RawMigrateProviderSpecificInputImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalMigrateProviderSpecificInputImplementation(input []byte) (MigrateProviderSpecificInput, error) {

@@ -58,9 +58,9 @@ func (s BaseUserIdentityImpl) Identity() BaseIdentityImpl {
 
 var _ UserIdentity = RawUserIdentityImpl{}
 
-// RawUserIdentityImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawUserIdentityImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawUserIdentityImpl struct {
 	userIdentity BaseUserIdentityImpl
 	Type         string
@@ -69,6 +69,10 @@ type RawUserIdentityImpl struct {
 
 func (s RawUserIdentityImpl) UserIdentity() BaseUserIdentityImpl {
 	return s.userIdentity
+}
+
+func (s RawUserIdentityImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawUserIdentityImpl) Identity() BaseIdentityImpl {

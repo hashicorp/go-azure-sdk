@@ -32,9 +32,9 @@ func (s BaseWin32LobAppDetectionImpl) Win32LobAppDetection() BaseWin32LobAppDete
 
 var _ Win32LobAppDetection = RawWin32LobAppDetectionImpl{}
 
-// RawWin32LobAppDetectionImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawWin32LobAppDetectionImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawWin32LobAppDetectionImpl struct {
 	win32LobAppDetection BaseWin32LobAppDetectionImpl
 	Type                 string
@@ -43,6 +43,10 @@ type RawWin32LobAppDetectionImpl struct {
 
 func (s RawWin32LobAppDetectionImpl) Win32LobAppDetection() BaseWin32LobAppDetectionImpl {
 	return s.win32LobAppDetection
+}
+
+func (s RawWin32LobAppDetectionImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalWin32LobAppDetectionImplementation(input []byte) (Win32LobAppDetection, error) {

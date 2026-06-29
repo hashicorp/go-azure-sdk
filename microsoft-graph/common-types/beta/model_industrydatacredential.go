@@ -43,9 +43,9 @@ func (s BaseIndustryDataCredentialImpl) IndustryDataCredential() BaseIndustryDat
 
 var _ IndustryDataCredential = RawIndustryDataCredentialImpl{}
 
-// RawIndustryDataCredentialImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawIndustryDataCredentialImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawIndustryDataCredentialImpl struct {
 	industryDataCredential BaseIndustryDataCredentialImpl
 	Type                   string
@@ -54,6 +54,10 @@ type RawIndustryDataCredentialImpl struct {
 
 func (s RawIndustryDataCredentialImpl) IndustryDataCredential() BaseIndustryDataCredentialImpl {
 	return s.industryDataCredential
+}
+
+func (s RawIndustryDataCredentialImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 var _ json.Marshaler = BaseIndustryDataCredentialImpl{}

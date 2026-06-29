@@ -62,9 +62,9 @@ func (s BaseChangeTrackedEntityImpl) Entity() BaseEntityImpl {
 
 var _ ChangeTrackedEntity = RawChangeTrackedEntityImpl{}
 
-// RawChangeTrackedEntityImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawChangeTrackedEntityImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawChangeTrackedEntityImpl struct {
 	changeTrackedEntity BaseChangeTrackedEntityImpl
 	Type                string
@@ -73,6 +73,10 @@ type RawChangeTrackedEntityImpl struct {
 
 func (s RawChangeTrackedEntityImpl) ChangeTrackedEntity() BaseChangeTrackedEntityImpl {
 	return s.changeTrackedEntity
+}
+
+func (s RawChangeTrackedEntityImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawChangeTrackedEntityImpl) Entity() BaseEntityImpl {

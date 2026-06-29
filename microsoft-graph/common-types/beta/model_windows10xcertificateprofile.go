@@ -88,9 +88,9 @@ func (s BaseWindows10XCertificateProfileImpl) Entity() BaseEntityImpl {
 
 var _ Windows10XCertificateProfile = RawWindows10XCertificateProfileImpl{}
 
-// RawWindows10XCertificateProfileImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawWindows10XCertificateProfileImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawWindows10XCertificateProfileImpl struct {
 	windows10XCertificateProfile BaseWindows10XCertificateProfileImpl
 	Type                         string
@@ -99,6 +99,10 @@ type RawWindows10XCertificateProfileImpl struct {
 
 func (s RawWindows10XCertificateProfileImpl) Windows10XCertificateProfile() BaseWindows10XCertificateProfileImpl {
 	return s.windows10XCertificateProfile
+}
+
+func (s RawWindows10XCertificateProfileImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawWindows10XCertificateProfileImpl) DeviceManagementResourceAccessProfileBase() BaseDeviceManagementResourceAccessProfileBaseImpl {

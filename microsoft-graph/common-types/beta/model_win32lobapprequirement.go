@@ -40,9 +40,9 @@ func (s BaseWin32LobAppRequirementImpl) Win32LobAppRequirement() BaseWin32LobApp
 
 var _ Win32LobAppRequirement = RawWin32LobAppRequirementImpl{}
 
-// RawWin32LobAppRequirementImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawWin32LobAppRequirementImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawWin32LobAppRequirementImpl struct {
 	win32LobAppRequirement BaseWin32LobAppRequirementImpl
 	Type                   string
@@ -51,6 +51,10 @@ type RawWin32LobAppRequirementImpl struct {
 
 func (s RawWin32LobAppRequirementImpl) Win32LobAppRequirement() BaseWin32LobAppRequirementImpl {
 	return s.win32LobAppRequirement
+}
+
+func (s RawWin32LobAppRequirementImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalWin32LobAppRequirementImplementation(input []byte) (Win32LobAppRequirement, error) {

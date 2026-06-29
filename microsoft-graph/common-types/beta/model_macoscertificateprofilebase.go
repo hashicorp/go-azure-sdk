@@ -146,9 +146,9 @@ func (s BaseMacOSCertificateProfileBaseImpl) Entity() BaseEntityImpl {
 
 var _ MacOSCertificateProfileBase = RawMacOSCertificateProfileBaseImpl{}
 
-// RawMacOSCertificateProfileBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawMacOSCertificateProfileBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawMacOSCertificateProfileBaseImpl struct {
 	macOSCertificateProfileBase BaseMacOSCertificateProfileBaseImpl
 	Type                        string
@@ -157,6 +157,10 @@ type RawMacOSCertificateProfileBaseImpl struct {
 
 func (s RawMacOSCertificateProfileBaseImpl) MacOSCertificateProfileBase() BaseMacOSCertificateProfileBaseImpl {
 	return s.macOSCertificateProfileBase
+}
+
+func (s RawMacOSCertificateProfileBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawMacOSCertificateProfileBaseImpl) DeviceConfiguration() BaseDeviceConfigurationImpl {

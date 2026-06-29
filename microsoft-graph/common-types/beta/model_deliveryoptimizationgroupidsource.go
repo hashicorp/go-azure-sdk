@@ -32,9 +32,9 @@ func (s BaseDeliveryOptimizationGroupIdSourceImpl) DeliveryOptimizationGroupIdSo
 
 var _ DeliveryOptimizationGroupIdSource = RawDeliveryOptimizationGroupIdSourceImpl{}
 
-// RawDeliveryOptimizationGroupIdSourceImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDeliveryOptimizationGroupIdSourceImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDeliveryOptimizationGroupIdSourceImpl struct {
 	deliveryOptimizationGroupIdSource BaseDeliveryOptimizationGroupIdSourceImpl
 	Type                              string
@@ -43,6 +43,10 @@ type RawDeliveryOptimizationGroupIdSourceImpl struct {
 
 func (s RawDeliveryOptimizationGroupIdSourceImpl) DeliveryOptimizationGroupIdSource() BaseDeliveryOptimizationGroupIdSourceImpl {
 	return s.deliveryOptimizationGroupIdSource
+}
+
+func (s RawDeliveryOptimizationGroupIdSourceImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalDeliveryOptimizationGroupIdSourceImplementation(input []byte) (DeliveryOptimizationGroupIdSource, error) {

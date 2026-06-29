@@ -33,9 +33,9 @@ func (s BaseAgentDeploymentPropertiesImpl) AgentDeploymentProperties() BaseAgent
 
 var _ AgentDeploymentProperties = RawAgentDeploymentPropertiesImpl{}
 
-// RawAgentDeploymentPropertiesImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawAgentDeploymentPropertiesImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawAgentDeploymentPropertiesImpl struct {
 	agentDeploymentProperties BaseAgentDeploymentPropertiesImpl
 	Type                      string
@@ -44,6 +44,10 @@ type RawAgentDeploymentPropertiesImpl struct {
 
 func (s RawAgentDeploymentPropertiesImpl) AgentDeploymentProperties() BaseAgentDeploymentPropertiesImpl {
 	return s.agentDeploymentProperties
+}
+
+func (s RawAgentDeploymentPropertiesImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalAgentDeploymentPropertiesImplementation(input []byte) (AgentDeploymentProperties, error) {

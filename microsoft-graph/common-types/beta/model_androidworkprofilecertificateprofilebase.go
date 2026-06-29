@@ -152,9 +152,9 @@ func (s BaseAndroidWorkProfileCertificateProfileBaseImpl) Entity() BaseEntityImp
 
 var _ AndroidWorkProfileCertificateProfileBase = RawAndroidWorkProfileCertificateProfileBaseImpl{}
 
-// RawAndroidWorkProfileCertificateProfileBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawAndroidWorkProfileCertificateProfileBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawAndroidWorkProfileCertificateProfileBaseImpl struct {
 	androidWorkProfileCertificateProfileBase BaseAndroidWorkProfileCertificateProfileBaseImpl
 	Type                                     string
@@ -163,6 +163,10 @@ type RawAndroidWorkProfileCertificateProfileBaseImpl struct {
 
 func (s RawAndroidWorkProfileCertificateProfileBaseImpl) AndroidWorkProfileCertificateProfileBase() BaseAndroidWorkProfileCertificateProfileBaseImpl {
 	return s.androidWorkProfileCertificateProfileBase
+}
+
+func (s RawAndroidWorkProfileCertificateProfileBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawAndroidWorkProfileCertificateProfileBaseImpl) DeviceConfiguration() BaseDeviceConfigurationImpl {

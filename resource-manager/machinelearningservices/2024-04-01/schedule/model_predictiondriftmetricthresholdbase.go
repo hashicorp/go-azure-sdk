@@ -26,9 +26,9 @@ func (s BasePredictionDriftMetricThresholdBaseImpl) PredictionDriftMetricThresho
 
 var _ PredictionDriftMetricThresholdBase = RawPredictionDriftMetricThresholdBaseImpl{}
 
-// RawPredictionDriftMetricThresholdBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawPredictionDriftMetricThresholdBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawPredictionDriftMetricThresholdBaseImpl struct {
 	predictionDriftMetricThresholdBase BasePredictionDriftMetricThresholdBaseImpl
 	Type                               string
@@ -37,6 +37,10 @@ type RawPredictionDriftMetricThresholdBaseImpl struct {
 
 func (s RawPredictionDriftMetricThresholdBaseImpl) PredictionDriftMetricThresholdBase() BasePredictionDriftMetricThresholdBaseImpl {
 	return s.predictionDriftMetricThresholdBase
+}
+
+func (s RawPredictionDriftMetricThresholdBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalPredictionDriftMetricThresholdBaseImplementation(input []byte) (PredictionDriftMetricThresholdBase, error) {

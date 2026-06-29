@@ -36,9 +36,9 @@ func (s BaseConditionalAccessExternalTenantsImpl) ConditionalAccessExternalTenan
 
 var _ ConditionalAccessExternalTenants = RawConditionalAccessExternalTenantsImpl{}
 
-// RawConditionalAccessExternalTenantsImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawConditionalAccessExternalTenantsImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawConditionalAccessExternalTenantsImpl struct {
 	conditionalAccessExternalTenants BaseConditionalAccessExternalTenantsImpl
 	Type                             string
@@ -47,6 +47,10 @@ type RawConditionalAccessExternalTenantsImpl struct {
 
 func (s RawConditionalAccessExternalTenantsImpl) ConditionalAccessExternalTenants() BaseConditionalAccessExternalTenantsImpl {
 	return s.conditionalAccessExternalTenants
+}
+
+func (s RawConditionalAccessExternalTenantsImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalConditionalAccessExternalTenantsImplementation(input []byte) (ConditionalAccessExternalTenants, error) {

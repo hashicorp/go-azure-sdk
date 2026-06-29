@@ -49,9 +49,9 @@ func (s BaseBookingNamedEntityImpl) Entity() BaseEntityImpl {
 
 var _ BookingNamedEntity = RawBookingNamedEntityImpl{}
 
-// RawBookingNamedEntityImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawBookingNamedEntityImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawBookingNamedEntityImpl struct {
 	bookingNamedEntity BaseBookingNamedEntityImpl
 	Type               string
@@ -60,6 +60,10 @@ type RawBookingNamedEntityImpl struct {
 
 func (s RawBookingNamedEntityImpl) BookingNamedEntity() BaseBookingNamedEntityImpl {
 	return s.bookingNamedEntity
+}
+
+func (s RawBookingNamedEntityImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawBookingNamedEntityImpl) Entity() BaseEntityImpl {

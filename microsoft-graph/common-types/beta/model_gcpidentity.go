@@ -76,9 +76,9 @@ func (s BaseGcpIdentityImpl) Entity() BaseEntityImpl {
 
 var _ GcpIdentity = RawGcpIdentityImpl{}
 
-// RawGcpIdentityImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawGcpIdentityImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawGcpIdentityImpl struct {
 	gcpIdentity BaseGcpIdentityImpl
 	Type        string
@@ -87,6 +87,10 @@ type RawGcpIdentityImpl struct {
 
 func (s RawGcpIdentityImpl) GcpIdentity() BaseGcpIdentityImpl {
 	return s.gcpIdentity
+}
+
+func (s RawGcpIdentityImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawGcpIdentityImpl) AuthorizationSystemIdentity() BaseAuthorizationSystemIdentityImpl {

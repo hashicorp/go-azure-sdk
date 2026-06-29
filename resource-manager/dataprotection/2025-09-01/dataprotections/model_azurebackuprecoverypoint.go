@@ -25,9 +25,9 @@ func (s BaseAzureBackupRecoveryPointImpl) AzureBackupRecoveryPoint() BaseAzureBa
 
 var _ AzureBackupRecoveryPoint = RawAzureBackupRecoveryPointImpl{}
 
-// RawAzureBackupRecoveryPointImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawAzureBackupRecoveryPointImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawAzureBackupRecoveryPointImpl struct {
 	azureBackupRecoveryPoint BaseAzureBackupRecoveryPointImpl
 	Type                     string
@@ -36,6 +36,10 @@ type RawAzureBackupRecoveryPointImpl struct {
 
 func (s RawAzureBackupRecoveryPointImpl) AzureBackupRecoveryPoint() BaseAzureBackupRecoveryPointImpl {
 	return s.azureBackupRecoveryPoint
+}
+
+func (s RawAzureBackupRecoveryPointImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalAzureBackupRecoveryPointImplementation(input []byte) (AzureBackupRecoveryPoint, error) {

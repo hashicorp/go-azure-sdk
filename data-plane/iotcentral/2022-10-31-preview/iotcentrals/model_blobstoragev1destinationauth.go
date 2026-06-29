@@ -25,9 +25,9 @@ func (s BaseBlobStorageV1DestinationAuthImpl) BlobStorageV1DestinationAuth() Bas
 
 var _ BlobStorageV1DestinationAuth = RawBlobStorageV1DestinationAuthImpl{}
 
-// RawBlobStorageV1DestinationAuthImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawBlobStorageV1DestinationAuthImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawBlobStorageV1DestinationAuthImpl struct {
 	blobStorageV1DestinationAuth BaseBlobStorageV1DestinationAuthImpl
 	Type                         string
@@ -36,6 +36,10 @@ type RawBlobStorageV1DestinationAuthImpl struct {
 
 func (s RawBlobStorageV1DestinationAuthImpl) BlobStorageV1DestinationAuth() BaseBlobStorageV1DestinationAuthImpl {
 	return s.blobStorageV1DestinationAuth
+}
+
+func (s RawBlobStorageV1DestinationAuthImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalBlobStorageV1DestinationAuthImplementation(input []byte) (BlobStorageV1DestinationAuth, error) {

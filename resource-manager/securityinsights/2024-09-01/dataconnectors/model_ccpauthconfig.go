@@ -25,9 +25,9 @@ func (s BaseCcpAuthConfigImpl) CcpAuthConfig() BaseCcpAuthConfigImpl {
 
 var _ CcpAuthConfig = RawCcpAuthConfigImpl{}
 
-// RawCcpAuthConfigImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawCcpAuthConfigImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawCcpAuthConfigImpl struct {
 	ccpAuthConfig BaseCcpAuthConfigImpl
 	Type          string
@@ -36,6 +36,10 @@ type RawCcpAuthConfigImpl struct {
 
 func (s RawCcpAuthConfigImpl) CcpAuthConfig() BaseCcpAuthConfigImpl {
 	return s.ccpAuthConfig
+}
+
+func (s RawCcpAuthConfigImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalCcpAuthConfigImplementation(input []byte) (CcpAuthConfig, error) {

@@ -36,9 +36,9 @@ func (s BasePlannerBucketCreationImpl) PlannerBucketCreation() BasePlannerBucket
 
 var _ PlannerBucketCreation = RawPlannerBucketCreationImpl{}
 
-// RawPlannerBucketCreationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawPlannerBucketCreationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawPlannerBucketCreationImpl struct {
 	plannerBucketCreation BasePlannerBucketCreationImpl
 	Type                  string
@@ -47,6 +47,10 @@ type RawPlannerBucketCreationImpl struct {
 
 func (s RawPlannerBucketCreationImpl) PlannerBucketCreation() BasePlannerBucketCreationImpl {
 	return s.plannerBucketCreation
+}
+
+func (s RawPlannerBucketCreationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalPlannerBucketCreationImplementation(input []byte) (PlannerBucketCreation, error) {

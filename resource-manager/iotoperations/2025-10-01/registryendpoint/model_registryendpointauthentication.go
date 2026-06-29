@@ -25,9 +25,9 @@ func (s BaseRegistryEndpointAuthenticationImpl) RegistryEndpointAuthentication()
 
 var _ RegistryEndpointAuthentication = RawRegistryEndpointAuthenticationImpl{}
 
-// RawRegistryEndpointAuthenticationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawRegistryEndpointAuthenticationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawRegistryEndpointAuthenticationImpl struct {
 	registryEndpointAuthentication BaseRegistryEndpointAuthenticationImpl
 	Type                           string
@@ -36,6 +36,10 @@ type RawRegistryEndpointAuthenticationImpl struct {
 
 func (s RawRegistryEndpointAuthenticationImpl) RegistryEndpointAuthentication() BaseRegistryEndpointAuthenticationImpl {
 	return s.registryEndpointAuthentication
+}
+
+func (s RawRegistryEndpointAuthenticationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalRegistryEndpointAuthenticationImplementation(input []byte) (RegistryEndpointAuthentication, error) {

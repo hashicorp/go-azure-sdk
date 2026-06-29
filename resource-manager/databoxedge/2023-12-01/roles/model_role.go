@@ -31,9 +31,9 @@ func (s BaseRoleImpl) Role() BaseRoleImpl {
 
 var _ Role = RawRoleImpl{}
 
-// RawRoleImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawRoleImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawRoleImpl struct {
 	role   BaseRoleImpl
 	Type   string
@@ -42,6 +42,10 @@ type RawRoleImpl struct {
 
 func (s RawRoleImpl) Role() BaseRoleImpl {
 	return s.role
+}
+
+func (s RawRoleImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalRoleImplementation(input []byte) (Role, error) {

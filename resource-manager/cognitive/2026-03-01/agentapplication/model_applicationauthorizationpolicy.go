@@ -25,9 +25,9 @@ func (s BaseApplicationAuthorizationPolicyImpl) ApplicationAuthorizationPolicy()
 
 var _ ApplicationAuthorizationPolicy = RawApplicationAuthorizationPolicyImpl{}
 
-// RawApplicationAuthorizationPolicyImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawApplicationAuthorizationPolicyImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawApplicationAuthorizationPolicyImpl struct {
 	applicationAuthorizationPolicy BaseApplicationAuthorizationPolicyImpl
 	Type                           string
@@ -36,6 +36,10 @@ type RawApplicationAuthorizationPolicyImpl struct {
 
 func (s RawApplicationAuthorizationPolicyImpl) ApplicationAuthorizationPolicy() BaseApplicationAuthorizationPolicyImpl {
 	return s.applicationAuthorizationPolicy
+}
+
+func (s RawApplicationAuthorizationPolicyImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalApplicationAuthorizationPolicyImplementation(input []byte) (ApplicationAuthorizationPolicy, error) {

@@ -25,9 +25,9 @@ func (s BaseReplicationProtectionIntentProviderSpecificSettingsImpl) Replication
 
 var _ ReplicationProtectionIntentProviderSpecificSettings = RawReplicationProtectionIntentProviderSpecificSettingsImpl{}
 
-// RawReplicationProtectionIntentProviderSpecificSettingsImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawReplicationProtectionIntentProviderSpecificSettingsImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawReplicationProtectionIntentProviderSpecificSettingsImpl struct {
 	replicationProtectionIntentProviderSpecificSettings BaseReplicationProtectionIntentProviderSpecificSettingsImpl
 	Type                                                string
@@ -36,6 +36,10 @@ type RawReplicationProtectionIntentProviderSpecificSettingsImpl struct {
 
 func (s RawReplicationProtectionIntentProviderSpecificSettingsImpl) ReplicationProtectionIntentProviderSpecificSettings() BaseReplicationProtectionIntentProviderSpecificSettingsImpl {
 	return s.replicationProtectionIntentProviderSpecificSettings
+}
+
+func (s RawReplicationProtectionIntentProviderSpecificSettingsImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalReplicationProtectionIntentProviderSpecificSettingsImplementation(input []byte) (ReplicationProtectionIntentProviderSpecificSettings, error) {

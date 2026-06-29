@@ -41,9 +41,9 @@ func (s BaseNetworkaccessTunnelConfigurationImpl) NetworkaccessTunnelConfigurati
 
 var _ NetworkaccessTunnelConfiguration = RawNetworkaccessTunnelConfigurationImpl{}
 
-// RawNetworkaccessTunnelConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawNetworkaccessTunnelConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawNetworkaccessTunnelConfigurationImpl struct {
 	networkaccessTunnelConfiguration BaseNetworkaccessTunnelConfigurationImpl
 	Type                             string
@@ -52,6 +52,10 @@ type RawNetworkaccessTunnelConfigurationImpl struct {
 
 func (s RawNetworkaccessTunnelConfigurationImpl) NetworkaccessTunnelConfiguration() BaseNetworkaccessTunnelConfigurationImpl {
 	return s.networkaccessTunnelConfiguration
+}
+
+func (s RawNetworkaccessTunnelConfigurationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalNetworkaccessTunnelConfigurationImplementation(input []byte) (NetworkaccessTunnelConfiguration, error) {

@@ -36,9 +36,9 @@ func (s BaseDlpNotificationImpl) DlpNotification() BaseDlpNotificationImpl {
 
 var _ DlpNotification = RawDlpNotificationImpl{}
 
-// RawDlpNotificationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDlpNotificationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDlpNotificationImpl struct {
 	dlpNotification BaseDlpNotificationImpl
 	Type            string
@@ -47,6 +47,10 @@ type RawDlpNotificationImpl struct {
 
 func (s RawDlpNotificationImpl) DlpNotification() BaseDlpNotificationImpl {
 	return s.dlpNotification
+}
+
+func (s RawDlpNotificationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalDlpNotificationImplementation(input []byte) (DlpNotification, error) {

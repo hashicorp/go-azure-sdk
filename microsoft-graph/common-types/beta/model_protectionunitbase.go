@@ -72,9 +72,9 @@ func (s BaseProtectionUnitBaseImpl) Entity() BaseEntityImpl {
 
 var _ ProtectionUnitBase = RawProtectionUnitBaseImpl{}
 
-// RawProtectionUnitBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawProtectionUnitBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawProtectionUnitBaseImpl struct {
 	protectionUnitBase BaseProtectionUnitBaseImpl
 	Type               string
@@ -83,6 +83,10 @@ type RawProtectionUnitBaseImpl struct {
 
 func (s RawProtectionUnitBaseImpl) ProtectionUnitBase() BaseProtectionUnitBaseImpl {
 	return s.protectionUnitBase
+}
+
+func (s RawProtectionUnitBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawProtectionUnitBaseImpl) Entity() BaseEntityImpl {

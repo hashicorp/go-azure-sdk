@@ -29,9 +29,9 @@ func (s BaseMonitoringInputDataBaseImpl) MonitoringInputDataBase() BaseMonitorin
 
 var _ MonitoringInputDataBase = RawMonitoringInputDataBaseImpl{}
 
-// RawMonitoringInputDataBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawMonitoringInputDataBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawMonitoringInputDataBaseImpl struct {
 	monitoringInputDataBase BaseMonitoringInputDataBaseImpl
 	Type                    string
@@ -40,6 +40,10 @@ type RawMonitoringInputDataBaseImpl struct {
 
 func (s RawMonitoringInputDataBaseImpl) MonitoringInputDataBase() BaseMonitoringInputDataBaseImpl {
 	return s.monitoringInputDataBase
+}
+
+func (s RawMonitoringInputDataBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalMonitoringInputDataBaseImplementation(input []byte) (MonitoringInputDataBase, error) {

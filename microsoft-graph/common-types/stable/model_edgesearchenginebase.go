@@ -32,9 +32,9 @@ func (s BaseEdgeSearchEngineBaseImpl) EdgeSearchEngineBase() BaseEdgeSearchEngin
 
 var _ EdgeSearchEngineBase = RawEdgeSearchEngineBaseImpl{}
 
-// RawEdgeSearchEngineBaseImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawEdgeSearchEngineBaseImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawEdgeSearchEngineBaseImpl struct {
 	edgeSearchEngineBase BaseEdgeSearchEngineBaseImpl
 	Type                 string
@@ -43,6 +43,10 @@ type RawEdgeSearchEngineBaseImpl struct {
 
 func (s RawEdgeSearchEngineBaseImpl) EdgeSearchEngineBase() BaseEdgeSearchEngineBaseImpl {
 	return s.edgeSearchEngineBase
+}
+
+func (s RawEdgeSearchEngineBaseImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalEdgeSearchEngineBaseImplementation(input []byte) (EdgeSearchEngineBase, error) {

@@ -78,9 +78,9 @@ func (s BaseImportedAppleDeviceIdentityImpl) Entity() BaseEntityImpl {
 
 var _ ImportedAppleDeviceIdentity = RawImportedAppleDeviceIdentityImpl{}
 
-// RawImportedAppleDeviceIdentityImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawImportedAppleDeviceIdentityImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawImportedAppleDeviceIdentityImpl struct {
 	importedAppleDeviceIdentity BaseImportedAppleDeviceIdentityImpl
 	Type                        string
@@ -89,6 +89,10 @@ type RawImportedAppleDeviceIdentityImpl struct {
 
 func (s RawImportedAppleDeviceIdentityImpl) ImportedAppleDeviceIdentity() BaseImportedAppleDeviceIdentityImpl {
 	return s.importedAppleDeviceIdentity
+}
+
+func (s RawImportedAppleDeviceIdentityImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawImportedAppleDeviceIdentityImpl) Entity() BaseEntityImpl {

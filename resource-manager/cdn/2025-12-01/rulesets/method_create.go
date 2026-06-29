@@ -26,6 +26,7 @@ func (c RuleSetsClient) Create(ctx context.Context, id RuleSetId, input RuleSet)
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
+			http.StatusAccepted,
 			http.StatusCreated,
 			http.StatusOK,
 		},

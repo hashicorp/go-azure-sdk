@@ -32,9 +32,9 @@ func (s BaseDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl)
 
 var _ DeviceManagementConfigurationIntegerSettingValueDefaultTemplate = RawDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl{}
 
-// RawDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl struct {
 	deviceManagementConfigurationIntegerSettingValueDefaultTemplate BaseDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl
 	Type                                                            string
@@ -43,6 +43,10 @@ type RawDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl stru
 
 func (s RawDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl) DeviceManagementConfigurationIntegerSettingValueDefaultTemplate() BaseDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl {
 	return s.deviceManagementConfigurationIntegerSettingValueDefaultTemplate
+}
+
+func (s RawDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalDeviceManagementConfigurationIntegerSettingValueDefaultTemplateImplementation(input []byte) (DeviceManagementConfigurationIntegerSettingValueDefaultTemplate, error) {

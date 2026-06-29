@@ -25,9 +25,9 @@ func (s BaseDataConnectorsCheckRequirementsImpl) DataConnectorsCheckRequirements
 
 var _ DataConnectorsCheckRequirements = RawDataConnectorsCheckRequirementsImpl{}
 
-// RawDataConnectorsCheckRequirementsImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawDataConnectorsCheckRequirementsImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawDataConnectorsCheckRequirementsImpl struct {
 	dataConnectorsCheckRequirements BaseDataConnectorsCheckRequirementsImpl
 	Type                            string
@@ -36,6 +36,10 @@ type RawDataConnectorsCheckRequirementsImpl struct {
 
 func (s RawDataConnectorsCheckRequirementsImpl) DataConnectorsCheckRequirements() BaseDataConnectorsCheckRequirementsImpl {
 	return s.dataConnectorsCheckRequirements
+}
+
+func (s RawDataConnectorsCheckRequirementsImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalDataConnectorsCheckRequirementsImplementation(input []byte) (DataConnectorsCheckRequirements, error) {

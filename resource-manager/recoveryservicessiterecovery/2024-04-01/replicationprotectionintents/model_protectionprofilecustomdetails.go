@@ -25,9 +25,9 @@ func (s BaseProtectionProfileCustomDetailsImpl) ProtectionProfileCustomDetails()
 
 var _ ProtectionProfileCustomDetails = RawProtectionProfileCustomDetailsImpl{}
 
-// RawProtectionProfileCustomDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawProtectionProfileCustomDetailsImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawProtectionProfileCustomDetailsImpl struct {
 	protectionProfileCustomDetails BaseProtectionProfileCustomDetailsImpl
 	Type                           string
@@ -36,6 +36,10 @@ type RawProtectionProfileCustomDetailsImpl struct {
 
 func (s RawProtectionProfileCustomDetailsImpl) ProtectionProfileCustomDetails() BaseProtectionProfileCustomDetailsImpl {
 	return s.protectionProfileCustomDetails
+}
+
+func (s RawProtectionProfileCustomDetailsImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalProtectionProfileCustomDetailsImplementation(input []byte) (ProtectionProfileCustomDetails, error) {

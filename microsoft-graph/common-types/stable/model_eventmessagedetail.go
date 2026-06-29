@@ -32,9 +32,9 @@ func (s BaseEventMessageDetailImpl) EventMessageDetail() BaseEventMessageDetailI
 
 var _ EventMessageDetail = RawEventMessageDetailImpl{}
 
-// RawEventMessageDetailImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawEventMessageDetailImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawEventMessageDetailImpl struct {
 	eventMessageDetail BaseEventMessageDetailImpl
 	Type               string
@@ -43,6 +43,10 @@ type RawEventMessageDetailImpl struct {
 
 func (s RawEventMessageDetailImpl) EventMessageDetail() BaseEventMessageDetailImpl {
 	return s.eventMessageDetail
+}
+
+func (s RawEventMessageDetailImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func UnmarshalEventMessageDetailImplementation(input []byte) (EventMessageDetail, error) {

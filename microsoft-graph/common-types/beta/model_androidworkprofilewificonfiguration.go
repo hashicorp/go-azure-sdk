@@ -167,9 +167,9 @@ func (s BaseAndroidWorkProfileWiFiConfigurationImpl) Entity() BaseEntityImpl {
 
 var _ AndroidWorkProfileWiFiConfiguration = RawAndroidWorkProfileWiFiConfigurationImpl{}
 
-// RawAndroidWorkProfileWiFiConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types
-// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
-// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+// RawAndroidWorkProfileWiFiConfigurationImpl is returned when the Discriminated Value doesn't match any of the defined types.
+// It can also be used as a Request Payload to provide a raw JSON payload, which is useful
+// for preserving arbitrary/extensible JSON properties across a round-trip.
 type RawAndroidWorkProfileWiFiConfigurationImpl struct {
 	androidWorkProfileWiFiConfiguration BaseAndroidWorkProfileWiFiConfigurationImpl
 	Type                                string
@@ -178,6 +178,10 @@ type RawAndroidWorkProfileWiFiConfigurationImpl struct {
 
 func (s RawAndroidWorkProfileWiFiConfigurationImpl) AndroidWorkProfileWiFiConfiguration() BaseAndroidWorkProfileWiFiConfigurationImpl {
 	return s.androidWorkProfileWiFiConfiguration
+}
+
+func (s RawAndroidWorkProfileWiFiConfigurationImpl) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Values)
 }
 
 func (s RawAndroidWorkProfileWiFiConfigurationImpl) DeviceConfiguration() BaseDeviceConfigurationImpl {
