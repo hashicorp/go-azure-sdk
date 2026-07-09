@@ -4,7 +4,9 @@ package alertruletemplates
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ThreatIntelligenceAlertRuleTemplateProperties struct {
-	Severity   AlertSeverity   `json:"severity"`
-	Tactics    *[]AttackTactic `json:"tactics,omitempty"`
-	Techniques *[]string       `json:"techniques,omitempty"`
+	Description *string         `json:"description,omitempty"`
+	DisplayName *string         `json:"displayName,omitempty"`
+	Severity    AlertSeverity   `json:"severity"`
+	Tactics     *[]AttackTactic `json:"tactics,omitempty"`
+	Techniques  *[]string       `json:"techniques,omitempty"`
 }

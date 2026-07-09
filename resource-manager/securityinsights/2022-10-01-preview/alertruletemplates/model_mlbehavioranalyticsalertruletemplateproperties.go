@@ -4,7 +4,8 @@ package alertruletemplates
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MLBehaviorAnalyticsAlertRuleTemplateProperties struct {
-	Severity   AlertSeverity   `json:"severity"`
-	Tactics    *[]AttackTactic `json:"tactics,omitempty"`
-	Techniques *[]string       `json:"techniques,omitempty"`
+	DisplayName *string         `json:"displayName,omitempty"`
+	Severity    AlertSeverity   `json:"severity"`
+	Tactics     *[]AttackTactic `json:"tactics,omitempty"`
+	Techniques  *[]string       `json:"techniques,omitempty"`
 }

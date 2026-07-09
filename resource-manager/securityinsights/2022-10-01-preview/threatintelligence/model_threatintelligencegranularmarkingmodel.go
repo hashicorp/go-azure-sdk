@@ -5,6 +5,6 @@ package threatintelligence
 
 type ThreatIntelligenceGranularMarkingModel struct {
 	Language   *string   `json:"language,omitempty"`
-	MarkingRef *int64    `json:"markingRef,omitempty"`
+	MarkingRef *string   `json:"markingRef,omitempty"`
 	Selectors  *[]string `json:"selectors,omitempty"`
 }
