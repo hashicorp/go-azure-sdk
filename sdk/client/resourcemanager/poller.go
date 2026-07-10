@@ -7,7 +7,9 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
@@ -55,7 +57,11 @@ func PollerFromResponse(response *client.Response, client *Client) (poller polle
 	// finally, if it was a Delete that returned a 200/204
 	statusCodesToCheckDelete := response.StatusCode == http.StatusOK || response.StatusCode == http.StatusCreated || response.StatusCode == http.StatusAccepted || response.StatusCode == http.StatusNoContent
 	if methodIsDelete && statusCodesToCheckDelete {
-		deletePoller, deletePollerErr := deletePollerFromResponse(response, client, DefaultPollingInterval)
+		interval := DefaultPollingInterval
+		if retryAfter := retryAfterFromResponse(response); retryAfter != nil {
+			interval = *retryAfter
+		}
+		deletePoller, deletePollerErr := deletePollerFromResponse(response, client, interval)
 		if deletePollerErr != nil {
 			return pollers.Poller{}, fmt.Errorf("building delete poller: %+v", deletePollerErr)
 		}
@@ -80,4 +86,14 @@ func isLROSelfReference(lroPollingUri, originalRequestUri string) bool {
 	// The Query String can be a different API version / options and in some cases the Host
 	// is returned with `:443` - so the path should be sufficient as a check.
 	return strings.EqualFold(first.Path, second.Path)
+}
+
+func retryAfterFromResponse(response *client.Response) *time.Duration {
+	if s, ok := response.Header["Retry-After"]; ok {
+		if sleep, err := strconv.ParseInt(s[0], 10, 64); err == nil {
+			duration := time.Second * time.Duration(sleep)
+			return &duration
+		}
+	}
+	return nil
 }

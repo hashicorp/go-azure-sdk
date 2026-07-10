@@ -66,10 +66,8 @@ func longRunningOperationPollerFromResponse(resp *client.Response, client *clien
 		poller.originalUrl = resp.Request.URL
 	}
 
-	if s, ok := resp.Header["Retry-After"]; ok {
-		if sleep, err := strconv.ParseInt(s[0], 10, 64); err == nil {
-			poller.initialRetryDuration = time.Second * time.Duration(sleep)
-		}
+	if retryAfter := retryAfterFromResponse(resp); retryAfter != nil {
+		poller.initialRetryDuration = *retryAfter
 	}
 
 	return &poller, nil
