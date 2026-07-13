@@ -4,7 +4,10 @@
 package resourcemanager
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
 
@@ -19,6 +22,7 @@ import (
 var defaultRetryFunctions = []client.RequestRetryFunc{
 	// NOTE: 429 is handled by the base library
 	handleResourceProviderNotRegistered,
+	RetryOn409ConflictFunc,
 }
 
 func handleResourceProviderNotRegistered(r *http.Response, o *odata.OData) (bool, error) {
@@ -52,4 +56,53 @@ Resource Providers can take a while to register, you can check the status by run
 
 Once this outputs "Registered" the Resource Provider is available for use and you can re-run Terraform.
 `, strings.Join(messageSplit, "\n"))
+}
+
+// RetryOn409ConflictFunc is a RequestRetryFunc that inspects HTTP 409 Conflict responses.
+// It will always retry if a Retry-After header is provided by the server.
+// If the Retry-After header is omitted, the response payload is evaluated to determine if the resource is in a
+// non-terminal provisioning state (such as Updating, Creating, Deleting, or InProgress).
+// If it is in a non-terminal state, it returns true, indicating a retry should be performed using the default backoff.
+// Known terminal states (Failed, Canceled, Cancelled, Succeeded) will not be retried unless a Retry-After header is present.
+func RetryOn409ConflictFunc(resp *http.Response, o *odata.OData) (bool, error) {
+	if resp == nil || resp.StatusCode != http.StatusConflict {
+		return false, nil
+	}
+
+	if _, ok := resp.Header["Retry-After"]; ok {
+		return true, nil
+	}
+
+	if resp.Body != nil {
+		respBody, err := io.ReadAll(resp.Body)
+		if err == nil {
+			// Reassign the body so it can be consumed later
+			resp.Body = io.NopCloser(bytes.NewBuffer(respBody))
+
+			var state struct {
+				Status     string `json:"status"`
+				Properties struct {
+					ProvisioningState string `json:"provisioningState"`
+				} `json:"properties"`
+			}
+
+			if err := json.Unmarshal(respBody, &state); err == nil {
+				s := state.Status
+				if state.Properties.ProvisioningState != "" {
+					s = state.Properties.ProvisioningState
+				}
+
+				if s != "" {
+					// Check for known terminal states
+					if strings.EqualFold(s, "Failed") || strings.EqualFold(s, "Canceled") || strings.EqualFold(s, "Cancelled") || strings.EqualFold(s, "Succeeded") {
+						return false, nil
+					}
+					// If it's a non-terminal state, retry
+					return true, nil
+				}
+			}
+		}
+	}
+
+	return false, nil
 }

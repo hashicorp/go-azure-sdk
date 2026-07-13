@@ -15,6 +15,7 @@ import (
 	"net/url"
 	"reflect"
 	"testing"
+	"time"
 
 	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
@@ -771,4 +772,53 @@ func (rt *recorderRecorder) RoundTrip(req *http.Request) (*http.Response, error)
 		return rt.roundTripFunc(req)
 	}
 	return nil, fmt.Errorf("roundTripFunc missing from mock")
+}
+
+func TestClient_RetryAfterBackoff(t *testing.T) {
+	ctx := context.TODO()
+	c := NewClient("http://localhost", "testService", "v1.0")
+
+	// Get the retryable client
+	r := c.retryableClient(ctx, nil)
+
+	t.Run("DelaySeconds", func(t *testing.T) {
+		resp := &http.Response{
+			Header: make(http.Header),
+		}
+		resp.Header.Set("Retry-After", "120")
+
+		sleep := r.Backoff(time.Second, 5*time.Minute, 0, resp)
+		if sleep != 120*time.Second {
+			t.Errorf("expected 120s, got %v", sleep)
+		}
+	})
+
+	t.Run("HTTPDate", func(t *testing.T) {
+		resp := &http.Response{
+			Header: make(http.Header),
+		}
+		// Set date to 2 minutes from now
+		future := time.Now().Add(2 * time.Minute).UTC()
+		resp.Header.Set("Retry-After", future.Format(http.TimeFormat))
+
+		sleep := r.Backoff(time.Second, 5*time.Minute, 0, resp)
+		
+		// The sleep duration should be close to 2 minutes. We can check if it's within a reasonable bounds.
+		if sleep < 118*time.Second || sleep > 122*time.Second {
+			t.Errorf("expected ~120s, got %v", sleep)
+		}
+	})
+
+	t.Run("Invalid", func(t *testing.T) {
+		resp := &http.Response{
+			Header: make(http.Header),
+		}
+		resp.Header.Set("Retry-After", "invalid")
+
+		sleep := r.Backoff(time.Second, time.Minute, 0, resp)
+		// Should fall back to default exponential backoff (attempt 0 -> 1s)
+		if sleep != time.Second {
+			t.Errorf("expected 1s, got %v", sleep)
+		}
+	})
 }

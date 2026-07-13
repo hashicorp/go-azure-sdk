@@ -763,6 +763,11 @@ func (c *Client) retryableClient(ctx context.Context, checkRetry retryablehttp.C
 			if s, ok := resp.Header["Retry-After"]; ok {
 				if sleep, err := strconv.ParseInt(s[0], 10, 64); err == nil {
 					return time.Second * time.Duration(sleep)
+				} else if parsedTime, err := http.ParseTime(s[0]); err == nil {
+					sleepDuration := time.Until(parsedTime)
+					if sleepDuration > 0 {
+						return sleepDuration
+					}
 				}
 			}
 		}
