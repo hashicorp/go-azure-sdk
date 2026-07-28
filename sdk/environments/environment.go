@@ -53,7 +53,7 @@ type Environment struct {
 	DataMigrations                                    Api
 	DigitalTwins                                      Api
 	DomainController                                  Api
-	Dynamic365BusinessCentral                         Api
+	Dynamics365BusinessCentral                         Api
 	Dynamics365DataExportService                      Api
 	DynamicsCRM                                       Api
 	DynamicsERP                                       Api

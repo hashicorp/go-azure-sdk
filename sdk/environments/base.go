@@ -45,7 +45,7 @@ func baseEnvironmentWithName(name string) Environment {
 		DataLake:                          applicationIdOnly("AzureDataLake", dataLakeAppId),
 		DigitalTwins:                      applicationIdOnly("AzureDigitalTwins", digitalTwinsAppId),
 		DomainController:                  applicationIdOnly("DomainControllerServices", domainControllerServiceAppId),
-		Dynamic365BusinessCentral:         applicationIdOnly("Dynamic365BusinessCentral", dynamic365BusinessCentralAppId),
+		Dynamics365BusinessCentral:         applicationIdOnly("Dynamics365BusinessCentral", dynamics365BusinessCentralAppId),
 		Dynamics365DataExportService:      applicationIdOnly("Dynamics365DataExportService", dynamics365DataExportServiceAppId),
 		DynamicsCRM:                       applicationIdOnly("DynamicsCrm", dynamicsCRMAppId),
 		DynamicsERP:                       applicationIdOnly("DynamicsErp", dynamicsERPAppId),

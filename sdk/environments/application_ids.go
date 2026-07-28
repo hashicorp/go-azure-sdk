@@ -62,7 +62,7 @@ var PublishedApis = map[string]string{
 	"CustomerInsights":                  customerInsightsAppId,
 	"DataMigrationService":              dataMigrationsServiceAppId,
 	"DomainControllerServices":          domainControllerServiceAppId,
-	"Dynamic365BusinessCentral":         dynamic365BusinessCentralAppId,
+	"Dynamics365BusinessCentral":         dynamics365BusinessCentralAppId,
 	"Dynamics365DataExportService":      dynamics365DataExportServiceAppId,
 	"DynamicsCrm":                       dynamicsCRMAppId,
 	"DynamicsErp":                       dynamicsERPAppId,
