@@ -2,7 +2,7 @@ module github.com/hashicorp/go-azure-sdk/microsoft-graph
 
 go 1.26.5
 
-require github.com/hashicorp/go-azure-sdk/sdk v0.20260729.1142043
+require github.com/hashicorp/go-azure-sdk/sdk v0.20260729.1145810
 
 require (
 	github.com/hashicorp/go-azure-helpers v0.81.1
@@ -11,6 +11,6 @@ require (
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/hashicorp/go-version v1.9.0 // indirect
 	golang.org/x/crypto v0.54.0 // indirect
-	golang.org/x/oauth2 v0.30.0 // indirect
-	software.sslmate.com/src/go-pkcs12 v0.4.0 // indirect
+	golang.org/x/oauth2 v0.36.0 // indirect
+	software.sslmate.com/src/go-pkcs12 v0.7.3 // indirect
 )
