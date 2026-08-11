@@ -16,12 +16,12 @@ import (
 type ListAllOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonVirtualNetworkTap
+	Model        *[]VirtualNetworkTap
 }
 
 type ListAllCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonVirtualNetworkTap
+	Items              []VirtualNetworkTap
 }
 
 type ListAllCustomPager struct {
@@ -64,7 +64,7 @@ func (c VirtualNetworkTapsClient) ListAll(ctx context.Context, id commonids.Subs
 	}
 
 	var values struct {
-		Values *[]CommonVirtualNetworkTap `json:"value"`
+		Values *[]VirtualNetworkTap `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c VirtualNetworkTapsClient) ListAll(ctx context.Context, id commonids.Subs
 
 // ListAllComplete retrieves all the results into a single object
 func (c VirtualNetworkTapsClient) ListAllComplete(ctx context.Context, id commonids.SubscriptionId) (ListAllCompleteResult, error) {
-	return c.ListAllCompleteMatchingPredicate(ctx, id, CommonVirtualNetworkTapOperationPredicate{})
+	return c.ListAllCompleteMatchingPredicate(ctx, id, VirtualNetworkTapOperationPredicate{})
 }
 
 // ListAllCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworkTapsClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate CommonVirtualNetworkTapOperationPredicate) (result ListAllCompleteResult, err error) {
-	items := make([]CommonVirtualNetworkTap, 0)
+func (c VirtualNetworkTapsClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate VirtualNetworkTapOperationPredicate) (result ListAllCompleteResult, err error) {
+	items := make([]VirtualNetworkTap, 0)
 
 	resp, err := c.ListAll(ctx, id)
 	if err != nil {

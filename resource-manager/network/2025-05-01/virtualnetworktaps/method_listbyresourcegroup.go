@@ -16,12 +16,12 @@ import (
 type ListByResourceGroupOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonVirtualNetworkTap
+	Model        *[]VirtualNetworkTap
 }
 
 type ListByResourceGroupCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonVirtualNetworkTap
+	Items              []VirtualNetworkTap
 }
 
 type ListByResourceGroupCustomPager struct {
@@ -64,7 +64,7 @@ func (c VirtualNetworkTapsClient) ListByResourceGroup(ctx context.Context, id co
 	}
 
 	var values struct {
-		Values *[]CommonVirtualNetworkTap `json:"value"`
+		Values *[]VirtualNetworkTap `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c VirtualNetworkTapsClient) ListByResourceGroup(ctx context.Context, id co
 
 // ListByResourceGroupComplete retrieves all the results into a single object
 func (c VirtualNetworkTapsClient) ListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (ListByResourceGroupCompleteResult, error) {
-	return c.ListByResourceGroupCompleteMatchingPredicate(ctx, id, CommonVirtualNetworkTapOperationPredicate{})
+	return c.ListByResourceGroupCompleteMatchingPredicate(ctx, id, VirtualNetworkTapOperationPredicate{})
 }
 
 // ListByResourceGroupCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworkTapsClient) ListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate CommonVirtualNetworkTapOperationPredicate) (result ListByResourceGroupCompleteResult, err error) {
-	items := make([]CommonVirtualNetworkTap, 0)
+func (c VirtualNetworkTapsClient) ListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate VirtualNetworkTapOperationPredicate) (result ListByResourceGroupCompleteResult, err error) {
+	items := make([]VirtualNetworkTap, 0)
 
 	resp, err := c.ListByResourceGroup(ctx, id)
 	if err != nil {

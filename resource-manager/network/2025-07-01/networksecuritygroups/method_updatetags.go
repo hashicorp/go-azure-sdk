@@ -14,7 +14,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonNetworkSecurityGroup
+	Model        *NetworkSecurityGroup
 }
 
 // UpdateTags ...
@@ -47,7 +47,7 @@ func (c NetworkSecurityGroupsClient) UpdateTags(ctx context.Context, id NetworkS
 		return
 	}
 
-	var model CommonNetworkSecurityGroup
+	var model NetworkSecurityGroup
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -3,7 +3,7 @@ package virtualnetworktaps
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type CommonVirtualNetworkTapOperationPredicate struct {
+type VirtualNetworkTapOperationPredicate struct {
 	Etag     *string
 	Id       *string
 	Location *string
@@ -11,7 +11,7 @@ type CommonVirtualNetworkTapOperationPredicate struct {
 	Type     *string
 }
 
-func (p CommonVirtualNetworkTapOperationPredicate) Matches(input CommonVirtualNetworkTap) bool {
+func (p VirtualNetworkTapOperationPredicate) Matches(input VirtualNetworkTap) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false

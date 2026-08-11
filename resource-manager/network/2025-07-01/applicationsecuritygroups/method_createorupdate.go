@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonApplicationSecurityGroup
+	Model        *ApplicationSecurityGroup
 }
 
 // CreateOrUpdate ...
-func (c ApplicationSecurityGroupsClient) CreateOrUpdate(ctx context.Context, id ApplicationSecurityGroupId, input CommonApplicationSecurityGroup) (result CreateOrUpdateOperationResponse, err error) {
+func (c ApplicationSecurityGroupsClient) CreateOrUpdate(ctx context.Context, id ApplicationSecurityGroupId, input ApplicationSecurityGroup) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c ApplicationSecurityGroupsClient) CreateOrUpdate(ctx context.Context, id 
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c ApplicationSecurityGroupsClient) CreateOrUpdateThenPoll(ctx context.Context, id ApplicationSecurityGroupId, input CommonApplicationSecurityGroup) error {
+func (c ApplicationSecurityGroupsClient) CreateOrUpdateThenPoll(ctx context.Context, id ApplicationSecurityGroupId, input ApplicationSecurityGroup) error {
 	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c ApplicationSecurityGroupsClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id ApplicationSecurityGroupId, input CommonApplicationSecurityGroup, callback func() error) error {
+func (c ApplicationSecurityGroupsClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id ApplicationSecurityGroupId, input ApplicationSecurityGroup, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

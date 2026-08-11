@@ -6,6 +6,6 @@ package networkinterfaces
 type EffectiveNetworkSecurityGroup struct {
 	Association            *EffectiveNetworkSecurityGroupAssociation `json:"association,omitempty"`
 	EffectiveSecurityRules *[]EffectiveNetworkSecurityRule           `json:"effectiveSecurityRules,omitempty"`
-	NetworkSecurityGroup   *CommonSubResource                        `json:"networkSecurityGroup,omitempty"`
+	NetworkSecurityGroup   *SubResource                              `json:"networkSecurityGroup,omitempty"`
 	TagMap                 *map[string][]string                      `json:"tagMap,omitempty"`
 }

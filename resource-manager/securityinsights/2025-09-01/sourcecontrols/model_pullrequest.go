@@ -4,6 +4,6 @@ package sourcecontrols
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PullRequest struct {
-	State *State  `json:"state,omitempty"`
-	Url   *string `json:"url,omitempty"`
+	State *PullRequestState `json:"state,omitempty"`
+	Url   *string           `json:"url,omitempty"`
 }

@@ -14,7 +14,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonLoadBalancer
+	Model        *LoadBalancer
 }
 
 // UpdateTags ...
@@ -47,7 +47,7 @@ func (c LoadBalancersClient) UpdateTags(ctx context.Context, id ProviderLoadBala
 		return
 	}
 
-	var model CommonLoadBalancer
+	var model LoadBalancer
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

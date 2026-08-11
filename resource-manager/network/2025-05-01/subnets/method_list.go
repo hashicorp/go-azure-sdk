@@ -16,12 +16,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonSubnet
+	Model        *[]Subnet
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonSubnet
+	Items              []Subnet
 }
 
 type ListCustomPager struct {
@@ -64,7 +64,7 @@ func (c SubnetsClient) List(ctx context.Context, id commonids.VirtualNetworkId) 
 	}
 
 	var values struct {
-		Values *[]CommonSubnet `json:"value"`
+		Values *[]Subnet `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c SubnetsClient) List(ctx context.Context, id commonids.VirtualNetworkId) 
 
 // ListComplete retrieves all the results into a single object
 func (c SubnetsClient) ListComplete(ctx context.Context, id commonids.VirtualNetworkId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, CommonSubnetOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, SubnetOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c SubnetsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.VirtualNetworkId, predicate CommonSubnetOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]CommonSubnet, 0)
+func (c SubnetsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.VirtualNetworkId, predicate SubnetOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]Subnet, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

@@ -19,11 +19,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonNetworkInterface
+	Model        *NetworkInterface
 }
 
 // CreateOrUpdate ...
-func (c NetworkInterfacesClient) CreateOrUpdate(ctx context.Context, id commonids.NetworkInterfaceId, input CommonNetworkInterface) (result CreateOrUpdateOperationResponse, err error) {
+func (c NetworkInterfacesClient) CreateOrUpdate(ctx context.Context, id commonids.NetworkInterfaceId, input NetworkInterface) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,12 +62,12 @@ func (c NetworkInterfacesClient) CreateOrUpdate(ctx context.Context, id commonid
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c NetworkInterfacesClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.NetworkInterfaceId, input CommonNetworkInterface) error {
+func (c NetworkInterfacesClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.NetworkInterfaceId, input NetworkInterface) error {
 	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c NetworkInterfacesClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id commonids.NetworkInterfaceId, input CommonNetworkInterface, callback func() error) error {
+func (c NetworkInterfacesClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id commonids.NetworkInterfaceId, input NetworkInterface, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

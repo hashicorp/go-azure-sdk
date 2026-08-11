@@ -16,12 +16,12 @@ import (
 type PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonPublicIPAddress
+	Model        *[]PublicIPAddress
 }
 
 type PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonPublicIPAddress
+	Items              []PublicIPAddress
 }
 
 type PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCustomPager struct {
@@ -64,7 +64,7 @@ func (c VirtualNetworksClient) PublicIPAddressesListCloudServiceRoleInstancePubl
 	}
 
 	var values struct {
-		Values *[]CommonPublicIPAddress `json:"value"`
+		Values *[]PublicIPAddress `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c VirtualNetworksClient) PublicIPAddressesListCloudServiceRoleInstancePubl
 
 // PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesComplete retrieves all the results into a single object
 func (c VirtualNetworksClient) PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesComplete(ctx context.Context, id commonids.CloudServicesIPConfigurationId) (PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCompleteResult, error) {
-	return c.PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCompleteMatchingPredicate(ctx, id, CommonPublicIPAddressOperationPredicate{})
+	return c.PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCompleteMatchingPredicate(ctx, id, PublicIPAddressOperationPredicate{})
 }
 
 // PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworksClient) PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCompleteMatchingPredicate(ctx context.Context, id commonids.CloudServicesIPConfigurationId, predicate CommonPublicIPAddressOperationPredicate) (result PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCompleteResult, err error) {
-	items := make([]CommonPublicIPAddress, 0)
+func (c VirtualNetworksClient) PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCompleteMatchingPredicate(ctx context.Context, id commonids.CloudServicesIPConfigurationId, predicate PublicIPAddressOperationPredicate) (result PublicIPAddressesListCloudServiceRoleInstancePublicIPAddressesCompleteResult, err error) {
+	items := make([]PublicIPAddress, 0)
 
 	resp, err := c.PublicIPAddressesListCloudServiceRoleInstancePublicIPAddresses(ctx, id)
 	if err != nil {

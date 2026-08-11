@@ -7,5 +7,5 @@ type ApplicationGatewaySslProfilePropertiesFormat struct {
 	ClientAuthConfiguration   *ApplicationGatewayClientAuthConfiguration `json:"clientAuthConfiguration,omitempty"`
 	ProvisioningState         *ProvisioningState                         `json:"provisioningState,omitempty"`
 	SslPolicy                 *ApplicationGatewaySslPolicy               `json:"sslPolicy,omitempty"`
-	TrustedClientCertificates *[]CommonSubResource                       `json:"trustedClientCertificates,omitempty"`
+	TrustedClientCertificates *[]SubResource                             `json:"trustedClientCertificates,omitempty"`
 }

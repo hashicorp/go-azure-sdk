@@ -16,12 +16,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonServiceEndpointPolicy
+	Model        *[]ServiceEndpointPolicy
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonServiceEndpointPolicy
+	Items              []ServiceEndpointPolicy
 }
 
 type ListCustomPager struct {
@@ -64,7 +64,7 @@ func (c ServiceEndpointPoliciesClient) List(ctx context.Context, id commonids.Su
 	}
 
 	var values struct {
-		Values *[]CommonServiceEndpointPolicy `json:"value"`
+		Values *[]ServiceEndpointPolicy `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c ServiceEndpointPoliciesClient) List(ctx context.Context, id commonids.Su
 
 // ListComplete retrieves all the results into a single object
 func (c ServiceEndpointPoliciesClient) ListComplete(ctx context.Context, id commonids.SubscriptionId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, CommonServiceEndpointPolicyOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, ServiceEndpointPolicyOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ServiceEndpointPoliciesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate CommonServiceEndpointPolicyOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]CommonServiceEndpointPolicy, 0)
+func (c ServiceEndpointPoliciesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ServiceEndpointPolicyOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]ServiceEndpointPolicy, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

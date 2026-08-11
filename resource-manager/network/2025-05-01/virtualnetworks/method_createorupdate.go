@@ -19,11 +19,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonVirtualNetwork
+	Model        *VirtualNetwork
 }
 
 // CreateOrUpdate ...
-func (c VirtualNetworksClient) CreateOrUpdate(ctx context.Context, id commonids.VirtualNetworkId, input CommonVirtualNetwork) (result CreateOrUpdateOperationResponse, err error) {
+func (c VirtualNetworksClient) CreateOrUpdate(ctx context.Context, id commonids.VirtualNetworkId, input VirtualNetwork) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,12 +62,12 @@ func (c VirtualNetworksClient) CreateOrUpdate(ctx context.Context, id commonids.
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c VirtualNetworksClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.VirtualNetworkId, input CommonVirtualNetwork) error {
+func (c VirtualNetworksClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.VirtualNetworkId, input VirtualNetwork) error {
 	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c VirtualNetworksClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id commonids.VirtualNetworkId, input CommonVirtualNetwork, callback func() error) error {
+func (c VirtualNetworksClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id commonids.VirtualNetworkId, input VirtualNetwork, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

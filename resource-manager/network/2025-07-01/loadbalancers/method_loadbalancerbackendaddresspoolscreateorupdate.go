@@ -18,11 +18,11 @@ type LoadBalancerBackendAddressPoolsCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonBackendAddressPool
+	Model        *BackendAddressPool
 }
 
 // LoadBalancerBackendAddressPoolsCreateOrUpdate ...
-func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsCreateOrUpdate(ctx context.Context, id LoadBalancerBackendAddressPoolId, input CommonBackendAddressPool) (result LoadBalancerBackendAddressPoolsCreateOrUpdateOperationResponse, err error) {
+func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsCreateOrUpdate(ctx context.Context, id LoadBalancerBackendAddressPoolId, input BackendAddressPool) (result LoadBalancerBackendAddressPoolsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsCreateOrUpdate(ctx c
 }
 
 // LoadBalancerBackendAddressPoolsCreateOrUpdateThenPoll performs LoadBalancerBackendAddressPoolsCreateOrUpdate then polls until it's completed
-func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsCreateOrUpdateThenPoll(ctx context.Context, id LoadBalancerBackendAddressPoolId, input CommonBackendAddressPool) error {
+func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsCreateOrUpdateThenPoll(ctx context.Context, id LoadBalancerBackendAddressPoolId, input BackendAddressPool) error {
 	return c.LoadBalancerBackendAddressPoolsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // LoadBalancerBackendAddressPoolsCreateOrUpdateCallbackThenPoll performs LoadBalancerBackendAddressPoolsCreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsCreateOrUpdateCallbackThenPoll(ctx context.Context, id LoadBalancerBackendAddressPoolId, input CommonBackendAddressPool, callback func() error) error {
+func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsCreateOrUpdateCallbackThenPoll(ctx context.Context, id LoadBalancerBackendAddressPoolId, input BackendAddressPool, callback func() error) error {
 	result, err := c.LoadBalancerBackendAddressPoolsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing LoadBalancerBackendAddressPoolsCreateOrUpdate: %+v", err)

@@ -14,7 +14,7 @@ import (
 type LoadBalancerProbesGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonProbe
+	Model        *Probe
 }
 
 // LoadBalancerProbesGet ...
@@ -43,7 +43,7 @@ func (c LoadBalancersClient) LoadBalancerProbesGet(ctx context.Context, id Probe
 		return
 	}
 
-	var model CommonProbe
+	var model Probe
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

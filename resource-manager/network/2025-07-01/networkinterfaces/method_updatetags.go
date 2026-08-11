@@ -15,7 +15,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonNetworkInterface
+	Model        *NetworkInterface
 }
 
 // UpdateTags ...
@@ -48,7 +48,7 @@ func (c NetworkInterfacesClient) UpdateTags(ctx context.Context, id commonids.Ne
 		return
 	}
 
-	var model CommonNetworkInterface
+	var model NetworkInterface
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

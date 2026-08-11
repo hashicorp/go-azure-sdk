@@ -14,7 +14,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonVirtualNetworkTap
+	Model        *VirtualNetworkTap
 }
 
 // UpdateTags ...
@@ -47,7 +47,7 @@ func (c VirtualNetworkTapClient) UpdateTags(ctx context.Context, id VirtualNetwo
 		return
 	}
 
-	var model CommonVirtualNetworkTap
+	var model VirtualNetworkTap
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

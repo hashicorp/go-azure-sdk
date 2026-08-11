@@ -3,14 +3,14 @@ package virtualnetworkpeerings
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type CommonVirtualNetworkPeeringOperationPredicate struct {
+type VirtualNetworkPeeringOperationPredicate struct {
 	Etag *string
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p CommonVirtualNetworkPeeringOperationPredicate) Matches(input CommonVirtualNetworkPeering) bool {
+func (p VirtualNetworkPeeringOperationPredicate) Matches(input VirtualNetworkPeering) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false

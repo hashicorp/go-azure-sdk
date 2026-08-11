@@ -15,7 +15,7 @@ import (
 type NetworkInterfaceIPConfigurationsGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonNetworkInterfaceIPConfiguration
+	Model        *NetworkInterfaceIPConfiguration
 }
 
 // NetworkInterfaceIPConfigurationsGet ...
@@ -44,7 +44,7 @@ func (c NetworkInterfacesClient) NetworkInterfaceIPConfigurationsGet(ctx context
 		return
 	}
 
-	var model CommonNetworkInterfaceIPConfiguration
+	var model NetworkInterfaceIPConfiguration
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

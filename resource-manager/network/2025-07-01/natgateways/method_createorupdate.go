@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonNatGateway
+	Model        *NatGateway
 }
 
 // CreateOrUpdate ...
-func (c NatGatewaysClient) CreateOrUpdate(ctx context.Context, id NatGatewayId, input CommonNatGateway) (result CreateOrUpdateOperationResponse, err error) {
+func (c NatGatewaysClient) CreateOrUpdate(ctx context.Context, id NatGatewayId, input NatGateway) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,12 +62,12 @@ func (c NatGatewaysClient) CreateOrUpdate(ctx context.Context, id NatGatewayId, 
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c NatGatewaysClient) CreateOrUpdateThenPoll(ctx context.Context, id NatGatewayId, input CommonNatGateway) error {
+func (c NatGatewaysClient) CreateOrUpdateThenPoll(ctx context.Context, id NatGatewayId, input NatGateway) error {
 	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c NatGatewaysClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id NatGatewayId, input CommonNatGateway, callback func() error) error {
+func (c NatGatewaysClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id NatGatewayId, input NatGateway, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

@@ -12,7 +12,7 @@ type MetadataPropertiesPatch struct {
 	Dependencies             *MetadataDependencies `json:"dependencies,omitempty"`
 	FirstPublishDate         *string               `json:"firstPublishDate,omitempty"`
 	Icon                     *string               `json:"icon,omitempty"`
-	Kind                     *Kind                 `json:"kind,omitempty"`
+	Kind                     *string               `json:"kind,omitempty"`
 	LastPublishDate          *string               `json:"lastPublishDate,omitempty"`
 	ParentId                 *string               `json:"parentId,omitempty"`
 	PreviewImages            *[]string             `json:"previewImages,omitempty"`

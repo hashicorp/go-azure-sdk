@@ -197,6 +197,47 @@ func parseDeploymentState(input string) (*DeploymentState, error) {
 	return &out, nil
 }
 
+type PullRequestState string
+
+const (
+	PullRequestStateClosed PullRequestState = "Closed"
+	PullRequestStateOpen   PullRequestState = "Open"
+)
+
+func PossibleValuesForPullRequestState() []string {
+	return []string{
+		string(PullRequestStateClosed),
+		string(PullRequestStateOpen),
+	}
+}
+
+func (s *PullRequestState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePullRequestState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parsePullRequestState(input string) (*PullRequestState, error) {
+	vals := map[string]PullRequestState{
+		"closed": PullRequestStateClosed,
+		"open":   PullRequestStateOpen,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PullRequestState(input)
+	return &out, nil
+}
+
 type RepoType string
 
 const (
@@ -279,47 +320,6 @@ func parseRepositoryAccessKind(input string) (*RepositoryAccessKind, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := RepositoryAccessKind(input)
-	return &out, nil
-}
-
-type State string
-
-const (
-	StateClosed State = "Closed"
-	StateOpen   State = "Open"
-)
-
-func PossibleValuesForState() []string {
-	return []string{
-		string(StateClosed),
-		string(StateOpen),
-	}
-}
-
-func (s *State) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseState(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseState(input string) (*State, error) {
-	vals := map[string]State{
-		"closed": StateClosed,
-		"open":   StateOpen,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := State(input)
 	return &out, nil
 }
 

@@ -16,12 +16,12 @@ import (
 type NetworkInterfaceTapConfigurationsListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonNetworkInterfaceTapConfiguration
+	Model        *[]NetworkInterfaceTapConfiguration
 }
 
 type NetworkInterfaceTapConfigurationsListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonNetworkInterfaceTapConfiguration
+	Items              []NetworkInterfaceTapConfiguration
 }
 
 type NetworkInterfaceTapConfigurationsListCustomPager struct {
@@ -64,7 +64,7 @@ func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsList(ctx conte
 	}
 
 	var values struct {
-		Values *[]CommonNetworkInterfaceTapConfiguration `json:"value"`
+		Values *[]NetworkInterfaceTapConfiguration `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsList(ctx conte
 
 // NetworkInterfaceTapConfigurationsListComplete retrieves all the results into a single object
 func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsListComplete(ctx context.Context, id commonids.NetworkInterfaceId) (NetworkInterfaceTapConfigurationsListCompleteResult, error) {
-	return c.NetworkInterfaceTapConfigurationsListCompleteMatchingPredicate(ctx, id, CommonNetworkInterfaceTapConfigurationOperationPredicate{})
+	return c.NetworkInterfaceTapConfigurationsListCompleteMatchingPredicate(ctx, id, NetworkInterfaceTapConfigurationOperationPredicate{})
 }
 
 // NetworkInterfaceTapConfigurationsListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsListCompleteMatchingPredicate(ctx context.Context, id commonids.NetworkInterfaceId, predicate CommonNetworkInterfaceTapConfigurationOperationPredicate) (result NetworkInterfaceTapConfigurationsListCompleteResult, err error) {
-	items := make([]CommonNetworkInterfaceTapConfiguration, 0)
+func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsListCompleteMatchingPredicate(ctx context.Context, id commonids.NetworkInterfaceId, predicate NetworkInterfaceTapConfigurationOperationPredicate) (result NetworkInterfaceTapConfigurationsListCompleteResult, err error) {
+	items := make([]NetworkInterfaceTapConfiguration, 0)
 
 	resp, err := c.NetworkInterfaceTapConfigurationsList(ctx, id)
 	if err != nil {

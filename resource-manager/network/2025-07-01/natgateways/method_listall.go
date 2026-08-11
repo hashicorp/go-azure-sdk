@@ -16,12 +16,12 @@ import (
 type ListAllOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonNatGateway
+	Model        *[]NatGateway
 }
 
 type ListAllCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonNatGateway
+	Items              []NatGateway
 }
 
 type ListAllCustomPager struct {
@@ -64,7 +64,7 @@ func (c NatGatewaysClient) ListAll(ctx context.Context, id commonids.Subscriptio
 	}
 
 	var values struct {
-		Values *[]CommonNatGateway `json:"value"`
+		Values *[]NatGateway `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c NatGatewaysClient) ListAll(ctx context.Context, id commonids.Subscriptio
 
 // ListAllComplete retrieves all the results into a single object
 func (c NatGatewaysClient) ListAllComplete(ctx context.Context, id commonids.SubscriptionId) (ListAllCompleteResult, error) {
-	return c.ListAllCompleteMatchingPredicate(ctx, id, CommonNatGatewayOperationPredicate{})
+	return c.ListAllCompleteMatchingPredicate(ctx, id, NatGatewayOperationPredicate{})
 }
 
 // ListAllCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NatGatewaysClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate CommonNatGatewayOperationPredicate) (result ListAllCompleteResult, err error) {
-	items := make([]CommonNatGateway, 0)
+func (c NatGatewaysClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate NatGatewayOperationPredicate) (result ListAllCompleteResult, err error) {
+	items := make([]NatGateway, 0)
 
 	resp, err := c.ListAll(ctx, id)
 	if err != nil {

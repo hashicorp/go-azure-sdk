@@ -3,7 +3,7 @@ package flowlogs
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type CommonFlowLogOperationPredicate struct {
+type FlowLogOperationPredicate struct {
 	Etag     *string
 	Id       *string
 	Location *string
@@ -11,7 +11,7 @@ type CommonFlowLogOperationPredicate struct {
 	Type     *string
 }
 
-func (p CommonFlowLogOperationPredicate) Matches(input CommonFlowLog) bool {
+func (p FlowLogOperationPredicate) Matches(input FlowLog) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false

@@ -16,7 +16,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonPublicIPAddress
+	Model        *PublicIPAddress
 }
 
 type GetOperationOptions struct {
@@ -74,7 +74,7 @@ func (c PublicIPAddressesClient) Get(ctx context.Context, id commonids.PublicIPA
 		return
 	}
 
-	var model CommonPublicIPAddress
+	var model PublicIPAddress
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -3,14 +3,14 @@ package loadbalancers
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type CommonBackendAddressPoolOperationPredicate struct {
+type BackendAddressPoolOperationPredicate struct {
 	Etag *string
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p CommonBackendAddressPoolOperationPredicate) Matches(input CommonBackendAddressPool) bool {
+func (p BackendAddressPoolOperationPredicate) Matches(input BackendAddressPool) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
@@ -31,14 +31,14 @@ func (p CommonBackendAddressPoolOperationPredicate) Matches(input CommonBackendA
 	return true
 }
 
-type CommonFrontendIPConfigurationOperationPredicate struct {
+type FrontendIPConfigurationOperationPredicate struct {
 	Etag *string
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p CommonFrontendIPConfigurationOperationPredicate) Matches(input CommonFrontendIPConfiguration) bool {
+func (p FrontendIPConfigurationOperationPredicate) Matches(input FrontendIPConfiguration) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
@@ -59,14 +59,14 @@ func (p CommonFrontendIPConfigurationOperationPredicate) Matches(input CommonFro
 	return true
 }
 
-type CommonInboundNatRuleOperationPredicate struct {
+type InboundNatRuleOperationPredicate struct {
 	Etag *string
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p CommonInboundNatRuleOperationPredicate) Matches(input CommonInboundNatRule) bool {
+func (p InboundNatRuleOperationPredicate) Matches(input InboundNatRule) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
@@ -87,7 +87,7 @@ func (p CommonInboundNatRuleOperationPredicate) Matches(input CommonInboundNatRu
 	return true
 }
 
-type CommonLoadBalancerOperationPredicate struct {
+type LoadBalancerOperationPredicate struct {
 	Etag     *string
 	Id       *string
 	Location *string
@@ -95,7 +95,7 @@ type CommonLoadBalancerOperationPredicate struct {
 	Type     *string
 }
 
-func (p CommonLoadBalancerOperationPredicate) Matches(input CommonLoadBalancer) bool {
+func (p LoadBalancerOperationPredicate) Matches(input LoadBalancer) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
@@ -120,14 +120,14 @@ func (p CommonLoadBalancerOperationPredicate) Matches(input CommonLoadBalancer) 
 	return true
 }
 
-type CommonLoadBalancingRuleOperationPredicate struct {
+type LoadBalancingRuleOperationPredicate struct {
 	Etag *string
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p CommonLoadBalancingRuleOperationPredicate) Matches(input CommonLoadBalancingRule) bool {
+func (p LoadBalancingRuleOperationPredicate) Matches(input LoadBalancingRule) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
@@ -148,7 +148,7 @@ func (p CommonLoadBalancingRuleOperationPredicate) Matches(input CommonLoadBalan
 	return true
 }
 
-type CommonNetworkInterfaceOperationPredicate struct {
+type NetworkInterfaceOperationPredicate struct {
 	Etag     *string
 	Id       *string
 	Location *string
@@ -156,7 +156,7 @@ type CommonNetworkInterfaceOperationPredicate struct {
 	Type     *string
 }
 
-func (p CommonNetworkInterfaceOperationPredicate) Matches(input CommonNetworkInterface) bool {
+func (p NetworkInterfaceOperationPredicate) Matches(input NetworkInterface) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
@@ -181,14 +181,14 @@ func (p CommonNetworkInterfaceOperationPredicate) Matches(input CommonNetworkInt
 	return true
 }
 
-type CommonOutboundRuleOperationPredicate struct {
+type OutboundRuleOperationPredicate struct {
 	Etag *string
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p CommonOutboundRuleOperationPredicate) Matches(input CommonOutboundRule) bool {
+func (p OutboundRuleOperationPredicate) Matches(input OutboundRule) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
@@ -209,14 +209,14 @@ func (p CommonOutboundRuleOperationPredicate) Matches(input CommonOutboundRule) 
 	return true
 }
 
-type CommonProbeOperationPredicate struct {
+type ProbeOperationPredicate struct {
 	Etag *string
 	Id   *string
 	Name *string
 	Type *string
 }
 
-func (p CommonProbeOperationPredicate) Matches(input CommonProbe) bool {
+func (p ProbeOperationPredicate) Matches(input Probe) bool {
 
 	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false

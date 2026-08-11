@@ -16,7 +16,7 @@ import (
 type PublicIPAddressesGetCloudServicePublicIPAddressOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonPublicIPAddress
+	Model        *PublicIPAddress
 }
 
 type PublicIPAddressesGetCloudServicePublicIPAddressOperationOptions struct {
@@ -74,7 +74,7 @@ func (c VirtualNetworksClient) PublicIPAddressesGetCloudServicePublicIPAddress(c
 		return
 	}
 
-	var model CommonPublicIPAddress
+	var model PublicIPAddress
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

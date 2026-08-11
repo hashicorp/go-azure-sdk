@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonServiceEndpointPolicyDefinition
+	Model        *ServiceEndpointPolicyDefinition
 }
 
 // CreateOrUpdate ...
-func (c ServiceEndpointPolicyDefinitionsClient) CreateOrUpdate(ctx context.Context, id ServiceEndpointPolicyDefinitionId, input CommonServiceEndpointPolicyDefinition) (result CreateOrUpdateOperationResponse, err error) {
+func (c ServiceEndpointPolicyDefinitionsClient) CreateOrUpdate(ctx context.Context, id ServiceEndpointPolicyDefinitionId, input ServiceEndpointPolicyDefinition) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c ServiceEndpointPolicyDefinitionsClient) CreateOrUpdate(ctx context.Conte
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c ServiceEndpointPolicyDefinitionsClient) CreateOrUpdateThenPoll(ctx context.Context, id ServiceEndpointPolicyDefinitionId, input CommonServiceEndpointPolicyDefinition) error {
+func (c ServiceEndpointPolicyDefinitionsClient) CreateOrUpdateThenPoll(ctx context.Context, id ServiceEndpointPolicyDefinitionId, input ServiceEndpointPolicyDefinition) error {
 	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c ServiceEndpointPolicyDefinitionsClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id ServiceEndpointPolicyDefinitionId, input CommonServiceEndpointPolicyDefinition, callback func() error) error {
+func (c ServiceEndpointPolicyDefinitionsClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id ServiceEndpointPolicyDefinitionId, input ServiceEndpointPolicyDefinition, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

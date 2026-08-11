@@ -6,9 +6,9 @@ package virtualwans
 type HubVirtualNetworkConnectionProperties struct {
 	AllowHubToRemoteVnetTransit         *bool                 `json:"allowHubToRemoteVnetTransit,omitempty"`
 	AllowRemoteVnetToUseHubVnetGateways *bool                 `json:"allowRemoteVnetToUseHubVnetGateways,omitempty"`
-	ConnectionPolicy                    *CommonSubResource    `json:"connectionPolicy,omitempty"`
+	ConnectionPolicy                    *SubResource          `json:"connectionPolicy,omitempty"`
 	EnableInternetSecurity              *bool                 `json:"enableInternetSecurity,omitempty"`
 	ProvisioningState                   *ProvisioningState    `json:"provisioningState,omitempty"`
-	RemoteVirtualNetwork                *CommonSubResource    `json:"remoteVirtualNetwork,omitempty"`
+	RemoteVirtualNetwork                *SubResource          `json:"remoteVirtualNetwork,omitempty"`
 	RoutingConfiguration                *RoutingConfiguration `json:"routingConfiguration,omitempty"`
 }

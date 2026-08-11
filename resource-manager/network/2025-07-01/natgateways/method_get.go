@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonNatGateway
+	Model        *NatGateway
 }
 
 type GetOperationOptions struct {
@@ -73,7 +73,7 @@ func (c NatGatewaysClient) Get(ctx context.Context, id NatGatewayId, options Get
 		return
 	}
 
-	var model CommonNatGateway
+	var model NatGateway
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

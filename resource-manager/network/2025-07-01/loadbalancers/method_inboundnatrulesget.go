@@ -15,7 +15,7 @@ import (
 type InboundNatRulesGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonInboundNatRule
+	Model        *InboundNatRule
 }
 
 type InboundNatRulesGetOperationOptions struct {
@@ -73,7 +73,7 @@ func (c LoadBalancersClient) InboundNatRulesGet(ctx context.Context, id InboundN
 		return
 	}
 
-	var model CommonInboundNatRule
+	var model InboundNatRule
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

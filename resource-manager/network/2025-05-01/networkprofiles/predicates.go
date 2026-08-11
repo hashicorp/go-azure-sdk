@@ -4,10 +4,11 @@ package networkprofiles
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type NetworkProfileOperationPredicate struct {
-	Etag *string
-	Id   *string
-	Name *string
-	Type *string
+	Etag     *string
+	Id       *string
+	Location *string
+	Name     *string
+	Type     *string
 }
 
 func (p NetworkProfileOperationPredicate) Matches(input NetworkProfile) bool {
@@ -17,6 +18,10 @@ func (p NetworkProfileOperationPredicate) Matches(input NetworkProfile) bool {
 	}
 
 	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
 		return false
 	}
 

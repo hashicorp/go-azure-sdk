@@ -18,11 +18,11 @@ type InboundNatRulesCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonInboundNatRule
+	Model        *InboundNatRule
 }
 
 // InboundNatRulesCreateOrUpdate ...
-func (c LoadBalancersClient) InboundNatRulesCreateOrUpdate(ctx context.Context, id InboundNatRuleId, input CommonInboundNatRule) (result InboundNatRulesCreateOrUpdateOperationResponse, err error) {
+func (c LoadBalancersClient) InboundNatRulesCreateOrUpdate(ctx context.Context, id InboundNatRuleId, input InboundNatRule) (result InboundNatRulesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c LoadBalancersClient) InboundNatRulesCreateOrUpdate(ctx context.Context, 
 }
 
 // InboundNatRulesCreateOrUpdateThenPoll performs InboundNatRulesCreateOrUpdate then polls until it's completed
-func (c LoadBalancersClient) InboundNatRulesCreateOrUpdateThenPoll(ctx context.Context, id InboundNatRuleId, input CommonInboundNatRule) error {
+func (c LoadBalancersClient) InboundNatRulesCreateOrUpdateThenPoll(ctx context.Context, id InboundNatRuleId, input InboundNatRule) error {
 	return c.InboundNatRulesCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // InboundNatRulesCreateOrUpdateCallbackThenPoll performs InboundNatRulesCreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c LoadBalancersClient) InboundNatRulesCreateOrUpdateCallbackThenPoll(ctx context.Context, id InboundNatRuleId, input CommonInboundNatRule, callback func() error) error {
+func (c LoadBalancersClient) InboundNatRulesCreateOrUpdateCallbackThenPoll(ctx context.Context, id InboundNatRuleId, input InboundNatRule, callback func() error) error {
 	result, err := c.InboundNatRulesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing InboundNatRulesCreateOrUpdate: %+v", err)
