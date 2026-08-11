@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonLoadBalancer
+	Model        *LoadBalancer
 }
 
 type GetOperationOptions struct {
@@ -77,7 +77,7 @@ func (c LoadBalancersClient) Get(ctx context.Context, id ProviderLoadBalancerId,
 		return
 	}
 
-	var model CommonLoadBalancer
+	var model LoadBalancer
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -8,5 +8,5 @@ type VirtualNetworkGatewayPolicyGroupProperties struct {
 	PolicyMembers                     []VirtualNetworkGatewayPolicyGroupMember `json:"policyMembers"`
 	Priority                          int64                                    `json:"priority"`
 	ProvisioningState                 *ProvisioningState                       `json:"provisioningState,omitempty"`
-	VngClientConnectionConfigurations *[]CommonSubResource                     `json:"vngClientConnectionConfigurations,omitempty"`
+	VngClientConnectionConfigurations *[]SubResource                           `json:"vngClientConnectionConfigurations,omitempty"`
 }

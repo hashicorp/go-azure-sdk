@@ -9,7 +9,7 @@ type IPAllocationPropertiesFormat struct {
 	Prefix           *string            `json:"prefix,omitempty"`
 	PrefixLength     *int64             `json:"prefixLength,omitempty"`
 	PrefixType       *IPVersion         `json:"prefixType,omitempty"`
-	Subnet           *CommonSubResource `json:"subnet,omitempty"`
+	Subnet           *SubResource       `json:"subnet,omitempty"`
 	Type             *IPAllocationType  `json:"type,omitempty"`
-	VirtualNetwork   *CommonSubResource `json:"virtualNetwork,omitempty"`
+	VirtualNetwork   *SubResource       `json:"virtualNetwork,omitempty"`
 }

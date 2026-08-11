@@ -16,12 +16,12 @@ import (
 type ListBySubscriptionOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonPrivateLinkService
+	Model        *[]PrivateLinkService
 }
 
 type ListBySubscriptionCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonPrivateLinkService
+	Items              []PrivateLinkService
 }
 
 type ListBySubscriptionCustomPager struct {
@@ -64,7 +64,7 @@ func (c PrivateLinkServicesClient) ListBySubscription(ctx context.Context, id co
 	}
 
 	var values struct {
-		Values *[]CommonPrivateLinkService `json:"value"`
+		Values *[]PrivateLinkService `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c PrivateLinkServicesClient) ListBySubscription(ctx context.Context, id co
 
 // ListBySubscriptionComplete retrieves all the results into a single object
 func (c PrivateLinkServicesClient) ListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (ListBySubscriptionCompleteResult, error) {
-	return c.ListBySubscriptionCompleteMatchingPredicate(ctx, id, CommonPrivateLinkServiceOperationPredicate{})
+	return c.ListBySubscriptionCompleteMatchingPredicate(ctx, id, PrivateLinkServiceOperationPredicate{})
 }
 
 // ListBySubscriptionCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c PrivateLinkServicesClient) ListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate CommonPrivateLinkServiceOperationPredicate) (result ListBySubscriptionCompleteResult, err error) {
-	items := make([]CommonPrivateLinkService, 0)
+func (c PrivateLinkServicesClient) ListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate PrivateLinkServiceOperationPredicate) (result ListBySubscriptionCompleteResult, err error) {
+	items := make([]PrivateLinkService, 0)
 
 	resp, err := c.ListBySubscription(ctx, id)
 	if err != nil {

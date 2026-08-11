@@ -15,12 +15,12 @@ import (
 type LoadBalancerOutboundRulesListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonOutboundRule
+	Model        *[]OutboundRule
 }
 
 type LoadBalancerOutboundRulesListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonOutboundRule
+	Items              []OutboundRule
 }
 
 type LoadBalancerOutboundRulesListCustomPager struct {
@@ -63,7 +63,7 @@ func (c LoadBalancersClient) LoadBalancerOutboundRulesList(ctx context.Context, 
 	}
 
 	var values struct {
-		Values *[]CommonOutboundRule `json:"value"`
+		Values *[]OutboundRule `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c LoadBalancersClient) LoadBalancerOutboundRulesList(ctx context.Context, 
 
 // LoadBalancerOutboundRulesListComplete retrieves all the results into a single object
 func (c LoadBalancersClient) LoadBalancerOutboundRulesListComplete(ctx context.Context, id ProviderLoadBalancerId) (LoadBalancerOutboundRulesListCompleteResult, error) {
-	return c.LoadBalancerOutboundRulesListCompleteMatchingPredicate(ctx, id, CommonOutboundRuleOperationPredicate{})
+	return c.LoadBalancerOutboundRulesListCompleteMatchingPredicate(ctx, id, OutboundRuleOperationPredicate{})
 }
 
 // LoadBalancerOutboundRulesListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c LoadBalancersClient) LoadBalancerOutboundRulesListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate CommonOutboundRuleOperationPredicate) (result LoadBalancerOutboundRulesListCompleteResult, err error) {
-	items := make([]CommonOutboundRule, 0)
+func (c LoadBalancersClient) LoadBalancerOutboundRulesListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate OutboundRuleOperationPredicate) (result LoadBalancerOutboundRulesListCompleteResult, err error) {
+	items := make([]OutboundRule, 0)
 
 	resp, err := c.LoadBalancerOutboundRulesList(ctx, id)
 	if err != nil {

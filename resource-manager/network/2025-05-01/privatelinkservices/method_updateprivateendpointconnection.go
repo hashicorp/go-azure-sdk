@@ -14,11 +14,11 @@ import (
 type UpdatePrivateEndpointConnectionOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonPrivateEndpointConnection
+	Model        *PrivateEndpointConnection
 }
 
 // UpdatePrivateEndpointConnection ...
-func (c PrivateLinkServicesClient) UpdatePrivateEndpointConnection(ctx context.Context, id PrivateEndpointConnectionId, input CommonPrivateEndpointConnection) (result UpdatePrivateEndpointConnectionOperationResponse, err error) {
+func (c PrivateLinkServicesClient) UpdatePrivateEndpointConnection(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection) (result UpdatePrivateEndpointConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -47,7 +47,7 @@ func (c PrivateLinkServicesClient) UpdatePrivateEndpointConnection(ctx context.C
 		return
 	}
 
-	var model CommonPrivateEndpointConnection
+	var model PrivateEndpointConnection
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

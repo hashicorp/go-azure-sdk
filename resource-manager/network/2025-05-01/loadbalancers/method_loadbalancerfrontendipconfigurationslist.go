@@ -15,12 +15,12 @@ import (
 type LoadBalancerFrontendIPConfigurationsListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonFrontendIPConfiguration
+	Model        *[]FrontendIPConfiguration
 }
 
 type LoadBalancerFrontendIPConfigurationsListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonFrontendIPConfiguration
+	Items              []FrontendIPConfiguration
 }
 
 type LoadBalancerFrontendIPConfigurationsListCustomPager struct {
@@ -63,7 +63,7 @@ func (c LoadBalancersClient) LoadBalancerFrontendIPConfigurationsList(ctx contex
 	}
 
 	var values struct {
-		Values *[]CommonFrontendIPConfiguration `json:"value"`
+		Values *[]FrontendIPConfiguration `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -76,12 +76,12 @@ func (c LoadBalancersClient) LoadBalancerFrontendIPConfigurationsList(ctx contex
 
 // LoadBalancerFrontendIPConfigurationsListComplete retrieves all the results into a single object
 func (c LoadBalancersClient) LoadBalancerFrontendIPConfigurationsListComplete(ctx context.Context, id ProviderLoadBalancerId) (LoadBalancerFrontendIPConfigurationsListCompleteResult, error) {
-	return c.LoadBalancerFrontendIPConfigurationsListCompleteMatchingPredicate(ctx, id, CommonFrontendIPConfigurationOperationPredicate{})
+	return c.LoadBalancerFrontendIPConfigurationsListCompleteMatchingPredicate(ctx, id, FrontendIPConfigurationOperationPredicate{})
 }
 
 // LoadBalancerFrontendIPConfigurationsListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c LoadBalancersClient) LoadBalancerFrontendIPConfigurationsListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate CommonFrontendIPConfigurationOperationPredicate) (result LoadBalancerFrontendIPConfigurationsListCompleteResult, err error) {
-	items := make([]CommonFrontendIPConfiguration, 0)
+func (c LoadBalancersClient) LoadBalancerFrontendIPConfigurationsListCompleteMatchingPredicate(ctx context.Context, id ProviderLoadBalancerId, predicate FrontendIPConfigurationOperationPredicate) (result LoadBalancerFrontendIPConfigurationsListCompleteResult, err error) {
+	items := make([]FrontendIPConfiguration, 0)
 
 	resp, err := c.LoadBalancerFrontendIPConfigurationsList(ctx, id)
 	if err != nil {

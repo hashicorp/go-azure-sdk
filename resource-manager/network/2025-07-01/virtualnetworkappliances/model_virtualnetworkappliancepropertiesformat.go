@@ -9,5 +9,5 @@ type VirtualNetworkAppliancePropertiesFormat struct {
 	PrivateIPAddressVersion *VirtualNetworkApplianceIPVersionType     `json:"privateIPAddressVersion,omitempty"`
 	ProvisioningState       *ProvisioningState                        `json:"provisioningState,omitempty"`
 	ResourceGuid            *string                                   `json:"resourceGuid,omitempty"`
-	Subnet                  *CommonSubnet                             `json:"subnet,omitempty"`
+	Subnet                  *Subnet                                   `json:"subnet,omitempty"`
 }

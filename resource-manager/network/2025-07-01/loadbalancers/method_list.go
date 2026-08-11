@@ -16,12 +16,12 @@ import (
 type ListOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonLoadBalancer
+	Model        *[]LoadBalancer
 }
 
 type ListCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonLoadBalancer
+	Items              []LoadBalancer
 }
 
 type ListCustomPager struct {
@@ -64,7 +64,7 @@ func (c LoadBalancersClient) List(ctx context.Context, id commonids.ResourceGrou
 	}
 
 	var values struct {
-		Values *[]CommonLoadBalancer `json:"value"`
+		Values *[]LoadBalancer `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c LoadBalancersClient) List(ctx context.Context, id commonids.ResourceGrou
 
 // ListComplete retrieves all the results into a single object
 func (c LoadBalancersClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, CommonLoadBalancerOperationPredicate{})
+	return c.ListCompleteMatchingPredicate(ctx, id, LoadBalancerOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c LoadBalancersClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate CommonLoadBalancerOperationPredicate) (result ListCompleteResult, err error) {
-	items := make([]CommonLoadBalancer, 0)
+func (c LoadBalancersClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate LoadBalancerOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]LoadBalancer, 0)
 
 	resp, err := c.List(ctx, id)
 	if err != nil {

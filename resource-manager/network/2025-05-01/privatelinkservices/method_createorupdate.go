@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonPrivateLinkService
+	Model        *PrivateLinkService
 }
 
 // CreateOrUpdate ...
-func (c PrivateLinkServicesClient) CreateOrUpdate(ctx context.Context, id PrivateLinkServiceId, input CommonPrivateLinkService) (result CreateOrUpdateOperationResponse, err error) {
+func (c PrivateLinkServicesClient) CreateOrUpdate(ctx context.Context, id PrivateLinkServiceId, input PrivateLinkService) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c PrivateLinkServicesClient) CreateOrUpdate(ctx context.Context, id Privat
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c PrivateLinkServicesClient) CreateOrUpdateThenPoll(ctx context.Context, id PrivateLinkServiceId, input CommonPrivateLinkService) error {
+func (c PrivateLinkServicesClient) CreateOrUpdateThenPoll(ctx context.Context, id PrivateLinkServiceId, input PrivateLinkService) error {
 	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c PrivateLinkServicesClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id PrivateLinkServiceId, input CommonPrivateLinkService, callback func() error) error {
+func (c PrivateLinkServicesClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id PrivateLinkServiceId, input PrivateLinkService, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

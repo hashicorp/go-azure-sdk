@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonLoadBalancer
+	Model        *LoadBalancer
 }
 
 // CreateOrUpdate ...
-func (c LoadBalancersClient) CreateOrUpdate(ctx context.Context, id ProviderLoadBalancerId, input CommonLoadBalancer) (result CreateOrUpdateOperationResponse, err error) {
+func (c LoadBalancersClient) CreateOrUpdate(ctx context.Context, id ProviderLoadBalancerId, input LoadBalancer) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c LoadBalancersClient) CreateOrUpdate(ctx context.Context, id ProviderLoad
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c LoadBalancersClient) CreateOrUpdateThenPoll(ctx context.Context, id ProviderLoadBalancerId, input CommonLoadBalancer) error {
+func (c LoadBalancersClient) CreateOrUpdateThenPoll(ctx context.Context, id ProviderLoadBalancerId, input LoadBalancer) error {
 	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c LoadBalancersClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id ProviderLoadBalancerId, input CommonLoadBalancer, callback func() error) error {
+func (c LoadBalancersClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id ProviderLoadBalancerId, input LoadBalancer, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

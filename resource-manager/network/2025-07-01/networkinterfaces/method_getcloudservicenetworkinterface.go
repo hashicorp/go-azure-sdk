@@ -15,7 +15,7 @@ import (
 type GetCloudServiceNetworkInterfaceOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonNetworkInterface
+	Model        *NetworkInterface
 }
 
 type GetCloudServiceNetworkInterfaceOperationOptions struct {
@@ -73,7 +73,7 @@ func (c NetworkInterfacesClient) GetCloudServiceNetworkInterface(ctx context.Con
 		return
 	}
 
-	var model CommonNetworkInterface
+	var model NetworkInterface
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

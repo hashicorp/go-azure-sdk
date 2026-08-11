@@ -61,7 +61,7 @@ if err := client.CheckPrivateLinkServiceVisibilityByResourceGroupThenPoll(ctx, i
 ctx := context.TODO()
 id := privatelinkservices.NewPrivateLinkServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkServiceName")
 
-payload := privatelinkservices.CommonPrivateLinkService{
+payload := privatelinkservices.PrivateLinkService{
 	// ...
 }
 
@@ -219,7 +219,7 @@ for _, item := range items {
 ctx := context.TODO()
 id := privatelinkservices.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkServiceName", "privateEndpointConnectionName")
 
-payload := privatelinkservices.CommonPrivateEndpointConnection{
+payload := privatelinkservices.PrivateEndpointConnection{
 	// ...
 }
 

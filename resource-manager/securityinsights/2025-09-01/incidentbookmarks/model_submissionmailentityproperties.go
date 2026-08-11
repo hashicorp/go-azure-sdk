@@ -10,18 +10,18 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SubmissionMailEntityProperties struct {
-	AdditionalData   *interface{} `json:"additionalData,omitempty"`
-	FriendlyName     *string      `json:"friendlyName,omitempty"`
-	NetworkMessageId *string      `json:"networkMessageId,omitempty"`
-	Recipient        *string      `json:"recipient,omitempty"`
-	ReportType       *string      `json:"reportType,omitempty"`
-	Sender           *string      `json:"sender,omitempty"`
-	SenderIP         *string      `json:"senderIp,omitempty"`
-	Subject          *string      `json:"subject,omitempty"`
-	SubmissionDate   *string      `json:"submissionDate,omitempty"`
-	SubmissionId     *string      `json:"submissionId,omitempty"`
-	Submitter        *string      `json:"submitter,omitempty"`
-	Timestamp        *string      `json:"timestamp,omitempty"`
+	AdditionalData   *map[string]interface{} `json:"additionalData,omitempty"`
+	FriendlyName     *string                 `json:"friendlyName,omitempty"`
+	NetworkMessageId *string                 `json:"networkMessageId,omitempty"`
+	Recipient        *string                 `json:"recipient,omitempty"`
+	ReportType       *string                 `json:"reportType,omitempty"`
+	Sender           *string                 `json:"sender,omitempty"`
+	SenderIP         *string                 `json:"senderIp,omitempty"`
+	Subject          *string                 `json:"subject,omitempty"`
+	SubmissionDate   *string                 `json:"submissionDate,omitempty"`
+	SubmissionId     *string                 `json:"submissionId,omitempty"`
+	Submitter        *string                 `json:"submitter,omitempty"`
+	Timestamp        *string                 `json:"timestamp,omitempty"`
 }
 
 func (o *SubmissionMailEntityProperties) GetSubmissionDateAsTime() (*time.Time, error) {

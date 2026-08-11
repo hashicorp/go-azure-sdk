@@ -4,7 +4,7 @@ package threatintelligence
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ThreatIntelligenceIndicatorProperties struct {
-	AdditionalData             *interface{}                              `json:"additionalData,omitempty"`
+	AdditionalData             *map[string]interface{}                   `json:"additionalData,omitempty"`
 	Confidence                 *int64                                    `json:"confidence,omitempty"`
 	Created                    *string                                   `json:"created,omitempty"`
 	CreatedByRef               *string                                   `json:"createdByRef,omitempty"`

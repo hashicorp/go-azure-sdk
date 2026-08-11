@@ -10,17 +10,17 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ProcessEntityProperties struct {
-	AccountEntityId          *string         `json:"accountEntityId,omitempty"`
-	AdditionalData           *interface{}    `json:"additionalData,omitempty"`
-	CommandLine              *string         `json:"commandLine,omitempty"`
-	CreationTimeUtc          *string         `json:"creationTimeUtc,omitempty"`
-	ElevationToken           *ElevationToken `json:"elevationToken,omitempty"`
-	FriendlyName             *string         `json:"friendlyName,omitempty"`
-	HostEntityId             *string         `json:"hostEntityId,omitempty"`
-	HostLogonSessionEntityId *string         `json:"hostLogonSessionEntityId,omitempty"`
-	ImageFileEntityId        *string         `json:"imageFileEntityId,omitempty"`
-	ParentProcessEntityId    *string         `json:"parentProcessEntityId,omitempty"`
-	ProcessId                *string         `json:"processId,omitempty"`
+	AccountEntityId          *string                 `json:"accountEntityId,omitempty"`
+	AdditionalData           *map[string]interface{} `json:"additionalData,omitempty"`
+	CommandLine              *string                 `json:"commandLine,omitempty"`
+	CreationTimeUtc          *string                 `json:"creationTimeUtc,omitempty"`
+	ElevationToken           *ElevationToken         `json:"elevationToken,omitempty"`
+	FriendlyName             *string                 `json:"friendlyName,omitempty"`
+	HostEntityId             *string                 `json:"hostEntityId,omitempty"`
+	HostLogonSessionEntityId *string                 `json:"hostLogonSessionEntityId,omitempty"`
+	ImageFileEntityId        *string                 `json:"imageFileEntityId,omitempty"`
+	ParentProcessEntityId    *string                 `json:"parentProcessEntityId,omitempty"`
+	ProcessId                *string                 `json:"processId,omitempty"`
 }
 
 func (o *ProcessEntityProperties) GetCreationTimeUtcAsTime() (*time.Time, error) {

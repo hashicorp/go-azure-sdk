@@ -14,7 +14,7 @@ import (
 type LoadBalancerFrontendIPConfigurationsGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonFrontendIPConfiguration
+	Model        *FrontendIPConfiguration
 }
 
 // LoadBalancerFrontendIPConfigurationsGet ...
@@ -43,7 +43,7 @@ func (c LoadBalancersClient) LoadBalancerFrontendIPConfigurationsGet(ctx context
 		return
 	}
 
-	var model CommonFrontendIPConfiguration
+	var model FrontendIPConfiguration
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

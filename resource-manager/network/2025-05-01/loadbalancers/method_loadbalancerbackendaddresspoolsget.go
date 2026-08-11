@@ -14,7 +14,7 @@ import (
 type LoadBalancerBackendAddressPoolsGetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonBackendAddressPool
+	Model        *BackendAddressPool
 }
 
 // LoadBalancerBackendAddressPoolsGet ...
@@ -43,7 +43,7 @@ func (c LoadBalancersClient) LoadBalancerBackendAddressPoolsGet(ctx context.Cont
 		return
 	}
 
-	var model CommonBackendAddressPool
+	var model BackendAddressPool
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

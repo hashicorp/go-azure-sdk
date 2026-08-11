@@ -2,7 +2,6 @@ package customipprefixes
 
 import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
-	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
 )
 
@@ -13,9 +12,10 @@ type CustomIPPrefix struct {
 	Etag             *string                         `json:"etag,omitempty"`
 	ExtendedLocation *edgezones.Model                `json:"extendedLocation,omitempty"`
 	Id               *string                         `json:"id,omitempty"`
+	Location         *string                         `json:"location,omitempty"`
 	Name             *string                         `json:"name,omitempty"`
 	Properties       *CustomIPPrefixPropertiesFormat `json:"properties,omitempty"`
-	SystemData       *systemdata.SystemData          `json:"systemData,omitempty"`
+	Tags             *map[string]string              `json:"tags,omitempty"`
 	Type             *string                         `json:"type,omitempty"`
 	Zones            *zones.Schema                   `json:"zones,omitempty"`
 }

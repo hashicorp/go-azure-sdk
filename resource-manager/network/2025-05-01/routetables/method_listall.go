@@ -16,12 +16,12 @@ import (
 type ListAllOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]CommonRouteTable
+	Model        *[]RouteTable
 }
 
 type ListAllCompleteResult struct {
 	LatestHttpResponse *http.Response
-	Items              []CommonRouteTable
+	Items              []RouteTable
 }
 
 type ListAllCustomPager struct {
@@ -64,7 +64,7 @@ func (c RouteTablesClient) ListAll(ctx context.Context, id commonids.Subscriptio
 	}
 
 	var values struct {
-		Values *[]CommonRouteTable `json:"value"`
+		Values *[]RouteTable `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
@@ -77,12 +77,12 @@ func (c RouteTablesClient) ListAll(ctx context.Context, id commonids.Subscriptio
 
 // ListAllComplete retrieves all the results into a single object
 func (c RouteTablesClient) ListAllComplete(ctx context.Context, id commonids.SubscriptionId) (ListAllCompleteResult, error) {
-	return c.ListAllCompleteMatchingPredicate(ctx, id, CommonRouteTableOperationPredicate{})
+	return c.ListAllCompleteMatchingPredicate(ctx, id, RouteTableOperationPredicate{})
 }
 
 // ListAllCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RouteTablesClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate CommonRouteTableOperationPredicate) (result ListAllCompleteResult, err error) {
-	items := make([]CommonRouteTable, 0)
+func (c RouteTablesClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate RouteTableOperationPredicate) (result ListAllCompleteResult, err error) {
+	items := make([]RouteTable, 0)
 
 	resp, err := c.ListAll(ctx, id)
 	if err != nil {

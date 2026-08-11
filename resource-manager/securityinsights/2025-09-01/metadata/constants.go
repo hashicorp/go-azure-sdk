@@ -107,26 +107,26 @@ func parseKind(input string) (*Kind, error) {
 	return &out, nil
 }
 
-type Operator string
+type MetadataDependencyOperator string
 
 const (
-	OperatorAND Operator = "AND"
-	OperatorOR  Operator = "OR"
+	MetadataDependencyOperatorAND MetadataDependencyOperator = "AND"
+	MetadataDependencyOperatorOR  MetadataDependencyOperator = "OR"
 )
 
-func PossibleValuesForOperator() []string {
+func PossibleValuesForMetadataDependencyOperator() []string {
 	return []string{
-		string(OperatorAND),
-		string(OperatorOR),
+		string(MetadataDependencyOperatorAND),
+		string(MetadataDependencyOperatorOR),
 	}
 }
 
-func (s *Operator) UnmarshalJSON(bytes []byte) error {
+func (s *MetadataDependencyOperator) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseOperator(decoded)
+	out, err := parseMetadataDependencyOperator(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -134,17 +134,17 @@ func (s *Operator) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseOperator(input string) (*Operator, error) {
-	vals := map[string]Operator{
-		"and": OperatorAND,
-		"or":  OperatorOR,
+func parseMetadataDependencyOperator(input string) (*MetadataDependencyOperator, error) {
+	vals := map[string]MetadataDependencyOperator{
+		"and": MetadataDependencyOperatorAND,
+		"or":  MetadataDependencyOperatorOR,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := Operator(input)
+	out := MetadataDependencyOperator(input)
 	return &out, nil
 }
 

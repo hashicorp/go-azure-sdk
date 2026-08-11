@@ -6,7 +6,7 @@ package networksecurityperimeterassociations
 type NspAssociationProperties struct {
 	AccessMode            *AssociationAccessMode `json:"accessMode,omitempty"`
 	HasProvisioningIssues *string                `json:"hasProvisioningIssues,omitempty"`
-	PrivateLinkResource   *CommonSubResource     `json:"privateLinkResource,omitempty"`
-	Profile               *CommonSubResource     `json:"profile,omitempty"`
+	PrivateLinkResource   *SubResource           `json:"privateLinkResource,omitempty"`
+	Profile               *SubResource           `json:"profile,omitempty"`
 	ProvisioningState     *NspProvisioningState  `json:"provisioningState,omitempty"`
 }

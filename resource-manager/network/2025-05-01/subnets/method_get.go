@@ -16,7 +16,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonSubnet
+	Model        *Subnet
 }
 
 type GetOperationOptions struct {
@@ -74,7 +74,7 @@ func (c SubnetsClient) Get(ctx context.Context, id commonids.SubnetId, options G
 		return
 	}
 
-	var model CommonSubnet
+	var model Subnet
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

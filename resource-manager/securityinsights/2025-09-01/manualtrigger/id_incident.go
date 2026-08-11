@@ -19,19 +19,19 @@ var _ resourceids.ResourceId = &IncidentId{}
 
 // IncidentId is a struct representing the Resource ID for a Incident
 type IncidentId struct {
-	SubscriptionId     string
-	ResourceGroupName  string
-	WorkspaceName      string
-	IncidentIdentifier string
+	SubscriptionId    string
+	ResourceGroupName string
+	WorkspaceName     string
+	IncidentId        string
 }
 
 // NewIncidentID returns a new IncidentId struct
-func NewIncidentID(subscriptionId string, resourceGroupName string, workspaceName string, incidentIdentifier string) IncidentId {
+func NewIncidentID(subscriptionId string, resourceGroupName string, workspaceName string, incidentId string) IncidentId {
 	return IncidentId{
-		SubscriptionId:     subscriptionId,
-		ResourceGroupName:  resourceGroupName,
-		WorkspaceName:      workspaceName,
-		IncidentIdentifier: incidentIdentifier,
+		SubscriptionId:    subscriptionId,
+		ResourceGroupName: resourceGroupName,
+		WorkspaceName:     workspaceName,
+		IncidentId:        incidentId,
 	}
 }
 
@@ -83,8 +83,8 @@ func (id *IncidentId) FromParseResult(input resourceids.ParseResult) error {
 		return resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", input)
 	}
 
-	if id.IncidentIdentifier, ok = input.Parsed["incidentIdentifier"]; !ok {
-		return resourceids.NewSegmentNotSpecifiedError(id, "incidentIdentifier", input)
+	if id.IncidentId, ok = input.Parsed["incidentId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "incidentId", input)
 	}
 
 	return nil
@@ -108,7 +108,7 @@ func ValidateIncidentID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Incident ID
 func (id IncidentId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.OperationalInsights/workspaces/%s/providers/Microsoft.SecurityInsights/incidents/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.IncidentIdentifier)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.IncidentId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Incident ID
@@ -125,7 +125,7 @@ func (id IncidentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurityInsights", "Microsoft.SecurityInsights", "Microsoft.SecurityInsights"),
 		resourceids.StaticSegment("staticIncidents", "incidents", "incidents"),
-		resourceids.UserSpecifiedSegment("incidentIdentifier", "incidentIdentifier"),
+		resourceids.UserSpecifiedSegment("incidentId", "incidentId"),
 	}
 }
 
@@ -135,7 +135,7 @@ func (id IncidentId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Incident Identifier: %q", id.IncidentIdentifier),
+		fmt.Sprintf("Incident: %q", id.IncidentId),
 	}
 	return fmt.Sprintf("Incident (%s)", strings.Join(components, "\n"))
 }

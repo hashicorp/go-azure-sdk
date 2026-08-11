@@ -18,11 +18,11 @@ type CreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonFlowLog
+	Model        *FlowLog
 }
 
 // CreateOrUpdate ...
-func (c FlowLogsClient) CreateOrUpdate(ctx context.Context, id FlowLogId, input CommonFlowLog) (result CreateOrUpdateOperationResponse, err error) {
+func (c FlowLogsClient) CreateOrUpdate(ctx context.Context, id FlowLogId, input FlowLog) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c FlowLogsClient) CreateOrUpdate(ctx context.Context, id FlowLogId, input 
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c FlowLogsClient) CreateOrUpdateThenPoll(ctx context.Context, id FlowLogId, input CommonFlowLog) error {
+func (c FlowLogsClient) CreateOrUpdateThenPoll(ctx context.Context, id FlowLogId, input FlowLog) error {
 	return c.CreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // CreateOrUpdateCallbackThenPoll performs CreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c FlowLogsClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id FlowLogId, input CommonFlowLog, callback func() error) error {
+func (c FlowLogsClient) CreateOrUpdateCallbackThenPoll(ctx context.Context, id FlowLogId, input FlowLog, callback func() error) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

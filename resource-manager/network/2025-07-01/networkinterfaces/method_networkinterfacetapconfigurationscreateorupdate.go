@@ -18,11 +18,11 @@ type NetworkInterfaceTapConfigurationsCreateOrUpdateOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonNetworkInterfaceTapConfiguration
+	Model        *NetworkInterfaceTapConfiguration
 }
 
 // NetworkInterfaceTapConfigurationsCreateOrUpdate ...
-func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsCreateOrUpdate(ctx context.Context, id TapConfigurationId, input CommonNetworkInterfaceTapConfiguration) (result NetworkInterfaceTapConfigurationsCreateOrUpdateOperationResponse, err error) {
+func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsCreateOrUpdate(ctx context.Context, id TapConfigurationId, input NetworkInterfaceTapConfiguration) (result NetworkInterfaceTapConfigurationsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsCreateOrUpdate
 }
 
 // NetworkInterfaceTapConfigurationsCreateOrUpdateThenPoll performs NetworkInterfaceTapConfigurationsCreateOrUpdate then polls until it's completed
-func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsCreateOrUpdateThenPoll(ctx context.Context, id TapConfigurationId, input CommonNetworkInterfaceTapConfiguration) error {
+func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsCreateOrUpdateThenPoll(ctx context.Context, id TapConfigurationId, input NetworkInterfaceTapConfiguration) error {
 	return c.NetworkInterfaceTapConfigurationsCreateOrUpdateCallbackThenPoll(ctx, id, input, nil)
 }
 
 // NetworkInterfaceTapConfigurationsCreateOrUpdateCallbackThenPoll performs NetworkInterfaceTapConfigurationsCreateOrUpdate, runs the optional callback function, then polls until it's completed
-func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsCreateOrUpdateCallbackThenPoll(ctx context.Context, id TapConfigurationId, input CommonNetworkInterfaceTapConfiguration, callback func() error) error {
+func (c NetworkInterfacesClient) NetworkInterfaceTapConfigurationsCreateOrUpdateCallbackThenPoll(ctx context.Context, id TapConfigurationId, input NetworkInterfaceTapConfiguration, callback func() error) error {
 	result, err := c.NetworkInterfaceTapConfigurationsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing NetworkInterfaceTapConfigurationsCreateOrUpdate: %+v", err)

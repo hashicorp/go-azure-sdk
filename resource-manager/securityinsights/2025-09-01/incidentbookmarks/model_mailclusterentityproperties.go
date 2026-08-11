@@ -10,23 +10,23 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MailClusterEntityProperties struct {
-	AdditionalData          *interface{} `json:"additionalData,omitempty"`
-	ClusterGroup            *string      `json:"clusterGroup,omitempty"`
-	ClusterQueryEndTime     *string      `json:"clusterQueryEndTime,omitempty"`
-	ClusterQueryStartTime   *string      `json:"clusterQueryStartTime,omitempty"`
-	ClusterSourceIdentifier *string      `json:"clusterSourceIdentifier,omitempty"`
-	ClusterSourceType       *string      `json:"clusterSourceType,omitempty"`
-	CountByDeliveryStatus   *interface{} `json:"countByDeliveryStatus,omitempty"`
-	CountByProtectionStatus *interface{} `json:"countByProtectionStatus,omitempty"`
-	CountByThreatType       *interface{} `json:"countByThreatType,omitempty"`
-	FriendlyName            *string      `json:"friendlyName,omitempty"`
-	IsVolumeAnomaly         *bool        `json:"isVolumeAnomaly,omitempty"`
-	MailCount               *int64       `json:"mailCount,omitempty"`
-	NetworkMessageIds       *[]string    `json:"networkMessageIds,omitempty"`
-	Query                   *string      `json:"query,omitempty"`
-	QueryTime               *string      `json:"queryTime,omitempty"`
-	Source                  *string      `json:"source,omitempty"`
-	Threats                 *[]string    `json:"threats,omitempty"`
+	AdditionalData          *map[string]interface{} `json:"additionalData,omitempty"`
+	ClusterGroup            *string                 `json:"clusterGroup,omitempty"`
+	ClusterQueryEndTime     *string                 `json:"clusterQueryEndTime,omitempty"`
+	ClusterQueryStartTime   *string                 `json:"clusterQueryStartTime,omitempty"`
+	ClusterSourceIdentifier *string                 `json:"clusterSourceIdentifier,omitempty"`
+	ClusterSourceType       *string                 `json:"clusterSourceType,omitempty"`
+	CountByDeliveryStatus   *interface{}            `json:"countByDeliveryStatus,omitempty"`
+	CountByProtectionStatus *interface{}            `json:"countByProtectionStatus,omitempty"`
+	CountByThreatType       *interface{}            `json:"countByThreatType,omitempty"`
+	FriendlyName            *string                 `json:"friendlyName,omitempty"`
+	IsVolumeAnomaly         *bool                   `json:"isVolumeAnomaly,omitempty"`
+	MailCount               *int64                  `json:"mailCount,omitempty"`
+	NetworkMessageIds       *[]string               `json:"networkMessageIds,omitempty"`
+	Query                   *string                 `json:"query,omitempty"`
+	QueryTime               *string                 `json:"queryTime,omitempty"`
+	Source                  *string                 `json:"source,omitempty"`
+	Threats                 *[]string               `json:"threats,omitempty"`
 }
 
 func (o *MailClusterEntityProperties) GetClusterQueryEndTimeAsTime() (*time.Time, error) {

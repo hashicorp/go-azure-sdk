@@ -16,7 +16,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonVirtualNetwork
+	Model        *VirtualNetwork
 }
 
 type GetOperationOptions struct {
@@ -74,7 +74,7 @@ func (c VirtualNetworksClient) Get(ctx context.Context, id commonids.VirtualNetw
 		return
 	}
 
-	var model CommonVirtualNetwork
+	var model VirtualNetwork
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -7,9 +7,9 @@ type WebApplicationFirewallPolicyPropertiesFormat struct {
 	ApplicationGatewayForContainers *[]ApplicationGatewayForContainersReferenceDefinition `json:"applicationGatewayForContainers,omitempty"`
 	ApplicationGateways             *[]ApplicationGateway                                 `json:"applicationGateways,omitempty"`
 	CustomRules                     *[]WebApplicationFirewallCustomRule                   `json:"customRules,omitempty"`
-	HTTPListeners                   *[]CommonSubResource                                  `json:"httpListeners,omitempty"`
+	HTTPListeners                   *[]SubResource                                        `json:"httpListeners,omitempty"`
 	ManagedRules                    ManagedRulesDefinition                                `json:"managedRules"`
-	PathBasedRules                  *[]CommonSubResource                                  `json:"pathBasedRules,omitempty"`
+	PathBasedRules                  *[]SubResource                                        `json:"pathBasedRules,omitempty"`
 	PolicySettings                  *PolicySettings                                       `json:"policySettings,omitempty"`
 	ProvisioningState               *ProvisioningState                                    `json:"provisioningState,omitempty"`
 	ResourceState                   *WebApplicationFirewallPolicyResourceState            `json:"resourceState,omitempty"`

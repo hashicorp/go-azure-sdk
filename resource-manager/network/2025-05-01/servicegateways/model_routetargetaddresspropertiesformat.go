@@ -6,5 +6,5 @@ package servicegateways
 type RouteTargetAddressPropertiesFormat struct {
 	PrivateIPAddress          *string             `json:"privateIPAddress,omitempty"`
 	PrivateIPAllocationMethod *IPAllocationMethod `json:"privateIPAllocationMethod,omitempty"`
-	Subnet                    *CommonSubnet       `json:"subnet,omitempty"`
+	Subnet                    *Subnet             `json:"subnet,omitempty"`
 }

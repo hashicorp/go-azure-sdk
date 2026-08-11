@@ -14,7 +14,7 @@ import (
 type UpdateTagsOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonRouteTable
+	Model        *RouteTable
 }
 
 // UpdateTags ...
@@ -47,7 +47,7 @@ func (c RouteTablesClient) UpdateTags(ctx context.Context, id RouteTableId, inpu
 		return
 	}
 
-	var model CommonRouteTable
+	var model RouteTable
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

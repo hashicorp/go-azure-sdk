@@ -15,7 +15,7 @@ import (
 type GetOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *CommonPrivateLinkService
+	Model        *PrivateLinkService
 }
 
 type GetOperationOptions struct {
@@ -73,7 +73,7 @@ func (c PrivateLinkServicesClient) Get(ctx context.Context, id PrivateLinkServic
 		return
 	}
 
-	var model CommonPrivateLinkService
+	var model PrivateLinkService
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

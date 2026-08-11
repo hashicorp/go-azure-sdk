@@ -32,11 +32,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/manualtrigger"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/metadata"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/officeconsents"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/repositories"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/securitymlanalyticssettings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/sentinelonboardingstates"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/settings"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/sourcecontrols"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/threatintelligence"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/watchlistitems"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/watchlists"
@@ -71,11 +69,9 @@ type Client struct {
 	ManualTrigger                  *manualtrigger.ManualTriggerClient
 	Metadata                       *metadata.MetadataClient
 	OfficeConsents                 *officeconsents.OfficeConsentsClient
-	Repositories                   *repositories.RepositoriesClient
 	SecurityMLAnalyticsSettings    *securitymlanalyticssettings.SecurityMLAnalyticsSettingsClient
 	SentinelOnboardingStates       *sentinelonboardingstates.SentinelOnboardingStatesClient
 	Settings                       *settings.SettingsClient
-	SourceControls                 *sourcecontrols.SourceControlsClient
 	ThreatIntelligence             *threatintelligence.ThreatIntelligenceClient
 	WatchlistItems                 *watchlistitems.WatchlistItemsClient
 	Watchlists                     *watchlists.WatchlistsClient
@@ -238,12 +234,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(officeConsentsClient.Client)
 
-	repositoriesClient, err := repositories.NewRepositoriesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Repositories client: %+v", err)
-	}
-	configureFunc(repositoriesClient.Client)
-
 	securityMLAnalyticsSettingsClient, err := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SecurityMLAnalyticsSettings client: %+v", err)
@@ -261,12 +251,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building Settings client: %+v", err)
 	}
 	configureFunc(settingsClient.Client)
-
-	sourceControlsClient, err := sourcecontrols.NewSourceControlsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building SourceControls client: %+v", err)
-	}
-	configureFunc(sourceControlsClient.Client)
 
 	threatIntelligenceClient, err := threatintelligence.NewThreatIntelligenceClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -313,11 +297,9 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		ManualTrigger:                  manualTriggerClient,
 		Metadata:                       metadataClient,
 		OfficeConsents:                 officeConsentsClient,
-		Repositories:                   repositoriesClient,
 		SecurityMLAnalyticsSettings:    securityMLAnalyticsSettingsClient,
 		SentinelOnboardingStates:       sentinelOnboardingStatesClient,
 		Settings:                       settingsClient,
-		SourceControls:                 sourceControlsClient,
 		ThreatIntelligence:             threatIntelligenceClient,
 		WatchlistItems:                 watchlistItemsClient,
 		Watchlists:                     watchlistsClient,

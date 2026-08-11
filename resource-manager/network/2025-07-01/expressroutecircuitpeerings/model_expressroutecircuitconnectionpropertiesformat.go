@@ -7,8 +7,8 @@ type ExpressRouteCircuitConnectionPropertiesFormat struct {
 	AddressPrefix                  *string                      `json:"addressPrefix,omitempty"`
 	AuthorizationKey               *string                      `json:"authorizationKey,omitempty"`
 	CircuitConnectionStatus        *CircuitConnectionStatus     `json:"circuitConnectionStatus,omitempty"`
-	ExpressRouteCircuitPeering     *CommonSubResource           `json:"expressRouteCircuitPeering,omitempty"`
+	ExpressRouteCircuitPeering     *SubResource                 `json:"expressRouteCircuitPeering,omitempty"`
 	IPv6CircuitConnectionConfig    *IPv6CircuitConnectionConfig `json:"ipv6CircuitConnectionConfig,omitempty"`
-	PeerExpressRouteCircuitPeering *CommonSubResource           `json:"peerExpressRouteCircuitPeering,omitempty"`
+	PeerExpressRouteCircuitPeering *SubResource                 `json:"peerExpressRouteCircuitPeering,omitempty"`
 	ProvisioningState              *ProvisioningState           `json:"provisioningState,omitempty"`
 }
