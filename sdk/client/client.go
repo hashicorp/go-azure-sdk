@@ -14,6 +14,7 @@ import (
 	"io"
 	"log"
 	"math"
+	"math/rand"
 	"net"
 	"net/http"
 	"net/url"
@@ -36,8 +37,25 @@ const (
 	SkipPollingDelayHeader = "X-Go-Azure-Sdk-Skip-Polling-Delay"
 )
 
+type contextKey string
+
+const (
+	// Disable404RetryContextKey is a context key that can be used to disable the 404 retry logic.
+	Disable404RetryContextKey contextKey = "Disable404Retry"
+)
+
+// WithDisable404Retry returns a new context with the Disable404RetryContextKey set to true.
+func WithDisable404Retry(ctx context.Context) context.Context {
+	return context.WithValue(ctx, Disable404RetryContextKey, true)
+}
+
 // RetryOn404ConsistencyFailureFunc can be used to retry a request when a 404 response is received
 func RetryOn404ConsistencyFailureFunc(resp *http.Response, _ *odata.OData) (bool, error) {
+	if resp != nil && resp.Request != nil && resp.Request.Context() != nil {
+		if bypass, ok := resp.Request.Context().Value(Disable404RetryContextKey).(bool); ok && bypass {
+			return false, nil
+		}
+	}
 	return resp != nil && resp.StatusCode == http.StatusNotFound, nil
 }
 
@@ -321,6 +339,9 @@ type Client struct {
 	// DisableRetries prevents the client from reattempting failed requests (which it does to work around eventual consistency issues).
 	// This does not impact handling of retries related to rate limiting, which are always performed.
 	DisableRetries bool
+
+	// EnableRetryJitter adds a random jitter to the retry backoff duration to distribute retries across replicas.
+	EnableRetryJitter bool
 
 	// RequestMiddlewares is a slice of functions that are called in order before a request is sent
 	RequestMiddlewares *[]RequestMiddleware
@@ -706,6 +727,12 @@ func (c *Client) retryableClient(ctx context.Context, checkRetry retryablehttp.C
 		// Default exponential backoff
 		mult := math.Pow(2, float64(attemptNum)) * float64(min)
 		sleep := time.Duration(mult)
+
+		if c.EnableRetryJitter {
+			jitter := time.Duration(rand.Int63n(int64(sleep)/2)) - time.Duration(int64(sleep)/4)
+			sleep += jitter
+		}
+
 		if float64(sleep) != mult || sleep > max {
 			sleep = max
 		}
