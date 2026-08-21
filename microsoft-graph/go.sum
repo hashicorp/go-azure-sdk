@@ -6,8 +6,8 @@ github.com/golang-jwt/jwt/v4 v4.5.2 h1:YtQM7lnr8iZ+j5q71MGKkNw9Mn7AjHM68uc9g5fXe
 github.com/golang-jwt/jwt/v4 v4.5.2/go.mod h1:m21LjoU+eqJr34lmDMbreY2eSTRJ1cv77w39/MY0Ch0=
 github.com/hashicorp/go-azure-helpers v0.81.1 h1:hjBc+Nx+urH0U3JXskyr562UUGsRltxb9SQ2fADCtMw=
 github.com/hashicorp/go-azure-helpers v0.81.1/go.mod h1:rcFXtMufiI7KFl37o7OZXK1nivEkZf2fjvy03hGJAeU=
-github.com/hashicorp/go-azure-sdk/sdk v0.20260819.1085932 h1:NkTWLH4jIvyYEvJVJAPED0J63igcF1awjxn45Rahfgw=
-github.com/hashicorp/go-azure-sdk/sdk v0.20260819.1085932/go.mod h1:aNqekyhsSKHk1t/ocvlNY8zNKAt/0RhtoYgqgTfyG7M=
+github.com/hashicorp/go-azure-sdk/sdk v0.20260821.1205605 h1:BZO6OmnUVPBM492H3/a9yKVPsSdE7Do9eggOeW8FMFM=
+github.com/hashicorp/go-azure-sdk/sdk v0.20260821.1205605/go.mod h1:aNqekyhsSKHk1t/ocvlNY8zNKAt/0RhtoYgqgTfyG7M=
 github.com/hashicorp/go-cleanhttp v0.5.2 h1:035FKYIWjmULyFRBKPs8TBQoi0x6d9G4xc9neXJWAZQ=
 github.com/hashicorp/go-cleanhttp v0.5.2/go.mod h1:kO/YDlP8L1346E6Sodw+PrpBSV4/SoxCXGY6BqNFT48=
 github.com/hashicorp/go-hclog v1.6.3 h1:Qr2kF+eVWjTiYmU7Y31tYlP1h0q/X3Nl3tPGdaB11/k=
