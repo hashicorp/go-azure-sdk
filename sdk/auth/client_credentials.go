@@ -378,5 +378,5 @@ func tokenEndpoint(endpoint environments.Authorization, tenant string) string {
 	if tenant == "" {
 		tenant = "common"
 	}
-	return fmt.Sprintf("%s/%s/oauth2/v2.0/token", endpoint.LoginEndpoint, tenant)
+	return fmt.Sprintf("%s/%s/oauth2/v2.0/token", strings.TrimRight(endpoint.LoginEndpoint, "/"), tenant)
 }
