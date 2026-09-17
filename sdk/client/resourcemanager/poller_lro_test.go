@@ -227,6 +227,42 @@ func TestPollerLRO_InStatus_AcceptedThenInProgressThenSuccess(t *testing.T) {
 	helpers.assertCalled(t, 3)
 }
 
+func TestPollerLRO_AcceptedThenNoContent(t *testing.T) {
+	ctx := context.TODO()
+	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
+		responseWithHttpStatusCode(http.StatusAccepted),
+		responseWithHttpStatusCode(http.StatusNoContent),
+	})
+	server := httptest.NewServer(http.HandlerFunc(helpers.endpoint(t)))
+	defer server.Close()
+
+	response := &client.Response{
+		Response: helpers.response(),
+	}
+	client := client.NewClient(server.URL, "MyService", "2020-02-01")
+	poller, err := longRunningOperationPollerFromResponse(response, client)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	expectedStatuses := []pollers.PollingStatus{
+		pollers.PollingStatusInProgress,
+		pollers.PollingStatusSucceeded,
+	}
+	for i, expected := range expectedStatuses {
+		t.Logf("Poll %d..", i)
+		result, err := poller.Poll(ctx)
+		if err != nil {
+			t.Fatal(err.Error())
+		}
+		if result.Status != expected {
+			t.Fatalf("expected status to be %q but got %q", expected, result.Status)
+		}
+	}
+	// sanity-checking
+	helpers.assertCalled(t, 2)
+}
+
 func TestPollerLRO_NoTerminalStatusThenSuccess(t *testing.T) {
 	ctx := context.TODO()
 	helpers := newLongRunningOperationsEndpoint([]expectedResponse{
