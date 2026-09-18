@@ -13,7 +13,7 @@ jobs:
       microsoft-graph: ${{ steps.filter.outputs.microsoft-graph }}
       data-plane: ${{ steps.filter.outputs.data-plane }}
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - uses: dorny/paths-filter@0e4a8c6effa4802afeda77dc8d303f8176d7dfad # v3.0.4
         id: filter
         with:
@@ -52,7 +52,7 @@ jobs:
           sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
           sudo chown -R $USER:$USER ~/.cache/go-build ~/go/pkg/mod
 
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -75,7 +75,7 @@ jobs:
           sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
           sudo chown -R $USER:$USER ~/.cache/go-build ~/go/pkg/mod
 
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -98,7 +98,7 @@ jobs:
           sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
           sudo chown -R $USER:$USER ~/.cache/go-build ~/go/pkg/mod
 
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -121,7 +121,7 @@ jobs:
           sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
           sudo chown -R $USER:$USER ~/.cache/go-build ~/go/pkg/mod
 
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
