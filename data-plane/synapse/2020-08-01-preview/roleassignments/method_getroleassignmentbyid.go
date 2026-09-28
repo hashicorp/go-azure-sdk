@@ -18,7 +18,7 @@ type GetRoleAssignmentByIdOperationResponse struct {
 }
 
 // GetRoleAssignmentById ...
-func (c RoleAssignmentsClient) GetRoleAssignmentById(ctx context.Context, id RoleAssignmentIdId) (result GetRoleAssignmentByIdOperationResponse, err error) {
+func (c RoleAssignmentsClient) GetRoleAssignmentById(ctx context.Context, id RoleAssignmentId) (result GetRoleAssignmentByIdOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
