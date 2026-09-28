@@ -46,7 +46,7 @@ func (o DeleteRoleAssignmentByIdOperationOptions) ToQuery() *client.QueryParams 
 }
 
 // DeleteRoleAssignmentById ...
-func (c RoleAssignmentsClient) DeleteRoleAssignmentById(ctx context.Context, id RoleAssignmentIdId, options DeleteRoleAssignmentByIdOperationOptions) (result DeleteRoleAssignmentByIdOperationResponse, err error) {
+func (c RoleAssignmentsClient) DeleteRoleAssignmentById(ctx context.Context, id RoleAssignmentId, options DeleteRoleAssignmentByIdOperationOptions) (result DeleteRoleAssignmentByIdOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
