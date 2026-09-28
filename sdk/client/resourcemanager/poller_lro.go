@@ -161,6 +161,11 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 			return
 		}
 
+		if result.HttpResponse.StatusCode == http.StatusNoContent {
+			result.Status = pollers.PollingStatusSucceeded
+			return
+		}
+
 		// Automation@2022-08-08 - Runbooks - returns a 200 OK with no Body
 		if result.HttpResponse.StatusCode == http.StatusOK && result.HttpResponse.ContentLength == 0 {
 			result.Status = pollers.PollingStatusSucceeded
