@@ -25,7 +25,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := denyassignments.NewScopedDenyAssignmentIdID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
+id := denyassignments.NewScopedDenyAssignmentID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "denyAssignmentId")
 
 read, err := client.Get(ctx, id)
 if err != nil {

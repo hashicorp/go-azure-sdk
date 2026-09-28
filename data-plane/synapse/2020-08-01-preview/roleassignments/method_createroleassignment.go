@@ -18,7 +18,7 @@ type CreateRoleAssignmentOperationResponse struct {
 }
 
 // CreateRoleAssignment ...
-func (c RoleAssignmentsClient) CreateRoleAssignment(ctx context.Context, id RoleAssignmentIdId, input RoleAssignmentRequest) (result CreateRoleAssignmentOperationResponse, err error) {
+func (c RoleAssignmentsClient) CreateRoleAssignment(ctx context.Context, id RoleAssignmentId, input RoleAssignmentRequest) (result CreateRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

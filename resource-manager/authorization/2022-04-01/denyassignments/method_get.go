@@ -18,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c DenyAssignmentsClient) Get(ctx context.Context, id ScopedDenyAssignmentIdId) (result GetOperationResponse, err error) {
+func (c DenyAssignmentsClient) Get(ctx context.Context, id ScopedDenyAssignmentId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
