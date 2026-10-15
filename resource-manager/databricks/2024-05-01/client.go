@@ -8,7 +8,6 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/accessconnector"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/delete"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/outboundnetworkdependenciesendpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/privateendpointconnections"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/put"
@@ -19,14 +18,13 @@ import (
 )
 
 type Client struct {
-	AccessConnector                      *accessconnector.AccessConnectorClient
-	DELETE                               *delete.DELETEClient
-	OutboundNetworkDependenciesEndpoints *outboundnetworkdependenciesendpoints.OutboundNetworkDependenciesEndpointsClient
-	PUT                                  *put.PUTClient
-	PrivateEndpointConnections           *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources                 *privatelinkresources.PrivateLinkResourcesClient
-	VNetPeering                          *vnetpeering.VNetPeeringClient
-	Workspaces                           *workspaces.WorkspacesClient
+	AccessConnector            *accessconnector.AccessConnectorClient
+	DELETE                     *delete.DELETEClient
+	PUT                        *put.PUTClient
+	PrivateEndpointConnections *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources       *privatelinkresources.PrivateLinkResourcesClient
+	VNetPeering                *vnetpeering.VNetPeeringClient
+	Workspaces                 *workspaces.WorkspacesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -41,12 +39,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building DELETE client: %+v", err)
 	}
 	configureFunc(dELETEClient.Client)
-
-	outboundNetworkDependenciesEndpointsClient, err := outboundnetworkdependenciesendpoints.NewOutboundNetworkDependenciesEndpointsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building OutboundNetworkDependenciesEndpoints client: %+v", err)
-	}
-	configureFunc(outboundNetworkDependenciesEndpointsClient.Client)
 
 	pUTClient, err := put.NewPUTClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -79,13 +71,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(workspacesClient.Client)
 
 	return &Client{
-		AccessConnector:                      accessConnectorClient,
-		DELETE:                               dELETEClient,
-		OutboundNetworkDependenciesEndpoints: outboundNetworkDependenciesEndpointsClient,
-		PUT:                                  pUTClient,
-		PrivateEndpointConnections:           privateEndpointConnectionsClient,
-		PrivateLinkResources:                 privateLinkResourcesClient,
-		VNetPeering:                          vNetPeeringClient,
-		Workspaces:                           workspacesClient,
+		AccessConnector:            accessConnectorClient,
+		DELETE:                     dELETEClient,
+		PUT:                        pUTClient,
+		PrivateEndpointConnections: privateEndpointConnectionsClient,
+		PrivateLinkResources:       privateLinkResourcesClient,
+		VNetPeering:                vNetPeeringClient,
+		Workspaces:                 workspacesClient,
 	}, nil
 }
