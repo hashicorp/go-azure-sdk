@@ -19,13 +19,13 @@ var _ resourceids.ResourceId = &ManagementGroupId{}
 
 // ManagementGroupId is a struct representing the Resource ID for a Management Group
 type ManagementGroupId struct {
-	ManagementGroupName string
+	ManagementGroupId string
 }
 
 // NewManagementGroupID returns a new ManagementGroupId struct
-func NewManagementGroupID(managementGroupName string) ManagementGroupId {
+func NewManagementGroupID(managementGroupId string) ManagementGroupId {
 	return ManagementGroupId{
-		ManagementGroupName: managementGroupName,
+		ManagementGroupId: managementGroupId,
 	}
 }
 
@@ -65,8 +65,8 @@ func ParseManagementGroupIDInsensitively(input string) (*ManagementGroupId, erro
 func (id *ManagementGroupId) FromParseResult(input resourceids.ParseResult) error {
 	var ok bool
 
-	if id.ManagementGroupName, ok = input.Parsed["managementGroupName"]; !ok {
-		return resourceids.NewSegmentNotSpecifiedError(id, "managementGroupName", input)
+	if id.ManagementGroupId, ok = input.Parsed["managementGroupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managementGroupId", input)
 	}
 
 	return nil
@@ -90,7 +90,7 @@ func ValidateManagementGroupID(input interface{}, key string) (warnings []string
 // ID returns the formatted Management Group ID
 func (id ManagementGroupId) ID() string {
 	fmtString := "/providers/Microsoft.Management/managementGroups/%s"
-	return fmt.Sprintf(fmtString, id.ManagementGroupName)
+	return fmt.Sprintf(fmtString, id.ManagementGroupId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Management Group ID
@@ -99,14 +99,14 @@ func (id ManagementGroupId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.StaticSegment("managementGroupsNamespace", "Microsoft.Management", "Microsoft.Management"),
 		resourceids.StaticSegment("staticManagementGroups", "managementGroups", "managementGroups"),
-		resourceids.UserSpecifiedSegment("managementGroupName", "managementGroupName"),
+		resourceids.UserSpecifiedSegment("managementGroupId", "managementGroupId"),
 	}
 }
 
 // String returns a human-readable description of this Management Group ID
 func (id ManagementGroupId) String() string {
 	components := []string{
-		fmt.Sprintf("Management Group Name: %q", id.ManagementGroupName),
+		fmt.Sprintf("Management Group: %q", id.ManagementGroupId),
 	}
 	return fmt.Sprintf("Management Group (%s)", strings.Join(components, "\n"))
 }
