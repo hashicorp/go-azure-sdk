@@ -319,7 +319,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := openapis.NewManagementGroupID("managementGroupId")
+id := openapis.NewManagementGroupID("managementGroupName")
 
 // alternatively `client.PolicyEventsListQueryResultsForManagementGroup(ctx, id, openapis.DefaultPolicyEventsListQueryResultsForManagementGroupOperationOptions())` can be used to do batched pagination
 items, err := client.PolicyEventsListQueryResultsForManagementGroupComplete(ctx, id, openapis.DefaultPolicyEventsListQueryResultsForManagementGroupOperationOptions())
@@ -488,7 +488,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := openapis.NewManagementGroupID("managementGroupId")
+id := openapis.NewManagementGroupID("managementGroupName")
 
 payload := openapis.CheckManagementGroupRestrictionsRequest{
 	// ...
@@ -687,7 +687,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := openapis.NewManagementGroupID("managementGroupId")
+id := openapis.NewManagementGroupID("managementGroupName")
 
 read, err := client.PolicyStatesSummarizeForManagementGroup(ctx, id, openapis.DefaultPolicyStatesSummarizeForManagementGroupOperationOptions())
 if err != nil {
@@ -1183,7 +1183,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := openapis.NewManagementGroupID("managementGroupId")
+id := openapis.NewManagementGroupID("managementGroupName")
 
 // alternatively `client.RemediationsListForManagementGroup(ctx, id, openapis.DefaultRemediationsListForManagementGroupOperationOptions())` can be used to do batched pagination
 items, err := client.RemediationsListForManagementGroupComplete(ctx, id, openapis.DefaultRemediationsListForManagementGroupOperationOptions())
