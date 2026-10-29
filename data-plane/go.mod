@@ -4,7 +4,7 @@ go 1.26.6
 
 require (
 	github.com/hashicorp/go-azure-helpers v0.81.1
-	github.com/hashicorp/go-azure-sdk/sdk v0.20261027.1151402
+	github.com/hashicorp/go-azure-sdk/sdk v0.20261029.1142030
 )
 
 require (
