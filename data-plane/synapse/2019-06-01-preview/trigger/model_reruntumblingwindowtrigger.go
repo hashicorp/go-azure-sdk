@@ -45,7 +45,7 @@ func (s RerunTumblingWindowTrigger) MarshalJSON() ([]byte, error) {
 		return nil, fmt.Errorf("unmarshaling RerunTumblingWindowTrigger: %+v", err)
 	}
 
-	decoded["type"] = "rerunTumblingWindowTrigger"
+	decoded["type"] = "RerunTumblingWindowTrigger"
 
 	encoded, err = json.Marshal(decoded)
 	if err != nil {
