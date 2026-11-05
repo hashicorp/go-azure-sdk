@@ -1,0 +1,9 @@
+package daprcomponentresiliencypolicies
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DaprComponentResiliencyPolicyProperties struct {
+	InboundPolicy  *DaprComponentResiliencyPolicyConfiguration `json:"inboundPolicy,omitempty"`
+	OutboundPolicy *DaprComponentResiliencyPolicyConfiguration `json:"outboundPolicy,omitempty"`
+}
