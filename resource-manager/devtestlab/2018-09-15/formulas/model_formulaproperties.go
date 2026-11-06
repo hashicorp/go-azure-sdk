@@ -12,6 +12,7 @@ import (
 type FormulaProperties struct {
 	Author            *string                             `json:"author,omitempty"`
 	CreationDate      *string                             `json:"creationDate,omitempty"`
+	CredentialState   *FormulaCredentialState             `json:"credentialState,omitempty"`
 	Description       *string                             `json:"description,omitempty"`
 	FormulaContent    *LabVirtualMachineCreationParameter `json:"formulaContent,omitempty"`
 	OsType            *string                             `json:"osType,omitempty"`

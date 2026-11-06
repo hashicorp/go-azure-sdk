@@ -50,6 +50,50 @@ func parseEnableStatus(input string) (*EnableStatus, error) {
 	return &out, nil
 }
 
+type FormulaCredentialState string
+
+const (
+	FormulaCredentialStateNotConfigured      FormulaCredentialState = "NotConfigured"
+	FormulaCredentialStatePasswordConfigured FormulaCredentialState = "PasswordConfigured"
+	FormulaCredentialStateSshKeyConfigured   FormulaCredentialState = "SshKeyConfigured"
+)
+
+func PossibleValuesForFormulaCredentialState() []string {
+	return []string{
+		string(FormulaCredentialStateNotConfigured),
+		string(FormulaCredentialStatePasswordConfigured),
+		string(FormulaCredentialStateSshKeyConfigured),
+	}
+}
+
+func (s *FormulaCredentialState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFormulaCredentialState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseFormulaCredentialState(input string) (*FormulaCredentialState, error) {
+	vals := map[string]FormulaCredentialState{
+		"notconfigured":      FormulaCredentialStateNotConfigured,
+		"passwordconfigured": FormulaCredentialStatePasswordConfigured,
+		"sshkeyconfigured":   FormulaCredentialStateSshKeyConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FormulaCredentialState(input)
+	return &out, nil
+}
+
 type HostCachingOptions string
 
 const (
