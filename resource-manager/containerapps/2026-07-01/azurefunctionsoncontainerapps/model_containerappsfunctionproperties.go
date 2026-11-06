@@ -1,0 +1,12 @@
+package azurefunctionsoncontainerapps
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ContainerAppsFunctionProperties struct {
+	InvokeURLTemplate *string                     `json:"invokeUrlTemplate,omitempty"`
+	IsDisabled        *bool                       `json:"isDisabled,omitempty"`
+	Language          *string                     `json:"language,omitempty"`
+	State             *ContainerAppsFunctionState `json:"state,omitempty"`
+	TriggerType       *string                     `json:"triggerType,omitempty"`
+}
