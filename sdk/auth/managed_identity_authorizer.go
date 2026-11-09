@@ -11,11 +11,13 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"strconv"
 	"time"
 
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"golang.org/x/oauth2"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type ManagedIdentityAuthorizerOptions struct {
@@ -52,8 +54,22 @@ func NewManagedIdentityAuthorizer(ctx context.Context, options ManagedIdentityAu
 }
 
 const (
-	msiDefaultApiVersion = "2018-02-01"
-	msiDefaultEndpoint   = "http://169.254.169.254/metadata/identity/oauth2/token"
+	msiDefaultApiVersion       = "2018-02-01"
+	msiAppServiceApiVersion    = "2019-08-01"
+	msiServiceFabricApiVersion = "2019-07-01-preview"
+	msiAzureMLApiVersion       = "2017-09-01"
+
+	msiDefaultEndpoint = "http://169.254.169.254/metadata/identity/oauth2/token"
+)
+
+type ManagedIdentitySource string
+
+const (
+	ManagedIdentitySourceIMDS          ManagedIdentitySource = "DefaultToIMDS"
+	ManagedIdentitySourceAppService    ManagedIdentitySource = "AppService"
+	ManagedIdentitySourceServiceFabric ManagedIdentitySource = "ServiceFabric"
+	ManagedIdentitySourceAzureML       ManagedIdentitySource = "AzureML"
+	ManagedIdentitySourceCloudShell    ManagedIdentitySource = "CloudShell"
 )
 
 var _ Authorizer = &ManagedIdentityAuthorizer{}
@@ -61,6 +77,11 @@ var _ Authorizer = &ManagedIdentityAuthorizer{}
 // ManagedIdentityAuthorizer is an Authorizer which supports managed service identity.
 type ManagedIdentityAuthorizer struct {
 	conf *managedIdentityConfig
+}
+
+// Config returns the resolved managedIdentityConfig for this authorizer.
+func (a *ManagedIdentityAuthorizer) Config() *managedIdentityConfig {
+	return a.conf
 }
 
 // Token returns an access token acquired from the metadata endpoint.
@@ -75,7 +96,14 @@ func (a *ManagedIdentityAuthorizer) Token(ctx context.Context, _ *http.Request) 
 	}
 
 	if a.conf.ClientID != "" {
-		query["client_id"] = []string{a.conf.ClientID}
+		switch a.conf.MsiApiVersion {
+		case msiAzureMLApiVersion:
+			query["clientid"] = []string{a.conf.ClientID}
+
+		default:
+			query["client_id"] = []string{a.conf.ClientID}
+
+		}
 	}
 
 	u := fmt.Sprintf("%s?%s", a.conf.MsiEndpoint, query.Encode())
@@ -86,13 +114,13 @@ func (a *ManagedIdentityAuthorizer) Token(ctx context.Context, _ *http.Request) 
 	}
 
 	var tokenRes struct {
-		AccessToken  string      `json:"access_token"`
-		ClientID     string      `json:"client_id"`
-		Resource     string      `json:"resource"`
-		TokenType    string      `json:"token_type"`
-		ExpiresIn    interface{} `json:"expires_in"`     // relative seconds from now
-		ExpiresOn    interface{} `json:"expires_on"`     // timestamp
-		ExtExpiresIn interface{} `json:"ext_expires_in"` // relative seconds from now
+		AccessToken  string `json:"access_token"`
+		ClientID     string `json:"client_id"`
+		Resource     string `json:"resource"`
+		TokenType    string `json:"token_type"`
+		ExpiresIn    any    `json:"expires_in"`     // relative seconds from now
+		ExpiresOn    any    `json:"expires_on"`     // timestamp
+		ExtExpiresIn any    `json:"ext_expires_in"` // relative seconds from now
 	}
 	if err := json.Unmarshal(body, &tokenRes); err != nil {
 		return nil, fmt.Errorf("ManagedIdentityAuthorizer: failed to unmarshal token: %v", err)
@@ -144,17 +172,59 @@ type managedIdentityConfig struct {
 	Resource string
 }
 
+// DetectManagedIdentitySource inspects runtime environment variables to determine the
+// Managed Identity hosting environment and returns its source type, default endpoint,
+// default API version, and default headers.
+func DetectManagedIdentitySource() (ManagedIdentitySource, string, string, map[string][]string) {
+	identityEndpoint := os.Getenv("IDENTITY_ENDPOINT")
+	identityHeader := os.Getenv("IDENTITY_HEADER")
+	identityServerThumbprint := os.Getenv("IDENTITY_SERVER_THUMBPRINT")
+	msiEndpoint := os.Getenv("MSI_ENDPOINT")
+	msiSecret := os.Getenv("MSI_SECRET")
+
+	if identityEndpoint != "" && identityHeader != "" {
+		if identityServerThumbprint != "" {
+			return ManagedIdentitySourceServiceFabric, identityEndpoint, msiServiceFabricApiVersion, map[string][]string{
+				"Secret": {identityHeader},
+			}
+		}
+		return ManagedIdentitySourceAppService, identityEndpoint, msiAppServiceApiVersion, map[string][]string{
+			"X-IDENTITY-HEADER": {identityHeader},
+		}
+	}
+
+	if msiEndpoint != "" {
+		if msiSecret != "" {
+			return ManagedIdentitySourceAzureML, msiEndpoint, msiAzureMLApiVersion, map[string][]string{
+				"secret": {msiSecret},
+			}
+		}
+		return ManagedIdentitySourceCloudShell, msiEndpoint, msiDefaultApiVersion, nil
+	}
+
+	return ManagedIdentitySourceIMDS, msiDefaultEndpoint, msiDefaultApiVersion, nil
+}
+
 // newManagedIdentityConfig returns a new managedIdentityConfig with a configured metadata endpoint and resource.
 // clientId and objectId can be left blank when a single managed identity is available
 func newManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint string, customManagedIdentityAPIVersion string, customManagedIdentityHeaders map[string][]string) (*managedIdentityConfig, error) {
-	endpoint := msiDefaultEndpoint
+	_, endpoint, apiVersion, headers := DetectManagedIdentitySource()
+
 	if customManagedIdentityEndpoint != "" {
 		endpoint = customManagedIdentityEndpoint
 	}
 
-	apiVersion := msiDefaultApiVersion
 	if customManagedIdentityAPIVersion != "" {
 		apiVersion = customManagedIdentityAPIVersion
+	}
+
+	if len(customManagedIdentityHeaders) > 0 {
+		if headers == nil {
+			headers = make(map[string][]string, len(customManagedIdentityHeaders))
+		}
+		for k, v := range customManagedIdentityHeaders {
+			headers[k] = v
+		}
 	}
 
 	return &managedIdentityConfig{
@@ -162,7 +232,7 @@ func newManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint 
 		Resource:      resource,
 		MsiApiVersion: apiVersion,
 		MsiEndpoint:   endpoint,
-		MsiHeaders:    customManagedIdentityHeaders,
+		MsiHeaders:    headers,
 	}, nil
 }
 
