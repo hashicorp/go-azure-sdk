@@ -164,6 +164,11 @@ func (a *ADOPipelineOIDCAuthorizer) Token(ctx context.Context, req *http.Request
 }
 
 func (a *ADOPipelineOIDCAuthorizer) AuxiliaryTokens(ctx context.Context, req *http.Request) ([]*oauth2.Token, error) {
+	// CachedAuthorizer can't cache an empty result; this avoids an ID token request per call.
+	if len(a.conf.AuxiliaryTenantIDs) == 0 {
+		return []*oauth2.Token{}, nil
+	}
+
 	source, err := a.tokenSource(ctx, req)
 	if err != nil {
 		return nil, err
