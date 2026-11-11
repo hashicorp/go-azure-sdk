@@ -19,15 +19,15 @@ var _ resourceids.ResourceId = &BillingProfileId{}
 
 // BillingProfileId is a struct representing the Resource ID for a Billing Profile
 type BillingProfileId struct {
-	BillingAccountId string
-	BillingProfileId string
+	BillingAccountName string
+	BillingProfileName string
 }
 
 // NewBillingProfileID returns a new BillingProfileId struct
-func NewBillingProfileID(billingAccountId string, billingProfileId string) BillingProfileId {
+func NewBillingProfileID(billingAccountName string, billingProfileName string) BillingProfileId {
 	return BillingProfileId{
-		BillingAccountId: billingAccountId,
-		BillingProfileId: billingProfileId,
+		BillingAccountName: billingAccountName,
+		BillingProfileName: billingProfileName,
 	}
 }
 
@@ -67,12 +67,12 @@ func ParseBillingProfileIDInsensitively(input string) (*BillingProfileId, error)
 func (id *BillingProfileId) FromParseResult(input resourceids.ParseResult) error {
 	var ok bool
 
-	if id.BillingAccountId, ok = input.Parsed["billingAccountId"]; !ok {
-		return resourceids.NewSegmentNotSpecifiedError(id, "billingAccountId", input)
+	if id.BillingAccountName, ok = input.Parsed["billingAccountName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingAccountName", input)
 	}
 
-	if id.BillingProfileId, ok = input.Parsed["billingProfileId"]; !ok {
-		return resourceids.NewSegmentNotSpecifiedError(id, "billingProfileId", input)
+	if id.BillingProfileName, ok = input.Parsed["billingProfileName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingProfileName", input)
 	}
 
 	return nil
@@ -96,7 +96,7 @@ func ValidateBillingProfileID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Billing Profile ID
 func (id BillingProfileId) ID() string {
 	fmtString := "/providers/Microsoft.Billing/billingAccounts/%s/billingProfiles/%s"
-	return fmt.Sprintf(fmtString, id.BillingAccountId, id.BillingProfileId)
+	return fmt.Sprintf(fmtString, id.BillingAccountName, id.BillingProfileName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Billing Profile ID
@@ -105,17 +105,17 @@ func (id BillingProfileId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
 		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
-		resourceids.UserSpecifiedSegment("billingAccountId", "billingAccountId"),
+		resourceids.UserSpecifiedSegment("billingAccountName", "billingAccountName"),
 		resourceids.StaticSegment("staticBillingProfiles", "billingProfiles", "billingProfiles"),
-		resourceids.UserSpecifiedSegment("billingProfileId", "billingProfileId"),
+		resourceids.UserSpecifiedSegment("billingProfileName", "billingProfileName"),
 	}
 }
 
 // String returns a human-readable description of this Billing Profile ID
 func (id BillingProfileId) String() string {
 	components := []string{
-		fmt.Sprintf("Billing Account: %q", id.BillingAccountId),
-		fmt.Sprintf("Billing Profile: %q", id.BillingProfileId),
+		fmt.Sprintf("Billing Account Name: %q", id.BillingAccountName),
+		fmt.Sprintf("Billing Profile Name: %q", id.BillingProfileName),
 	}
 	return fmt.Sprintf("Billing Profile (%s)", strings.Join(components, "\n"))
 }
