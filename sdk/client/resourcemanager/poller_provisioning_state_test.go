@@ -31,6 +31,7 @@ func TestPollerProvisioningState_InProvisioningState_Immediate(t *testing.T) {
 		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
+	disableKeepAlives(resourceManagerClient)
 	poller := provisioningStatePoller{
 		apiVersion:           helper.expectedApiVersion,
 		client:               resourceManagerClient,
@@ -99,6 +100,7 @@ func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSu
 		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
+	disableKeepAlives(resourceManagerClient)
 	poller := provisioningStatePoller{
 		apiVersion:            helper.expectedApiVersion,
 		client:                resourceManagerClient,
@@ -148,6 +150,7 @@ func TestPollerProvisioningState_InStatus_DroppedThenInProgressThenSuccess(t *te
 		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
+	disableKeepAlives(resourceManagerClient)
 	poller := provisioningStatePoller{
 		apiVersion:            helper.expectedApiVersion,
 		client:                resourceManagerClient,
@@ -196,6 +199,7 @@ func TestPollerProvisioningState_InProvisioningState_Poll(t *testing.T) {
 		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		apiVersion: "2020-01-01",
 	}
+	disableKeepAlives(resourceManagerClient)
 	poller := provisioningStatePoller{
 		apiVersion:           helper.expectedApiVersion,
 		client:               resourceManagerClient,
