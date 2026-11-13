@@ -458,7 +458,11 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 		if err != nil {
 			return nil, fmt.Errorf("reading request body: %v", err)
 		}
+		_ = req.Body.Close()
 		req.Body = io.NopCloser(bytes.NewBuffer(reqBody))
+		req.GetBody = func() (io.ReadCloser, error) {
+			return io.NopCloser(bytes.NewBuffer(reqBody)), nil
+		}
 	}
 
 	// Instantiate a RetryableHttp client and configure its CheckRetry func
