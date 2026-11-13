@@ -99,7 +99,6 @@ func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSu
 		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		ApiVersion: "2020-01-01",
 	}
-	disableKeepAlives(resourceManagerClient)
 	poller := provisioningStatePoller{
 		apiVersion:            helper.expectedApiVersion,
 		client:                resourceManagerClient,
@@ -111,8 +110,7 @@ func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSu
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // working on it
-		pollers.PollingStatusUnknown,
-		// NOTE: the Dropped Connection will be ignored/silently retried
+		// NOTE: the Dropped Connection will be transparently retried by Execute()
 		pollers.PollingStatusInProgress, // working on it
 		pollers.PollingStatusSucceeded,  // good
 	}
@@ -149,7 +147,6 @@ func TestPollerProvisioningState_InStatus_DroppedThenInProgressThenSuccess(t *te
 		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		ApiVersion: "2020-01-01",
 	}
-	disableKeepAlives(resourceManagerClient)
 	poller := provisioningStatePoller{
 		apiVersion:            helper.expectedApiVersion,
 		client:                resourceManagerClient,
@@ -161,8 +158,7 @@ func TestPollerProvisioningState_InStatus_DroppedThenInProgressThenSuccess(t *te
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // working on it
-		pollers.PollingStatusUnknown,
-		pollers.PollingStatusInProgress, // working on it
+		pollers.PollingStatusInProgress, // working on it (dropped connection retried by Execute)
 		pollers.PollingStatusSucceeded,  // good
 	}
 	for i, expected := range expectedStatuses {
@@ -198,7 +194,6 @@ func TestPollerProvisioningState_InProvisioningState_Poll(t *testing.T) {
 		Client:     client.NewClient(server.URL, "Example", "2015-01-01"),
 		ApiVersion: "2020-01-01",
 	}
-	disableKeepAlives(resourceManagerClient)
 	poller := provisioningStatePoller{
 		apiVersion:           helper.expectedApiVersion,
 		client:               resourceManagerClient,

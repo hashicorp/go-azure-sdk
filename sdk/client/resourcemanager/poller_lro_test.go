@@ -25,7 +25,6 @@ func TestPollerLRO_InProvisioningState_ImmediateSuccess(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -59,7 +58,6 @@ func TestPollerLRO_InStatus_ImmediateSuccess(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -94,7 +92,6 @@ func TestPollerLRO_InProvisioningState_AcceptedThenImmediateSuccess(t *testing.T
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -131,7 +128,6 @@ func TestPollerLRO_InStatus_AcceptedThenImmediateSuccess(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -169,7 +165,6 @@ func TestPollerLRO_InProvisioningState_AcceptedThenInProgressThenSuccess(t *test
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -208,7 +203,6 @@ func TestPollerLRO_InStatus_AcceptedThenInProgressThenSuccess(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -246,7 +240,6 @@ func TestPollerLRO_AcceptedThenNoContent(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -285,7 +278,6 @@ func TestPollerLRO_NoTerminalStatusThenSuccess(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -326,7 +318,6 @@ func TestPollerLRO_ArbitraryStatusThenSuccess(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -367,7 +358,6 @@ func TestPollerLRO_InProvisioningState_AcceptedThenDroppedThenInProgressThenSucc
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -375,8 +365,7 @@ func TestPollerLRO_InProvisioningState_AcceptedThenDroppedThenInProgressThenSucc
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // the 202 Accepted
-		pollers.PollingStatusUnknown,
-		// NOTE: the Dropped Connection will be ignored/silently retried
+		// NOTE: the Dropped Connection will be transparently retried by Execute()
 		pollers.PollingStatusInProgress, // working on it
 		pollers.PollingStatusSucceeded,  // good
 	}
@@ -409,7 +398,6 @@ func TestPollerLRO_InStatus_AcceptedThenDroppedThenInProgressThenSuccess(t *test
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -417,8 +405,7 @@ func TestPollerLRO_InStatus_AcceptedThenDroppedThenInProgressThenSuccess(t *test
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // the 202 Accepted
-		pollers.PollingStatusUnknown,
-		pollers.PollingStatusInProgress, // working on it
+		pollers.PollingStatusInProgress, // working on it (dropped connection retried by Execute)
 		pollers.PollingStatusSucceeded,  // good
 	}
 	for i, expected := range expectedStatuses {
@@ -452,7 +439,6 @@ func TestPollerLRO_InProvisioningState_404ThenImmediateSuccess(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -493,7 +479,6 @@ func TestPollerLRO_InStatus_404ThenImmediateSuccess(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -535,7 +520,6 @@ func TestPollerLRO_InProvisioningState_404ThenInProgressThenSucceeded(t *testing
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())
@@ -579,7 +563,6 @@ func TestPollerLRO_InStatus_404ThenInProgressThenSucceeded(t *testing.T) {
 		Response: helpers.response(),
 	}
 	client := client.NewClient(server.URL, "MyService", "2020-02-01")
-	disableKeepAlives(client)
 	poller, err := longRunningOperationPollerFromResponse(response, client)
 	if err != nil {
 		t.Fatal(err.Error())

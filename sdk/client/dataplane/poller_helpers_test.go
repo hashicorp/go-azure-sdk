@@ -8,12 +8,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-azure-helpers/lang/pointer"
-	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
-
-func disableKeepAlives(c interface{ SetTransport(http.RoundTripper) }) {
-	test.DisableKeepAlives(c)
-}
 
 type expectedResponse struct {
 	dropsConnection      bool
