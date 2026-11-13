@@ -222,19 +222,37 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 	case <-waitDone:
 		break
 	case <-ctx.Done():
-		{
-			if pointer.From(p.retryOnError) {
-				return p.latestError
-			}
-			p.latestResponse = nil
-			p.latestError = ctx.Err()
-			return p.latestError
-		}
+		return p.outOfTime(ctx)
 	}
 
 	if p.latestError != nil {
 		p.latestResponse = nil
 	}
+
+	return p.latestError
+}
+
+// outOfTime ends polling once the context is done and returns why, along with how far things had got: an operation that was still running needs
+// a longer timeout, whereas one that could not be checked on has a different problem.
+func (p *Poller) outOfTime(ctx context.Context) error {
+	if pointer.From(p.retryOnError) && p.latestError != nil {
+		return p.latestError
+	}
+
+	err := ctx.Err()
+	switch {
+	case p.latestError != nil && errors.Is(p.latestError, err):
+		err = p.latestError
+
+	case p.latestError != nil:
+		err = fmt.Errorf("%w: the last attempt to check on the operation failed: %+v", err, p.latestError)
+
+	case p.latestResponse != nil && p.latestResponse.Status == PollingStatusInProgress:
+		err = fmt.Errorf("%w: the operation was still in progress when last checked", err)
+	}
+
+	p.latestResponse = nil
+	p.latestError = err
 
 	return p.latestError
 }

@@ -5,6 +5,7 @@ package pollers_test
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -476,6 +477,97 @@ func TestPoller_InProgress_ShouldRaiseAnErrorWhenTimeoutExceeded(t *testing.T) {
 	}
 	if pollerType.count != 2 {
 		t.Fatalf("expected the fakePoller to be called 2 times but got %d", pollerType.count)
+	}
+}
+
+func TestPoller_InProgress_TimeoutSaysTheOperationWasStillInProgress(t *testing.T) {
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: &client.Response{},
+			PollInterval: 750 * time.Millisecond,
+			Status:       pollers.PollingStatusInProgress,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(250*time.Millisecond))
+	defer cancel()
+
+	err := poller.PollUntilDone(ctx)
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatalf("expected the deadline to have been exceeded, got: %v", err)
+	}
+
+	expected := "context deadline exceeded: the operation was still in progress when last checked"
+	if err.Error() != expected {
+		t.Fatalf("expected error %q, got %q", expected, err.Error())
+	}
+	if poller.LatestStatus() != pollers.PollingStatusUnknown {
+		t.Fatalf("expected LatestStatus to be PollingStatusUnknown but got %q", string(poller.LatestStatus()))
+	}
+	if poller.LatestResponse() != nil {
+		t.Fatalf("expected LatestResponse to be nil but got: %+v", poller.LatestResponse())
+	}
+}
+
+func TestPoller_DroppedConnection_TimeoutSaysWhyTheLastCheckFailed(t *testing.T) {
+	pollerType := fakePollerWithResults([]pollResult{
+		errorResult{
+			Error: pollers.PollingDroppedConnectionError{
+				Message: "connection reset by peer",
+			},
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 100*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(150*time.Millisecond))
+	defer cancel()
+
+	err := poller.PollUntilDone(ctx)
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatalf("expected the deadline to have been exceeded, got: %v", err)
+	}
+
+	expected := "context deadline exceeded: the last attempt to check on the operation failed: experienced a dropped connection when polling: connection reset by peer"
+	if err.Error() != expected {
+		t.Fatalf("expected error %q, got %q", expected, err.Error())
+	}
+}
+
+func TestPoller_RetryOnError_TimeoutKeepsTheErrorBeingRetried(t *testing.T) {
+	expected := fmt.Errorf("the resource group still contains resources")
+	pollerType := fakePollerWithResults([]pollResult{
+		errorResult{
+			Error: expected,
+		},
+	})
+	poller := pollers.NewRetryOnErrorPoller(pollerType, 100*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow, true)
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(150*time.Millisecond))
+	defer cancel()
+
+	err := poller.PollUntilDone(ctx)
+	if !errors.Is(err, expected) {
+		t.Fatalf("expected %v, got %v", expected, err)
+	}
+}
+
+func TestPoller_RetryOnError_TimeoutWhilstInProgressIsAnError(t *testing.T) {
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: &client.Response{},
+			PollInterval: 750 * time.Millisecond,
+			Status:       pollers.PollingStatusInProgress,
+		},
+	})
+	poller := pollers.NewRetryOnErrorPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow, true)
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(250*time.Millisecond))
+	defer cancel()
+
+	err := poller.PollUntilDone(ctx)
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatalf("expected the deadline to have been exceeded, got: %v", err)
 	}
 }
 

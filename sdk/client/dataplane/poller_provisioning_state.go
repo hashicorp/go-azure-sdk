@@ -4,9 +4,11 @@
 package dataplane
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -97,10 +99,9 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 		if errors.As(err, &e) {
 			p.droppedConnectionCount++
 			if p.droppedConnectionCount < p.maxDroppedConnections {
-				return &pollers.PollResult{
-					PollInterval: p.initialRetryDuration,
-					Status:       pollers.PollingStatusUnknown,
-				}, nil
+				return nil, pollers.PollingDroppedConnectionError{
+					Message: err.Error(),
+				}
 			}
 		}
 
@@ -138,12 +139,14 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 	if strings.EqualFold(s, string(statusCanceled)) || strings.EqualFold(s, string(statusCancelled)) {
 		return nil, pollers.PollingCancelledError{
 			HttpResponse: resp,
+			Message:      provisioningStateMessage(s, resp),
 		}
 	}
 
 	if strings.EqualFold(s, string(statusFailed)) {
 		return nil, pollers.PollingFailedError{
 			HttpResponse: resp,
+			Message:      provisioningStateMessage(s, resp),
 		}
 	}
 
@@ -161,6 +164,19 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 		PollInterval: p.initialRetryDuration,
 		Status:       pollers.PollingStatusInProgress,
 	}, nil
+}
+
+// provisioningStateMessage is the message for a poll that ended as failed or cancelled: the state, followed by the response it came in, since where
+// an API puts the reason differs from one to the next.
+func provisioningStateMessage(state string, resp *client.Response) string {
+	respBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Sprintf("the Azure API reported the state %q", state)
+	}
+	_ = resp.Body.Close()
+	resp.Body = io.NopCloser(bytes.NewReader(respBody))
+
+	return fmt.Sprintf("the Azure API reported the state %q\n\nAPI Response:\n\n----[start]----\n%s\n-----[end]-----", state, respBody)
 }
 
 type provisioningStateResult struct {

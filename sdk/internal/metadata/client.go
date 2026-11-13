@@ -64,7 +64,10 @@ func (c *Client) GetMetaData(ctx context.Context) (*MetaData, error) {
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("performing request: expected 200 OK but got %d %s", resp.StatusCode, resp.Status)
+		respBody, _ := io.ReadAll(io.LimitReader(resp.Body, 1<<20))
+		resp.Body.Close()
+
+		return nil, fmt.Errorf("performing request: expected 200 OK but got %s with response: %s", resp.Status, respBody)
 	}
 
 	respBody, err := io.ReadAll(resp.Body)
@@ -79,7 +82,7 @@ func (c *Client) GetMetaData(ctx context.Context) (*MetaData, error) {
 	var metadata *metaDataResponse
 	if err := json.Unmarshal(respBody, &metadata); err != nil {
 		log.Printf("[DEBUG] Unrecognised metadata response for %s: %s", uri, respBody)
-		return nil, fmt.Errorf("unmarshaling response: %+v", err)
+		return nil, fmt.Errorf("unmarshaling response: %+v, the response was: %s", err, respBody)
 	}
 
 	return &MetaData{

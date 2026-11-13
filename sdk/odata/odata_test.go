@@ -250,3 +250,88 @@ func TestError(t *testing.T) {
 		}
 	}
 }
+
+func TestErrorFullString(t *testing.T) {
+	type testCase struct {
+		response string
+		expected string
+	}
+
+	testCases := []testCase{
+		{
+			// nothing beyond the code and message
+			response: `{"error":{"code":"InvalidParameter","message":"The value of parameter sku is invalid."}}`,
+			expected: "InvalidParameter: The value of parameter sku is invalid.",
+		},
+		{
+			// the reason is in the details
+			response: `{"error":{"code":"InvalidRequestFormat","message":"Cannot parse the request.","details":[{"code":"InvalidJsonReferenceFormat","message":"Reference Id /subscriptions/000/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/vnet/subnets/ is not formatted correctly."}]}}`,
+			expected: "InvalidRequestFormat: Cannot parse the request.\n  InvalidJsonReferenceFormat: Reference Id /subscriptions/000/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/vnet/subnets/ is not formatted correctly.",
+		},
+		{
+			// the message is empty and the reason is in the details
+			response: `{"error":{"code":"Conflict","message":"","details":[{"code":"AnotherOperationInProgress","message":"Another operation on this resource is in progress."}]}}`,
+			expected: "Conflict: \n  AnotherOperationInProgress: Another operation on this resource is in progress.",
+		},
+		{
+			// a policy denial, where the policy is named in the additional info
+			response: `{"error":{"code":"RequestDisallowedByPolicy","target":"examplestorage","message":"Resource 'examplestorage' was disallowed by policy.","additionalInfo":[{"type":"PolicyViolation","info":{"policyDefinitionDisplayName":"Secure transfer to storage accounts should be enabled","evaluationDetails":{"evaluatedExpressions":[{"path":"properties.supportsHttpsTrafficOnly","expressionValue":false,"targetValue":"true","operator":"Equals"}]}}}]}}`,
+			expected: "RequestDisallowedByPolicy: Resource 'examplestorage' was disallowed by policy.\n  target: examplestorage\n  PolicyViolation: {\"evaluationDetails\":{\"evaluatedExpressions\":[{\"expressionValue\":false,\"operator\":\"Equals\",\"path\":\"properties.supportsHttpsTrafficOnly\",\"targetValue\":\"true\"}]},\"policyDefinitionDisplayName\":\"Secure transfer to storage accounts should be enabled\"}",
+		},
+		{
+			// details nested inside details
+			response: `{"error":{"code":"InvalidTemplateDeployment","message":"The template deployment failed because of policy violation.","details":[{"code":"RequestDisallowedByPolicy","target":"examplestorage","message":"Resource 'examplestorage' was disallowed by policy.","details":[{"code":"LocationNotAllowed","message":"Location 'westus9' is not in the allowed list."}],"additionalInfo":[{"type":"PolicyViolation","info":{"policyDefinitionDisplayName":"Allowed locations"}}]},{"code":"QuotaExceeded","message":"Operation could not be completed as it results in exceeding approved quota."}]}}`,
+			expected: "InvalidTemplateDeployment: The template deployment failed because of policy violation.\n  RequestDisallowedByPolicy: Resource 'examplestorage' was disallowed by policy. (target: examplestorage)\n    LocationNotAllowed: Location 'westus9' is not in the allowed list.\n    PolicyViolation: {\"policyDefinitionDisplayName\":\"Allowed locations\"}\n  QuotaExceeded: Operation could not be completed as it results in exceeding approved quota.",
+		},
+		{
+			// the reason is in fields of the inner error that are not part of any standard
+			response: `{"error":{"code":"InternalExecutionError","message":"An internal execution error occurred.","innererror":{"exceptiontype":"Microsoft.Compute.AllocationFailedException","errordetail":"Allocation failed: zone 2 has no capacity for Standard_D64s_v5."}}}`,
+			expected: "InternalExecutionError: An internal execution error occurred.\n  innererror:\n    errordetail: Allocation failed: zone 2 has no capacity for Standard_D64s_v5.\n    exceptiontype: Microsoft.Compute.AllocationFailedException",
+		},
+		{
+			// the inner error's own message is already part of the first line, so only the rest of it is added
+			response: `{"error":{"code":"BadRequest","message":"The server could not process the request because it is malformed or incorrect.","innerError":{"message":"1034: Policy contains invalid applications","date":"2021-06-23T21:54:16","request-id":"4486d728-c654-4a30-bf71-bd5035f008a4","client-request-id":"4486d728-c654-4a30-bf71-bd5035f008a4"}}}`,
+			expected: "BadRequest: The server could not process the request because it is malformed or incorrect.: 1034: Policy contains invalid applications\n  innerError:\n    client-request-id: 4486d728-c654-4a30-bf71-bd5035f008a4\n    date: 2021-06-23T21:54:16\n    request-id: 4486d728-c654-4a30-bf71-bd5035f008a4",
+		},
+		{
+			// a message wrapped in an object, with fields beside it
+			response: `{"odata.error":{"code":"Request_InvalidDataContractVersion","message":{"lang":"en","value":"The specified api-version is invalid."},"requestId":"e3a05e86-92ae-4e7e-9635-a3f62342da5b","date":"2021-01-24T15:37:05"}}`,
+			expected: "Request_InvalidDataContractVersion: The specified api-version is invalid.\n  date: 2021-01-24T15:37:05\n  requestId: e3a05e86-92ae-4e7e-9635-a3f62342da5b",
+		},
+		{
+			// details sent as a single object, and a value that runs over several lines
+			response: `{"error":{"code":"-2134347772","message":"SyncGroup 'example' does not exist.","target":"InvalidResource","details":{"httpErrorCode":"NotFound","exceptionType":"FilesCommon.Diagnostics.BackendException","httpMethod":"GET"},"innererror":{"callStack":"   at StorageFiles.Foundation.Diagnostics.Tracer.TraceAndThrow()\r\n   at FilesCommon.Diagnostics.ErrorHelper.CheckAndThrowException()","message":"SyncGroup 'example' does not exist."}}}`,
+			expected: "-2134347772: SyncGroup 'example' does not exist.: SyncGroup 'example' does not exist.\n  target: InvalidResource\n  details:\n    exceptionType: FilesCommon.Diagnostics.BackendException\n    httpErrorCode: NotFound\n    httpMethod: GET\n  innererror:\n    callStack: at StorageFiles.Foundation.Diagnostics.Tracer.TraceAndThrow()\n         at FilesCommon.Diagnostics.ErrorHelper.CheckAndThrowException()",
+		},
+	}
+
+	for n, c := range testCases {
+		var o odata.OData
+		err := json.Unmarshal([]byte(c.response), &o)
+		if err != nil {
+			t.Errorf("test case %d: JSON unmarshaling failed: %v", n, err)
+			continue
+		}
+		if o.Error == nil {
+			t.Errorf("test case %d: Error field was nil", n)
+			continue
+		}
+		if s := o.Error.FullString(); s != c.expected {
+			t.Errorf("test case %d: expected %q, got %q", n, c.expected, s)
+		}
+	}
+}
+
+func TestErrorFullString_WithoutRawError(t *testing.T) {
+	code := "BadRequest"
+	message := "The request was invalid."
+	e := odata.Error{
+		Code:    &code,
+		Message: &message,
+	}
+
+	expected := "BadRequest: The request was invalid."
+	if s := e.FullString(); s != expected {
+		t.Errorf("expected %q, got %q", expected, s)
+	}
+}

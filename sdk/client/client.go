@@ -245,7 +245,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
-			return fmt.Errorf("could not parse response body")
+			return fmt.Errorf("could not parse response body: %+v", err)
 		}
 		r.Body.Close()
 
@@ -276,7 +276,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
-			return fmt.Errorf("could not parse response body")
+			return fmt.Errorf("could not parse response body: %+v", err)
 		}
 		r.Body.Close()
 
@@ -461,8 +461,17 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 		req.Body = io.NopCloser(bytes.NewBuffer(reqBody))
 	}
 
+	// What the API last said and anything the RetryFunc made of it, kept for the error should the request end without a usable response
+	var lastResponse string
+	var retryFuncErr error
+
 	// Instantiate a RetryableHttp client and configure its CheckRetry func
 	r := c.retryableClient(ctx, func(ctx context.Context, r *http.Response, err error) (bool, error) {
+		retryFuncErr = nil
+		if r != nil {
+			lastResponse = fmt.Sprintf("%d %s", r.StatusCode, http.StatusText(r.StatusCode))
+		}
+
 		// Eventual consistency checks
 		if r != nil && !c.DisableRetries {
 			if r.StatusCode == http.StatusFailedDependency {
@@ -477,10 +486,14 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 			// Extract OData from response, intentionally ignoring any errors as it's not crucial to extract
 			// valid OData at this point (valid json can still error here, such as any non-object literal)
 			o, _ := odata.FromResponse(r)
+			if o != nil && o.Error != nil && o.Error.String() != "" {
+				lastResponse = fmt.Sprintf("%s: %s", lastResponse, o.Error)
+			}
 
 			if f := req.RetryFunc; f != nil {
 				shouldRetry, err := f(r, o)
 				if err != nil || shouldRetry {
+					retryFuncErr = err
 					return shouldRetry, err
 				}
 			}
@@ -495,6 +508,15 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 				}
 
 				return retryablehttp.DefaultRetryPolicy(ctx, r, err)
+			}
+
+			// Keep the reason the request failed, without the URL as that is added back when this is returned
+			var urlErr *url.Error
+			if errors.As(err, &urlErr) {
+				err = urlErr.Err
+			}
+			if err != nil {
+				return false, fmt.Errorf("HTTP response was nil; connection may have been reset: %w", err)
 			}
 
 			return false, fmt.Errorf("HTTP response was nil; connection may have been reset")
@@ -522,6 +544,11 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 	resp := &Response{}
 	resp.Response, err = client.Do(req.Request)
 	if err != nil {
+		// The reason a request stopped being retried (often the deadline) says nothing about the API, so say what it was retrying
+		if lastResponse != "" {
+			return resp, fmt.Errorf("%w (while retrying; the last response received was %s)", err, lastResponse)
+		}
+
 		return resp, err
 	}
 	if resp.Response == nil {
@@ -551,6 +578,20 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 			return resp, nil
 		}
 
+		// Keep the body in memory, so it can be read here and again by the caller
+		var respBody []byte
+		var readErr error
+		if resp.Body != nil {
+			respBody, readErr = io.ReadAll(resp.Body)
+			resp.Body.Close()
+			resp.Body = io.NopCloser(bytes.NewReader(respBody))
+		}
+
+		// An error from the RetryFunc explains the failure better than the status does
+		if retryFuncErr != nil {
+			return resp, retryFuncErr
+		}
+
 		status := fmt.Sprintf("%d", resp.StatusCode)
 
 		// Prefer the status text returned in the response, but fall back to predefined status if absent
@@ -570,33 +611,53 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 			if err = req.CustomErrorParser.FromResponse(resp.Response); err != nil {
 				errText = err.Error()
 			}
+
+			// The parser may have read the body, so put it back for the caller
+			resp.Body = io.NopCloser(bytes.NewReader(respBody))
 		}
 
 		// Fall back to parsing error text from OData
 		if errText == "" {
 			switch {
 			case resp.OData != nil && resp.OData.Error != nil && resp.OData.Error.String() != "":
-				errText = fmt.Sprintf("error: %s", resp.OData.Error)
+				errText = fmt.Sprintf("error: %s", resp.OData.Error.FullString())
+
+			case readErr != nil:
+				return resp, fmt.Errorf("unexpected status %s, could not read response body: %+v%s", status, readErr, errorHeaders(resp.Response, "", false))
+
+			case len(respBody) == 0:
+				return resp, fmt.Errorf("unexpected status %s received with no body%s", status, errorHeaders(resp.Response, "", false))
 
 			default:
-				defer resp.Body.Close()
-
-				respBody, err := io.ReadAll(resp.Body)
-				if err != nil {
-					return resp, fmt.Errorf("unexpected status %s, could not read response body", status)
-				}
-				if len(respBody) == 0 {
-					return resp, fmt.Errorf("unexpected status %s received with no body", status)
-				}
-
 				errText = fmt.Sprintf("response: %s", respBody)
 			}
 		}
 
-		return resp, fmt.Errorf("unexpected status %s with %s", status, errText)
+		return resp, fmt.Errorf("unexpected status %s with %s%s", status, errText, errorHeaders(resp.Response, errText, true))
 	}
 
 	return resp, nil
+}
+
+// errorHeaders is the response headers worth adding to an error, one per line: the IDs to quote to Azure support and, when there was no body to
+// explain the failure, the headers that do. A value that errText already has is left out.
+func errorHeaders(resp *http.Response, errText string, hasBody bool) string {
+	names := []string{"x-ms-request-id", "x-ms-correlation-request-id", "request-id", "client-request-id"}
+	if !hasBody {
+		names = append([]string{"x-ms-error-code", "WWW-Authenticate"}, names...)
+	}
+
+	out := ""
+	for _, name := range names {
+		v := resp.Header.Get(name)
+		if v == "" || strings.Contains(errText, v) || strings.Contains(out, v) {
+			continue
+		}
+
+		out = fmt.Sprintf("%s\n%s: %s", out, name, v)
+	}
+
+	return out
 }
 
 // ExecutePaged automatically pages through the results of Execute

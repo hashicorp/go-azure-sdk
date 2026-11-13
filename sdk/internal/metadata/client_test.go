@@ -9,6 +9,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"net/http/httptest"
 	"reflect"
 	"testing"
 
@@ -134,4 +135,44 @@ func metadataStubServer(ctx context.Context, port int) chan bool {
 	}()
 
 	return done
+}
+
+func TestGetMetaData_ErrorsIncludeTheResponse(t *testing.T) {
+	testCases := []struct {
+		name     string
+		status   int
+		body     string
+		expected string
+	}{
+		{
+			name:     "unexpected status",
+			status:   http.StatusForbidden,
+			body:     "Access to this address is blocked by the proxy.",
+			expected: "performing request: expected 200 OK but got 403 Forbidden with response: Access to this address is blocked by the proxy.",
+		},
+		{
+			name:     "a response that is not metadata",
+			status:   http.StatusOK,
+			body:     "<html><head><title>Sign in</title></head></html>",
+			expected: "unmarshaling response: invalid character '<' looking for beginning of value, the response was: <html><head><title>Sign in</title></head></html>",
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				w.WriteHeader(tc.status)
+				_, _ = w.Write([]byte(tc.body))
+			}))
+			defer server.Close()
+
+			_, err := metadata.NewClientWithEndpoint(server.URL).GetMetaData(context.Background())
+			if err == nil {
+				t.Fatal("expected an error but didn't get one")
+			}
+			if err.Error() != tc.expected {
+				t.Fatalf("expected error %q, got %q", tc.expected, err.Error())
+			}
+		})
+	}
 }
