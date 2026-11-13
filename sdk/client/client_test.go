@@ -11,10 +11,16 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net"
 	"net/http"
+	"net/http/httptest"
+	"net/http/httptrace"
 	"net/url"
 	"reflect"
+	"sync"
+	"sync/atomic"
 	"testing"
+	"time"
 
 	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
@@ -508,7 +514,7 @@ func unmarshalResponse(body io.ReadCloser, unmarshal func(in []byte) error) erro
 	if err != nil {
 		return fmt.Errorf("parsing response body: %+v", err)
 	}
-	body.Close()
+	_ = body.Close()
 
 	return unmarshal(respBody)
 }
@@ -571,5 +577,289 @@ func TestClient_CustomTransport(t *testing.T) {
 
 	if hitCount != 1 {
 		t.Errorf("expected transport to be hit 1 time, got %d", hitCount)
+	}
+}
+
+func TestClient_DefaultTransportReusesConnections(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"ok":true}`))
+	}))
+	defer srv.Close()
+
+	send := func(c *Client) bool {
+		var reused bool
+		trace := &httptrace.ClientTrace{
+			GotConn: func(info httptrace.GotConnInfo) {
+				reused = info.Reused
+			},
+		}
+		ctx := httptrace.WithClientTrace(context.Background(), trace)
+		req, err := c.NewRequest(ctx, RequestOptions{
+			ContentType:         "application/json",
+			ExpectedStatusCodes: []int{http.StatusOK},
+			HttpMethod:          http.MethodGet,
+			Path:                "/test",
+		})
+		if err != nil {
+			t.Fatalf("NewRequest error: %v", err)
+		}
+		resp, err := req.Execute(ctx)
+		if err != nil {
+			t.Fatalf("Execute error: %v", err)
+		}
+		var out map[string]bool
+		if err := resp.Unmarshal(&out); err != nil {
+			t.Fatalf("Unmarshal error: %v", err)
+		}
+		return reused
+	}
+
+	c1 := NewClient(srv.URL, "testService", "v1.0")
+	c1.DisableRetries = true
+	if send(c1) {
+		t.Fatal("expected first connection not to be reused")
+	}
+
+	// A second distinct Client with Transport == nil should reuse the pooled connection
+	c2 := NewClient(srv.URL, "testService", "v1.0")
+	c2.DisableRetries = true
+	if !send(c2) {
+		t.Fatal("expected second request across clients to reuse pooled TCP connection")
+	}
+}
+
+func TestClient_SetTransport(t *testing.T) {
+	c := NewClient("http://localhost", "testService", "v1.0")
+	custom := &roundTripperMock{}
+	c.SetTransport(custom)
+	if c.Transport != custom {
+		t.Fatal("expected SetTransport to configure c.Transport")
+	}
+}
+
+type trackingReadCloser struct {
+	io.Reader
+	closed bool
+}
+
+func (t *trackingReadCloser) Close() error {
+	t.closed = true
+	return nil
+}
+
+func TestExecutePaged_ClosesBodyOnUnsupportedContentType(t *testing.T) {
+	ctx := context.Background()
+	body := &trackingReadCloser{Reader: bytes.NewBufferString("plain text")}
+
+	c := NewClient("http://localhost", "testService", "v1.0")
+	c.DisableRetries = true
+	c.SetTransport(&roundTripperMock{
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Header:     http.Header{"Content-Type": []string{"text/plain"}},
+				Body:       body,
+				Request:    req,
+			}, nil
+		},
+	})
+
+	req, err := c.NewRequest(ctx, RequestOptions{
+		ContentType:         "application/json",
+		ExpectedStatusCodes: []int{http.StatusOK},
+		HttpMethod:          http.MethodGet,
+		Path:                "/paged",
+	})
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	if _, err := c.ExecutePaged(ctx, req); err == nil {
+		t.Fatal("expected error for unsupported content-type")
+	}
+	if !body.closed {
+		t.Fatal("expected response body to be closed on unsupported content-type")
+	}
+}
+
+func TestResponseUnmarshal_ClosesZeroLengthBody(t *testing.T) {
+	body := &trackingReadCloser{Reader: bytes.NewReader(nil)}
+	resp := &Response{
+		Response: &http.Response{
+			StatusCode:    http.StatusOK,
+			ContentLength: 0,
+			Header:        http.Header{"Content-Type": []string{"application/json"}},
+			Body:          body,
+			Request:       &http.Request{Header: http.Header{}},
+		},
+	}
+
+	var out map[string]interface{}
+	if err := resp.Unmarshal(&out); err != nil {
+		t.Fatalf("Unmarshal error: %v", err)
+	}
+	if !body.closed {
+		t.Fatal("expected zero-length response body to be closed")
+	}
+}
+
+func TestCloseIdleConnections(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"ok":true}`))
+	}))
+	defer srv.Close()
+
+	send := func() bool {
+		var reused bool
+		ctx := httptrace.WithClientTrace(context.Background(), &httptrace.ClientTrace{
+			GotConn: func(info httptrace.GotConnInfo) {
+				reused = info.Reused
+			},
+		})
+		c := NewClient(srv.URL, "testService", "v1.0")
+		c.DisableRetries = true
+		req, err := c.NewRequest(ctx, RequestOptions{
+			ContentType:         "application/json",
+			ExpectedStatusCodes: []int{http.StatusOK},
+			HttpMethod:          http.MethodGet,
+			Path:                "/test",
+		})
+		if err != nil {
+			t.Fatalf("NewRequest error: %v", err)
+		}
+		resp, err := req.Execute(ctx)
+		if err != nil {
+			t.Fatalf("Execute error: %v", err)
+		}
+		var out map[string]bool
+		if err := resp.Unmarshal(&out); err != nil {
+			t.Fatalf("Unmarshal error: %v", err)
+		}
+		return reused
+	}
+
+	_ = send()
+	CloseIdleConnections()
+	if send() {
+		t.Fatal("expected connection not to be reused after CloseIdleConnections()")
+	}
+}
+
+func TestClient_ConcurrentDefaultTransport(t *testing.T) {
+	var newConns atomic.Int64
+	srv := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"ok":true}`))
+	}))
+	srv.Config.ConnState = func(_ net.Conn, state http.ConnState) {
+		if state == http.StateNew {
+			newConns.Add(1)
+		}
+	}
+	srv.Start()
+	defer srv.Close()
+
+	const workers = 32
+	const requestsPerWorker = 10
+
+	stopCloser := make(chan struct{})
+	var closerWg sync.WaitGroup
+	closerWg.Add(1)
+	go func() {
+		defer closerWg.Done()
+		for {
+			select {
+			case <-stopCloser:
+				return
+			default:
+				CloseIdleConnections()
+				time.Sleep(time.Millisecond)
+			}
+		}
+	}()
+
+	var wg sync.WaitGroup
+	errs := make(chan error, workers*requestsPerWorker)
+	for i := 0; i < workers; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			c := NewClient(srv.URL, "testService", "v1.0")
+			c.DisableRetries = true
+			for j := 0; j < requestsPerWorker; j++ {
+				req, err := c.NewRequest(context.Background(), RequestOptions{
+					ContentType:         "application/json",
+					ExpectedStatusCodes: []int{http.StatusOK},
+					HttpMethod:          http.MethodGet,
+					Path:                "/test",
+				})
+				if err != nil {
+					errs <- err
+					return
+				}
+				resp, err := req.Execute(context.Background())
+				if err != nil {
+					errs <- err
+					return
+				}
+				var out map[string]bool
+				if err := resp.Unmarshal(&out); err != nil {
+					errs <- err
+					return
+				}
+			}
+		}()
+	}
+	wg.Wait()
+	close(stopCloser)
+	closerWg.Wait()
+	close(errs)
+
+	for err := range errs {
+		if err != nil {
+			t.Fatalf("concurrent Execute failed: %v", err)
+		}
+	}
+
+	totalRequests := int64(workers * requestsPerWorker)
+	if opened := newConns.Load(); opened >= totalRequests {
+		t.Fatalf("expected connection pooling to open fewer than %d connections, got %d", totalRequests, opened)
+	}
+}
+
+func TestRequest_IdempotentOverride(t *testing.T) {
+	ctx := context.Background()
+	c := NewClient("http://localhost", "testService", "v1.0")
+
+	putReq, err := c.NewRequest(ctx, RequestOptions{
+		ContentType:         "application/json",
+		ExpectedStatusCodes: []int{http.StatusOK},
+		HttpMethod:          http.MethodPut,
+		Path:                "/resource",
+	})
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+	if putReq.IsIdempotent() {
+		t.Fatal("expected default PUT request not to be idempotent")
+	}
+
+	idempotentPutReq, err := c.NewRequest(ctx, RequestOptions{
+		ContentType:         "application/json",
+		ExpectedStatusCodes: []int{http.StatusOK},
+		HttpMethod:          http.MethodPut,
+		Idempotent:          pointer.To(true),
+		Path:                "/resource",
+	})
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+	if !idempotentPutReq.IsIdempotent() {
+		t.Fatal("expected PUT request with Idempotent=true to be idempotent")
 	}
 }

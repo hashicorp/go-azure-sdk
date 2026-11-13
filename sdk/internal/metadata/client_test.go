@@ -9,7 +9,9 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"net/http/httptest"
 	"reflect"
+	"sync"
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/metadata"
@@ -87,6 +89,42 @@ func TestGetMetaData(t *testing.T) {
 	}
 }
 
+func TestGetMetaData_Concurrent(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		_, _ = fmt.Fprint(w, metadata20220901)
+	}))
+	defer srv.Close()
+
+	const workers = 16
+	var wg sync.WaitGroup
+	errs := make(chan error, workers)
+
+	for i := 0; i < workers; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			c := metadata.NewClientWithEndpoint(srv.URL)
+			m, err := c.GetMetaData(context.Background())
+			if err != nil {
+				errs <- err
+				return
+			}
+			if m == nil || m.Name != "AzureCloud" {
+				errs <- fmt.Errorf("unexpected metadata result: %#v", m)
+			}
+		}()
+	}
+	wg.Wait()
+	close(errs)
+
+	for err := range errs {
+		if err != nil {
+			t.Fatalf("concurrent GetMetaData failed: %v", err)
+		}
+	}
+}
+
 func metadataStubServer(ctx context.Context, port int) chan bool {
 	handler := http.NewServeMux()
 
@@ -97,16 +135,16 @@ func metadataStubServer(ctx context.Context, port int) chan bool {
 
 		switch apiVersion {
 		case "1.0", "2015-01-01":
-			fmt.Fprint(w, metadata20150101)
+			_, _ = fmt.Fprint(w, metadata20150101)
 		case "2018-01-01":
-			fmt.Fprint(w, metadata20180101)
+			_, _ = fmt.Fprint(w, metadata20180101)
 		case "2019-05-01":
-			fmt.Fprint(w, metadata20190501)
+			_, _ = fmt.Fprint(w, metadata20190501)
 		case "2022-09-01":
-			fmt.Fprint(w, metadata20220901)
+			_, _ = fmt.Fprint(w, metadata20220901)
 		default:
 			w.WriteHeader(http.StatusBadRequest)
-			fmt.Fprint(w, `{"error":"unrecognized api-version"}`)
+			_, _ = fmt.Fprint(w, `{"error":"unrecognized api-version"}`)
 			return
 		}
 	})

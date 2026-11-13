@@ -59,5 +59,5 @@ func dropConnection(t *testing.T, w http.ResponseWriter) {
 	if err != nil {
 		return
 	}
-	conn.Close()
+	_ = conn.Close()
 }

@@ -114,14 +114,14 @@ func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*
 // simultaneously
 func (c *Client) CloneClient(endpoint string) *Client {
 	baseClient := *c.Client
-	if c.Client.RequestMiddlewares != nil {
-		middlewares := make([]client.RequestMiddleware, len(*c.Client.RequestMiddlewares))
-		copy(middlewares, *c.Client.RequestMiddlewares)
+	if c.RequestMiddlewares != nil {
+		middlewares := make([]client.RequestMiddleware, len(*c.RequestMiddlewares))
+		copy(middlewares, *c.RequestMiddlewares)
 		baseClient.RequestMiddlewares = &middlewares
 	}
-	if c.Client.ResponseMiddlewares != nil {
-		middlewares := make([]client.ResponseMiddleware, len(*c.Client.ResponseMiddlewares))
-		copy(middlewares, *c.Client.ResponseMiddlewares)
+	if c.ResponseMiddlewares != nil {
+		middlewares := make([]client.ResponseMiddleware, len(*c.ResponseMiddlewares))
+		copy(middlewares, *c.ResponseMiddlewares)
 		baseClient.ResponseMiddlewares = &middlewares
 	}
 	baseClient.BaseUri = endpoint

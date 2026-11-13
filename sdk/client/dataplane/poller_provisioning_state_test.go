@@ -110,8 +110,7 @@ func TestPollerProvisioningState_InProvisioningState_DroppedThenInProgressThenSu
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // working on it
-		pollers.PollingStatusUnknown,
-		// NOTE: the Dropped Connection will be ignored/silently retried
+		// NOTE: the Dropped Connection will be transparently retried by Execute()
 		pollers.PollingStatusInProgress, // working on it
 		pollers.PollingStatusSucceeded,  // good
 	}
@@ -159,8 +158,7 @@ func TestPollerProvisioningState_InStatus_DroppedThenInProgressThenSuccess(t *te
 
 	expectedStatuses := []pollers.PollingStatus{
 		pollers.PollingStatusInProgress, // working on it
-		pollers.PollingStatusUnknown,
-		pollers.PollingStatusInProgress, // working on it
+		pollers.PollingStatusInProgress, // working on it (dropped connection retried by Execute)
 		pollers.PollingStatusSucceeded,  // good
 	}
 	for i, expected := range expectedStatuses {
