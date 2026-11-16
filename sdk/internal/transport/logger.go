@@ -4,33 +4,22 @@
 package transport
 
 import (
-	"io"
+	"fmt"
 	"log"
 	"regexp"
 )
 
-var sensitiveQueryParamRegexp = regexp.MustCompile(`(?i)([?&](?:sig|sv|se|sp|sr|code|api-key|token|client_secret)=)([^&\s"']+)`)
+var sensitiveQueryParamRegexp = regexp.MustCompile(`(?i)([?&](?:sig|code|api-key|token|client_secret)=)([^&\s"']+)`)
 
-type redactingWriter struct {
-	w io.Writer
+type redactingLogger struct{}
+
+func (redactingLogger) Printf(format string, v ...interface{}) {
+	log.Print(sensitiveQueryParamRegexp.ReplaceAllString(fmt.Sprintf(format, v...), "${1}REDACTED"))
 }
 
-func (rw redactingWriter) Write(p []byte) (int, error) {
-	redacted := sensitiveQueryParamRegexp.ReplaceAll(p, []byte("${1}REDACTED"))
-	if _, err := rw.w.Write(redacted); err != nil {
-		return 0, err
-	}
-	return len(p), nil
-}
-
-// RedactingLogger returns a *log.Logger that delegates to log.Default() while
-// redacting sensitive query-string parameters (such as SAS tokens and secrets).
-func RedactingLogger() *log.Logger {
-	d := log.Default()
-	return log.New(redactingWriter{w: d.Writer()}, d.Prefix(), d.Flags())
-}
-
-// NewRedactingLogger returns a *log.Logger writing redacted output to w.
-func NewRedactingLogger(w io.Writer) *log.Logger {
-	return log.New(redactingWriter{w: w}, "", 0)
+// RedactingLogger returns a retryablehttp.Logger that delegates to the standard
+// log package (respecting log.SetOutput and log.Default()'s internal mutex) while
+// redacting sensitive query-string parameters (such as SAS sig tokens and secrets).
+func RedactingLogger() interface{ Printf(string, ...interface{}) } {
+	return redactingLogger{}
 }

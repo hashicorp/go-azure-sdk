@@ -6,8 +6,10 @@ package resourcemanager
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"net/url"
 
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -93,6 +95,9 @@ func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*
 	req.Pager = input.Pager
 	req.RetryFunc = client.RequestRetryAny(append(defaultRetryFunctions, input.RetryFunc)...)
 	req.ValidStatusCodes = input.ExpectedStatusCodes
+	if input.Idempotent == nil && input.HttpMethod == http.MethodPut {
+		req.Idempotent = pointer.To(true)
+	}
 
 	return req, nil
 }

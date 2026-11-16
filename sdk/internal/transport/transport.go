@@ -14,12 +14,40 @@ import (
 
 const maxDrainBytes = 1 << 20 // 1 MiB
 
+// Options configures an *http.Transport created by New.
+type Options struct {
+	UseProxy            bool
+	DisableKeepAlives   bool
+	IdleConnTimeout     time.Duration
+	MaxIdleConnsPerHost int
+}
+
+// DefaultOptions returns the SDK's default transport configuration.
+func DefaultOptions() Options {
+	return Options{
+		UseProxy:            true,
+		DisableKeepAlives:   false,
+		IdleConnTimeout:     60 * time.Second,
+		MaxIdleConnsPerHost: 16,
+	}
+}
+
 // New returns a configured *http.Transport with connection pooling, timeouts,
 // and HTTP/2 health-check pings enabled.
-func New(useProxy bool) *http.Transport {
+func New(opts Options) *http.Transport {
 	var proxyFunc func(*http.Request) (*url.URL, error)
-	if useProxy {
+	if opts.UseProxy {
 		proxyFunc = http.ProxyFromEnvironment
+	}
+
+	idleTimeout := opts.IdleConnTimeout
+	if idleTimeout <= 0 {
+		idleTimeout = 60 * time.Second
+	}
+
+	maxIdlePerHost := opts.MaxIdleConnsPerHost
+	if maxIdlePerHost <= 0 {
+		maxIdlePerHost = 16
 	}
 
 	dialer := &net.Dialer{
@@ -28,14 +56,15 @@ func New(useProxy bool) *http.Transport {
 	}
 
 	return &http.Transport{
-		Proxy:       proxyFunc,
-		DialContext: dialer.DialContext,
+		Proxy:             proxyFunc,
+		DialContext:       dialer.DialContext,
+		DisableKeepAlives: opts.DisableKeepAlives,
 		TLSClientConfig: &tls.Config{
 			MinVersion: tls.VersionTLS12,
 		},
 		MaxIdleConns:          100,
-		MaxIdleConnsPerHost:   16,
-		IdleConnTimeout:       90 * time.Second,
+		MaxIdleConnsPerHost:   maxIdlePerHost,
+		IdleConnTimeout:       idleTimeout,
 		TLSHandshakeTimeout:   10 * time.Second,
 		ExpectContinueTimeout: 1 * time.Second,
 		ForceAttemptHTTP2:     true,

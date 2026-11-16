@@ -143,7 +143,7 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 		select {
 		case <-ctx.Done():
 			timer.Stop()
-			if pointer.From(p.retryOnError) {
+			if pointer.From(p.retryOnError) && p.latestError != nil {
 				return p.latestError
 			}
 			p.latestResponse = nil
@@ -154,7 +154,7 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 
 		p.latestResponse, p.latestError = p.poller.Poll(ctx)
 		if ctx.Err() != nil {
-			if pointer.From(p.retryOnError) {
+			if pointer.From(p.retryOnError) && p.latestError != nil {
 				return p.latestError
 			}
 			p.latestResponse = nil

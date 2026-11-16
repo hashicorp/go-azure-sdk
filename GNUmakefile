@@ -27,12 +27,12 @@ prepare:
 	#mkdir -p ./microsoft-graph/
 
 test: fmt
-	cd ./sdk/ && go test -short -v ./... && cd ../
+	cd ./sdk/ && go test -short -race -v ./... && cd ../
 	cd ./resource-manager/ && go test -v ./... && cd ../
 	cd ./microsoft-graph/ && go test -v ./... && cd ../
 
 test-ci-sdk:
-	cd ./sdk/ && go test -short -v ./...
+	cd ./sdk/ && go test -short -race -v ./...
 
 test-ci-resource-manager:
 	cd ./resource-manager/ && go test -v ./...

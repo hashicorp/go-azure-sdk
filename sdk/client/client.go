@@ -29,17 +29,36 @@ const (
 	// SkipPollingDelayHeader is the HTTP header used to instruct the poller to skip its standard delay wait time.
 	// This is typically injected via a ResponseMiddleware when running tests in a VCR replay mode.
 	SkipPollingDelayHeader = "X-Go-Azure-Sdk-Skip-Polling-Delay"
+
+	maxNilResponseRetries = 5
 )
+
+// TransportOptions configures an *http.Transport created by NewTransport.
+type TransportOptions = transport.Options
+
+// DefaultTransportOptions returns the SDK's default transport configuration.
+func DefaultTransportOptions() TransportOptions {
+	return transport.DefaultOptions()
+}
+
+// NewTransport returns a new *http.Transport configured with the provided options.
+func NewTransport(opts TransportOptions) *http.Transport {
+	return transport.New(opts)
+}
+
+type keepIdleConnections struct {
+	http.RoundTripper
+}
 
 var defaultTransport http.RoundTripper = NewDefaultTransport()
 
 // NewDefaultTransport returns a new *http.Transport configured with the SDK's default settings.
 // The shared default transport pools connections by (scheme, host, port, proxy) and carries no
 // credentials; consumers requiring isolation (multi-tenant isolation, mTLS, custom CAs, or custom
-// proxy) should call this to create a dedicated transport and pass it to Client.SetTransport.
+// proxy) should call this (or NewTransport) to create a dedicated transport and pass it to Client.SetTransport.
 // Note that http.ProxyFromEnvironment caches proxy environment variables once per process.
 func NewDefaultTransport() *http.Transport {
-	return transport.New(true)
+	return NewTransport(DefaultTransportOptions())
 }
 
 // CloseIdleConnections closes any idle connections on the shared default transport.
@@ -484,10 +503,18 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 			return nil, fmt.Errorf("reading request body: %v", err)
 		}
 		req.Body = io.NopCloser(bytes.NewBuffer(reqBody))
+		req.GetBody = func() (io.ReadCloser, error) {
+			return io.NopCloser(bytes.NewReader(reqBody)), nil
+		}
 	}
 
 	// Instantiate a RetryableHttp client and configure its CheckRetry func
+	nilResponseRetries := 0
 	r := c.retryableClient(ctx, func(ctx context.Context, r *http.Response, err error) (bool, error) {
+		if r != nil {
+			nilResponseRetries = 0
+		}
+
 		// Eventual consistency checks
 		if r != nil && !c.DisableRetries {
 			if r.StatusCode == http.StatusFailedDependency {
@@ -514,7 +541,11 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 		// Only retry nil-response connection failures for idempotent requests; non-idempotent
 		// mutations may have already been processed by the server.
 		if r == nil {
+			nilResponseRetries++
 			if req.IsIdempotent() {
+				if nilResponseRetries > maxNilResponseRetries {
+					return false, err
+				}
 				return retryablehttp.DefaultRetryPolicy(ctx, r, err)
 			}
 
@@ -584,6 +615,14 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 			status = fmt.Sprintf("%s (%s)", status, statusText)
 		}
 
+		var respBody []byte
+		var readErr error
+		if resp.Body != nil {
+			respBody, readErr = io.ReadAll(resp.Body)
+			transport.DrainAndClose(resp.Body)
+			resp.Body = io.NopCloser(bytes.NewReader(respBody))
+		}
+
 		// Determine suitable error text
 		var errText string
 
@@ -592,6 +631,7 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 			if err = req.CustomErrorParser.FromResponse(resp.Response); err != nil {
 				errText = err.Error()
 			}
+			resp.Body = io.NopCloser(bytes.NewReader(respBody))
 		}
 
 		// Fall back to parsing error text from OData
@@ -601,10 +641,7 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 				errText = fmt.Sprintf("error: %s", resp.OData.Error)
 
 			default:
-				defer transport.DrainAndClose(resp.Body)
-
-				respBody, err := io.ReadAll(resp.Body)
-				if err != nil {
+				if readErr != nil {
 					return resp, fmt.Errorf("unexpected status %s, could not read response body", status)
 				}
 				if len(respBody) == 0 {
@@ -615,7 +652,6 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 			}
 		}
 
-		transport.DrainAndClose(resp.Body)
 		return resp, fmt.Errorf("unexpected status %s with %s", status, errText)
 	}
 
@@ -772,7 +808,7 @@ func (c *Client) retryableClient(ctx context.Context, checkRetry retryablehttp.C
 		r.RetryMax = safeRetryNumber(time.Until(deadline))
 	}
 
-	rt := defaultTransport
+	var rt http.RoundTripper = keepIdleConnections{defaultTransport}
 	if c.Transport != nil {
 		rt = c.Transport
 	}

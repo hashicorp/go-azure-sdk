@@ -92,8 +92,10 @@ func httpClient(params httpClientParams) *http.Client {
 	r.RetryWaitMin = params.retryWaitMin
 	r.RetryWaitMax = params.retryWaitMax
 
+	opts := transport.DefaultOptions()
+	opts.UseProxy = params.useProxy
 	r.HTTPClient = &http.Client{
-		Transport: transport.New(params.useProxy),
+		Transport: transport.New(opts),
 	}
 
 	return r.StandardClient()

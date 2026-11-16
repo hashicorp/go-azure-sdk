@@ -17,7 +17,7 @@ import (
 
 // NOTE: this Client cannot use the base client since it'd cause a circular reference
 
-var defaultTransport = transport.New(true)
+var defaultTransport = transport.New(transport.DefaultOptions())
 
 type Client struct {
 	endpoint string

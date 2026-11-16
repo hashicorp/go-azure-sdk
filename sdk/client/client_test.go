@@ -6,6 +6,7 @@ package client
 import (
 	"bytes"
 	"context"
+	"crypto/x509"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
@@ -767,22 +768,6 @@ func TestClient_ConcurrentDefaultTransport(t *testing.T) {
 	const workers = 32
 	const requestsPerWorker = 10
 
-	stopCloser := make(chan struct{})
-	var closerWg sync.WaitGroup
-	closerWg.Add(1)
-	go func() {
-		defer closerWg.Done()
-		for {
-			select {
-			case <-stopCloser:
-				return
-			default:
-				CloseIdleConnections()
-				time.Sleep(time.Millisecond)
-			}
-		}
-	}()
-
 	var wg sync.WaitGroup
 	errs := make(chan error, workers*requestsPerWorker)
 	for i := 0; i < workers; i++ {
@@ -816,8 +801,6 @@ func TestClient_ConcurrentDefaultTransport(t *testing.T) {
 		}()
 	}
 	wg.Wait()
-	close(stopCloser)
-	closerWg.Wait()
 	close(errs)
 
 	for err := range errs {
@@ -826,40 +809,221 @@ func TestClient_ConcurrentDefaultTransport(t *testing.T) {
 		}
 	}
 
-	totalRequests := int64(workers * requestsPerWorker)
-	if opened := newConns.Load(); opened >= totalRequests {
-		t.Fatalf("expected connection pooling to open fewer than %d connections, got %d", totalRequests, opened)
+	if opened := newConns.Load(); opened > workers*2 {
+		t.Fatalf("expected connection pooling to open at most %d connections, got %d", workers*2, opened)
 	}
 }
 
 func TestRequest_IdempotentOverride(t *testing.T) {
 	ctx := context.Background()
+
+	runPut := func(idempotent *bool) (int, error) {
+		attempts := 0
+		c := NewClient("http://localhost", "testService", "v1.0")
+		c.SetTransport(&roundTripperMock{
+			roundTripFunc: func(req *http.Request) (*http.Response, error) {
+				attempts++
+				if attempts == 1 {
+					return nil, io.EOF
+				}
+				return &http.Response{
+					StatusCode: http.StatusOK,
+					Header:     http.Header{"Content-Type": []string{"application/json"}},
+					Body:       io.NopCloser(bytes.NewBufferString(`{"ok":true}`)),
+					Request:    req,
+				}, nil
+			},
+		})
+		req, err := c.NewRequest(ctx, RequestOptions{
+			ContentType:         "application/json",
+			ExpectedStatusCodes: []int{http.StatusOK},
+			HttpMethod:          http.MethodPut,
+			Idempotent:          idempotent,
+			Path:                "/resource",
+		})
+		if err != nil {
+			t.Fatalf("NewRequest error: %v", err)
+		}
+		_, err = req.Execute(ctx)
+		return attempts, err
+	}
+
+	attempts, err := runPut(nil)
+	if err == nil {
+		t.Fatal("expected default PUT to fail on nil-response EOF")
+	}
+	if attempts != 1 {
+		t.Fatalf("expected 1 attempt for default PUT, got %d", attempts)
+	}
+
+	attempts, err = runPut(pointer.To(true))
+	if err != nil {
+		t.Fatalf("expected PUT with Idempotent=true to retry and succeed, got %v", err)
+	}
+	if attempts != 2 {
+		t.Fatalf("expected 2 attempts for Idempotent=true PUT, got %d", attempts)
+	}
+}
+
+func TestExecute_PreservesErrorBodyForCaller(t *testing.T) {
+	ctx := context.Background()
+	wantBody := `{"error":{"code":"BadThing","message":"the detail a caller may want"}}`
+
 	c := NewClient("http://localhost", "testService", "v1.0")
+	c.DisableRetries = true
+	c.SetTransport(&roundTripperMock{
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			return &http.Response{
+				StatusCode: http.StatusBadRequest,
+				Header:     http.Header{"Content-Type": []string{"application/json"}},
+				Body:       io.NopCloser(bytes.NewBufferString(wantBody)),
+				Request:    req,
+			}, nil
+		},
+	})
 
-	putReq, err := c.NewRequest(ctx, RequestOptions{
+	req, err := c.NewRequest(ctx, RequestOptions{
 		ContentType:         "application/json",
 		ExpectedStatusCodes: []int{http.StatusOK},
-		HttpMethod:          http.MethodPut,
-		Path:                "/resource",
+		HttpMethod:          http.MethodGet,
+		Path:                "/bad",
 	})
 	if err != nil {
 		t.Fatalf("NewRequest error: %v", err)
 	}
-	if putReq.IsIdempotent() {
-		t.Fatal("expected default PUT request not to be idempotent")
+
+	resp, err := req.Execute(ctx)
+	if err == nil {
+		t.Fatal("expected error for 400 response")
+	}
+	got, readErr := io.ReadAll(resp.Body)
+	if readErr != nil {
+		t.Fatalf("reading error resp.Body failed: %v", readErr)
+	}
+	if string(got) != wantBody {
+		t.Fatalf("expected error body %q, got %q", wantBody, string(got))
+	}
+}
+
+func TestExecute_FailedRequestDoesNotEmptySharedPool(t *testing.T) {
+	goodSrv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"ok":true}`))
+	}))
+	defer goodSrv.Close()
+
+	badSrv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusInternalServerError)
+	}))
+	defer badSrv.Close()
+
+	sendGood := func() bool {
+		var reused bool
+		ctx := httptrace.WithClientTrace(context.Background(), &httptrace.ClientTrace{
+			GotConn: func(info httptrace.GotConnInfo) {
+				reused = info.Reused
+			},
+		})
+		c := NewClient(goodSrv.URL, "testService", "v1.0")
+		c.DisableRetries = true
+		req, err := c.NewRequest(ctx, RequestOptions{
+			ContentType:         "application/json",
+			ExpectedStatusCodes: []int{http.StatusOK},
+			HttpMethod:          http.MethodGet,
+			Path:                "/ok",
+		})
+		if err != nil {
+			t.Fatalf("NewRequest error: %v", err)
+		}
+		resp, err := req.Execute(ctx)
+		if err != nil {
+			t.Fatalf("Execute error: %v", err)
+		}
+		var out map[string]bool
+		if err := resp.Unmarshal(&out); err != nil {
+			t.Fatalf("Unmarshal error: %v", err)
+		}
+		return reused
 	}
 
-	idempotentPutReq, err := c.NewRequest(ctx, RequestOptions{
+	_ = sendGood()
+	if !sendGood() {
+		t.Fatal("expected second request to goodSrv to reuse connection")
+	}
+
+	// Exhaust retries against badSrv using a short deadline
+	badCtx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
+	defer cancel()
+	badClient := NewClient(badSrv.URL, "testService", "v1.0")
+	badReq, err := badClient.NewRequest(badCtx, RequestOptions{
 		ContentType:         "application/json",
 		ExpectedStatusCodes: []int{http.StatusOK},
-		HttpMethod:          http.MethodPut,
-		Idempotent:          pointer.To(true),
-		Path:                "/resource",
+		HttpMethod:          http.MethodGet,
+		Path:                "/fail",
 	})
 	if err != nil {
 		t.Fatalf("NewRequest error: %v", err)
 	}
-	if !idempotentPutReq.IsIdempotent() {
-		t.Fatal("expected PUT request with Idempotent=true to be idempotent")
+	_, _ = badReq.Execute(badCtx)
+
+	if !sendGood() {
+		t.Fatal("expected goodSrv idle connection to survive unrelated failed request")
+	}
+}
+
+func TestClient_HTTP2ConnectionReuse(t *testing.T) {
+	srv := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"ok":true}`))
+	}))
+	srv.EnableHTTP2 = true
+	srv.StartTLS()
+	defer srv.Close()
+
+	pooled := NewDefaultTransport()
+	pooled.TLSClientConfig.RootCAs = x509.NewCertPool()
+	pooled.TLSClientConfig.RootCAs.AddCert(srv.Certificate())
+
+	send := func(c *Client) (int, bool) {
+		var reused bool
+		ctx := httptrace.WithClientTrace(context.Background(), &httptrace.ClientTrace{
+			GotConn: func(info httptrace.GotConnInfo) {
+				reused = info.Reused
+			},
+		})
+		req, err := c.NewRequest(ctx, RequestOptions{
+			ContentType:         "application/json",
+			ExpectedStatusCodes: []int{http.StatusOK},
+			HttpMethod:          http.MethodGet,
+			Path:                "/h2",
+		})
+		if err != nil {
+			t.Fatalf("NewRequest error: %v", err)
+		}
+		resp, err := req.Execute(ctx)
+		if err != nil {
+			t.Fatalf("Execute error: %v", err)
+		}
+		var out map[string]bool
+		if err := resp.Unmarshal(&out); err != nil {
+			t.Fatalf("Unmarshal error: %v", err)
+		}
+		return resp.ProtoMajor, reused
+	}
+
+	c1 := NewClient(srv.URL, "testService", "v1.0")
+	c1.SetTransport(pooled)
+	proto1, _ := send(c1)
+	if proto1 != 2 {
+		t.Fatalf("expected HTTP/2 (ProtoMajor=2), got %d", proto1)
+	}
+
+	c2 := NewClient(srv.URL, "testService", "v1.0")
+	c2.SetTransport(pooled)
+	proto2, reused := send(c2)
+	if proto2 != 2 || !reused {
+		t.Fatalf("expected HTTP/2 connection reuse (ProtoMajor=%d, reused=%v)", proto2, reused)
 	}
 }

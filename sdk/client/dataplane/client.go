@@ -23,28 +23,30 @@ type Client struct {
 	ApiVersion string
 }
 
-// NewClient returns a pointer to a Client. If the endpoint value is available at call-time, it will be set into the
-// BaseUri property of the underlying BaseClient
+// NewClient returns a pointer to a Client configured with AuthorizeDataPlaneRequest and the shared pooled transport.
+// If the endpoint value is available at call-time, it will be set into the BaseUri property of the underlying BaseClient.
+//
+// If a caller requires a fresh TCP connection per request (for example, when provisioning a Private Endpoint and cutting
+// over DNS for the same endpoint within a single operation), disable keep-alives via:
+//
+//	opts := client.DefaultTransportOptions()
+//	opts.DisableKeepAlives = true
+//	c.SetTransport(client.NewTransport(opts))
 func NewClient(endpoint string, serviceName, apiVersion string) (*Client, error) {
-	baseClient := client.NewClient(endpoint, serviceName, apiVersion)
+	c := NewDataPlaneClient(endpoint, serviceName, apiVersion)
+	c.AuthorizeRequest = AuthorizeDataPlaneRequest
 
-	baseClient.AuthorizeRequest = AuthorizeDataPlaneRequest
-
-	baseClient.BaseUri = endpoint
-
-	return &Client{
-		Client:     baseClient,
-		ApiVersion: apiVersion,
-	}, nil
+	return c, nil
 }
 
+// NewDataPlaneClient returns a pointer to a Client configured with the shared pooled transport.
+// To disable HTTP keep-alives for a specific client, call c.SetTransport(client.NewTransport(opts))
+// with DisableKeepAlives set to true.
 func NewDataPlaneClient(baseUri string, serviceName, apiVersion string) *Client {
-	client := &Client{
+	return &Client{
 		ApiVersion: apiVersion,
 		Client:     client.NewClient(baseUri, serviceName, apiVersion),
 	}
-
-	return client
 }
 
 func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*client.Request, error) {
