@@ -232,6 +232,28 @@ func TestError(t *testing.T) {
 }`,
 			expected: "-2134347772: SyncGroup '/subscriptions/1a6092a6-137e-4025-9a7c-ef77f76f2c02/resourceGroups/acctestRG-SS-230605162007979449/providers/Microsoft.StorageSync/storageSyncServices/acctest-StorageSync-230605162007979449/syncGroups/acctest-StorageSyncGroup-230605162007979449' does not exist.: SyncGroup '/subscriptions/1a6092a6-137e-4025-9a7c-ef77f76f2c02/resourceGroups/acctestRG-SS-230605162007979449/providers/Microsoft.StorageSync/storageSyncServices/acctest-StorageSync-230605162007979449/syncGroups/acctest-StorageSyncGroup-230605162007979449' does not exist.",
 		},
+		{
+			response: `{
+	"error": {
+		"code": "InvalidTemplateDeployment",
+		"message": "The template deployment failed with multiple errors.",
+		"details": [
+			{
+				"code": "QuotaExceeded",
+				"target": "StandardDSv3Family",
+				"message": "Operation could not be completed as it results in exceeding approved StandardDSv3Family Cores quota.",
+				"details": [
+					{
+						"code": "InnerQuotaDetail",
+						"message": "Current limit: 10, requested: 16"
+					}
+				]
+			}
+		]
+	}
+}`,
+			expected: "InvalidTemplateDeployment: The template deployment failed with multiple errors.: QuotaExceeded (StandardDSv3Family): Operation could not be completed as it results in exceeding approved StandardDSv3Family Cores quota.: InnerQuotaDetail: Current limit: 10, requested: 16",
+		},
 	}
 
 	for n, c := range testCases {

@@ -53,11 +53,22 @@ func parseErrorFromApiResponse(response *http.Response) (*Error, error) {
 	respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
 	response.Body = io.NopCloser(bytes.NewBuffer(respBody))
 
+	headerActivityId := ""
+	if response.Header != nil {
+		for _, k := range []string{"x-ms-correlation-request-id", "x-ms-request-id", "request-id"} {
+			if v := response.Header.Get(k); v != "" {
+				headerActivityId = v
+				break
+			}
+		}
+	}
+
 	// there's a number of internal Azure error types, we should attempt unmarshalling into each
 	// for now we're implementing the simple case we can add to
 	var err1 lroErrorType1
 	if err = json.Unmarshal(respBody, &err1); err == nil && err1.Id != "" && err1.Error.Code != "" && err1.Error.Message != "" {
 		e := Error{
+			ActivityId:   headerActivityId,
 			Code:         err1.Error.Code,
 			Message:      err1.Error.Message,
 			Status:       err1.Status,
@@ -97,9 +108,18 @@ func parseErrorFromApiResponse(response *http.Response) (*Error, error) {
 
 	var err2 resourceManagerErrorType1
 	if err = json.Unmarshal(respBody, &err2); err == nil && err2.Code != "" && err2.Message != "" {
+		messages := []string{
+			err2.Message,
+		}
+		for _, d := range err2.Details {
+			if d.Message != "" && d.Message != err2.Message {
+				messages = append(messages, d.Message)
+			}
+		}
 		return &Error{
+			ActivityId:   headerActivityId,
 			Code:         err2.Code,
-			Message:      err2.Message,
+			Message:      strings.Join(messages, "\n"),
 			Status:       "Unknown",
 			FullHttpBody: string(respBody),
 		}, nil
@@ -107,7 +127,7 @@ func parseErrorFromApiResponse(response *http.Response) (*Error, error) {
 
 	var err3 resourceManagerErrorType2
 	if err = json.Unmarshal(respBody, &err3); err == nil && err3.Error.Code != "" && err3.Error.Message != "" {
-		activityId := ""
+		activityId := headerActivityId
 		topLevelCode := err3.Error.Code
 		messages := []string{
 			err3.Error.Message,
@@ -137,7 +157,7 @@ func parseErrorFromApiResponse(response *http.Response) (*Error, error) {
 
 	var err4 resourceManagerErrorType3
 	if err = json.Unmarshal(respBody, &err4); err == nil && err4.Status != "" && err4.Error.Message != "" {
-		activityId := ""
+		activityId := headerActivityId
 		code := err4.Status
 		messages := []string{
 			err4.Error.Message,
@@ -152,6 +172,7 @@ func parseErrorFromApiResponse(response *http.Response) (*Error, error) {
 	}
 
 	return &Error{
+		ActivityId:   headerActivityId,
 		Code:         "internal-error",
 		Message:      "Couldn't parse Azure API Response into a friendly error - please see the original HTTP Response for more details (and file a bug so we can fix this!).",
 		Status:       "Unknown",

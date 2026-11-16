@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 	"testing"
 	"time"
 
@@ -514,6 +515,39 @@ func TestPoller_RetryOnError_InProgressReturnsDeadlineExceededWhenTimeoutExceede
 	err := poller.PollUntilDone(ctx)
 	if !errors.Is(err, context.DeadlineExceeded) {
 		t.Fatalf("expected context.DeadlineExceeded, got %v", err)
+	}
+	if !strings.Contains(err.Error(), string(pollers.PollingStatusInProgress)) {
+		t.Fatalf("expected timeout error to describe last status, got %q", err.Error())
+	}
+}
+
+func TestPoller_UnknownStatusTreatedAsDroppedConnection(t *testing.T) {
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			PollInterval: 1 * time.Millisecond,
+			Status:       pollers.PollingStatusUnknown,
+		},
+		pollers.PollResult{
+			PollInterval: 1 * time.Millisecond,
+			Status:       pollers.PollingStatusUnknown,
+		},
+		pollers.PollResult{
+			PollInterval: 1 * time.Millisecond,
+			Status:       pollers.PollingStatusUnknown,
+		},
+	})
+	poller := pollers.NewPoller(pollerType, 1*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(5*time.Second))
+	defer cancel()
+
+	err := poller.PollUntilDone(ctx)
+	if err == nil {
+		t.Fatal("expected dropped connection error, got nil")
+	}
+	var dc pollers.PollingDroppedConnectionError
+	if !errors.As(err, &dc) {
+		t.Fatalf("expected PollingDroppedConnectionError, got %v", err)
 	}
 }
 

@@ -124,6 +124,9 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 				result.Status = pollers.PollingStatusUnknown
 				return result, nil
 			}
+			return nil, pollers.PollingDroppedConnectionError{
+				Message: err.Error(),
+			}
 		}
 
 		return nil, err
@@ -183,11 +186,11 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		var op operationResult
 		if strings.Contains(strings.ToLower(contentType), "application/json") {
 			if err = json.Unmarshal(respBody, &op); err != nil {
-				err = fmt.Errorf("unmarshalling response body: %+v", err)
+				err = fmt.Errorf("unmarshalling response body %q: %+v", string(respBody), err)
 				return
 			}
 		} else {
-			return nil, fmt.Errorf("internal-error: polling support for the Content-Type %q was not implemented: %+v", contentType, err)
+			return nil, fmt.Errorf("internal-error: polling support for the Content-Type %q was not implemented (response: %q)", contentType, string(respBody))
 		}
 
 		if strings.EqualFold(string(result.Status), string(pollers.PollingStatusFailed)) || strings.EqualFold(string(op.Status), string(statusFailed)) || strings.EqualFold(string(op.Properties.ProvisioningState), string(statusFailed)) {

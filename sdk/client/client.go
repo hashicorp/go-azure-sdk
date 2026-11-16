@@ -116,6 +116,9 @@ func RetryableErrorHandler(resp *http.Response, err error, _ int) (*http.Respons
 	if resp == nil {
 		return nil, err
 	}
+	if err != nil {
+		return resp, err
+	}
 
 	return resp, nil
 }
@@ -285,7 +288,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
 			transport.DrainAndClose(r.Body)
-			return fmt.Errorf("could not parse response body")
+			return fmt.Errorf("could not parse response body: %+v", err)
 		}
 		_ = r.Body.Close()
 
@@ -318,7 +321,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
 			transport.DrainAndClose(r.Body)
-			return fmt.Errorf("could not parse response body")
+			return fmt.Errorf("could not parse response body: %+v", err)
 		}
 		_ = r.Body.Close()
 
@@ -551,6 +554,9 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 				return retryablehttp.DefaultRetryPolicy(ctx, r, err)
 			}
 
+			if err != nil {
+				return false, fmt.Errorf("HTTP response was nil; connection may have been reset: %w", err)
+			}
 			return false, fmt.Errorf("HTTP response was nil; connection may have been reset")
 		}
 
@@ -576,6 +582,9 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 	resp := &Response{}
 	resp.Response, err = client.Do(req.Request)
 	if err != nil {
+		if resp.Response != nil {
+			transport.DrainAndClose(resp.Body)
+		}
 		return resp, err
 	}
 	if resp.Response == nil {
@@ -644,20 +653,73 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 
 			default:
 				if readErr != nil {
-					return resp, fmt.Errorf("unexpected status %s, could not read response body", status)
+					return resp, fmt.Errorf("unexpected status %s, could not read response body: %+v%s", status, readErr, formatResponseRequestIds(resp.Response, resp.OData))
 				}
 				if len(respBody) == 0 {
-					return resp, fmt.Errorf("unexpected status %s received with no body", status)
+					return resp, fmt.Errorf("unexpected status %s received with no body%s", status, formatResponseRequestIds(resp.Response, resp.OData))
 				}
 
 				errText = fmt.Sprintf("response: %s", respBody)
 			}
 		}
 
-		return resp, fmt.Errorf("unexpected status %s with %s", status, errText)
+		return resp, fmt.Errorf("unexpected status %s with %s%s", status, errText, formatResponseRequestIds(resp.Response, resp.OData))
 	}
 
 	return resp, nil
+}
+
+func formatResponseRequestIds(resp *http.Response, o *odata.OData) string {
+	var parts []string
+	var requestId, correlationId, clientRequestId string
+
+	if resp != nil && resp.Header != nil {
+		for _, k := range []string{"x-ms-request-id", "request-id"} {
+			if v := resp.Header.Get(k); v != "" {
+				requestId = v
+				break
+			}
+		}
+		correlationId = resp.Header.Get("x-ms-correlation-request-id")
+		for _, k := range []string{"x-ms-client-request-id", "client-request-id"} {
+			if v := resp.Header.Get(k); v != "" {
+				clientRequestId = v
+				break
+			}
+		}
+	}
+
+	if o != nil && o.Error != nil {
+		if requestId == "" {
+			if o.Error.RequestId != nil && *o.Error.RequestId != "" {
+				requestId = *o.Error.RequestId
+			} else if o.Error.InnerError != nil && o.Error.InnerError.RequestId != nil && *o.Error.InnerError.RequestId != "" {
+				requestId = *o.Error.InnerError.RequestId
+			}
+		}
+		if clientRequestId == "" {
+			if o.Error.ClientRequestId != nil && *o.Error.ClientRequestId != "" {
+				clientRequestId = *o.Error.ClientRequestId
+			} else if o.Error.InnerError != nil && o.Error.InnerError.ClientRequestId != nil && *o.Error.InnerError.ClientRequestId != "" {
+				clientRequestId = *o.Error.InnerError.ClientRequestId
+			}
+		}
+	}
+
+	if requestId != "" {
+		parts = append(parts, fmt.Sprintf("request-id: %s", requestId))
+	}
+	if correlationId != "" && correlationId != requestId {
+		parts = append(parts, fmt.Sprintf("correlation-id: %s", correlationId))
+	}
+	if clientRequestId != "" && clientRequestId != requestId && clientRequestId != correlationId {
+		parts = append(parts, fmt.Sprintf("client-request-id: %s", clientRequestId))
+	}
+
+	if len(parts) == 0 {
+		return ""
+	}
+	return fmt.Sprintf(" (%s)", strings.Join(parts, ", "))
 }
 
 // ExecutePaged automatically pages through the results of Execute

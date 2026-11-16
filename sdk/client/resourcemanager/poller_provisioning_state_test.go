@@ -5,8 +5,10 @@ package resourcemanager
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
 
@@ -259,5 +261,42 @@ func TestPollerProvisioningState_InStatus_Poll(t *testing.T) {
 		if actual.Status != expected {
 			t.Fatalf("expected %q but got %q", string(expected), string(actual.Status))
 		}
+	}
+}
+
+func TestPollerProvisioningState_FailedIncludesErrorDetails(t *testing.T) {
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+
+	body := `{"properties":{"provisioningState":"Failed"},"error":{"code":"DeploymentFailed","message":"At least one resource deployment operation failed.","details":[{"code":"Conflict","message":"The storage account name is already taken."}]}}`
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(body))
+	}))
+	defer server.Close()
+
+	resourceManagerClient := &Client{
+		Client:     client.NewClient(server.URL, "Example", "2020-01-01"),
+		apiVersion: "2020-01-01",
+	}
+	poller := provisioningStatePoller{
+		apiVersion:           "2020-02-01",
+		client:               resourceManagerClient,
+		initialRetryDuration: 1,
+		originalUri:          "/provisioning-state/poll",
+		resourcePath:         "/provisioning-state/poll",
+	}
+
+	_, err := poller.Poll(ctx)
+	if err == nil {
+		t.Fatal("expected error for Failed provisioningState, got nil")
+	}
+	var failedErr pollers.PollingFailedError
+	if !errors.As(err, &failedErr) {
+		t.Fatalf("expected PollingFailedError, got %T: %v", err, err)
+	}
+	if !strings.Contains(failedErr.Error(), "The storage account name is already taken.") {
+		t.Fatalf("expected PollingFailedError to include failure details, got %q", failedErr.Error())
 	}
 }
