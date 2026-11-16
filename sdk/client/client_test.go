@@ -1027,3 +1027,79 @@ func TestClient_HTTP2ConnectionReuse(t *testing.T) {
 		t.Fatalf("expected HTTP/2 connection reuse (ProtoMajor=%d, reused=%v)", proto2, reused)
 	}
 }
+
+func TestExecute_NilResponseRetryCap(t *testing.T) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
+	defer cancel()
+
+	// Part 1: consecutive nil-response failures stop at maxNilResponseRetries (5 retries = 6 attempts)
+	attempts := 0
+	c := NewClient("http://localhost", "testService", "v1.0")
+	c.retryWaitMin = time.Millisecond
+	c.SetTransport(&roundTripperMock{
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			attempts++
+			return nil, io.EOF
+		},
+	})
+
+	req, err := c.NewRequest(ctx, RequestOptions{
+		ContentType:         "application/json",
+		ExpectedStatusCodes: []int{http.StatusOK},
+		HttpMethod:          http.MethodGet,
+		Path:                "/cap",
+	})
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	if _, err := req.Execute(ctx); err == nil {
+		t.Fatal("expected error after exhausting nil-response retry cap")
+	}
+	if want := maxNilResponseRetries + 1; attempts != want {
+		t.Fatalf("expected %d attempts (1 initial + %d retries), got %d", want, maxNilResponseRetries, attempts)
+	}
+
+	// Part 2: a non-nil response resets the consecutive nil-response counter
+	attempts = 0
+	c2 := NewClient("http://localhost", "testService", "v1.0")
+	c2.retryWaitMin = time.Millisecond
+	c2.SetTransport(&roundTripperMock{
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			attempts++
+			if attempts == 4 {
+				return &http.Response{
+					StatusCode: http.StatusServiceUnavailable,
+					Body:       http.NoBody,
+					Request:    req,
+				}, nil
+			}
+			if attempts <= 7 {
+				return nil, io.EOF
+			}
+			return &http.Response{
+				StatusCode: http.StatusOK,
+				Header:     http.Header{"Content-Type": []string{"application/json"}},
+				Body:       io.NopCloser(bytes.NewBufferString(`{"ok":true}`)),
+				Request:    req,
+			}, nil
+		},
+	})
+
+	req2, err := c2.NewRequest(ctx, RequestOptions{
+		ContentType:         "application/json",
+		ExpectedStatusCodes: []int{http.StatusOK},
+		HttpMethod:          http.MethodGet,
+		Path:                "/reset",
+	})
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	if _, err := req2.Execute(ctx); err != nil {
+		t.Fatalf("expected request to succeed after 503 reset nilResponseRetries, got %v", err)
+	}
+	if attempts != 8 {
+		t.Fatalf("expected 8 attempts, got %d", attempts)
+	}
+}

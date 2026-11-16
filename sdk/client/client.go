@@ -374,6 +374,8 @@ type Client struct {
 	// Transport allows overriding the http.RoundTripper used by the client.
 	// When nil, a default transport will be used.
 	Transport http.RoundTripper
+
+	retryWaitMin time.Duration
 }
 
 // NewClient returns a new Client configured with sensible defaults
@@ -782,6 +784,9 @@ func (c *Client) retryableClient(ctx context.Context, checkRetry retryablehttp.C
 	r.ErrorHandler = RetryableErrorHandler
 	r.Logger = transport.RedactingLogger()
 	r.RetryWaitMin = 1 * time.Second
+	if c.retryWaitMin > 0 {
+		r.RetryWaitMin = c.retryWaitMin
+	}
 	r.RetryWaitMax = 61 * time.Second
 
 	// The default backoff results into the following formula T(n):
