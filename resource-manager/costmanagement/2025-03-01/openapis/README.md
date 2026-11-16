@@ -76,7 +76,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := openapis.NewBillingProfileID("billingAccountName", "billingProfileName")
+id := openapis.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 // alternatively `client.BenefitUtilizationSummariesListByBillingProfileId(ctx, id, openapis.DefaultBenefitUtilizationSummariesListByBillingProfileIdOperationOptions())` can be used to do batched pagination
 items, err := client.BenefitUtilizationSummariesListByBillingProfileIdComplete(ctx, id, openapis.DefaultBenefitUtilizationSummariesListByBillingProfileIdOperationOptions())
@@ -241,7 +241,7 @@ if err := client.GenerateBenefitUtilizationSummariesReportGenerateByBillingAccou
 
 ```go
 ctx := context.TODO()
-id := openapis.NewBillingProfileID("billingAccountName", "billingProfileName")
+id := openapis.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 payload := openapis.BenefitUtilizationSummariesRequest{
 	// ...
@@ -372,7 +372,7 @@ if err := client.GenerateReservationDetailsReportByBillingAccountIdThenPoll(ctx,
 
 ```go
 ctx := context.TODO()
-id := openapis.NewBillingProfileID("billingAccountName", "billingProfileName")
+id := openapis.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 if err := client.GenerateReservationDetailsReportByBillingProfileIdThenPoll(ctx, id, openapis.DefaultGenerateReservationDetailsReportByBillingProfileIdOperationOptions()); err != nil {
 	// handle the error
@@ -396,7 +396,7 @@ if err := client.PriceSheetDownloadByBillingAccountThenPoll(ctx, id); err != nil
 
 ```go
 ctx := context.TODO()
-id := openapis.NewBillingProfileID("billingAccountName", "billingProfileName")
+id := openapis.NewBillingProfileID("billingAccountId", "billingProfileId")
 
 if err := client.PriceSheetDownloadByBillingProfileThenPoll(ctx, id); err != nil {
 	// handle the error
