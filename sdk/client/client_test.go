@@ -8,17 +8,22 @@ import (
 	"context"
 	"encoding/json"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
+	"net/http/httptest"
 	"net/url"
 	"reflect"
+	"sync/atomic"
 	"testing"
+	"time"
 
 	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+	"github.com/hashicorp/go-retryablehttp"
 )
 
 var _ BaseClient = &testClient{}
@@ -571,5 +576,251 @@ func TestClient_CustomTransport(t *testing.T) {
 
 	if hitCount != 1 {
 		t.Errorf("expected transport to be hit 1 time, got %d", hitCount)
+	}
+}
+
+// TestClient_RetryAfterNotLimitedByRetryCount ensures a short Retry-After is not starved of
+// retries by a count precomputed from the deadline assuming the slower exponential schedule.
+func TestClient_RetryAfterNotLimitedByRetryCount(t *testing.T) {
+	var requestCount atomic.Int32
+
+	const throttledResponses = 5
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		if requestCount.Add(1) <= throttledResponses {
+			w.Header().Set("Retry-After", "1")
+			w.WriteHeader(http.StatusTooManyRequests)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{"success": true}`))
+	}))
+	defer server.Close()
+
+	c := NewClient(server.URL, "testService", "v1.0")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	req, err := c.NewRequest(ctx, RequestOptions{
+		ContentType:         "application/json",
+		ExpectedStatusCodes: []int{http.StatusOK},
+		HttpMethod:          http.MethodGet,
+		Path:                "/test",
+	})
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	resp, err := req.Execute(ctx)
+	if err != nil {
+		t.Fatalf("Execute error: %v", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		t.Errorf("expected 200 OK, got %d", resp.StatusCode)
+	}
+
+	// Well beyond the 2 retries the old precomputed formula allowed for a 10s deadline.
+	if got := requestCount.Load(); got != throttledResponses+1 {
+		t.Errorf("expected exactly %d requests, got %d", throttledResponses+1, got)
+	}
+}
+
+// TestClient_RetryStopsBeforeDeadline ensures retrying gives up before the deadline, so the
+// caller receives the real response rather than context.DeadlineExceeded.
+func TestClient_RetryStopsBeforeDeadline(t *testing.T) {
+	var requestCount atomic.Int32
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		requestCount.Add(1)
+		w.Header().Set("Retry-After", "2")
+		w.WriteHeader(http.StatusTooManyRequests)
+	}))
+	defer server.Close()
+
+	c := NewClient(server.URL, "testService", "v1.0")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	req, err := c.NewRequest(ctx, RequestOptions{
+		ContentType:         "application/json",
+		ExpectedStatusCodes: []int{http.StatusOK},
+		HttpMethod:          http.MethodGet,
+		Path:                "/test",
+	})
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	start := time.Now()
+	resp, err := req.Execute(ctx)
+	elapsed := time.Since(start)
+
+	if elapsed >= 3*time.Second {
+		t.Errorf("expected Execute to return before the 3s deadline, took %s", elapsed)
+	}
+
+	if err == nil {
+		t.Fatalf("expected an error, got nil")
+	}
+	if errors.Is(err, context.DeadlineExceeded) {
+		t.Errorf("expected error not to be context.DeadlineExceeded, got: %v", err)
+	}
+
+	if resp == nil || resp.Response == nil {
+		t.Fatalf("expected a non-nil response")
+	}
+	if resp.StatusCode != http.StatusTooManyRequests {
+		t.Errorf("expected 429, got %d", resp.StatusCode)
+	}
+
+	if got := requestCount.Load(); got < 1 {
+		t.Errorf("expected at least 1 request, got %d", got)
+	}
+}
+
+// TestClient_RetryMaxWithoutDeadline ensures the fixed RetryMax of 16 still applies when the
+// context has no deadline.
+func TestClient_RetryMaxWithoutDeadline(t *testing.T) {
+	var requestCount atomic.Int32
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		requestCount.Add(1)
+		w.Header().Set("Retry-After", "1")
+		w.WriteHeader(http.StatusTooManyRequests)
+	}))
+	defer server.Close()
+
+	c := NewClient(server.URL, "testService", "v1.0")
+
+	ctx := context.Background()
+
+	req, err := c.NewRequest(ctx, RequestOptions{
+		ContentType:         "application/json",
+		ExpectedStatusCodes: []int{http.StatusOK},
+		HttpMethod:          http.MethodGet,
+		Path:                "/test",
+	})
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	_, _ = req.Execute(ctx)
+
+	if got := requestCount.Load(); got != 17 {
+		t.Errorf("expected exactly 17 requests (1 + RetryMax 16), got %d", got)
+	}
+}
+
+// TestClient_RetryAfterHotLoopRegression ensures a non-positive or overflowing Retry-After
+// cannot produce a zero wait. Such values were passed through as the sleep duration, hot-looping
+// the retries until the deadline (~45,000 requests in 2s).
+func TestClient_RetryAfterHotLoopRegression(t *testing.T) {
+	testCases := []struct {
+		name       string
+		retryAfter string
+	}{
+		{name: "zero", retryAfter: "0"},
+		{name: "negative", retryAfter: "-1"},
+		{name: "overflowing", retryAfter: "9223372036854775807"},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			var requestCount atomic.Int32
+
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+				requestCount.Add(1)
+				w.Header().Set("Retry-After", tc.retryAfter)
+				w.WriteHeader(http.StatusTooManyRequests)
+			}))
+			defer server.Close()
+
+			c := NewClient(server.URL, "testService", "v1.0")
+
+			ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+			defer cancel()
+
+			req, err := c.NewRequest(ctx, RequestOptions{
+				ContentType:         "application/json",
+				ExpectedStatusCodes: []int{http.StatusOK},
+				HttpMethod:          http.MethodGet,
+				Path:                "/test",
+			})
+			if err != nil {
+				t.Fatalf("NewRequest error: %v", err)
+			}
+
+			start := time.Now()
+			_, _ = req.Execute(ctx)
+			elapsed := time.Since(start)
+
+			// Tens of thousands before the fix; RetryWaitMin bounds this to a handful.
+			if got := requestCount.Load(); got >= 100 {
+				t.Errorf("expected a small bounded request count under a 2s deadline, got %d requests in %s (hot loop?)", got, elapsed)
+			}
+		})
+	}
+}
+
+// TestClient_RetryStateResetAcrossRepeatedDo ensures the attempt counter and cached backoff are
+// reset per Do call, not per retryableClient call: carrying an attempt count of 2 into the second
+// Do would compute a 4s wait, cross the 5s deadline and give up on a retry that should succeed.
+// It drives Do directly, as this package's redirect handling does not re-enter Do today.
+func TestClient_RetryStateResetAcrossRepeatedDo(t *testing.T) {
+	var xRequests, yRequests atomic.Int32
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/x", func(w http.ResponseWriter, _ *http.Request) {
+		if xRequests.Add(1) <= 2 {
+			w.WriteHeader(http.StatusTooManyRequests)
+			return
+		}
+		w.WriteHeader(http.StatusOK)
+	})
+	mux.HandleFunc("/y", func(w http.ResponseWriter, _ *http.Request) {
+		if yRequests.Add(1) <= 1 {
+			w.WriteHeader(http.StatusTooManyRequests)
+			return
+		}
+		w.WriteHeader(http.StatusOK)
+	})
+
+	server := httptest.NewServer(mux)
+	defer server.Close()
+
+	c := NewClient(server.URL, "testService", "v1.0")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	r := c.retryableClient(ctx, retryablehttp.DefaultRetryPolicy)
+
+	reqX, err := retryablehttp.NewRequestWithContext(ctx, http.MethodGet, server.URL+"/x", nil)
+	if err != nil {
+		t.Fatalf("building request for /x: %v", err)
+	}
+	respX, err := r.Do(reqX)
+	if err != nil {
+		t.Fatalf("Do(/x) error: %v", err)
+	}
+	if respX.StatusCode != http.StatusOK {
+		t.Fatalf("expected /x to eventually succeed, got status %d", respX.StatusCode)
+	}
+
+	reqY, err := retryablehttp.NewRequestWithContext(ctx, http.MethodGet, server.URL+"/y", nil)
+	if err != nil {
+		t.Fatalf("building request for /y: %v", err)
+	}
+	respY, err := r.Do(reqY)
+	if err != nil {
+		t.Fatalf("Do(/y) error: %v", err)
+	}
+
+	if respY.StatusCode != http.StatusOK {
+		t.Errorf("expected 200 OK for /y (retry state reset across the second Do() call), got %d", respY.StatusCode)
 	}
 }

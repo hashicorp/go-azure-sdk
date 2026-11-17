@@ -14,6 +14,7 @@ import (
 	"io"
 	"log"
 	"math"
+	"math/rand/v2"
 	"net"
 	"net/http"
 	"net/url"
@@ -693,23 +694,73 @@ func (c *Client) ExecutePaged(ctx context.Context, req *Request) (*Response, err
 func (c *Client) retryableClient(ctx context.Context, checkRetry retryablehttp.CheckRetry) (r *retryablehttp.Client) {
 	r = retryablehttp.NewClient()
 
-	r.Backoff = func(min, max time.Duration, attemptNum int, resp *http.Response) time.Duration {
+	// backoffFor returns the wait before the next attempt: the server's Retry-After where
+	// usable, else exponential backoff. Never less than min, so a retry cannot busy-loop.
+	backoffFor := func(min, max time.Duration, attemptNum int, resp *http.Response) time.Duration {
+		wait := time.Duration(-1)
+
 		if resp != nil {
 			// Always look for Retry-After header
-			if s, ok := resp.Header["Retry-After"]; ok {
+			if s, ok := resp.Header["Retry-After"]; ok && len(s) > 0 {
 				if sleep, err := strconv.ParseInt(s[0], 10, 64); err == nil {
-					return time.Second * time.Duration(sleep)
+					// A non-positive or overflowing value yields a zero or negative wait,
+					// which would busy-loop; fall through to the exponential backoff.
+					const maxRetryAfterSeconds = int64(math.MaxInt64 / int64(time.Second))
+					if sleep > 0 && sleep <= maxRetryAfterSeconds {
+						wait = time.Second * time.Duration(sleep)
+
+						// Jitter, so requests throttled together don't retry in lockstep.
+						if jitterMax := int64(wait / 4); jitterMax > 0 {
+							wait += time.Duration(rand.Int64N(jitterMax + 1))
+						}
+					}
 				}
 			}
 		}
 
-		// Default exponential backoff
-		mult := math.Pow(2, float64(attemptNum)) * float64(min)
-		sleep := time.Duration(mult)
-		if float64(sleep) != mult || sleep > max {
-			sleep = max
+		if wait < 0 {
+			// Default exponential backoff
+			mult := math.Pow(2, float64(attemptNum)) * float64(min)
+			sleep := time.Duration(mult)
+			if float64(sleep) != mult || sleep > max {
+				sleep = max
+			}
+			wait = sleep
 		}
-		return sleep
+
+		if wait < min {
+			wait = min
+		}
+
+		return wait
+	}
+
+	// Cache the wait per attempt so that the deadline check below and retryablehttp's own
+	// Backoff call for that attempt agree on one value, rather than drawing the jitter twice.
+	// RequestLogHook resets this state whenever a new Do() starts its loop index at 0, since a
+	// StandardClient transport can call Do() more than once on the same client.
+	lastBackoffAttempt := -1
+	var lastBackoff time.Duration
+	attempt := 0
+	var lastRequestStart time.Time
+
+	backoffForAttempt := func(min, max time.Duration, attemptNum int, resp *http.Response) time.Duration {
+		if attemptNum != lastBackoffAttempt {
+			lastBackoff = backoffFor(min, max, attemptNum, resp)
+			lastBackoffAttempt = attemptNum
+		}
+		return lastBackoff
+	}
+
+	r.Backoff = backoffForAttempt
+
+	r.RequestLogHook = func(_ retryablehttp.Logger, _ *http.Request, i int) {
+		if i == 0 {
+			attempt = 0
+			lastBackoffAttempt = -1
+			lastBackoff = 0
+		}
+		lastRequestStart = time.Now()
 	}
 
 	r.CheckRetry = checkRetry
@@ -718,28 +769,41 @@ func (c *Client) retryableClient(ctx context.Context, checkRetry retryablehttp.C
 	r.RetryWaitMin = 1 * time.Second
 	r.RetryWaitMax = 61 * time.Second
 
-	// The default backoff results into the following formula T(n):
-	// ("t" repr. total time in sec, "n" repr. total retry count):
-	// - t = 2**(n+1) - 1 				(0<=n<6)
-	// - t = (1+2+4+8+16+32) + 61*(n-6) (n>6)
-	// This results into the following N(t) (by guaranteeing T(n) <= t):
-	// - n = floor(log(t+1)) - 1 		(0<=t<=63)
-	// - n = (t - 63)/61 + 6 			(t > 63)
-	safeRetryNumber := func(t time.Duration) int {
-		sec := t.Seconds()
-		if sec <= 63 {
-			return int(math.Floor(math.Log2(sec+1))) - 1
-		}
-		return (int(sec)-63)/61 + 6
-	}
-
 	// Default RetryMax of 16 takes approx 10 minutes to iterate
 	r.RetryMax = 16
 
-	// In case the context has deadline defined, adjust the retry count to a value
-	// that the total time spent for retrying is right before the deadline exceeded.
+	// With a deadline, bound retries by the deadline rather than a precomputed count: that count
+	// assumes the exponential schedule, so a shorter Retry-After (Microsoft Graph PIM sends 10s)
+	// exhausts it long before the deadline. Give up only once the next wait would cross it,
+	// returning the last response so the caller still sees the real error, e.g. a 429.
 	if deadline, ok := ctx.Deadline(); ok {
-		r.RetryMax = safeRetryNumber(time.Until(deadline))
+		innerCheckRetry := checkRetry
+		r.CheckRetry = func(ctx context.Context, resp *http.Response, err error) (bool, error) {
+			shouldRetry, checkErr := innerCheckRetry(ctx, resp, err)
+			if checkErr != nil || !shouldRetry {
+				return shouldRetry, checkErr
+			}
+
+			wait := backoffForAttempt(r.RetryWaitMin, r.RetryWaitMax, attempt, resp)
+			attempt++
+
+			// Leave room for the retried request too, estimated from the attempt that just
+			// finished; one outliving the deadline makes Do return context.DeadlineExceeded.
+			var margin time.Duration
+			if !lastRequestStart.IsZero() {
+				margin = time.Since(lastRequestStart)
+			}
+
+			if !time.Now().Add(wait).Add(margin).Before(deadline) {
+				return false, nil
+			}
+
+			return true, nil
+		}
+
+		// Only a backstop now that the deadline bounds retries: waits are floored at
+		// RetryWaitMin, so this cannot bind for any realistic deadline.
+		r.RetryMax = 100_000
 	}
 
 	var transport http.RoundTripper
