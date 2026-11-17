@@ -16,7 +16,7 @@ const maxDrainBytes = 1 << 20 // 1 MiB
 
 // Options configures an *http.Transport created by New.
 type Options struct {
-	UseProxy            bool
+	DisableProxy        bool
 	DisableKeepAlives   bool
 	IdleConnTimeout     time.Duration
 	MaxIdleConnsPerHost int
@@ -25,7 +25,7 @@ type Options struct {
 // DefaultOptions returns the SDK's default transport configuration.
 func DefaultOptions() Options {
 	return Options{
-		UseProxy:            true,
+		DisableProxy:        false,
 		DisableKeepAlives:   false,
 		IdleConnTimeout:     60 * time.Second,
 		MaxIdleConnsPerHost: 16,
@@ -36,7 +36,7 @@ func DefaultOptions() Options {
 // and HTTP/2 health-check pings enabled.
 func New(opts Options) *http.Transport {
 	var proxyFunc func(*http.Request) (*url.URL, error)
-	if opts.UseProxy {
+	if !opts.DisableProxy {
 		proxyFunc = http.ProxyFromEnvironment
 	}
 

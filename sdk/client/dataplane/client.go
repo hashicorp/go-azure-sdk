@@ -6,6 +6,7 @@ package dataplane
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"net/url"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -23,25 +24,27 @@ type Client struct {
 	ApiVersion string
 }
 
-// NewClient returns a pointer to a Client configured with AuthorizeDataPlaneRequest and the shared pooled transport.
+var freshTransport = func() *http.Transport {
+	opts := client.DefaultTransportOptions()
+	opts.DisableKeepAlives = true
+	return client.NewTransport(opts)
+}()
+
+// NewClient returns a pointer to a Client configured with AuthorizeDataPlaneRequest and a fresh-connection
+// transport (DisableKeepAlives: true) so per-endpoint DNS cutovers (such as Private Endpoints) do not reuse
+// pre-cutover sockets. If connection pooling is desired for a specific client, call c.SetTransport(client.NewDefaultTransport()).
 // If the endpoint value is available at call-time, it will be set into the BaseUri property of the underlying BaseClient.
-//
-// If a caller requires a fresh TCP connection per request (for example, when provisioning a Private Endpoint and cutting
-// over DNS for the same endpoint within a single operation), disable keep-alives via:
-//
-//	opts := client.DefaultTransportOptions()
-//	opts.DisableKeepAlives = true
-//	c.SetTransport(client.NewTransport(opts))
 func NewClient(endpoint string, serviceName, apiVersion string) (*Client, error) {
 	c := NewDataPlaneClient(endpoint, serviceName, apiVersion)
 	c.AuthorizeRequest = AuthorizeDataPlaneRequest
+	c.SetTransport(freshTransport)
 
 	return c, nil
 }
 
-// NewDataPlaneClient returns a pointer to a Client configured with the shared pooled transport.
-// To disable HTTP keep-alives for a specific client, call c.SetTransport(client.NewTransport(opts))
-// with DisableKeepAlives set to true.
+// NewDataPlaneClient returns a pointer to a Client configured with the shared pooled transport
+// (used by storage data-plane clients to avoid SNAT exhaustion).
+// To disable HTTP keep-alives for a specific client, call c.SetTransport(client.NewTransport(client.TransportOptions{DisableKeepAlives: true})).
 func NewDataPlaneClient(baseUri string, serviceName, apiVersion string) *Client {
 	return &Client{
 		ApiVersion: apiVersion,

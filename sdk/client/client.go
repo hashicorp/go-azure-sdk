@@ -30,7 +30,7 @@ const (
 	// This is typically injected via a ResponseMiddleware when running tests in a VCR replay mode.
 	SkipPollingDelayHeader = "X-Go-Azure-Sdk-Skip-Polling-Delay"
 
-	maxNilResponseRetries = 5
+	maxNilResponseRetries = 6
 )
 
 // TransportOptions configures an *http.Transport created by NewTransport.

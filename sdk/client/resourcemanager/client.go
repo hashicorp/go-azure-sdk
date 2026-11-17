@@ -19,6 +19,10 @@ var _ client.BaseClient = &Client{}
 type Client struct {
 	*client.Client
 
+	// DisableIdempotentPutRetries prevents PUT requests on this client from automatically
+	// defaulting to Idempotent = true when RequestOptions.Idempotent is nil.
+	DisableIdempotentPutRetries bool
+
 	// apiVersion specifies the version of the API being used, which (by design) will be consistent across a client
 	// as we intentionally split out multiple API Versions into different clients, rather than using composite API
 	// Versions/packages which can cause confusion about which version is being used.
@@ -95,7 +99,7 @@ func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*
 	req.Pager = input.Pager
 	req.RetryFunc = client.RequestRetryAny(append(defaultRetryFunctions, input.RetryFunc)...)
 	req.ValidStatusCodes = input.ExpectedStatusCodes
-	if input.Idempotent == nil && input.HttpMethod == http.MethodPut {
+	if !c.DisableIdempotentPutRetries && input.Idempotent == nil && input.HttpMethod == http.MethodPut {
 		req.Idempotent = pointer.To(true)
 	}
 

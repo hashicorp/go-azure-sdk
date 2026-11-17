@@ -93,7 +93,7 @@ func httpClient(params httpClientParams) *http.Client {
 	r.RetryWaitMax = params.retryWaitMax
 
 	opts := transport.DefaultOptions()
-	opts.UseProxy = params.useProxy
+	opts.DisableProxy = !params.useProxy
 	r.HTTPClient = &http.Client{
 		Transport: transport.New(opts),
 	}

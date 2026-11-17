@@ -1032,7 +1032,7 @@ func TestExecute_NilResponseRetryCap(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
 	defer cancel()
 
-	// Part 1: consecutive nil-response failures stop at maxNilResponseRetries (5 retries = 6 attempts)
+	// Part 1: consecutive nil-response failures stop at maxNilResponseRetries (6 retries = 7 attempts)
 	attempts := 0
 	c := NewClient("http://localhost", "testService", "v1.0")
 	c.retryWaitMin = time.Millisecond
@@ -1074,7 +1074,7 @@ func TestExecute_NilResponseRetryCap(t *testing.T) {
 					Request:    req,
 				}, nil
 			}
-			if attempts <= 7 {
+			if attempts <= 8 {
 				return nil, io.EOF
 			}
 			return &http.Response{
@@ -1099,7 +1099,7 @@ func TestExecute_NilResponseRetryCap(t *testing.T) {
 	if _, err := req2.Execute(ctx); err != nil {
 		t.Fatalf("expected request to succeed after 503 reset nilResponseRetries, got %v", err)
 	}
-	if attempts != 8 {
-		t.Fatalf("expected 8 attempts, got %d", attempts)
+	if attempts != 9 {
+		t.Fatalf("expected 9 attempts, got %d", attempts)
 	}
 }
