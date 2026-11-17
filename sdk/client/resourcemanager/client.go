@@ -45,6 +45,7 @@ func NewClient(api environments.Api, serviceName, apiVersion string) (*Client, e
 }
 
 // Deprecated: use NewClient instead
+// This function will be removed in a future minor version
 func NewResourceManagerClient(api environments.Api, serviceName, apiVersion string) (*Client, error) {
 	return NewClient(api, serviceName, apiVersion)
 }

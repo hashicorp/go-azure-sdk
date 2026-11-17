@@ -86,7 +86,7 @@ func TestNewPoller_LongRunningOperation(t *testing.T) {
 
 	for _, v := range testData {
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		client, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
@@ -171,7 +171,7 @@ func TestNewPoller_LongRunningOperationWithSelfReference(t *testing.T) {
 
 	for _, v := range testData {
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		client, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
@@ -300,7 +300,7 @@ func TestNewPoller_ProvisioningState_ValidResourceManagerResource(t *testing.T) 
 
 	for _, v := range testCases {
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		client, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
@@ -423,7 +423,7 @@ func TestNewPoller_ProvisioningState_ValidResourceManagerResourceOperation(t *te
 
 	for _, v := range testCases {
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		client, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
@@ -446,7 +446,7 @@ func TestNewPoller_ProvisioningState_Invalid(t *testing.T) {
 			Response: &client.Response{
 				Response: &http.Response{
 					StatusCode: http.StatusOK,
-					Header:     http.Header{
+					Header: http.Header{
 						// no content type header
 					},
 					Request: &http.Request{
@@ -500,7 +500,7 @@ func TestNewPoller_ProvisioningState_Invalid(t *testing.T) {
 	for i, v := range testCases {
 		t.Logf("iteration %d", i)
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		client, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
