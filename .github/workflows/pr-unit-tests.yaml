@@ -3,6 +3,16 @@ name: Unit Tests
 on:
   pull_request:
     types: ['opened', 'synchronize']
+  push:
+    branches:
+      - 'auto-pr/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 'unit-tests-${{ github.head_ref || github.ref_name }}'
+  cancel-in-progress: true
 
 jobs:
   changes:
@@ -14,9 +24,13 @@ jobs:
       data-plane: ${{ steps.filter.outputs.data-plane }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
       - uses: dorny/paths-filter@0e4a8c6effa4802afeda77dc8d303f8176d7dfad # v3.0.4
         id: filter
         with:
+          base: main
           filters: |
             sdk:
               - 'sdk/**'
@@ -45,14 +59,16 @@ jobs:
     steps:
       - name: Mount RAM Disks
         run: |
-          sudo mount -t tmpfs -o size=16G tmpfs ${{ github.workspace }}
-          sudo chown -R $USER:$USER ${{ github.workspace }}
+          sudo mount -t tmpfs -o size=16G tmpfs "${{ github.workspace }}"
+          sudo chown -R "$USER:$USER" "${{ github.workspace }}"
           mkdir -p ~/.cache/go-build ~/go/pkg/mod
           sudo mount -t tmpfs -o size=8G tmpfs ~/.cache/go-build
           sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
-          sudo chown -R $USER:$USER ~/.cache/go-build ~/go/pkg/mod
+          sudo chown -R "$USER:$USER" ~/.cache/go-build ~/go/pkg/mod
 
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -61,6 +77,14 @@ jobs:
       - name: Run unit tests
         run: make test-ci-sdk
 
+      - name: Unmount RAM Disks
+        if: always()
+        run: |
+          cd /
+          sudo umount -l ~/.cache/go-build || true
+          sudo umount -l ~/go/pkg/mod || true
+          sudo umount -l "${{ github.workspace }}" || true
+
   test-resource-manager:
     needs: changes
     if: ${{ needs.changes.outputs.resource-manager == 'true' }}
@@ -68,14 +92,16 @@ jobs:
     steps:
       - name: Mount RAM Disks
         run: |
-          sudo mount -t tmpfs -o size=16G tmpfs ${{ github.workspace }}
-          sudo chown -R $USER:$USER ${{ github.workspace }}
+          sudo mount -t tmpfs -o size=16G tmpfs "${{ github.workspace }}"
+          sudo chown -R "$USER:$USER" "${{ github.workspace }}"
           mkdir -p ~/.cache/go-build ~/go/pkg/mod
           sudo mount -t tmpfs -o size=8G tmpfs ~/.cache/go-build
           sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
-          sudo chown -R $USER:$USER ~/.cache/go-build ~/go/pkg/mod
+          sudo chown -R "$USER:$USER" ~/.cache/go-build ~/go/pkg/mod
 
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -84,6 +110,14 @@ jobs:
       - name: Run unit tests
         run: make test-ci-resource-manager
 
+      - name: Unmount RAM Disks
+        if: always()
+        run: |
+          cd /
+          sudo umount -l ~/.cache/go-build || true
+          sudo umount -l ~/go/pkg/mod || true
+          sudo umount -l "${{ github.workspace }}" || true
+
   test-microsoft-graph:
     needs: changes
     if: ${{ needs.changes.outputs.microsoft-graph == 'true' }}
@@ -91,14 +125,16 @@ jobs:
     steps:
       - name: Mount RAM Disks
         run: |
-          sudo mount -t tmpfs -o size=16G tmpfs ${{ github.workspace }}
-          sudo chown -R $USER:$USER ${{ github.workspace }}
+          sudo mount -t tmpfs -o size=16G tmpfs "${{ github.workspace }}"
+          sudo chown -R "$USER:$USER" "${{ github.workspace }}"
           mkdir -p ~/.cache/go-build ~/go/pkg/mod
           sudo mount -t tmpfs -o size=8G tmpfs ~/.cache/go-build
           sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
-          sudo chown -R $USER:$USER ~/.cache/go-build ~/go/pkg/mod
+          sudo chown -R "$USER:$USER" ~/.cache/go-build ~/go/pkg/mod
 
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -107,6 +143,14 @@ jobs:
       - name: Run unit tests
         run: make test-ci-microsoft-graph
 
+      - name: Unmount RAM Disks
+        if: always()
+        run: |
+          cd /
+          sudo umount -l ~/.cache/go-build || true
+          sudo umount -l ~/go/pkg/mod || true
+          sudo umount -l "${{ github.workspace }}" || true
+
   test-data-plane:
     needs: changes
     if: ${{ needs.changes.outputs.data-plane == 'true' }}
@@ -114,14 +158,16 @@ jobs:
     steps:
       - name: Mount RAM Disks
         run: |
-          sudo mount -t tmpfs -o size=16G tmpfs ${{ github.workspace }}
-          sudo chown -R $USER:$USER ${{ github.workspace }}
+          sudo mount -t tmpfs -o size=16G tmpfs "${{ github.workspace }}"
+          sudo chown -R "$USER:$USER" "${{ github.workspace }}"
           mkdir -p ~/.cache/go-build ~/go/pkg/mod
           sudo mount -t tmpfs -o size=8G tmpfs ~/.cache/go-build
           sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
-          sudo chown -R $USER:$USER ~/.cache/go-build ~/go/pkg/mod
+          sudo chown -R "$USER:$USER" ~/.cache/go-build ~/go/pkg/mod
 
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -129,5 +175,13 @@ jobs:
 
       - name: Run unit tests
         run: make test-ci-data-plane
+
+      - name: Unmount RAM Disks
+        if: always()
+        run: |
+          cd /
+          sudo umount -l ~/.cache/go-build || true
+          sudo umount -l ~/go/pkg/mod || true
+          sudo umount -l "${{ github.workspace }}" || true
 
 # vim: set ts=2 sts=2 sw=2 et:

@@ -47,6 +47,6 @@ test-ci: test-ci-sdk test-ci-resource-manager test-ci-microsoft-graph test-ci-da
 
 tools:
 	@echo "==> installing required tooling..."
-	go install golang.org/x/tools/cmd/goimports@latest
+	go install golang.org/x/tools/cmd/goimports@v0.30.0
 
 .PHONY: fmt imports prepare test test-ci test-ci-sdk test-ci-resource-manager test-ci-microsoft-graph test-ci-data-plane tools

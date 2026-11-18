@@ -22,9 +22,9 @@ jobs:
       - id: check-secrets
         run: |
           if [[ "${ACTIONS_ID_TOKEN_REQUEST_URL}" == "" ]]; then
-            echo "available=false" | tee ${GITHUB_OUTPUT}
+            echo "available=false" | tee "${GITHUB_OUTPUT}"
           else
-            echo "available=true" | tee ${GITHUB_OUTPUT}
+            echo "available=true" | tee "${GITHUB_OUTPUT}"
           fi
 
   acceptance-tests:
@@ -34,13 +34,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       - name: Azure CLI login
-        run: az login --allow-no-subscriptions --output none --service-principal --tenant="${{ secrets.ARM_TENANT_ID }}" --username="${{ secrets.ARM_CLIENT_ID }}" --password="${{ secrets.ARM_CLIENT_SECRET }}"
+        env:
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        run: az login --allow-no-subscriptions --output none --service-principal --tenant="$ARM_TENANT_ID" --username="$ARM_CLIENT_ID" --password="$ARM_CLIENT_SECRET"
 
       - name: Set OIDC Token
         run: |
-          echo "ARM_OIDC_TOKEN=$(curl -H "Accept: application/json; api-version=2.0" -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Content-Type: application/json" -G --data-urlencode "audience=api://AzureADTokenExchange" "${ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value')"  >>${GITHUB_ENV}
+          token=$(curl -sS -H "Accept: application/json; api-version=2.0" -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Content-Type: application/json" -G --data-urlencode "audience=api://AzureADTokenExchange" "${ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value')
+          echo "::add-mask::$token"
+          echo "ARM_OIDC_TOKEN=$token" >> "${GITHUB_ENV}"
 
       - name: Install Go
         uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
