@@ -31,24 +31,25 @@ jobs:
     runs-on: ubuntu-latest
     needs: [secrets-check]
     if: needs.secrets-check.outputs.available == 'true'
+    environment: acceptance-tests
     steps:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           persist-credentials: false
 
+      - name: Set OIDC Token
+        run: |
+          set -euo pipefail
+          token=$(curl -sS -H "Accept: application/json; api-version=2.0" -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Content-Type: application/json" -G --data-urlencode "audience=api://AzureADTokenExchange" "${ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value')
+          echo "::add-mask::$token"
+          echo "ARM_OIDC_TOKEN=$token" >> "${GITHUB_ENV}"
+
       - name: Azure CLI login
         env:
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-        run: az login --allow-no-subscriptions --output none --service-principal --tenant="$ARM_TENANT_ID" --username="$ARM_CLIENT_ID" --password="$ARM_CLIENT_SECRET"
-
-      - name: Set OIDC Token
-        run: |
-          token=$(curl -sS -H "Accept: application/json; api-version=2.0" -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Content-Type: application/json" -G --data-urlencode "audience=api://AzureADTokenExchange" "${ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value')
-          echo "::add-mask::$token"
-          echo "ARM_OIDC_TOKEN=$token" >> "${GITHUB_ENV}"
+        run: az login --allow-no-subscriptions --output none --service-principal --tenant="$ARM_TENANT_ID" --username="$ARM_CLIENT_ID" --federated-token="$ARM_OIDC_TOKEN"
 
       - name: Install Go
         uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0

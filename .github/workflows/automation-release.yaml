@@ -1,8 +1,7 @@
 ---
 name: Conditionally Release the SDK
 on:
-  pull_request:
-    types: ['closed']
+  push:
     branches:
       - main
 
@@ -12,17 +11,45 @@ permissions:
   contents: read
 
 concurrency:
-  group: 'release-${{ github.ref }}'
+  # Single static group serialises all releases. At most one pending run is queued,
+  # which is safe because a newer main commit supersedes an older pending commit.
+  group: 'release-go-sdk'
   cancel-in-progress: false
 
 jobs:
+  should-release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      release: ${{ steps.check.outputs.release }}
+    steps:
+      - id: check
+        name: "Check if commit requires a release"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT" == "workflow_dispatch" ]]; then
+            echo "release=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if gh api "repos/${REPO}/commits/${SHA}/pulls" \
+               --jq '[.[] | select(.merged_at != null and .base.ref == "main") | .labels[].name] | index("release-once-merged") != null' \
+             | grep -qx true; then
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          fi
+
   test:
-    if: >
-      (github.event_name == 'pull_request' &&
-       github.event.pull_request.merged == true &&
-       github.event.pull_request.base.ref == 'main' &&
-       contains(github.event.pull_request.labels.*.name, 'release-once-merged')) ||
-      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    needs: [should-release]
+    if: needs.should-release.outputs.release == 'true'
     runs-on: custom-linux-xl
     strategy:
       fail-fast: false
@@ -40,7 +67,7 @@ jobs:
 
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
-          ref: main
+          ref: ${{ github.sha }}
           persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
@@ -59,26 +86,19 @@ jobs:
           sudo umount -l "${{ github.workspace }}" || true
 
   release-go-sdk:
-    needs: [test]
-    if: >
-      (github.event_name == 'pull_request' &&
-       github.event.pull_request.merged == true &&
-       github.event.pull_request.base.ref == 'main' &&
-       contains(github.event.pull_request.labels.*.name, 'release-once-merged')) ||
-      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    needs: [should-release, test]
+    if: needs.should-release.outputs.release == 'true'
     runs-on: custom-linux-medium
     environment: automation-production
+    permissions:
+      contents: write
     outputs:
       latest_tag: ${{ steps.version-number.outputs.latest_tag }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
-          ref: main
+          ref: ${{ github.sha }}
           persist-credentials: false
-
-      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
-        with:
-          go-version-file: ./.go-version
 
       - id: version-number
         name: "Determining the Version Number.."
@@ -87,10 +107,12 @@ jobs:
           echo "latest_tag=$latestTag" >> "$GITHUB_OUTPUT"
         shell: bash
 
-      - name: "Publish the Git Tag"
+      - name: "Publish the Git Tags (Tag-Only Release)"
         env:
           LATEST_TAG: ${{ steps.version-number.outputs.latest_tag }}
-          RELEASE_DEPLOY_KEY: ${{ secrets.RELEASE_DEPLOYMENT_WRITE_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          RELEASE_SHA: ${{ github.sha }}
         run: |
           ./scripts/publish-git-tag.sh "$LATEST_TAG"
         shell: bash
