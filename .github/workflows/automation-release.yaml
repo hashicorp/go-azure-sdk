@@ -83,7 +83,7 @@ jobs:
           sudo mount -t tmpfs -o size=16G tmpfs "${{ github.workspace }}"
           sudo chown -R "$USER:$USER" "${{ github.workspace }}"
           mkdir -p ~/.cache/go-build ~/go/pkg/mod
-          sudo mount -t tmpfs -o size=8G tmpfs ~/.cache/go-build
+          sudo mount -t tmpfs -o size=24G tmpfs ~/.cache/go-build
           sudo mount -t tmpfs -o size=8G tmpfs ~/go/pkg/mod
           sudo chown -R "$USER:$USER" ~/.cache/go-build ~/go/pkg/mod
 
