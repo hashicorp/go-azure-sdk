@@ -39,9 +39,9 @@ jobs:
             echo "release=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          if gh api "repos/${REPO}/commits/${SHA}/pulls" \
-               --jq '[.[] | select(.merged_at != null and .base.ref == "main") | .labels[].name] | index("release-once-merged") != null' \
-             | grep -qx true; then
+          has_label=$(gh api "repos/${REPO}/commits/${SHA}/pulls" \
+            --jq '[.[] | select(.merged_at != null and .base.ref == "main") | .labels[].name] | index("release-once-merged") != null')
+          if [[ "$has_label" == "true" ]]; then
             echo "release=true" >> "$GITHUB_OUTPUT"
           else
             echo "release=false" >> "$GITHUB_OUTPUT"

@@ -41,7 +41,11 @@ jobs:
       - name: Set OIDC Token
         run: |
           set -euo pipefail
-          token=$(curl -sS -H "Accept: application/json; api-version=2.0" -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Content-Type: application/json" -G --data-urlencode "audience=api://AzureADTokenExchange" "${ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value')
+          token=$(curl -fsS -H "Accept: application/json; api-version=2.0" -H "Authorization: Bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" -H "Content-Type: application/json" -G --data-urlencode "audience=api://AzureADTokenExchange" "${ACTIONS_ID_TOKEN_REQUEST_URL}" | jq -r '.value')
+          if [[ -z "$token" || "$token" == "null" ]]; then
+            echo "::error::Failed to obtain OIDC token from GitHub Actions." >&2
+            exit 1
+          fi
           echo "::add-mask::$token"
           echo "ARM_OIDC_TOKEN=$token" >> "${GITHUB_ENV}"
 
