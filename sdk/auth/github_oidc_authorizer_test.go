@@ -51,6 +51,50 @@ func TestGitHubOIDCAuthorizer(t *testing.T) {
 	}
 }
 
+func TestGitHubOIDCAuthorizerWithoutAuxiliaryTenants(t *testing.T) {
+	ctx := context.Background()
+	env := environments.AzurePublic()
+
+	mockHost := "github-oidc-issuer"
+	client := &requestCountingClient{
+		host: mockHost,
+		next: &oidcMockClient{
+			authorization: *env.Authorization,
+			platform:      OidcMockClientPlatformGithub,
+			mockHost:      mockHost,
+		},
+	}
+	auth.Client = client
+
+	opts := auth.GitHubOIDCAuthorizerOptions{
+		Api:                 env.ResourceManager,
+		ClientId:            "11111111-0000-0000-0000-000000000000",
+		Environment:         *env,
+		IdTokenRequestToken: test.DummyAccessToken,
+		IdTokenRequestUrl:   fmt.Sprintf("https://%s/vend-id-token", mockHost),
+		TenantId:            "00000000-1111-0000-0000-000000000000",
+	}
+
+	authorizer, err := auth.NewGitHubOIDCAuthorizer(ctx, opts)
+	if err != nil {
+		t.Fatalf("NewGitHubOIDCAuthorizer(): %v", err)
+	}
+
+	for i := 0; i < 3; i++ {
+		tokens, err := authorizer.AuxiliaryTokens(ctx, nil)
+		if err != nil {
+			t.Fatalf("authorizer.AuxiliaryTokens(): %v", err)
+		}
+		if len(tokens) != 0 {
+			t.Fatalf("expected no auxiliary tokens, got %d", len(tokens))
+		}
+	}
+
+	if client.requests != 0 {
+		t.Fatalf("expected no ID token requests without auxiliary tenants, got %d", client.requests)
+	}
+}
+
 func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
