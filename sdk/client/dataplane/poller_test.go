@@ -86,11 +86,11 @@ func TestNewPoller_LongRunningOperation(t *testing.T) {
 
 	for _, v := range testData {
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		c, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
-		_, err = resourcemanager.PollerFromResponse(v.response, client)
+		_, err = resourcemanager.PollerFromResponse(v.response, c)
 		if v.valid {
 			if err != nil {
 				t.Fatal(fmt.Errorf("building poller from response: %+v", err))
@@ -171,11 +171,11 @@ func TestNewPoller_LongRunningOperationWithSelfReference(t *testing.T) {
 
 	for _, v := range testData {
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		c, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
-		_, err = resourcemanager.PollerFromResponse(v.response, client)
+		_, err = resourcemanager.PollerFromResponse(v.response, c)
 		if v.valid {
 			if err != nil {
 				t.Fatal(fmt.Errorf("building poller from response: %+v", err))
@@ -300,12 +300,12 @@ func TestNewPoller_ProvisioningState_ValidResourceManagerResource(t *testing.T) 
 
 	for _, v := range testCases {
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		c, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
 
-		if _, err = resourcemanager.PollerFromResponse(&v.Response, client); err != nil {
+		if _, err = resourcemanager.PollerFromResponse(&v.Response, c); err != nil {
 			t.Fatal(fmt.Errorf("building poller from response: %+v", err))
 		}
 	}
@@ -423,12 +423,12 @@ func TestNewPoller_ProvisioningState_ValidResourceManagerResourceOperation(t *te
 
 	for _, v := range testCases {
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		c, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
 
-		if _, err = resourcemanager.PollerFromResponse(&v.Response, client); err != nil {
+		if _, err = resourcemanager.PollerFromResponse(&v.Response, c); err != nil {
 			t.Fatal(fmt.Errorf("building poller from response: %+v", err))
 		}
 	}
@@ -500,12 +500,12 @@ func TestNewPoller_ProvisioningState_Invalid(t *testing.T) {
 	for i, v := range testCases {
 		t.Logf("iteration %d", i)
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
-		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		c, err := resourcemanager.NewClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
 
-		if _, err = resourcemanager.PollerFromResponse(v.Response, client); err == nil {
+		if _, err = resourcemanager.PollerFromResponse(v.Response, c); err == nil {
 			t.Fatal("expected an error but didn't get one")
 		}
 	}

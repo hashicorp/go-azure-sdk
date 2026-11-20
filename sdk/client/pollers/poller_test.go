@@ -5,6 +5,7 @@ package pollers_test
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -112,8 +113,10 @@ func TestPoller_SkipsDelayWhenEnvVarSet(t *testing.T) {
 	})
 	poller := pollers.NewPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow)
 
-	os.Setenv("GO_AZURE_SDK_SKIP_POLLING_DELAY", "true")
-	defer os.Unsetenv("GO_AZURE_SDK_SKIP_POLLING_DELAY")
+	_ = os.Setenv("GO_AZURE_SDK_SKIP_POLLING_DELAY", "true")
+	defer func() {
+		_ = os.Unsetenv("GO_AZURE_SDK_SKIP_POLLING_DELAY")
+	}()
 
 	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
 	defer cancel()
@@ -476,6 +479,41 @@ func TestPoller_InProgress_ShouldRaiseAnErrorWhenTimeoutExceeded(t *testing.T) {
 	}
 	if pollerType.count != 2 {
 		t.Fatalf("expected the fakePoller to be called 2 times but got %d", pollerType.count)
+	}
+}
+
+func TestPoller_RetryOnError_PreservesLatestErrorWhenTimeoutExceeded(t *testing.T) {
+	expectedErr := fmt.Errorf("transient error")
+	pollerType := fakePollerWithResults([]pollResult{
+		errorResult{Error: expectedErr},
+	})
+	poller := pollers.NewRetryOnErrorPoller(pollerType, 500*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow, true)
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(750*time.Millisecond))
+	defer cancel()
+
+	err := poller.PollUntilDone(ctx)
+	if !errors.Is(err, expectedErr) {
+		t.Fatalf("expected %v, got %v", expectedErr, err)
+	}
+}
+
+func TestPoller_RetryOnError_InProgressReturnsDeadlineExceededWhenTimeoutExceeded(t *testing.T) {
+	pollerType := fakePollerWithResults([]pollResult{
+		pollers.PollResult{
+			HttpResponse: &client.Response{},
+			PollInterval: 500 * time.Millisecond,
+			Status:       pollers.PollingStatusInProgress,
+		},
+	})
+	poller := pollers.NewRetryOnErrorPoller(pollerType, 10*time.Millisecond, pollers.DefaultNumberOfDroppedConnectionsToAllow, true)
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(200*time.Millisecond))
+	defer cancel()
+
+	err := poller.PollUntilDone(ctx)
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatalf("expected context.DeadlineExceeded, got %v", err)
 	}
 }
 
