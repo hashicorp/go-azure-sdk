@@ -2,78 +2,90 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-set -e
+set -euo pipefail
 
-DIR="$(cd "$(dirname "$0")" && pwd)/.."
+function verifyReleaseSha {
+  local repo="${REPO:-hashicorp/go-azure-sdk}"
+  local head_sha
+  head_sha=$(git rev-parse HEAD)
 
-function publish {
-  local version=$1
+  if [[ -n "${RELEASE_SHA:-}" ]]; then
+    if [[ "$head_sha" != "$RELEASE_SHA" ]]; then
+      echo "::error::Checked-out HEAD ($head_sha) does not match expected RELEASE_SHA ($RELEASE_SHA)." >&2
+      exit 1
+    fi
 
-  echo "Publishing the branch (if required).."
-  git push
-
-  echo "Tagging as '$version'.."
-  git tag "$version"
-
-  echo "Pushing Tags.."
-  git push --tags
+    local remote_main
+    remote_main=$(git ls-remote "https://github.com/${repo}.git" refs/heads/main | cut -f1)
+    if [[ "$remote_main" != "$RELEASE_SHA" ]]; then
+      echo "::error::Remote main ($remote_main) has advanced past RELEASE_SHA ($RELEASE_SHA). Skipping tag creation so the newer run releases cleanly." >&2
+      exit 1
+    fi
+  fi
 }
 
-function updateSdkReferenceAndCommitChanges {
+function verifySubmoduleGoModVersion {
   local directory=$1
-  local tag=$2
+  local version=$2
 
-  cd "${directory}"
-
-  echo "Setting the committer information.."
-  git config user.name "hc-github-team-tf-azure"
-  git config user.email "<>"
-
-  echo "Updating the dependency on 'github.com/hashicorp/go-azure-sdk/sdk'.."
-  if [[ $(uname) == "Darwin" ]]; then
-    echo "Using BSD sed"
-    sed -i "" "s/github.com\/hashicorp\/go-azure-sdk\/sdk.*/github.com\/hashicorp\/go-azure-sdk\/sdk $tag/g" go.mod
-  else
-    sed -i "s/github.com\/hashicorp\/go-azure-sdk\/sdk.*/github.com\/hashicorp\/go-azure-sdk\/sdk $tag/g" go.mod
+  if ! grep -Eq "github\.com/hashicorp/go-azure-sdk/sdk[[:space:]]+${version}([[:space:]]|$)" "${directory}/go.mod"; then
+    echo "::error::${directory}/go.mod does not require github.com/hashicorp/go-azure-sdk/sdk ${version}" >&2
+    exit 1
   fi
+}
 
-  echo "Running 'go mod tidy'.."
-  go mod tidy
+function publishTag {
+  local tag=$1
+  local repo="${REPO:-hashicorp/go-azure-sdk}"
 
-  echo "Running 'go mod vendor'.."
-  go mod vendor
+  echo "Tagging HEAD as '$tag'.."
+  git tag "$tag"
 
-  echo "Adding the updated go.mod/go.sum files.."
-  git add --all
-
-  echo "Committing the changes.."
-  git commit -m "$directory: updating to '$tag' of 'github.com/hashicorp/go-azure-sdk/sdk'"
-
-  cd "${DIR}"
+  echo "Pushing Tag '$tag'.."
+  if [[ -n "${GH_TOKEN:-}" ]]; then
+    local auth_header
+    auth_header=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 | tr -d '\n')
+    git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${auth_header}" \
+      push "https://github.com/${repo}.git" "refs/tags/$tag"
+  else
+    git push origin "refs/tags/$tag"
+  fi
 }
 
 function main {
-  local version=$1
+  local mode=${1:-}
+  local version=${2:-}
 
-  local microsoftGraphTag="microsoft-graph/$version"
-  local resourceManagerTag="resource-manager/$version"
-  local dataPlaneTag="data-plane/$version"
-  local sdkTag="sdk/$version"
+  if [[ "$mode" != "sdk" && "$mode" != "submodules" ]]; then
+    echo "Usage: $0 <sdk|submodules> <v0.YYYYMMDD.1HHMMSS>" >&2
+    exit 1
+  fi
 
-  echo "Releasing the Base Layer.."
-  publish "$sdkTag"
+  if [[ ! "$version" =~ ^v0\.[0-9]{8}\.1[0-9]{6}$ ]]; then
+    echo "Invalid version format: $version" >&2
+    exit 1
+  fi
 
-  echo "Releasing the Microsoft Graph SDK.."
-  updateSdkReferenceAndCommitChanges "microsoft-graph" "$version"
-  publish "$microsoftGraphTag"
+  verifyReleaseSha
 
-  echo "Releasing the Resource Manager SDK.."
-  updateSdkReferenceAndCommitChanges "resource-manager" "$version"
-  publish "$resourceManagerTag"
+  if [[ "$mode" == "sdk" ]]; then
+    echo "Releasing the Base Layer.."
+    publishTag "sdk/$version"
+  else
+    echo "Verifying submodule go.mod files reference sdk $version.."
+    verifySubmoduleGoModVersion "microsoft-graph" "$version"
+    verifySubmoduleGoModVersion "resource-manager" "$version"
+    verifySubmoduleGoModVersion "data-plane" "$version"
 
-  echo "Releasing the Data plane SDK.."
-  updateSdkReferenceAndCommitChanges "data-plane" "$version"
-  publish "$dataPlaneTag"
+    echo "Releasing the Microsoft Graph SDK.."
+    publishTag "microsoft-graph/$version"
+
+    echo "Releasing the Resource Manager SDK.."
+    publishTag "resource-manager/$version"
+
+    echo "Releasing the Data Plane SDK.."
+    publishTag "data-plane/$version"
+  fi
 }
 
-main "$1"
+main "$@"

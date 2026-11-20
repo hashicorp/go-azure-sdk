@@ -1,23 +1,35 @@
+---
 name: Open Pull Request when an `auto-pr` is pushed
 on:
   push:
     branches:
       - 'auto-pr/**'
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   open-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
-
-      - name: "open a pull request"
+      - name: "Open a pull request (No Checkout)"
         id: open-pr
-        run: |
-          bash ./scripts/open-pull-request.sh "$PR_TITLE" "$PR_BODY" "$PR_TARGET" "$PR_LABEL"
-
         env:
-          PR_TITLE: "Auto PR: Regenerating the Go SDK (${{ github.sha }})"
-          PR_BODY: "Regenerating the SDK based on the latest changes"
-          PR_TARGET: "main"
-          PR_LABEL: "release-once-merged"
-          GITHUB_TOKEN: ${{ secrets.SERVICE_ACCOUNT_GO_SDK_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if gh pr view "$BRANCH" --repo "$REPO" >/dev/null 2>&1; then
+            echo "Pull request for $BRANCH already exists."
+            exit 0
+          fi
+          gh pr create \
+            --repo "$REPO" \
+            --title "Auto PR: Regenerating the Go SDK (${SHA})" \
+            --body "Regenerating the SDK based on the latest changes" \
+            --base "main" \
+            --head "$BRANCH" \
+            --label "release-once-merged"
