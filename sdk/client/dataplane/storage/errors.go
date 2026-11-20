@@ -37,15 +37,18 @@ type ErrorParser struct{}
 func (e *ErrorParser) FromResponse(resp *http.Response) error {
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return fmt.Errorf("could not parse response body")
+		return fmt.Errorf("could not parse response body: %+v", err)
 	}
 	_ = resp.Body.Close()
 	respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
+	resp.Body = io.NopCloser(bytes.NewBuffer(respBody))
+	if len(respBody) == 0 {
+		return nil
+	}
 
 	res := storageError{}
 	if err = xml.Unmarshal(respBody, &res); err != nil {
 		return err
 	}
-	resp.Body = io.NopCloser(bytes.NewBuffer(respBody))
 	return &res
 }

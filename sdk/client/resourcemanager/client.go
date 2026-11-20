@@ -6,10 +6,10 @@ package resourcemanager
 import (
 	"context"
 	"fmt"
+	"maps"
 	"net/http"
 	"net/url"
 
-	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -77,9 +77,7 @@ func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*
 
 	if input.OptionsObject != nil {
 		if h := input.OptionsObject.ToHeaders(); h != nil {
-			for k, v := range h.Headers() {
-				req.Header[k] = v
-			}
+			maps.Copy(req.Header, h.Headers())
 		}
 
 		if q := input.OptionsObject.ToQuery(); q != nil {
@@ -101,7 +99,7 @@ func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*
 	req.RetryFunc = client.RequestRetryAny(append(defaultRetryFunctions, input.RetryFunc)...)
 	req.ValidStatusCodes = input.ExpectedStatusCodes
 	if !c.DisableIdempotentPutRetries && input.Idempotent == nil && input.HttpMethod == http.MethodPut {
-		req.Idempotent = pointer.To(true)
+		req.Idempotent = new(true)
 	}
 
 	return req, nil

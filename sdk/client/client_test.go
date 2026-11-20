@@ -9,6 +9,7 @@ import (
 	"crypto/x509"
 	"encoding/json"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -18,6 +19,7 @@ import (
 	"net/http/httptrace"
 	"net/url"
 	"reflect"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"testing"
@@ -852,6 +854,9 @@ func TestRequest_IdempotentOverride(t *testing.T) {
 	if err == nil {
 		t.Fatal("expected default PUT to fail on nil-response EOF")
 	}
+	if !errors.Is(err, io.EOF) {
+		t.Fatalf("expected error to wrap io.EOF, got %v", err)
+	}
 	if attempts != 1 {
 		t.Fatalf("expected 1 attempt for default PUT, got %d", attempts)
 	}
@@ -875,9 +880,12 @@ func TestExecute_PreservesErrorBodyForCaller(t *testing.T) {
 		roundTripFunc: func(req *http.Request) (*http.Response, error) {
 			return &http.Response{
 				StatusCode: http.StatusBadRequest,
-				Header:     http.Header{"Content-Type": []string{"application/json"}},
-				Body:       io.NopCloser(bytes.NewBufferString(wantBody)),
-				Request:    req,
+				Header: http.Header{
+					"Content-Type":    []string{"application/json"},
+					"X-Ms-Request-Id": []string{"req-12345"},
+				},
+				Body:    io.NopCloser(bytes.NewBufferString(wantBody)),
+				Request: req,
 			}, nil
 		},
 	})
@@ -895,6 +903,9 @@ func TestExecute_PreservesErrorBodyForCaller(t *testing.T) {
 	resp, err := req.Execute(ctx)
 	if err == nil {
 		t.Fatal("expected error for 400 response")
+	}
+	if !strings.Contains(err.Error(), "req-12345") {
+		t.Fatalf("expected error to include request ID, got %q", err.Error())
 	}
 	got, readErr := io.ReadAll(resp.Body)
 	if readErr != nil {
@@ -1101,5 +1112,44 @@ func TestExecute_NilResponseRetryCap(t *testing.T) {
 	}
 	if attempts != 9 {
 		t.Fatalf("expected 9 attempts, got %d", attempts)
+	}
+}
+
+func TestExecute_SurfacesRetryFuncError(t *testing.T) {
+	ctx := context.Background()
+	c := NewClient("http://localhost", "testService", "v1.0")
+	c.SetTransport(&roundTripperMock{
+		roundTripFunc: func(req *http.Request) (*http.Response, error) {
+			return &http.Response{
+				StatusCode: http.StatusConflict,
+				Header:     http.Header{"Content-Type": []string{"application/json"}},
+				Body:       io.NopCloser(bytes.NewBufferString(`{"error":{"code":"MissingSubscriptionRegistration","message":"The subscription is not registered to use namespace 'Microsoft.Example'."}}`)),
+				Request:    req,
+			}, nil
+		},
+	})
+
+	req, err := c.NewRequest(ctx, RequestOptions{
+		ContentType:         "application/json",
+		ExpectedStatusCodes: []int{http.StatusOK},
+		HttpMethod:          http.MethodGet,
+		Path:                "/resource",
+		RetryFunc: func(resp *http.Response, o *odata.OData) (bool, error) {
+			if o != nil && o.Error != nil && o.Error.Code != nil && *o.Error.Code == "MissingSubscriptionRegistration" {
+				return false, fmt.Errorf("The Resource Provider was not registered: %s", *o.Error.Message)
+			}
+			return false, nil
+		},
+	})
+	if err != nil {
+		t.Fatalf("NewRequest error: %v", err)
+	}
+
+	_, err = req.Execute(ctx)
+	if err == nil {
+		t.Fatal("expected error from RetryFunc, got nil")
+	}
+	if !strings.Contains(err.Error(), "The Resource Provider was not registered") {
+		t.Fatalf("expected RetryFunc error to be surfaced, got %q", err.Error())
 	}
 }

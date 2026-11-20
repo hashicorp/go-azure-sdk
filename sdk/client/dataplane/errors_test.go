@@ -257,3 +257,30 @@ func TestParseErrorFromApiResponse_UnexpectedShouldOutputHttpResponseAnyway(t *t
 		t.Fatalf("expected and actual didn't match. Expected: %+v\n\n Actual: %+v", expected, actual)
 	}
 }
+
+func TestParseErrorFromApiResponse_ResourceManagerType1_WithDistinctDetailMessages(t *testing.T) {
+	body := `{"Code":"Conflict","Message":"Top-level conflict message.","Details":[{"Message":"Top-level conflict message."},{"Message":"Nested detail explanation."},{"Code":"Conflict"}]}`
+	input := http.Response{
+		Header: http.Header{
+			"X-Ms-Correlation-Request-Id": []string{"corr-abc-123"},
+		},
+		Body: io.NopCloser(bytes.NewReader([]byte(body))),
+	}
+	expected := Error{
+		ActivityId:   "corr-abc-123",
+		Code:         "Conflict",
+		FullHttpBody: body,
+		Message:      "Top-level conflict message.\nNested detail explanation.",
+		Status:       "Unknown",
+	}
+	actual, err := parseErrorFromApiResponse(&input)
+	if err != nil {
+		t.Fatalf("parsing error from api response: %+v", err)
+	}
+	if actual == nil {
+		t.Fatalf("`actual` was nil")
+	}
+	if !reflect.DeepEqual(*actual, expected) {
+		t.Fatalf("expected and actual didn't match. Expected: %+v\n\n Actual: %+v", expected, actual)
+	}
+}

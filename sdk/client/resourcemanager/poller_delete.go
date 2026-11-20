@@ -5,8 +5,10 @@ package resourcemanager
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -22,6 +24,9 @@ type deletePoller struct {
 	initialRetryDuration time.Duration
 	originalUri          string
 	resourcePath         string
+
+	droppedConnectionCount int
+	maxDroppedConnections  int
 }
 
 func deletePollerFromResponse(response *client.Response, c *Client, pollingInterval time.Duration) (*deletePoller, error) {
@@ -52,15 +57,16 @@ func deletePollerFromResponse(response *client.Response, c *Client, pollingInter
 	}
 
 	return &deletePoller{
-		apiVersion:           apiVersion,
-		client:               c,
-		initialRetryDuration: pollingInterval,
-		originalUri:          originalUri,
-		resourcePath:         *resourcePath,
+		apiVersion:            apiVersion,
+		client:                c,
+		initialRetryDuration:  pollingInterval,
+		originalUri:           originalUri,
+		resourcePath:          *resourcePath,
+		maxDroppedConnections: 3,
 	}, nil
 }
 
-func (p deletePoller) Poll(ctx context.Context) (result *pollers.PollResult, err error) {
+func (p *deletePoller) Poll(ctx context.Context) (result *pollers.PollResult, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -79,8 +85,24 @@ func (p deletePoller) Poll(ctx context.Context) (result *pollers.PollResult, err
 	}
 	resp, err := p.client.Execute(ctx, req)
 	if err != nil {
+		var e *url.Error
+		if errors.As(err, &e) {
+			p.droppedConnectionCount++
+			if p.droppedConnectionCount < p.maxDroppedConnections {
+				return &pollers.PollResult{
+					PollInterval: p.initialRetryDuration,
+					Status:       pollers.PollingStatusUnknown,
+				}, nil
+			}
+			return nil, pollers.PollingDroppedConnectionError{
+				Message: err.Error(),
+			}
+		}
 		return nil, fmt.Errorf("executing request: %+v", err)
 	}
+
+	p.droppedConnectionCount = 0
+
 	if resp == nil {
 		return nil, pollers.PollingDroppedConnectionError{}
 	}
