@@ -24,10 +24,11 @@ jobs:
       contents: read
       pull-requests: read
     outputs:
-      release: ${{ steps.check.outputs.release }}
+      mode: ${{ steps.check.outputs.mode }}
+      version: ${{ steps.check.outputs.version }}
     steps:
       - id: check
-        name: "Check if commit requires a release"
+        name: "Determine release mode"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
@@ -36,20 +37,41 @@ jobs:
         run: |
           set -euo pipefail
           if [[ "$EVENT" == "workflow_dispatch" ]]; then
-            echo "release=true" >> "$GITHUB_OUTPUT"
+            echo "mode=sdk" >> "$GITHUB_OUTPUT"
+            echo "version=" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          has_label=$(gh api "repos/${REPO}/commits/${SHA}/pulls" \
-            --jq '[.[] | select(.merged_at != null and .base.ref == "main") | .labels[].name] | index("release-once-merged") != null')
-          if [[ "$has_label" == "true" ]]; then
-            echo "release=true" >> "$GITHUB_OUTPUT"
+
+          pulls_json=$(gh api "repos/${REPO}/commits/${SHA}/pulls")
+
+          submodule_branch=$(printf '%s' "$pulls_json" | jq -r '
+            [.[] | select(.merged_at != null and .base.ref == "main" and ((.labels | map(.name) | index("release-submodules")) != null)) | .head.ref] | first // ""
+          ')
+          if [[ -n "$submodule_branch" ]]; then
+            version="${submodule_branch#auto-release/}"
+            if [[ ! "$version" =~ ^v0\.[0-9]{8}\.1[0-9]{6}$ ]]; then
+              echo "::error::Invalid version in release-submodules PR branch: $submodule_branch" >&2
+              exit 1
+            fi
+            echo "mode=submodules" >> "$GITHUB_OUTPUT"
+            echo "version=$version" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          has_release_label=$(printf '%s' "$pulls_json" | jq -r '
+            [.[] | select(.merged_at != null and .base.ref == "main") | .labels[].name] | index("release-once-merged") != null
+          ')
+          if [[ "$has_release_label" == "true" ]]; then
+            echo "mode=sdk" >> "$GITHUB_OUTPUT"
+            echo "version=" >> "$GITHUB_OUTPUT"
           else
-            echo "release=false" >> "$GITHUB_OUTPUT"
+            echo "mode=none" >> "$GITHUB_OUTPUT"
+            echo "version=" >> "$GITHUB_OUTPUT"
           fi
 
   test:
     needs: [should-release]
-    if: needs.should-release.outputs.release == 'true'
+    if: needs.should-release.outputs.mode != 'none'
     runs-on: custom-linux-xl
     strategy:
       fail-fast: false
@@ -85,9 +107,10 @@ jobs:
           # Keep ~/.cache/go-build and ~/go/pkg/mod mounted so Post actions/setup-go can save the Go cache
           sudo umount -l "${{ github.workspace }}" || true
 
-  release-go-sdk:
+  # Step 1: Tag sdk/$version on main
+  release-sdk:
     needs: [should-release, test]
-    if: needs.should-release.outputs.release == 'true'
+    if: needs.should-release.outputs.mode == 'sdk'
     runs-on: custom-linux-medium
     environment: automation-production
     permissions:
@@ -107,12 +130,144 @@ jobs:
           echo "latest_tag=$latestTag" >> "$GITHUB_OUTPUT"
         shell: bash
 
-      - name: "Publish the Git Tags (Tag-Only Release)"
+      - name: "Publish the Base Layer Tag (sdk)"
         env:
           LATEST_TAG: ${{ steps.version-number.outputs.latest_tag }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           RELEASE_SHA: ${{ github.sha }}
         run: |
-          ./scripts/publish-git-tag.sh "$LATEST_TAG"
+          ./scripts/publish-git-tag.sh sdk "$LATEST_TAG"
+        shell: bash
+
+  # Step 1b: Unprivileged submodule go.mod bump -> git bundle
+  prepare-submodule-bump:
+    needs: [release-sdk]
+    runs-on: custom-linux-medium
+    permissions:
+      contents: read
+    outputs:
+      branch_name: ${{ steps.bump.outputs.branch_name }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version-file: ./.go-version
+          cache-dependency-path: '*/go.sum'
+
+      - id: bump
+        name: "Update submodule go.mod files and create bundle (Unprivileged)"
+        env:
+          LATEST_TAG: ${{ needs.release-sdk.outputs.latest_tag }}
+          BUNDLE_PATH: ${{ runner.temp }}/submodule-bump.bundle
+        run: |
+          ./scripts/update-submodule-sdk-version.sh "$LATEST_TAG"
+
+      - name: "Upload submodule bump git bundle"
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: submodule-bump-bundle
+          path: ${{ runner.temp }}/submodule-bump.bundle
+          retention-days: 1
+
+  # Step 1c: Isolated path-gated branch push (no checkout)
+  push-submodule-bump:
+    needs: [release-sdk, prepare-submodule-bump]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: "Download submodule bump git bundle (No Checkout)"
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: submodule-bump-bundle
+          path: ${{ runner.temp }}
+
+      - name: "Verify bundle and push auto-release branch"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          BRANCH_NAME: ${{ needs.prepare-submodule-bump.outputs.branch_name }}
+          BUNDLE_PATH: ${{ runner.temp }}/submodule-bump.bundle
+        run: |
+          set -euo pipefail
+          if [[ ! "$BRANCH_NAME" =~ ^auto-release/v0\.[0-9]{8}\.1[0-9]{6}$ ]]; then
+            echo "::error::Invalid branch name format: $BRANCH_NAME"
+            exit 1
+          fi
+
+          git clone --no-checkout --filter=blob:none "https://github.com/${REPO}.git" repo
+          cd repo
+          git bundle verify "$BUNDLE_PATH"
+          git fetch "$BUNDLE_PATH" "refs/heads/${BRANCH_NAME}:refs/heads/${BRANCH_NAME}"
+
+          # Supply-Chain Gate: Ensure commits ONLY touch submodule go.mod / go.sum
+          disallowed=$(git diff --name-only "origin/main...refs/heads/${BRANCH_NAME}" | grep -Ev '^(microsoft-graph|resource-manager|data-plane)/(go\.mod|go\.sum)$' || true)
+          if [[ -n "$disallowed" ]]; then
+            echo "::error::Refusing to push! Bundle modifies files outside submodule go.mod/go.sum:"
+            echo "$disallowed"
+            exit 1
+          fi
+
+          auth_header=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 | tr -d '\n')
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${auth_header}" \
+            push "https://github.com/${REPO}.git" "refs/heads/${BRANCH_NAME}:refs/heads/${BRANCH_NAME}"
+
+  # Step 1d: Open PR labeled 'release-submodules' and dispatch CI (no checkout)
+  open-submodule-pr:
+    needs: [release-sdk, prepare-submodule-bump, push-submodule-bump]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      actions: write
+    steps:
+      - name: "Open submodule release PR and dispatch CI (No Checkout)"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          BRANCH_NAME: ${{ needs.prepare-submodule-bump.outputs.branch_name }}
+          LATEST_TAG: ${{ needs.release-sdk.outputs.latest_tag }}
+        run: |
+          set -euo pipefail
+          if ! gh pr view "$BRANCH_NAME" --repo "$REPO" >/dev/null 2>&1; then
+            gh pr create \
+              --repo "$REPO" \
+              --title "Release: Update submodules to sdk/${LATEST_TAG}" \
+              --body "Updates \`microsoft-graph\`, \`resource-manager\`, and \`data-plane\` to \`github.com/hashicorp/go-azure-sdk/sdk ${LATEST_TAG}\`. Merging this PR will tag all three submodules as \`${LATEST_TAG}\`." \
+              --base "main" \
+              --head "$BRANCH_NAME" \
+              --label "release-submodules"
+          fi
+          gh workflow run pr-unit-tests.yaml --repo "$REPO" --ref "$BRANCH_NAME"
+          gh workflow run pr-validate-go-get.yaml --repo "$REPO" --ref "$BRANCH_NAME"
+
+  # Step 2: Tag microsoft-graph, resource-manager, and data-plane on main after PR merge
+  release-submodules:
+    needs: [should-release, test]
+    if: needs.should-release.outputs.mode == 'submodules'
+    runs-on: custom-linux-medium
+    environment: automation-production
+    permissions:
+      contents: write
+    outputs:
+      latest_tag: ${{ needs.should-release.outputs.version }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: "Publish Submodule Tags (microsoft-graph, resource-manager, data-plane)"
+        env:
+          LATEST_TAG: ${{ needs.should-release.outputs.version }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          ./scripts/publish-git-tag.sh submodules "$LATEST_TAG"
         shell: bash

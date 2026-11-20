@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - 'auto-pr/**'
+  workflow_dispatch:
 
 permissions:
   contents: read

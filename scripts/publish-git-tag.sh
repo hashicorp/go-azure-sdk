@@ -24,6 +24,16 @@ function verifyReleaseSha {
   fi
 }
 
+function verifySubmoduleGoModVersion {
+  local directory=$1
+  local version=$2
+
+  if ! grep -Eq "github\.com/hashicorp/go-azure-sdk/sdk[[:space:]]+${version}([[:space:]]|$)" "${directory}/go.mod"; then
+    echo "::error::${directory}/go.mod does not require github.com/hashicorp/go-azure-sdk/sdk ${version}" >&2
+    exit 1
+  fi
+}
+
 function publishTag {
   local tag=$1
   local repo="${REPO:-hashicorp/go-azure-sdk}"
@@ -43,30 +53,39 @@ function publishTag {
 }
 
 function main {
-  local version=${1:-}
+  local mode=${1:-}
+  local version=${2:-}
+
+  if [[ "$mode" != "sdk" && "$mode" != "submodules" ]]; then
+    echo "Usage: $0 <sdk|submodules> <v0.YYYYMMDD.1HHMMSS>" >&2
+    exit 1
+  fi
+
   if [[ ! "$version" =~ ^v0\.[0-9]{8}\.1[0-9]{6}$ ]]; then
     echo "Invalid version format: $version" >&2
     exit 1
   fi
 
-  local sdkTag="sdk/$version"
-  local microsoftGraphTag="microsoft-graph/$version"
-  local resourceManagerTag="resource-manager/$version"
-  local dataPlaneTag="data-plane/$version"
-
   verifyReleaseSha
 
-  echo "Releasing the Base Layer.."
-  publishTag "$sdkTag"
+  if [[ "$mode" == "sdk" ]]; then
+    echo "Releasing the Base Layer.."
+    publishTag "sdk/$version"
+  else
+    echo "Verifying submodule go.mod files reference sdk $version.."
+    verifySubmoduleGoModVersion "microsoft-graph" "$version"
+    verifySubmoduleGoModVersion "resource-manager" "$version"
+    verifySubmoduleGoModVersion "data-plane" "$version"
 
-  echo "Releasing the Microsoft Graph SDK.."
-  publishTag "$microsoftGraphTag"
+    echo "Releasing the Microsoft Graph SDK.."
+    publishTag "microsoft-graph/$version"
 
-  echo "Releasing the Resource Manager SDK.."
-  publishTag "$resourceManagerTag"
+    echo "Releasing the Resource Manager SDK.."
+    publishTag "resource-manager/$version"
 
-  echo "Releasing the Data plane SDK.."
-  publishTag "$dataPlaneTag"
+    echo "Releasing the Data Plane SDK.."
+    publishTag "data-plane/$version"
+  fi
 }
 
 main "$@"

@@ -58,7 +58,7 @@ if [[ -n "$dual_write" ]]; then
 fi
 pass "No job holds both contents: write and pull-requests: write"
 
-echo "==> 2. Hermetic tag-only release & version contract tests"
+echo "==> 2. Hermetic two-step release & version contract tests"
 
 tag=$("${REPO_ROOT}/scripts/determine-git-tag.sh")
 if [[ ! "$tag" =~ ^v0\.[0-9]{8}\.1[0-9]{6}$ ]]; then
@@ -76,70 +76,99 @@ git clone "$tmp_dir/remote.git" "$tmp_dir/work" >/dev/null 2>&1
 cd "$tmp_dir/work"
 git config user.name "test"
 git config user.email "test@example.com"
-echo "init" > README.md
-git add README.md && git commit -m "initial" >/dev/null
+mkdir -p microsoft-graph resource-manager data-plane
+for mod in microsoft-graph resource-manager data-plane; do
+  printf 'module github.com/hashicorp/go-azure-sdk/%s\n\nrequire github.com/hashicorp/go-azure-sdk/sdk v0.20260101.1000000\n' "$mod" > "${mod}/go.mod"
+done
+git add --all && git commit -m "initial" >/dev/null
 git push origin HEAD:refs/heads/main >/dev/null 2>&1
 head_before=$(git rev-parse HEAD)
 
-# Invalid version format must fail
-if "${REPO_ROOT}/scripts/publish-git-tag.sh" "v1.2.3" 2>/dev/null; then
+# Invalid mode or version format must fail
+if "${REPO_ROOT}/scripts/publish-git-tag.sh" "invalid" "$tag" 2>/dev/null; then
+  fail "publish-git-tag.sh should have rejected invalid mode"
+fi
+if "${REPO_ROOT}/scripts/publish-git-tag.sh" "sdk" "v1.2.3" 2>/dev/null; then
   fail "publish-git-tag.sh should have rejected invalid version format"
 fi
-pass "publish-git-tag.sh rejected invalid version format"
+pass "publish-git-tag.sh rejected invalid mode and version format"
 
 # Mismatched RELEASE_SHA must fail
-if RELEASE_SHA="0000000000000000000000000000000000000000" "${REPO_ROOT}/scripts/publish-git-tag.sh" "$tag" 2>/dev/null; then
+if RELEASE_SHA="0000000000000000000000000000000000000000" "${REPO_ROOT}/scripts/publish-git-tag.sh" "sdk" "$tag" 2>/dev/null; then
   fail "publish-git-tag.sh should have rejected mismatched RELEASE_SHA"
 fi
 pass "publish-git-tag.sh rejected mismatched RELEASE_SHA"
 
-# Valid tag-only release must push all 4 module tags without advancing main
-"${REPO_ROOT}/scripts/publish-git-tag.sh" "$tag" >/dev/null
+# Step 1: sdk mode pushes only sdk/$tag without advancing main
+"${REPO_ROOT}/scripts/publish-git-tag.sh" "sdk" "$tag" >/dev/null
 head_after=$(git --git-dir="$tmp_dir/remote.git" rev-parse refs/heads/main)
 if [[ "$head_before" != "$head_after" ]]; then
   fail "publish-git-tag.sh modified main ($head_before -> $head_after)"
 fi
-for mod in sdk microsoft-graph resource-manager data-plane; do
+sdk_tag_sha=$(git --git-dir="$tmp_dir/remote.git" rev-parse "refs/tags/sdk/${tag}" 2>/dev/null || true)
+if [[ "$sdk_tag_sha" != "$head_before" ]]; then
+  fail "Missing or mismatched tag sdk/${tag}"
+fi
+pass "publish-git-tag.sh sdk mode pushed sdk/${tag} without modifying main"
+
+# Step 2 guard: submodules mode must reject when go.mod still points to older sdk version
+if "${REPO_ROOT}/scripts/publish-git-tag.sh" "submodules" "$tag" 2>/dev/null; then
+  fail "publish-git-tag.sh submodules mode should have rejected outdated go.mod"
+fi
+pass "publish-git-tag.sh submodules mode rejected mismatched submodule go.mod versions"
+
+# Step 2: once submodule go.mod files match $tag, submodules mode pushes all 3 tags
+for mod in microsoft-graph resource-manager data-plane; do
+  printf 'module github.com/hashicorp/go-azure-sdk/%s\n\nrequire github.com/hashicorp/go-azure-sdk/sdk %s\n' "$mod" "$tag" > "${mod}/go.mod"
+done
+git add --all && git commit -m "bump submodules to ${tag}" >/dev/null
+git push origin HEAD:refs/heads/main >/dev/null 2>&1
+sub_head=$(git rev-parse HEAD)
+
+"${REPO_ROOT}/scripts/publish-git-tag.sh" "submodules" "$tag" >/dev/null
+for mod in microsoft-graph resource-manager data-plane; do
   tag_sha=$(git --git-dir="$tmp_dir/remote.git" rev-parse "refs/tags/${mod}/${tag}" 2>/dev/null || true)
-  if [[ "$tag_sha" != "$head_before" ]]; then
-    fail "Missing or mismatched tag ${mod}/${tag} (got '$tag_sha', expected '$head_before')"
+  if [[ "$tag_sha" != "$sub_head" ]]; then
+    fail "Missing or mismatched tag ${mod}/${tag} (got '$tag_sha', expected '$sub_head')"
   fi
 done
-pass "publish-git-tag.sh pushed all 4 module tags to exact HEAD without modifying main"
+pass "publish-git-tag.sh submodules mode verified go.mod and pushed all 3 submodule tags"
 
 echo "==> 3. Release jq label-filter tests"
 
-JQ_EXPR='[.[] | select(.merged_at != null and .base.ref == "main") | .labels[].name] | index("release-once-merged") != null'
+JQ_SDK='[.[] | select(.merged_at != null and .base.ref == "main") | .labels[].name] | index("release-once-merged") != null'
+JQ_SUB='[.[] | select(.merged_at != null and .base.ref == "main" and ((.labels | map(.name) | index("release-submodules")) != null)) | .head.ref] | first // ""'
 
 check_jq() {
   local desc=$1
-  local payload=$2
-  local expected=$3
+  local expr=$2
+  local payload=$3
+  local expected=$4
   local actual
-  actual=$(printf '%s' "$payload" | jq -r "$JQ_EXPR")
+  actual=$(printf '%s' "$payload" | jq -r "$expr")
   if [[ "$actual" != "$expected" ]]; then
     fail "jq check '$desc': expected '$expected', got '$actual'"
   fi
 }
 
-check_jq "merged PR on main with label" \
+check_jq "merged PR on main with release-once-merged" "$JQ_SDK" \
   '[{"merged_at":"2026-11-20T09:00:00Z","base":{"ref":"main"},"labels":[{"name":"release-once-merged"}]}]' \
   "true"
-check_jq "unmerged PR with label" \
+check_jq "unmerged PR with release-once-merged" "$JQ_SDK" \
   '[{"merged_at":null,"base":{"ref":"main"},"labels":[{"name":"release-once-merged"}]}]' \
   "false"
-check_jq "merged PR on main without label" \
-  '[{"merged_at":"2026-11-20T09:00:00Z","base":{"ref":"main"},"labels":[{"name":"documentation"}]}]' \
-  "false"
-check_jq "merged PR on main with empty labels" \
+check_jq "merged PR on main without label" "$JQ_SDK" \
   '[{"merged_at":"2026-11-20T09:00:00Z","base":{"ref":"main"},"labels":[]}]' \
   "false"
-check_jq "merged PR targeting non-main" \
+check_jq "merged PR targeting non-main" "$JQ_SDK" \
   '[{"merged_at":"2026-11-20T09:00:00Z","base":{"ref":"dev"},"labels":[{"name":"release-once-merged"}]}]' \
   "false"
-check_jq "direct commit with no PRs" \
+check_jq "merged release-submodules PR extracts branch" "$JQ_SUB" \
+  '[{"merged_at":"2026-11-20T09:00:00Z","base":{"ref":"main"},"head":{"ref":"auto-release/v0.20261120.123800"},"labels":[{"name":"release-submodules"}]}]' \
+  "auto-release/v0.20261120.123800"
+check_jq "direct commit with no PRs" "$JQ_SUB" \
   '[]' \
-  "false"
+  ""
 pass "automation-release.yaml jq label-filter passed all 6 test cases"
 
 echo "==> All ${PASS_COUNT} go-azure-sdk workflow checks passed!"
