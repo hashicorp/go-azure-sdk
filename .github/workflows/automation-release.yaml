@@ -73,16 +73,16 @@ jobs:
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: ./.go-version
+          cache-dependency-path: ${{ matrix.component }}/go.sum
 
       - name: run the unit tests
         run: make test-ci-${{ matrix.component }}
 
-      - name: Unmount RAM Disks
+      - name: Unmount Workspace RAM Disk
         if: always()
         run: |
           cd /
-          sudo umount -l ~/.cache/go-build || true
-          sudo umount -l ~/go/pkg/mod || true
+          # Keep ~/.cache/go-build and ~/go/pkg/mod mounted so Post actions/setup-go can save the Go cache
           sudo umount -l "${{ github.workspace }}" || true
 
   release-go-sdk:

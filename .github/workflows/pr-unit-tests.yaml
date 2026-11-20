@@ -73,16 +73,16 @@ jobs:
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: ./.go-version
+          cache-dependency-path: sdk/go.sum
 
       - name: Run unit tests
         run: make test-ci-sdk
 
-      - name: Unmount RAM Disks
+      - name: Unmount Workspace RAM Disk
         if: always()
         run: |
           cd /
-          sudo umount -l ~/.cache/go-build || true
-          sudo umount -l ~/go/pkg/mod || true
+          # Keep ~/.cache/go-build and ~/go/pkg/mod mounted so Post actions/setup-go can save the Go cache
           sudo umount -l "${{ github.workspace }}" || true
 
   test-resource-manager:
@@ -106,16 +106,16 @@ jobs:
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: ./.go-version
+          cache-dependency-path: resource-manager/go.sum
 
       - name: Run unit tests
         run: make test-ci-resource-manager
 
-      - name: Unmount RAM Disks
+      - name: Unmount Workspace RAM Disk
         if: always()
         run: |
           cd /
-          sudo umount -l ~/.cache/go-build || true
-          sudo umount -l ~/go/pkg/mod || true
+          # Keep ~/.cache/go-build and ~/go/pkg/mod mounted so Post actions/setup-go can save the Go cache
           sudo umount -l "${{ github.workspace }}" || true
 
   test-microsoft-graph:
@@ -139,16 +139,16 @@ jobs:
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: ./.go-version
+          cache-dependency-path: microsoft-graph/go.sum
 
       - name: Run unit tests
         run: make test-ci-microsoft-graph
 
-      - name: Unmount RAM Disks
+      - name: Unmount Workspace RAM Disk
         if: always()
         run: |
           cd /
-          sudo umount -l ~/.cache/go-build || true
-          sudo umount -l ~/go/pkg/mod || true
+          # Keep ~/.cache/go-build and ~/go/pkg/mod mounted so Post actions/setup-go can save the Go cache
           sudo umount -l "${{ github.workspace }}" || true
 
   test-data-plane:
@@ -172,16 +172,16 @@ jobs:
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: ./.go-version
+          cache-dependency-path: data-plane/go.sum
 
       - name: Run unit tests
         run: make test-ci-data-plane
 
-      - name: Unmount RAM Disks
+      - name: Unmount Workspace RAM Disk
         if: always()
         run: |
           cd /
-          sudo umount -l ~/.cache/go-build || true
-          sudo umount -l ~/go/pkg/mod || true
+          # Keep ~/.cache/go-build and ~/go/pkg/mod mounted so Post actions/setup-go can save the Go cache
           sudo umount -l "${{ github.workspace }}" || true
 
 # vim: set ts=2 sts=2 sw=2 et:
