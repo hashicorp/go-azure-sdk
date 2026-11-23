@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -26,6 +27,8 @@ func (c KeysClient) UpdateKeyRotationPolicy(ctx context.Context, id KeyId, input
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
+		// Replaying the same policy sets the same values on the existing key.
+		Idempotent: pointer.To(true),
 		Path:       fmt.Sprintf("%s/rotationpolicy", id.Path()),
 	}
 
