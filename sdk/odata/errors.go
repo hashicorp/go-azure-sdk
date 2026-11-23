@@ -121,6 +121,11 @@ func (d *ErrorDetails) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// repeats is whether the detail only says again what its parent said, which Azure often does, so it can be left out.
+func (d ErrorDetails) repeats(message *string) bool {
+	return d.Details == nil && d.Message != nil && message != nil && *d.Message == *message
+}
+
 func (d ErrorDetails) String() string {
 	sl := make([]string, 0)
 	if d.Code != nil && *d.Code != "" {
@@ -137,6 +142,9 @@ func (d ErrorDetails) String() string {
 	}
 	if d.Details != nil {
 		for _, child := range *d.Details {
+			if child.repeats(d.Message) {
+				continue
+			}
 			if cs := child.String(); cs != "" {
 				sl = append(sl, cs)
 			}
@@ -194,6 +202,9 @@ func (e Error) String() string {
 	}
 	if e.Details != nil {
 		for _, d := range *e.Details {
+			if d.repeats(e.Message) {
+				continue
+			}
 			if ds := d.String(); ds != "" {
 				sl = append(sl, ds)
 			}

@@ -239,10 +239,18 @@ func TestError(t *testing.T) {
 		"message": "The template deployment failed with multiple errors.",
 		"details": [
 			{
+				"code": "InvalidTemplateDeployment",
+				"message": "The template deployment failed with multiple errors."
+			},
+			{
 				"code": "QuotaExceeded",
 				"target": "StandardDSv3Family",
 				"message": "Operation could not be completed as it results in exceeding approved StandardDSv3Family Cores quota.",
 				"details": [
+					{
+						"code": "QuotaExceeded",
+						"message": "Operation could not be completed as it results in exceeding approved StandardDSv3Family Cores quota."
+					},
 					{
 						"code": "InnerQuotaDetail",
 						"message": "Current limit: 10, requested: 16"
