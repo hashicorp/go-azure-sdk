@@ -5,6 +5,7 @@ package odata
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"regexp"
 	"strings"
@@ -106,19 +107,17 @@ func (d *ErrorDetails) UnmarshalJSON(data []byte) error {
 	}
 	*d = ErrorDetails(d2)
 
-	msg, err := unmarshalRawMessage(d.RawMessage)
-	if err != nil {
-		return err
+	msg, errMsg := unmarshalRawMessage(d.RawMessage)
+	if errMsg == nil {
+		d.Message = msg
 	}
-	d.Message = msg
 
-	details, err := unmarshalRawDetails(d.RawDetails)
-	if err != nil {
-		return err
+	details, errDetails := unmarshalRawDetails(d.RawDetails)
+	if errDetails == nil {
+		d.Details = details
 	}
-	d.Details = details
 
-	return nil
+	return errors.Join(errMsg, errDetails)
 }
 
 // repeats is whether the detail only says again what its parent said, which Azure often does, so it can be left out.
@@ -176,20 +175,18 @@ func (e *Error) UnmarshalJSON(data []byte) error {
 	}
 
 	// Unmarshal the message, which can be a plain string or an object wrapping a message
-	msg, err := unmarshalRawMessage(e.RawMessage)
-	if err != nil {
-		return err
+	msg, errMsg := unmarshalRawMessage(e.RawMessage)
+	if errMsg == nil {
+		e.Message = msg
 	}
-	e.Message = msg
 
 	// Unmarshal the details, which should be an array but might be an object
-	details, err := unmarshalRawDetails(e.RawDetails)
-	if err != nil {
-		return err
+	details, errDetails := unmarshalRawDetails(e.RawDetails)
+	if errDetails == nil {
+		e.Details = details
 	}
-	e.Details = details
 
-	return nil
+	return errors.Join(errMsg, errDetails)
 }
 
 func (e Error) String() string {
