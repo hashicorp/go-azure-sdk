@@ -5,6 +5,7 @@ package odata
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"regexp"
 	"strings"
@@ -44,8 +45,111 @@ type Error struct {
 }
 
 type ErrorDetails struct {
-	Code   *string `json:"code"`
-	Target *string `json:"target"`
+	Code       *string          `json:"code"`
+	Target     *string          `json:"target"`
+	Message    *string          `json:"-"`
+	RawMessage *json.RawMessage `json:"message"`
+	Details    *[]ErrorDetails  `json:"-"`
+	RawDetails *json.RawMessage `json:"details"`
+}
+
+func unmarshalRawMessage(raw *json.RawMessage) (*string, error) {
+	if raw == nil || len(*raw) == 0 || string(*raw) == "null" {
+		return nil, nil
+	}
+	switch string((*raw)[0]) {
+	case "\"":
+		var s string
+		if err := json.Unmarshal(*raw, &s); err != nil {
+			return nil, err
+		}
+		return &s, nil
+	case "{":
+		var m map[string]interface{}
+		if err := json.Unmarshal(*raw, &m); err != nil {
+			return nil, err
+		}
+		if v, ok := m["value"]; ok {
+			if s, ok := v.(string); ok {
+				return &s, nil
+			}
+		}
+		return nil, nil
+	default:
+		return nil, fmt.Errorf("unrecognised error message: %#v", string(*raw))
+	}
+}
+
+func unmarshalRawDetails(raw *json.RawMessage) (*[]ErrorDetails, error) {
+	if raw == nil || len(*raw) == 0 || string(*raw) == "null" {
+		return nil, nil
+	}
+	var details ErrorDetails
+	err := json.Unmarshal(*raw, &details)
+	if err == nil {
+		return &[]ErrorDetails{
+			details,
+		}, nil
+	}
+
+	var detailsSlice []ErrorDetails
+	if errSlice := json.Unmarshal(*raw, &detailsSlice); errSlice != nil {
+		return nil, fmt.Errorf("failed to unmarshal `RawDetails` as either `ErrorDetails` (%+v) or `[]ErrorDetails` (%+v) - type: %+v", err, errSlice, *raw)
+	}
+	return &detailsSlice, nil
+}
+
+func (d *ErrorDetails) UnmarshalJSON(data []byte) error {
+	type errorDetails ErrorDetails
+	var d2 errorDetails
+	if err := json.Unmarshal(data, &d2); err != nil {
+		return err
+	}
+	*d = ErrorDetails(d2)
+
+	msg, errMsg := unmarshalRawMessage(d.RawMessage)
+	if errMsg == nil {
+		d.Message = msg
+	}
+
+	details, errDetails := unmarshalRawDetails(d.RawDetails)
+	if errDetails == nil {
+		d.Details = details
+	}
+
+	return errors.Join(errMsg, errDetails)
+}
+
+// repeats is whether the detail only says again what its parent said, which Azure often does, so it can be left out.
+func (d ErrorDetails) repeats(message *string) bool {
+	return d.Details == nil && d.Message != nil && message != nil && *d.Message == *message
+}
+
+func (d ErrorDetails) String() string {
+	sl := make([]string, 0)
+	if d.Code != nil && *d.Code != "" {
+		if d.Target != nil && *d.Target != "" {
+			sl = append(sl, fmt.Sprintf("%s (%s)", *d.Code, *d.Target))
+		} else {
+			sl = append(sl, *d.Code)
+		}
+	} else if d.Target != nil && *d.Target != "" {
+		sl = append(sl, *d.Target)
+	}
+	if d.Message != nil && *d.Message != "" {
+		sl = append(sl, *d.Message)
+	}
+	if d.Details != nil {
+		for _, child := range *d.Details {
+			if child.repeats(d.Message) {
+				continue
+			}
+			if cs := child.String(); cs != "" {
+				sl = append(sl, cs)
+			}
+		}
+	}
+	return strings.Join(sl, ": ")
 }
 
 func (e *Error) UnmarshalJSON(data []byte) error {
@@ -57,58 +161,51 @@ func (e *Error) UnmarshalJSON(data []byte) error {
 	}
 	*e = Error(e2)
 
-	// Unmarshal the message, which can be a plain string or an object wrapping a message
-	if raw := e.RawMessage; raw != nil && len(*raw) > 0 {
-		switch string((*raw)[0]) {
-		case "\"":
-			var s string
-			if err := json.Unmarshal(*raw, &s); err != nil {
-				return err
-			}
-			e.Message = &s
-		case "{":
-			var m map[string]interface{}
-			if err := json.Unmarshal(*raw, &m); err != nil {
-				return err
-			}
-			if v, ok := m["value"]; ok {
-				if s, ok := v.(string); ok {
-					e.Message = &s
-				}
-			}
-		default:
-			return fmt.Errorf("unrecognised error message: %#v", string(*raw))
+	var altIds struct {
+		ClientRequestId *string `json:"clientRequestId"`
+		RequestId       *string `json:"requestId"`
+	}
+	if err := json.Unmarshal(data, &altIds); err == nil {
+		if e.ClientRequestId == nil && altIds.ClientRequestId != nil {
+			e.ClientRequestId = altIds.ClientRequestId
 		}
+		if e.RequestId == nil && altIds.RequestId != nil {
+			e.RequestId = altIds.RequestId
+		}
+	}
+
+	// Unmarshal the message, which can be a plain string or an object wrapping a message
+	msg, errMsg := unmarshalRawMessage(e.RawMessage)
+	if errMsg == nil {
+		e.Message = msg
 	}
 
 	// Unmarshal the details, which should be an array but might be an object
-	if raw := e.RawDetails; raw != nil && len(*raw) > 0 {
-		var details ErrorDetails
-		err := json.Unmarshal(*raw, &details)
-		if err == nil {
-			e.Details = &[]ErrorDetails{
-				details,
-			}
-			return nil
-		}
-
-		var detailsSlice []ErrorDetails
-		if errSlice := json.Unmarshal(*raw, &detailsSlice); errSlice != nil {
-			return fmt.Errorf("failed to unmarshal `RawDetails` as either `ErrorDetails` (%+v) or `[]ErrorDetails` (%+v) - type: %+v", err, errSlice, *raw)
-		}
-		e.Details = &detailsSlice
+	details, errDetails := unmarshalRawDetails(e.RawDetails)
+	if errDetails == nil {
+		e.Details = details
 	}
 
-	return nil
+	return errors.Join(errMsg, errDetails)
 }
 
 func (e Error) String() string {
 	sl := make([]string, 0)
-	if e.Code != nil {
+	if e.Code != nil && *e.Code != "" {
 		sl = append(sl, *e.Code)
 	}
-	if e.Message != nil {
+	if e.Message != nil && *e.Message != "" {
 		sl = append(sl, *e.Message)
+	}
+	if e.Details != nil {
+		for _, d := range *e.Details {
+			if d.repeats(e.Message) {
+				continue
+			}
+			if ds := d.String(); ds != "" {
+				sl = append(sl, ds)
+			}
+		}
 	}
 	if e.InnerError != nil {
 		if is := e.InnerError.String(); is != "" {

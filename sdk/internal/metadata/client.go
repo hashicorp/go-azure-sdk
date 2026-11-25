@@ -48,10 +48,6 @@ func (c *Client) GetMetaData(ctx context.Context) (*MetaData, error) {
 	}
 	defer transport.DrainAndClose(resp.Body)
 
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("performing request: expected 200 OK but got %d %s", resp.StatusCode, resp.Status)
-	}
-
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("parsing response body: %+v", err)
@@ -60,10 +56,17 @@ func (c *Client) GetMetaData(ctx context.Context) (*MetaData, error) {
 	// Trim away a BOM if present
 	respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
 
+	if resp.StatusCode != http.StatusOK {
+		if len(respBody) > 0 {
+			return nil, fmt.Errorf("performing request: expected 200 OK but got %d %s with body %q", resp.StatusCode, resp.Status, string(respBody))
+		}
+		return nil, fmt.Errorf("performing request: expected 200 OK but got %d %s", resp.StatusCode, resp.Status)
+	}
+
 	var metadata *metaDataResponse
 	if err := json.Unmarshal(respBody, &metadata); err != nil {
 		log.Printf("[DEBUG] Unrecognised metadata response for %s: %s", uri, respBody)
-		return nil, fmt.Errorf("unmarshaling response: %+v", err)
+		return nil, fmt.Errorf("unmarshaling response %q: %+v", string(respBody), err)
 	}
 
 	return &MetaData{

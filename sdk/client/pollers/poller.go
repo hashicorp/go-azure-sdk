@@ -146,19 +146,25 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 			if pointer.From(p.retryOnError) && p.latestError != nil {
 				return p.latestError
 			}
+			lastResponse := p.latestResponse
 			p.latestResponse = nil
-			p.latestError = ctx.Err()
+			p.latestError = formatPollingTimeoutError(ctx.Err(), lastResponse)
 			return p.latestError
 		case <-timer.C:
 		}
 
+		prevResponse := p.latestResponse
 		p.latestResponse, p.latestError = p.poller.Poll(ctx)
 		if ctx.Err() != nil {
 			if pointer.From(p.retryOnError) && p.latestError != nil {
 				return p.latestError
 			}
+			lastResponse := p.latestResponse
+			if lastResponse == nil {
+				lastResponse = prevResponse
+			}
 			p.latestResponse = nil
-			p.latestError = ctx.Err()
+			p.latestError = formatPollingTimeoutError(ctx.Err(), lastResponse)
 			return p.latestError
 		}
 
@@ -166,6 +172,8 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 		connectionHasBeenDropped := false
 		if p.latestResponse == nil && p.latestError == nil {
 			// connection drops can either have no response/error (where we have no context)
+			connectionHasBeenDropped = true
+		} else if p.latestResponse != nil && p.latestResponse.Status == PollingStatusUnknown && p.latestError == nil {
 			connectionHasBeenDropped = true
 		} else if errors.As(p.latestError, &PollingDroppedConnectionError{}) {
 			// or have an error with more details (e.g. server not found, connection reset etc.)
@@ -176,7 +184,7 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 			if connectionDropCounter < p.maxNumberOfDroppedConnections {
 				continue
 			}
-			if p.latestResponse == nil && p.latestError == nil {
+			if p.latestError == nil {
 				// the connection was dropped, but we have no context
 				p.latestError = PollingDroppedConnectionError{}
 				break
@@ -206,7 +214,7 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 				p.latestError = fmt.Errorf("internal-error: a polling status of `Failed` should be surfaced as a PollingFailedError")
 				done = true
 
-			case PollingStatusInProgress:
+			case PollingStatusInProgress, PollingStatusUnknown:
 				continue
 
 			case PollingStatusSucceeded:
@@ -228,6 +236,20 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 	}
 
 	return p.latestError
+}
+
+func formatPollingTimeoutError(ctxErr error, lastResponse *PollResult) error {
+	if lastResponse == nil {
+		return fmt.Errorf("polling timed out before first poll completed: %w", ctxErr)
+	}
+	status := lastResponse.Status
+	if status == "" {
+		status = PollingStatusUnknown
+	}
+	if lastResponse.HttpResponse != nil && lastResponse.HttpResponse.Response != nil && lastResponse.HttpResponse.Request != nil && lastResponse.HttpResponse.Request.URL != nil {
+		return fmt.Errorf("polling %q (last status %q): %w", lastResponse.HttpResponse.Request.URL.String(), status, ctxErr)
+	}
+	return fmt.Errorf("polling (last status %q): %w", status, ctxErr)
 }
 
 // FinalResult attempts to unmarshal the final result into the provided model

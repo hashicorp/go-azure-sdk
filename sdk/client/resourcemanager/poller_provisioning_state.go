@@ -4,9 +4,11 @@
 package resourcemanager
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -15,6 +17,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/transport"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
 
@@ -102,6 +105,9 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 					Status:       pollers.PollingStatusUnknown,
 				}, nil
 			}
+			return nil, pollers.PollingDroppedConnectionError{
+				Message: err.Error(),
+			}
 		}
 
 		return nil, fmt.Errorf("executing request: %+v", err)
@@ -113,9 +119,20 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 		return nil, pollers.PollingDroppedConnectionError{}
 	}
 
+	var respBody []byte
+	if resp.Response != nil && resp.Body != nil {
+		respBody, err = io.ReadAll(resp.Body)
+		if err != nil {
+			transport.DrainAndClose(resp.Body)
+			return nil, fmt.Errorf("parsing response body: %+v", err)
+		}
+		_ = resp.Body.Close()
+		resp.Body = io.NopCloser(bytes.NewReader(respBody))
+	}
+
 	var result provisioningStateResult
 	if err := resp.Unmarshal(&result); err != nil {
-		return nil, fmt.Errorf("unmarshaling result: %+v", err)
+		return nil, fmt.Errorf("unmarshaling result (response: %q): %+v", string(respBody), err)
 	}
 
 	s := string(result.Status)
@@ -136,14 +153,24 @@ func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult
 	}
 
 	if strings.EqualFold(s, string(statusCanceled)) || strings.EqualFold(s, string(statusCancelled)) {
+		lroError, parseError := parseErrorFromApiResponse(resp.Response)
+		if parseError != nil {
+			return nil, parseError
+		}
 		return nil, pollers.PollingCancelledError{
 			HttpResponse: resp,
+			Message:      lroError.Error(),
 		}
 	}
 
 	if strings.EqualFold(s, string(statusFailed)) {
+		lroError, parseError := parseErrorFromApiResponse(resp.Response)
+		if parseError != nil {
+			return nil, parseError
+		}
 		return nil, pollers.PollingFailedError{
 			HttpResponse: resp,
+			Message:      lroError.Error(),
 		}
 	}
 
