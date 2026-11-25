@@ -4,6 +4,7 @@
 release-once-merged:
 - changed-files:
   - any-glob-to-any-file:
+    - data-plane/**/*
     - microsoft-graph/**/*
     - resource-manager/**/*
     - sdk/**/*

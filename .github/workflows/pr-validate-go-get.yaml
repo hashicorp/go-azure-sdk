@@ -3,16 +3,30 @@ name: Validate Go Get
 on:
   pull_request:
     types: ['opened', 'synchronize']
+  push:
+    branches:
+      - 'auto-pr/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 'validate-go-get-${{ github.head_ref || github.ref_name }}'
+  cancel-in-progress: true
 
 jobs:
   validate-go-get:
     runs-on: custom-linux-medium
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: ./.go-version
+          cache-dependency-path: '*/go.sum'
 
       - name: "install tools / run unit tests"
         run: |
