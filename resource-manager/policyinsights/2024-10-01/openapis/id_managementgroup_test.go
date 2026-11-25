@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ManagementGroupId{}
 
 func TestNewManagementGroupID(t *testing.T) {
-	id := NewManagementGroupID("managementGroupId")
+	id := NewManagementGroupID("managementGroupName")
 
-	if id.ManagementGroupId != "managementGroupId" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupId")
+	if id.ManagementGroupName != "managementGroupName" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupName'", id.ManagementGroupName, "managementGroupName")
 	}
 }
 
 func TestFormatManagementGroupID(t *testing.T) {
-	actual := NewManagementGroupID("managementGroupId").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/managementGroupId"
+	actual := NewManagementGroupID("managementGroupName").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/managementGroupName"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseManagementGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupName",
 			Expected: &ManagementGroupId{
-				ManagementGroupId: "managementGroupId",
+				ManagementGroupName: "managementGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupName/extra",
 			Error: true,
 		},
 	}
@@ -81,8 +81,8 @@ func TestParseManagementGroupID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.ManagementGroupId != v.Expected.ManagementGroupId {
-			t.Fatalf("Expected %q but got %q for ManagementGroupId", v.Expected.ManagementGroupId, actual.ManagementGroupId)
+		if actual.ManagementGroupName != v.Expected.ManagementGroupName {
+			t.Fatalf("Expected %q but got %q for ManagementGroupName", v.Expected.ManagementGroupName, actual.ManagementGroupName)
 		}
 
 	}
@@ -131,26 +131,26 @@ func TestParseManagementGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupName",
 			Expected: &ManagementGroupId{
-				ManagementGroupId: "managementGroupId",
+				ManagementGroupName: "managementGroupName",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/managementGroupId/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/managementGroupName/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpNaMe",
 			Expected: &ManagementGroupId{
-				ManagementGroupId: "mAnAgEmEnTgRoUpId",
+				ManagementGroupName: "mAnAgEmEnTgRoUpNaMe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpId/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpNaMe/extra",
 			Error: true,
 		},
 	}
@@ -169,8 +169,8 @@ func TestParseManagementGroupIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.ManagementGroupId != v.Expected.ManagementGroupId {
-			t.Fatalf("Expected %q but got %q for ManagementGroupId", v.Expected.ManagementGroupId, actual.ManagementGroupId)
+		if actual.ManagementGroupName != v.Expected.ManagementGroupName {
+			t.Fatalf("Expected %q but got %q for ManagementGroupName", v.Expected.ManagementGroupName, actual.ManagementGroupName)
 		}
 
 	}

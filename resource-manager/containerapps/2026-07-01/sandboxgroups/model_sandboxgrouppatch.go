@@ -4,6 +4,7 @@ package sandboxgroups
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SandboxGroupPatch struct {
+	Identity   *SandboxGroupIdentity        `json:"identity,omitempty"`
 	Properties *SandboxGroupPatchProperties `json:"properties,omitempty"`
 	Tags       *map[string]string           `json:"tags,omitempty"`
 }
