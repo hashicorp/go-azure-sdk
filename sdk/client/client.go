@@ -381,6 +381,10 @@ type Client struct {
 	retryWaitMin time.Duration
 }
 
+type rawDetailsError struct {
+	Message string `json:"message"`
+}
+
 // NewClient returns a new Client configured with sensible defaults
 func NewClient(baseUri string, serviceName, apiVersion string) *Client {
 	segments := []string{
@@ -650,6 +654,18 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 			switch {
 			case resp.OData != nil && resp.OData.Error != nil && resp.OData.Error.String() != "":
 				errText = fmt.Sprintf("error: %s", resp.OData.Error)
+				if rawDetails := resp.OData.Error.RawDetails; rawDetails != nil {
+					var rawDetailsErr []rawDetailsError
+					if err = json.Unmarshal(*rawDetails, &rawDetailsErr); err == nil {
+						messages := []string{}
+						for _, v := range rawDetailsErr {
+							if v.Message != "" {
+								messages = append(messages, v.Message)
+							}
+						}
+						errText += strings.Join(messages, "\n")
+					}
+				}
 
 			default:
 				if readErr != nil {
