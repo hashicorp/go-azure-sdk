@@ -99,6 +99,22 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `NetworkInterfacesClient.GetVirtualMachineScaleSetIPConfiguration`
+
+```go
+ctx := context.TODO()
+id := commonids.NewVirtualMachineScaleSetIPConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "virtualMachineName", "networkInterfaceName", "ipConfigurationName")
+
+read, err := client.GetVirtualMachineScaleSetIPConfiguration(ctx, id, networkinterfaces.DefaultGetVirtualMachineScaleSetIPConfigurationOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `NetworkInterfacesClient.List`
 
 ```go
@@ -175,6 +191,40 @@ id := commonids.NewNetworkInterfaceID("12345678-1234-9876-4563-123456789012", "e
 
 // alternatively `client.ListEffectiveNetworkSecurityGroups(ctx, id)` can be used to do batched pagination
 items, err := client.ListEffectiveNetworkSecurityGroupsComplete(ctx, id)
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `NetworkInterfacesClient.ListVirtualMachineScaleSetIPConfigurations`
+
+```go
+ctx := context.TODO()
+id := commonids.NewVirtualMachineScaleSetNetworkInterfaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName", "virtualMachineName", "networkInterfaceName")
+
+// alternatively `client.ListVirtualMachineScaleSetIPConfigurations(ctx, id, networkinterfaces.DefaultListVirtualMachineScaleSetIPConfigurationsOperationOptions())` can be used to do batched pagination
+items, err := client.ListVirtualMachineScaleSetIPConfigurationsComplete(ctx, id, networkinterfaces.DefaultListVirtualMachineScaleSetIPConfigurationsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `NetworkInterfacesClient.ListVirtualMachineScaleSetNetworkInterfaces`
+
+```go
+ctx := context.TODO()
+id := networkinterfaces.NewVirtualMachineScaleSetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetName")
+
+// alternatively `client.ListVirtualMachineScaleSetNetworkInterfaces(ctx, id)` can be used to do batched pagination
+items, err := client.ListVirtualMachineScaleSetNetworkInterfacesComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
