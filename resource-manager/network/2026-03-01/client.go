@@ -136,6 +136,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2026-03-01/virtualrouterpeerings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2026-03-01/virtualrouters"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2026-03-01/virtualwans"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2026-03-01/vmssnetworkinterfaces"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2026-03-01/vmsspublicipaddresses"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2026-03-01/vpngateways"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2026-03-01/vpnlinkconnections"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2026-03-01/vpnserverconfigurations"
@@ -262,6 +264,8 @@ type Client struct {
 	Subnets                                          *subnets.SubnetsClient
 	TrafficAnalytics                                 *trafficanalytics.TrafficAnalyticsClient
 	Usages                                           *usages.UsagesClient
+	VMSSNetworkInterfaces                            *vmssnetworkinterfaces.VMSSNetworkInterfacesClient
+	VMSSPublicIPAddresses                            *vmsspublicipaddresses.VMSSPublicIPAddressesClient
 	VerifierWorkspaces                               *verifierworkspaces.VerifierWorkspacesClient
 	VipSwap                                          *vipswap.VipSwapClient
 	VirtualApplianceSites                            *virtualappliancesites.VirtualApplianceSitesClient
@@ -976,6 +980,18 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(usagesClient.Client)
 
+	vMSSNetworkInterfacesClient, err := vmssnetworkinterfaces.NewVMSSNetworkInterfacesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building VMSSNetworkInterfaces client: %+v", err)
+	}
+	configureFunc(vMSSNetworkInterfacesClient.Client)
+
+	vMSSPublicIPAddressesClient, err := vmsspublicipaddresses.NewVMSSPublicIPAddressesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building VMSSPublicIPAddresses client: %+v", err)
+	}
+	configureFunc(vMSSPublicIPAddressesClient.Client)
+
 	verifierWorkspacesClient, err := verifierworkspaces.NewVerifierWorkspacesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VerifierWorkspaces client: %+v", err)
@@ -1218,6 +1234,8 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		Subnets:                                          subnetsClient,
 		TrafficAnalytics:                                 trafficAnalyticsClient,
 		Usages:                                           usagesClient,
+		VMSSNetworkInterfaces:                            vMSSNetworkInterfacesClient,
+		VMSSPublicIPAddresses:                            vMSSPublicIPAddressesClient,
 		VerifierWorkspaces:                               verifierWorkspacesClient,
 		VipSwap:                                          vipSwapClient,
 		VirtualApplianceSites:                            virtualApplianceSitesClient,
