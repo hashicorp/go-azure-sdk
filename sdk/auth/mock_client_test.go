@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
@@ -89,4 +90,17 @@ func (c *oidcMockClient) Do(r *http.Request) (resp *http.Response, err error) {
 		Authorization: c.authorization,
 	}
 	return client.Do(r)
+}
+
+type requestCountingClient struct {
+	host     string
+	next     auth.HTTPClient
+	requests int
+}
+
+func (c *requestCountingClient) Do(r *http.Request) (*http.Response, error) {
+	if r.Host == c.host {
+		c.requests++
+	}
+	return c.next.Do(r)
 }

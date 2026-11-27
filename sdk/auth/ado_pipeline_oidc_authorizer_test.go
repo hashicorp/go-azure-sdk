@@ -52,6 +52,51 @@ func TestADOPipelineOIDCAuthorizer(t *testing.T) {
 	}
 }
 
+func TestADOPipelineOIDCAuthorizerWithoutAuxiliaryTenants(t *testing.T) {
+	ctx := context.Background()
+	env := environments.AzurePublic()
+
+	mockHost := "ado-oidc-issuer"
+	client := &requestCountingClient{
+		host: mockHost,
+		next: &oidcMockClient{
+			authorization: *env.Authorization,
+			platform:      OidcMockClientPlatformADOPipeline,
+			mockHost:      mockHost,
+		},
+	}
+	auth.Client = client
+
+	opts := auth.ADOPipelineOIDCAuthorizerOptions{
+		Api:                 env.ResourceManager,
+		ClientId:            "11111111-0000-0000-0000-000000000000",
+		Environment:         *env,
+		IdTokenRequestToken: test.DummyAccessToken,
+		IdTokenRequestUrl:   fmt.Sprintf("https://%s/vend-id-token", mockHost),
+		ServiceConnectionId: "test-service-connection",
+		TenantId:            "00000000-1111-0000-0000-000000000000",
+	}
+
+	authorizer, err := auth.NewADOPipelineOIDCAuthorizer(ctx, opts)
+	if err != nil {
+		t.Fatalf("NewADOPipelineOIDCAuthorizer(): %v", err)
+	}
+
+	for i := 0; i < 3; i++ {
+		tokens, err := authorizer.AuxiliaryTokens(ctx, nil)
+		if err != nil {
+			t.Fatalf("authorizer.AuxiliaryTokens(): %v", err)
+		}
+		if len(tokens) != 0 {
+			t.Fatalf("expected no auxiliary tokens, got %d", len(tokens))
+		}
+	}
+
+	if client.requests != 0 {
+		t.Fatalf("expected no ID token requests without auxiliary tenants, got %d", client.requests)
+	}
+}
+
 func TestAccADOPipelineOIDCAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
